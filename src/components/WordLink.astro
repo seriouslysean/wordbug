@@ -1,5 +1,5 @@
 ---
-const { word, className = '' } = Astro.props;
+const { word, className = '', href } = Astro.props;
 
 const formatDate = (dateStr) => {
     const date = new Date(
@@ -11,7 +11,7 @@ const formatDate = (dateStr) => {
 };
 ---
 
-<a href={word.date} class:list={['word-link', className]}>
+<a href={href ?? `/${word.date}`} class:list={['word-link', className]}>
     <span class="word-link__word">{word.word}</span>
     <time class="word-link__date">{formatDate(word.date)}</time>
 </a>

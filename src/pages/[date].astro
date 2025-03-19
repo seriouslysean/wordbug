@@ -26,6 +26,11 @@ const { previousWord, nextWord } = await getAdjacentWords(date);
 if (!word) {
     return Astro.redirect(import.meta.env.BASE_URL || '/');
 }
+
+// Check if next word is today's word
+const today = new Date();
+const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
+const isNextWordToday = nextWord?.date === todayString;
 ---
 
 <Layout title={`${word.word} - Bug's (Occasional) Word of the Day`}>
@@ -47,7 +52,7 @@ if (!word) {
                 {nextWord && (
                     <div class="word-nav__next">
                         <span class="word-nav__label">Next</span>
-                        <WordLink word={nextWord} />
+                        <WordLink word={nextWord} href={isNextWordToday ? "/" : undefined} />
                     </div>
                 )}
             </div>
@@ -108,5 +113,33 @@ if (!word) {
         .word-nav__next {
             min-width: 120px;
         }
+    }
+
+    /* Ensure consistent link styling */
+    .word-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        text-decoration: none;
+        padding: 0.25rem 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .word-link:hover {
+        opacity: 0.7;
+    }
+
+    .word-link__word {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-primary-light, #4a7c7d);
+    }
+
+    .word-link__date {
+        font-size: 0.8rem;
+        color: var(--color-text-lighter, #8a8f98);
+        margin-left: 1rem;
+        text-transform: lowercase;
+        font-weight: normal;
     }
 </style>
