@@ -24,7 +24,7 @@ const word = await getWordByDate(date);
 const { previousWord, nextWord } = await getAdjacentWords(date);
 
 if (!word) {
-    return Astro.redirect('/');
+    return Astro.redirect(import.meta.env.BASE_URL || '/');
 }
 ---
 
@@ -34,12 +34,16 @@ if (!word) {
 
         <nav class="word-nav">
             <div class="word-nav__container">
-                {previousWord && (
-                    <div class="word-nav__previous">
-                        <span class="word-nav__label">Previous</span>
-                        <WordLink word={previousWord} />
-                    </div>
-                )}
+                <div class="word-nav__previous">
+                    {previousWord ? (
+                        <>
+                            <span class="word-nav__label">Previous</span>
+                            <WordLink word={previousWord} />
+                        </>
+                    ) : (
+                        <div class="word-nav__placeholder" />
+                    )}
+                </div>
                 {nextWord && (
                     <div class="word-nav__next">
                         <span class="word-nav__label">Next</span>
@@ -93,6 +97,10 @@ if (!word) {
     .word-nav__next :global(.word-link__date) {
         margin-left: 0;
         margin-right: var(--spacing-base);
+    }
+
+    .word-nav__placeholder {
+        min-height: 2.5rem;
     }
 
     @media (max-width: 768px) {
