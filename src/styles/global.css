@@ -56,37 +56,27 @@ table {
     --color-primary-dark: #1d4e51;
     --color-background: #fff;
     --color-background-light: #f8f9fa;
-    --color-background-gradient-start: #ffffff;
-    --color-background-gradient-end: #e8eff0;
     --color-text: #333;
     --color-text-light: #666;
     --color-text-lighter: #8a8f98;
-    --color-border: #eee;
 
     /* Spacing */
-    --spacing-xs: 0.25rem;
     --spacing-small: 0.5rem;
     --spacing-base: 1rem;
     --spacing-large: 2rem;
-    --spacing-xl: 4rem;
 
     /* Font sizes */
-    --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
     --font-size-small: clamp(0.875rem, 2vw, 1rem);
     --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
-    --font-size-large: clamp(1.25rem, 3vw, 1.5rem);
-    --font-size-xl: clamp(1.5rem, 4vw, 2rem);
-    --font-size-xxl: clamp(2rem, 5vw, 3rem);
     --font-size-huge: clamp(3rem, 15vw, 8rem);
 
     /* Content widths */
     --content-width-small: min(600px, 90vw);
     --content-width-medium: min(800px, 90vw);
-    --content-width-large: min(1000px, 90vw);
 
     /* Other */
     --border-radius: 8px;
-    --box-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-color: 186deg 47% 28%;
 }
 
 /* Global reset */
@@ -98,11 +88,7 @@ table {
 
 html {
     min-height: 100%;
-    background: linear-gradient(
-        165deg,
-        var(--color-background-gradient-start) 0%,
-        var(--color-background-gradient-end) 100%
-    ) fixed;
+    background: var(--color-background);
 }
 
 body {
@@ -135,10 +121,6 @@ main {
     color: var(--color-text-light);
 }
 
-.text-lighter {
-    color: var(--color-text-lighter);
-}
-
 .text-lowercase {
     text-transform: lowercase;
 }
@@ -147,24 +129,14 @@ main {
     text-align: center;
 }
 
-/* Shared animations */
-.fade-hover {
-    transition: opacity 0.2s ease;
-}
-
-.fade-hover:hover {
-    opacity: 0.7;
-}
-
-/* Shared link styles */
+/* Links */
 a {
     color: inherit;
     text-decoration: none;
-    opacity: 1;
-    transition: all 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 a:hover {
-    text-decoration: underline;
     opacity: 0.7;
+    text-decoration: underline;
 }

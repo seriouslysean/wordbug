@@ -18,8 +18,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "tool:add-word": "node tools/addWord.js",
-    "tool:reprocess-words": "node tools/reprocessWords.js"
+    "tool:add-word": "node tools/add-word.js",
+    "tool:reprocess-words": "node tools/reprocess-words.js"
   },
   "dependencies": {
     "astro": "^5.5.3"

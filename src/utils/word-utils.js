@@ -41,6 +41,10 @@ const getAllWords = () => {
     ).sort((a, b) => b.date.localeCompare(a.date));
 };
 
+/**
+ * Gets the current word (most recent word not after today)
+ * @returns {Object} The current word object
+ */
 export const getCurrentWord = () => {
     const words = getAllWords();
     if (!words.length) throw new Error('No word data available');
@@ -52,6 +56,11 @@ export const getCurrentWord = () => {
     return words.find(word => word.date <= dateString) || words[0];
 };
 
+/**
+ * Gets the past words before the given date
+ * @param {string} currentDate - The reference date in YYYYMMDD format
+ * @returns {Array} Array of past word objects
+ */
 export const getPastWords = (currentDate) => {
     if (!currentDate) return [];
 
@@ -61,6 +70,11 @@ export const getPastWords = (currentDate) => {
         .slice(0, 5);
 };
 
+/**
+ * Gets a word by its date
+ * @param {string} date - The date in YYYYMMDD format
+ * @returns {Object|null} The word object or null if not found
+ */
 export const getWordByDate = (date) => {
     if (!date) return null;
 
@@ -68,6 +82,11 @@ export const getWordByDate = (date) => {
     return words.find(word => word.date === date) || null;
 };
 
+/**
+ * Gets the previous and next words relative to the given date
+ * @param {string} date - The reference date in YYYYMMDD format
+ * @returns {Object} Object containing previousWord and nextWord
+ */
 export const getAdjacentWords = (date) => {
     if (!date) return { previousWord: null, nextWord: null };
 
@@ -80,4 +99,23 @@ export const getAdjacentWords = (date) => {
         previousWord: words[currentIndex + 1] || null,
         nextWord: words[currentIndex - 1] || null
     };
+};
+
+/**
+ * Safely extracts word details from the word object
+ * @param {Object} word - Word object containing meanings and definitions
+ * @returns {Object} - Extracted word details
+ */
+export const getWordDetails = (word) => {
+    if (!word) return { partOfSpeech: '', definition: '' };
+
+    const meanings = word.meanings || [];
+    const firstMeaning = meanings[0] || {};
+    const definitions = firstMeaning.definitions || [];
+    const firstDefinition = definitions[0] || {};
+
+    const partOfSpeech = firstMeaning.partOfSpeech ? `${firstMeaning.partOfSpeech}.` : '';
+    const definition = firstDefinition.definition ? `${firstDefinition.definition}.` : '';
+
+    return { partOfSpeech, definition };
 };

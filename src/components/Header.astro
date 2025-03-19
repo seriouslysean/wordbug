@@ -1,5 +1,5 @@
 ---
-import { getUrl } from '../utils/url.js';
+import { getUrl } from '../utils/utils';
 ---
 
 <header class="header">
@@ -19,13 +19,18 @@ import { getUrl } from '../utils/url.js';
         font-size: 0.875rem;
         font-weight: normal;
         margin: 0;
-        color: var(--color-text-light);
+        color: var(--color-text-lighter);
         text-transform: lowercase;
         letter-spacing: 0.5px;
+        transition: color 0.2s ease;
     }
 
     .header__link {
         font-size: var(--font-size-small);
         text-transform: lowercase;
+    }
+
+    .header__link:hover .header__title {
+        color: var(--color-text-light);
     }
 </style>

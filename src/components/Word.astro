@@ -1,48 +1,8 @@
 ---
+import { formatDate } from '../utils/date-utils';
+import { getWordDetails } from '../utils/word-utils';
+
 const { word } = Astro.props;
-
-/**
- * Formats a date string into a localized date
- * @param {string} dateStr - Date string in YYYYMMDD format
- * @returns {string} - Formatted date string
- */
-const formatDate = (dateStr) => {
-    try {
-        const date = new Date(
-            dateStr.substring(0, 4),
-            parseInt(dateStr.substring(4, 6)) - 1,
-            dateStr.substring(6, 8)
-        );
-        return date.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        });
-    } catch (error) {
-        console.error('Error formatting date:', error);
-        return dateStr;
-    }
-};
-
-/**
- * Safely extracts word details from the word object
- * @param {Object} word - Word object containing meanings and definitions
- * @returns {Object} - Extracted word details
- */
-const getWordDetails = (word) => {
-    if (!word) return { partOfSpeech: '', definition: '' };
-
-    const meanings = word.meanings || [];
-    const firstMeaning = meanings[0] || {};
-    const definitions = firstMeaning.definitions || [];
-    const firstDefinition = definitions[0] || {};
-
-    const partOfSpeech = firstMeaning.partOfSpeech ? `${firstMeaning.partOfSpeech}.` : '';
-    const definition = firstDefinition.definition ? `${firstDefinition.definition}.` : '';
-
-    return { partOfSpeech, definition };
-};
-
 const { partOfSpeech, definition } = getWordDetails(word);
 const hasDefinition = Boolean(partOfSpeech || definition);
 ---
@@ -70,10 +30,9 @@ const hasDefinition = Boolean(partOfSpeech || definition);
 
     .word__date {
         display: block;
-        font-size: var(--font-size-small);
+        font-size: var(--font-size-xs, 0.75rem);
         color: var(--color-text-light);
         opacity: 0.7;
-        margin-bottom: var(--spacing-small);
         text-transform: lowercase;
     }
 
@@ -89,23 +48,23 @@ const hasDefinition = Boolean(partOfSpeech || definition);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         letter-spacing: -0.02em;
         display: inline-block;
         padding: 0 var(--spacing-small);
         word-break: break-word;
         hyphens: auto;
-        filter: drop-shadow(0 6px 6px hsl(220deg 60% 50% / 0.5));
+        filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5))
+               drop-shadow(0 0.3rem 0.3rem rgba(0, 0, 0, 0.5));
     }
 
     .word__details {
-        margin: var(--spacing-large) auto;
+        margin: var(--spacing-large) auto 0;
         width: 100%;
-        max-width: var(--content-width-small);
-        padding: var(--spacing-large) var(--spacing-base);
-        background: var(--color-background-light);
+        max-width: min(var(--content-width-small), 85%);
+        padding: var(--spacing-base) var(--spacing-large);
+        background: hsl(0 0% 100% / 0.05);
         border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow-light);
+        box-shadow: 0 2px 4px -2px hsl(var(--shadow-color) / 0.1);
     }
 
     .word__definition {
@@ -119,5 +78,6 @@ const hasDefinition = Boolean(partOfSpeech || definition);
 
     .word__type {
         color: var(--color-text-light);
+        font-weight: 500;
     }
 </style>
