@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { spellcheck } from 'spellchecker';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Validates a date string is in YYYY-MM-DD format
@@ -17,29 +19,6 @@ function isValidDate(date) {
     return dateObj.getFullYear() === year &&
            dateObj.getMonth() === month - 1 &&
            dateObj.getDate() === day;
-}
-
-/**
- * Checks if a word is spelled correctly and provides suggestions if not
- * @param {string} word - Word to check
- * @returns {Promise<boolean>} - True if word is spelled correctly
- */
-async function checkSpelling(word) {
-    try {
-        const isCorrect = spellcheck.checkSpelling(word);
-        if (!isCorrect) {
-            const suggestions = spellcheck.getCorrectionsForMisspelling(word);
-            if (suggestions.length > 0) {
-                console.warn(`Warning: "${word}" might be misspelled.`);
-                console.warn('Suggestions:', suggestions.join(', '));
-                return false;
-            }
-        }
-        return true;
-    } catch (error) {
-        console.error('Error checking spelling:', error);
-        return false;
-    }
 }
 
 /**
@@ -97,10 +76,9 @@ function createWordFile(word, date, data) {
     const fileName = `${formattedDate.replace(/-/g, '')}.json`;
     const filePath = path.join(yearDir, fileName);
 
+    // Save the complete dictionary response and add the date
     const wordData = {
-        word: data.word,
-        phonetic: data.phonetic,
-        definition: data.meanings[0]?.definitions[0]?.definition || '',
+        ...data,
         date: formattedDate
     };
 
@@ -128,12 +106,6 @@ async function addWord(word, date) {
 
         // Check if file already exists
         if (checkFileExists(targetDate)) {
-            process.exit(1);
-        }
-
-        // Check spelling
-        const isSpelledCorrectly = await checkSpelling(word);
-        if (!isSpelledCorrectly) {
             process.exit(1);
         }
 

@@ -22,7 +22,8 @@ const readWordFile = (filePath) => {
 
     try {
         const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        return Array.isArray(data) ? data[0] : null;
+        // Handle both array responses (old format) and object responses (new format)
+        return Array.isArray(data) ? data[0] : data;
     } catch (error) {
         console.error(`Error reading word file ${filePath}:`, error);
         return null;

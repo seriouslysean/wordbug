@@ -1,36 +1,50 @@
-[
-  {
+{
     "word": "luminous",
     "phonetic": "/ˈluːmɪnəs/",
     "phonetics": [
-      {
-        "text": "/ˈluːmɪnəs/",
-        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/luminous-us.mp3",
-        "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1755168",
-        "license": {
-          "name": "BY-SA 3.0",
-          "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        {
+            "text": "/ˈluːmɪnəs/",
+            "audio": ""
         }
-      }
     ],
     "meanings": [
-      {
-        "partOfSpeech": "adjective",
-        "definitions": [
-          {
-            "definition": "Emitting light; bright, shining.",
-            "example": "The luminous dial on the watch made it easy to tell time in the dark.",
-            "synonyms": ["bright", "radiant", "glowing", "shining"],
-            "antonyms": ["dark", "dim", "dull"]
-          }
-        ]
-      }
+        {
+            "partOfSpeech": "adjective",
+            "definitions": [
+                {
+                    "definition": "Emitting light; glowing brightly.",
+                    "synonyms": [
+                        "beamful",
+                        "radiant",
+                        "shining"
+                    ],
+                    "antonyms": []
+                },
+                {
+                    "definition": "Brightly illuminated.",
+                    "synonyms": [
+                        "lighted",
+                        "lit up"
+                    ],
+                    "antonyms": []
+                }
+            ],
+            "synonyms": [
+                "beamful",
+                "radiant",
+                "shining",
+                "lighted",
+                "lit up"
+            ],
+            "antonyms": []
+        }
     ],
     "license": {
-      "name": "CC BY-SA 3.0",
-      "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        "name": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
     },
-    "sourceUrls": ["https://en.wiktionary.org/wiki/luminous"],
-    "date": "20240319"
-  }
-]
+    "sourceUrls": [
+        "https://en.wiktionary.org/wiki/luminous"
+    ],
+    "date": "2024-03-19"
+}

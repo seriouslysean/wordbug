@@ -1,29 +1,47 @@
-[{
+{
     "word": "mellifluous",
-    "phonetic": "/məˈlɪf.lu.əs/",
-    "phonetics": [{
-        "text": "/məˈlɪf.lu.əs/",
-        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/mellifluous-us.mp3",
-        "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1235872",
-        "license": {
-            "name": "BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    "phonetic": "/məˈlɪflu.əs/",
+    "phonetics": [
+        {
+            "text": "/məˈlɪflu.əs/",
+            "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/mellifluous-us.mp3",
+            "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=924905",
+            "license": {
+                "name": "BY-SA 3.0",
+                "url": "https://creativecommons.org/licenses/by-sa/3.0"
+            }
         }
-    }],
-    "meanings": [{
-        "partOfSpeech": "adjective",
-        "definitions": [{
-            "definition": "Sweet or musical; pleasant to hear",
-            "synonyms": ["dulcet", "euphonious", "harmonious", "sweet-sounding"],
-            "antonyms": ["cacophonous", "harsh", "discordant"],
-            "example": "She spoke in a mellifluous voice that captivated the audience."
-        }],
-        "synonyms": ["dulcet", "euphonious", "harmonious", "sweet-sounding"],
-        "antonyms": ["cacophonous", "harsh", "discordant"]
-    }],
+    ],
+    "meanings": [
+        {
+            "partOfSpeech": "adjective",
+            "definitions": [
+                {
+                    "definition": "Flowing like honey.",
+                    "synonyms": [],
+                    "antonyms": []
+                },
+                {
+                    "definition": "Sweet, smooth and musical; pleasant to hear (generally used of a person's voice, tone or writing style).",
+                    "synonyms": [],
+                    "antonyms": []
+                }
+            ],
+            "synonyms": [
+                "birdsweet",
+                "dulcet",
+                "euphonious",
+                "sweet-flowing"
+            ],
+            "antonyms": []
+        }
+    ],
     "license": {
         "name": "CC BY-SA 3.0",
         "url": "https://creativecommons.org/licenses/by-sa/3.0"
     },
-    "sourceUrls": ["https://en.wiktionary.org/wiki/mellifluous"]
-}]
+    "sourceUrls": [
+        "https://en.wiktionary.org/wiki/mellifluous"
+    ],
+    "date": "2025-03-15"
+}

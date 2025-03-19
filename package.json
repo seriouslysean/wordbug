@@ -18,12 +18,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "tool:add-word": "node tools/addWord.js"
+    "tool:add-word": "node tools/addWord.js",
+    "tool:reprocess-words": "node tools/reprocessWords.js"
   },
   "dependencies": {
-    "astro": "^4.4.15"
-  },
-  "devDependencies": {
-    "spellchecker": "^3.7.1"
+    "astro": "^5.5.3"
   }
 }
