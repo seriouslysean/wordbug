@@ -1,7 +1,9 @@
 ---
-const { word, className = '', href } = Astro.props;
+const { word, className = '' } = Astro.props;
 
 const formatDate = (dateStr) => {
+    if (!dateStr) return 'Today';
+
     const date = new Date(
         dateStr.substring(0, 4),
         parseInt(dateStr.substring(4, 6)) - 1,
@@ -11,7 +13,7 @@ const formatDate = (dateStr) => {
 };
 ---
 
-<a href={href ?? `/${word.date}`} class:list={['word-link', className]}>
+<a href={word.date ? `/${word.date}` : '/'} class:list={['word-link', className]}>
     <span class="word-link__word">{word.word}</span>
     <time class="word-link__date">{formatDate(word.date)}</time>
 </a>
@@ -23,10 +25,11 @@ const formatDate = (dateStr) => {
         align-items: baseline;
         text-decoration: none;
         padding: 0.25rem 0;
-        transition: opacity 0.2s ease;
+        transition: all 0.2s ease;
     }
 
     .word-link:hover {
+        text-decoration: none;
         opacity: 0.7;
     }
 

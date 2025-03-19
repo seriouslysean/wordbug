@@ -27,10 +27,13 @@ if (!word) {
     return Astro.redirect(import.meta.env.BASE_URL || '/');
 }
 
-// Check if next word is today's word
+// Check if next word is today's word and modify its URL if it is
 const today = new Date();
 const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
-const isNextWordToday = nextWord?.date === todayString;
+const modifiedNextWord = nextWord && {
+    ...nextWord,
+    date: nextWord.date === todayString ? '' : nextWord.date
+};
 ---
 
 <Layout title={`${word.word} - Bug's (Occasional) Word of the Day`}>
@@ -49,10 +52,10 @@ const isNextWordToday = nextWord?.date === todayString;
                         <div class="word-nav__placeholder" />
                     )}
                 </div>
-                {nextWord && (
+                {modifiedNextWord && (
                     <div class="word-nav__next">
                         <span class="word-nav__label">Next</span>
-                        <WordLink word={nextWord} href={isNextWordToday ? "/" : undefined} />
+                        <WordLink word={modifiedNextWord} />
                     </div>
                 )}
             </div>
