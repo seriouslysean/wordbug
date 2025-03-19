@@ -1,5 +1,7 @@
 ---
-const { word, className = '' } = Astro.props;
+import { getUrl } from '../utils/url.js';
+
+const { word } = Astro.props;
 
 const formatDate = (dateStr) => {
     if (!dateStr) return 'Today';
@@ -13,7 +15,7 @@ const formatDate = (dateStr) => {
 };
 ---
 
-<a href={word.date ? `/${word.date}` : '/'} class:list={['word-link', className]}>
+<a href={getUrl(`/${word.date}`)} class="word-link">
     <span class="word-link__word">{word.word}</span>
     <time class="word-link__date">{formatDate(word.date)}</time>
 </a>

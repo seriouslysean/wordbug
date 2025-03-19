@@ -1,5 +1,9 @@
+---
+import { getUrl } from '../utils/url.js';
+---
+
 <header class="header">
-    <a href={import.meta.env.BASE_URL} class="header__link">
+    <a href={getUrl('/')} class="header__link">
         <h2 class="header__title">bug's (occasional) word of the day</h2>
     </a>
 </header>
@@ -7,7 +11,7 @@
 <style>
     .header {
         text-align: center;
-        padding: 1rem;
+        padding: var(--spacing-base);
         margin-top: 1rem;
     }
 
@@ -18,5 +22,10 @@
         color: var(--color-text-light);
         text-transform: lowercase;
         letter-spacing: 0.5px;
+    }
+
+    .header__link {
+        font-size: var(--font-size-small);
+        text-transform: lowercase;
     }
 </style>
