@@ -1,0 +1,228 @@
+---
+import '~styles/global.css';
+import '~styles/theme.css';
+
+import Footer from '~components/Footer.astro';
+import Header from '~components/Header.astro';
+import StructuredData from '~components/StructuredData.astro';
+import type { WordData } from '~types/word';
+import { getBuildData } from '~utils/build-utils.ts';
+import { getSocialImageUrl } from '~utils/page-utils.js';
+import { getCanonicalUrl, getMetaDescription,seoConfig } from '~utils/seo-utils.ts';
+import { getUrl } from '~utils/utils.js';
+import { getWordByDate, getWordDetails } from '~utils/word-utils.js';
+
+const { title, word, description, structuredDataType, noindex, nofollow } = Astro.props;
+
+const currentUrl = getCanonicalUrl(Astro.url.pathname);
+const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
+const metaDescription = description || getMetaDescription();
+
+const wordData = word ? getWordByDate(word.date) : null;
+const socialImageUrl = getSocialImageUrl({
+  pathname: Astro.url.pathname,
+  wordData,
+});
+
+const formatPageTitle = (pageTitle: string, currentWord: WordData) => {
+  const today = new Date();
+  const date = today.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  if (currentWord?.word) {
+    return `${currentWord.word}, ${date} - ${pageTitle}`;
+  }
+
+  return pageTitle;
+};
+
+const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
+
+const buildData = getBuildData();
+
+// Generate color CSS variables using build-time constants
+const colorPrimary = __COLOR_PRIMARY__;
+const colorPrimaryLight = __COLOR_PRIMARY_LIGHT__;
+const colorPrimaryDark = __COLOR_PRIMARY_DARK__;
+
+const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark};`;
+
+const wordSchemaData = word ? (() => {
+  const details = getWordDetails(word);
+  return {
+    word: word.word,
+    date: word.date,
+    definition: details.definition,
+    partOfSpeech: details.partOfSpeech,
+    meta: details.meta,
+  };
+})() : null;
+---
+
+<!doctype html>
+<html lang={seoConfig.locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+		<title>{finalTitle}</title>
+		<meta name="description" content={metaDescription} />
+		<meta name="keywords" content={seoConfig.keywords.join(', ')} />
+		<meta name="author" content={seoConfig.author} />
+		{noindex || nofollow ? (
+			<meta name="robots" content={[noindex && 'noindex', nofollow && 'nofollow'].filter(Boolean).join(', ')} />
+		) : null}
+		<link rel="canonical" href={currentUrl} />
+
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="theme-color" content="#121212" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+		<meta name="educational-content" content="true" />
+		<meta name="content-rating" content="educational" />
+		<meta name="audience" content="students,educators,learners" />
+		<meta name="subject" content="vocabulary,language-arts,english" />
+		<meta name="education-level" content="all-ages" />
+		<meta name="resource-type" content="educational-website" />
+
+		<link rel="dns-prefetch" href="//api.wordnik.com" />
+
+		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')} />
+		<link rel="manifest" href={getUrl('/manifest.json')} />
+
+		<link type="text/plain" rel="author" href={getUrl('/humans.txt')} />
+
+		<link rel="alternate" hreflang={seoConfig.locale} href={currentUrl} />
+		<link rel="alternate" hreflang="x-default" href={currentUrl} />
+		<link rel="alternate" hreflang="en" href={currentUrl} />
+		<meta property="og:locale" content={seoConfig.locale} />
+		<meta http-equiv="content-language" content={seoConfig.locale.split('-')[0]} />
+
+		<meta property="og:title" content={finalTitle} />
+		<meta property="og:description" content={metaDescription} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={currentUrl} />
+		<meta property="og:image" content={socialImageUrl} />
+		<meta property="og:site_name" content={seoConfig.siteName} />
+		<meta property="og:locale" content={seoConfig.locale} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={finalTitle} />
+		<meta name="twitter:description" content={metaDescription} />
+		<meta name="twitter:image" content={socialImageUrl} />
+
+		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} />
+
+		<style set:html={`:root { ${colorVariables} }`}></style>
+  </head>
+  <body>
+    <div class="layout">
+      <Header />
+      <div class="content">
+        <div class="content__wrapper">
+          <slot />
+        </div>
+      </div>
+      <Footer />
+    </div>
+    <script define:vars={{ buildData }} is:inline>
+      if (typeof window !== 'undefined' && !window.app) {
+        window.app = buildData;
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+	html {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		min-height: 100vh;
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		line-height: 1.5;
+		background: linear-gradient(180deg,
+			var(--color-background) 0%,
+			var(--color-background-light) 100%);
+		background-attachment: fixed;
+	}
+
+	.layout {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.content {
+		flex: 1;
+		width: 100%;
+	}
+
+	.content__wrapper {
+		width: 100%;
+		max-width: var(--content-width-large);
+		margin: 0 auto;
+		padding: 1rem var(--spacing-base);
+	}
+
+	/* Desktop styles (>1024px) */
+	@media (min-width: 1024px) {
+		.content__wrapper {
+			padding: 2rem var(--spacing-base);
+		}
+	}
+
+	/* Base styles */
+	:global(html) {
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+		font-weight: var(--font-weight-normal);
+	}
+
+	/* Headings */
+	:global(h1) {
+		font-weight: var(--font-weight-bold);
+		font-size: var(--font-size-huge);
+		line-height: 1.1;
+	}
+
+	:global(h2) {
+		font-weight: var(--font-weight-semibold);
+		font-size: 2rem;
+		line-height: 1.2;
+	}
+
+	:global(h3) {
+		font-weight: var(--font-weight-medium);
+		font-size: 1.5rem;
+		line-height: 1.3;
+	}
+
+	/* Navigation */
+	:global(.nav-link) {
+		font-weight: var(--font-weight-medium);
+	}
+
+	/* Buttons */
+	:global(.button) {
+		font-weight: var(--font-weight-semibold);
+	}
+
+	/* Footer */
+	:global(.footer) {
+		font-weight: var(--font-weight-light);
+	}
+</style>

@@ -1,0 +1,79 @@
+---
+
+import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types/schema';
+import { STRUCTURED_DATA_TYPE, type StructuredDataType } from '~utils/schema-utils.ts';
+import { seoConfig } from '~utils/seo-utils.ts';
+
+interface Props {
+  word?: WordSchemaData;
+  structuredDataType?: StructuredDataType;
+}
+
+const { word, structuredDataType } = Astro.props;
+
+const websiteSchema: WebSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: seoConfig.siteName,
+  description: seoConfig.defaultDescription,
+  url: seoConfig.canonicalBase,
+  author: {
+    '@type': 'Person',
+    name: seoConfig.author,
+  },
+  audience: {
+    '@type': 'EducationalAudience',
+    educationalRole: 'student',
+  },
+};
+
+const generateWordSchema = (word: WordSchemaData): DefinedTermSchema => {
+  const wordSchema: DefinedTermSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    name: word.word,
+    description: word.definition || `Definition of ${word.word}`,
+    inDefinedTermSet: {
+      '@type': 'DefinedTermSet',
+      name: seoConfig.siteName,
+    },
+  };
+
+  if (word.meta?.sourceUrl) {
+    wordSchema.url = word.meta.sourceUrl;
+  }
+
+  return wordSchema;
+};
+
+const generateWordListSchema = (): CollectionPageSchema => {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Word Collection',
+    description: 'Educational vocabulary collection',
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: 0, // Can be enhanced to get actual count
+    },
+    audience: {
+      '@type': 'EducationalAudience',
+      educationalRole: 'student',
+    },
+  };
+};
+
+const schemas: (DefinedTermSchema | CollectionPageSchema)[] = [];
+
+if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
+  schemas.push(generateWordSchema(word));
+} else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
+  schemas.push(generateWordListSchema());
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline />
+
+{schemas.map(schema => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+))}

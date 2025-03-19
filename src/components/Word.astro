@@ -1,0 +1,50 @@
+---
+import Heading from '~components/Heading.astro';
+import WordDescription from '~components/WordDescription.astro';
+import type { WordData } from '~types/word';
+import { formatDate } from '~utils/date-utils.js';
+import { getWordDetails } from '~utils/word-utils.js';
+
+interface Props {
+  word: WordData | null;
+}
+
+const { word } = Astro.props;
+
+// Handle case when no word is available
+if (!word) {
+  // Show a message when no word data is available
+  return Astro.redirect('/setup');
+}
+
+const { partOfSpeech, definition, meta } = getWordDetails(word);
+---
+
+<article class="word">
+  <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
+  <Heading level={2} text={word.word} id="word-title" />
+  <WordDescription
+    partOfSpeech={partOfSpeech}
+    definition={definition}
+    meta={meta}
+  />
+</article>
+
+<style>
+    .word {
+        text-align: center;
+        width: 100%;
+        max-width: var(--content-width-full);
+        margin: 0 auto;
+        padding: 0 var(--spacing-base);
+    }
+
+    .word__date {
+        display: block;
+        font-size: var(--font-size-xs, 0.75rem);
+        color: var(--color-text-light);
+        opacity: 0.7;
+        margin-bottom: var(--spacing-small);
+    }
+
+</style>

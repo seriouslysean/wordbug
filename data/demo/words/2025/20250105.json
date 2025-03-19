@@ -1,0 +1,192 @@
+{
+    "word": "occasional",
+    "date": "20250105",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "O5020300-1",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Occurring, encountered, done, or taken from time to time; irregular or infrequent. <i>synonym</i>: <strong> periodic</strong>.",
+            "sequence": "1",
+            "score": 0,
+            "word": "occasional",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "O5020300-2",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Created for a special occasion.",
+            "sequence": "2",
+            "score": 0,
+            "word": "occasional",
+            "exampleUses": [
+                {
+                    "text": "occasional verse."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "O5020300-3",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Intended for use as the occasion requires.",
+            "sequence": "3",
+            "score": 0,
+            "word": "occasional",
+            "exampleUses": [
+                {
+                    "text": "an occasional chair."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "O5020300-4",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Being a factor that makes something possible; being a cause of something.",
+            "sequence": "4",
+            "score": 0,
+            "word": "occasional",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "O5020300-5",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Acting in a specified capacity from time to time.",
+            "sequence": "5",
+            "score": 0,
+            "word": "occasional",
+            "exampleUses": [
+                {
+                    "text": "an occasional hunter."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Of occasion; incidental; hence, occurring from time to time, but without regularity or system; made, happening, or recurring as opportunity requires or admits: as, an <em>occasional</em> smile; an <em>occasional</em> fit of coughing.",
+            "word": "occasional",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Called forth, produced, or used on some special occasion or event; suited for a particular occasion: as, an <em>occasional</em> discourse.",
+            "word": "occasional",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "That serves as or constitutes the occasion or indirect cause; causal.",
+            "word": "occasional",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "A production caused by or adapted to some special occurrence, or the circumstances of the moment; an extemporaneous composition.",
+            "word": "occasional",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "Occuring at times, but not constant, regular, or systematic; made or happening as opportunity requires or admits; casual; incidental.",
+            "sequence": "1.",
+            "citations": [
+                {
+                    "source": "Bagehot.",
+                    "cite": "The … <ex>occasional</ex> writing of the present times."
+                }
+            ],
+            "word": "occasional",
+            "exampleUses": [
+                {
+                    "text": "<ex>occasional</ex> remarks, or efforts",
+                    "position": 0
+                }
+            ],
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/occasional",
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}

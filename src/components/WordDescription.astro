@@ -1,0 +1,67 @@
+---
+import type { WordMeta } from '~types/word';
+
+interface Props {
+  partOfSpeech: string;
+  definition: string;
+  meta?: WordMeta | null;
+}
+
+const { partOfSpeech, definition, meta = null } = Astro.props;
+const hasContent = Boolean(partOfSpeech || definition);
+const sourceUrl = meta?.sourceUrl;
+---
+
+{hasContent && (
+  <section class="word-description">
+    <p class="word-description__text">
+      {partOfSpeech && (
+        <span class="word-description__type" aria-label={`Part of speech: ${partOfSpeech}`}>
+          {partOfSpeech}.
+        </span>
+      )}<span set:html={definition}></span>
+      {sourceUrl && (
+        <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="word-description__attribution">
+          <span>source</span>
+        </a>
+      )}
+    </p>
+  </section>
+)}
+
+<style>
+    .word-description {
+        width: 100%;
+        max-width: min(var(--content-width-small), 85%);
+        margin: 0 auto;
+        padding: var(--spacing-base) var(--spacing-large);
+        background: hsl(0 0% 100% / 0.05);
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 4px -2px hsl(var(--shadow-color) / 0.1);
+    }
+
+    .word-description__text {
+        margin: 0;
+        font-style: italic;
+        color: var(--color-text);
+        line-height: 1.6;
+        font-size: var(--font-size-base);
+    }
+
+    .word-description__type {
+        color: var(--color-text-light);
+        font-weight: 500;
+    }
+
+    .word-description__attribution {
+        margin-left: 0.5rem;
+        font-size: var(--font-size-xs, 0.75rem);
+        color: var(--color-text-lighter);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .word-description__attribution:hover {
+        text-decoration: underline;
+    }
+</style>

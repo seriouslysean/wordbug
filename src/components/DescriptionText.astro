@@ -1,0 +1,35 @@
+---
+
+interface Props {
+  text: string;
+  className?: string;
+}
+
+const { text, className = '' } = Astro.props;
+---
+
+<section class={`description-text ${className}`}>
+  <p class="description-text__content">
+    <span set:html={text}></span>
+  </p>
+</section>
+
+<style>
+  .description-text {
+    width: 100%;
+    max-width: min(var(--content-width-small), 85%);
+    margin: 0 auto var(--spacing-large);
+    padding: var(--spacing-base) var(--spacing-large);
+    background: hsl(0 0% 100% / 0.05);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px -2px hsl(var(--shadow-color) / 0.1);
+  }
+
+  .description-text__content {
+    margin: 0;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.6;
+    font-size: var(--font-size-base);
+  }
+</style>

@@ -1,0 +1,105 @@
+name: Add Word
+
+on:
+  workflow_dispatch:
+    inputs:
+      word:
+        description: 'The word to add'
+        required: true
+        type: string
+      date:
+        description: 'Date to add the word to (YYYYMMDD). Leave empty for today.'
+        required: false
+        type: string
+      overwrite:
+        description: 'Overwrite existing word if one exists for the date'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  prepare-manual:
+    runs-on: ubuntu-latest
+    outputs:
+      word: ${{ steps.set-outputs.outputs.word }}
+      date: ${{ steps.set-outputs.outputs.date }}
+      overwrite: ${{ steps.set-outputs.outputs.overwrite }}
+    steps:
+      - name: Set outputs
+        id: set-outputs
+        run: |
+          echo "word=${{ inputs.word }}" >> $GITHUB_OUTPUT
+          echo "date=${{ inputs.date || '' }}" >> $GITHUB_OUTPUT
+          echo "overwrite=${{ inputs.overwrite }}" >> $GITHUB_OUTPUT
+
+  add-word:
+    needs: [prepare-manual]
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/New_York
+      COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
+      COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
+      COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
+      DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
+      WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
+      WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate API key
+        run: |
+          if [ -z "$WORDNIK_API_KEY" ]; then
+            echo "::error::WORDNIK_API_KEY is not set. Please add it to your repository secrets."
+            exit 1
+          fi
+
+      - name: Add word
+        id: add_word
+        run: |
+          # Get outputs from the prepare job
+          WORD="${{ needs.prepare-manual.outputs.word }}"
+          DATE="${{ needs.prepare-manual.outputs.date }}"
+          OVERWRITE="${{ needs.prepare-manual.outputs.overwrite }}"
+
+          OVERWRITE_FLAG=""
+          if [[ "$OVERWRITE" == "true" ]]; then
+            OVERWRITE_FLAG="--overwrite"
+          fi
+
+          if npm run tool:add-word -- "$WORD" "$DATE" $OVERWRITE_FLAG; then
+            echo "word_added=1" >> $GITHUB_OUTPUT
+            echo "word=$WORD" >> $GITHUB_OUTPUT
+
+            # Generate social image for the new word
+            npm run tool:generate-word-image -- "$WORD"
+          else
+            echo "Failed to add word"
+            echo "word_added=0" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Configure Git
+        if: steps.add_word.outputs.word_added == '1'
+        run: |
+          git config --local user.email "${{ github.repository_owner }}@users.noreply.github.com"
+          git config --local user.name "${{ github.repository_owner }}"
+
+      - name: Commit and push changes
+        if: steps.add_word.outputs.word_added == '1'
+        run: |
+          git add data/words/ public/images/social/
+          git commit -m "Add word: ${{ steps.add_word.outputs.word }}"
+          git push origin ${{ github.ref }}

@@ -1,0 +1,139 @@
+---
+import { formatDate } from '~utils/date-utils.js';
+import { getCurrentWord } from '~utils/word-utils.js';
+
+import SiteLink from './SiteLink.astro';
+import WordLink from './WordLink.astro';
+
+interface Props {
+  previousWord: {
+    word: string;
+    date: string;
+  } | null;
+  nextWord: {
+    word: string;
+    date: string;
+  } | null;
+  previousLabel?: string;
+  nextLabel?: string;
+  ariaLabel?: string;
+}
+
+const {
+  previousWord,
+  nextWord,
+  previousLabel = 'Previous',
+  nextLabel = 'Next',
+  ariaLabel = 'Word navigation',
+} = Astro.props;
+
+const currentWord = getCurrentWord();
+const isCurrentWord = nextWord?.word === currentWord?.word;
+---
+
+<nav class="word-nav" aria-label={ariaLabel}>
+  <div class="word-nav__container">
+    <div class="word-nav__previous">
+      {previousWord && (
+        <>
+          <span class="word-nav__label">{previousLabel}</span>
+          <WordLink word={previousWord} />
+        </>
+      )}
+    </div>
+    {nextWord && (
+      <div class="word-nav__next">
+        <span class="word-nav__label">{nextLabel}</span>
+        {isCurrentWord ? (
+          <SiteLink
+            href="/"
+            class="word-link"
+            ariaLabel={`View ${nextWord.word}`}
+          >
+            <span class="word-link__word">{nextWord.word}</span>
+            <time class="word-link__date">{formatDate(nextWord.date)}</time>
+          </SiteLink>
+        ) : (
+          <WordLink word={nextWord} />
+        )}
+      </div>
+    )}
+  </div>
+</nav>
+
+<style>
+  .word-nav {
+    width: 100%;
+    margin: var(--spacing-large) 0;
+  }
+
+  .word-nav__container {
+    width: 100%;
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-base);
+  }
+
+  /* Mobile first - base styles */
+  .word-nav__previous,
+  .word-nav__next {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    min-width: 120px;
+  }
+
+  .word-nav__next {
+    text-align: right;
+  }
+
+  .word-nav__label {
+    font-size: var(--font-size-small);
+    color: var(--color-text-light);
+    opacity: 0.7;
+  }
+
+  .word-nav__next .word-nav__label {
+    text-align: right;
+    align-self: flex-end;
+  }
+
+  /* Override the default WordLink styles specifically for navigation */
+  .word-nav__previous :global(.word-link),
+  .word-nav__next :global(.word-link) {
+    display: flex;
+    align-items: baseline;
+  }
+
+  /* Default for previous - date on right */
+  .word-nav__previous :global(.word-link) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .word-nav__previous :global(.word-link__date) {
+    margin-left: var(--spacing-base);
+    margin-right: 0;
+  }
+
+  /* For next - date on left */
+  .word-nav__next :global(.word-link) {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+
+  .word-nav__next :global(.word-link__date) {
+    margin-left: 0;
+    margin-right: var(--spacing-base);
+  }
+
+  /* Desktop styles only applied at larger screens */
+  @media (min-width: 1024px) {
+    .word-nav__previous,
+    .word-nav__next {
+      min-width: 160px;
+    }
+  }
+</style>

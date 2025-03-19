@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"],
+      "~components/*": ["src/components/*"],
+      "~layouts/*": ["src/layouts/*"],
+      "~utils/*": ["src/utils/*"],
+      "~data/*": ["data/*"],
+      "~config/*": ["config/*"],
+      "~types/*": ["src/types/*"]
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "astro"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

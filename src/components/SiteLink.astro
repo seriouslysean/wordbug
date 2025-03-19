@@ -1,0 +1,47 @@
+---
+import { getUrl } from '~utils/utils.js';
+
+interface Props {
+  href: string;
+  class?: string;
+  ariaLabel?: string;
+  title?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  href,
+  class: className,
+  ariaLabel,
+  title,
+  target,
+  rel,
+} = Astro.props;
+
+const isExternal = href.startsWith('http://') || href.startsWith('https://');
+
+const normalizeHref = (path: string) => {
+  if (isExternal) {
+return path;
+}
+
+  const cleanPath = path.replace(/\/$/, '') || '/';
+  return getUrl(cleanPath);
+};
+
+const finalHref = normalizeHref(href);
+
+const finalRel = (target === '_blank' && !rel) ? 'noopener noreferrer' : rel;
+---
+
+<a
+  href={finalHref}
+  class={className}
+  aria-label={ariaLabel}
+  title={title}
+  target={target}
+  rel={finalRel}
+>
+  <slot />
+</a>

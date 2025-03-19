@@ -1,0 +1,222 @@
+{
+    "word": "the",
+    "date": "20250102",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "T5158500-1",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sequence": "1",
+            "score": 0,
+            "word": "the",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-2",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before singular or plural nouns and noun phrases that denote particular, specified persons or things.",
+            "sequence": "2",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "the baby; the dress I wore."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-3",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before a noun, and generally stressed, to emphasize one of a group or type as the most outstanding or prominent.",
+            "sequence": "3",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "considered Wicker Park to be the neighborhood to live in these days."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-4",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used to indicate uniqueness.",
+            "sequence": "4",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "the Prince of Wales; the moon."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-5",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before nouns that designate natural phenomena or points of the compass.",
+            "sequence": "5",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "the weather; a wind from the south."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-6",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used as the equivalent of a possessive adjective before names of some parts of the body.",
+            "sequence": "6",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "grab him by the neck; an infection of the hand."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-7",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before a noun specifying a field of endeavor.",
+            "sequence": "7",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "the law; the film industry; the stage."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-8",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before a proper name, as of a monument or ship.",
+            "sequence": "8",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "the Alamo; the Titanic."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-9",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before the plural form of a numeral denoting a specific decade of a century or of a lifespan.",
+            "sequence": "9",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "rural life in the Thirties."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-10",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before a singular noun indicating that the noun is generic.",
+            "sequence": "10",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "The loggerhead turtle is an endangered species."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}

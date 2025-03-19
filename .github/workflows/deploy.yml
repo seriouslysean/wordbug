@@ -1,0 +1,94 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy to GitHub Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ['main']
+
+  # Runs after the add-word workflow completes successfully
+  workflow_run:
+    workflows: ['Add Word']
+    types:
+      - completed
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        env:
+          # disables dotenv in production builds
+          CI: true
+          COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
+          COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
+          COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
+          DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
+          GITHUB_SHA: ${{ github.sha }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_ENABLED: true
+          SENTRY_ENVIRONMENT: production
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SITE_ATTRIBUTION_MESSAGE: ${{ vars.SITE_ATTRIBUTION_MESSAGE }}
+          SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}
+          SITE_AUTHOR_URL: ${{ vars.SITE_AUTHOR_URL }}
+          SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
+          SITE_ID: ${{ vars.SITE_ID }}
+          SITE_KEYWORDS: ${{ vars.SITE_KEYWORDS }}
+          SITE_TITLE: ${{ vars.SITE_TITLE }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          TZ: America/New_York
+          WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
+          WORDNIK_WEBSITE_URL: ${{ vars.WORDNIK_WEBSITE_URL }}
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Get previous deployed hash
+        id: get_prev_hash
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          set -e
+          HASH=$(curl -sf "$SITE_URL/health.txt" | grep -E '^words_hash:' | awk '{print $2}' || true)
+          echo "PREVIOUS_DEPLOYED_HASH=$HASH" >> $GITHUB_OUTPUT
+      - name: Ping search engines
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          npm run tool:ping-search-engines -- \
+            --site-url "$SITE_URL" \
+            --deployed-hash "${{ steps.get_prev_hash.outputs.PREVIOUS_DEPLOYED_HASH }}"

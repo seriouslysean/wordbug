@@ -1,0 +1,32 @@
+---
+import { getWordUrl as _getWordUrl } from '~utils/utils.js';
+import { getAllWords, getWordByDate } from '~utils/word-utils.js';
+
+export async function getStaticPaths() {
+  const words = getAllWords();
+  const paths = [];
+
+  for (const word of words) {
+    const date = word.date;
+    if (date) {
+      paths.push({ params: { date } });
+    }
+  }
+
+  return paths;
+}
+
+const { date } = Astro.params;
+const word = getWordByDate(date);
+
+if (!word) {
+  return Astro.redirect(import.meta.env.BASE_URL || '/');
+}
+
+// Redirect to canonical word URL to prevent duplicate content between date and word URLs
+return Astro.redirect(_getWordUrl(word.word), 301);
+
+// The code below will never execute due to the redirect above
+---
+
+

@@ -1,0 +1,27 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "paths": {
+      "~/*": ["./src/*"],
+      "~components/*": ["./src/components/*"],
+      "~layouts/*": ["./src/layouts/*"],
+      "~utils/*": ["./src/utils/*"],
+      "~adapters/*": ["./adapters/*"],
+      "~types/*": ["./types/*"],
+      "~data/*": ["./data/*"],
+      "~config/*": ["./config/*"],
+      "~styles/*": ["./src/styles/*"],
+      "~tools/*": ["./tools/*"],
+    }
+  },
+  "exclude": [
+    "coverage/**/*",
+    "dist/**/*",
+    "node_modules/**/*",
+    "tests/**/*"
+  ]
+}

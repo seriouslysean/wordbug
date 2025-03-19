@@ -1,0 +1,40 @@
+/* Theme CSS Variables - Static Values */
+:root {
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-small: clamp(0.875rem, 2vw, 1rem);
+  --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
+  --font-size-huge: clamp(3rem, 15vw, 8rem);
+
+  /* Spacing */
+  --spacing-small: 0.5rem;
+  --spacing-base: 1rem;
+  --spacing-large: 2rem;
+
+  /* Content widths */
+  --content-width-small: min(600px, 90vw);
+  --content-width-medium: min(800px, 90vw);
+  --content-width-large: min(1200px, 90vw);
+  --content-width-full: 95vw;
+
+  /* Background colors */
+  --color-background: #fff;
+  --color-background-light: #f8f9fa;
+
+  /* Text colors */
+  --color-text: #333;
+  --color-text-light: #666;
+  --color-text-lighter: #8a8f98;
+
+  /* Other design tokens */
+  --border-radius: 8px;
+  --shadow-color: 186deg 47% 28%;
+}

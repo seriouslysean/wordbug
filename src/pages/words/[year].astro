@@ -1,0 +1,45 @@
+---
+import Heading from '~components/Heading.astro';
+import WordList from '~components/WordList.astro';
+import Layout from '~layouts/Layout.astro';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { getAvailableYears, getWordsByYear } from '~utils/word-utils.js';
+
+export async function getStaticPaths() {
+  const years = getAvailableYears();
+
+  return years.map(year => ({
+    params: { year },
+    props: {
+      words: getWordsByYear(year),
+    },
+  }));
+}
+
+const { year } = Astro.params;
+const { words } = Astro.props;
+
+if (!words.length) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${year} Words`} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
+  <main class="year-words">
+    <Heading level={1} text={year} secondaryText="Words in" />
+    <div class="year-words__content">
+      <WordList words={words} columns={2} />
+    </div>
+  </main>
+</Layout>
+
+<style>
+    .year-words {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+
+    .year-words__content {
+        width: 100%;
+    }
+</style>
