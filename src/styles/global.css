@@ -1,0 +1,157 @@
+/* Reset CSS */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Your existing global styles */
+:root {
+    /* Colors */
+    --color-primary: #2A6F74;
+    --color-primary-light: #3a8f96;
+    --color-primary-dark: #1d4e51;
+    --color-background: #fff;
+    --color-background-light: #f8f9fa;
+    --color-background-gradient-start: #ffffff;
+    --color-background-gradient-end: #e8eff0;
+    --color-text: #333;
+    --color-text-light: #666;
+    --color-text-lighter: #8a8f98;
+    --color-border: #eee;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-small: 0.5rem;
+    --spacing-base: 1rem;
+    --spacing-large: 2rem;
+    --spacing-xl: 4rem;
+
+    /* Font sizes */
+    --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
+    --font-size-small: clamp(0.875rem, 2vw, 1rem);
+    --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
+    --font-size-large: clamp(1.25rem, 3vw, 1.5rem);
+    --font-size-xl: clamp(1.5rem, 4vw, 2rem);
+    --font-size-xxl: clamp(2rem, 5vw, 3rem);
+    --font-size-huge: clamp(3rem, 15vw, 8rem);
+
+    /* Content widths */
+    --content-width-small: min(600px, 90vw);
+    --content-width-medium: min(800px, 90vw);
+    --content-width-large: min(1000px, 90vw);
+
+    /* Other */
+    --border-radius: 8px;
+    --box-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Global reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+    background: linear-gradient(
+        165deg,
+        var(--color-background-gradient-start) 0%,
+        var(--color-background-gradient-end) 100%
+    ) fixed;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--color-text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__content {
+    flex: 1 0 auto;
+    width: 100%;
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+    padding: var(--spacing-base);
+}
+
+/* Shared utility classes */
+.text-light {
+    color: var(--color-text-light);
+}
+
+.text-lighter {
+    color: var(--color-text-lighter);
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Shared animations */
+.fade-hover {
+    transition: opacity 0.2s ease;
+}
+
+.fade-hover:hover {
+    opacity: 0.7;
+}

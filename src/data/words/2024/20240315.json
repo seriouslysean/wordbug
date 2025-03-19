@@ -1,0 +1,28 @@
+[{
+    "word": "ephemeral",
+    "phonetic": "/əˈfem(ə)rəl/",
+    "phonetics": [{
+        "text": "/əˈfem(ə)rəl/",
+        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/ephemeral-us.mp3",
+        "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1227458",
+        "license": {
+            "name": "BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        }
+    }],
+    "meanings": [{
+        "partOfSpeech": "adjective",
+        "definitions": [{
+            "definition": "Lasting for a very short time; short-lived; transitory",
+            "synonyms": ["fleeting", "momentary", "short-lived", "temporary", "transient"],
+            "antonyms": ["eternal", "everlasting", "immortal", "permanent"]
+        }],
+        "synonyms": ["fleeting", "momentary", "short-lived", "temporary", "transient"],
+        "antonyms": ["eternal", "everlasting", "immortal", "permanent"]
+    }],
+    "license": {
+        "name": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "sourceUrls": ["https://en.wiktionary.org/wiki/ephemeral"]
+}]

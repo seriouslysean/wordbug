@@ -1,0 +1,36 @@
+[
+  {
+    "word": "curious",
+    "phonetic": "/ˈkjʊəriəs/",
+    "phonetics": [
+      {
+        "text": "/ˈkjʊəriəs/",
+        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/curious-us.mp3",
+        "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1227458",
+        "license": {
+          "name": "BY-SA 3.0",
+          "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        }
+      }
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Tending to ask questions, or to want to explore or investigate; inquisitive; (with a negative connotation) nosy, prying",
+            "example": "The child was naturally curious about everything around them.",
+            "synonyms": ["inquisitive", "interested", "inquiring", "questioning"],
+            "antonyms": ["indifferent", "unconcerned", "uninterested"]
+          }
+        ]
+      }
+    ],
+    "license": {
+      "name": "CC BY-SA 3.0",
+      "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "sourceUrls": ["https://en.wiktionary.org/wiki/curious"],
+    "date": "20250318"
+  }
+]

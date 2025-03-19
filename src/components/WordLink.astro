@@ -1,0 +1,46 @@
+---
+const { word, className = '' } = Astro.props;
+
+const formatDate = (dateStr) => {
+    const date = new Date(
+        dateStr.substring(0, 4),
+        parseInt(dateStr.substring(4, 6)) - 1,
+        dateStr.substring(6, 8)
+    );
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+};
+---
+
+<a href={`/${word.date}`} class:list={['word-link', className]}>
+    <span class="word-link__word">{word.word}</span>
+    <time class="word-link__date">{formatDate(word.date)}</time>
+</a>
+
+<style>
+    .word-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        text-decoration: none;
+        padding: 0.25rem 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .word-link:hover {
+        opacity: 0.7;
+    }
+
+    .word-link__word {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-primary-light, #4a7c7d);
+    }
+
+    .word-link__date {
+        font-size: 0.8rem;
+        color: var(--color-text-lighter, #8a8f98);
+        margin-left: 1rem;
+        text-transform: lowercase;
+        font-weight: normal;
+    }
+</style>

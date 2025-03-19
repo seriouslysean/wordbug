@@ -1,0 +1,29 @@
+[{
+    "word": "ineffable",
+    "phonetic": "/ɪnˈef.ə.bəl/",
+    "phonetics": [{
+        "text": "/ɪnˈef.ə.bəl/",
+        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/ineffable-us.mp3",
+        "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1762821",
+        "license": {
+            "name": "BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        }
+    }],
+    "meanings": [{
+        "partOfSpeech": "adjective",
+        "definitions": [{
+            "definition": "Too great or extreme to be expressed or described in words",
+            "synonyms": ["indescribable", "inexpressible", "unspeakable", "unutterable"],
+            "antonyms": ["describable", "expressible"],
+            "example": "The beauty of the sunset was ineffable."
+        }],
+        "synonyms": ["indescribable", "inexpressible", "unspeakable", "unutterable"],
+        "antonyms": ["describable", "expressible"]
+    }],
+    "license": {
+        "name": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "sourceUrls": ["https://en.wiktionary.org/wiki/ineffable"]
+}]

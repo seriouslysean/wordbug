@@ -1,0 +1,21 @@
+---
+import { getCurrentWord, getPastWords } from '../utils/wordUtils.js';
+import Word from './Word.astro';
+import PastWords from './PastWords.astro';
+
+const currentWord = getCurrentWord();
+const pastWords = getPastWords(currentWord?.date);
+---
+
+<div class="word-display">
+    <Word word={currentWord} />
+    <PastWords words={pastWords} />
+</div>
+
+<style>
+    .word-display {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+</style>

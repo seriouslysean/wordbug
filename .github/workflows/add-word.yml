@@ -1,0 +1,45 @@
+name: Add Word
+
+on:
+  workflow_dispatch:
+    inputs:
+      word:
+        description: 'The word to add'
+        required: true
+        type: string
+      date:
+        description: 'Date to add the word to (YYYY-MM-DD). Leave empty for today.'
+        required: false
+        type: string
+
+jobs:
+  add-word:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Add word
+        run: npm run tool:add-word ${{ inputs.word }} ${{ inputs.date || '' }}
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/data/words/
+          git commit -m "Add word: ${{ inputs.word }}" || exit 0
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

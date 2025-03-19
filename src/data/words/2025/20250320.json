@@ -1,0 +1,29 @@
+[{
+    "word": "ethereal",
+    "phonetic": "/iˈθɪə.ɹi.əl/",
+    "phonetics": [{
+        "text": "/iˈθɪə.ɹi.əl/",
+        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/ethereal-us.mp3",
+        "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1229547",
+        "license": {
+            "name": "BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        }
+    }],
+    "meanings": [{
+        "partOfSpeech": "adjective",
+        "definitions": [{
+            "definition": "Extremely delicate and light in a way that seems not to be of this world",
+            "synonyms": ["celestial", "heavenly", "spiritual", "unworldly"],
+            "antonyms": ["earthly", "mundane", "worldly"],
+            "example": "The dancer's movements were ethereal, as if she were floating on air."
+        }],
+        "synonyms": ["celestial", "heavenly", "spiritual", "unworldly"],
+        "antonyms": ["earthly", "mundane", "worldly"]
+    }],
+    "license": {
+        "name": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "sourceUrls": ["https://en.wiktionary.org/wiki/ethereal"]
+}]

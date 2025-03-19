@@ -1,0 +1,36 @@
+[
+  {
+    "word": "whimsical",
+    "phonetic": "/ˈwɪmzɪkəl/",
+    "phonetics": [
+      {
+        "text": "/ˈwɪmzɪkəl/",
+        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/whimsical-us.mp3",
+        "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1762168",
+        "license": {
+          "name": "BY-SA 3.0",
+          "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        }
+      }
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Playfully quaint or fanciful, especially in an appealing and amusing way.",
+            "example": "The garden was decorated with whimsical sculptures of fairy-tale creatures.",
+            "synonyms": ["fanciful", "playful", "quirky", "capricious"],
+            "antonyms": ["serious", "practical", "conventional"]
+          }
+        ]
+      }
+    ],
+    "license": {
+      "name": "CC BY-SA 3.0",
+      "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "sourceUrls": ["https://en.wiktionary.org/wiki/whimsical"],
+    "date": "20240320"
+  }
+]

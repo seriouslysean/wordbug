@@ -1,0 +1,122 @@
+---
+const { word } = Astro.props;
+
+/**
+ * Formats a date string into a localized date
+ * @param {string} dateStr - Date string in YYYYMMDD format
+ * @returns {string} - Formatted date string
+ */
+const formatDate = (dateStr) => {
+    try {
+        const date = new Date(
+            dateStr.substring(0, 4),
+            parseInt(dateStr.substring(4, 6)) - 1,
+            dateStr.substring(6, 8)
+        );
+        return date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        });
+    } catch (error) {
+        console.error('Error formatting date:', error);
+        return dateStr;
+    }
+};
+
+/**
+ * Safely extracts word details from the word object
+ * @param {Object} word - Word object containing meanings and definitions
+ * @returns {Object} - Extracted word details
+ */
+const getWordDetails = (word) => {
+    if (!word) return { partOfSpeech: '', definition: '' };
+
+    const meanings = word.meanings || [];
+    const firstMeaning = meanings[0] || {};
+    const definitions = firstMeaning.definitions || [];
+    const firstDefinition = definitions[0] || {};
+
+    const partOfSpeech = firstMeaning.partOfSpeech ? `${firstMeaning.partOfSpeech}.` : '';
+    const definition = firstDefinition.definition ? `${firstDefinition.definition}.` : '';
+
+    return { partOfSpeech, definition };
+};
+
+const { partOfSpeech, definition } = getWordDetails(word);
+const hasDefinition = Boolean(partOfSpeech || definition);
+---
+
+<section class="word">
+    <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
+    <h1 class="word__text">{word.word}</h1>
+    {hasDefinition && (
+        <div class="word__details">
+            <p class="word__definition">
+                {partOfSpeech && <span class="word__type">{partOfSpeech}</span>} {definition}
+            </p>
+        </div>
+    )}
+</section>
+
+<style>
+    .word {
+        text-align: center;
+        padding: var(--spacing-base);
+        width: 100%;
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+
+    .word__date {
+        display: block;
+        font-size: var(--font-size-small);
+        color: var(--color-text-light);
+        opacity: 0.7;
+        margin-bottom: var(--spacing-small);
+        text-transform: lowercase;
+    }
+
+    .word__text {
+        font-size: var(--font-size-huge);
+        font-weight: 800;
+        margin: 0;
+        line-height: 1;
+        background: linear-gradient(180deg,
+            var(--color-primary-light) 0%,
+            var(--color-primary) 60%,
+            var(--color-primary-dark) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        letter-spacing: -0.02em;
+        display: inline-block;
+        padding: 0 var(--spacing-small);
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    .word__details {
+        margin: var(--spacing-large) auto;
+        width: 100%;
+        max-width: var(--content-width-small);
+        padding: var(--spacing-large) var(--spacing-base);
+        background: var(--color-background-light);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow-light);
+    }
+
+    .word__definition {
+        margin: 0;
+        font-style: italic;
+        color: var(--color-text);
+        line-height: 1.6;
+        text-transform: lowercase;
+        font-size: var(--font-size-base);
+    }
+
+    .word__type {
+        color: var(--color-text-light);
+    }
+</style>
