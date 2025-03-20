@@ -7,13 +7,13 @@ const { partOfSpeech, definition } = getWordDetails(word);
 const hasDefinition = Boolean(partOfSpeech || definition);
 ---
 
-<section class="word">
+<section class="word" aria-labelledby="word-title">
     <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
-    <h1 class="word__text">{word.word}</h1>
+    <h2 id="word-title" class="word__text" role="heading" aria-level="2">{word.word}</h2>
     {hasDefinition && (
-        <div class="word__details">
+        <div class="word__details" role="contentinfo">
             <p class="word__definition">
-                {partOfSpeech && <span class="word__type">{partOfSpeech}</span>} {definition}
+                {partOfSpeech && <span class="word__type" aria-label={`Part of speech: ${partOfSpeech}`}>{partOfSpeech}</span>} {definition}
             </p>
         </div>
     )}
