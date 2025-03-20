@@ -1,5 +1,3 @@
-import { fileURLToPath } from 'url';
-
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
 const getAllWords = () => {
