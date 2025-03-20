@@ -1,10 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const getWordFiles = (year) => {
     if (!year) return [];
 
-    const wordsDir = path.join(process.cwd(), 'src', 'data', 'words', year);
+    const wordsDir = path.join(__dirname, '..', 'data', 'words', year);
     if (!fs.existsSync(wordsDir)) return [];
 
     return fs.readdirSync(wordsDir)
@@ -31,14 +34,22 @@ const readWordFile = (filePath) => {
 };
 
 const getAllWords = () => {
-    const years = fs.readdirSync(path.join(process.cwd(), 'src', 'data', 'words'))
-        .filter(dir => /^\d{4}$/.test(dir));
+    try {
+        const wordsDir = path.join(__dirname, '..', 'data', 'words');
+        const years = fs.readdirSync(wordsDir)
+            .filter(dir => /^\d{4}$/.test(dir));
 
-    return years.flatMap(year =>
-        getWordFiles(year)
-            .map(file => ({ ...readWordFile(file.path), date: file.date }))
-            .filter(Boolean)
-    ).sort((a, b) => b.date.localeCompare(a.date));
+        return years.flatMap(year =>
+            getWordFiles(year)
+                .map(file => {
+                    const word = readWordFile(file.path);
+                    return word ? { ...word, date: file.date } : null;
+                })
+                .filter(Boolean)
+        ).sort((a, b) => b.date.localeCompare(a.date));
+    } catch (error) {
+        throw error;
+    }
 };
 
 /**
@@ -46,14 +57,18 @@ const getAllWords = () => {
  * @returns {Object} The current word object
  */
 export const getCurrentWord = () => {
-    const words = getAllWords();
-    if (!words.length) throw new Error('No word data available');
+    try {
+        const words = getAllWords();
+        if (!words.length) throw new Error('No word data available');
 
-    const today = new Date();
-    const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
+        const today = new Date();
+        const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
 
-    // Find the closest word that's not after today
-    return words.find(word => word.date <= dateString) || words[0];
+        // Find the closest word that's not after today
+        return words.find(word => word.date <= dateString) || words[0];
+    } catch (error) {
+        throw error;
+    }
 };
 
 /**
@@ -62,12 +77,16 @@ export const getCurrentWord = () => {
  * @returns {Array} Array of past word objects
  */
 export const getPastWords = (currentDate) => {
-    if (!currentDate) return [];
+    try {
+        if (!currentDate) return [];
 
-    const words = getAllWords();
-    return words
-        .filter(word => word.date < currentDate)
-        .slice(0, 5);
+        const words = getAllWords();
+        return words
+            .filter(word => word.date < currentDate)
+            .slice(0, 5);
+    } catch (error) {
+        return [];
+    }
 };
 
 /**
@@ -76,10 +95,14 @@ export const getPastWords = (currentDate) => {
  * @returns {Object|null} The word object or null if not found
  */
 export const getWordByDate = (date) => {
-    if (!date) return null;
+    try {
+        if (!date) return null;
 
-    const words = getAllWords();
-    return words.find(word => word.date === date) || null;
+        const words = getAllWords();
+        return words.find(word => word.date === date) || null;
+    } catch (error) {
+        return null;
+    }
 };
 
 /**
@@ -88,17 +111,21 @@ export const getWordByDate = (date) => {
  * @returns {Object} Object containing previousWord and nextWord
  */
 export const getAdjacentWords = (date) => {
-    if (!date) return { previousWord: null, nextWord: null };
+    try {
+        if (!date) return { previousWord: null, nextWord: null };
 
-    const words = getAllWords();
-    const currentIndex = words.findIndex(word => word.date === date);
+        const words = getAllWords();
+        const currentIndex = words.findIndex(word => word.date === date);
 
-    if (currentIndex === -1) return { previousWord: null, nextWord: null };
+        if (currentIndex === -1) return { previousWord: null, nextWord: null };
 
-    return {
-        previousWord: words[currentIndex + 1] || null,
-        nextWord: words[currentIndex - 1] || null
-    };
+        return {
+            previousWord: words[currentIndex + 1] || null,
+            nextWord: words[currentIndex - 1] || null
+        };
+    } catch (error) {
+        return { previousWord: null, nextWord: null };
+    }
 };
 
 /**
@@ -107,17 +134,22 @@ export const getAdjacentWords = (date) => {
  * @returns {Object} - Extracted word details
  */
 export const getWordDetails = (word) => {
-    if (!word) return { partOfSpeech: '', definition: '' };
+    if (!word || !word.meanings || !word.meanings.length) {
+        return { partOfSpeech: '', definition: '' };
+    }
 
-    const meanings = word.meanings || [];
-    const firstMeaning = meanings[0] || {};
-    const definitions = firstMeaning.definitions || [];
-    const firstDefinition = definitions[0] || {};
+    const firstMeaning = word.meanings[0];
+    if (!firstMeaning) {
+        return { partOfSpeech: '', definition: '' };
+    }
 
     const partOfSpeech = firstMeaning.partOfSpeech ? `${firstMeaning.partOfSpeech}.` : '';
+    const definitions = firstMeaning.definitions || [];
+    const firstDefinition = definitions[0] || {};
     const definition = firstDefinition.definition || '';
-    // Only add a period if the definition doesn't already end with one
-    const formattedDefinition = definition.endsWith('.') ? definition : `${definition}.`;
+
+    // Only add a period if there's a definition and it doesn't already end with one
+    const formattedDefinition = definition ? (definition.endsWith('.') ? definition : `${definition}.`) : '';
 
     return { partOfSpeech, definition: formattedDefinition };
 };

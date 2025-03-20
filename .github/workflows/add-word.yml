@@ -11,6 +11,14 @@ on:
         description: 'Date to add the word to (YYYY-MM-DD). Leave empty for today.'
         required: false
         type: string
+      overwrite:
+        description: 'Overwrite existing word if one exists for the date'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
 
 jobs:
   add-word:
@@ -29,9 +37,24 @@ jobs:
         run: npm install
 
       - name: Add word
-        run: npm run tool:add-word ${{ inputs.word }} ${{ inputs.date || '' }}
+        id: add-word
+        run: |
+          OVERWRITE_FLAG=""
+          if [[ "${{ inputs.overwrite }}" == "true" ]]; then
+            OVERWRITE_FLAG="--overwrite"
+          fi
+          npm run tool:add-word -- ${{ inputs.word }} ${{ inputs.date || '' }} $OVERWRITE_FLAG
+        continue-on-error: true
+
+      - name: Check add word status
+        if: steps.add-word.outcome == 'failure'
+        run: |
+          echo "### ❌ Failed to Add Word" >> $GITHUB_STEP_SUMMARY
+          echo "The word could not be added. Please check the logs for details." >> $GITHUB_STEP_SUMMARY
+          exit 1
 
       - name: Commit changes
+        if: steps.add-word.outcome == 'success'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -39,7 +62,16 @@ jobs:
           git commit -m "Add word: ${{ inputs.word }}" || exit 0
 
       - name: Push changes
+        if: steps.add-word.outcome == 'success'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
+      - name: Final Summary
+        if: always()
+        run: |
+          if [[ "${{ steps.add-word.outcome }}" == "success" ]]; then
+            echo "### ✅ Word Added Successfully" >> $GITHUB_STEP_SUMMARY
+            echo "The word \`${{ inputs.word }}\` has been added to the collection." >> $GITHUB_STEP_SUMMARY
+          fi

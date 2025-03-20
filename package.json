@@ -19,9 +19,16 @@
     "preview": "astro preview",
     "astro": "astro",
     "tool:add-word": "node tools/add-word.js",
-    "tool:reprocess-words": "node tools/reprocess-words.js"
+    "tool:reprocess-words": "node tools/reprocess-words.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "astro": "^5.5.3"
+  },
+  "devDependencies": {
+    "vitest": "^1.4.0",
+    "@vitest/coverage-v8": "^1.4.0"
   }
 }

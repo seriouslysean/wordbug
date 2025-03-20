@@ -5,18 +5,26 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
- * Checks if a file exists for the given date
+ * Checks if a file exists for the given date and returns the existing word if found
  * @param {string} date - Date in YYYY-MM-DD format
- * @returns {boolean} - Whether the file exists
+ * @returns {Object|null} - Existing word data if found, null otherwise
  */
-const checkFileExists = (date) => {
+const checkExistingWord = (date) => {
     const [year, month, day] = date.split('-');
     const filePath = path.join(__dirname, '..', 'src', 'data', 'words', year, `${year}${month}${day}.json`);
     if (fs.existsSync(filePath)) {
-        console.log(`A word already exists for ${date}`);
-        return true;
+        try {
+            const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+            return {
+                word: data.word,
+                date: date,
+                filePath
+            };
+        } catch (error) {
+            console.error(`Error reading existing word file: ${error.message}`);
+        }
     }
-    return false;
+    return null;
 };
 
 /**
@@ -37,7 +45,7 @@ const createWordFile = (word, date, data) => {
 
     // Write the file
     fs.writeFileSync(filePath, JSON.stringify({ ...data, date }, null, 4));
-    console.log(`Created word file: ${filePath}`);
+    return filePath;
 };
 
 /**
@@ -62,6 +70,9 @@ const isValidDate = (date) => {
 async function fetchWordData(word) {
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
     if (!response.ok) {
+        if (response.status === 404) {
+            throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+        }
         throw new Error(`Failed to fetch word data: ${response.statusText}`);
     }
     const data = await response.json();
@@ -70,6 +81,25 @@ async function fetchWordData(word) {
     }
     return data[0];
 }
+
+/**
+ * Formats word data for summary output
+ * @param {Object} data - Word data
+ * @returns {string} - Formatted summary
+ */
+const formatWordSummary = (data) => {
+    const meanings = data.meanings || [];
+    const firstMeaning = meanings[0] || {};
+    const definitions = firstMeaning.definitions || [];
+    const firstDefinition = definitions[0] || {};
+
+    return [
+        `**Word:** ${data.word}`,
+        `**Part of Speech:** ${firstMeaning.partOfSpeech || 'N/A'}`,
+        `**Definition:** ${firstDefinition.definition || 'N/A'}`,
+        data.phonetic ? `**Phonetic:** ${data.phonetic}` : null
+    ].filter(Boolean).join('\n');
+};
 
 /**
  * Adds a new word to the collection
@@ -91,15 +121,34 @@ async function addWord(word, date, overwrite = false) {
         const targetDate = date || new Date().toISOString().split('T')[0];
 
         // Check if file already exists
-        if (checkFileExists(targetDate) && !overwrite) {
+        const existing = checkExistingWord(targetDate);
+        if (existing && !overwrite) {
+            console.error(`::error::A word already exists for ${targetDate}: "${existing.word}"`);
+            console.log('::group::Existing Word Details');
+            console.log(`Date: ${existing.date}`);
+            console.log(`Word: ${existing.word}`);
+            console.log(`File: ${existing.filePath}`);
+            console.log('::endgroup::');
             process.exit(1);
         }
 
         const data = await fetchWordData(word);
-        createWordFile(word, targetDate, data);
-        console.log(`Successfully added word: ${word} for date: ${targetDate}`);
+        const filePath = createWordFile(word, targetDate, data);
+
+        // Output summary for GitHub Actions
+        console.log('::group::Word Added Successfully');
+        console.log(`### ✅ New Word Added for ${targetDate}\n`);
+        console.log(formatWordSummary(data));
+        console.log('\n---');
+        console.log(`File created: \`${filePath}\``);
+        console.log('::endgroup::');
+
     } catch (error) {
-        console.error('Error adding word:', error.message);
+        if (error.message.includes('not found in dictionary')) {
+            console.error(`::error::${error.message}`);
+        } else {
+            console.error('::error::Error adding word:', error.message);
+        }
         process.exit(1);
     }
 }

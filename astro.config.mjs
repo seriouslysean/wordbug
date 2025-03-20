@@ -8,7 +8,15 @@ export default defineConfig({
     },
     vite: {
         resolve: {
-            extensions: ['.js', '.jsx', '.json']
+            extensions: ['.js', '.jsx', '.json'],
+            alias: {
+                '~': '/src',
+                '~components': '/src/components',
+                '~layouts': '/src/layouts',
+                '~utils': '/src/utils',
+                '~data': '/src/data',
+                '~styles': '/src/styles'
+            }
         }
     }
 });

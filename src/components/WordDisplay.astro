@@ -1,7 +1,7 @@
 ---
-import { getCurrentWord, getPastWords } from '../utils/word-utils.js';
-import Word from './Word.astro';
-import PastWords from './PastWords.astro';
+import { getCurrentWord, getPastWords } from '~utils/word-utils.js';
+import Word from '~components/Word.astro';
+import PastWords from '~components/PastWords.astro';
 
 const currentWord = getCurrentWord();
 const pastWords = getPastWords(currentWord?.date);

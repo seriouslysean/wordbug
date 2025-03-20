@@ -1,6 +1,6 @@
 ---
-import { formatDate } from '../utils/date-utils';
-import { getWordDetails } from '../utils/word-utils';
+import { formatDate } from '~utils/date-utils';
+import { getWordDetails } from '~utils/word-utils';
 
 const { word } = Astro.props;
 const { partOfSpeech, definition } = getWordDetails(word);
