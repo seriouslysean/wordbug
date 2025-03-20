@@ -3,6 +3,7 @@ import Layout from '~layouts/Layout.astro';
 import Word from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
 import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
+import { siteConfig } from '~config';
 
 export async function getStaticPaths() {
     // Get all word files and generate paths for each
@@ -36,7 +37,7 @@ const modifiedNextWord = nextWord && {
 };
 ---
 
-<Layout title={`${word.word} - Bug's (Occasional) Word of the Day`}>
+<Layout title="Bug's (Occasional) Word of the Day" word={word.word}>
     <main>
         <Word word={word} />
 
