@@ -115,7 +115,9 @@ export const getWordDetails = (word) => {
     const firstDefinition = definitions[0] || {};
 
     const partOfSpeech = firstMeaning.partOfSpeech ? `${firstMeaning.partOfSpeech}.` : '';
-    const definition = firstDefinition.definition ? `${firstDefinition.definition}.` : '';
+    const definition = firstDefinition.definition || '';
+    // Only add a period if the definition doesn't already end with one
+    const formattedDefinition = definition.endsWith('.') ? definition : `${definition}.`;
 
-    return { partOfSpeech, definition };
+    return { partOfSpeech, definition: formattedDefinition };
 };

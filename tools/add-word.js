@@ -5,39 +5,53 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
- * Validates a date string is in YYYY-MM-DD format
- * @param {string} date - Date string to validate
- * @returns {boolean} - True if date is valid
+ * Checks if a file exists for the given date
+ * @param {string} date - Date in YYYY-MM-DD format
+ * @returns {boolean} - Whether the file exists
  */
-function isValidDate(date) {
-    if (!date) return true; // Allow empty date for today
-    const DATE_FORMAT = /^\d{4}-\d{2}-\d{2}$/;
-    if (!DATE_FORMAT.test(date)) return false;
-
-    const [year, month, day] = date.split('-').map(Number);
-    const dateObj = new Date(year, month - 1, day);
-    return dateObj.getFullYear() === year &&
-           dateObj.getMonth() === month - 1 &&
-           dateObj.getDate() === day;
-}
-
-/**
- * Checks if a word file already exists for the given date
- * @param {string} date - Date to check
- * @returns {boolean} - True if file exists
- */
-function checkFileExists(date) {
-    const formattedDate = new Date(date).toISOString().split('T')[0];
-    const year = formattedDate.substring(0, 4);
-    const fileName = `${formattedDate.replace(/-/g, '')}.json`;
-    const filePath = path.join(process.cwd(), 'src', 'data', 'words', year, fileName);
-
+const checkFileExists = (date) => {
+    const [year, month, day] = date.split('-');
+    const filePath = path.join(__dirname, '..', 'src', 'data', 'words', year, `${year}${month}${day}.json`);
     if (fs.existsSync(filePath)) {
-        console.error(`Error: A word already exists for ${formattedDate}`);
+        console.log(`A word already exists for ${date}`);
         return true;
     }
     return false;
-}
+};
+
+/**
+ * Creates a word file for the given date and word data
+ * @param {string} word - Word to add
+ * @param {string} date - Date in YYYY-MM-DD format
+ * @param {Object} data - Word data from API
+ */
+const createWordFile = (word, date, data) => {
+    const [year] = date.split('-');
+    const dirPath = path.join(__dirname, '..', 'src', 'data', 'words', year);
+    const filePath = path.join(dirPath, `${date.replace(/-/g, '')}.json`);
+
+    // Create year directory if it doesn't exist
+    if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath, { recursive: true });
+    }
+
+    // Write the file
+    fs.writeFileSync(filePath, JSON.stringify({ ...data, date }, null, 4));
+    console.log(`Created word file: ${filePath}`);
+};
+
+/**
+ * Validates a date string
+ * @param {string} date - Date string to validate
+ * @returns {boolean} - Whether the date is valid
+ */
+const isValidDate = (date) => {
+    if (!date) return false;
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(date)) return false;
+    const d = new Date(date);
+    return d instanceof Date && !isNaN(d);
+};
 
 /**
  * Fetches word data from the Free Dictionary API
@@ -58,40 +72,12 @@ async function fetchWordData(word) {
 }
 
 /**
- * Creates a word file with the provided data
- * @param {string} word - Word to save
- * @param {string} date - Date to save word for
- * @param {Object} data - Word data from API
- */
-function createWordFile(word, date, data) {
-    const formattedDate = new Date(date).toISOString().split('T')[0];
-    const year = formattedDate.substring(0, 4);
-    const yearDir = path.join(process.cwd(), 'src', 'data', 'words', year);
-
-    // Create year directory if it doesn't exist
-    if (!fs.existsSync(yearDir)) {
-        fs.mkdirSync(yearDir, { recursive: true });
-    }
-
-    const fileName = `${formattedDate.replace(/-/g, '')}.json`;
-    const filePath = path.join(yearDir, fileName);
-
-    // Save the complete dictionary response and add the date
-    const wordData = {
-        ...data,
-        date: formattedDate
-    };
-
-    fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
-    console.log(`Created word file: ${filePath}`);
-}
-
-/**
  * Adds a new word to the collection
  * @param {string} word - Word to add
  * @param {string} [date] - Optional date to add word for
+ * @param {boolean} [overwrite] - Whether to overwrite existing word
  */
-async function addWord(word, date) {
+async function addWord(word, date, overwrite = false) {
     try {
         // Validate inputs
         if (!word?.trim()) {
@@ -105,7 +91,7 @@ async function addWord(word, date) {
         const targetDate = date || new Date().toISOString().split('T')[0];
 
         // Check if file already exists
-        if (checkFileExists(targetDate)) {
+        if (checkFileExists(targetDate) && !overwrite) {
             process.exit(1);
         }
 
@@ -118,13 +104,16 @@ async function addWord(word, date) {
     }
 }
 
-// Get word from command line argument
-const word = process.argv[2];
-const date = process.argv[3];
+// Get command line arguments
+const args = process.argv.slice(2);
+const overwriteIndex = args.findIndex(arg => arg === '--overwrite' || arg === '-o');
+const hasOverwrite = overwriteIndex !== -1;
 
-if (!word) {
-    console.error('Please provide a word as an argument');
-    process.exit(1);
+// Remove the overwrite flag from args if present
+if (hasOverwrite) {
+    args.splice(overwriteIndex, 1);
 }
 
-addWord(word, date);
+const [word, date] = args;
+
+addWord(word, date, hasOverwrite);
