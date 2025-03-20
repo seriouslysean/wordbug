@@ -6,7 +6,8 @@
       "~components/*": ["src/components/*"],
       "~layouts/*": ["src/layouts/*"],
       "~utils/*": ["src/utils/*"],
-      "~data/*": ["src/data/*"]
+      "~data/*": ["src/data/*"],
+      "~config": ["src/config"]
     },
     "jsx": "preserve",
     "jsxImportSource": "astro"

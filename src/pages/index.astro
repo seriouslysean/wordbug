@@ -1,11 +1,14 @@
 ---
 import Layout from '~layouts/Layout.astro';
 import WordDisplay from '~components/WordDisplay.astro';
+import { getCurrentWord } from '~utils/word-utils.js';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const currentWord = getCurrentWord();
 ---
 
-<Layout>
+<Layout title="Bug's (Occasional) Word of the Day" word={currentWord.word}>
 	<WordDisplay />
 </Layout>

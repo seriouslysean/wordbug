@@ -15,7 +15,8 @@ export default defineConfig({
                 '~layouts': '/src/layouts',
                 '~utils': '/src/utils',
                 '~data': '/src/data',
-                '~styles': '/src/styles'
+                '~styles': '/src/styles',
+                '~config': '/src/config'
             }
         }
     }
