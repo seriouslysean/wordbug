@@ -1,52 +1,22 @@
-import fs from 'fs';
-import path from 'path';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const getWordFiles = (year) => {
-    if (!year) return [];
-
-    const wordsDir = path.join(__dirname, '..', 'data', 'words', year);
-    if (!fs.existsSync(wordsDir)) return [];
-
-    return fs.readdirSync(wordsDir)
-        .filter(file => file.endsWith('.json'))
-        .map(file => ({
-            name: file,
-            date: file.replace('.json', ''),
-            path: path.join(wordsDir, file)
-        }))
-        .sort((a, b) => b.date.localeCompare(a.date));
-};
-
-const readWordFile = (filePath) => {
-    if (!filePath || !fs.existsSync(filePath)) return null;
-
-    try {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        // Handle both array responses (old format) and object responses (new format)
-        return Array.isArray(data) ? data[0] : data;
-    } catch (error) {
-        console.error(`Error reading word file ${filePath}:`, error);
-        return null;
-    }
-};
+const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
 const getAllWords = () => {
     try {
-        const wordsDir = path.join(__dirname, '..', 'data', 'words');
-        const years = fs.readdirSync(wordsDir)
-            .filter(dir => /^\d{4}$/.test(dir));
+        const words = Object.entries(wordFiles)
+            .map(([path, data]) => {
+                const date = path.match(/(\d{8})\.json$/)?.[1];
+                if (!date) return null;
 
-        return years.flatMap(year =>
-            getWordFiles(year)
-                .map(file => {
-                    const word = readWordFile(file.path);
-                    return word ? { ...word, date: file.date } : null;
-                })
-                .filter(Boolean)
-        ).sort((a, b) => b.date.localeCompare(a.date));
+                // Handle both array responses (old format) and object responses (new format)
+                const wordData = Array.isArray(data) ? data[0] : data;
+                return { ...wordData, date };
+            })
+            .filter(Boolean)
+            .sort((a, b) => b.date.localeCompare(a.date));
+
+        return words;
     } catch (error) {
         throw error;
     }
