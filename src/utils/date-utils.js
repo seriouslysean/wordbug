@@ -4,7 +4,7 @@
  * @returns {string} - Formatted date string
  */
 export const formatDate = (dateStr) => {
-    if (!dateStr) return dateStr; // Return null/undefined as is
+    if (!dateStr) return dateStr;
 
     try {
         if (dateStr.length !== 8 || !/^\d{8}$/.test(dateStr)) {
@@ -17,7 +17,6 @@ export const formatDate = (dateStr) => {
 
         const date = new Date(year, month, day);
 
-        // Check if the date is valid
         if (isNaN(date.getTime())) {
             return dateStr;
         }
