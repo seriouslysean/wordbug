@@ -25,53 +25,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
       - name: Add word
-        id: add-word
+        id: add_word
         run: |
           OVERWRITE_FLAG=""
           if [[ "${{ inputs.overwrite }}" == "true" ]]; then
             OVERWRITE_FLAG="--overwrite"
           fi
-          npm run tool:add-word -- ${{ inputs.word }} ${{ inputs.date || '' }} $OVERWRITE_FLAG
-        continue-on-error: true
+          if npm run tool:add-word -- ${{ inputs.word }} ${{ inputs.date || '' }} $OVERWRITE_FLAG; then
+            echo "word_added=1" >> $GITHUB_OUTPUT
+          else
+            echo "word_added=0" >> $GITHUB_OUTPUT
+          fi
 
-      - name: Check add word status
-        if: steps.add-word.outcome == 'failure'
-        run: |
-          echo "### ❌ Failed to Add Word" >> $GITHUB_STEP_SUMMARY
-          echo "The word could not be added. Please check the logs for details." >> $GITHUB_STEP_SUMMARY
-          exit 1
-
-      - name: Commit changes
-        if: steps.add-word.outcome == 'success'
+      - name: Configure Git
+        if: steps.add_word.outputs.word_added == '1'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add src/data/words/
-          git commit -m "Add word: ${{ inputs.word }}" || exit 0
 
-      - name: Push changes
-        if: steps.add-word.outcome == 'success'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-
-      - name: Final Summary
-        if: always()
+      - name: Commit and push changes
+        if: steps.add_word.outputs.word_added == '1'
         run: |
-          if [[ "${{ steps.add-word.outcome }}" == "success" ]]; then
-            echo "### ✅ Word Added Successfully" >> $GITHUB_STEP_SUMMARY
-            echo "The word \`${{ inputs.word }}\` has been added to the collection." >> $GITHUB_STEP_SUMMARY
-          fi
+          git add src/data/words/
+          git commit -m "Add word: ${{ inputs.word }}"
+          git push origin ${{ github.ref }}

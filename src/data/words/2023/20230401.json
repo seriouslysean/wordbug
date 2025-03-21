@@ -1,36 +1,39 @@
 {
     "word": "ululated",
-    "phonetics": [],
-    "meanings": [
-        {
-            "partOfSpeech": "verb",
-            "definitions": [
-                {
-                    "definition": "To howl loudly or prolongedly in lamentation or joy",
-                    "synonyms": [],
-                    "antonyms": []
-                },
-                {
-                    "definition": "To produce a rapid and prolonged series of sharp noises with one's voice.",
-                    "synonyms": [],
-                    "antonyms": []
-                }
-            ],
-            "synonyms": [
-                "bay",
-                "howl",
-                "wail"
-            ],
-            "antonyms": []
-        }
-    ],
-    "license": {
-        "name": "CC BY-SA 3.0",
-        "url": "https://creativecommons.org/licenses/by-sa/3.0"
-    },
-    "sourceUrls": [
-        "https://en.wiktionary.org/wiki/ululate",
-        "https://en.wiktionary.org/wiki/ululated"
-    ],
-    "date": "2023-04-01"
+    "date": "20230401",
+    "data": {
+        "word": "ululated",
+        "phonetics": [],
+        "meanings": [
+            {
+                "partOfSpeech": "verb",
+                "definitions": [
+                    {
+                        "definition": "To howl loudly or prolongedly in lamentation or joy",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "To produce a rapid and prolonged series of sharp noises with one's voice.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [
+                    "bay",
+                    "howl",
+                    "wail"
+                ],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/ululate",
+            "https://en.wiktionary.org/wiki/ululated"
+        ]
+    }
 }
