@@ -1,67 +1,70 @@
 {
     "word": "phantom",
-    "phonetic": "/ˈfæntəm/",
-    "phonetics": [
-        {
-            "text": "/ˈfæntəm/",
-            "audio": ""
-        }
-    ],
-    "meanings": [
-        {
-            "partOfSpeech": "noun",
-            "definitions": [
-                {
-                    "definition": "A ghost or apparition.",
-                    "synonyms": [],
-                    "antonyms": []
-                },
-                {
-                    "definition": "Something apparently seen, heard, or sensed, but having no physical reality; an image that appears only in the mind; an illusion or delusion.",
-                    "synonyms": [],
-                    "antonyms": []
-                },
-                {
-                    "definition": "A placeholder for a pair of players when there are an odd number of pairs playing.",
-                    "synonyms": [],
-                    "antonyms": []
-                },
-                {
-                    "definition": "(medical imaging) A test object.",
-                    "synonyms": [],
-                    "antonyms": []
-                }
-            ],
-            "synonyms": [
-                "ghost"
-            ],
-            "antonyms": []
+    "date": "20250310",
+    "data": {
+        "word": "phantom",
+        "phonetic": "/ˈfæntəm/",
+        "phonetics": [
+            {
+                "text": "/ˈfæntəm/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "A ghost or apparition.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "Something apparently seen, heard, or sensed, but having no physical reality; an image that appears only in the mind; an illusion or delusion.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "A placeholder for a pair of players when there are an odd number of pairs playing.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "(medical imaging) A test object.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [
+                    "ghost"
+                ],
+                "antonyms": []
+            },
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "Illusive.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "Fictitious or nonexistent.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "a phantom limb"
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
         },
-        {
-            "partOfSpeech": "adjective",
-            "definitions": [
-                {
-                    "definition": "Illusive.",
-                    "synonyms": [],
-                    "antonyms": []
-                },
-                {
-                    "definition": "Fictitious or nonexistent.",
-                    "synonyms": [],
-                    "antonyms": [],
-                    "example": "a phantom limb"
-                }
-            ],
-            "synonyms": [],
-            "antonyms": []
-        }
-    ],
-    "license": {
-        "name": "CC BY-SA 3.0",
-        "url": "https://creativecommons.org/licenses/by-sa/3.0"
-    },
-    "sourceUrls": [
-        "https://en.wiktionary.org/wiki/phantom"
-    ],
-    "date": "2025-03-10"
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/phantom"
+        ]
+    }
 }

@@ -43,8 +43,13 @@ const createWordFile = (word, date, data) => {
         fs.mkdirSync(dirPath, { recursive: true });
     }
 
-    // Write the file
-    fs.writeFileSync(filePath, JSON.stringify({ ...data, date }, null, 4));
+    // Write the file with new schema
+    const wordData = {
+        word: data.word,
+        date: date.replace(/-/g, ''),
+        data: data
+    };
+    fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
     return filePath;
 };
 
