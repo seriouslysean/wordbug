@@ -16,12 +16,54 @@ on:
         required: false
         type: boolean
         default: false
+  repository_dispatch:
+    types:
+      - add-word
 
 permissions:
   contents: write
 
 jobs:
+  prepare-manual:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    outputs:
+      word: ${{ steps.set-outputs.outputs.word }}
+      date: ${{ steps.set-outputs.outputs.date }}
+      overwrite: ${{ steps.set-outputs.outputs.overwrite }}
+    steps:
+      - name: Set outputs
+        id: set-outputs
+        run: |
+          echo "word=${{ inputs.word }}" >> $GITHUB_OUTPUT
+          echo "date=${{ inputs.date || '' }}" >> $GITHUB_OUTPUT
+          echo "overwrite=${{ inputs.overwrite }}" >> $GITHUB_OUTPUT
+
+  prepare-webhook:
+    if: github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+    outputs:
+      word: ${{ steps.set-outputs.outputs.word }}
+      date: ${{ steps.set-outputs.outputs.date }}
+      overwrite: ${{ steps.set-outputs.outputs.overwrite }}
+    steps:
+      - name: Check webhook secret
+        run: |
+          if [ "${{ github.event.client_payload.secret }}" != "${{ secrets.WORKFLOW_TOKEN_ADD_WORD }}" ]; then
+            echo "Invalid webhook secret"
+            exit 1
+          fi
+
+      - name: Set outputs
+        id: set-outputs
+        run: |
+          echo "word=$(echo '${{ github.event.client_payload }}' | jq -r '.word')" >> $GITHUB_OUTPUT
+          echo "date=$(echo '${{ github.event.client_payload }}' | jq -r '.date // empty')" >> $GITHUB_OUTPUT
+          echo "overwrite=$(echo '${{ github.event.client_payload }}' | jq -r '.overwrite // false')" >> $GITHUB_OUTPUT
+
   add-word:
+    needs: [prepare-manual, prepare-webhook]
+    if: always() && (needs.prepare-manual.result == 'success' || needs.prepare-webhook.result == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,12 +81,19 @@ jobs:
       - name: Add word
         id: add_word
         run: |
+          # Get outputs from whichever job succeeded
+          WORD="${{ needs.prepare-manual.outputs.word || needs.prepare-webhook.outputs.word }}"
+          DATE="${{ needs.prepare-manual.outputs.date || needs.prepare-webhook.outputs.date }}"
+          OVERWRITE="${{ needs.prepare-manual.outputs.overwrite || needs.prepare-webhook.outputs.overwrite }}"
+
           OVERWRITE_FLAG=""
-          if [[ "${{ inputs.overwrite }}" == "true" ]]; then
+          if [[ "$OVERWRITE" == "true" ]]; then
             OVERWRITE_FLAG="--overwrite"
           fi
-          if npm run tool:add-word -- ${{ inputs.word }} ${{ inputs.date || '' }} $OVERWRITE_FLAG; then
+
+          if npm run tool:add-word -- "$WORD" "$DATE" $OVERWRITE_FLAG; then
             echo "word_added=1" >> $GITHUB_OUTPUT
+            echo "word=$WORD" >> $GITHUB_OUTPUT
           else
             echo "word_added=0" >> $GITHUB_OUTPUT
           fi
@@ -59,5 +108,5 @@ jobs:
         if: steps.add_word.outputs.word_added == '1'
         run: |
           git add src/data/words/
-          git commit -m "Add word: ${{ inputs.word }}"
+          git commit -m "Add word: ${{ steps.add_word.outputs.word }}"
           git push origin ${{ github.ref }}
