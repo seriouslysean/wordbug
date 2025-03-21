@@ -37,7 +37,7 @@ function getAllWordFiles() {
             .map(file => {
                 const filePath = path.join(yearDir, file);
                 const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-                const word = Array.isArray(data) ? data[0].word : data.word;
+                const word = data.word;
                 return {
                     word,
                     date: file.replace('.json', ''),
@@ -54,10 +54,10 @@ function getAllWordFiles() {
  * @param {string} date - Date string
  */
 function updateWordFile(filePath, data, date) {
-    const formattedDate = date.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
     const wordData = {
-        ...data,
-        date: formattedDate
+        word: data.word,
+        date: date,
+        data: data
     };
     fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
     console.log(`Updated word file: ${filePath}`);

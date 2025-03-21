@@ -6,10 +6,8 @@ const getAllWords = () => {
             .map(([path, data]) => {
                 const date = path.match(/(\d{8})\.json$/)?.[1];
                 if (!date) return null;
-
-                // Handle both array responses (old format) and object responses (new format)
                 const wordData = Array.isArray(data) ? data[0] : data;
-                return { ...wordData, date };
+                return wordData;
             })
             .filter(Boolean)
             .sort((a, b) => b.date.localeCompare(a.date));
@@ -31,8 +29,6 @@ export const getCurrentWord = () => {
 
         const today = new Date();
         const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
-
-        // Find the closest word that's not after today
         return words.find(word => word.date <= dateString) || words[0];
     } catch (error) {
         throw error;
@@ -102,11 +98,11 @@ export const getAdjacentWords = (date) => {
  * @returns {Object} - Extracted word details
  */
 export const getWordDetails = (word) => {
-    if (!word || !word.meanings || !word.meanings.length) {
+    if (!word?.data?.meanings || !word.data.meanings.length) {
         return { partOfSpeech: '', definition: '' };
     }
 
-    const firstMeaning = word.meanings[0];
+    const firstMeaning = word.data.meanings[0];
     if (!firstMeaning) {
         return { partOfSpeech: '', definition: '' };
     }
