@@ -1,0 +1,40 @@
+{
+    "word": "rhododendron",
+    "date": "20250323",
+    "data": {
+        "word": "rhododendron",
+        "phonetic": "/ɹoʊdəˈdɛndɹən/",
+        "phonetics": [
+            {
+                "text": "/ɹoʊdəˈdɛndɹən/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "Oleander (Nerium oleander).",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "Any of various flowering shrubs in the genus Rhododendron.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/rhododendron"
+        ]
+    }
+}
