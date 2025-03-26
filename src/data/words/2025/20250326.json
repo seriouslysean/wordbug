@@ -1,0 +1,44 @@
+{
+    "word": "oscillated",
+    "date": "20250326",
+    "data": {
+        "word": "oscillated",
+        "phonetics": [],
+        "meanings": [
+            {
+                "partOfSpeech": "verb",
+                "definitions": [
+                    {
+                        "definition": "To swing back and forth, especially if with a regular rhythm.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "A pendulum oscillates slower as it gets longer."
+                    },
+                    {
+                        "definition": "To vacillate between conflicting opinions, etc.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "The mood for change oscillated from day to day."
+                    },
+                    {
+                        "definition": "To vary above and below a mean value.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [
+                    "vacillate"
+                ],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/oscillate",
+            "https://en.wiktionary.org/wiki/oscillated"
+        ]
+    }
+}
