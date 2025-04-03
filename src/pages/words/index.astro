@@ -1,0 +1,58 @@
+---
+import Layout from '~layouts/Layout.astro';
+import { getAllWords } from '~utils/word-utils.js';
+import PastWords from '~components/PastWords.astro';
+import Heading from '~components/Heading.astro';
+
+const words = getAllWords();
+const wordsByYear = words.reduce((acc, word) => {
+    const year = word.date.substring(0, 4);
+    if (!acc[year]) {
+        acc[year] = [];
+    }
+    acc[year].push(word);
+    return acc;
+}, {});
+
+const years = Object.keys(wordsByYear).sort((a, b) => Number(b) - Number(a));
+
+const formatDate = (dateStr) => {
+    const year = parseInt(dateStr.substring(0, 4));
+    const month = parseInt(dateStr.substring(4, 6));
+    const day = parseInt(dateStr.substring(6, 8));
+    return new Date(year, month - 1, day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+};
+---
+
+<Layout title="All Words | Bug's Word of the Day">
+    <main class="words-index">
+        <Heading level={1} text="All Words" />
+
+        {years.map(year => (
+            <section class="year-section">
+                <h2 class="section-heading">{year}</h2>
+                <PastWords words={wordsByYear[year]} />
+            </section>
+        ))}
+    </main>
+</Layout>
+
+<style>
+    .words-index {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+        padding: var(--spacing-base);
+    }
+
+    .year-section {
+        margin-bottom: var(--spacing-large);
+    }
+
+    .year-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-primary-light);
+        border-bottom: 1px solid var(--color-primary-light);
+        padding-bottom: 0.5rem;
+    }
+</style>

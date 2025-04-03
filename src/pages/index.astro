@@ -7,8 +7,36 @@ import { getCurrentWord } from '~utils/word-utils.js';
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 
 const currentWord = getCurrentWord();
+
+// Get current month's words
+const today = new Date();
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+
+// Get month name
+const monthNames = [
+	'January', 'February', 'March', 'April', 'May', 'June',
+	'July', 'August', 'September', 'October', 'November', 'December'
+];
+const monthName = monthNames[currentMonth];
 ---
 
 <Layout title="Bug's (Occasional) Word of the Day" word={currentWord.word}>
-	<WordDisplay />
+	<main>
+		<WordDisplay />
+	</main>
 </Layout>
+
+<style>
+	.past-words {
+		width: 100%;
+		margin: var(--spacing-large) 0;
+		padding: 0 var(--spacing-base);
+	}
+
+	.past-words__container {
+		width: 100%;
+		max-width: var(--content-width-medium);
+		margin: 0 auto;
+	}
+</style>

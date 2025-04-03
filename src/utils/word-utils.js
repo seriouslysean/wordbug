@@ -1,6 +1,6 @@
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
-const getAllWords = () => {
+export const getAllWords = () => {
     try {
         const words = Object.entries(wordFiles)
             .map(([path, data]) => {
@@ -107,7 +107,7 @@ export const getWordDetails = (word) => {
         return { partOfSpeech: '', definition: '' };
     }
 
-    const partOfSpeech = firstMeaning.partOfSpeech ? `${firstMeaning.partOfSpeech}.` : '';
+    const partOfSpeech = firstMeaning.partOfSpeech || '';
     const definitions = firstMeaning.definitions || [];
     const firstDefinition = definitions[0] || {};
     const definition = firstDefinition.definition || '';

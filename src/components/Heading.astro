@@ -1,0 +1,43 @@
+---
+interface Props {
+    level?: 1 | 2 | 3 | 4 | 5 | 6;
+    text: string;
+}
+
+const { level = 1, text } = Astro.props;
+---
+
+<div class="heading-wrapper">
+    <h1 class:list={["heading", "text-lowercase"]} aria-level={level}>
+        {text}
+    </h1>
+</div>
+
+<style>
+    .heading-wrapper {
+        text-align: center;
+        margin-bottom: var(--spacing-large);
+    }
+
+    .heading {
+        font-size: var(--font-size-huge);
+        font-weight: 800;
+        margin: 0;
+        line-height: 1;
+        background: linear-gradient(180deg,
+            var(--color-primary-light) 0%,
+            var(--color-primary) 60%,
+            var(--color-primary-dark) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: -0.02em;
+        display: inline-block;
+        padding: 0 var(--spacing-small);
+        word-break: break-word;
+        hyphens: auto;
+        filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5))
+               drop-shadow(0 0.3rem 0.3rem rgba(0, 0, 0, 0.5));
+        text-transform: lowercase;
+    }
+</style>

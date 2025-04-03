@@ -5,11 +5,50 @@ import PastWords from '~components/PastWords.astro';
 
 const currentWord = getCurrentWord();
 const pastWords = getPastWords(currentWord?.date);
+
+const MAX_WORDS = 15;
+
+// Get current month's words, excluding today's word
+const today = new Date();
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+
+// Filter words by current month, excluding the current word
+const currentMonthWords = pastWords.filter(word => {
+    if (!word || word.word === currentWord.word) return false;
+    const wordDate = new Date(word.date);
+    return wordDate.getMonth() === currentMonth &&
+           wordDate.getFullYear() === currentYear;
+});
+
+// Get most recent words, excluding the current word
+const recentWords = pastWords.filter(word =>
+    word && word.word !== currentWord.word
+).slice(0, MAX_WORDS);
+
+// Determine which words to show and what title to use
+let wordsToShow = [];
+let sectionTitle = "";
+
+if (currentMonthWords.length > 0) {
+    wordsToShow = currentMonthWords;
+    sectionTitle = "This Month's Words";
+} else if (recentWords.length > 0) {
+    wordsToShow = recentWords;
+    sectionTitle = "Previous Words";
+}
 ---
 
 <div class="word-display">
     <Word word={currentWord} />
-    <PastWords words={pastWords} />
+    {wordsToShow.length > 0 && (
+        <section class="past-words">
+            <div class="past-words__container">
+                <h2 class="section-heading">{sectionTitle}</h2>
+                <PastWords words={wordsToShow} />
+            </div>
+        </section>
+    )}
 </div>
 
 <style>
@@ -17,5 +56,25 @@ const pastWords = getPastWords(currentWord?.date);
         display: flex;
         flex-direction: column;
         gap: 4rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .past-words {
+        width: 100%;
+        margin: var(--spacing-large) 0;
+        padding: 0 var(--spacing-base);
+    }
+
+    .past-words__container {
+        width: 100%;
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* Override the global section-heading border for the homepage */
+    :global(.section-heading) {
+        border-bottom: none;
     }
 </style>
