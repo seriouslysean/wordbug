@@ -1,0 +1,30 @@
+---
+import Layout from '~layouts/Layout.astro';
+import Heading from '~components/Heading.astro';
+import WordDescription from '~components/WordDescription.astro';
+
+const notFoundWord = {
+    word: "404",
+    partOfSpeech: "noun",
+    definition: "A web page that cannot be found; an error indicating the requested content does not exist."
+};
+---
+
+<Layout title="404 - Page Not Found | Bug's Word of the Day">
+    <main class="not-found">
+        <Heading level={1} text={notFoundWord.word} />
+        <WordDescription
+            partOfSpeech={notFoundWord.partOfSpeech}
+            definition={notFoundWord.definition}
+        />
+    </main>
+</Layout>
+
+<style>
+    .not-found {
+        text-align: center;
+        width: 100%;
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+</style>

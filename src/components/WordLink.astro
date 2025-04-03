@@ -15,7 +15,7 @@ const formatDate = (dateStr) => {
 };
 ---
 
-<a href={getUrl(`/${word.date}`)} class="word-link" aria-label={`View word: ${word.word} from ${formatDate(word.date)}`}>
+<a href={getUrl(`/${word.word}`)} class="word-link" aria-label={`View word: ${word.word} from ${formatDate(word.date)}`}>
     <span class="word-link__word">{word.word}</span>
     <time class="word-link__date">{formatDate(word.date)}</time>
 </a>

@@ -1,6 +1,8 @@
 ---
 import { formatDate } from '~utils/date-utils';
 import { getWordDetails } from '~utils/word-utils';
+import Heading from '~components/Heading.astro';
+import WordDescription from '~components/WordDescription.astro';
 
 const { word } = Astro.props;
 const { partOfSpeech, definition } = getWordDetails(word);
@@ -9,20 +11,13 @@ const hasDefinition = Boolean(partOfSpeech || definition);
 
 <section class="word" aria-labelledby="word-title">
     <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
-    <h2 id="word-title" class="word__text" role="heading" aria-level="2">{word.word}</h2>
-    {hasDefinition && (
-        <div class="word__details" role="contentinfo">
-            <p class="word__definition">
-                {partOfSpeech && <span class="word__type" aria-label={`Part of speech: ${partOfSpeech}`}>{partOfSpeech}</span>} {definition}
-            </p>
-        </div>
-    )}
+    <Heading level={2} text={word.word} />
+    <WordDescription partOfSpeech={partOfSpeech} definition={definition} />
 </section>
 
 <style>
     .word {
         text-align: center;
-        padding: var(--spacing-base);
         width: 100%;
         max-width: var(--content-width-medium);
         margin: 0 auto;
@@ -36,31 +31,10 @@ const hasDefinition = Boolean(partOfSpeech || definition);
         text-transform: lowercase;
     }
 
-    .word__text {
-        font-size: var(--font-size-huge);
-        font-weight: 800;
-        margin: 0;
-        line-height: 1;
-        background: linear-gradient(180deg,
-            var(--color-primary-light) 0%,
-            var(--color-primary) 60%,
-            var(--color-primary-dark) 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        letter-spacing: -0.02em;
-        display: inline-block;
-        padding: 0 var(--spacing-small);
-        word-break: break-word;
-        hyphens: auto;
-        filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5))
-               drop-shadow(0 0.3rem 0.3rem rgba(0, 0, 0, 0.5));
-    }
-
     .word__details {
-        margin: var(--spacing-large) auto 0;
         width: 100%;
         max-width: min(var(--content-width-small), 85%);
+        margin: 0 auto;
         padding: var(--spacing-base) var(--spacing-large);
         background: hsl(0 0% 100% / 0.05);
         border-radius: var(--border-radius);

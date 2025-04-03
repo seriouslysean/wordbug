@@ -1,0 +1,111 @@
+---
+import Layout from '~layouts/Layout.astro';
+import WordComponent from '~components/Word.astro';
+import WordLink from '~components/WordLink.astro';
+import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
+
+interface WordData {
+    word: string;
+    date: string;
+    data: any;
+}
+
+export async function getStaticPaths() {
+    // Get all word files and generate paths for each
+    const allWords = await import.meta.glob<WordData>('../data/words/**/*.json');
+    const paths = [];
+
+    for (const path in allWords) {
+        const wordData = await allWords[path]();
+        paths.push({ params: { word: wordData.word }, props: { date: wordData.date } });
+    }
+
+    return paths;
+}
+
+const { word } = Astro.params;
+const { date } = Astro.props;
+
+const wordData = await getWordByDate(date);
+const { previousWord, nextWord } = await getAdjacentWords(date);
+
+if (!wordData) {
+    return Astro.redirect('/404');
+}
+
+// Check if next word is today's word and modify its URL if it is
+const today = new Date();
+const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
+const modifiedNextWord = nextWord && {
+    ...nextWord,
+    date: nextWord.date === todayString ? '' : nextWord.date
+};
+---
+
+<Layout title="Bug's (Occasional) Word of the Day" word={wordData.word}>
+    <main>
+        <WordComponent word={wordData} />
+
+        <nav class="word-nav">
+            <div class="word-nav__container">
+                <div class="word-nav__previous">
+                    {previousWord && (
+                        <>
+                            <span class="word-nav__label">Previous</span>
+                            <WordLink word={previousWord} />
+                        </>
+                    )}
+                </div>
+                {modifiedNextWord && (
+                    <div class="word-nav__next">
+                        <span class="word-nav__label">Next</span>
+                        <WordLink word={modifiedNextWord} />
+                    </div>
+                )}
+            </div>
+        </nav>
+    </main>
+</Layout>
+
+<style>
+    .word-nav {
+        width: 100%;
+        margin: var(--spacing-large) 0;
+        padding: 0 var(--spacing-base);
+    }
+
+    .word-nav__container {
+        width: 100%;
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-base);
+    }
+
+    .word-nav__previous,
+    .word-nav__next {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        min-width: 160px;
+    }
+
+    .word-nav__next {
+        text-align: right;
+    }
+
+    .word-nav__label {
+        font-size: var(--font-size-small);
+        color: var(--color-text-light);
+        text-transform: lowercase;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+        .word-nav__previous,
+        .word-nav__next {
+            min-width: 120px;
+        }
+    }
+</style>
