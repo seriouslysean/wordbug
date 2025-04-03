@@ -1,12 +1,14 @@
 ---
+import { getUrl } from '~/utils/utils';
+
 const currentYear = new Date().getFullYear();
 const attributionUrl = 'https://github.com/seriouslysean';
 ---
 
 <footer class="footer" role="contentinfo">
     <p class="footer__text">
-        <a href="/words" aria-label="View all words">All Words</a>
-        <span class="footer__separator">•</span>
+        <a href={getUrl('/words')} aria-label="View all words">All Words</a>
+        <span class="footer__separator">&middot;</span>
         <a href={attributionUrl} target="_blank" rel="noopener noreferrer" aria-label="View Sean Kennedy's GitHub profile (opens in new tab)">Made with &lt;3, {currentYear}</a>
     </p>
 </footer>
