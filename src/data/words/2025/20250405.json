@@ -1,0 +1,31 @@
+{
+    "word": "buckminsterfullerene",
+    "date": "20250405",
+    "data": {
+        "word": "buckminsterfullerene",
+        "phonetics": [],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "An allotrope of carbon having a hollow molecule consisting of 60 atoms arranged in 12 pentagonal and 20 hexagonal faces to form a truncated icosahedron; the smallest of the fullerenes.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [
+                    "footballene"
+                ],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/buckminsterfullerene"
+        ]
+    }
+}
