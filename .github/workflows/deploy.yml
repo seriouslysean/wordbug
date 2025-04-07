@@ -1,9 +1,8 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy to GitHub Pages
 
-# Flag to toggle custom domain usage
 env:
-  USE_CUSTOM_DOMAIN: true
+  SITE_URL: https://wordbug.fyi
 
 on:
   # Runs on pushes targeting the default branch
@@ -49,7 +48,7 @@ jobs:
         run: npm install
       - name: Build
         env:
-          BASE_PATH: ${{ env.USE_CUSTOM_DOMAIN && '/' || format('/{0}', github.event.repository.name) }}
+          BASE_URL: ${{ env.SITE_URL }}
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
