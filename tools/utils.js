@@ -11,8 +11,8 @@ const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGHT = 630;
 const PADDING = Math.floor(Math.min(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.05);  // 5% of shortest dimension
 const FONT_SIZE = 160;
-const TITLE_SIZE = 32;
-const DATE_SIZE = 32;
+const TITLE_SIZE = 48;
+const DATE_SIZE = 40;
 const DESCENDER_OFFSET = Math.floor(FONT_SIZE * 0.2);  // Restore descender offset (20% of font size)
 const MAX_WIDTH = CANVAS_WIDTH - (PADDING * 2);
 
