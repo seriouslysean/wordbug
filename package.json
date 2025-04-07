@@ -19,7 +19,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "tool:add-word": "node tools/add-word.js",
-    "tool:reprocess-words": "node tools/reprocess-words.js",
+    "tool:generate-word-data": "node tools/generate-word-data.js",
+    "tool:generate-word-images": "node tools/generate-word-images.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
@@ -28,7 +29,8 @@
     "astro": "^5.5.3"
   },
   "devDependencies": {
-    "vitest": "^1.4.0",
-    "@vitest/coverage-v8": "^1.4.0"
+    "@vitest/coverage-v8": "^1.4.0",
+    "sharp": "^0.34.0",
+    "vitest": "^1.4.0"
   }
 }
