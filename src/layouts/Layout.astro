@@ -3,6 +3,7 @@ import '~styles/global.css';
 import Header from '~components/Header.astro';
 import Footer from '~components/Footer.astro';
 import { getUrl } from '~utils/utils';
+import { getCurrentWord, getWordByDate } from '~utils/word-utils';
 
 const { title = "Bug's (Occasional) Word of the Day", word } = Astro.props;
 
@@ -15,12 +16,22 @@ const formatPageTitle = (pageTitle, currentWord) => {
 		year: 'numeric'
 	});
 
-	if (currentWord) {
-		return `${currentWord}, ${date} - ${pageTitle}`;
+	if (currentWord?.word) {
+		return `${currentWord.word}, ${date} - ${pageTitle}`;
 	}
 
 	return pageTitle;
 };
+
+// Get word data for the image URL
+const wordData = word ? await getWordByDate(word.date) : await getCurrentWord();
+const currentUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+// Construct the social image URL
+const socialImageUrl = wordData ? new URL(
+	`/images/social/${wordData.date.slice(0, 4)}/${wordData.date}-${wordData.word}.png`,
+	Astro.site
+).toString() : null;
 ---
 
 <!doctype html>
@@ -35,9 +46,14 @@ const formatPageTitle = (pageTitle, currentWord) => {
 		<!-- OpenGraph/Social Tags -->
 		<meta property="og:title" content={formatPageTitle(title, word)} />
 		<meta property="og:type" content="website" />
-		<meta property="og:image" content={word && new URL(`/images/social/${word}.png`, Astro.site)} />
-		<meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
-		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="og:url" content={currentUrl} />
+		{socialImageUrl && (
+			<>
+				<meta property="og:image" content={socialImageUrl} />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:image" content={socialImageUrl} />
+			</>
+		)}
 	</head>
 	<body>
 		<div class="layout">
@@ -95,7 +111,47 @@ const formatPageTitle = (pageTitle, currentWord) => {
 	/* Responsive adjustments */
 	@media (max-width: 768px) {
 		.main__content {
-			padding: var(--spacing-base);
+			padding: 1rem var(--spacing-base);
 		}
+	}
+
+	/* Base styles */
+	:global(html) {
+		font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+		font-weight: var(--font-weight-normal);
+	}
+
+	/* Headings */
+	:global(h1) {
+		font-weight: var(--font-weight-bold);
+		font-size: var(--font-size-huge);
+		line-height: 1.1;
+	}
+
+	:global(h2) {
+		font-weight: var(--font-weight-semibold);
+		font-size: 2rem;
+		line-height: 1.2;
+	}
+
+	:global(h3) {
+		font-weight: var(--font-weight-medium);
+		font-size: 1.5rem;
+		line-height: 1.3;
+	}
+
+	/* Navigation */
+	:global(.nav-link) {
+		font-weight: var(--font-weight-medium);
+	}
+
+	/* Buttons */
+	:global(.button) {
+		font-weight: var(--font-weight-semibold);
+	}
+
+	/* Footer */
+	:global(.footer) {
+		font-weight: var(--font-weight-light);
 	}
 </style>

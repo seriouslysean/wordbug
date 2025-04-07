@@ -1,25 +1,34 @@
-import { getAllWords, generateShareImage } from './utils.js';
+import { createWordSvg, getAllWords } from './utils.js';
+import fs from 'fs/promises';
+import path from 'path';
+import sharp from 'sharp';
 
 async function generateWordImages() {
-    try {
-        const words = getAllWords();
-        console.log(`Found ${words.length} words to generate images for`);
+	const words = getAllWords();
+	const outputDir = path.join(process.cwd(), 'public', 'images', 'social');
 
-        for (const wordData of words) {
-            try {
-                await generateShareImage(wordData.word, wordData.date);
-                // Add a small delay to avoid overwhelming the system
-                await new Promise(resolve => setTimeout(resolve, 100));
-            } catch (error) {
-                console.error(`Error processing ${wordData.word}:`, error.message);
-            }
-        }
+	for (const word of words) {
+		const year = word.date.slice(0, 4);
+		const yearDir = path.join(outputDir, year);
+		await fs.mkdir(yearDir, { recursive: true });
 
-        console.log('Finished generating social share images');
-    } catch (error) {
-        console.error('Error generating images:', error.message);
-        process.exit(1);
-    }
+		const svg = createWordSvg(word.word, word.date);
+		const outputPath = path.join(yearDir, `${word.date}-${word.word}.png`);
+
+		try {
+			await sharp(Buffer.from(svg))
+				.png({
+					compressionLevel: 9,
+					palette: true,
+					quality: 90,
+					colors: 128
+				})
+				.toFile(outputPath);
+			console.log(`Generated image for ${word.word} (${word.date}) in ${yearDir}`);
+		} catch (error) {
+			console.error(`Error generating image for ${word.word}:`, error);
+		}
+	}
 }
 
-generateWordImages();
+generateWordImages().catch(console.error);
