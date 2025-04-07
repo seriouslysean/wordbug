@@ -73,6 +73,7 @@ table {
     /* Content widths */
     --content-width-small: min(600px, 90vw);
     --content-width-medium: min(800px, 90vw);
+    --content-width-full: 95vw;
 
     /* Other */
     --border-radius: 8px;
