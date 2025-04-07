@@ -4,6 +4,7 @@ import Header from '~components/Header.astro';
 import Footer from '~components/Footer.astro';
 import { getUrl } from '~utils/utils';
 import { getCurrentWord, getWordByDate } from '~utils/word-utils';
+import { getSocialImageUrl } from '~utils/page-utils';
 
 const { title = "Bug's (Occasional) Word of the Day", word } = Astro.props;
 
@@ -23,15 +24,19 @@ const formatPageTitle = (pageTitle, currentWord) => {
 	return pageTitle;
 };
 
-// Get word data for the image URL
-const wordData = word ? await getWordByDate(word.date) : await getCurrentWord();
+// Only get word data if we have a word prop
+const wordData = word ? await getWordByDate(word.date) : null;
 const currentUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
-// Construct the social image URL
-const socialImageUrl = wordData ? new URL(
-	`/images/social/${wordData.date.slice(0, 4)}/${wordData.date}-${wordData.word}.png`,
-	Astro.site
-).toString() : null;
+// Get the current page path for social image
+const pagePath = Astro.url.pathname.replace(/^\/|\/$/g, '') || 'home';
+
+// Get the social image URL based on page type
+const socialImageUrl = getSocialImageUrl({
+    site: Astro.site,
+    pathname: Astro.url.pathname,
+    wordData
+});
 ---
 
 <!doctype html>
@@ -47,13 +52,9 @@ const socialImageUrl = wordData ? new URL(
 		<meta property="og:title" content={formatPageTitle(title, word)} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={currentUrl} />
-		{socialImageUrl && (
-			<>
-				<meta property="og:image" content={socialImageUrl} />
-				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:image" content={socialImageUrl} />
-			</>
-		)}
+		<meta property="og:image" content={socialImageUrl} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content={socialImageUrl} />
 	</head>
 	<body>
 		<div class="layout">
