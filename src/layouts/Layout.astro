@@ -5,8 +5,6 @@ import Footer from '~components/Footer.astro';
 import { getUrl } from '~utils/utils';
 
 const { title = "Bug's (Occasional) Word of the Day", word } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL || '/';
-const shouldSetBase = baseUrl && baseUrl !== '/';
 
 // Helper function to format page titles consistently
 const formatPageTitle = (pageTitle, currentWord) => {
@@ -30,10 +28,16 @@ const formatPageTitle = (pageTitle, currentWord) => {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<base href={baseUrl} />
 		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')}>
 		<meta name="generator" content={Astro.generator} />
 		<title>{formatPageTitle(title, word)}</title>
+
+		<!-- OpenGraph/Social Tags -->
+		<meta property="og:title" content={formatPageTitle(title, word)} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content={word && new URL(`/images/social/${word}.png`, Astro.site)} />
+		<meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+		<meta name="twitter:card" content="summary_large_image" />
 	</head>
 	<body>
 		<div class="layout">
