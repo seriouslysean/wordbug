@@ -94,6 +94,9 @@ jobs:
           if npm run tool:add-word -- "$WORD" "$DATE" $OVERWRITE_FLAG; then
             echo "word_added=1" >> $GITHUB_OUTPUT
             echo "word=$WORD" >> $GITHUB_OUTPUT
+
+            # Generate social image for the new word
+            node tools/generate-word-image.js "$WORD"
           else
             echo "word_added=0" >> $GITHUB_OUTPUT
           fi
@@ -107,6 +110,6 @@ jobs:
       - name: Commit and push changes
         if: steps.add_word.outputs.word_added == '1'
         run: |
-          git add src/data/words/
+          git add src/data/words/ public/images/social/
           git commit -m "Add word: ${{ steps.add_word.outputs.word }}"
           git push origin ${{ github.ref }}
