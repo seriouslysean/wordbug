@@ -231,3 +231,65 @@ export async function generateShareImage(word, date) {
         throw new Error(`Error generating image for "${word}": ${error.message}`);
     }
 }
+
+/**
+ * Creates a generic SVG template for pages without a word
+ * @param {string} title - The title to display
+ * @returns {string} - SVG content as a string
+ */
+export function createGenericSvg(title) {
+    // Get path data for all text elements
+    const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
+    const titleText = getTextPath("Bug's (Occasional) Word of the Day", TITLE_SIZE);
+
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" viewBox="0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- White background -->
+    <rect width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" fill="#ffffff"/>
+
+    <defs>
+        <linearGradient id="wordGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a8f96"/>
+            <stop offset="60%" stop-color="#2A6F74"/>
+            <stop offset="100%" stop-color="#1d4e51"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Site title -->
+    <g transform="translate(${PADDING}, ${PADDING + TITLE_SIZE})">
+        <path d="${titleText.pathData}" fill="#8a8f98"${titleText.transform}/>
+    </g>
+
+    <!-- Main word -->
+    <g transform="translate(${PADDING}, ${CANVAS_HEIGHT - PADDING - DESCENDER_OFFSET})">
+        <path d="${mainWord.pathData}" fill="url(#wordGradient)"${mainWord.transform}/>
+    </g>
+</svg>`;
+}
+
+/**
+ * Generates a generic social share image for pages without a word
+ * @param {string} title - The title to use in the image
+ * @param {string} slug - The page slug/path
+ */
+export async function generateGenericShareImage(title, slug) {
+    const socialDir = path.join(process.cwd(), 'public', 'images', 'social', 'pages');
+    createDirectoryIfNeeded(socialDir);
+
+    const svgContent = createGenericSvg(title);
+    const safeSlug = slug.replace(/\//g, '-');
+    const outputPath = path.join(socialDir, `${safeSlug}.png`);
+
+    try {
+        await sharp(Buffer.from(svgContent))
+            .png({
+                compressionLevel: 9,
+                palette: true,
+                quality: 90,
+                colors: 128
+            })
+            .toFile(outputPath);
+    } catch (error) {
+        throw new Error(`Error generating generic image for "${title}": ${error.message}`);
+    }
+}

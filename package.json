@@ -22,6 +22,8 @@
     "tool:generate-word-data": "node tools/generate-word-data.js",
     "tool:generate-word-images": "node tools/generate-word-images.js",
     "tool:generate-word-image": "node tools/generate-word-image.js",
+    "tool:generate-generic-images": "node tools/generate-generic-images.js",
+    "tool:generate-page-image": "node tools/generate-page-image.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"

@@ -3,6 +3,7 @@ import Layout from '~layouts/Layout.astro';
 import { getAllWords } from '~utils/word-utils.js';
 import PastWords from '~components/PastWords.astro';
 import Heading from '~components/Heading.astro';
+import { getUrl } from '~utils/utils';
 
 const words = getAllWords();
 const wordsByYear = words.reduce((acc, word) => {
@@ -30,7 +31,9 @@ const formatDate = (dateStr) => {
 
         {years.map(year => (
             <section class="year-section">
-                <h2 class="section-heading">{year}</h2>
+                <h2 class="section-heading">
+                    <a href={getUrl(`/words/${year}`)} class="year-link">{year}</a>
+                </h2>
                 <PastWords words={wordsByYear[year]} />
             </section>
         ))}
@@ -54,5 +57,15 @@ const formatDate = (dateStr) => {
         color: var(--color-primary-light);
         border-bottom: 1px solid var(--color-primary-light);
         padding-bottom: 0.5rem;
+    }
+
+    .year-link {
+        color: inherit;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .year-link:hover {
+        opacity: 0.8;
     }
 </style>
