@@ -150,7 +150,7 @@ function getTextPath(text, fontSize, isExtraBold = false, maxWidth = Infinity) {
  * @param {string} date - Date string in YYYYMMDD format
  * @returns {string} - SVG content as a string
  */
-function createWordSvg(word, date) {
+export function createWordSvg(word, date) {
     const formattedDate = formatDate(date);
 
     // Get path data for all text elements

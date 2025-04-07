@@ -52,10 +52,9 @@ table {
 @font-face {
     font-family: 'Open Sans';
     src: url('/fonts/opensans/OpenSans-Variable.woff2') format('woff2-variations');
-    font-weight: 400 800;  /* Only include the weights we use */
+    font-weight: 300 800;
     font-style: normal;
-    font-display: optional;  /* Better for static content */
-    font-variation-settings: 'wght' var(--font-weight-value, 400);
+    font-display: swap;
 }
 
 /* Your existing global styles */
@@ -70,20 +69,23 @@ table {
     --color-text-light: #666;
     --color-text-lighter: #8a8f98;
 
-    /* Font weights as CSS vars for the variable font */
+    /* Font weights */
+    --font-weight-light: 300;
     --font-weight-normal: 400;
-    --font-weight-bold: 800;
-    --font-weight-value: var(--font-weight-normal);  /* Default weight */
-
-    /* Spacing */
-    --spacing-small: 0.5rem;
-    --spacing-base: 1rem;
-    --spacing-large: 2rem;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
 
     /* Font sizes */
     --font-size-small: clamp(0.875rem, 2vw, 1rem);
     --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
     --font-size-huge: clamp(3rem, 15vw, 8rem);
+
+    /* Spacing */
+    --spacing-small: 0.5rem;
+    --spacing-base: 1rem;
+    --spacing-large: 2rem;
 
     /* Content widths */
     --content-width-small: min(600px, 90vw);
@@ -111,6 +113,7 @@ body {
     min-height: 100vh;
     color: var(--color-text);
     font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-weight: var(--font-weight-normal);
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
     display: flex;

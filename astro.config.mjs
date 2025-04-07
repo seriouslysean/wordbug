@@ -1,9 +1,12 @@
 import { defineConfig } from 'astro/config';
 
+const site = process.env.BASE_URL || 'http://localhost:4321';
+const base = process.env.BASE_PATH || '';
+
 // https://astro.build/config
 export default defineConfig({
-    site: process.env.BASE_URL?.replace(/\/$/, '') || 'http://localhost:4321',
-    base: process.env.BASE_PATH || '',
+    site,
+    base,
     output: 'static',  // Explicitly set static output
     devToolbar: {
         enabled: false
