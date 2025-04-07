@@ -1,0 +1,75 @@
+{
+    "word": "onomatopoeia",
+    "date": "20250407",
+    "data": {
+        "word": "onomatopoeia",
+        "phonetics": [
+            {
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/onomatopoeia-au.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=75833197",
+                "license": {
+                    "name": "BY-SA 4.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
+                }
+            },
+            {
+                "text": "/ˌɒnəˌmætəˈpeɪə/",
+                "audio": ""
+            },
+            {
+                "text": "/ˌɒnəˌmætəˈpiːə/",
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/onomatopoeia-uk.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=88557350",
+                "license": {
+                    "name": "BY-SA 4.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
+                }
+            },
+            {
+                "text": "/ˌɑnəˌmætəˈpiːə/",
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/onomatopoeia-us.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=658773",
+                "license": {
+                    "name": "BY-SA 3.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/3.0"
+                }
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "The property of a word of sounding like what it represents.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "A word that sounds like what it represents, such as \"gurgle\" or \"hiss\".",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "The use of language whose sound imitates that which it names.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [
+                    "echoism",
+                    "imitative harmony",
+                    "mimesis",
+                    "sound symbolism"
+                ],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/onomatopoeia"
+        ]
+    }
+}
