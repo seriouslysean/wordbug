@@ -1,19 +1,20 @@
 ---
 import Layout from '~layouts/Layout.astro';
-import { getAllWords } from '~utils/word-utils.js';
-import PastWords from '~components/PastWords.astro';
 import Heading from '~components/Heading.astro';
+import WordLink from '~components/WordLink.astro';
+import SectionHeading from '~components/SectionHeading.astro';
 import { getUrl } from '~utils/utils';
+import { getAllWords } from '~utils/word-utils';
 
 const words = getAllWords();
 const wordsByYear = words.reduce((acc, word) => {
     const year = word.date.substring(0, 4);
-    if (!acc[year]) {
-        acc[year] = [];
-    }
+    acc[year] = acc[year] || [];
     acc[year].push(word);
     return acc;
-}, {});
+}, {} as Record<string, typeof words>);
+
+const totalWords = words.length;
 
 const years = Object.keys(wordsByYear).sort((a, b) => Number(b) - Number(a));
 
@@ -26,46 +27,36 @@ const formatDate = (dateStr) => {
 ---
 
 <Layout title="All Words | Bug's Word of the Day">
-    <main class="words-index">
-        <Heading level={1} text="All Words" />
+    <main class="words">
+        <Heading text="All Words" secondaryText={`${totalWords} total`} />
 
-        {years.map(year => (
-            <section class="year-section">
-                <h2 class="section-heading">
-                    <a href={getUrl(`/words/${year}`)} class="year-link">{year}</a>
-                </h2>
-                <PastWords words={wordsByYear[year]} />
+        {(Object.entries(wordsByYear) as [string, typeof words][]).reverse().map(([year, words]) => (
+            <section class="words__section">
+                <SectionHeading text={year} href={getUrl(`/words/${year}`)} />
+                <div class="words__list">
+                    {words.map((word) => (
+                        <WordLink word={word} />
+                    ))}
+                </div>
             </section>
         ))}
     </main>
 </Layout>
 
 <style>
-    .words-index {
+    .words {
         max-width: var(--content-width-medium);
         margin: 0 auto;
         padding: var(--spacing-base);
     }
 
-    .year-section {
+    .words__section {
         margin-bottom: var(--spacing-large);
     }
 
-    .year-section h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: var(--color-primary-light);
-        border-bottom: 1px solid var(--color-primary-light);
-        padding-bottom: 0.5rem;
-    }
-
-    .year-link {
-        color: inherit;
-        text-decoration: none;
-        transition: opacity 0.2s ease;
-    }
-
-    .year-link:hover {
-        opacity: 0.8;
+    .words__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--spacing-small);
     }
 </style>

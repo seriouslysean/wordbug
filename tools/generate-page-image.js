@@ -1,29 +1,39 @@
 import { generateGenericShareImage } from './utils.js';
 import { getStaticPages } from '../src/utils/page-utils.js';
 
-const [,, pagePath] = process.argv;
+/**
+ * Generate a social image for a specific page
+ * @param {string} pagePath - The path of the page to generate an image for
+ */
+async function generatePageImage(pagePath) {
+    if (!pagePath) {
+        throw new Error('Page path is required');
+    }
 
-if (!pagePath) {
-    console.error('Usage: node tools/generate-page-image.js <page-path>');
-    process.exit(1);
-}
-
-async function generatePageImage() {
     const staticPages = getStaticPages();
     const page = staticPages.find(p => p.path === pagePath);
 
     if (!page) {
-        console.error(`Page "${pagePath}" not found in static pages`);
-        process.exit(1);
+        throw new Error(`Page "${pagePath}" not found in static pages`);
     }
 
-    try {
-        await generateGenericShareImage(page.title, page.path);
-        console.log(`Generated social image for "${page.title}" (${page.path})`);
-    } catch (error) {
-        console.error(`Error generating image for "${page.title}":`, error);
-        process.exit(1);
-    }
+    await generateGenericShareImage(page.title, page.path);
+    console.log(`Generated social image for "${page.title}" (${page.path})`);
 }
 
-generatePageImage().catch(console.error);
+// Run if called directly
+if (import.meta.url.endsWith(process.argv[1])) {
+    const [,, pagePath] = process.argv;
+
+    if (!pagePath) {
+        console.error('Usage: node tools/generate-page-image.js <page-path>');
+        process.exit(1);
+    }
+
+    generatePageImage(pagePath).catch(error => {
+        console.error(error.message);
+        process.exit(1);
+    });
+}
+
+export { generatePageImage };

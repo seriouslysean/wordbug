@@ -8,37 +8,61 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * Gets all static pages that need generic social images
  * @returns {Array<{title: string, path: string}>}
  */
-export async function getStaticPages() {
-    // Use Astro's import.meta.glob to get all pages
-    const pages = await import.meta.glob('../pages/**/*.astro');
-    const staticPages = new Map();
+export function getStaticPages() {
+    const pages = [];
+    const pagesDir = path.join(__dirname, '..', 'pages');
 
-    for (const [filePath, page] of Object.entries(pages)) {
-        // Skip dynamic routes and index pages
-        if (filePath.includes('[') || filePath.includes(']') || filePath.endsWith('index.astro')) {
-            continue;
+    function scanDirectory(dir, basePath = '') {
+        const entries = fs.readdirSync(dir);
+
+        for (const entry of entries) {
+            const fullPath = path.join(dir, entry);
+            const relativePath = path.join(basePath, entry);
+            const stats = fs.statSync(fullPath);
+
+            if (stats.isDirectory()) {
+                scanDirectory(fullPath, relativePath);
+            } else if (entry.endsWith('.astro')) {
+                // Skip dynamic routes and index pages
+                if (entry.includes('[') || entry.includes(']') || entry === 'index.astro') {
+                    continue;
+                }
+
+                // Get the page content to extract the title
+                const content = fs.readFileSync(fullPath, 'utf-8');
+                const titleMatch = content.match(/title:\s*["'](.*?)["']/);
+                const title = titleMatch ? titleMatch[1] :
+                    path.basename(entry, '.astro').replace(/-/g, ' ');
+
+                // Get the URL path
+                const urlPath = relativePath
+                    .replace('.astro', '')
+                    .replace(/\\/g, '/'); // Convert Windows paths to forward slashes
+
+                pages.push({
+                    title,
+                    path: urlPath
+                });
+            }
         }
-
-        // Get the page content to extract the title
-        const content = fs.readFileSync(path.join(__dirname, '..', filePath), 'utf-8');
-        const titleMatch = content.match(/title:\s*["'](.*?)["']/);
-        const title = titleMatch ? titleMatch[1] :
-            path.basename(filePath, '.astro').replace(/-/g, ' ');
-
-        // Get the URL path
-        const urlPath = filePath
-            .replace('../pages/', '')
-            .replace('.astro', '')
-            .replace(/\\/g, '/'); // Convert Windows paths to forward slashes
-
-        // Use the path as the key to prevent duplicates
-        staticPages.set(urlPath, {
-            title,
-            path: urlPath
-        });
     }
 
-    return Array.from(staticPages.values());
+    // Scan pages directory
+    scanDirectory(pagesDir);
+
+    // Get all year directories from the words data for year pages
+    const wordsDir = path.join(process.cwd(), 'src', 'data', 'words');
+    const years = fs.readdirSync(wordsDir).filter(dir => /^\d{4}$/.test(dir));
+
+    // Add year pages
+    years.forEach(year => {
+        pages.push({
+            title: `${year} Words`,
+            path: `words/${year}`
+        });
+    });
+
+    return pages;
 }
 
 /**
@@ -52,8 +76,19 @@ export async function getStaticPages() {
 export function getSocialImageUrl({ site, pathname, wordData }) {
     // If we have word data, use the word image
     if (wordData?.word && wordData?.date) {
+        const year = wordData.date.slice(0, 4);
         return new URL(
-            `/images/social/${wordData.date.slice(0, 4)}/${wordData.date}-${wordData.word}.png`,
+            `/images/social/${year}/${wordData.date}-${wordData.word}.png`,
+            site.toString()
+        ).toString();
+    }
+
+    // Check if this is a year page
+    const yearMatch = pathname.match(/^\/words\/(\d{4})$/);
+    if (yearMatch) {
+        const year = yearMatch[1];
+        return new URL(
+            `/images/social/${year}/${year}0000-words.png`,
             site.toString()
         ).toString();
     }

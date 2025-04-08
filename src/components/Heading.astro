@@ -1,25 +1,21 @@
 ---
-interface Props {
-    level?: 1 | 2 | 3 | 4 | 5 | 6;
-    text: string;
-}
-
-const { level = 1, text } = Astro.props;
+const { level = 1, text, secondaryText } = Astro.props;
 ---
 
-<div class="heading-wrapper">
-    <h1 class:list={["heading", "text-lowercase"]} aria-level={level}>
+<div class="heading">
+    {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
+    <h1 class="heading__text text-lowercase" aria-level={level}>
         {text}
     </h1>
 </div>
 
 <style>
-    .heading-wrapper {
+    .heading {
         text-align: center;
         margin-bottom: var(--spacing-large);
     }
 
-    .heading {
+    .heading__text {
         font-size: var(--font-size-huge);
         font-weight: 800;
         margin: 0;
@@ -39,5 +35,14 @@ const { level = 1, text } = Astro.props;
         filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5))
                drop-shadow(0 0.3rem 0.3rem rgba(0, 0, 0, 0.5));
         text-transform: lowercase;
+    }
+
+    .heading__secondary {
+        display: block;
+        font-size: var(--font-size-xs, 0.75rem);
+        color: var(--color-text-light);
+        opacity: 0.7;
+        text-transform: lowercase;
+        font-weight: normal;
     }
 </style>

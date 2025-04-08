@@ -24,6 +24,7 @@
     "tool:generate-word-image": "node tools/generate-word-image.js",
     "tool:generate-generic-images": "node tools/generate-generic-images.js",
     "tool:generate-page-image": "node tools/generate-page-image.js",
+    "tool:generate-all-images": "npm run tool:generate-word-images && npm run tool:generate-generic-images",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"

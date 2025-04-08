@@ -3,6 +3,9 @@ import { getStaticPages } from '../src/utils/page-utils.js';
 import fs from 'fs';
 import path from 'path';
 
+/**
+ * Generate social images for all static pages
+ */
 async function generateGenericImages() {
     const staticPages = getStaticPages();
 
@@ -14,7 +17,7 @@ async function generateGenericImages() {
     const wordPages = [
         { title: 'All Words', path: 'words' },
         ...years.map(year => ({
-            title: `Words from ${year}`,
+            title: `${year} Words`,
             path: `words/${year}`
         }))
     ];
@@ -44,4 +47,9 @@ async function generateGenericImages() {
     }
 }
 
-generateGenericImages().catch(console.error);
+// Run if called directly
+if (import.meta.url.endsWith(process.argv[1])) {
+    generateGenericImages();
+}
+
+export { generateGenericImages };
