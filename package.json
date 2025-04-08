@@ -1,7 +1,7 @@
 {
   "name": "wordbug",
   "type": "module",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "An (occasional) word of the day that my son thinks is cool",
   "keywords": [
     "word-of-the-day",
