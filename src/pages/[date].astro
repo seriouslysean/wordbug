@@ -2,11 +2,12 @@
 import Layout from '~layouts/Layout.astro';
 import Word from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
-import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
+import { getWordByDate, getAdjacentWords } from '~utils/word-utils';
+import type { Word as WordType } from '~/types/word';
 
 export async function getStaticPaths() {
     // Get all word files and generate paths for each
-    const allWords = await import.meta.glob('../data/words/**/*.json');
+    const allWords = await import.meta.glob<WordType>('../data/words/**/*.json');
     const paths = [];
 
     for (const path in allWords) {

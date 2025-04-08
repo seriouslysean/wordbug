@@ -1,4 +1,9 @@
 ---
+interface Props {
+    partOfSpeech: string;
+    definition: string;
+}
+
 const { partOfSpeech, definition } = Astro.props;
 const hasContent = Boolean(partOfSpeech || definition);
 ---

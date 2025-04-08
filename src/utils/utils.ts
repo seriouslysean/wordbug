@@ -1,10 +1,10 @@
 /**
  * Constructs a URL with the base URL if configured
- * @param {string} path - Path to append to base URL
- * @returns {string} - Complete URL
+ * @param path - Path to append to base URL
+ * @returns Complete URL
  * @throws {Error} - If path format is invalid
  */
-export const getUrl = (path) => {
+export const getUrl = (path: string): string => {
     const baseUrl = import.meta.env.BASE_URL;
     const effectiveBase = (baseUrl === undefined || baseUrl === '') ? '/' : baseUrl;
 

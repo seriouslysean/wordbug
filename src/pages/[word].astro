@@ -2,17 +2,12 @@
 import Layout from '~layouts/Layout.astro';
 import WordComponent from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
-import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
-
-interface WordData {
-    word: string;
-    date: string;
-    data: any;
-}
+import { getWordByDate, getAdjacentWords } from '~utils/word-utils';
+import type { Word } from '~/types/word';
 
 export async function getStaticPaths() {
     // Get all word files and generate paths for each
-    const allWords = await import.meta.glob<WordData>('../data/words/**/*.json');
+    const allWords = await import.meta.glob<Word>('../data/words/**/*.json');
     const paths = [];
 
     for (const path in allWords) {
@@ -34,7 +29,7 @@ if (!wordData) {
 }
 
 // Check if next word is today's word and modify its URL if it is
-const today = new Date();
+const today = new globalThis.Date();
 const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
 const modifiedNextWord = nextWord && {
     ...nextWord,
@@ -42,27 +37,28 @@ const modifiedNextWord = nextWord && {
 };
 ---
 
-<Layout title={`${wordData.word} | Bug's Word of the Day`} word={wordData}>
+<Layout title={`${wordData.word} | Bug's Word of the Day`} word={wordData.word}>
     <main>
         <WordComponent word={wordData} />
+
         <nav class="word-nav">
             <div class="word-nav__container">
                 <div class="word-nav__previous">
-                    {previousWord && (
+                    {previousWord ? (
                         <>
-                            <span class="word-nav__label">Previous Word</span>
+                            <span class="word-nav__label">Previous</span>
                             <WordLink word={previousWord} />
                         </>
+                    ) : (
+                        <div class="word-nav__placeholder" />
                     )}
                 </div>
-                <div class="word-nav__next">
-                    {modifiedNextWord && (
-                        <>
-                            <span class="word-nav__label">Next Word</span>
-                            <WordLink word={modifiedNextWord} />
-                        </>
-                    )}
-                </div>
+                {modifiedNextWord && (
+                    <div class="word-nav__next">
+                        <span class="word-nav__label">Next</span>
+                        <WordLink word={modifiedNextWord} />
+                    </div>
+                )}
             </div>
         </nav>
     </main>
