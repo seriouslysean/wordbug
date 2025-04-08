@@ -2,6 +2,7 @@
 import { getCurrentWord, getPastWords } from '~utils/word-utils.js';
 import Word from '~components/Word.astro';
 import PastWords from '~components/PastWords.astro';
+import SectionHeading from '~components/SectionHeading.astro';
 
 const currentWord = getCurrentWord();
 const pastWords = getPastWords(currentWord?.date);
@@ -32,10 +33,10 @@ let sectionTitle = "";
 
 if (currentMonthWords.length > 0) {
     wordsToShow = currentMonthWords;
-    sectionTitle = "This Month's Words";
+    sectionTitle = "this month's words";
 } else if (recentWords.length > 0) {
     wordsToShow = recentWords;
-    sectionTitle = "Previous Words";
+    sectionTitle = "previous words";
 }
 ---
 
@@ -44,7 +45,7 @@ if (currentMonthWords.length > 0) {
     {wordsToShow.length > 0 && (
         <section class="past-words">
             <div class="past-words__container">
-                <h2 class="section-heading">{sectionTitle}</h2>
+                <SectionHeading text={sectionTitle} />
                 <PastWords words={wordsToShow} />
             </div>
         </section>
@@ -73,8 +74,9 @@ if (currentMonthWords.length > 0) {
         text-align: center;
     }
 
-    /* Override the global section-heading border for the homepage */
-    :global(.section-heading) {
+    /* Override section heading styles for the homepage */
+    .past-words :global(.section-heading) {
+        text-align: center;
         border-bottom: none;
     }
 </style>

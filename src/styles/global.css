@@ -150,14 +150,21 @@ main {
 
 /* Links */
 a {
-    color: inherit;
     text-decoration: none;
+    color: var(--color-primary-light);
     transition: opacity 0.2s ease;
 }
 
 a:hover {
     opacity: 0.7;
-    text-decoration: underline;
+}
+
+/* Links in text utilities and footer */
+.text-light a,
+.text-lowercase a,
+.text-center a,
+.footer__text a {
+    color: inherit;
 }
 
 .section-heading {

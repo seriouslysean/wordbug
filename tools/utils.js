@@ -211,7 +211,8 @@ function formatDate(dateStr) {
  * @param {string} date - Date string in YYYYMMDD format
  */
 export async function generateShareImage(word, date) {
-    const socialDir = path.join(process.cwd(), 'public', 'images', 'social');
+    const year = date.slice(0, 4);
+    const socialDir = path.join(process.cwd(), 'public', 'images', 'social', year);
     createDirectoryIfNeeded(socialDir);
 
     const svgContent = createWordSvg(word, date);
