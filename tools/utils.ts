@@ -20,11 +20,22 @@ const MAX_WIDTH = CANVAS_WIDTH - (PADDING * 2);
 const regularFont = opentype.loadSync('public/fonts/opensans/OpenSans-Regular.ttf');
 const boldFont = opentype.loadSync('public/fonts/opensans/OpenSans-ExtraBold.ttf');
 
+interface WordFile {
+    word: string;
+    date: string;
+    path: string;
+}
+
+interface WordData {
+    word: string;
+    date: string;
+    data: any; // API response type could be more specific if needed
+}
+
 /**
  * Gets all word files from the data directory
- * @returns {Array<{word: string, date: string, path: string}>}
  */
-export function getAllWordFiles() {
+export function getAllWordFiles(): WordFile[] {
     const wordsDir = path.join(process.cwd(), 'src', 'data', 'words');
     const years = fs.readdirSync(wordsDir).filter(dir => /^\d{4}$/.test(dir));
 
@@ -46,9 +57,8 @@ export function getAllWordFiles() {
 
 /**
  * Gets all words with their data from the data directory
- * @returns {Array<{word: string, date: string, data: Object}>}
  */
-export function getAllWords() {
+export function getAllWords(): WordData[] {
     return getAllWordFiles().map(file => {
         const data = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
         return {
@@ -60,11 +70,8 @@ export function getAllWords() {
 
 /**
  * Updates a word file with new data
- * @param {string} filePath - Path to the word file
- * @param {Object} data - Word data
- * @param {string} date - Date string in YYYYMMDD format
  */
-export function updateWordFile(filePath, data, date) {
+export function updateWordFile(filePath: string, data: { word: string }, date: string): void {
     const wordData = {
         word: data.word,
         date: date,
@@ -76,11 +83,8 @@ export function updateWordFile(filePath, data, date) {
 
 /**
  * Fetches word data from the Free Dictionary API
- * @param {string} word - Word to fetch data for
- * @returns {Promise<Object>} - Word data from API
- * @throws {Error} - If API request fails
  */
-export async function fetchWordData(word) {
+export async function fetchWordData(word: string): Promise<any> {
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
     if (!response.ok) {
         throw new Error(`Failed to fetch word data: ${response.statusText}`);
@@ -94,49 +98,40 @@ export async function fetchWordData(word) {
 
 /**
  * Creates a directory if it doesn't already exist
- * @param {string} dir - Directory path to create
  */
-export function createDirectoryIfNeeded(dir) {
+export function createDirectoryIfNeeded(dir: string): void {
     !fs.existsSync(dir) && fs.mkdirSync(dir, { recursive: true });
 }
 
 /**
  * Gets a word by its name from the data directory
- * @param {string} word - Word to find
- * @returns {Object|null} - Word data or null if not found
  */
-export function getWordByName(word) {
+export function getWordByName(word: string): WordData | null {
     const words = getAllWords();
     return words.find(w => w.word.toLowerCase() === word.toLowerCase()) || null;
 }
 
+interface TextPathResult {
+    pathData: string;
+    width: number;
+    height: number;
+    scale: number;
+    transform: string;
+}
+
 /**
  * Convert text to SVG path data with proper scaling
- * @param {string} text - Text to convert
- * @param {number} fontSize - Font size for the text
- * @param {boolean} isExtraBold - Whether to use ExtraBold weight
- * @param {number} maxWidth - Maximum width allowed for the text
- * @returns {Object} - Path data and dimensions
  */
-function getTextPath(text, fontSize, isExtraBold = false, maxWidth = Infinity) {
-    // Use the appropriate font based on weight
+function getTextPath(text: string, fontSize: number, isExtraBold = false, maxWidth = Infinity): TextPathResult {
     const font = isExtraBold ? boldFont : regularFont;
-
-    // Create the path at the original size
     const path = font.getPath(text, 0, 0, fontSize);
-
-    // Get the bounding box
     const bbox = path.getBoundingBox();
     const width = bbox.x2 - bbox.x1;
-
-    // Calculate scale if needed
     const scale = width > maxWidth ? maxWidth / width : 1;
-
-    // If we need to scale, apply it via transform attribute
     const transform = scale < 1 ? ` transform="scale(${scale})"` : '';
 
     return {
-        pathData: path.toPathData(),
+        pathData: path.toPathData(0),
         width: width * scale,
         height: (bbox.y2 - bbox.y1) * scale,
         scale,
@@ -146,14 +141,9 @@ function getTextPath(text, fontSize, isExtraBold = false, maxWidth = Infinity) {
 
 /**
  * Creates an SVG template for a word with its date
- * @param {string} word - The word to create an image for
- * @param {string} date - Date string in YYYYMMDD format
- * @returns {string} - SVG content as a string
  */
-export function createWordSvg(word, date) {
+export function createWordSvg(word: string, date: string): string {
     const formattedDate = formatDate(date);
-
-    // Get path data for all text elements
     const mainWord = getTextPath(word.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
     const titleText = getTextPath("Bug's (Occasional) Word of the Day", TITLE_SIZE);
     const dateText = getTextPath(formattedDate, DATE_SIZE);
@@ -190,11 +180,9 @@ export function createWordSvg(word, date) {
 
 /**
  * Formats a date string from YYYYMMDD to Month D, YYYY
- * @param {string} dateStr - Date in YYYYMMDD format
- * @returns {string} - Formatted date
  */
-function formatDate(dateStr) {
-    const year = dateStr.slice(0, 4);
+function formatDate(dateStr: string): string {
+    const year = parseInt(dateStr.slice(0, 4));
     const month = parseInt(dateStr.slice(4, 6)) - 1;
     const day = parseInt(dateStr.slice(6, 8));
     const date = new Date(year, month, day);
@@ -207,10 +195,8 @@ function formatDate(dateStr) {
 
 /**
  * Generates a social share image for a word
- * @param {string} word - The word to generate an image for
- * @param {string} date - Date string in YYYYMMDD format
  */
-export async function generateShareImage(word, date) {
+export async function generateShareImage(word: string, date: string): Promise<void> {
     const year = date.slice(0, 4);
     const socialDir = path.join(process.cwd(), 'public', 'images', 'social', year);
     createDirectoryIfNeeded(socialDir);
@@ -228,18 +214,18 @@ export async function generateShareImage(word, date) {
                 colors: 128
             })
             .toFile(outputPath);
-    } catch (error) {
-        throw new Error(`Error generating image for "${word}": ${error.message}`);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(`Error generating image for "${word}": ${error.message}`);
+        }
+        throw new Error(`Error generating image for "${word}": Unknown error`);
     }
 }
 
 /**
  * Creates a generic SVG template for pages without a word
- * @param {string} title - The title to display
- * @returns {string} - SVG content as a string
  */
-export function createGenericSvg(title) {
-    // Get path data for all text elements
+export function createGenericSvg(title: string): string {
     const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
     const titleText = getTextPath("Bug's (Occasional) Word of the Day", TITLE_SIZE);
 
@@ -270,10 +256,8 @@ export function createGenericSvg(title) {
 
 /**
  * Generates a generic social share image for pages without a word
- * @param {string} title - The title to use in the image
- * @param {string} slug - The page slug/path
  */
-export async function generateGenericShareImage(title, slug) {
+export async function generateGenericShareImage(title: string, slug: string): Promise<void> {
     const socialDir = path.join(process.cwd(), 'public', 'images', 'social', 'pages');
     createDirectoryIfNeeded(socialDir);
 
@@ -290,7 +274,55 @@ export async function generateGenericShareImage(title, slug) {
                 colors: 128
             })
             .toFile(outputPath);
-    } catch (error) {
-        throw new Error(`Error generating generic image for "${title}": ${error.message}`);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(`Error generating generic image for "${title}": ${error.message}`);
+        }
+        throw new Error(`Error generating generic image for "${title}": Unknown error`);
     }
+}
+
+interface StaticPage {
+    title: string;
+    path: string;
+}
+
+/**
+ * Get all static pages from the pages directory
+ */
+export function getStaticPages(): StaticPage[] {
+    const pagesDir = path.join(process.cwd(), 'src', 'pages');
+    const pages: StaticPage[] = [];
+
+    function processDirectory(dir: string, basePath: string = ''): void {
+        const entries = fs.readdirSync(dir);
+
+        for (const entry of entries) {
+            const fullPath = path.join(dir, entry);
+            const stat = fs.statSync(fullPath);
+
+            if (stat.isDirectory()) {
+                processDirectory(fullPath, path.join(basePath, entry));
+                continue;
+            }
+
+            if (!entry.endsWith('.astro')) continue;
+
+            const relativePath = path.join(basePath, entry.replace('.astro', ''));
+            const normalizedPath = relativePath.replace(/\/index$/, '');
+
+            // Read the file to extract the title from the frontmatter
+            const content = fs.readFileSync(fullPath, 'utf-8');
+            const titleMatch = content.match(/title:\s*["'](.+?)["']/);
+            const title = titleMatch ? titleMatch[1] : normalizedPath;
+
+            pages.push({
+                title,
+                path: normalizedPath
+            });
+        }
+    }
+
+    processDirectory(pagesDir);
+    return pages;
 }

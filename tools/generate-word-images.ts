@@ -1,4 +1,4 @@
-import { createWordSvg, getAllWords } from './utils.js';
+import { createWordSvg, getAllWords } from './utils';
 import fs from 'fs/promises';
 import path from 'path';
 import sharp from 'sharp';

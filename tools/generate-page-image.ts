@@ -1,11 +1,10 @@
-import { generateGenericShareImage } from './utils.js';
-import { getStaticPages } from '../src/utils/page-utils.js';
+import { generateGenericShareImage, getStaticPages } from './utils';
 
 /**
  * Generate a social image for a specific page
- * @param {string} pagePath - The path of the page to generate an image for
+ * @param pagePath - The path of the page to generate an image for
  */
-async function generatePageImage(pagePath) {
+async function generatePageImage(pagePath: string) {
     if (!pagePath) {
         throw new Error('Page path is required');
     }
