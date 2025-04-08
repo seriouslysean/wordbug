@@ -1,0 +1,239 @@
+---
+import Layout from '~layouts/Layout.astro';
+import Heading from '~components/Heading.astro';
+import WordLink from '~components/WordLink.astro';
+import SectionHeading from '~components/SectionHeading.astro';
+import { getAllWords, getWordStats, getLetterStats, getStreakStats, countSyllables } from '~utils/word-utils.js';
+import { getUrl } from '~utils/utils';
+
+// Get all words and sort by date
+const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
+const totalWords = words.length;
+const firstWord = words[0];
+const latestWord = words[words.length - 1];
+const wordStats = getWordStats(words);
+const letterStats = getLetterStats(wordStats.letterFrequency);
+const { longestStreak } = getStreakStats(words);
+
+// Find word with most syllables
+const wordWithMostSyllables = words.reduce((max, curr) => {
+    const currSyllables = countSyllables(curr.word);
+    const maxSyllables = countSyllables(max.word);
+    return currSyllables > maxSyllables ? curr : max;
+}, words[0]);
+
+const formatDate = (dateStr) => {
+    const date = new Date(dateStr.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+};
+
+// Get all vowels and consonants words
+const allVowels = words.filter(w => /^[aeiou]+$/i.test(w.word));
+const allConsonants = words.filter(w => /^[^aeiou]+$/i.test(w.word));
+const palindromes = words.filter(w => w.word.toLowerCase() === w.word.toLowerCase().split('').reverse().join(''));
+
+// Count vowels and consonants in each word
+const getVowelCount = (word) => (word.match(/[aeiou]/gi) || []).length;
+const getConsonantCount = (word) => (word.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
+
+const mostVowels = words.reduce((max, curr) => {
+    const count = getVowelCount(curr.word);
+    return count > getVowelCount(max.word) ? curr : max;
+}, words[0]);
+
+const mostConsonants = words.reduce((max, curr) => {
+    const count = getConsonantCount(curr.word);
+    return count > getConsonantCount(max.word) ? curr : max;
+}, words[0]);
+
+// Find the dates for our words
+const findWordDate = (targetWord) => {
+    return words.find(w => w.word === targetWord)?.date;
+};
+---
+
+<Layout title="Stats | Bug's Word of the Day">
+    <main class="stats">
+        <Heading text="Stats" />
+
+        <div class="stats__list">
+            <div class="stats__item">
+                <div class="stats__fact">total words</div>
+                <a href="/words" style="font-size: 1.1rem; font-weight: 500;">
+                    {totalWords}
+                </a>
+            </div>
+            <div class="stats__item">
+                <div class="stats__fact">first word</div>
+                <WordLink word={firstWord} />
+            </div>
+            <div class="stats__item">
+                <div class="stats__fact">latest word</div>
+                <WordLink word={latestWord} />
+            </div>
+        </div>
+
+        <section class="stats__section">
+            <h2 class="stats__heading">Length</h2>
+            <div class="stats__list">
+                <div class="stats__item">
+                    <div class="stats__fact">longest ({wordStats.longest.length} letters)</div>
+                    <WordLink word={{
+                        word: wordStats.longest.word,
+                        date: findWordDate(wordStats.longest.word)
+                    }} />
+                </div>
+                <div class="stats__item">
+                    <div class="stats__fact">shortest ({wordStats.shortest.length} letters)</div>
+                    <WordLink word={{
+                        word: wordStats.shortest.word,
+                        date: findWordDate(wordStats.shortest.word)
+                    }} />
+                </div>
+            </div>
+        </section>
+
+        <section class="stats__section">
+            <h2 class="stats__heading">Letters</h2>
+            <div class="stats__list">
+                <div class="stats__item">
+                    <div class="stats__fact">most common letter ({letterStats[0][1]} words)</div>
+                    <div style="font-size: 1.1rem; font-weight: 500;">
+                        {letterStats[0][0]}
+                    </div>
+                </div>
+                <div class="stats__item">
+                    <div class="stats__fact">least common letter ({letterStats[letterStats.length - 1][1]} word{letterStats[letterStats.length - 1][1] !== 1 ? 's' : ''})</div>
+                    <div class="value">
+                        {letterStats[letterStats.length - 1][0]}
+                    </div>
+                </div>
+                <div class="stats__item">
+                    <div class="stats__fact">most vowels ({getVowelCount(mostVowels.word)})</div>
+                    <WordLink word={{
+                        word: mostVowels.word,
+                        date: mostVowels.date
+                    }} />
+                </div>
+                <div class="stats__item">
+                    <div class="stats__fact">most consonants ({getConsonantCount(mostConsonants.word)})</div>
+                    <WordLink word={{
+                        word: mostConsonants.word,
+                        date: mostConsonants.date
+                    }} />
+                </div>
+                {allConsonants.length > 0 && (
+                    <div class="stats__item">
+                        <div class="stats__fact">all consonants</div>
+                        <div class="value">
+                            {allConsonants.map(w => w.word).join(', ')}
+                        </div>
+                    </div>
+                )}
+                {allVowels.length > 0 && (
+                    <div class="stats__item">
+                        <div class="stats__fact">all vowels</div>
+                        <div class="value">
+                            {allVowels.map(w => w.word).join(', ')}
+                        </div>
+                    </div>
+                )}
+                {palindromes.length > 0 && (
+                    <div class="stats__item">
+                        <div class="stats__fact">palindromes</div>
+                        <div class="value">
+                            {palindromes.map(w => w.word).join(', ')}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </section>
+
+        <section class="stats__section">
+            <h2 class="stats__heading">Streaks</h2>
+            <div class="stats__list">
+                <div class="stats__item">
+                    <div class="stats__fact">longest daily streak</div>
+                    <div class="value">
+                        {longestStreak} days
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .stats {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+        padding: var(--spacing-base);
+    }
+
+    .stats__section {
+        margin-bottom: var(--spacing-large);
+    }
+
+    .stats__heading {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-base);
+        color: var(--color-primary-light);
+        border-bottom: 1px solid var(--color-primary-light);
+        padding-bottom: 0.5rem;
+        text-transform: lowercase;
+    }
+
+    .stats__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-small);
+    }
+
+    .stats__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-block: 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .stats__fact {
+        color: var(--color-text-light);
+        text-transform: lowercase;
+        padding: var(--spacing-small) 0;
+    }
+
+    /* Stats-specific styles */
+    .stats :global(a) {
+        font-size: 1.1rem;
+        font-weight: 500;
+        flex-direction: row-reverse;
+        gap: var(--spacing-small);
+    }
+
+    .stats :global(time) {
+        margin: 0;
+    }
+
+    /* Consistent styling for all values */
+    .value {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-text);
+        padding: var(--spacing-small) 0;
+    }
+
+    .value--link,
+    .value--link:visited {
+        color: var(--color-primary-light);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .value--link:hover,
+    .value--link:focus {
+        opacity: 0.7;
+        color: var(--color-primary-light);
+    }
+
+</style>
