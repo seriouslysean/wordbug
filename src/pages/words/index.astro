@@ -1,7 +1,7 @@
 ---
 import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
-import WordLink from '~components/WordLink.astro';
+import PastWords from '~components/PastWords.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 import { getUrl } from '~utils/utils';
 import { getAllWords } from '~utils/word-utils';
@@ -15,7 +15,6 @@ const wordsByYear = words.reduce((acc, word) => {
 }, {} as Record<string, typeof words>);
 
 const totalWords = words.length;
-
 const years = Object.keys(wordsByYear).sort((a, b) => Number(b) - Number(a));
 
 const formatDate = (dateStr) => {
@@ -33,11 +32,7 @@ const formatDate = (dateStr) => {
         {(Object.entries(wordsByYear) as [string, typeof words][]).reverse().map(([year, words]) => (
             <section class="words__section">
                 <SectionHeading text={year} href={getUrl(`/words/${year}`)} />
-                <div class="words__list">
-                    {words.map((word) => (
-                        <WordLink word={word} />
-                    ))}
-                </div>
+                <PastWords words={words} />
             </section>
         ))}
     </main>
@@ -47,16 +42,9 @@ const formatDate = (dateStr) => {
     .words {
         max-width: var(--content-width-medium);
         margin: 0 auto;
-        padding: var(--spacing-base);
     }
 
     .words__section {
         margin-bottom: var(--spacing-large);
-    }
-
-    .words__list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: var(--spacing-small);
     }
 </style>

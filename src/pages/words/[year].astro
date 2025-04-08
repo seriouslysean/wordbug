@@ -26,8 +26,10 @@ if (!words.length) {
 
 <Layout title={`${year} Words | Bug's Word of the Day`}>
     <main class="year-words">
-        <Heading level={1} text={year} />
-        <PastWords words={words} />
+        <Heading level={1} text={year} secondaryText="Words in" />
+        <div class="year-words__content">
+            <PastWords words={words} />
+        </div>
     </main>
 </Layout>
 
@@ -35,6 +37,9 @@ if (!words.length) {
     .year-words {
         max-width: var(--content-width-medium);
         margin: 0 auto;
-        padding: var(--spacing-base);
+    }
+
+    .year-words__content {
+        width: 100%;
     }
 </style>

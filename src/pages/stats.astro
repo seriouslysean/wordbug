@@ -60,15 +60,15 @@ const findWordDate = (targetWord) => {
 
 <Layout title="Stats | Bug's Word of the Day">
     <main class="stats">
-        <Heading text="Stats" />
+        <Heading text="Stats" secondaryText="For Nerds" />
 
         <section class="stats__section">
             <div class="stats__list">
                 <div class="stats__item">
                     <div class="stats__fact">total words</div>
-                    <a href="/words" style="font-size: 1.1rem; font-weight: 500;">
-                        {totalWords}
-                    </a>
+                    <div class="stats__value">
+                        <a href="/words" class="stats__link">{totalWords}</a>
+                    </div>
                 </div>
                 <div class="stats__item">
                     <div class="stats__fact">first word</div>
@@ -108,7 +108,7 @@ const findWordDate = (targetWord) => {
                 </div>
                 <div class="stats__item">
                     <div class="stats__fact">most common letter ({letterStats[0][1]} words)</div>
-                    <div style="font-size: 1.1rem; font-weight: 500;">
+                    <div class="value">
                         {letterStats[0][0]}
                     </div>
                 </div>
@@ -181,7 +181,6 @@ const findWordDate = (targetWord) => {
 
     .stats__section {
         margin-bottom: var(--spacing-large);
-        padding: var(--spacing-base);
     }
 
     .stats__heading {
@@ -201,28 +200,45 @@ const findWordDate = (targetWord) => {
 
     .stats__item {
         display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        padding-block: 0;
+        flex-direction: column;
+        gap: var(--spacing-small);
+        padding-block: var(--spacing-small);
         border-bottom: 1px solid var(--color-border);
     }
 
     .stats__fact {
         color: var(--color-text-light);
         text-transform: lowercase;
-        padding: var(--spacing-small) 0;
+    }
+
+    .stats__value {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .stats__link {
+        color: var(--color-primary-light);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .stats__link:hover {
+        opacity: 0.7;
     }
 
     /* Stats-specific styles */
     .stats :global(a) {
         font-size: 1.1rem;
         font-weight: 500;
-        flex-direction: row-reverse;
-        gap: var(--spacing-small);
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
     }
 
     .stats :global(time) {
-        margin: 0;
+        color: var(--color-text-lighter);
+        font-size: 0.8rem;
+        font-weight: normal;
     }
 
     /* Consistent styling for all values */
@@ -230,7 +246,6 @@ const findWordDate = (targetWord) => {
         font-size: 1.1rem;
         font-weight: 500;
         color: var(--color-text);
-        padding: var(--spacing-small) 0;
     }
 
     .value--link,
@@ -244,5 +259,39 @@ const findWordDate = (targetWord) => {
     .value--link:focus {
         opacity: 0.7;
         color: var(--color-primary-light);
+    }
+
+    /* Desktop styles */
+    @media (min-width: 481px) {
+        .stats__section {
+            margin-bottom: var(--spacing-large);
+        }
+
+        .stats__item {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-block: 0;
+        }
+
+        .stats__fact {
+            flex-shrink: 0;
+        }
+
+        .stats :global(a) {
+            flex-direction: row;
+            gap: var(--spacing-small);
+            text-align: right;
+        }
+
+        .stats :global(time) {
+            margin: 0;
+        }
+
+        .value {
+            text-align: right;
+            min-width: 0;
+            flex-grow: 1;
+        }
     }
 </style>

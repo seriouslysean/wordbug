@@ -17,11 +17,47 @@ const formatDate = (dateStr) => {
 const formattedDate = formatDate(word.date);
 ---
 
-<a href={getUrl(`/${word.word}`)} class="flex flex--between flex--baseline" aria-label={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}>
-    <span style="font-size: 1.1rem; font-weight: 500;">{word.word}</span>
-    {formattedDate && <time class="text--lighter" style="font-size: 0.8rem; margin-left: 1rem;">{formattedDate}</time>}
+<a href={getUrl(`/${word.word}`)} class="word-link" aria-label={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}>
+    <span class="word-link__word">{word.word}</span>
+    {formattedDate && <time class="word-link__date">{formattedDate}</time>}
 </a>
 
 <style>
-    /* Component-specific styles can go here if needed */
+    .word-link {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-small);
+        text-decoration: none;
+        padding: 0.25rem 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .word-link:hover {
+        opacity: 0.7;
+    }
+
+    .word-link__word {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-primary-light);
+    }
+
+    .word-link__date {
+        font-size: 0.8rem;
+        color: var(--color-text-lighter);
+        text-transform: lowercase;
+        font-weight: normal;
+    }
+
+    @media (min-width: 481px) {
+        .word-link {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .word-link__date {
+            margin-left: 1rem;
+        }
+    }
 </style>
