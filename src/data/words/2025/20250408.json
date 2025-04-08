@@ -1,0 +1,75 @@
+{
+    "word": "flabbergasted",
+    "date": "20250408",
+    "data": {
+        "word": "flabbergasted",
+        "phonetics": [
+            {
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/flabbergasted-au.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=75796821",
+                "license": {
+                    "name": "BY-SA 4.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
+                }
+            },
+            {
+                "text": "/ˈflæbəɡæstəd/",
+                "audio": ""
+            },
+            {
+                "text": "/ˈflæbɚˌɡæstəd/",
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/flabbergasted-us.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1157868",
+                "license": {
+                    "name": "BY-SA 3.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/3.0"
+                }
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "verb",
+                "definitions": [
+                    {
+                        "definition": "To overwhelm with bewilderment; to amaze, confound, or stun, especially in a ludicrous manner.",
+                        "synonyms": [
+                            "flabbergaster"
+                        ],
+                        "antonyms": [],
+                        "example": "He was flabbergasted to find that his work had been done for him before he began."
+                    }
+                ],
+                "synonyms": [
+                    "flabbergaster"
+                ],
+                "antonyms": []
+            },
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "Appalled, annoyed, exhausted or disgusted.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "He was flabbergasted at how much weight he had gained."
+                    },
+                    {
+                        "definition": "Damned.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/flabbergast",
+            "https://en.wiktionary.org/wiki/flabbergasted"
+        ]
+    }
+}
