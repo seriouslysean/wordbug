@@ -78,7 +78,7 @@ export function getSocialImageUrl({ site, pathname, wordData }) {
     if (wordData?.word && wordData?.date) {
         const year = wordData.date.slice(0, 4);
         return new URL(
-            `/images/social/${year}/${wordData.date}-${wordData.word}.png`,
+            `/images/social/${year}/${wordData.date}-${wordData.word.toLowerCase()}.png`,
             site.toString()
         ).toString();
     }

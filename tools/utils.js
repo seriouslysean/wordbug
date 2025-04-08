@@ -216,7 +216,7 @@ export async function generateShareImage(word, date) {
     createDirectoryIfNeeded(socialDir);
 
     const svgContent = createWordSvg(word, date);
-    const fileName = `${date}-${word}.png`;
+    const fileName = `${date}-${word.toLowerCase()}.png`;
     const outputPath = path.join(socialDir, fileName);
 
     try {
