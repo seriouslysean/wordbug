@@ -1,0 +1,57 @@
+{
+    "word": "metalloid",
+    "date": "20250409",
+    "data": {
+        "word": "metalloid",
+        "phonetic": "/ˈmɛtəlɔɪd/",
+        "phonetics": [
+            {
+                "text": "/ˈmɛtəlɔɪd/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "An element, such as silicon or germanium, intermediate in properties between that of a metal and a nonmetal; especially one that exhibits the external characteristics of a metal, but behaves chemically more as a nonmetal.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "The metallic base of a fixed alkali, or alkaline earth; applied to sodium, potassium, and some other metallic substances whose metallic character was supposed to be not well defined.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            },
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "Of or relating to the metalloids.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "Characteristic of the metal music genre.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/metalloid"
+        ]
+    }
+}
