@@ -1,0 +1,57 @@
+{
+    "word": "marsupial",
+    "date": "20250410",
+    "data": {
+        "word": "marsupial",
+        "phonetic": "/mɑː.ˈsuː.pi.əl/",
+        "phonetics": [
+            {
+                "text": "/mɑː.ˈsuː.pi.əl/",
+                "audio": ""
+            },
+            {
+                "text": "/mɑɹ.ˈsu.pi.əl/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "A mammal of which the female has a pouch in which it rears its young, which are born immature, through early infancy, such as the kangaroo or koala, or else pouchless members of the Marsupialia like the shrew opossum.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            },
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "Of or pertaining to a marsupial.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "Of or relating to a marsupium.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "the marsupial bones"
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/marsupial"
+        ]
+    }
+}
