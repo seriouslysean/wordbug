@@ -1,18 +1,29 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import type { Word } from '~/types/word';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+interface StaticPage {
+    title: string;
+    path: string;
+}
+
+interface SocialImageOptions {
+    site: string | URL;
+    pathname: string;
+    wordData?: Word;
+}
+
 /**
  * Gets all static pages that need generic social images
- * @returns {Array<{title: string, path: string}>}
  */
-export function getStaticPages() {
-    const pages = [];
+export function getStaticPages(): StaticPage[] {
+    const pages: StaticPage[] = [];
     const pagesDir = path.join(__dirname, '..', 'pages');
 
-    function scanDirectory(dir, basePath = '') {
+    function scanDirectory(dir: string, basePath = ''): void {
         const entries = fs.readdirSync(dir);
 
         for (const entry of entries) {
@@ -57,7 +68,7 @@ export function getStaticPages() {
     // Add year pages
     years.forEach(year => {
         pages.push({
-            title: `${year} Words`,
+            title: `Words from ${year}`,
             path: `words/${year}`
         });
     });
@@ -67,13 +78,8 @@ export function getStaticPages() {
 
 /**
  * Determines the social image URL based on the page type and data
- * @param {Object} options - Options for determining the social image URL
- * @param {string|URL} options.site - The site's base URL
- * @param {string} options.pathname - The current page path
- * @param {Object} [options.wordData] - Word data if this is a word page
- * @returns {string} The social image URL
  */
-export function getSocialImageUrl({ site, pathname, wordData }) {
+export function getSocialImageUrl({ site, pathname, wordData }: SocialImageOptions): string {
     // If we have word data, use the word image
     if (wordData?.word && wordData?.date) {
         const year = wordData.date.slice(0, 4);

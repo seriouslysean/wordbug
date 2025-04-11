@@ -1,4 +1,5 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -7,11 +8,10 @@
       "~layouts/*": ["src/layouts/*"],
       "~utils/*": ["src/utils/*"],
       "~data/*": ["src/data/*"],
-      "~config": ["src/config"]
-    },
-    "jsx": "preserve",
-    "jsxImportSource": "astro"
+      "~styles/*": ["src/styles/*"],
+      "~config/*": ["src/config/*"]
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }
