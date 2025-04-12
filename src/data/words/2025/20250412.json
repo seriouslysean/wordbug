@@ -1,0 +1,35 @@
+{
+    "word": "anemones",
+    "date": "20250412",
+    "data": {
+        "word": "anemones",
+        "phonetics": [],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "Any plant of the genus Anemone, of the Ranunculaceae (or buttercup) family, such as the windflower.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "A sea anemone.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/anemone",
+            "https://en.wiktionary.org/wiki/anemones"
+        ]
+    }
+}
