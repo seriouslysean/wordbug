@@ -1,0 +1,44 @@
+{
+    "word": "vainglorious",
+    "date": "20250413",
+    "data": {
+        "word": "vainglorious",
+        "phonetic": "/ˌveɪnˈɡlɔː.ɹi.əs/",
+        "phonetics": [
+            {
+                "text": "/ˌveɪnˈɡlɔː.ɹi.əs/",
+                "audio": ""
+            },
+            {
+                "text": "/ˌveɪnˈɡlɔː.ɹi.əs/",
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/vainglorious-us.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=5447459",
+                "license": {
+                    "name": "BY-SA 3.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/3.0"
+                }
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "With excessive vanity or unwarranted pride.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/vainglorious"
+        ]
+    }
+}
