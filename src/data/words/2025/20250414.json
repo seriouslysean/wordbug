@@ -1,0 +1,38 @@
+{
+    "word": "phlebotomy",
+    "date": "20250414",
+    "data": {
+        "word": "phlebotomy",
+        "phonetic": "/flɪˈbɒtəmi/",
+        "phonetics": [
+            {
+                "text": "/flɪˈbɒtəmi/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "The opening of a vein, either to withdraw blood or for letting blood; venesection.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [
+                    "venesection",
+                    "venipuncture"
+                ],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/phlebotomy"
+        ]
+    }
+}
