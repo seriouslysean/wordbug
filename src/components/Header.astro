@@ -1,36 +1,19 @@
 ---
-import { getUrl } from '~utils/utils';
+const siteName = `Bug's (Ocassional) Word of the Day`;
 ---
-
-<header class="header">
-    <a href={getUrl('/')} class="header__link" aria-label="Return to home page">
-        <h1 class="header__title">Bug's (Occasional) Word of the Day</h1>
-    </a>
+<header id="header">
+	<nav>
+		<a href="/">
+			<h1>{ siteName }</h1>
+		</a>
+	</nav>
 </header>
 
 <style>
-    .header {
+	#header {
+        padding: var(--spacing-default);
         text-align: center;
-        padding: var(--spacing-base);
-        margin-top: 1rem;
-    }
-
-    .header__title {
-        font-size: 0.875rem;
-        font-weight: normal;
-        margin: 0;
-        color: var(--color-text-lighter);
-        text-transform: lowercase;
-        letter-spacing: 0.5px;
-        transition: color 0.2s ease;
-    }
-
-    .header__link {
-        font-size: var(--font-size-small);
-        text-transform: lowercase;
-    }
-
-    .header__link:hover .header__title {
-        color: var(--color-text-light);
-    }
+        /* style choice, ideally this might want to be set by color only */
+        opacity: 0.6;
+	}
 </style>

@@ -1,41 +1,7 @@
 ---
-import Layout from '~layouts/Layout.astro';
-import WordDisplay from '~components/WordDisplay.astro';
-import { getCurrentWord } from '~utils/word-utils.js';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
-const currentWord = getCurrentWord();
-
-// Get current month's words
-const today = new Date();
-const currentMonth = today.getMonth();
-const currentYear = today.getFullYear();
-
-// Get month name
-const monthNames = [
-	'January', 'February', 'March', 'April', 'May', 'June',
-	'July', 'August', 'September', 'October', 'November', 'December'
-];
-const monthName = monthNames[currentMonth];
+import Layout from '@layouts/Layout.astro';
 ---
 
-<Layout title="Bug's (Occasional) Word of the Day" word={currentWord}>
-	<main>
-		<WordDisplay />
-	</main>
+<Layout>
+	<p>Home</p>
 </Layout>
-
-<style>
-	.past-words {
-		width: 100%;
-		margin: var(--spacing-large) 0;
-	}
-
-	.past-words__container {
-		width: 100%;
-		max-width: var(--content-width-medium);
-		margin: 0 auto;
-	}
-</style>

@@ -1,159 +1,45 @@
 ---
-import '~styles/global.css';
-import '~styles/utilities.css';
-import Header from '~components/Header.astro';
-import Footer from '~components/Footer.astro';
-import { getUrl } from '~utils/utils';
-import { getCurrentWord, getWordByDate } from '~utils/word-utils';
-import { getSocialImageUrl } from '~utils/page-utils';
+import '@styles/reset.css';
+import '@styles/global.css';
 
-const { title = "Bug's (Occasional) Word of the Day", word } = Astro.props;
-
-// Helper function to format page titles consistently
-const formatPageTitle = (pageTitle, currentWord) => {
-	const today = new Date();
-	const date = today.toLocaleDateString('en-US', {
-		month: 'short',
-		day: 'numeric',
-		year: 'numeric'
-	});
-
-	if (currentWord?.word) {
-		return `${currentWord.word}, ${date} - ${pageTitle}`;
-	}
-
-	return pageTitle;
-};
-
-// Only get word data if we have a word prop
-const wordData = word ? await getWordByDate(word.date) : null;
-const currentUrl = new URL(Astro.url.pathname, Astro.site).toString();
-
-// Get the current page path for social image
-const pagePath = Astro.url.pathname.replace(/^\/|\/$/g, '') || 'home';
-
-// Get the social image URL based on page type
-const socialImageUrl = getSocialImageUrl({
-    site: Astro.site,
-    pathname: Astro.url.pathname,
-    wordData
-});
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 ---
-
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')}>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{formatPageTitle(title, word)}</title>
-
-		<!-- OpenGraph/Social Tags -->
-		<meta property="og:title" content={formatPageTitle(title, word)} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={currentUrl} />
-		<meta property="og:image" content={socialImageUrl} />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content={socialImageUrl} />
+		<title>Astro Basics</title>
 	</head>
 	<body>
-		<div class="layout">
-			<Header />
-			<main class="main">
-				<div class="main__content">
-					<slot />
-				</div>
+		<div id="app">
+			<Header class="app__header" />
+
+			<main class="app__main">
+				<slot />
 			</main>
-			<Footer />
+
+			<Footer class="app__footer" />
 		</div>
 	</body>
 </html>
 
 <style>
-	html {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	body {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		min-height: 100vh;
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		-webkit-font-smoothing: antialiased;
-		line-height: 1.5;
-		background: linear-gradient(180deg,
-			var(--color-background) 0%,
-			var(--color-background-light) 100%);
-		background-attachment: fixed;
-	}
-
-	.layout {
+	#app {
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
 	}
-
-	.main {
-		flex: 1;
-		width: 100%;
+	.app__header {
+		flex: 0 0 auto;
 	}
-
-	.main__content {
-		width: 100%;
-		max-width: var(--content-width-large);
-		margin: 0 auto;
-		padding: 2rem var(--spacing-base);
+	.app__main {
+		flex: 1 0 auto;
 	}
-
-	/* Responsive adjustments */
-	@media (max-width: 768px) {
-		.main__content {
-			padding: 1rem var(--spacing-base);
-		}
-	}
-
-	/* Base styles */
-	:global(html) {
-		font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-		font-weight: var(--font-weight-normal);
-	}
-
-	/* Headings */
-	:global(h1) {
-		font-weight: var(--font-weight-bold);
-		font-size: var(--font-size-huge);
-		line-height: 1.1;
-	}
-
-	:global(h2) {
-		font-weight: var(--font-weight-semibold);
-		font-size: 2rem;
-		line-height: 1.2;
-	}
-
-	:global(h3) {
-		font-weight: var(--font-weight-medium);
-		font-size: 1.5rem;
-		line-height: 1.3;
-	}
-
-	/* Navigation */
-	:global(.nav-link) {
-		font-weight: var(--font-weight-medium);
-	}
-
-	/* Buttons */
-	:global(.button) {
-		font-weight: var(--font-weight-semibold);
-	}
-
-	/* Footer */
-	:global(.footer) {
-		font-weight: var(--font-weight-light);
+	.app__footer {
+		flex: 0 0 auto;
 	}
 </style>

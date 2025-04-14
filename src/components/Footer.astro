@@ -1,37 +1,33 @@
 ---
 const currentYear = new Date().getFullYear();
-const attributionUrl = 'https://github.com/seriouslysean';
+const attributionLink = 'https://github.com/seriouslysean/wordbug';
 ---
 
-<footer class="footer" role="contentinfo">
-    <p class="footer__text">
-        <a href="/words" aria-label="View all words">All Words</a>
-        <span class="footer__separator">&middot;</span>
-        <a href="/stats" aria-label="View word statistics">Stats</a>
-        <span class="footer__separator">&middot;</span>
-        <a href={attributionUrl} target="_blank" rel="noopener noreferrer" aria-label="View Sean Kennedy's GitHub profile (opens in new tab)">Made with &lt;3, {currentYear}</a>
-    </p>
+<footer id="footer">
+    <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/stats">Stats</a></li>
+        {attributionLink && (
+          <li><a href={attributionLink} target="_blank">Made with &lt;3 { currentYear }</a></li>
+        )}
+    </ul>
 </footer>
 
 <style>
-    .footer {
-        margin-top: auto;
-        padding: 1rem;
+	#footer {
+        padding: var(--spacing-default);
         text-align: center;
+        /* style choice, ideally this might want to be set by color only */
+        opacity: 0.6;
+	}
+
+    li {
+        display: inline-flex;
     }
 
-    .footer__text {
-        margin: 0;
-        font-size: 0.875rem;
-        color: var(--color-text-lighter);
-    }
-
-    .footer__text a {
-        color: inherit;
-    }
-
-    .footer__separator {
-        margin: 0 1rem;
-        opacity: 0.5;
+    li:not(:last-child)::after {
+        content: '·';
+        width: var(--spacing-default);
+        text-align: center;
     }
 </style>

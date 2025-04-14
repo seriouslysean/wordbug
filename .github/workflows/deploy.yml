@@ -1,8 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Deploy to GitHub Pages
-
-env:
-  SITE_URL: https://wordbug.fyi
 
 on:
   # Runs on pushes targeting the default branch
@@ -47,9 +43,10 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        env:
-          BASE_URL: ${{ env.SITE_URL }}
         run: npm run build
+      - name: Create CNAME file
+        # Hardcoding the CNAME value for now, may make it agnostic later.
+        run: echo "wordbug.fyi" > ./dist/CNAME
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

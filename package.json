@@ -2,7 +2,7 @@
   "name": "wordbug",
   "type": "module",
   "version": "1.4.1",
-  "description": "An (occasional) word of the day that my son thinks is cool",
+  "description": "An (occasional) word of the day that my son thinks is cool.",
   "keywords": [
     "word-of-the-day",
     "vocabulary",
@@ -14,28 +14,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "tool:add-word": "node tools/add-word.js",
-    "tool:generate-word-data": "node tools/generate-word-data.js",
-    "tool:generate-word-images": "node tools/generate-word-images.js",
-    "tool:generate-word-image": "node tools/generate-word-image.js",
-    "tool:generate-generic-images": "node tools/generate-generic-images.js",
-    "tool:generate-page-image": "node tools/generate-page-image.js",
-    "tool:generate-all-images": "npm run tool:generate-word-images && npm run tool:generate-generic-images",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.5.3"
-  },
-  "devDependencies": {
-    "@vitest/coverage-v8": "^1.4.0",
-    "opentype.js": "^1.3.4",
-    "sharp": "^0.34.0",
-    "vitest": "^1.4.0"
+    "astro": "^5.6.1"
   }
 }

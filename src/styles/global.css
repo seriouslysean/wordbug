@@ -1,54 +1,3 @@
-/* Reset CSS */
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-/* Font faces */
 @font-face {
     font-family: 'Open Sans';
     src: url('/fonts/opensans/OpenSans-Variable.woff2') format('woff2-variations');
@@ -57,122 +6,31 @@ table {
     font-display: swap;
 }
 
-/* Your existing global styles */
 :root {
-    /* Colors */
-    --color-primary: #2A6F74;
-    --color-primary-light: #3a8f96;
-    --color-primary-dark: #1d4e51;
-    --color-background: #fff;
-    --color-background-light: #f8f9fa;
     --color-text: #333;
-    --color-text-light: #666;
-    --color-text-lighter: #8a8f98;
+    --color-primary: #1d4e51;
+    --color-background: #fff;
 
-    /* Font weights */
-    --font-weight-light: 300;
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
-
-    /* Font sizes */
-    --font-size-small: clamp(0.875rem, 2vw, 1rem);
-    --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
-    --font-size-huge: clamp(3rem, 15vw, 8rem);
-
-    /* Spacing */
-    --spacing-small: 0.5rem;
-    --spacing-base: 1rem;
-    --spacing-large: 2rem;
-
-    /* Content widths */
-    --content-width-small: min(600px, 90vw);
-    --content-width-medium: min(800px, 90vw);
-    --content-width-full: 95vw;
-
-    /* Other */
-    --border-radius: 8px;
-    --shadow-color: 186deg 47% 28%;
-}
-
-/* Global reset */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    min-height: 100%;
-    background: var(--color-background);
+    --spacing-default: 1em;
+    --spacing-small: 0.5em;
 }
 
 body {
-    min-height: 100vh;
-    color: var(--color-text);
-    font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-    font-weight: var(--font-weight-normal);
-    -webkit-font-smoothing: antialiased;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
     line-height: 1.5;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.main__content {
-    flex: 1 0 auto;
-    width: 100%;
-    max-width: var(--content-width-medium);
-    margin: 0 auto;
-    padding: var(--spacing-base);
-}
-
-/* Shared utility classes */
-.text-light {
-    color: var(--color-text-light);
-}
-
-.text-lowercase {
+    color: var(--color-text);
+    background-color: var(--color-background);
+    /* style choice for the website, can undo in specific areas as needed) */
     text-transform: lowercase;
 }
 
-.text-center {
-    text-align: center;
-}
-
-/* Links */
-a {
+a,
+a:visited {
+    color: var(--color-primary);
     text-decoration: none;
-    color: var(--color-primary-light);
-    transition: opacity 0.2s ease;
 }
 
 a:hover {
-    opacity: 0.7;
-}
-
-/* Links in text utilities and footer */
-.text-light a,
-.text-lowercase a,
-.text-center a,
-.footer__text a {
-    color: inherit;
-}
-
-.section-heading {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-primary-light);
-    border-bottom: 1px solid var(--color-primary-light);
-    padding-bottom: 0.5rem;
-    text-align: center;
-    text-transform: lowercase;
+    text-decoration: underline;
 }
