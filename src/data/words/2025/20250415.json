@@ -1,0 +1,55 @@
+{
+    "word": "escalator",
+    "date": "20250415",
+    "data": {
+        "word": "escalator",
+        "phonetic": "/ˈɛs.kə.leɪ.tə/",
+        "phonetics": [
+            {
+                "text": "/ˈɛs.kə.leɪ.tə/",
+                "audio": ""
+            },
+            {
+                "text": "/ˈɛs.kə.leɪ.tɚ/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "Anything that escalates.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "A motor-driven mechanical device consisting of a continuous loop of steps that automatically conveys people from one floor to another.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "An upward or progressive course.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "An escalator clause.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "They agreed to a cost-of-living escalator."
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/escalator"
+        ]
+    }
+}
