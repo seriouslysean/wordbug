@@ -1,0 +1,35 @@
+{
+    "word": "subatomic",
+    "date": "20250416",
+    "data": {
+        "word": "subatomic",
+        "phonetics": [],
+        "meanings": [
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "Relating to particles that are constituents of the atom, or are smaller than an atom; such as proton, neutron, electron, etc.",
+                        "synonyms": [],
+                        "antonyms": []
+                    },
+                    {
+                        "definition": "Relating to any length or mass that is smaller in scale than a the diameter of a hydrogen atom.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "The electron microscope is able to resolve detail at the subatomic level."
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/subatomic"
+        ]
+    }
+}
