@@ -1,25 +1,30 @@
 ---
 import { getUrl } from '~utils/utils';
+import type { Word as WordType } from '~/types/word';
+
+interface Props {
+    word: WordType;
+}
 
 const { word } = Astro.props;
 
-const formatDate = (dateStr) => {
+const formatDate = (dateStr: string): string => {
     if (!dateStr) return '';
 
-    const date = new Date(
-        dateStr.substring(0, 4),
-        parseInt(dateStr.substring(4, 6)) - 1,
-        dateStr.substring(6, 8)
-    );
+    const year = parseInt(dateStr.substring(0, 4));
+    const month = parseInt(dateStr.substring(4, 6)) - 1;
+    const day = parseInt(dateStr.substring(6, 8));
+
+    const date = new globalThis.Date(year, month, day);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 };
 
 const formattedDate = formatDate(word.date);
 ---
 
-<a href={getUrl(`/${word.word}`)} class="word-link" aria-label={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}>
+<a href={getUrl(`/${word.date}`)} class="word-link" aria-label={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}>
     <span class="word-link__word">{word.word}</span>
-    {formattedDate && <time class="word-link__date">{formattedDate}</time>}
+    {formattedDate && <time class="word-link__date" datetime={word.date}>{formattedDate}</time>}
 </a>
 
 <style>

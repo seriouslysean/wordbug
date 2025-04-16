@@ -1,9 +1,9 @@
 /**
  * Formats a date string into a localized date
- * @param {string} dateStr - Date string in YYYYMMDD format
- * @returns {string} - Formatted date string
+ * @param dateStr - Date string in YYYYMMDD format
+ * @returns Formatted date string
  */
-export const formatDate = (dateStr) => {
+export const formatDate = (dateStr: string): string => {
     if (!dateStr) return dateStr;
 
     try {
@@ -11,11 +11,11 @@ export const formatDate = (dateStr) => {
             return dateStr;
         }
 
-        const year = dateStr.substring(0, 4);
+        const year = parseInt(dateStr.substring(0, 4));
         const month = parseInt(dateStr.substring(4, 6)) - 1;
         const day = parseInt(dateStr.substring(6, 8));
 
-        const date = new Date(year, month, day);
+        const date = new globalThis.Date(year, month, day);
 
         if (isNaN(date.getTime())) {
             return dateStr;

@@ -3,6 +3,11 @@ import { formatDate } from '~utils/date-utils';
 import { getWordDetails } from '~utils/word-utils';
 import Heading from '~components/Heading.astro';
 import WordDescription from '~components/WordDescription.astro';
+import type { Word as WordType } from '~/types/word';
+
+interface Props {
+    word: WordType;
+}
 
 const { word } = Astro.props;
 const { partOfSpeech, definition } = getWordDetails(word);

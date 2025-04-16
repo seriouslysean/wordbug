@@ -1,4 +1,4 @@
-import { getAllWordFiles, fetchWordData, updateWordFile } from './utils.js';
+import { getAllWordFiles, fetchWordData, updateWordFile } from './utils';
 
 /**
  * Reprocesses all word data with fresh API data
@@ -16,14 +16,22 @@ async function reprocessWords() {
                 updateWordFile(file.path, data, file.date);
                 // Add a small delay to avoid rate limiting
                 await new Promise(resolve => setTimeout(resolve, 1000));
-            } catch (error) {
-                console.error(`Error processing ${file.word}:`, error.message);
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    console.error(`Error processing ${file.word}:`, error.message);
+                } else {
+                    console.error(`Error processing ${file.word}:`, String(error));
+                }
             }
         }
 
         console.log('Finished reprocessing words');
-    } catch (error) {
-        console.error('Error reprocessing words:', error.message);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error('Error reprocessing words:', error.message);
+        } else {
+            console.error('Error reprocessing words:', String(error));
+        }
         process.exit(1);
     }
 }

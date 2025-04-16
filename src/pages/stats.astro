@@ -3,8 +3,9 @@ import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
 import WordLink from '~components/WordLink.astro';
 import SectionHeading from '~components/SectionHeading.astro';
-import { getAllWords, getWordStats, getLetterStats, getStreakStats, countSyllables } from '~utils/word-utils.js';
+import { getAllWords, getWordStats, getLetterStats, getStreakStats, countSyllables } from '~utils/word-utils';
 import { getUrl } from '~utils/utils';
+import type { Word } from '~/types/word';
 
 // Get all words and sort by date
 const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
@@ -28,8 +29,8 @@ const wordWithLeastSyllables = words.reduce((min, curr) => {
     return currSyllables < minSyllables ? curr : min;
 }, words[0]);
 
-const formatDate = (dateStr) => {
-    const date = new Date(dateStr.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+const formatDate = (dateStr: string): string => {
+    const date = new globalThis.Date(dateStr.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 };
 
@@ -39,8 +40,8 @@ const allConsonants = words.filter(w => /^[^aeiou]+$/i.test(w.word));
 const palindromes = words.filter(w => w.word.toLowerCase() === w.word.toLowerCase().split('').reverse().join(''));
 
 // Count vowels and consonants in each word
-const getVowelCount = (word) => (word.match(/[aeiou]/gi) || []).length;
-const getConsonantCount = (word) => (word.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
+const getVowelCount = (word: string): number => (word.match(/[aeiou]/gi) || []).length;
+const getConsonantCount = (word: string): number => (word.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
 
 const mostVowels = words.reduce((max, curr) => {
     const count = getVowelCount(curr.word);
@@ -53,9 +54,16 @@ const mostConsonants = words.reduce((max, curr) => {
 }, words[0]);
 
 // Find the dates for our words
-const findWordDate = (targetWord) => {
+const findWordDate = (targetWord: string): string | undefined => {
     return words.find(w => w.word === targetWord)?.date;
 };
+
+// Helper to create a Word object from partial data
+const createWordObject = (word: string, date: string | undefined): Word => ({
+    word,
+    date: date || '',
+    data: { meanings: [] }
+});
 ---
 
 <Layout title="Stats | Bug's Word of the Day">
@@ -85,18 +93,22 @@ const findWordDate = (targetWord) => {
             <h2 class="stats__heading">Word Facts</h2>
             <div class="stats__list">
                 <div class="stats__item">
-                    <div class="stats__fact">shortest ({wordStats.shortest.length} letters)</div>
-                    <WordLink word={{
-                        word: wordStats.shortest.word,
-                        date: findWordDate(wordStats.shortest.word)
-                    }} />
+                    <div class="stats__fact">shortest ({wordStats.shortest?.length} letters)</div>
+                    {wordStats.shortest && (
+                        <WordLink word={createWordObject(
+                            wordStats.shortest.word,
+                            findWordDate(wordStats.shortest.word)
+                        )} />
+                    )}
                 </div>
                 <div class="stats__item">
-                    <div class="stats__fact">longest ({wordStats.longest.length} letters)</div>
-                    <WordLink word={{
-                        word: wordStats.longest.word,
-                        date: findWordDate(wordStats.longest.word)
-                    }} />
+                    <div class="stats__fact">longest ({wordStats.longest?.length} letters)</div>
+                    {wordStats.longest && (
+                        <WordLink word={createWordObject(
+                            wordStats.longest.word,
+                            findWordDate(wordStats.longest.word)
+                        )} />
+                    )}
                 </div>
                 <div class="stats__item">
                     <div class="stats__fact">least syllables ({countSyllables(wordWithLeastSyllables.word)})</div>
@@ -120,17 +132,11 @@ const findWordDate = (targetWord) => {
                 </div>
                 <div class="stats__item">
                     <div class="stats__fact">most vowels ({getVowelCount(mostVowels.word)})</div>
-                    <WordLink word={{
-                        word: mostVowels.word,
-                        date: mostVowels.date
-                    }} />
+                    <WordLink word={mostVowels} />
                 </div>
                 <div class="stats__item">
                     <div class="stats__fact">most consonants ({getConsonantCount(mostConsonants.word)})</div>
-                    <WordLink word={{
-                        word: mostConsonants.word,
-                        date: mostConsonants.date
-                    }} />
+                    <WordLink word={mostConsonants} />
                 </div>
                 {palindromes.length > 0 && (
                     <div class="stats__item">
@@ -201,19 +207,20 @@ const findWordDate = (targetWord) => {
     .stats__item {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-small);
-        padding-block: var(--spacing-small);
+        gap: var(--spacing-xs);
+        padding: var(--spacing-small) 0;
         border-bottom: 1px solid var(--color-border);
     }
 
     .stats__fact {
+        font-size: var(--font-size-small);
         color: var(--color-text-light);
         text-transform: lowercase;
     }
 
     .stats__value {
-        font-size: 1.1rem;
-        font-weight: 500;
+        font-size: var(--font-size-large);
+        color: var(--color-text);
     }
 
     .stats__link {
@@ -226,72 +233,20 @@ const findWordDate = (targetWord) => {
         opacity: 0.7;
     }
 
-    /* Stats-specific styles */
-    .stats :global(a) {
-        font-size: 1.1rem;
-        font-weight: 500;
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    .stats :global(time) {
-        color: var(--color-text-lighter);
-        font-size: 0.8rem;
-        font-weight: normal;
-    }
-
-    /* Consistent styling for all values */
     .value {
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: var(--color-text);
-    }
-
-    .value--link,
-    .value--link:visited {
-        color: var(--color-primary-light);
-        text-decoration: none;
-        transition: opacity 0.2s ease;
-    }
-
-    .value--link:hover,
-    .value--link:focus {
-        opacity: 0.7;
+        font-size: var(--font-size-base);
         color: var(--color-primary-light);
     }
 
-    /* Desktop styles */
     @media (min-width: 481px) {
-        .stats__section {
-            margin-bottom: var(--spacing-large);
-        }
-
         .stats__item {
             flex-direction: row;
             justify-content: space-between;
             align-items: baseline;
-            padding-block: 0;
         }
 
         .stats__fact {
-            flex-shrink: 0;
-        }
-
-        .stats :global(a) {
-            flex-direction: row;
-            gap: var(--spacing-small);
-            text-align: right;
-        }
-
-        .stats :global(time) {
-            margin: 0;
-        }
-
-        .value {
-            text-align: right;
-            min-width: 0;
-            flex-grow: 1;
+            min-width: 200px;
         }
     }
 </style>

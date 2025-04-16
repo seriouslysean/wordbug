@@ -1,5 +1,4 @@
-import { generateGenericShareImage } from './utils.js';
-import { getStaticPages } from '../src/utils/page-utils.js';
+import { generateGenericShareImage, getStaticPages } from './utils';
 import fs from 'fs';
 import path from 'path';
 
