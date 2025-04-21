@@ -108,14 +108,15 @@ const formatWordSummary = (data) => {
 
 /**
  * Adds a new word to the collection
- * @param {string} word - Word to add
+ * @param {string} input - Word to add
  * @param {string} [date] - Optional date to add word for
  * @param {boolean} [overwrite] - Whether to overwrite existing word
  */
-async function addWord(word, date, overwrite = false) {
+async function addWord(input, date, overwrite = false) {
     try {
+        const word = input?.trim();
         // Validate inputs
-        if (!word?.trim()) {
+        if (!word) {
             throw new Error('Word is required');
         }
         if (date && !isValidDate(date)) {
