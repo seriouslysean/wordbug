@@ -1,0 +1,68 @@
+{
+    "word": "centennial",
+    "date": "20250423",
+    "data": {
+        "word": "centennial",
+        "phonetic": "/sɛnˈtɛnɪəl/",
+        "phonetics": [
+            {
+                "text": "/sɛnˈtɛnɪəl/",
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/centennial-uk.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=89012257",
+                "license": {
+                    "name": "BY-SA 4.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
+                }
+            },
+            {
+                "text": "/sɛnˈtɛnɪəl/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "The hundredth anniversary of an event or happening.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            },
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "Relating to, or associated with, the commemoration of an event that happened a hundred years before.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "a centennial ode"
+                    },
+                    {
+                        "definition": "Happening once in a hundred years.",
+                        "synonyms": [],
+                        "antonyms": [],
+                        "example": "a centennial jubilee; a centennial celebration"
+                    },
+                    {
+                        "definition": "Lasting or aged a hundred years.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/centennial"
+        ]
+    }
+}
