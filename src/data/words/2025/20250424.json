@@ -1,0 +1,35 @@
+{
+    "word": "okapi",
+    "date": "20250424",
+    "data": {
+        "word": "okapi",
+        "phonetic": "/ə(ʊ)ˈkɑːpi/",
+        "phonetics": [
+            {
+                "text": "/ə(ʊ)ˈkɑːpi/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "A large ruminant mammal, Okapia johnstoni, found in the rainforests of the Congo, related to the giraffe, but with a much shorter neck, a reddish brown coat and zebra-like stripes on its hindquarters.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/okapi"
+        ]
+    }
+}
