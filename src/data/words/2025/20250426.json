@@ -1,0 +1,35 @@
+{
+    "word": "sriracha",
+    "date": "20250426",
+    "data": {
+        "word": "sriracha",
+        "phonetic": "/sɪˈɹæt͡ʃə/",
+        "phonetics": [
+            {
+                "text": "/sɪˈɹæt͡ʃə/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "A Thai-style hot sauce, typically made from sun-ripened chili peppers, vinegar, garlic, sugar and salt.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/sriracha"
+        ]
+    }
+}
