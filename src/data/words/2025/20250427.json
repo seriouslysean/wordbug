@@ -1,0 +1,35 @@
+{
+    "word": "fecal",
+    "date": "20250427",
+    "data": {
+        "word": "fecal",
+        "phonetic": "/ˈfiːkəl/",
+        "phonetics": [
+            {
+                "text": "/ˈfiːkəl/",
+                "audio": ""
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "Of or relating to feces.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/fecal"
+        ]
+    }
+}
