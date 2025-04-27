@@ -1,26 +1,44 @@
 {
-    "word": "fecal",
+    "word": "feces",
     "date": "20250427",
     "data": {
-        "word": "fecal",
-        "phonetic": "/ˈfiːkəl/",
+        "word": "feces",
+        "phonetic": "/ˈfiːsiːz/",
         "phonetics": [
             {
-                "text": "/ˈfiːkəl/",
+                "text": "/ˈfiːsiːz/",
                 "audio": ""
             }
         ],
         "meanings": [
             {
-                "partOfSpeech": "adjective",
+                "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "Of or relating to feces.",
+                        "definition": "Digested waste material (typically solid or semi-solid) discharged from the bowels; excrement.",
                         "synonyms": [],
                         "antonyms": []
                     }
                 ],
-                "synonyms": [],
+                "synonyms": [
+                    "caca",
+                    "dung",
+                    "excrement",
+                    "faecal matter",
+                    "guano",
+                    "manure",
+                    "boo-boo",
+                    "doo",
+                    "doody",
+                    "poo",
+                    "poop",
+                    "crap",
+                    "log",
+                    "shit",
+                    "turd",
+                    "night soil",
+                    "number two"
+                ],
                 "antonyms": []
             }
         ],
@@ -29,7 +47,7 @@
             "url": "https://creativecommons.org/licenses/by-sa/3.0"
         },
         "sourceUrls": [
-            "https://en.wiktionary.org/wiki/fecal"
+            "https://en.wiktionary.org/wiki/feces"
         ]
     }
 }
