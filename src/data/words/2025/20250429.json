@@ -1,9 +1,15 @@
 {
-    "word": "scalding",
+    "word": "scolding",
     "date": "20250429",
     "data": {
-        "word": "scalding",
-        "phonetics": [],
+        "word": "scolding",
+        "phonetic": "/ˈskoʊldɪŋ/",
+        "phonetics": [
+            {
+                "text": "/ˈskoʊldɪŋ/",
+                "audio": ""
+            }
+        ],
         "meanings": [
             {
                 "partOfSpeech": "verb",
@@ -25,10 +31,10 @@
                 "antonyms": []
             },
             {
-                "partOfSpeech": "noun",
+                "partOfSpeech": "verb",
                 "definitions": [
                     {
-                        "definition": "An instance of scalding: a burn.",
+                        "definition": "To rebuke angrily.",
                         "synonyms": [],
                         "antonyms": []
                     }
@@ -37,10 +43,10 @@
                 "antonyms": []
             },
             {
-                "partOfSpeech": "adjective",
+                "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "(of a liquid) Hot enough to burn.",
+                        "definition": "A succession of critical remarks, such as those directed by a parent towards a misbehaving child.",
                         "synonyms": [],
                         "antonyms": []
                     }
@@ -55,7 +61,8 @@
         },
         "sourceUrls": [
             "https://en.wiktionary.org/wiki/scald",
-            "https://en.wiktionary.org/wiki/scalding"
+            "https://en.wiktionary.org/wiki/scold",
+            "https://en.wiktionary.org/wiki/scolding"
         ]
     }
 }
