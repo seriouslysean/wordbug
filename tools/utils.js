@@ -75,21 +75,75 @@ export function updateWordFile(filePath, data, date) {
 }
 
 /**
- * Fetches word data from the Free Dictionary API
+ * Fetches word data from the Wordnik API
  * @param {string} word - Word to fetch data for
  * @returns {Promise<Object>} - Word data from API
  * @throws {Error} - If API request fails
  */
 export async function fetchWordData(word) {
-    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    // Get API key from environment variable
+    const apiKey = process.env.WORDNIK_API_KEY;
+
+    if (!apiKey) {
+        throw new Error('WORDNIK_API_KEY environment variable is required');
+    }
+
+    const url = `https://api.wordnik.com/v4/word.json/${encodeURIComponent(word)}/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+
+    const response = await fetch(url);
+
+    // Log rate limit headers
+    const rateLimits = {
+        remainingMinute: response.headers.get('x-ratelimit-remaining-minute'),
+        remainingHour: response.headers.get('x-ratelimit-remaining-hour'),
+        limitMinute: response.headers.get('x-ratelimit-limit-minute'),
+        limitHour: response.headers.get('x-ratelimit-limit-hour')
+    };
+
+    console.log('Wordnik API Rate Limits:', rateLimits);
+
     if (!response.ok) {
+        if (response.status === 429) {
+            throw new Error(`Rate limit exceeded. Remaining: ${rateLimits.remainingMinute} per minute, ${rateLimits.remainingHour} per hour.`);
+        }
+        if (response.status === 404) {
+            throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+        }
         throw new Error(`Failed to fetch word data: ${response.statusText}`);
     }
+
     const data = await response.json();
+
     if (!Array.isArray(data) || data.length === 0) {
         throw new Error('No word data found');
     }
-    return data[0];
+
+    // Convert Wordnik response format to match our expected structure
+    const wordnikData = data[0];
+    return {
+        word: wordnikData.word || word,
+        phonetic: "",
+        phonetics: [],
+        origin: "",
+        meanings: [
+            {
+                partOfSpeech: wordnikData.partOfSpeech || "",
+                definitions: [
+                    {
+                        definition: wordnikData.text || "",
+                        example: "",
+                        synonyms: [],
+                        antonyms: []
+                    }
+                ]
+            }
+        ],
+        meta: {
+            attributionText: wordnikData.attributionText,
+            sourceDictionary: wordnikData.sourceDictionary,
+            sourceUrl: wordnikData.wordnikUrl
+        }
+    };
 }
 
 /**

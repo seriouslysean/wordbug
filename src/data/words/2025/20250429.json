@@ -3,66 +3,26 @@
     "date": "20250429",
     "data": {
         "word": "scolding",
-        "phonetic": "/ˈskoʊldɪŋ/",
-        "phonetics": [
-            {
-                "text": "/ˈskoʊldɪŋ/",
-                "audio": ""
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
-            {
-                "partOfSpeech": "verb",
-                "definitions": [
-                    {
-                        "definition": "To burn with hot liquid.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "to scald the hand"
-                    },
-                    {
-                        "definition": "To heat almost to boiling.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "Scald the milk until little bubbles form."
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": []
-            },
-            {
-                "partOfSpeech": "verb",
-                "definitions": [
-                    {
-                        "definition": "To rebuke angrily.",
-                        "synonyms": [],
-                        "antonyms": []
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": []
-            },
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "A succession of critical remarks, such as those directed by a parent towards a misbehaving child.",
+                        "definition": "A harsh or sharp reprimand.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/scald",
-            "https://en.wiktionary.org/wiki/scold",
-            "https://en.wiktionary.org/wiki/scolding"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/scolding"
+        }
     }
 }

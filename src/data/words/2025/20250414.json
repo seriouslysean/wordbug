@@ -3,36 +3,26 @@
     "date": "20250414",
     "data": {
         "word": "phlebotomy",
-        "phonetic": "/flɪˈbɒtəmi/",
-        "phonetics": [
-            {
-                "text": "/flɪˈbɒtəmi/",
-                "audio": ""
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "The opening of a vein, either to withdraw blood or for letting blood; venesection.",
+                        "definition": "The removal of blood from a vein, usually with a needle and syringe or other container, for diagnostic or therapeutic purposes, as in the treatment of hemochomatosis.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [
-                    "venesection",
-                    "venipuncture"
-                ],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/phlebotomy"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/phlebotomy"
+        }
     }
 }

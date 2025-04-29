@@ -3,38 +3,26 @@
     "date": "20250330",
     "data": {
         "word": "epilepsy",
-        "phonetic": "/ˈɛpɪlɛpsi/",
-        "phonetics": [
-            {
-                "text": "/ˈɛpɪlɛpsi/",
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/epilepsy-uk.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=89012063",
-                "license": {
-                    "name": "BY-SA 4.0",
-                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
-                }
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "A medical condition in which the sufferer experiences seizures (or convulsions) and blackouts.",
+                        "definition": "Any of various neurological disorders marked by sudden recurring attacks of motor, sensory, or cognitive dysfunction, with or without convulsive seizures or loss of consciousness.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/epilepsy"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/epilepsy"
+        }
     }
 }

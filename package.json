@@ -30,7 +30,9 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "astro": "^5.5.3"
+    "astro": "^5.5.3",
+    "dotenv": "^16.5.0",
+    "htmlparser2": "^10.0.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^1.4.0",

@@ -3,32 +3,26 @@
     "date": "20250325",
     "data": {
         "word": "bluegrass",
-        "phonetics": [
-            {
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/bluegrass-us.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=330553"
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "Kentucky bluegrass, Poa pratensis.",
+                        "definition": "Any of various grasses of the genus <em>Poa,</em> having bluish spikelets, including species such as Kentucky bluegrass that are used for pastures and lawns and others that are considered weeds.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/bluegrass"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bluegrass"
+        }
     }
 }
