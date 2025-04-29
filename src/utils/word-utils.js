@@ -1,4 +1,28 @@
+import { DomUtils, parseDocument } from 'htmlparser2';
+
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
+
+/**
+ * Removes <xref> tags but keeps their inner text, preserving all other HTML.
+ * @param {string} htmlString
+ * @returns {string}
+ */
+function stripXrefTags(htmlString) {
+    if (typeof htmlString !== 'string') return htmlString;
+    if (!htmlString.includes('<xref')) return htmlString;
+
+    const doc = parseDocument(`<div>${htmlString}</div>`);
+    const container = doc.children[0]; // <div>
+
+    DomUtils.filter(node => {
+        if (node.type === 'tag' && node.name === 'xref') {
+            DomUtils.replaceElement(node, node.children || []);
+        }
+        return true;
+    }, container.children, true);
+
+    return DomUtils.getInnerHTML(container);
+}
 
 export const getAllWords = () => {
     try {
@@ -99,12 +123,12 @@ export const getAdjacentWords = (date) => {
  */
 export const getWordDetails = (word) => {
     if (!word?.data?.meanings || !word.data.meanings.length) {
-        return { partOfSpeech: '', definition: '' };
+        return { partOfSpeech: '', definition: '', meta: null };
     }
 
     const firstMeaning = word.data.meanings[0];
     if (!firstMeaning) {
-        return { partOfSpeech: '', definition: '' };
+        return { partOfSpeech: '', definition: '', meta: null };
     }
 
     const partOfSpeech = firstMeaning.partOfSpeech || '';
@@ -113,9 +137,12 @@ export const getWordDetails = (word) => {
     const definition = firstDefinition.definition || '';
 
     // Only add a period if there's a definition and it doesn't already end with one
-    const formattedDefinition = definition ? (definition.endsWith('.') ? definition : `${definition}.`) : '';
+    const formattedDefinition = stripXrefTags(definition ? (definition.endsWith('.') ? definition : `${definition}.`) : '');
 
-    return { partOfSpeech, definition: formattedDefinition };
+    // Include meta data for attribution
+    const meta = word.data.meta || null;
+
+    return { partOfSpeech, definition: formattedDefinition, meta };
 };
 
 /**

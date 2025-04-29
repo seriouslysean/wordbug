@@ -3,48 +3,26 @@
     "date": "20250418",
     "data": {
         "word": "carcasses",
+        "phonetic": "",
         "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "The body of a dead animal.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "(meat trade) The body of a slaughtered animal, stripped of unwanted viscera, etc.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "The body of a dead human, a corpse.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "The framework of a structure, especially one not normally seen.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "An early incendiary ship-to-ship projectile consisting of an iron shell filled with saltpetre, sulphur, resin, turpentine, antimony and tallow with vents for flame.",
+                        "definition": "Plural form of <xref>carcass</xref>.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/carcass",
-            "https://en.wiktionary.org/wiki/carcasses"
-        ]
+        "meta": {
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/carcasses"
+        }
     }
 }

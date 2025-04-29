@@ -3,38 +3,26 @@
     "date": "20250323",
     "data": {
         "word": "rhododendron",
-        "phonetic": "/ɹoʊdəˈdɛndɹən/",
-        "phonetics": [
-            {
-                "text": "/ɹoʊdəˈdɛndɹən/",
-                "audio": ""
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "Oleander (Nerium oleander).",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "Any of various flowering shrubs in the genus Rhododendron.",
+                        "definition": "Any of numerous usually evergreen shrubs of the genus <em>Rhododendron</em> of the heath family, having clusters of variously colored, often bell-shaped flowers and widely grown as ornamentals.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/rhododendron"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron"
+        }
     }
 }

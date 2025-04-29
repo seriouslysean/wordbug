@@ -3,38 +3,26 @@
     "date": "20250403",
     "data": {
         "word": "antibody",
-        "phonetics": [
-            {
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/antibody-us.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=1779904",
-                "license": {
-                    "name": "BY-SA 3.0",
-                    "url": "https://creativecommons.org/licenses/by-sa/3.0"
-                }
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "A protein produced by B-lymphocytes that binds to a specific antigen.",
+                        "definition": "A Y-shaped protein on the surface of B cells that is secreted into the blood or lymph in response to an antigenic stimulus, such as a bacterium, virus, parasite, or transplanted organ, and that neutralizes the antigen by binding specifically to it; an immunoglobulin.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [
-                    "immunoglobulin"
-                ],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/antibody"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/antibody"
+        }
     }
 }

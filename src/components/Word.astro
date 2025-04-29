@@ -5,14 +5,19 @@ import Heading from '~components/Heading.astro';
 import WordDescription from '~components/WordDescription.astro';
 
 const { word } = Astro.props;
-const { partOfSpeech, definition } = getWordDetails(word);
+const { partOfSpeech, definition, meta } = getWordDetails(word);
 const hasDefinition = Boolean(partOfSpeech || definition);
 ---
 
 <section class="word" aria-labelledby="word-title">
     <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
     <Heading level={2} text={word.word} />
-    <WordDescription partOfSpeech={partOfSpeech} definition={definition} />
+    <WordDescription
+        partOfSpeech={partOfSpeech}
+        definition={definition}
+        word={word.word}
+        meta={meta}
+    />
 </section>
 
 <style>

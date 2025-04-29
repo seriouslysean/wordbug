@@ -3,55 +3,26 @@
     "date": "20250410",
     "data": {
         "word": "marsupial",
-        "phonetic": "/mɑː.ˈsuː.pi.əl/",
-        "phonetics": [
-            {
-                "text": "/mɑː.ˈsuː.pi.əl/",
-                "audio": ""
-            },
-            {
-                "text": "/mɑɹ.ˈsu.pi.əl/",
-                "audio": ""
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "A mammal of which the female has a pouch in which it rears its young, which are born immature, through early infancy, such as the kangaroo or koala, or else pouchless members of the Marsupialia like the shrew opossum.",
+                        "definition": "Any of various nonplacental mammals of the infraclass Metatheria, including kangaroos, opossums, bandicoots, and wombats, found principally in Australia and the Americas, and typically bearing young that suckle and develop after birth in the mother's pouch. These species were formerly placed in the order Marsupialia.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [],
-                "antonyms": []
-            },
-            {
-                "partOfSpeech": "adjective",
-                "definitions": [
-                    {
-                        "definition": "Of or pertaining to a marsupial.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "Of or relating to a marsupium.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "the marsupial bones"
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/marsupial"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/marsupial"
+        }
     }
 }

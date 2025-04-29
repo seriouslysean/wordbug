@@ -3,51 +3,26 @@
     "date": "20250427",
     "data": {
         "word": "feces",
-        "phonetic": "/ˈfiːsiːz/",
-        "phonetics": [
-            {
-                "text": "/ˈfiːsiːz/",
-                "audio": ""
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
-                "partOfSpeech": "noun",
+                "partOfSpeech": "noun plural",
                 "definitions": [
                     {
-                        "definition": "Digested waste material (typically solid or semi-solid) discharged from the bowels; excrement.",
+                        "definition": "Waste matter eliminated from the bowels; excrement.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [
-                    "caca",
-                    "dung",
-                    "excrement",
-                    "faecal matter",
-                    "guano",
-                    "manure",
-                    "boo-boo",
-                    "doo",
-                    "doody",
-                    "poo",
-                    "poop",
-                    "crap",
-                    "log",
-                    "shit",
-                    "turd",
-                    "night soil",
-                    "number two"
-                ],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/feces"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/feces"
+        }
     }
 }

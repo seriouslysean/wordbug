@@ -1,6 +1,7 @@
 ---
-const { partOfSpeech, definition } = Astro.props;
+const { partOfSpeech, definition, word, meta } = Astro.props;
 const hasContent = Boolean(partOfSpeech || definition);
+const sourceUrl = meta?.sourceUrl;
 ---
 
 {hasContent && (
@@ -11,6 +12,11 @@ const hasContent = Boolean(partOfSpeech || definition);
                     {partOfSpeech}.
                 </span>
             )}{definition}
+            {sourceUrl && (
+                <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="word-description__attribution">
+                    <span>source</span>
+                </a>
+            )}
         </p>
     </div>
 )}
@@ -38,5 +44,17 @@ const hasContent = Boolean(partOfSpeech || definition);
     .word-description__type {
         color: var(--color-text-light);
         font-weight: 500;
+    }
+
+    .word-description__attribution {
+        margin-left: 0.5rem;
+        font-size: var(--font-size-xs, 0.75rem);
+        color: var(--color-text-lighter);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .word-description__attribution:hover {
+        text-decoration: underline;
     }
 </style>

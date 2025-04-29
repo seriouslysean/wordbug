@@ -16,16 +16,12 @@ on:
         required: false
         type: boolean
         default: false
-  repository_dispatch:
-    types:
-      - add-word
 
 permissions:
   contents: write
 
 jobs:
   prepare-manual:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     outputs:
       word: ${{ steps.set-outputs.outputs.word }}
@@ -39,32 +35,11 @@ jobs:
           echo "date=${{ inputs.date || '' }}" >> $GITHUB_OUTPUT
           echo "overwrite=${{ inputs.overwrite }}" >> $GITHUB_OUTPUT
 
-  prepare-webhook:
-    if: github.event_name == 'repository_dispatch'
-    runs-on: ubuntu-latest
-    outputs:
-      word: ${{ steps.set-outputs.outputs.word }}
-      date: ${{ steps.set-outputs.outputs.date }}
-      overwrite: ${{ steps.set-outputs.outputs.overwrite }}
-    steps:
-      - name: Check webhook secret
-        run: |
-          if [ "${{ github.event.client_payload.secret }}" != "${{ secrets.WORKFLOW_TOKEN_ADD_WORD }}" ]; then
-            echo "Invalid webhook secret"
-            exit 1
-          fi
-
-      - name: Set outputs
-        id: set-outputs
-        run: |
-          echo "word=$(echo '${{ github.event.client_payload }}' | jq -r '.word')" >> $GITHUB_OUTPUT
-          echo "date=$(echo '${{ github.event.client_payload }}' | jq -r '.date // empty')" >> $GITHUB_OUTPUT
-          echo "overwrite=$(echo '${{ github.event.client_payload }}' | jq -r '.overwrite // false')" >> $GITHUB_OUTPUT
-
   add-word:
-    needs: [prepare-manual, prepare-webhook]
-    if: always() && (needs.prepare-manual.result == 'success' || needs.prepare-webhook.result == 'success')
+    needs: [prepare-manual]
     runs-on: ubuntu-latest
+    env:
+      WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -78,13 +53,20 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Validate API key
+        run: |
+          if [ -z "$WORDNIK_API_KEY" ]; then
+            echo "::error::WORDNIK_API_KEY is not set. Please add it to your repository secrets."
+            exit 1
+          fi
+
       - name: Add word
         id: add_word
         run: |
-          # Get outputs from whichever job succeeded
-          WORD="${{ needs.prepare-manual.outputs.word || needs.prepare-webhook.outputs.word }}"
-          DATE="${{ needs.prepare-manual.outputs.date || needs.prepare-webhook.outputs.date }}"
-          OVERWRITE="${{ needs.prepare-manual.outputs.overwrite || needs.prepare-webhook.outputs.overwrite }}"
+          # Get outputs from the prepare job
+          WORD="${{ needs.prepare-manual.outputs.word }}"
+          DATE="${{ needs.prepare-manual.outputs.date }}"
+          OVERWRITE="${{ needs.prepare-manual.outputs.overwrite }}"
 
           OVERWRITE_FLAG=""
           if [[ "$OVERWRITE" == "true" ]]; then

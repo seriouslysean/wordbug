@@ -3,68 +3,26 @@
     "date": "20250310",
     "data": {
         "word": "phantom",
-        "phonetic": "/ˈfæntəm/",
-        "phonetics": [
-            {
-                "text": "/ˈfæntəm/",
-                "audio": ""
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "A ghost or apparition.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "Something apparently seen, heard, or sensed, but having no physical reality; an image that appears only in the mind; an illusion or delusion.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "A placeholder for a pair of players when there are an odd number of pairs playing.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "(medical imaging) A test object.",
+                        "definition": "Something apparently seen, heard, or sensed, but having no physical reality; a ghost or apparition.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [
-                    "ghost"
-                ],
-                "antonyms": []
-            },
-            {
-                "partOfSpeech": "adjective",
-                "definitions": [
-                    {
-                        "definition": "Illusive.",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "Fictitious or nonexistent.",
-                        "synonyms": [],
-                        "antonyms": [],
-                        "example": "a phantom limb"
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/phantom"
-        ]
+        "meta": {
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/phantom"
+        }
     }
 }

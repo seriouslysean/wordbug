@@ -3,29 +3,26 @@
     "date": "20250320",
     "data": {
         "word": "talented",
+        "phonetic": "",
         "phonetics": [],
+        "origin": "",
         "meanings": [
             {
-                "partOfSpeech": "adjective",
+                "partOfSpeech": "",
                 "definitions": [
                     {
-                        "definition": "Endowed with one or more talents.",
+                        "definition": "Endowed with talents; having talents or talent; having or exhibiting special mental aptitudes or superior mental ability; gifted.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [
-                    "gifted"
-                ],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/talented"
-        ]
+        "meta": {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/talented"
+        }
     }
 }

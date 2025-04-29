@@ -3,50 +3,26 @@
     "date": "20250419",
     "data": {
         "word": "cuz",
-        "phonetic": "/kɒz/",
-        "phonetics": [
-            {
-                "text": "/kɒz/",
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/cuz-1-au.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=79325765",
-                "license": {
-                    "name": "BY-SA 4.0",
-                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
-                }
-            }
-        ],
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "adverb",
                 "definitions": [
                     {
-                        "definition": "Because",
+                        "definition": "<xref>because</xref>",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [],
-                "antonyms": []
-            },
-            {
-                "partOfSpeech": "conjunction",
-                "definitions": [
-                    {
-                        "definition": "Because",
-                        "synonyms": [],
-                        "antonyms": []
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/cuz"
-        ]
+        "meta": {
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/cuz"
+        }
     }
 }

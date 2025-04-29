@@ -3,37 +3,26 @@
     "date": "20230401",
     "data": {
         "word": "ululated",
+        "phonetic": "",
         "phonetics": [],
+        "origin": "",
         "meanings": [
             {
                 "partOfSpeech": "verb",
                 "definitions": [
                     {
-                        "definition": "To howl loudly or prolongedly in lamentation or joy",
-                        "synonyms": [],
-                        "antonyms": []
-                    },
-                    {
-                        "definition": "To produce a rapid and prolonged series of sharp noises with one's voice.",
+                        "definition": "Simple past tense and past participle of <xref>ululate</xref>.",
+                        "example": "",
                         "synonyms": [],
                         "antonyms": []
                     }
-                ],
-                "synonyms": [
-                    "bay",
-                    "howl",
-                    "wail"
-                ],
-                "antonyms": []
+                ]
             }
         ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
-        },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/ululate",
-            "https://en.wiktionary.org/wiki/ululated"
-        ]
+        "meta": {
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/ululated"
+        }
     }
 }
