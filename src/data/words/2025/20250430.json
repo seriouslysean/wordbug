@@ -1,0 +1,28 @@
+{
+    "word": "reiki",
+    "date": "20250430",
+    "data": {
+        "word": "reiki",
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "A Japanese form of <xref>alternative medicine</xref> believed to involve transferring <xref>chi</xref> through one's palms.",
+                        "example": "",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ]
+            }
+        ],
+        "meta": {
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/reiki"
+        }
+    }
+}
