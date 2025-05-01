@@ -1,8 +1,8 @@
 {
-    "word": "jerseys",
+    "word": "jersey",
     "date": "20250501",
     "data": {
-        "word": "jerseys",
+        "word": "jersey",
         "phonetic": "",
         "phonetics": [],
         "origin": "",
@@ -11,7 +11,7 @@
                 "partOfSpeech": "noun",
                 "definitions": [
                     {
-                        "definition": "Plural form of <xref>jersey</xref>.",
+                        "definition": "A soft, plain-knitted fabric used for clothing.",
                         "example": "",
                         "synonyms": [],
                         "antonyms": []
@@ -20,9 +20,9 @@
             }
         ],
         "meta": {
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/jerseys"
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/jersey"
         }
     }
 }
