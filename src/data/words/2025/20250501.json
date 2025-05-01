@@ -1,0 +1,28 @@
+{
+    "word": "jerseys",
+    "date": "20250501",
+    "data": {
+        "word": "jerseys",
+        "phonetic": "",
+        "phonetics": [],
+        "origin": "",
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "Plural form of <xref>jersey</xref>.",
+                        "example": "",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ]
+            }
+        ],
+        "meta": {
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/jerseys"
+        }
+    }
+}
