@@ -1,6 +1,4 @@
-import { DomUtils, parseDocument } from 'htmlparser2';
 import { decodeHTML } from 'entities';
-import render from 'dom-serializer';
 
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
@@ -11,21 +9,17 @@ const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
  */
 function sanitizeHTML(htmlString) {
     if (typeof htmlString !== 'string') return htmlString;
-    if (!htmlString.includes('<xref') && !htmlString.includes('&')) return htmlString;
 
-    const doc = parseDocument(`<div>${htmlString}</div>`);
-    const container = doc.children[0]; // <div>
+    // First, replace all <xref> tags with their content using regex
+    let result = htmlString.replace(/<xref[^>]*>(.*?)<\/xref>/g, '$1');
 
-    DomUtils.filter(node => {
-        if (node.type === 'tag' && node.name === 'xref') {
-            DomUtils.replaceElement(node, node.children || []);
-        }
-        return true;
-    }, container.children, true);
+    // Then decode HTML entities if there are any
+    if (result.includes('&')) {
+        // Use the decodeHTML function for entity decoding
+        result = decodeHTML(result);
+    }
 
-    // Use dom-serializer to get the inner HTML
-    const result = render(container.children);
-    return decodeHTML(result);
+    return result;
 }
 
 export const getAllWords = () => {
