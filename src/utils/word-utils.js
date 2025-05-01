@@ -1,15 +1,17 @@
 import { DomUtils, parseDocument } from 'htmlparser2';
+import { decodeHTML } from 'entities';
+import render from 'dom-serializer';
 
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
 /**
- * Removes <xref> tags but keeps their inner text, preserving all other HTML.
+ * Sanitizes HTML by removing <xref> tags and decoding HTML entities.
  * @param {string} htmlString
  * @returns {string}
  */
-function stripXrefTags(htmlString) {
+function sanitizeHTML(htmlString) {
     if (typeof htmlString !== 'string') return htmlString;
-    if (!htmlString.includes('<xref')) return htmlString;
+    if (!htmlString.includes('<xref') && !htmlString.includes('&')) return htmlString;
 
     const doc = parseDocument(`<div>${htmlString}</div>`);
     const container = doc.children[0]; // <div>
@@ -21,7 +23,9 @@ function stripXrefTags(htmlString) {
         return true;
     }, container.children, true);
 
-    return DomUtils.getInnerHTML(container);
+    // Use dom-serializer to get the inner HTML
+    const result = render(container.children);
+    return decodeHTML(result);
 }
 
 export const getAllWords = () => {
@@ -137,7 +141,7 @@ export const getWordDetails = (word) => {
     const definition = firstDefinition.definition || '';
 
     // Only add a period if there's a definition and it doesn't already end with one
-    const formattedDefinition = stripXrefTags(definition ? (definition.endsWith('.') ? definition : `${definition}.`) : '');
+    const formattedDefinition = sanitizeHTML(definition ? (definition.endsWith('.') ? definition : `${definition}.`) : '');
 
     // Include meta data for attribution
     const meta = word.data.meta || null;
