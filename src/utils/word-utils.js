@@ -116,29 +116,57 @@ export const getAdjacentWords = (date) => {
 
 /**
  * Safely extracts word details from the word object
- * @param {Object} word - Word object containing meanings and definitions
+ * @param {Object} word - Word object containing data from API
  * @returns {Object} - Extracted word details
  */
 export const getWordDetails = (word) => {
-    if (!word?.data?.meanings || !word.data.meanings.length) {
+    if (!word?.data) {
         return { partOfSpeech: '', definition: '', meta: null };
     }
 
-    const firstMeaning = word.data.meanings[0];
-    if (!firstMeaning) {
-        return { partOfSpeech: '', definition: '', meta: null };
+    // The data is now the raw API response array
+    const apiData = Array.isArray(word.data) ? word.data :
+                   (word.data.rawResponse ? word.data.rawResponse : []);
+
+    let partOfSpeech = '';
+    let definition = '';
+    let meta = null;
+
+    // First check if we have the old format with meanings
+    if (!Array.isArray(word.data) && word.data.meanings && word.data.meanings.length) {
+        for (const meaning of word.data.meanings) {
+            if (!meaning.definitions || !meaning.definitions.length) continue;
+
+            const def = meaning.definitions[0];
+            if (def && def.definition && def.definition.trim()) {
+                partOfSpeech = meaning.partOfSpeech || '';
+                definition = def.definition;
+                meta = word.data.meta || null;
+                break;
+            }
+        }
     }
 
-    const partOfSpeech = firstMeaning.partOfSpeech || '';
-    const definitions = firstMeaning.definitions || [];
-    const firstDefinition = definitions[0] || {};
-    const definition = firstDefinition.definition || '';
+    // If no definition found or we have the new format, check the API data array
+    if (!definition && apiData.length > 0) {
+        for (const item of apiData) {
+            if (item.text && item.text.trim()) {
+                definition = item.text;
+                partOfSpeech = item.partOfSpeech || '';
+
+                // Create metadata from API response
+                meta = {
+                    attributionText: item.attributionText,
+                    sourceDictionary: item.sourceDictionary,
+                    sourceUrl: item.wordnikUrl || item.attributionUrl
+                };
+                break;
+            }
+        }
+    }
 
     // Only add a period if there's a definition and it doesn't already end with one
     const formattedDefinition = sanitizeHTML(definition ? (definition.endsWith('.') ? definition : `${definition}.`) : '');
-
-    // Include meta data for attribution
-    const meta = word.data.meta || null;
 
     return { partOfSpeech, definition: formattedDefinition, meta };
 };

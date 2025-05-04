@@ -1,28 +1,21 @@
 {
     "word": "jetstream",
     "date": "20250502",
-    "data": {
-        "word": "jetstream",
-        "phonetic": "",
-        "phonetics": [],
-        "origin": "",
-        "meanings": [
-            {
-                "partOfSpeech": "noun",
-                "definitions": [
-                    {
-                        "definition": "Alternative spelling of <xref>jet stream</xref>.",
-                        "example": "",
-                        "synonyms": [],
-                        "antonyms": []
-                    }
-                ]
-            }
-        ],
-        "meta": {
+    "data": [
+        {
+            "partOfSpeech": "noun",
             "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/jetstream"
+            "text": "Alternative spelling of <xref>jet stream</xref>.",
+            "word": "jetstream",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/jetstream",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
         }
-    }
+    ]
 }
