@@ -1,0 +1,180 @@
+{
+    "word": "locomotion",
+    "date": "20250504",
+    "data": [
+        {
+            "id": "L5238700-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "The act of moving from place to place.",
+            "sequence": "1",
+            "score": 0,
+            "word": "locomotion",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "L5238700-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "The ability to move from place to place.",
+            "sequence": "2",
+            "score": 0,
+            "word": "locomotion",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Movement from place to place; progressive motion, as of a living being or a vehicle; the act of moving from point to point; also, the capability of moving in this manner.",
+            "word": "locomotion",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "The act of moving from place to place.",
+            "sequence": "1.",
+            "citations": [
+                {
+                    "source": "Milton.",
+                    "cite": "“ Animal <ex>locomotion</ex> .”"
+                }
+            ],
+            "word": "locomotion",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "The power of moving from place to place, characteristic of the higher animals and some of the lower forms of plant life.",
+            "sequence": "2.",
+            "word": "locomotion",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "The name of a song and a dance, briefly popular in the 1960's.",
+            "sequence": "3.",
+            "word": "locomotion",
+            "exampleUses": [
+                {
+                    "text": "do the <ex>locomotion</ex>",
+                    "position": 0
+                }
+            ],
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "The <xref>ability</xref> to <xref>move</xref> from place to place, or the act of doing so.",
+            "word": "locomotion",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "<xref>Self</xref>-<xref>powered</xref> <xref>motion</xref> by which a whole <xref>organism</xref> changes its <xref>location</xref> through <xref>walking</xref>, <xref>running</xref>, <xref>jumping</xref>, <xref>crawling</xref>, <xref>swimming</xref> or <xref>flying</xref>.",
+            "labels": [
+                {
+                    "text": "biology",
+                    "type": "field"
+                }
+            ],
+            "word": "locomotion",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "self-propelled movement",
+            "word": "locomotion",
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "the power or ability to move",
+            "word": "locomotion",
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/locomotion",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
