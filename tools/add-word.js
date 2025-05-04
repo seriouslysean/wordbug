@@ -52,11 +52,11 @@ const createWordFile = (word, date, data) => {
         fs.mkdirSync(dirPath, { recursive: true });
     }
 
-    // Write the file with new schema
+    // Write the file with just the three required fields
     const wordData = {
-        word: data.word,
+        word: word, // Use the original word input for display
         date: date.replace(/-/g, ''),
-        data: data
+        data: data  // Store the raw API response directly
     };
     fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
     return filePath;
@@ -82,7 +82,9 @@ const isValidDate = (date) => {
  * @throws {Error} - If API request fails
  */
 async function fetchWordData(word) {
-    const url = `https://api.wordnik.com/v4/word.json/${encodeURIComponent(word)}/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+    // Convert word to lowercase for API request
+    const lowercaseWord = word.toLowerCase();
+    const url = `https://api.wordnik.com/v4/word.json/${encodeURIComponent(lowercaseWord)}/definitions?limit=10&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
 
     const response = await fetch(url);
 
@@ -99,33 +101,8 @@ async function fetchWordData(word) {
         throw new Error('No word data found');
     }
 
-    // Convert Wordnik response format to match our expected structure
-    const wordnikData = data[0];
-    return {
-        word: wordnikData.word || word,
-        phonetic: "",
-        phonetics: [],
-        origin: "",
-        meanings: [
-            {
-                partOfSpeech: wordnikData.partOfSpeech || "",
-                definitions: [
-                    {
-                        definition: wordnikData.text || "",
-                        example: "",
-                        synonyms: [],
-                        antonyms: []
-                    }
-                ]
-            }
-        ],
-        // Store metadata with renamed fields
-        meta: {
-            attributionText: wordnikData.attributionText,
-            sourceDictionary: wordnikData.sourceDictionary,
-            sourceUrl: wordnikData.wordnikUrl
-        }
-    };
+    // Simply return the API data directly
+    return data;
 }
 
 /**
@@ -134,16 +111,17 @@ async function fetchWordData(word) {
  * @returns {string} - Formatted summary
  */
 const formatWordSummary = (data) => {
-    const meanings = data.meanings || [];
-    const firstMeaning = meanings[0] || {};
-    const definitions = firstMeaning.definitions || [];
-    const firstDefinition = definitions[0] || {};
+    if (!data || !Array.isArray(data)) {
+        return `**Word:** No data available`;
+    }
+
+    const firstEntry = data[0] || {};
 
     return [
-        `**Word:** ${data.word}`,
-        `**Part of Speech:** ${firstMeaning.partOfSpeech || 'N/A'}`,
-        `**Definition:** ${firstDefinition.definition || 'N/A'}`,
-        data.phonetic ? `**Phonetic:** ${data.phonetic}` : null
+        `**Word:** ${firstEntry.word || 'N/A'}`,
+        `**Part of Speech:** ${firstEntry.partOfSpeech || 'N/A'}`,
+        `**Definition:** ${firstEntry.text || 'N/A'}`,
+        firstEntry.attributionText ? `**Source:** ${firstEntry.attributionText}` : null
     ].filter(Boolean).join('\n');
 };
 

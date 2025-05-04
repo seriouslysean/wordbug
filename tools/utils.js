@@ -120,7 +120,7 @@ export async function fetchWordData(word) {
 
     // Convert Wordnik response format to match our expected structure
     const wordnikData = data[0];
-    return {
+    const result = {
         word: wordnikData.word || word,
         phonetic: "",
         phonetics: [],
@@ -142,8 +142,12 @@ export async function fetchWordData(word) {
             attributionText: wordnikData.attributionText,
             sourceDictionary: wordnikData.sourceDictionary,
             sourceUrl: wordnikData.wordnikUrl
-        }
+        },
+        // Add rate limits to the returned data
+        rateLimits
     };
+
+    return result;
 }
 
 /**
