@@ -1,0 +1,39 @@
+{
+    "word": "pareidolia",
+    "date": "20250505",
+    "data": [
+        {
+            "id": "P5076050-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "The perception of a recognizable image or meaningful pattern where none exists or is intended, as the perception of a face in the surface features of the moon.",
+            "sequence": "1",
+            "score": 0,
+            "word": "pareidolia",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/pareidolia",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "The tendency to <xref>interpret</xref> a <xref>vague</xref> <xref>stimulus</xref> as something <xref>known</xref> to the <xref>observer</xref>, such as interpreting marks on Mars as canals, seeing shapes in clouds, or hearing hidden messages in music.",
+            "word": "pareidolia",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/pareidolia",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
