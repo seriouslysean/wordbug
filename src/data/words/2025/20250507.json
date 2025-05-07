@@ -1,0 +1,36 @@
+{
+    "word": "Sapiens",
+    "date": "20250507",
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "<xref>Homo sapiens</xref>.",
+            "word": "sapiens",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/sapiens",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "of or relating to or characteristic of Homo sapiens",
+            "word": "sapiens",
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/sapiens",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
