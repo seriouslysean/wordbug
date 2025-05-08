@@ -11,7 +11,7 @@ const sourceUrl = meta?.sourceUrl;
                 <span class="word-description__type" aria-label={`Part of speech: ${partOfSpeech}`}>
                     {partOfSpeech}.
                 </span>
-            )}{definition}
+            )}<span set:html={definition}></span>
             {sourceUrl && (
                 <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="word-description__attribution">
                     <span>source</span>
