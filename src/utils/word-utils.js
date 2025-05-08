@@ -165,8 +165,7 @@ export const getWordDetails = (word) => {
         }
     }
 
-    // Only add a period if there's a definition and it doesn't already end with one
-    const formattedDefinition = sanitizeHTML(definition ? (definition.endsWith('.') ? definition : `${definition}.`) : '');
+    const formattedDefinition = sanitizeHTML(definition);
 
     return { partOfSpeech, definition: formattedDefinition, meta };
 };
