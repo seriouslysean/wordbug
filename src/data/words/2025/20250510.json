@@ -1,0 +1,173 @@
+{
+    "word": "Tamper",
+    "date": "20250510",
+    "data": [
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "To experiment rashly; busy one's self unwisely or officiously; meddle: usually followed by <em>with</em> in this and the other senses.",
+            "word": "tamper",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "To interfere, as for the purpose of alteration; make objectionable or unauthorized changes (in): as, to <internalXref urlencoded=\"tamper%20with\">tamper with</internalXref> a will or other document.",
+            "word": "tamper",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "To use secret or underhand measures; exert unfair or corrupt influence; especially, to use improper persuasions, solicitations, bribery, etc.",
+            "word": "tamper",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "One who tamps, or prepares for blasting by stopping the hole in which the charge is placed.",
+            "word": "tamper",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "An instrument used in tamping; a tamping-bar or tamping-iron.",
+            "word": "tamper",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "One who tamps; specifically, one who prepares for blasting, by filling the hole in which the charge is placed.",
+            "sequence": "1.",
+            "word": "tamper",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "An instrument used in tamping; a tamping iron.",
+            "sequence": "2.",
+            "word": "tamper",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "To meddle; to be busy; to try little experiments.",
+            "sequence": "1.",
+            "citations": [
+                {
+                    "source": "Roscommon.",
+                    "cite": "'T is dangerous <ex>tampering</ex> with a muse."
+                }
+            ],
+            "word": "tamper",
+            "exampleUses": [
+                {
+                    "text": "to <ex>tamper</ex> with a disease",
+                    "position": 0
+                }
+            ],
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "To meddle so as to alter, injure, or vitiate a thing.",
+            "sequence": "2.",
+            "word": "tamper",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "To deal unfairly; to practice secretly; to use bribery.",
+            "sequence": "3.",
+            "citations": [
+                {
+                    "source": "Hudibras.",
+                    "cite": "Others <ex>tampered</ex>\nFor Fleetwood, Desborough, and Lambert."
+                }
+            ],
+            "word": "tamper",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tamper",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
