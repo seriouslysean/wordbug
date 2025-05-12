@@ -1,0 +1,187 @@
+{
+    "word": "Dilemma",
+    "date": "20250512",
+    "data": [
+        {
+            "id": "D5228300-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "A situation that requires a choice between options that are or seem equally unfavorable or unsatisfactory.",
+            "sequence": "1",
+            "score": 0,
+            "word": "dilemma",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "D5228300-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "A problem that seems to defy a satisfactory solution.",
+            "sequence": "2",
+            "score": 0,
+            "labels": [
+                {
+                    "text": "Usage Problem",
+                    "type": "fld"
+                }
+            ],
+            "word": "dilemma",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "D5228300-3",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "An argument that presents two alternatives, each of which has the same consequence.",
+            "sequence": "3",
+            "score": 0,
+            "labels": [
+                {
+                    "text": "Logic",
+                    "type": "fld"
+                }
+            ],
+            "word": "dilemma",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "A form of argument in which it is shown that whoever maintains a certain proposition must accept one or other of two alternative conclusions, and that each of these involves the denial of the proposition in question.",
+            "word": "dilemma",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "A difficult or doubtful choice; a state of things in which the alternatives appear to be equally bad or undesirable.",
+            "word": "dilemma",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "An argument which presents an antagonist with two or more alternatives, but is equally conclusive against him, whichever alternative he chooses.",
+            "sequence": "1.",
+            "labels": [
+                {
+                    "text": "(Logic)",
+                    "type": "fld"
+                }
+            ],
+            "word": "dilemma",
+            "notes": [],
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "A state of things in which evils or obstacles present themselves on every side, and it is difficult to determine what course to pursue; a vexatious alternative or predicament; a difficult choice or position.",
+            "sequence": "2.",
+            "citations": [
+                {
+                    "source": "Swift.",
+                    "cite": "A strong <ex>dilemma</ex> in a desperate case!\nTo act with infamy, or quit the place."
+                }
+            ],
+            "word": "dilemma",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "alternatives, each of which is equally difficult of encountering.",
+            "word": "dilemma",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "A <xref>circumstance</xref> in which a choice must be made between two or more <xref>alternatives</xref> that seem equally <xref>undesirable</xref>.",
+            "word": "dilemma",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "this sense) (disputed) A difficult circumstance or <xref>problem</xref>.",
+            "word": "dilemma",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/dilemma",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
