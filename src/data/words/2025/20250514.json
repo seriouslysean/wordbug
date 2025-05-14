@@ -1,0 +1,63 @@
+{
+    "word": "timpani",
+    "date": "20250514",
+    "data": [
+        {
+            "id": "T5244900-1",
+            "partOfSpeech": "noun plural",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "A set of tunable kettledrums typically used in the percussion section of a symphony orchestra.",
+            "sequence": "1",
+            "score": 0,
+            "word": "timpani",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/timpani",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "The <xref>set</xref> of <xref>precision</xref> <xref>kettledrums</xref> in an <xref>orchestra</xref>.",
+            "labels": [
+                {
+                    "text": "plurale tantum",
+                    "type": "grammar"
+                },
+                {
+                    "text": "music",
+                    "type": "field"
+                }
+            ],
+            "word": "timpani",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/timpani",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "a large hemispherical brass or copper percussion instrument with a drumhead that can be tuned by adjusting the tension on it",
+            "word": "timpani",
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/timpani",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
