@@ -1,0 +1,214 @@
+{
+    "word": "Superior",
+    "date": "20250523",
+    "data": [
+        {
+            "id": "S5956150-1",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Higher than another in rank, station, or authority.",
+            "sequence": "1",
+            "score": 0,
+            "word": "superior",
+            "exampleUses": [
+                {
+                    "text": "a superior officer."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-2",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Of a higher nature or kind.",
+            "sequence": "2",
+            "score": 0,
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-3",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Of great value or excellence; extraordinary.",
+            "sequence": "3",
+            "score": 0,
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-4",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Greater in number or amount than another.",
+            "sequence": "4",
+            "score": 0,
+            "word": "superior",
+            "exampleUses": [
+                {
+                    "text": "an army defeated by superior numbers of enemy troops."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-5",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Presuming to be or suggesting that one is morally or socially better than others; disdainful or supercilious.",
+            "sequence": "5",
+            "score": 0,
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-6",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Above being affected or influenced; indifferent or immune.",
+            "sequence": "6",
+            "score": 0,
+            "citations": [
+                {
+                    "source": "(Gustavus Myers).",
+                    "cite": "“Trust magnates were superior to law”"
+                }
+            ],
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-7",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Located higher than another; upper.",
+            "sequence": "7",
+            "score": 0,
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-8",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Inserted or situated above the perianth. Used of an ovary.",
+            "sequence": "8",
+            "score": 0,
+            "labels": [
+                {
+                    "text": "Botany",
+                    "type": "fld"
+                }
+            ],
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-9",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Set above the main line of type.",
+            "sequence": "9",
+            "score": 0,
+            "labels": [
+                {
+                    "text": "Printing",
+                    "type": "fld"
+                }
+            ],
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5956150-10",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Of wider or more comprehensive application; generic. Used of a term or proposition.",
+            "sequence": "10",
+            "score": 0,
+            "labels": [
+                {
+                    "text": "Logic",
+                    "type": "fld"
+                }
+            ],
+            "word": "superior",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/superior",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
