@@ -1,0 +1,101 @@
+{
+    "word": "trapezoidal",
+    "date": "20250525",
+    "data": [
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Having the form of a trapezoid: as, the <em>trapezoidal</em> bone or ligament (in anatomy).",
+            "word": "trapezoidal",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/trapezoidal",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "In <em>crystallography</em>, having the surface composed of twenty-four trapeziums, allequal and similar.",
+            "word": "trapezoidal",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/trapezoidal",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "Having the form of a trapezoid; trapezoid.",
+            "sequence": "1.",
+            "word": "trapezoidal",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/trapezoidal",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "Trapezohedral.",
+            "sequence": "2.",
+            "labels": [
+                {
+                    "text": "(Min.)",
+                    "type": "fld"
+                }
+            ],
+            "word": "trapezoidal",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/trapezoidal",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "In the shape of a <xref>trapezoid</xref>, or having some faces which have one pair of parallel sides.",
+            "word": "trapezoidal",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/trapezoidal",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "resembling a trapezoid",
+            "word": "trapezoidal",
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/trapezoidal",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
