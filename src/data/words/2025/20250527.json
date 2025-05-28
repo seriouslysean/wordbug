@@ -1,0 +1,63 @@
+{
+    "word": "Cyclops",
+    "date": "20250527",
+    "data": [
+        {
+            "id": "C5870050-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Any of various freshwater predatory copepods of the genus <em>Cyclops,</em> having a single eye and, in the female, two egg sacs.",
+            "sequence": "1",
+            "score": 0,
+            "word": "cyclops",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/cyclops",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "A <xref>one</xref>-<xref>eyed</xref> giant from <xref>Greek</xref> and <xref>Roman</xref> <xref>mythology</xref>.",
+            "labels": [
+                {
+                    "text": "Greek mythology",
+                    "type": "field"
+                },
+                {
+                    "text": "Roman mythology",
+                    "type": "field"
+                }
+            ],
+            "word": "cyclops",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/cyclops",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "A <xref>one</xref>-<xref>eyed</xref> <xref>creature</xref> of any species.",
+            "word": "cyclops",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/cyclops",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
