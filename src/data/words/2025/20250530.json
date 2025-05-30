@@ -1,0 +1,41 @@
+{
+    "word": "Hydroponic",
+    "date": "20250530",
+    "data": [
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "of a <xref>plant</xref>; a method of growing plants using mineral nutrient solutions in water, without soil.",
+            "word": "hydroponic",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/hydroponic",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "of or relating to aquiculture",
+            "word": "hydroponic",
+            "exampleUses": [
+                {
+                    "text": "hydroponic lettuce",
+                    "position": 0
+                }
+            ],
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/hydroponic",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
