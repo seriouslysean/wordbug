@@ -1,0 +1,176 @@
+{
+    "word": "tempo",
+    "date": "20250601",
+    "data": [
+        {
+            "id": "T5108700-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "The speed at which music is or ought to be played, often indicated on written compositions by a descriptive or metronomic direction to the performer.",
+            "sequence": "1",
+            "score": 0,
+            "labels": [
+                {
+                    "text": "Music",
+                    "type": "fld"
+                }
+            ],
+            "word": "tempo",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5108700-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "A characteristic rate or rhythm of activity; a pace.",
+            "sequence": "2",
+            "score": 0,
+            "citations": [
+                {
+                    "source": "(Robert L. Heilbroner).",
+                    "cite": "“the tempo and the feeling of modern life”"
+                }
+            ],
+            "word": "tempo",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "word": "tempo",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "In <em>music</em>, the relative rapidity of rhythm; time; movement.",
+            "word": "tempo",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "The characteristic rhythmical and metrical movement or pattern of a dance: as, <em>tempo di valse, tempo di menuetto</em>, etc.",
+            "word": "tempo",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "An oval brass coin, with a square hole in the middle, first coined in Japan during the period “tempo” (1830–43 inclusive), and now equal to eight rin or cash, or eight tenths of a sen. One hundred and twenty-five tempos make one yen.",
+            "word": "tempo",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "The rate or degree of movement in time.",
+            "labels": [
+                {
+                    "text": "(Mus.)",
+                    "type": "fld"
+                }
+            ],
+            "word": "tempo",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "in exact time; -- sometimes, directing a return to strict time after a tempo rubato.",
+            "word": "tempo",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "See under <er>Rubato</er>.",
+            "word": "tempo",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "a <xref>frequency</xref> or <xref>rate</xref>",
+            "word": "tempo",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/tempo",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
