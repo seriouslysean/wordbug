@@ -1,0 +1,92 @@
+{
+    "word": "hypersonic",
+    "date": "20250602",
+    "data": [
+        {
+            "id": "H5382600-1",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Of, relating to, or capable of speed equal to or exceeding five times the speed of sound.",
+            "sequence": "1",
+            "score": 0,
+            "word": "hypersonic",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/hypersonic",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "Pertaining to or moving at a speed greatly in excess of the speed of sound, usually meaning greater than mach 5. All speeds in excess of the speed of sound are <contr>supersonic</contr>, but to be <ex>hypersonic</ex> requires even higher speed.",
+            "labels": [
+                {
+                    "text": "(Aeronautics)",
+                    "type": "fld"
+                }
+            ],
+            "word": "hypersonic",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/hypersonic",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "<xref>equal</xref> to, or <xref>greater</xref> than, or capable of achieving, five times the <xref>speed of sound</xref>.",
+            "labels": [
+                {
+                    "text": "of a speed",
+                    "type": "restrictive"
+                },
+                {
+                    "text": "aviation",
+                    "type": "field"
+                }
+            ],
+            "word": "hypersonic",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/hypersonic",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "far enough above the speed of sound so as to cause significant differences in behaviour due to chemical reactions or disassociation of the air.",
+            "labels": [
+                {
+                    "text": "of a speed",
+                    "type": "restrictive"
+                },
+                {
+                    "text": "aeronautics",
+                    "type": "field"
+                }
+            ],
+            "word": "hypersonic",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/hypersonic",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
