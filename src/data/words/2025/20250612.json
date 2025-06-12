@@ -1,0 +1,187 @@
+{
+    "word": "Regurgitate",
+    "date": "20250612",
+    "data": [
+        {
+            "id": "R5140000-1",
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "To cause to pour back, especially to cast up (partially digested food).",
+            "sequence": "1",
+            "score": 0,
+            "word": "regurgitate",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "R5140000-2",
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "To repeat (facts or other learned items) from memory with little reflection.",
+            "sequence": "2",
+            "score": 0,
+            "word": "regurgitate",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "R5140000-3",
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "To rush or surge back.",
+            "sequence": "3",
+            "score": 0,
+            "word": "regurgitate",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "To pour or cause to rush or surge back; pour or throw back in great quantity.",
+            "word": "regurgitate",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "To be poured back; surge or rush back.",
+            "word": "regurgitate",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "transitive verb",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "To throw or pour back, as from a deep or hollow place; to pour or throw back in great quantity.",
+            "word": "regurgitate",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "To be thrown or poured back; to rush or surge back.",
+            "citations": [
+                {
+                    "source": "Quain.",
+                    "cite": "The food may <ex>regurgitate</ex>m the stomach into the esophagus and mouth."
+                }
+            ],
+            "word": "regurgitate",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "verb",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "To throw up or <xref>vomit</xref>; to <xref>eject</xref> what has previously been <xref>swallowed</xref>.",
+            "labels": [
+                {
+                    "text": "transitive",
+                    "type": "grammar"
+                }
+            ],
+            "word": "regurgitate",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "verb",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "To cough up from the gut to feed its young, as a bird or animal does.",
+            "labels": [
+                {
+                    "text": "transitive",
+                    "type": "grammar"
+                }
+            ],
+            "word": "regurgitate",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "verb",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "To repeat <xref>verbatim</xref>.",
+            "labels": [
+                {
+                    "text": "transitive",
+                    "type": "grammar"
+                },
+                {
+                    "text": "by extension",
+                    "type": "miscellaneous"
+                }
+            ],
+            "word": "regurgitate",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/regurgitate",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
