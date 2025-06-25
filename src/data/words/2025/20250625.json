@@ -1,0 +1,169 @@
+{
+    "word": "seldom",
+    "date": "20250625",
+    "data": [
+        {
+            "id": "S5239000-1",
+            "partOfSpeech": "adverb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Not often; infrequently or rarely.",
+            "sequence": "1",
+            "score": 0,
+            "word": "seldom",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5239000-2",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Infrequent; rare.",
+            "sequence": "2",
+            "score": 0,
+            "word": "seldom",
+            "exampleUses": [
+                {
+                    "text": "one of my seldom visits to the area."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Rarely; not often; infrequently.",
+            "word": "seldom",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Rare; infrequent.",
+            "word": "seldom",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adverb",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "Rarely; not often; not frequently.",
+            "citations": [
+                {
+                    "source": "Hooker.",
+                    "cite": "Wisdom and youth are <ex>seldom</ex> joined in one."
+                }
+            ],
+            "word": "seldom",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "Rare; infrequent.",
+            "labels": [
+                {
+                    "text": "Archaic.",
+                    "type": "mark"
+                }
+            ],
+            "citations": [
+                {
+                    "source": "Jer. Taylor.",
+                    "cite": "“A suppressed and <ex>seldom</ex> anger.”"
+                }
+            ],
+            "word": "seldom",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adverb",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "<xref>infrequently</xref>, <xref>rarely</xref>.",
+            "word": "seldom",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "<xref>rare</xref>; <xref>infrequent</xref>",
+            "labels": [
+                {
+                    "text": "obsolete",
+                    "type": "chronological"
+                }
+            ],
+            "word": "seldom",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adverb",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "not often",
+            "word": "seldom",
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/seldom",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
