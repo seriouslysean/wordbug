@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import { loadEnv } from 'vite';
 import sentry from '@sentry/astro';
+import sitemap from '@astrojs/sitemap';
 import pkg from './package.json' assert { type: 'json' };
 
 // Determine current mode, default to development if not specified
@@ -86,6 +87,9 @@ export default defineConfig({
         release: release,
         environment: environment,
       },
+    }),
+    sitemap({
+      sitemapFilename: 'sitemap.xml',
     }),
   ],
 });
