@@ -5,20 +5,20 @@ const sourceUrl = meta?.sourceUrl;
 ---
 
 {hasContent && (
-    <div class="word-description" role="contentinfo">
-        <p class="word-description__text">
-            {partOfSpeech && (
-                <span class="word-description__type" aria-label={`Part of speech: ${partOfSpeech}`}>
-                    {partOfSpeech}.
-                </span>
-            )}<span set:html={definition}></span>
-            {sourceUrl && (
-                <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="word-description__attribution">
-                    <span>source</span>
-                </a>
-            )}
-        </p>
-    </div>
+  <div class="word-description" role="contentinfo">
+    <p class="word-description__text">
+      {partOfSpeech && (
+        <span class="word-description__type" aria-label={`Part of speech: ${partOfSpeech}`}>
+          {partOfSpeech}.
+        </span>
+      )}<span set:html={definition}></span>
+      {sourceUrl && (
+        <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="word-description__attribution">
+          <span>source</span>
+        </a>
+      )}
+    </p>
+  </div>
 )}
 
 <style>

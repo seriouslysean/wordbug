@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:wordbug.fyi)",
+      "Bash(find:*)",
+      "Bash(curl:*)",
+      "Bash(npm test)",
+      "Bash(git stash:*)",
+      "Bash(grep:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm outdated)",
+      "Bash(npm update)",
+      "Bash(npm run build:*)",
+      "Bash(npm install)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run test:coverage:*)",
+      "Bash(npm run test:*)",
+      "Bash(npx astro:*)"
+    ],
+    "deny": []
+  }
+}

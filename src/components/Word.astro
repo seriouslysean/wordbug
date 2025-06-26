@@ -10,14 +10,14 @@ const hasDefinition = Boolean(partOfSpeech || definition);
 ---
 
 <section class="word" aria-labelledby="word-title">
-    <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
-    <Heading level={2} text={word.word} />
-    <WordDescription
-        partOfSpeech={partOfSpeech}
-        definition={definition}
-        word={word.word}
-        meta={meta}
-    />
+  <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
+  <Heading level={2} text={word.word} />
+  <WordDescription
+    partOfSpeech={partOfSpeech}
+    definition={definition}
+    word={word.word}
+    meta={meta}
+  />
 </section>
 
 <style>
@@ -37,26 +37,4 @@ const hasDefinition = Boolean(partOfSpeech || definition);
         margin-bottom: var(--spacing-small);
     }
 
-    .word__details {
-        width: 100%;
-        max-width: min(var(--content-width-small), 85%);
-        margin: 0 auto;
-        padding: var(--spacing-base) var(--spacing-large);
-        background: hsl(0 0% 100% / 0.05);
-        border-radius: var(--border-radius);
-        box-shadow: 0 2px 4px -2px hsl(var(--shadow-color) / 0.1);
-    }
-
-    .word__definition {
-        margin: 0;
-        font-style: italic;
-        color: var(--color-text);
-        line-height: 1.6;
-        font-size: var(--font-size-base);
-    }
-
-    .word__type {
-        color: var(--color-text-light);
-        font-weight: 500;
-    }
 </style>

@@ -5,17 +5,19 @@ const attributionUrl = 'https://github.com/seriouslysean';
 ---
 
 <footer class="footer" role="contentinfo">
-    <p class="footer__text">
-        <a href="/words" aria-label="View all words">All Words</a>
-        <span class="footer__separator">&middot;</span>
-        <a href="/stats" aria-label="View word statistics">Stats</a>
-        <span class="footer__separator">&middot;</span>
-        <a href={attributionUrl} target="_blank" rel="noopener noreferrer" aria-label="View Sean Kennedy's GitHub profile (opens in new tab)">Made with &lt;3, {currentYear}</a>
-        <span class="footer__separator">|</span>
-        <a href="https://www.wordnik.com" target="_blank" rel="noopener noreferrer" class="footer__wordnik" title="Powered by Wordnik" aria-label="Powered by Wordnik (opens in new tab)">
-            <img src={wordnikLogo.src} alt="Wordnik" width="16" height="16" />
-        </a>
-    </p>
+  <p class="footer__text">
+    <a href="/" aria-label="Return to today's word">Home</a>
+    <span class="footer__separator">&middot;</span>
+    <a href="/words" aria-label="View all words">All Words</a>
+    <span class="footer__separator">&middot;</span>
+    <a href="/stats" aria-label="View word statistics">Stats</a>
+    <span class="footer__separator">&middot;</span>
+    <a href={attributionUrl} target="_blank" rel="noopener noreferrer" aria-label="View Sean Kennedy's GitHub profile (opens in new tab)">Made with &lt;3, {currentYear}</a>
+    <span class="footer__separator">|</span>
+    <a href="https://www.wordnik.com" target="_blank" rel="noopener noreferrer" class="footer__wordnik" title="Powered by Wordnik" aria-label="Powered by Wordnik (opens in new tab)">
+      <img src={wordnikLogo.src} alt="Wordnik" width="16" height="16" />
+    </a>
+  </p>
 </footer>
 
 <style>

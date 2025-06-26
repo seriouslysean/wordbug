@@ -2,70 +2,87 @@
 import Layout from '~layouts/Layout.astro';
 import WordComponent from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
-import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
+import { getWordByDate, getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
+import { getMetaDescription, getWordSchema } from '~config/seo';
 
 interface WordData {
     word: string;
     date: string;
-    data: any;
+    data: unknown;
 }
 
 export async function getStaticPaths() {
-    // Get all word files and generate paths for each
-    const allWords = await import.meta.glob<WordData>('../data/words/**/*.json');
-    const paths = [];
+  // Get all word files and generate paths for each
+  const allWords = await import.meta.glob<WordData>('../data/words/**/*.json');
+  const paths = [];
 
-    for (const path in allWords) {
-        const wordData = await allWords[path]();
-        paths.push({ params: { word: wordData.word }, props: { date: wordData.date } });
-    }
+  for (const path in allWords) {
+    const wordData = await allWords[path]();
+    paths.push({ params: { word: wordData.word }, props: { date: wordData.date } });
+  }
 
-    return paths;
+  return paths;
 }
 
-const { word } = Astro.params;
 const { date } = Astro.props;
 
 const wordData = await getWordByDate(date);
 const { previousWord, nextWord } = await getAdjacentWords(date);
 
 if (!wordData) {
-    return Astro.redirect('/404');
+  return Astro.redirect('/404');
 }
 
 // Check if next word is today's word and modify its URL if it is
 const today = new Date();
 const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
 const modifiedNextWord = nextWord && {
-    ...nextWord,
-    date: nextWord.date === todayString ? '' : nextWord.date
+  ...nextWord,
+  date: nextWord.date === todayString ? '' : nextWord.date,
 };
+
+// Generate SEO data
+const wordDetails = getWordDetails(wordData);
+const pageDescription = getMetaDescription({
+  word: wordData.word,
+  definition: wordDetails.definition,
+});
+const structuredData = getWordSchema({
+  word: wordData.word,
+  date: wordData.date,
+  ...wordDetails,
+});
 ---
 
-<Layout title={`${wordData.word} | Bug's Word of the Day`} word={wordData}>
-    <main>
-        <WordComponent word={wordData} />
-        <nav class="word-nav">
-            <div class="word-nav__container">
-                <div class="word-nav__previous">
-                    {previousWord && (
-                        <>
-                            <span class="word-nav__label">Previous Word</span>
-                            <WordLink word={previousWord} />
-                        </>
-                    )}
-                </div>
-                <div class="word-nav__next">
-                    {modifiedNextWord && (
-                        <>
-                            <span class="word-nav__label">Next Word</span>
-                            <WordLink word={modifiedNextWord} />
-                        </>
-                    )}
-                </div>
-            </div>
-        </nav>
-    </main>
+<Layout
+  title={`${wordData.word} | Bug's Word of the Day`}
+  word={wordData}
+  description={pageDescription}
+  schema={structuredData}
+>
+  <main>
+    <WordComponent word={wordData} />
+    <nav class="word-nav">
+      <div class="word-nav__container">
+        <div class="word-nav__previous">
+          {previousWord && (
+            <>
+              <span class="word-nav__label">Previous Word</span>
+              <WordLink word={previousWord} />
+            </>
+          )}
+        </div>
+        <div class="word-nav__next">
+          {modifiedNextWord && (
+            <>
+              <span class="word-nav__label">Next Word</span>
+              <WordLink word={modifiedNextWord} />
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  </main>
 </Layout>
 
 <style>

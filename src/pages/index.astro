@@ -15,16 +15,16 @@ const currentYear = today.getFullYear();
 
 // Get month name
 const monthNames = [
-	'January', 'February', 'March', 'April', 'May', 'June',
-	'July', 'August', 'September', 'October', 'November', 'December'
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
 ];
 const monthName = monthNames[currentMonth];
 ---
 
 <Layout title="Bug's (Occasional) Word of the Day" word={currentWord}>
-	<main>
-		<WordDisplay />
-	</main>
+  <main>
+    <WordDisplay />
+  </main>
 </Layout>
 
 <style>

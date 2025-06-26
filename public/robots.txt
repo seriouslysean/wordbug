@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: /sitemap.xml
+
+# WordBug - Educational vocabulary for kids
+# Crawl-delay for courtesy (optional)
+Crawl-delay: 1

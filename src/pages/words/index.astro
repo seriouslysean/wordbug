@@ -8,34 +8,34 @@ import { getAllWords } from '~utils/word-utils';
 
 const words = getAllWords();
 const wordsByYear = words.reduce((acc, word) => {
-    const year = word.date.substring(0, 4);
-    acc[year] = acc[year] || [];
-    acc[year].push(word);
-    return acc;
+  const year = word.date.substring(0, 4);
+  acc[year] = acc[year] || [];
+  acc[year].push(word);
+  return acc;
 }, {} as Record<string, typeof words>);
 
 const totalWords = words.length;
 const years = Object.keys(wordsByYear).sort((a, b) => Number(b) - Number(a));
 
 const formatDate = (dateStr) => {
-    const year = parseInt(dateStr.substring(0, 4));
-    const month = parseInt(dateStr.substring(4, 6));
-    const day = parseInt(dateStr.substring(6, 8));
-    return new Date(year, month - 1, day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const year = parseInt(dateStr.substring(0, 4));
+  const month = parseInt(dateStr.substring(4, 6));
+  const day = parseInt(dateStr.substring(6, 8));
+  return new Date(year, month - 1, day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 };
 ---
 
 <Layout title="All Words | Bug's Word of the Day">
-    <main class="words">
-        <Heading text="All Words" secondaryText={`${totalWords} total`} />
+  <main class="words">
+    <Heading text="All Words" secondaryText={`${totalWords} total`} />
 
-        {(Object.entries(wordsByYear) as [string, typeof words][]).reverse().map(([year, words]) => (
-            <section class="words__section">
-                <SectionHeading text={year} href={getUrl(`/words/${year}`)} />
-                <PastWords words={words} />
-            </section>
-        ))}
-    </main>
+    {(Object.entries(wordsByYear) as [string, typeof words][]).reverse().map(([year, words]) => (
+      <section class="words__section">
+        <SectionHeading text={year} href={getUrl(`/words/${year}`)} />
+        <PastWords words={words} />
+      </section>
+    ))}
+  </main>
 </Layout>
 
 <style>

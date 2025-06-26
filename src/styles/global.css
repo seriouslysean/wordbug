@@ -79,6 +79,7 @@ table {
     --font-weight-extrabold: 800;
 
     /* Font sizes */
+    --font-size-xs: 0.75rem;
     --font-size-small: clamp(0.875rem, 2vw, 1rem);
     --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
     --font-size-huge: clamp(3rem, 15vw, 8rem);
@@ -91,11 +92,32 @@ table {
     /* Content widths */
     --content-width-small: min(600px, 90vw);
     --content-width-medium: min(800px, 90vw);
+    --content-width-large: min(1200px, 90vw);
     --content-width-full: 95vw;
 
     /* Other */
     --border-radius: 8px;
     --shadow-color: 186deg 47% 28%;
+}
+
+/* Cross-reference link styles */
+:global(.xref-link) {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+}
+
+:global(.xref-link:hover) {
+    color: var(--color-primary-dark);
+    text-decoration-style: solid;
+}
+
+:global(.xref-link:focus) {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 /* Global reset */

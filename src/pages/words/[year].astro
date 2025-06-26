@@ -5,32 +5,32 @@ import PastWords from '~components/PastWords.astro';
 import Heading from '~components/Heading.astro';
 
 export async function getStaticPaths() {
-    const words = getAllWords();
-    const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
+  const words = getAllWords();
+  const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
 
-    return years.map(year => ({
-        params: { year },
-        props: {
-            words: words.filter(word => word.date.startsWith(year))
-        }
-    }));
+  return years.map(year => ({
+    params: { year },
+    props: {
+      words: words.filter(word => word.date.startsWith(year)),
+    },
+  }));
 }
 
 const { year } = Astro.params;
 const { words } = Astro.props;
 
 if (!words.length) {
-    return Astro.redirect('/404');
+  return Astro.redirect('/404');
 }
 ---
 
 <Layout title={`${year} Words | Bug's Word of the Day`}>
-    <main class="year-words">
-        <Heading level={1} text={year} secondaryText="Words in" />
-        <div class="year-words__content">
-            <PastWords words={words} />
-        </div>
-    </main>
+  <main class="year-words">
+    <Heading level={1} text={year} secondaryText="Words in" />
+    <div class="year-words__content">
+      <PastWords words={words} />
+    </div>
+  </main>
 </Layout>
 
 <style>

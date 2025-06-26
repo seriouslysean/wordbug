@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+// import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import opentype from 'opentype.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Constants for image generation
 const CANVAS_WIDTH = 1200;
@@ -25,23 +25,23 @@ const boldFont = opentype.loadSync('public/fonts/opensans/OpenSans-ExtraBold.ttf
  * @returns {Array<{word: string, date: string, path: string}>}
  */
 export function getAllWordFiles() {
-    const wordsDir = path.join(process.cwd(), 'src', 'data', 'words');
-    const years = fs.readdirSync(wordsDir).filter(dir => /^\d{4}$/.test(dir));
+  const wordsDir = path.join(process.cwd(), 'src', 'data', 'words');
+  const years = fs.readdirSync(wordsDir).filter(dir => /^\d{4}$/.test(dir));
 
-    return years.flatMap(year => {
-        const yearDir = path.join(wordsDir, year);
-        return fs.readdirSync(yearDir)
-            .filter(file => file.endsWith('.json'))
-            .map(file => {
-                const filePath = path.join(yearDir, file);
-                const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-                return {
-                    word: data.word,
-                    date: file.replace('.json', ''),
-                    path: filePath
-                };
-            });
-    });
+  return years.flatMap(year => {
+    const yearDir = path.join(wordsDir, year);
+    return fs.readdirSync(yearDir)
+      .filter(file => file.endsWith('.json'))
+      .map(file => {
+        const filePath = path.join(yearDir, file);
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        return {
+          word: data.word,
+          date: file.replace('.json', ''),
+          path: filePath,
+        };
+      });
+  });
 }
 
 /**
@@ -49,13 +49,13 @@ export function getAllWordFiles() {
  * @returns {Array<{word: string, date: string, data: Object}>}
  */
 export function getAllWords() {
-    return getAllWordFiles().map(file => {
-        const data = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
-        return {
-            ...data,
-            date: file.date
-        };
-    }).sort((a, b) => b.date.localeCompare(a.date));
+  return getAllWordFiles().map(file => {
+    const data = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
+    return {
+      ...data,
+      date: file.date,
+    };
+  }).sort((a, b) => b.date.localeCompare(a.date));
 }
 
 /**
@@ -65,13 +65,13 @@ export function getAllWords() {
  * @param {string} date - Date string in YYYYMMDD format
  */
 export function updateWordFile(filePath, data, date) {
-    const wordData = {
-        word: data.word,
-        date: date,
-        data: data
-    };
-    fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
-    console.log(`Updated word file: ${filePath}`);
+  const wordData = {
+    word: data.word,
+    date: date,
+    data: data,
+  };
+  fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
+  console.log(`Updated word file: ${filePath}`);
 }
 
 /**
@@ -81,73 +81,73 @@ export function updateWordFile(filePath, data, date) {
  * @throws {Error} - If API request fails
  */
 export async function fetchWordData(word) {
-    // Get API key from environment variable
-    const apiKey = process.env.WORDNIK_API_KEY;
+  // Get API key from environment variable
+  const apiKey = process.env.WORDNIK_API_KEY;
 
-    if (!apiKey) {
-        throw new Error('WORDNIK_API_KEY environment variable is required');
+  if (!apiKey) {
+    throw new Error('WORDNIK_API_KEY environment variable is required');
+  }
+
+  const url = `https://api.wordnik.com/v4/word.json/${encodeURIComponent(word)}/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+
+  const response = await fetch(url);
+
+  // Log rate limit headers
+  const rateLimits = {
+    remainingMinute: response.headers.get('x-ratelimit-remaining-minute'),
+    remainingHour: response.headers.get('x-ratelimit-remaining-hour'),
+    limitMinute: response.headers.get('x-ratelimit-limit-minute'),
+    limitHour: response.headers.get('x-ratelimit-limit-hour'),
+  };
+
+  console.log('Wordnik API Rate Limits:', rateLimits);
+
+  if (!response.ok) {
+    if (response.status === 429) {
+      throw new Error(`Rate limit exceeded. Remaining: ${rateLimits.remainingMinute} per minute, ${rateLimits.remainingHour} per hour.`);
     }
-
-    const url = `https://api.wordnik.com/v4/word.json/${encodeURIComponent(word)}/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
-
-    const response = await fetch(url);
-
-    // Log rate limit headers
-    const rateLimits = {
-        remainingMinute: response.headers.get('x-ratelimit-remaining-minute'),
-        remainingHour: response.headers.get('x-ratelimit-remaining-hour'),
-        limitMinute: response.headers.get('x-ratelimit-limit-minute'),
-        limitHour: response.headers.get('x-ratelimit-limit-hour')
-    };
-
-    console.log('Wordnik API Rate Limits:', rateLimits);
-
-    if (!response.ok) {
-        if (response.status === 429) {
-            throw new Error(`Rate limit exceeded. Remaining: ${rateLimits.remainingMinute} per minute, ${rateLimits.remainingHour} per hour.`);
-        }
-        if (response.status === 404) {
-            throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
-        }
-        throw new Error(`Failed to fetch word data: ${response.statusText}`);
+    if (response.status === 404) {
+      throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
     }
+    throw new Error(`Failed to fetch word data: ${response.statusText}`);
+  }
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (!Array.isArray(data) || data.length === 0) {
-        throw new Error('No word data found');
-    }
+  if (!Array.isArray(data) || data.length === 0) {
+    throw new Error('No word data found');
+  }
 
-    // Convert Wordnik response format to match our expected structure
-    const wordnikData = data[0];
-    const result = {
-        word: wordnikData.word || word,
-        phonetic: "",
-        phonetics: [],
-        origin: "",
-        meanings: [
-            {
-                partOfSpeech: wordnikData.partOfSpeech || "",
-                definitions: [
-                    {
-                        definition: wordnikData.text || "",
-                        example: "",
-                        synonyms: [],
-                        antonyms: []
-                    }
-                ]
-            }
+  // Convert Wordnik response format to match our expected structure
+  const wordnikData = data[0];
+  const result = {
+    word: wordnikData.word || word,
+    phonetic: '',
+    phonetics: [],
+    origin: '',
+    meanings: [
+      {
+        partOfSpeech: wordnikData.partOfSpeech || '',
+        definitions: [
+          {
+            definition: wordnikData.text || '',
+            example: '',
+            synonyms: [],
+            antonyms: [],
+          },
         ],
-        meta: {
-            attributionText: wordnikData.attributionText,
-            sourceDictionary: wordnikData.sourceDictionary,
-            sourceUrl: wordnikData.wordnikUrl
-        },
-        // Add rate limits to the returned data
-        rateLimits
-    };
+      },
+    ],
+    meta: {
+      attributionText: wordnikData.attributionText,
+      sourceDictionary: wordnikData.sourceDictionary,
+      sourceUrl: wordnikData.wordnikUrl,
+    },
+    // Add rate limits to the returned data
+    rateLimits,
+  };
 
-    return result;
+  return result;
 }
 
 /**
@@ -155,7 +155,9 @@ export async function fetchWordData(word) {
  * @param {string} dir - Directory path to create
  */
 export function createDirectoryIfNeeded(dir) {
-    !fs.existsSync(dir) && fs.mkdirSync(dir, { recursive: true });
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
 }
 
 /**
@@ -164,8 +166,8 @@ export function createDirectoryIfNeeded(dir) {
  * @returns {Object|null} - Word data or null if not found
  */
 export function getWordByName(word) {
-    const words = getAllWords();
-    return words.find(w => w.word.toLowerCase() === word.toLowerCase()) || null;
+  const words = getAllWords();
+  return words.find(w => w.word.toLowerCase() === word.toLowerCase()) || null;
 }
 
 /**
@@ -177,29 +179,29 @@ export function getWordByName(word) {
  * @returns {Object} - Path data and dimensions
  */
 function getTextPath(text, fontSize, isExtraBold = false, maxWidth = Infinity) {
-    // Use the appropriate font based on weight
-    const font = isExtraBold ? boldFont : regularFont;
+  // Use the appropriate font based on weight
+  const font = isExtraBold ? boldFont : regularFont;
 
-    // Create the path at the original size
-    const path = font.getPath(text, 0, 0, fontSize);
+  // Create the path at the original size
+  const path = font.getPath(text, 0, 0, fontSize);
 
-    // Get the bounding box
-    const bbox = path.getBoundingBox();
-    const width = bbox.x2 - bbox.x1;
+  // Get the bounding box
+  const bbox = path.getBoundingBox();
+  const width = bbox.x2 - bbox.x1;
 
-    // Calculate scale if needed
-    const scale = width > maxWidth ? maxWidth / width : 1;
+  // Calculate scale if needed
+  const scale = width > maxWidth ? maxWidth / width : 1;
 
-    // If we need to scale, apply it via transform attribute
-    const transform = scale < 1 ? ` transform="scale(${scale})"` : '';
+  // If we need to scale, apply it via transform attribute
+  const transform = scale < 1 ? ` transform="scale(${scale})"` : '';
 
-    return {
-        pathData: path.toPathData(),
-        width: width * scale,
-        height: (bbox.y2 - bbox.y1) * scale,
-        scale,
-        transform
-    };
+  return {
+    pathData: path.toPathData(),
+    width: width * scale,
+    height: (bbox.y2 - bbox.y1) * scale,
+    scale,
+    transform,
+  };
 }
 
 /**
@@ -209,14 +211,14 @@ function getTextPath(text, fontSize, isExtraBold = false, maxWidth = Infinity) {
  * @returns {string} - SVG content as a string
  */
 export function createWordSvg(word, date) {
-    const formattedDate = formatDate(date);
+  const formattedDate = formatDate(date);
 
-    // Get path data for all text elements
-    const mainWord = getTextPath(word.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
-    const titleText = getTextPath("Bug's (Occasional) Word of the Day", TITLE_SIZE);
-    const dateText = getTextPath(formattedDate, DATE_SIZE);
+  // Get path data for all text elements
+  const mainWord = getTextPath(word.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
+  const titleText = getTextPath('Bug\'s (Occasional) Word of the Day', TITLE_SIZE);
+  const dateText = getTextPath(formattedDate, DATE_SIZE);
 
-    return `<?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" viewBox="0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <!-- White background -->
     <rect width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" fill="#ffffff"/>
@@ -252,15 +254,15 @@ export function createWordSvg(word, date) {
  * @returns {string} - Formatted date
  */
 function formatDate(dateStr) {
-    const year = dateStr.slice(0, 4);
-    const month = parseInt(dateStr.slice(4, 6)) - 1;
-    const day = parseInt(dateStr.slice(6, 8));
-    const date = new Date(year, month, day);
-    return date.toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric'
-    });
+  const year = dateStr.slice(0, 4);
+  const month = parseInt(dateStr.slice(4, 6)) - 1;
+  const day = parseInt(dateStr.slice(6, 8));
+  const date = new Date(year, month, day);
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
 }
 
 /**
@@ -269,26 +271,26 @@ function formatDate(dateStr) {
  * @param {string} date - Date string in YYYYMMDD format
  */
 export async function generateShareImage(word, date) {
-    const year = date.slice(0, 4);
-    const socialDir = path.join(process.cwd(), 'public', 'images', 'social', year);
-    createDirectoryIfNeeded(socialDir);
+  const year = date.slice(0, 4);
+  const socialDir = path.join(process.cwd(), 'public', 'images', 'social', year);
+  createDirectoryIfNeeded(socialDir);
 
-    const svgContent = createWordSvg(word, date);
-    const fileName = `${date}-${word.toLowerCase()}.png`;
-    const outputPath = path.join(socialDir, fileName);
+  const svgContent = createWordSvg(word, date);
+  const fileName = `${date}-${word.toLowerCase()}.png`;
+  const outputPath = path.join(socialDir, fileName);
 
-    try {
-        await sharp(Buffer.from(svgContent))
-            .png({
-                compressionLevel: 9,
-                palette: true,
-                quality: 90,
-                colors: 128
-            })
-            .toFile(outputPath);
-    } catch (error) {
-        throw new Error(`Error generating image for "${word}": ${error.message}`);
-    }
+  try {
+    await sharp(Buffer.from(svgContent))
+      .png({
+        compressionLevel: 9,
+        palette: true,
+        quality: 90,
+        colors: 128,
+      })
+      .toFile(outputPath);
+  } catch (error) {
+    throw new Error(`Error generating image for "${word}": ${error.message}`);
+  }
 }
 
 /**
@@ -297,11 +299,11 @@ export async function generateShareImage(word, date) {
  * @returns {string} - SVG content as a string
  */
 export function createGenericSvg(title) {
-    // Get path data for all text elements
-    const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
-    const titleText = getTextPath("Bug's (Occasional) Word of the Day", TITLE_SIZE);
+  // Get path data for all text elements
+  const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
+  const titleText = getTextPath('Bug\'s (Occasional) Word of the Day', TITLE_SIZE);
 
-    return `<?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" viewBox="0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <!-- White background -->
     <rect width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" fill="#ffffff"/>
@@ -332,23 +334,23 @@ export function createGenericSvg(title) {
  * @param {string} slug - The page slug/path
  */
 export async function generateGenericShareImage(title, slug) {
-    const socialDir = path.join(process.cwd(), 'public', 'images', 'social', 'pages');
-    createDirectoryIfNeeded(socialDir);
+  const socialDir = path.join(process.cwd(), 'public', 'images', 'social', 'pages');
+  createDirectoryIfNeeded(socialDir);
 
-    const svgContent = createGenericSvg(title);
-    const safeSlug = slug.replace(/\//g, '-');
-    const outputPath = path.join(socialDir, `${safeSlug}.png`);
+  const svgContent = createGenericSvg(title);
+  const safeSlug = slug.replace(/\//g, '-');
+  const outputPath = path.join(socialDir, `${safeSlug}.png`);
 
-    try {
-        await sharp(Buffer.from(svgContent))
-            .png({
-                compressionLevel: 9,
-                palette: true,
-                quality: 90,
-                colors: 128
-            })
-            .toFile(outputPath);
-    } catch (error) {
-        throw new Error(`Error generating generic image for "${title}": ${error.message}`);
-    }
+  try {
+    await sharp(Buffer.from(svgContent))
+      .png({
+        compressionLevel: 9,
+        palette: true,
+        quality: 90,
+        colors: 128,
+      })
+      .toFile(outputPath);
+  } catch (error) {
+    throw new Error(`Error generating generic image for "${title}": ${error.message}`);
+  }
 }

@@ -3,10 +3,10 @@ const { level = 1, text, secondaryText } = Astro.props;
 ---
 
 <div class="heading">
-    {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
-    <h1 class="heading__text text-lowercase" aria-level={level}>
-        {text}
-    </h1>
+  {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
+  <h1 class="heading__text text-lowercase" aria-level={level}>
+    {text}
+  </h1>
 </div>
 
 <style>

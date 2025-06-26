@@ -11,12 +11,13 @@ const envFromFiles = loadEnv(mode, process.cwd(), '');
 // Create combined env object with process.env taking precedence
 const env = {
   ...envFromFiles,
-  ...process.env
+  ...process.env,
 };
 
 // Use environment variables with fallbacks for site config
-const site = env.BASE_URL || 'http://localhost:4321';
+const site = env.SITE_URL || env.BASE_URL || 'http://localhost:4321';
 const base = env.BASE_PATH || '';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,13 +27,14 @@ export default defineConfig({
   // Explicitly set static output
   output: 'static',
 
+
   devToolbar: {
-    enabled: false
+    enabled: false,
   },
 
   build: {
     // Put assets in a dedicated directory
-    assets: 'assets'
+    assets: 'assets',
   },
 
   vite: {
@@ -44,9 +46,9 @@ export default defineConfig({
         '~utils': '/src/utils',
         '~data': '/src/data',
         '~styles': '/src/styles',
-        '~config': '/src/config'
-      }
-    }
+        '~config': '/src/config',
+      },
+    },
   },
   integrations: [
     sentry({
