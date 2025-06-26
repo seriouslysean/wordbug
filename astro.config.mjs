@@ -88,9 +88,7 @@ export default defineConfig({
         environment: environment,
       },
     }),
-    sitemap({
-      sitemapFilename: 'sitemap.xml',
-    }),
+    sitemap(),
   ],
 });
 
