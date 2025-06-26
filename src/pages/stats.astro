@@ -2,9 +2,7 @@
 import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
 import WordLink from '~components/WordLink.astro';
-import SectionHeading from '~components/SectionHeading.astro';
 import { getAllWords, getWordStats, getLetterStats, getStreakStats, countSyllables } from '~utils/word-utils.js';
-import { getUrl } from '~utils/utils';
 
 // Get all words and sort by date
 const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
@@ -27,11 +25,6 @@ const wordWithLeastSyllables = words.reduce((min, curr) => {
   const minSyllables = countSyllables(min.word);
   return currSyllables < minSyllables ? curr : min;
 }, words[0]);
-
-const formatDate = (dateStr) => {
-  const date = new Date(dateStr.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-};
 
 // Get all vowels and consonants words
 const allVowels = words.filter(w => /^[aeiou]+$/i.test(w.word));

@@ -1,3 +1,5 @@
+import { logSentryError } from './sentry-client.js';
+
 /**
  * Validates if a date string is in correct YYYYMMDD format
  * @param {string} dateStr - Date string to validate
@@ -56,7 +58,9 @@ export const formatDate = (dateStr) => {
       year: 'numeric',
     });
   } catch (error) {
-    console.error('Error formatting date:', error);
+    logSentryError('Error formatting date:', error);
     return dateStr;
   }
 };
+
+// Ensure any Sentry release references use vX.Y.Z format

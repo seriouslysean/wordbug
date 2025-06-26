@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { isValidWordData } from './utils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -97,8 +98,8 @@ async function fetchWordData(word) {
 
   const data = await response.json();
 
-  if (!Array.isArray(data) || data.length === 0) {
-    throw new Error('No word data found');
+  if (!isValidWordData(data)) {
+    throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
   }
 
   // Simply return the API data directly

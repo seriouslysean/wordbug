@@ -1,3 +1,5 @@
+import { logSentryError } from './sentry-client.js';
+
 /**
  * Constructs a URL with the base URL if configured
  * @param {string} path - Path to append to base URL
@@ -13,6 +15,8 @@ export const getUrl = (path) => {
   }
 
   if (path !== '/' && /\/\/+/.test(path)) {
+    // Use logSentryError for all error logging in this file
+    logSentryError('InvalidPath', { path });
     throw new Error('Invalid path: contains multiple consecutive slashes');
   }
 
@@ -26,4 +30,6 @@ export const getUrl = (path) => {
   const url = `${cleanBase}/${cleanPath}`;
   return path.endsWith('/') ? url : url.replace(/\/$/, '');
 };
+
+// Ensure any Sentry release references use vX.Y.Z format
 

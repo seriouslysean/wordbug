@@ -1,4 +1,5 @@
 import { transformExistingWordData } from '../adapters/wordnik.js';
+import { logSentryError, safeOperation } from './sentry-client.js';
 
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
@@ -6,7 +7,10 @@ export const getAllWords = () => {
   const words = Object.entries(wordFiles)
     .map(([path, data]) => {
       const date = path.match(/(\d{8})\.json$/)?.[1];
-      if (!date) {return null;}
+      if (!date) {
+        logSentryError('WordDataMissingDate', { path });
+        return null;
+      }
       const wordData = Array.isArray(data) ? data[0] : data;
       return wordData;
     })
@@ -22,7 +26,10 @@ export const getAllWords = () => {
  */
 export const getCurrentWord = () => {
   const words = getAllWords();
-  if (!words.length) {throw new Error('No word data available');}
+  if (!words.length) {
+    logSentryError('NoWordData', {});
+    throw new Error('No word data available');
+  }
 
   const today = new Date();
   const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
@@ -35,16 +42,14 @@ export const getCurrentWord = () => {
  * @returns {Array} Array of past word objects
  */
 export const getPastWords = (currentDate) => {
-  try {
+  return safeOperation(() => {
     if (!currentDate) {return [];}
 
     const words = getAllWords();
     return words
       .filter(word => word.date < currentDate)
       .slice(0, 5);
-  } catch {
-    return [];
-  }
+  }, [], `Getting past words for date: ${currentDate}`);
 };
 
 /**
@@ -53,14 +58,12 @@ export const getPastWords = (currentDate) => {
  * @returns {Object|null} The word object or null if not found
  */
 export const getWordByDate = (date) => {
-  try {
+  return safeOperation(() => {
     if (!date) {return null;}
 
     const words = getAllWords();
     return words.find(word => word.date === date) || null;
-  } catch {
-    return null;
-  }
+  }, null, `Getting word by date: ${date}`);
 };
 
 /**
@@ -69,7 +72,7 @@ export const getWordByDate = (date) => {
  * @returns {Object} Object containing previousWord and nextWord
  */
 export const getAdjacentWords = (date) => {
-  try {
+  return safeOperation(() => {
     if (!date) {return { previousWord: null, nextWord: null };}
 
     const words = getAllWords();
@@ -81,9 +84,7 @@ export const getAdjacentWords = (date) => {
       previousWord: words[currentIndex + 1] || null,
       nextWord: words[currentIndex - 1] || null,
     };
-  } catch {
-    return { previousWord: null, nextWord: null };
-  }
+  }, { previousWord: null, nextWord: null }, `Getting adjacent words for date: ${date}`);
 };
 
 /**
@@ -252,3 +253,5 @@ export function getMilestoneWords(words) {
     100: words[99],
   };
 }
+
+// Ensure any Sentry release references use vX.Y.Z format

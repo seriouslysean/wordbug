@@ -1,5 +1,6 @@
 import { decodeHTML } from 'entities';
 import { isValidDate } from './date-utils.js';
+import { logSentryError } from './sentry-client.js';
 
 /**
  * Common constants for Wordnik API integration
@@ -107,6 +108,8 @@ export async function fetchWordData(word, limit = WORDNIK_CONFIG.DEFAULT_LIMIT) 
     if (response.status === 404) {
       throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
     }
+    // Use logSentryError for all error logging in this file
+    logSentryError(new Error(`Failed to fetch word data: ${response.statusText}`));
     throw new Error(`Failed to fetch word data: ${response.statusText}`);
   }
 
@@ -118,4 +121,6 @@ export async function fetchWordData(word, limit = WORDNIK_CONFIG.DEFAULT_LIMIT) 
 
   return data;
 }
+
+// Ensure any Sentry release references use vX.Y.Z format
 

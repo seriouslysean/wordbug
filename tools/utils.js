@@ -25,23 +25,45 @@ const boldFont = opentype.loadSync('public/fonts/opensans/OpenSans-ExtraBold.ttf
  * @returns {Array<{word: string, date: string, path: string}>}
  */
 export function getAllWordFiles() {
-  const wordsDir = path.join(process.cwd(), 'src', 'data', 'words');
-  const years = fs.readdirSync(wordsDir).filter(dir => /^\d{4}$/.test(dir));
+  try {
+    const wordsDir = path.join(process.cwd(), 'src', 'data', 'words');
 
-  return years.flatMap(year => {
-    const yearDir = path.join(wordsDir, year);
-    return fs.readdirSync(yearDir)
-      .filter(file => file.endsWith('.json'))
-      .map(file => {
-        const filePath = path.join(yearDir, file);
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        return {
-          word: data.word,
-          date: file.replace('.json', ''),
-          path: filePath,
-        };
-      });
-  });
+    if (!fs.existsSync(wordsDir)) {
+      console.error(`Words directory not found: ${wordsDir}`);
+      return [];
+    }
+
+    const years = fs.readdirSync(wordsDir).filter(dir => /^\d{4}$/.test(dir));
+
+    return years.flatMap(year => {
+      try {
+        const yearDir = path.join(wordsDir, year);
+        return fs.readdirSync(yearDir)
+          .filter(file => file.endsWith('.json'))
+          .map(file => {
+            try {
+              const filePath = path.join(yearDir, file);
+              const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+              return {
+                word: data.word,
+                date: file.replace('.json', ''),
+                path: filePath,
+              };
+            } catch (error) {
+              console.error(`Error reading word file ${file}:`, error.message);
+              return null;
+            }
+          })
+          .filter(Boolean);
+      } catch (error) {
+        console.error(`Error reading year directory ${year}:`, error.message);
+        return [];
+      }
+    });
+  } catch (error) {
+    console.error('Error getting word files:', error.message);
+    return [];
+  }
 }
 
 /**
@@ -49,13 +71,25 @@ export function getAllWordFiles() {
  * @returns {Array<{word: string, date: string, data: Object}>}
  */
 export function getAllWords() {
-  return getAllWordFiles().map(file => {
-    const data = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
-    return {
-      ...data,
-      date: file.date,
-    };
-  }).sort((a, b) => b.date.localeCompare(a.date));
+  try {
+    return getAllWordFiles().map(file => {
+      try {
+        const data = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
+        return {
+          ...data,
+          date: file.date,
+        };
+      } catch (error) {
+        console.error(`Error parsing word file ${file.path}:`, error.message);
+        return null;
+      }
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.date.localeCompare(a.date));
+  } catch (error) {
+    console.error('Error getting all words:', error.message);
+    return [];
+  }
 }
 
 /**
@@ -65,13 +99,25 @@ export function getAllWords() {
  * @param {string} date - Date string in YYYYMMDD format
  */
 export function updateWordFile(filePath, data, date) {
-  const wordData = {
-    word: data.word,
-    date: date,
-    data: data,
-  };
-  fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
-  console.log(`Updated word file: ${filePath}`);
+  try {
+    const wordData = {
+      word: data.word,
+      date: date,
+      data: data,
+    };
+
+    // Ensure directory exists
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
+    console.log(`Updated word file: ${filePath}`);
+  } catch (error) {
+    console.error(`Error updating word file ${filePath}:`, error.message);
+    throw new Error(`Failed to update word file: ${error.message}`);
+  }
 }
 
 /**
@@ -354,3 +400,21 @@ export async function generateGenericShareImage(title, slug) {
     throw new Error(`Error generating generic image for "${title}": ${error.message}`);
   }
 }
+
+/**
+ * Validates if Wordnik API response contains valid word data
+ * @param {Array} data - API response data array
+ * @returns {boolean} - True if data contains valid word information
+ */
+export function isValidWordData(data) {
+  if (!Array.isArray(data) || data.length === 0) {
+    return false;
+  }
+
+  // Check if we have valid word data (not just empty objects)
+  return data.some(entry =>
+    entry.word || entry.text || entry.partOfSpeech,
+  );
+}
+
+// Sentry is frontend-only. Do not import or use Sentry in backend/tools server-side code.

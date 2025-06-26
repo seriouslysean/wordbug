@@ -6,7 +6,6 @@ import WordDescription from '~components/WordDescription.astro';
 
 const { word } = Astro.props;
 const { partOfSpeech, definition, meta } = getWordDetails(word);
-const hasDefinition = Boolean(partOfSpeech || definition);
 ---
 
 <section class="word" aria-labelledby="word-title">
