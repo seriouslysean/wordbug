@@ -23,8 +23,8 @@ const base = env.BASE_PATH || '';
 // Determine environment for Sentry
 const environment = env.SENTRY_ENVIRONMENT || (mode === 'production' ? 'production' : 'development');
 
-// Get release information from package.json in vX.Y.Z format for Sentry
-const release = `v${pkg.version}`;
+// Let Sentry auto-generate release from git commit (recommended for CI/CD)
+
 
 
 // https://astro.build/config
@@ -61,8 +61,7 @@ export default defineConfig({
   integrations: [
     sentry({
       dsn: env.SENTRY_DSN,
-      environment: environment,
-      release: release,
+      environment,
       tracesSampleRate: environment === 'production' ? 0.1 : 1, // Sample 10% in prod, 100% in dev
       replaysSessionSampleRate: 0, // Free tier: disable session replays
       replaysOnErrorSampleRate: environment === 'production' ? 0.1 : 0, // Free tier: only error replays in prod
@@ -84,8 +83,18 @@ export default defineConfig({
       sourceMapsUploadOptions: {
         project: env.SENTRY_PROJECT,
         authToken: env.SENTRY_AUTH_TOKEN,
-        release: release,
-        environment: environment,
+        environment,
+        setCommits: {
+          auto: true,
+        },
+        tags: {
+          version: `v${pkg.version}`, // Tag release with semver for filtering
+        },
+        deploy: {
+          env: environment,
+        },
+        finalize: true, // Finalize release to make it visible in dashboard
+        ignoreMissing: true,
       },
     }),
     sitemap(),
