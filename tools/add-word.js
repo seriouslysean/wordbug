@@ -55,7 +55,7 @@ const createWordFile = (word, date, data) => {
 
   // Write the file with just the three required fields
   const wordData = {
-    word: word, // Use the original word input for display
+    word: word.toLowerCase(), // Always store lowercase for consistency
     date: date.replace(/-/g, ''),
     data: data,  // Store the raw API response directly
   };
