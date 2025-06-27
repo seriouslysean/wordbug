@@ -1,9 +1,6 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy to GitHub Pages
 
-env:
-  SITE_URL: https://wordbug.fyi
-
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -34,7 +31,6 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ env.SITE_URL }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -48,7 +44,7 @@ jobs:
         run: npm install
       - name: Build
         env:
-          SITE_URL: ${{ env.SITE_URL }}
+          SITE_URL: ${{ secrets.SITE_URL }}
           SENTRY_ENABLED: true
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
