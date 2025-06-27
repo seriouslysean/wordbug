@@ -65,14 +65,6 @@ export function sanitizeHTML(htmlString, options = {}) {
   return result;
 }
 
-/**
- * Legacy sanitization function that strips xrefs (for backward compatibility)
- * @param {string} htmlString - HTML string to sanitize
- * @returns {string} - Sanitized string with xrefs stripped
- */
-export function sanitizeHTMLLegacy(htmlString) {
-  return sanitizeHTML(htmlString, { preserveXrefs: false });
-}
 
 /**
  * Unified function to fetch word data from Wordnik API

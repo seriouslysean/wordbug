@@ -15,7 +15,8 @@
       "Bash(npm run lint:*)",
       "Bash(npm run test:coverage:*)",
       "Bash(npm run test:*)",
-      "Bash(npx astro:*)"
+      "Bash(npx astro:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }
