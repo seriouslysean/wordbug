@@ -1,5 +1,5 @@
 import { transformExistingWordData } from '../adapters/wordnik.js';
-import { logSentryError, safeOperation } from './sentry-client.js';
+import { logSentryError } from './sentry-client.js';
 
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
@@ -42,14 +42,11 @@ export const getCurrentWord = () => {
  * @returns {Array} Array of past word objects
  */
 export const getPastWords = (currentDate) => {
-  return safeOperation(() => {
-    if (!currentDate) {return [];}
-
-    const words = getAllWords();
-    return words
-      .filter(word => word.date < currentDate)
-      .slice(0, 5);
-  }, [], `Getting past words for date: ${currentDate}`);
+  if (!currentDate) {return [];}
+  const words = getAllWords();
+  return words
+    .filter(word => word.date < currentDate)
+    .slice(0, 5);
 };
 
 /**
@@ -58,12 +55,9 @@ export const getPastWords = (currentDate) => {
  * @returns {Object|null} The word object or null if not found
  */
 export const getWordByDate = (date) => {
-  return safeOperation(() => {
-    if (!date) {return null;}
-
-    const words = getAllWords();
-    return words.find(word => word.date === date) || null;
-  }, null, `Getting word by date: ${date}`);
+  if (!date) {return null;}
+  const words = getAllWords();
+  return words.find(word => word.date === date) || null;
 };
 
 /**
@@ -72,19 +66,16 @@ export const getWordByDate = (date) => {
  * @returns {Object} Object containing previousWord and nextWord
  */
 export const getAdjacentWords = (date) => {
-  return safeOperation(() => {
-    if (!date) {return { previousWord: null, nextWord: null };}
+  if (!date) {return { previousWord: null, nextWord: null };}
+  const words = getAllWords();
+  const currentIndex = words.findIndex(word => word.date === date);
 
-    const words = getAllWords();
-    const currentIndex = words.findIndex(word => word.date === date);
+  if (currentIndex === -1) {return { previousWord: null, nextWord: null };}
 
-    if (currentIndex === -1) {return { previousWord: null, nextWord: null };}
-
-    return {
-      previousWord: words[currentIndex + 1] || null,
-      nextWord: words[currentIndex - 1] || null,
-    };
-  }, { previousWord: null, nextWord: null }, `Getting adjacent words for date: ${date}`);
+  return {
+    previousWord: words[currentIndex + 1] || null,
+    nextWord: words[currentIndex - 1] || null,
+  };
 };
 
 /**
