@@ -253,5 +253,3 @@ export function getMilestoneWords(words) {
     100: words[99],
   };
 }
-
-// Ensure any Sentry release references use vX.Y.Z format

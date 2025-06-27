@@ -19,7 +19,10 @@
       "Bash(rg:*)",
       "Bash(ls:*)",
       "Bash(cat:*)",
-      "WebFetch(domain:docs.astro.build)"
+      "WebFetch(domain:docs.astro.build)",
+      "Bash(npx eslint:*)",
+      "WebFetch(domain:docs.sentry.io)",
+      "Bash(npm run typecheck:*)"
     ],
     "deny": []
   }

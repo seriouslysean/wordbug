@@ -62,5 +62,3 @@ export const formatDate = (dateStr) => {
     return dateStr;
   }
 };
-
-// Ensure any Sentry release references use vX.Y.Z format

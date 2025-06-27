@@ -1,10 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-// import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import opentype from 'opentype.js';
 
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Constants for image generation
 const CANVAS_WIDTH = 1200;
@@ -418,5 +416,3 @@ export function isValidWordData(data) {
     entry.word || entry.text || entry.partOfSpeech,
   );
 }
-
-// Sentry is frontend-only. Do not import or use Sentry in backend/tools server-side code.

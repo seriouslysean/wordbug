@@ -4,8 +4,6 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Remove unused import for logSentryError in page-utils.js if not used.
-
 /**
  * Gets all static pages that need generic social images
  * @returns {Array<{title: string, path: string}>}
@@ -102,5 +100,3 @@ export function getSocialImageUrl({ site, pathname, wordData }) {
     site.toString(),
   ).toString();
 }
-
-// Ensure any Sentry release references use vX.Y.Z format

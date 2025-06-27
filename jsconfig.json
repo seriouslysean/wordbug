@@ -7,7 +7,8 @@
       "~layouts/*": ["src/layouts/*"],
       "~utils/*": ["src/utils/*"],
       "~data/*": ["src/data/*"],
-      "~config": ["src/config"]
+      "~config": ["src/config"],
+      "~types/*": ["src/types/*"]
     },
     "jsx": "preserve",
     "jsxImportSource": "astro"

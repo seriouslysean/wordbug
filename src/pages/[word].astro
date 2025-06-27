@@ -5,16 +5,11 @@ import WordLink from '~components/WordLink.astro';
 import { getWordByDate, getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
 import { getMetaDescription } from '~config/seo';
 import { getWordSchemaData } from '~config/schema-data';
-
-interface WordData {
-    word: string;
-    date: string;
-    data: unknown;
-}
+import type { WordData } from '~/types/word-data';
 
 export async function getStaticPaths() {
   // Get all word files and generate paths for each
-  const allWords = await import.meta.glob<WordData>('../data/words/**/*.json');
+  const allWords = import.meta.glob<WordData>('../data/words/**/*.json');
   const paths = [];
 
   for (const path in allWords) {

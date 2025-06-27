@@ -36,7 +36,7 @@ describe('logger', () => {
   describe('console behavior', () => {
     it('preserves console.debug signature', () => {
       logger.debug('test message', { context: 'data' });
-      
+
       if (config.isDev) {
         expect(consoleSpy.debug).toHaveBeenCalledWith('test message', { context: 'data' });
       }
@@ -44,7 +44,7 @@ describe('logger', () => {
 
     it('preserves console.info signature', () => {
       logger.info('test message', { context: 'data' });
-      
+
       if (config.isDev) {
         expect(consoleSpy.info).toHaveBeenCalledWith('test message', { context: 'data' });
       }
@@ -52,7 +52,7 @@ describe('logger', () => {
 
     it('preserves console.warn signature', () => {
       logger.warn('test warning', { context: 'data' });
-      
+
       if (config.isDev) {
         expect(consoleSpy.warn).toHaveBeenCalledWith('test warning', { context: 'data' });
       }

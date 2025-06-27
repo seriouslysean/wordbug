@@ -6,7 +6,7 @@ const { words } = Astro.props;
 {words.length > 0 && (
   <section class="past-words">
     <ul class="past-words__list">
-      {words.map(word => (
+      {words.map((word: { word: string; date: string }) => (
         <li class="past-words__item">
           <WordLink word={word} />
         </li>

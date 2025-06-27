@@ -12,20 +12,18 @@
  * - Optional Sentry integration (decoupled)
  */
 
-import type { Logger, LogContext, SentryClientModule } from '~/@types/logger';
+import { logError } from './sentry-client.js';
 
 // Fast-fail environment configuration
 const isDev = import.meta.env?.DEV ?? false;
 const sentryEnabled = (import.meta.env?.SENTRY_ENABLED || process.env.SENTRY_ENABLED) === 'true';
 
-// Error levels that trigger Sentry
-const sentryLevels = new Set(['warn', 'error']);
 
 /**
  * Universal Logger Implementation - DRY with Proxy
  * Preserves console behavior while adding Sentry integration
  */
-export const logger: Logger = new Proxy(console, {
+export const logger = new Proxy(console, {
   get(target, prop: string) {
     const originalMethod = Reflect.get(target, prop);
     if (typeof originalMethod !== 'function') {return originalMethod;}
@@ -41,16 +39,15 @@ export const logger: Logger = new Proxy(console, {
       // Sentry rules: only send errors (not warnings) when enabled
       if (!sentryEnabled || prop !== 'error') {return;}
 
-      // Send only errors to Sentry - use standard import to preserve replays
+      // Send only errors to Sentry
       try {
-        const { logError } = require('./sentry-client.js');
-        logError(args[0] as string | Error, args[1] as LogContext, 'error');
+        logError(args[0] as string | Error, args[1] as { [key: string]: unknown }, 'error');
       } catch {
         // Silent fail if Sentry client not available
       }
     };
   },
-}) as Logger;
+});
 
 /**
  * Configuration export for debugging and testing

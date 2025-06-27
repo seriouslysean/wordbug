@@ -33,8 +33,8 @@ const allConsonants = words.filter(w => /^[^aeiou]+$/i.test(w.word));
 const palindromes = words.filter(w => w.word.toLowerCase() === w.word.toLowerCase().split('').reverse().join(''));
 
 // Count vowels and consonants in each word
-const getVowelCount = (word) => (word.match(/[aeiou]/gi) || []).length;
-const getConsonantCount = (word) => (word.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
+const getVowelCount = (word: string) => (word.match(/[aeiou]/gi) || []).length;
+const getConsonantCount = (word: string) => (word.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
 
 const mostVowels = words.reduce((max, curr) => {
   const count = getVowelCount(curr.word);
@@ -47,7 +47,7 @@ const mostConsonants = words.reduce((max, curr) => {
 }, words[0]);
 
 // Find the dates for our words
-const findWordDate = (targetWord) => {
+const findWordDate = (targetWord: string) => {
   return words.find(w => w.word === targetWord)?.date;
 };
 

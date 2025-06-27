@@ -1,40 +1,36 @@
-/**
- * Standard Sentry client - bog standard implementation
- * Automatically integrates with Astro's Sentry integration
- */
+import * as Sentry from '@sentry/astro';
 
 const sentryEnabled = import.meta.env?.SENTRY_ENABLED === 'true' || process.env.SENTRY_ENABLED === 'true';
 
 /**
- * Simple error logging to Sentry
+ * Standard Sentry error logging
  * @param {Error|string} error - Error to log
  * @param {Object} context - Additional context
  * @param {string} level - Error level (error, warning, info)
  */
 export function logError(error, context = {}, level = 'error') {
-  if (!sentryEnabled) return;
+  if (!sentryEnabled) {
+    return;
+  }
 
   try {
-    // Use standard import to preserve replays and session tracking
-    const { captureException, captureMessage, withScope } = require('@sentry/astro');
-    
     if (Object.keys(context).length > 0) {
-      withScope((scope) => {
+      Sentry.withScope((scope) => {
         Object.entries(context).forEach(([key, value]) => {
           scope.setExtra(key, value);
         });
-        
+
         if (error instanceof Error) {
-          captureException(error);
+          Sentry.captureException(error);
         } else {
-          captureMessage(String(error), level);
+          Sentry.captureMessage(String(error), level);
         }
       });
     } else {
       if (error instanceof Error) {
-        captureException(error);
+        Sentry.captureException(error);
       } else {
-        captureMessage(String(error), level);
+        Sentry.captureMessage(String(error), level);
       }
     }
   } catch {

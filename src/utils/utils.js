@@ -30,6 +30,3 @@ export const getUrl = (path) => {
   const url = `${cleanBase}/${cleanPath}`;
   return path.endsWith('/') ? url : url.replace(/\/$/, '');
 };
-
-// Ensure any Sentry release references use vX.Y.Z format
-

@@ -36,9 +36,9 @@ describe('api-utils', () => {
     it('does not throw when all variables are present', () => {
       const originalEnv = process.env.TEST_VAR;
       process.env.TEST_VAR = 'test-value';
-      
+
       expect(() => validateEnvironment(['TEST_VAR'])).not.toThrow();
-      
+
       // Cleanup
       if (originalEnv) {
         process.env.TEST_VAR = originalEnv;

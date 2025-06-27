@@ -15,7 +15,7 @@ export function processCrossReferences(text) {
     return text;
   }
 
-  return text.replace(/<xref[^>]*>(.*?)<\/xref>/g, (match, word) => {
+  return text.replace(/<xref[^>]*>(.*?)<\/xref>/g, (_match, word) => {
     const cleanWord = word.trim();
     const wordnikUrl = `https://www.wordnik.com/words/${encodeURIComponent(cleanWord.toLowerCase())}`;
     return `<a href="${wordnikUrl}" target="_blank" rel="noopener noreferrer" class="xref-link">${cleanWord}</a>`;

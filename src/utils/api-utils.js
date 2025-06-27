@@ -48,7 +48,7 @@ export function sanitizeHTML(htmlString, options = {}) {
 
   if (preserveXrefs) {
     // Convert <xref> tags to proper links
-    result = result.replace(/<xref[^>]*>(.*?)<\/xref>/g, (match, word) => {
+    result = result.replace(/<xref[^>]*>(.*?)<\/xref>/g, (_match, word) => {
       const cleanWord = word.trim();
       const url = `${xrefBaseUrl}/${encodeURIComponent(cleanWord.toLowerCase())}`;
       return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="xref-link">${cleanWord}</a>`;
@@ -117,6 +117,3 @@ export async function fetchWordData(word, limit = WORDNIK_CONFIG.DEFAULT_LIMIT) 
 
   return data;
 }
-
-// Ensure any Sentry release references use vX.Y.Z format
-

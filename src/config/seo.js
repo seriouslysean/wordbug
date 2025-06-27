@@ -30,9 +30,9 @@ export function getCanonicalUrl(pathname) {
 /**
  * Generate page-specific meta description
  * @param {Object} options - Page options
- * @param {string} options.word - Word for word pages
- * @param {string} options.definition - Word definition
- * @param {string} options.custom - Custom description
+ * @param {string} [options.word] - Word for word pages
+ * @param {string} [options.definition] - Word definition
+ * @param {string} [options.custom] - Custom description
  * @returns {string} Meta description
  */
 export function getMetaDescription({ word, definition, custom } = {}) {

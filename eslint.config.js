@@ -36,7 +36,11 @@ export default [
       'eol-last': 'error',
 
       // Best practices
-      'no-unused-vars': 'error',
+      'no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      }],
       'no-console': 'warn',
       'prefer-const': 'error',
     },
@@ -68,9 +72,9 @@ export default [
   },
 
   {
-    files: ['tools/**/*.js', 'astro.config.mjs', 'vitest.config.js', 'eslint.config.js', 'src/utils/logger.ts'],
+    files: ['tools/**/*.js', 'tests/**/*.js', 'astro.config.mjs', 'vitest.config.js', 'eslint.config.js', 'src/utils/logger.ts'],
     rules: {
-      // Allow console in build tools, config files, and logger
+      // Allow console in build tools, tests, config files, and logger
       'no-console': 'off',
     },
   },
@@ -80,6 +84,7 @@ export default [
       'dist/',
       'node_modules/',
       '.astro/',
+      'coverage/',
     ],
   },
 ];

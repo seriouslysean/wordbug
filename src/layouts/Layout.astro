@@ -8,6 +8,7 @@ import { getSocialImageUrl } from '~utils/page-utils';
 import { seoConfig, getCanonicalUrl, getMetaDescription } from '~config/seo';
 import { getWebsiteSchemaData } from '~config/schema-data';
 import { Schema } from 'astro-seo-schema';
+import type { WordData } from '~/types/word-data';
 
 const { title, word, description, schema } = Astro.props;
 
@@ -27,7 +28,7 @@ const socialImageUrl = getSocialImageUrl({
 });
 
 // Helper function to format page titles consistently (legacy support)
-const formatPageTitle = (pageTitle, currentWord) => {
+const formatPageTitle = (pageTitle: string, currentWord: WordData) => {
   const today = new Date();
   const date = today.toLocaleDateString('en-US', {
     month: 'short',

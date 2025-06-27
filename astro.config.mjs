@@ -16,7 +16,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const sentryEnabled = env.SENTRY_ENABLED === 'true';
 const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 const commit = env.GITHUB_SHA || 'local-dev';
-// Sentry standard: semantic versioning with project prefix for readability
 const release = `wordbug@${pkg.version}`;
 
 export default defineConfig({
@@ -71,7 +70,7 @@ export default defineConfig({
             auto: true,
             ignoreMissing: true,
             ignoreEmpty: true,
-          }
+          },
         }),
       },
       // Standard tagging

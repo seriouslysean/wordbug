@@ -11,5 +11,10 @@
       "~styles/*": ["./src/styles/*"],
       "~config/*": ["./src/config/*"]
     }
-  }
+  },
+  "exclude": [
+    "coverage/**/*",
+    "dist/**/*",
+    "node_modules/**/*"
+  ]
 }

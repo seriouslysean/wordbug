@@ -5,7 +5,7 @@ import WordLink from '~components/WordLink.astro';
 import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
 
 export async function getStaticPaths() {
-  const allWords = await import.meta.glob('../data/words/**/*.json');
+  const allWords = import.meta.glob('../data/words/**/*.json');
   const paths = [];
 
   for (const path in allWords) {
@@ -34,7 +34,7 @@ const modifiedNextWord = nextWord && {
 };
 ---
 
-<Layout title="Bug's (Occasional) Word of the Day" word={word.word}>
+<Layout title="Bug's (Occasional) Word of the Day" word={word}>
   <main>
     <Word word={word} />
 

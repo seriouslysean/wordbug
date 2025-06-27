@@ -28,10 +28,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint:js": "eslint .",
-    "lint:ts": "astro check",
-    "lint": "npm run lint:js && npm run lint:ts",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "astro check"
   },
   "dependencies": {
     "astro": "^5.10.1",
