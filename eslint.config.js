@@ -9,14 +9,16 @@ export default [
 
   {
     languageOptions: {
+      ecmaVersion: 2024,
+      sourceType: 'module',
       globals: {
-        // Node.js globals
+        // Node.js globals for build-time
         process: 'readonly',
         Buffer: 'readonly',
         __dirname: 'readonly',
+        // Universal globals
         console: 'readonly',
         setTimeout: 'readonly',
-        // Browser globals
         fetch: 'readonly',
         URL: 'readonly',
       },
@@ -44,6 +46,24 @@ export default [
     files: ['**/*.astro'],
     rules: {
       // Astro-specific overrides if needed
+    },
+  },
+
+  {
+    files: ['src/utils/sentry-client.js', 'src/**/*client*.js'],
+    languageOptions: {
+      globals: {
+        // Browser globals for client-side code
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+      },
+    },
+    rules: {
+      // Allow console in client code for development debugging
+      'no-console': 'warn',
     },
   },
 

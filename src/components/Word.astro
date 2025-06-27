@@ -8,16 +8,16 @@ const { word } = Astro.props;
 const { partOfSpeech, definition, meta } = getWordDetails(word);
 ---
 
-<section class="word" aria-labelledby="word-title">
+<article class="word">
   <time class="word__date" datetime={word.date}>{formatDate(word.date)}</time>
-  <Heading level={2} text={word.word} />
+  <Heading level={2} text={word.word} id="word-title" />
   <WordDescription
     partOfSpeech={partOfSpeech}
     definition={definition}
     word={word.word}
     meta={meta}
   />
-</section>
+</article>
 
 <style>
     .word {

@@ -1,12 +1,13 @@
 ---
-const { level = 1, text, secondaryText } = Astro.props;
+const { level = 1, text, secondaryText, id } = Astro.props;
+const HeadingTag = `h${level}`;
 ---
 
 <div class="heading">
   {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
-  <h1 class="heading__text text-lowercase" aria-level={level}>
+  <HeadingTag class="heading__text text-lowercase" id={id}>
     {text}
-  </h1>
+  </HeadingTag>
 </div>
 
 <style>

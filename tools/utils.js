@@ -84,8 +84,8 @@ export function getAllWords() {
         return null;
       }
     })
-    .filter(Boolean)
-    .sort((a, b) => b.date.localeCompare(a.date));
+      .filter(Boolean)
+      .sort((a, b) => b.date.localeCompare(a.date));
   } catch (error) {
     console.error('Error getting all words:', error.message);
     return [];

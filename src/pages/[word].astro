@@ -3,7 +3,8 @@ import Layout from '~layouts/Layout.astro';
 import WordComponent from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
 import { getWordByDate, getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
-import { getMetaDescription, getWordSchema } from '~config/seo';
+import { getMetaDescription } from '~config/seo';
+import { getWordSchemaData } from '~config/schema-data';
 
 interface WordData {
     word: string;
@@ -47,7 +48,7 @@ const pageDescription = getMetaDescription({
   word: wordData.word,
   definition: wordDetails.definition,
 });
-const structuredData = getWordSchema({
+const wordSchemaData = getWordSchemaData({
   word: wordData.word,
   date: wordData.date,
   ...wordDetails,
@@ -58,11 +59,11 @@ const structuredData = getWordSchema({
   title={`${wordData.word} | Bug's Word of the Day`}
   word={wordData}
   description={pageDescription}
-  schema={structuredData}
+  schema={wordSchemaData}
 >
   <main>
     <WordComponent word={wordData} />
-    <nav class="word-nav">
+    <nav class="word-nav" aria-label="Word navigation">
       <div class="word-nav__container">
         <div class="word-nav__previous">
           {previousWord && (

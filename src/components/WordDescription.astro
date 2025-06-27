@@ -5,7 +5,7 @@ const sourceUrl = meta?.sourceUrl;
 ---
 
 {hasContent && (
-  <div class="word-description" role="contentinfo">
+  <section class="word-description">
     <p class="word-description__text">
       {partOfSpeech && (
         <span class="word-description__type" aria-label={`Part of speech: ${partOfSpeech}`}>
@@ -18,7 +18,7 @@ const sourceUrl = meta?.sourceUrl;
         </a>
       )}
     </p>
-  </div>
+  </section>
 )}
 
 <style>

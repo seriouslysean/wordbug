@@ -6,6 +6,8 @@ import { getUrl } from '~utils/utils';
 import { getWordByDate } from '~utils/word-utils';
 import { getSocialImageUrl } from '~utils/page-utils';
 import { seoConfig, getCanonicalUrl, getMetaDescription } from '~config/seo';
+import { getWebsiteSchemaData } from '~config/schema-data';
+import { Schema } from 'astro-seo-schema';
 
 const { title, word, description, schema } = Astro.props;
 
@@ -13,7 +15,8 @@ const { title, word, description, schema } = Astro.props;
 const currentUrl = getCanonicalUrl(Astro.url.pathname);
 const pageTitle = title || seoConfig.defaultTitle;
 const metaDescription = description || getMetaDescription();
-const jsonLdSchema = schema || null;
+// Page-specific schemas (passed from individual pages)
+const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 
 // Legacy word data handling for social images
 const wordData = word ? await getWordByDate(word.date) : null;
@@ -57,6 +60,14 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 		<meta name="author" content={seoConfig.author} />
 		<link rel="canonical" href={currentUrl} />
 
+		<!-- Educational Content Classification -->
+		<meta name="educational-content" content="true" />
+		<meta name="content-rating" content="educational" />
+		<meta name="audience" content="students,educators,learners" />
+		<meta name="subject" content="vocabulary,language-arts,english" />
+		<meta name="education-level" content="all-ages" />
+		<meta name="resource-type" content="educational-website" />
+
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')} />
 
@@ -82,19 +93,22 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 		<meta name="twitter:description" content={metaDescription} />
 		<meta name="twitter:image" content={socialImageUrl} />
 
-		<!-- JSON-LD Structured Data -->
-		{jsonLdSchema && (
-		  <script type="application/ld+json" set:html={JSON.stringify(jsonLdSchema)} />
-		)}
+		<!-- Global Website Schema - appears on every page -->
+		<Schema item={getWebsiteSchemaData()} />
+
+		<!-- Page-specific schemas -->
+		{pageSchemas.map((schemaData) => (
+		  <Schema item={schemaData} />
+		))}
   </head>
   <body>
     <div class="layout">
       <Header />
-      <main class="main">
-        <div class="main__content">
+      <div class="content">
+        <div class="content__wrapper">
           <slot />
         </div>
-      </main>
+      </div>
       <Footer />
     </div>
   </body>
@@ -128,12 +142,12 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 		flex-direction: column;
 	}
 
-	.main {
+	.content {
 		flex: 1;
 		width: 100%;
 	}
 
-	.main__content {
+	.content__wrapper {
 		width: 100%;
 		max-width: var(--content-width-large);
 		margin: 0 auto;
@@ -142,7 +156,7 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 
 	/* Responsive adjustments */
 	@media (max-width: 768px) {
-		.main__content {
+		.content__wrapper {
 			padding: 1rem var(--spacing-base);
 		}
 	}

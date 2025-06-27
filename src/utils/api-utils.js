@@ -91,7 +91,10 @@ export async function fetchWordData(word, limit = WORDNIK_CONFIG.DEFAULT_LIMIT) 
     limitHour: response.headers.get('x-ratelimit-limit-hour'),
   };
 
-  console.log('Wordnik API Rate Limits:', rateLimits);
+  // Log rate limits for development monitoring
+  if (import.meta.env.DEV) {
+    console.log('Wordnik API Rate Limits:', rateLimits);
+  }
 
   if (!response.ok) {
     if (response.status === 429) {

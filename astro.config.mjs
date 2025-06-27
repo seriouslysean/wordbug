@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import { loadEnv } from 'vite';
 import sentry from '@sentry/astro';
 import sitemap from '@astrojs/sitemap';
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 
 // Determine current mode, default to development if not specified
 const mode = process.env.NODE_ENV || 'development';

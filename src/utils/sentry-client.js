@@ -22,7 +22,9 @@ export function initSentry() {
       sentryInitialized = true;
     }
   } catch (error) {
-    console.warn('Sentry not available:', error.message);
+    if (import.meta.env.DEV) {
+      console.warn('Sentry not available:', error.message);
+    }
   }
 }
 
@@ -34,7 +36,9 @@ export function initSentry() {
  */
 export function logError(error, context = {}, level = 'error') {
   // Always log to console for development
-  console.error('Error:', error, context);
+  if (import.meta.env.DEV) {
+    console.error('Error:', error, context);
+  }
 
   if (!sentryInitialized) {
     initSentry();
@@ -57,7 +61,9 @@ export function logError(error, context = {}, level = 'error') {
         });
       }
     } catch (sentryError) {
-      console.warn('Failed to send error to Sentry:', sentryError.message);
+      if (import.meta.env.DEV) {
+        console.warn('Failed to send error to Sentry:', sentryError.message);
+      }
     }
   }
 }
@@ -93,7 +99,7 @@ export function withErrorHandling(fn, context = 'Unknown operation') {
     } catch (error) {
       logError(error, {
         context,
-        args: args.length > 0 ? args : undefined
+        args: args.length > 0 ? args : undefined,
       });
       throw error;
     }
@@ -126,10 +132,12 @@ export function safeOperation(fn, fallback = null, context = 'Safe operation') {
 export function logSentryError(useCase, params = {}, error = undefined, level = 'error') {
   const message = `Error: ${useCase}`;
   // Always log to console for development
-  if (error) {
-    console.error(message, params, error);
-  } else {
-    console.error(message, params);
+  if (import.meta.env.DEV) {
+    if (error) {
+      console.error(message, params, error);
+    } else {
+      console.error(message, params);
+    }
   }
   if (!sentryInitialized) {
     initSentry();
@@ -148,7 +156,9 @@ export function logSentryError(useCase, params = {}, error = undefined, level = 
         }
       });
     } catch (sentryError) {
-      console.warn('Failed to send error to Sentry:', sentryError.message);
+      if (import.meta.env.DEV) {
+        console.warn('Failed to send error to Sentry:', sentryError.message);
+      }
     }
   }
 }

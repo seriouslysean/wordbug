@@ -2,14 +2,15 @@
 import Layout from '~layouts/Layout.astro';
 import WordDisplay from '~components/WordDisplay.astro';
 import { getCurrentWord } from '~utils/word-utils.js';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getEducationalOrgSchemaData } from '~config/schema-data.js';
 
 const currentWord = getCurrentWord();
+
+// Homepage gets educational organization schema
+const schemas = [getEducationalOrgSchemaData()];
 ---
 
-<Layout title="Bug's (Occasional) Word of the Day" word={currentWord}>
+<Layout title="Bug's (Occasional) Word of the Day" word={currentWord} schema={schemas}>
   <main>
     <WordDisplay />
   </main>

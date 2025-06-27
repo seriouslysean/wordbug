@@ -5,6 +5,7 @@ import PastWords from '~components/PastWords.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 import { getUrl } from '~utils/utils';
 import { getAllWords } from '~utils/word-utils';
+import { getCollectionSchemaData } from '~config/schema-data';
 
 const words = getAllWords();
 const wordsByYear = words.reduce((acc, word) => {
@@ -15,9 +16,16 @@ const wordsByYear = words.reduce((acc, word) => {
 }, {} as Record<string, typeof words>);
 
 const totalWords = words.length;
+
+// Collection schema for all words page
+const collectionSchema = getCollectionSchemaData(
+  'All Words',
+  `Complete collection of ${totalWords} vocabulary words chosen by Jacob`,
+  totalWords,
+);
 ---
 
-<Layout title="All Words | Bug's Word of the Day">
+<Layout title="All Words | Bug's Word of the Day" schema={collectionSchema}>
   <main class="words">
     <Heading text="All Words" secondaryText={`${totalWords} total`} />
 

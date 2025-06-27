@@ -11,7 +11,7 @@ export const seoConfig = {
   locale: import.meta.env.SITE_LOCALE || 'en-US',
   canonicalBase: import.meta.env.SITE_URL || import.meta.env.BASE_URL || 'http://localhost:4321',
   author: import.meta.env.SITE_AUTHOR || 'Sean Kennedy & Jacob Kennedy',
-  keywords: (import.meta.env.SITE_KEYWORDS || 'vocabulary,word of the day,education,learning,dictionary,definitions').split(','),
+  keywords: (import.meta.env.SITE_KEYWORDS || 'educational,vocabulary,word of the day,education,learning,dictionary,definitions,students,language arts,reading comprehension,homeschool,classroom,study,academic').split(','),
 };
 
 /**
@@ -49,54 +49,3 @@ export function getMetaDescription({ word, definition, custom } = {}) {
   return seoConfig.defaultDescription;
 }
 
-/**
- * Generate JSON-LD structured data for word definitions
- * Following Schema.org 2025 vocabulary standards
- * @param {Object} wordData - Word data object
- * @returns {Object} JSON-LD object
- */
-export function getWordSchema(wordData) {
-  if (!wordData) {return null;}
-
-  const { partOfSpeech, definition, meta } = wordData;
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'DefinedTerm',
-    'name': wordData.word,
-    'description': definition,
-    'inDefinedTermSet': {
-      '@type': 'DefinedTermSet',
-      'name': seoConfig.siteName,
-      'description': seoConfig.defaultDescription,
-    },
-    ...(partOfSpeech && {
-      'additionalType': `https://schema.org/${partOfSpeech.charAt(0).toUpperCase() + partOfSpeech.slice(1)}`,
-    }),
-    ...(meta && meta.sourceUrl && {
-      'url': meta.sourceUrl,
-      'citation': meta.attributionText,
-    }),
-    'datePublished': formatDateToISO(wordData.date),
-    'publisher': {
-      '@type': 'Organization',
-      'name': seoConfig.siteName,
-      'description': seoConfig.defaultDescription,
-    },
-  };
-}
-
-/**
- * Convert YYYYMMDD date to ISO format
- * @param {string} dateStr - Date in YYYYMMDD format
- * @returns {string} ISO date string
- */
-function formatDateToISO(dateStr) {
-  if (!dateStr || dateStr.length !== 8) {return new Date().toISOString().split('T')[0];}
-
-  const year = dateStr.substring(0, 4);
-  const month = dateStr.substring(4, 6);
-  const day = dateStr.substring(6, 8);
-
-  return `${year}-${month}-${day}`;
-}
