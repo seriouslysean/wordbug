@@ -17,7 +17,9 @@
       "Bash(npm run test:*)",
       "Bash(npx astro:*)",
       "Bash(rg:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:docs.astro.build)"
     ],
     "deny": []
   }

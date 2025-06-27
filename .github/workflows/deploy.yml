@@ -34,7 +34,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ env.SITE_URL }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -49,11 +49,13 @@ jobs:
       - name: Build
         env:
           SITE_URL: ${{ env.SITE_URL }}
-          BASE_URL: ${{ env.SITE_URL }}
+          SENTRY_ENABLED: true
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_ENVIRONMENT: production
           NODE_ENV: production
+          GITHUB_SHA: ${{ github.sha }}
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4

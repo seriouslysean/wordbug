@@ -4,47 +4,30 @@ import sentry from '@sentry/astro';
 import sitemap from '@astrojs/sitemap';
 import pkg from './package.json' with { type: 'json' };
 
-// Determine current mode, default to development if not specified
 const mode = process.env.NODE_ENV || 'development';
-
-// Load environment variables based on current mode
 const envFromFiles = loadEnv(mode, process.cwd(), '');
-
-// Create combined env object with process.env taking precedence
 const env = {
   ...envFromFiles,
   ...process.env,
 };
+const site = env.SITE_URL;
+const base = env.BASE_PATH;
+const isProd = process.env.NODE_ENV === 'production';
+const sentryEnabled = env.SENTRY_ENABLED === 'true';
+const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
+const commit = env.GITHUB_SHA || 'local-dev';
+// Sentry standard: semantic versioning with project prefix for readability
+const release = `wordbug@${pkg.version}`;
 
-// Use environment variables with fallbacks for site config
-const site = env.SITE_URL || env.BASE_URL || 'http://localhost:4321';
-const base = env.BASE_PATH || '';
-
-// Determine environment for Sentry
-const environment = env.SENTRY_ENVIRONMENT || (mode === 'production' ? 'production' : 'development');
-
-// Let Sentry auto-generate release from git commit (recommended for CI/CD)
-
-
-
-// https://astro.build/config
 export default defineConfig({
   site,
   base,
-
-  // Explicitly set static output
   output: 'static',
-
-
-  devToolbar: {
-    enabled: false,
-  },
-
+  devToolbar: { enabled: false },
   build: {
-    // Put assets in a dedicated directory
     assets: 'assets',
+    target: 'esnext',
   },
-
   vite: {
     resolve: {
       alias: {
@@ -59,48 +42,47 @@ export default defineConfig({
     },
   },
   integrations: [
-    sentry({
+    ...(sentryEnabled ? [sentry({
       dsn: env.SENTRY_DSN,
       environment,
-      tracesSampleRate: environment === 'production' ? 0.1 : 1, // Sample 10% in prod, 100% in dev
-      replaysSessionSampleRate: 0, // Free tier: disable session replays
-      replaysOnErrorSampleRate: environment === 'production' ? 0.1 : 0, // Free tier: only error replays in prod
-      sendDefaultPii: false, // Be more conservative with PII
+      release,
+      // Standard performance monitoring
+      tracesSampleRate: isProd ? 0.1 : 1.0,
+      // Standard session replay
+      replaysSessionSampleRate: isProd ? 0.1 : 1.0,
+      replaysOnErrorSampleRate: 1.0,
+      // Standard privacy settings
+      sendDefaultPii: false,
       beforeSend(event) {
-        // Don't send events in development unless explicitly enabled
-        if (environment === 'development' && !env.SENTRY_DEBUG) {
-          return null;
-        }
-        // Add additional context
-        if (event.tags) {
-          event.tags.mode = mode;
-          event.tags.site = site;
-        } else {
-          event.tags = { mode, site };
-        }
+        // Only send in production or when explicitly enabled
+        if (!sentryEnabled) {return null;}
         return event;
       },
+      // Standard release management
       sourceMapsUploadOptions: {
         project: env.SENTRY_PROJECT,
         authToken: env.SENTRY_AUTH_TOKEN,
+        release,
         environment,
-        setCommits: {
-          auto: true,
-        },
-        tags: {
-          version: `v${pkg.version}`, // Tag release with semver for filtering
-        },
-        deploy: {
-          env: environment,
-        },
-        finalize: true, // Finalize release to make it visible in dashboard
-        ignoreMissing: true,
+        finalize: isProd, // Only finalize releases in production
+        // Use auto commit detection for hash association
+        ...(isProd && {
+          setCommits: {
+            auto: true,
+            ignoreMissing: true,
+            ignoreEmpty: true,
+          }
+        }),
       },
-    }),
+      // Standard tagging
+      initialScope: {
+        tags: {
+          version: pkg.version,
+          commit: commit.slice(0, 7),
+          environment,
+        },
+      },
+    })] : []),
     sitemap(),
   ],
 });
-
-// Sentry integration is only for frontend/client-side code in Astro static sites.
-// This config disables session replays (free tier), only enables error replays in production, and uses the version from package.json for release.
-// Source maps are uploaded via CI/CD (see GitHub Actions workflow).

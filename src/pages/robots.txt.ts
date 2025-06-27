@@ -1,11 +1,13 @@
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = ({ site }) => {
-  const siteUrl = site?.toString() || 'https://wordbug.fyi';
-
+  if (!site) {
+    throw new Error('Site URL is required in astro.config.mjs');
+  }
+  const siteUrl = site.toString();
   const robotsTxt = `User-agent: *
 Allow: /
-Sitemap: ${siteUrl}sitemap-index.xml
+Sitemap: ${siteUrl}${siteUrl.endsWith('/') ? '' : '/'}sitemap-index.xml
 `;
 
   return new Response(robotsTxt, {

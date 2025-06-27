@@ -1,6 +1,7 @@
 import { decodeHTML } from 'entities';
 import { isValidDate } from './date-utils.js';
 import { logSentryError } from './sentry-client.js';
+import logger from './logger.js';
 
 /**
  * Common constants for Wordnik API integration
@@ -93,7 +94,7 @@ export async function fetchWordData(word, limit = WORDNIK_CONFIG.DEFAULT_LIMIT) 
 
   // Log rate limits for development monitoring
   if (import.meta.env.DEV) {
-    console.log('Wordnik API Rate Limits:', rateLimits);
+    logger.info('Wordnik API Rate Limits:', rateLimits);
   }
 
   if (!response.ok) {

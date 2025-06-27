@@ -68,9 +68,9 @@ export default [
   },
 
   {
-    files: ['tools/**/*.js', 'astro.config.mjs', 'vitest.config.js', 'eslint.config.js'],
+    files: ['tools/**/*.js', 'astro.config.mjs', 'vitest.config.js', 'eslint.config.js', 'src/utils/logger.ts'],
     rules: {
-      // Allow console in build tools and config files
+      // Allow console in build tools, config files, and logger
       'no-console': 'off',
     },
   },
