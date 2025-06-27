@@ -63,8 +63,7 @@ export default defineConfig({
         authToken: env.SENTRY_AUTH_TOKEN,
         release,
         environment,
-        finalize: isProd, // Only finalize releases in production
-        // Use auto commit detection for hash association
+        finalize: isProd,
         ...(isProd && {
           setCommits: {
             auto: true,
