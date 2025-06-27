@@ -48,7 +48,12 @@ jobs:
         run: npm install
       - name: Build
         env:
+          SITE_URL: ${{ env.SITE_URL }}
           BASE_URL: ${{ env.SITE_URL }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          NODE_ENV: production
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
