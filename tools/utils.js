@@ -101,7 +101,7 @@ export function getAllWords() {
 export function updateWordFile(filePath, data, date) {
   try {
     const wordData = {
-      word: data.word,
+      word: data.word.toLowerCase(), // Always store lowercase for consistency
       date: date,
       data: data,
     };
@@ -134,7 +134,9 @@ export async function fetchWordData(word) {
     throw new Error('WORDNIK_API_KEY environment variable is required');
   }
 
-  const url = `https://api.wordnik.com/v4/word.json/${encodeURIComponent(word)}/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+  // Always use lowercase for API requests to ensure consistency
+  const lowercaseWord = word.toLowerCase();
+  const url = `https://api.wordnik.com/v4/word.json/${encodeURIComponent(lowercaseWord)}/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
 
   const response = await fetch(url);
 
