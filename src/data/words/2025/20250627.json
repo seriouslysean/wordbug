@@ -1,0 +1,173 @@
+{
+    "word": "sentient",
+    "date": "20250627",
+    "data": [
+        {
+            "id": "S5288600-1",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Having sense perception; conscious.",
+            "sequence": "1",
+            "score": 0,
+            "citations": [
+                {
+                    "source": "(T.E. Lawrence).",
+                    "cite": "“The living knew themselves just sentient puppets on God's stage”"
+                }
+            ],
+            "word": "sentient",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "S5288600-2",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Experiencing sensation or feeling.",
+            "sequence": "2",
+            "score": 0,
+            "word": "sentient",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Capable of sensation or of sense-perception; having the power of feeling.",
+            "word": "sentient",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "Characterized by the exercise of sense or sense-perception.",
+            "word": "sentient",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "In <em>physiology</em>, noting those parts which on stimulation give rise to sensation.",
+            "word": "sentient",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "<strong>Synonyms</strong> <em>Sensitive</em>, etc. See <internalXref urlencoded=\"sensible\">sensible</internalXref>.",
+            "word": "sentient",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "text": "The mind as capable of feeling.",
+            "word": "sentient",
+            "attributionUrl": "https://www.wordnik.com/colophon#century/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "Having a faculty, or faculties, of sensation and perception.",
+            "labels": [
+                {
+                    "text": "(Physiol.)",
+                    "type": "fld"
+                }
+            ],
+            "word": "sentient",
+            "exampleUses": [
+                {
+                    "text": "the <ex>sentient</ex> extremities of nerves, which terminate in the various organs or tissues",
+                    "position": 0
+                }
+            ],
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "One who has the faculty of perception; a sentient being.",
+            "word": "sentient",
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "<xref>Conscious</xref> or <xref>self-aware</xref>.",
+            "word": "sentient",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/sentient",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
