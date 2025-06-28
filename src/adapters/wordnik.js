@@ -3,7 +3,7 @@
  * Functional approach for handling Wordnik API data
  */
 
-import { WORDNIK_CONFIG } from '../utils/api-utils.js';
+import { WORDNIK_CONFIG } from '~utils/api-utils.js';
 
 /**
  * Process cross-references in Wordnik text to create proper links

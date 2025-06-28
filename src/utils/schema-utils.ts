@@ -51,7 +51,7 @@ export function getEducationalOrgSchemaData(): EducationalOrgSchema {
       itemListElement: [{
         '@type': 'Course',
         name: 'Word of the Day',
-        description: 'Learn new vocabulary words chosen by an 8-year-old',
+        description: seoConfig.defaultDescription,
         educationalLevel: 'All ages',
         courseMode: 'online',
         isAccessibleForFree: true,

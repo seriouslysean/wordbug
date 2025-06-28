@@ -261,7 +261,7 @@ export function createWordSvg(word, date) {
 
   // Get path data for all text elements
   const mainWord = getTextPath(word.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
-  const titleText = getTextPath('Bug\'s (Occasional) Word of the Day', TITLE_SIZE);
+  const titleText = getTextPath(process.env.SITE_TITLE || '', TITLE_SIZE);
   const dateText = getTextPath(formattedDate, DATE_SIZE);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -347,7 +347,7 @@ export async function generateShareImage(word, date) {
 export function createGenericSvg(title) {
   // Get path data for all text elements
   const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
-  const titleText = getTextPath('Bug\'s (Occasional) Word of the Day', TITLE_SIZE);
+  const titleText = getTextPath(process.env.SITE_TITLE || '', TITLE_SIZE);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" viewBox="0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}" version="1.1" xmlns="http://www.w3.org/2000/svg">

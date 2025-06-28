@@ -3,4 +3,4 @@
  * Re-exports build configuration for backward compatibility
  */
 
-export { getBuildData as getWebsiteHealthData, getNamespaceKey } from '~config/build-config.ts';
+export { getBuildData as getWebsiteHealthData, getNamespaceKey } from '~utils/build-utils.ts';

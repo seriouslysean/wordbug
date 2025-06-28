@@ -1,4 +1,4 @@
-import { getBuildData } from '~config/build-config.ts';
+import { getBuildData } from '~utils/build-utils.ts';
 
 export function GET() {
   const buildData = getBuildData();

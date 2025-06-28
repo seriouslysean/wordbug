@@ -1,4 +1,4 @@
-import { transformExistingWordData } from '../adapters/wordnik.js';
+import { transformExistingWordData } from '~adapters/wordnik.js';
 import { logSentryError } from './sentry-client.js';
 
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });

@@ -38,7 +38,7 @@ export default defineConfig({
         '~utils': '/src/utils',
         '~data': '/src/data',
         '~styles': '/src/styles',
-        '~config': '/src/config',
+        '~adapters': '/src/adapters',
       },
     },
     define: {
@@ -47,6 +47,9 @@ export default defineConfig({
       __BUILD_RELEASE__: JSON.stringify(release),
       __BUILD_TIMESTAMP__: JSON.stringify(new Date().toISOString()),
       __NAMESPACE_KEY__: JSON.stringify(namespaceKey),
+      __PACKAGE_NAME__: JSON.stringify(pkg.name),
+      __PACKAGE_DESCRIPTION__: JSON.stringify(pkg.description),
+      __PACKAGE_AUTHOR__: JSON.stringify(pkg.author),
     },
   },
   integrations: [

@@ -9,7 +9,7 @@ import { seoConfig, getCanonicalUrl, getMetaDescription } from '~utils/seo-utils
 import { getWebsiteSchemaData } from '~utils/schema-utils.ts';
 import { Schema } from 'astro-seo-schema';
 import type { WordData } from '~/types/word-data';
-import { getBuildData, getNamespaceKey } from '~config/build-config.ts';
+import { getBuildData, getNamespaceKey } from '~utils/build-utils.ts';
 
 const { title, word, description, schema } = Astro.props;
 
