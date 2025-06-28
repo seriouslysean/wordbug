@@ -2,6 +2,7 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "paths": {
       "~/*": ["./src/*"],
       "~components/*": ["./src/components/*"],
