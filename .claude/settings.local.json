@@ -23,7 +23,10 @@
       "Bash(npx eslint:*)",
       "WebFetch(domain:docs.sentry.io)",
       "Bash(npm run typecheck:*)",
-      "WebFetch(domain:www.npmjs.com)"
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(npm run preview:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(NODE_ENV=development npm run build 2 > /dev/null)"
     ],
     "deny": []
   }

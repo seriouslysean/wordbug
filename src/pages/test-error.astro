@@ -1,0 +1,29 @@
+---
+// Test page to trigger Sentry error reporting
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Sentry Test</title>
+</head>
+<body>
+  <h1>Test Sentry Error Reporting</h1>
+  <p id="release-info">Loading...</p>
+  <p id="error-status">Ready to test</p>
+  
+  <script>
+    // Display release info immediately
+    const releaseInfo = window.__SENTRY_RELEASE__ || 'not set';
+    document.getElementById('release-info').textContent = `Release: ${releaseInfo}`;
+    
+    // Auto-trigger error after a short delay
+    setTimeout(() => {
+      document.getElementById('error-status').textContent = 'Triggering error...';
+      console.log('Release from client:', releaseInfo);
+      throw new Error('Test error for Sentry release verification');
+    }, 1000);
+  </script>
+</body>
+</html>

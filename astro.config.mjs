@@ -4,6 +4,15 @@ import sentry from '@sentry/astro';
 import sitemap from '@astrojs/sitemap';
 import pkg from './package.json' with { type: 'json' };
 
+// Set Sentry release name immediately if not already set
+if (!process.env.SENTRY_RELEASE) {
+  const isProd = process.env.NODE_ENV === 'production';
+  const commit = process.env.GITHUB_SHA || 'local-dev';
+  const shortSha = commit === 'local-dev' ? 'local' : commit.slice(0, 7);
+  const version = `${pkg.version}${isProd ? '' : '-dev'}`;
+  process.env.SENTRY_RELEASE = `${pkg.name}@${version}+${shortSha}`;
+}
+
 const mode = process.env.NODE_ENV || 'development';
 const envFromFiles = loadEnv(mode, process.cwd(), '');
 const env = {
@@ -33,11 +42,14 @@ const sentryEnabled = env.SENTRY_ENABLED === 'true';
 const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 const commit = env.GITHUB_SHA || 'local-dev';
 const shortSha = commit === 'local-dev' ? 'local' : commit.slice(0, 7);
-const release = commit;
+const version = `${pkg.version}${isProd ? '' : '-dev'}`;
+const release = `${pkg.name}@${version}+${shortSha}`;
+
 const semanticTags = {
   version: pkg.version,
   semver: pkg.version,
 };
+
 
 export default defineConfig({
   site,
@@ -77,17 +89,23 @@ export default defineConfig({
         if (!sentryEnabled) {return null;}
         return event;
       },
-      sourceMapsUploadOptions: {
-        project: env.SENTRY_PROJECT,
-        authToken: env.SENTRY_AUTH_TOKEN,
-        release,
-        environment,
+      project: env.SENTRY_PROJECT,
+      authToken: env.SENTRY_AUTH_TOKEN,
+      release: {
+        name: release,
+        create: true,
         finalize: isProd,
         setCommits: {
           auto: false,
           ignoreMissing: true,
           ignoreEmpty: true,
         },
+      },
+      sourceMapsUploadOptions: {
+        project: env.SENTRY_PROJECT,
+        authToken: env.SENTRY_AUTH_TOKEN,
+        release,
+        environment,
         telemetry: false,
       },
       initialScope: {

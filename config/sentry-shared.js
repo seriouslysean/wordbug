@@ -8,6 +8,7 @@ const version = `${pkg.version}${isProd ? '' : '-dev'}`;
 const release = `${pkg.name}@${version}+${shortSha}`;
 const environment = process.env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 
+
 export const sentrySharedConfig = {
   dsn: import.meta.env.PUBLIC_SENTRY_DSN,
   environment,
