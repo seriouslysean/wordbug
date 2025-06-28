@@ -17,7 +17,8 @@ const sentryEnabled = env.SENTRY_ENABLED === 'true';
 const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 const commit = env.GITHUB_SHA || 'local-dev';
 const shortSha = commit.slice(0, 7);
-const release = `${pkg.name}@${pkg.version}+${shortSha}`;
+const version = `${pkg.version}${isProd ? '' : '-dev'}`;
+const release = `${pkg.name}@${version}+${shortSha}`;
 const namespaceKey = pkg.name;
 
 export default defineConfig({
