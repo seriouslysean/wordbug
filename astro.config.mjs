@@ -10,13 +10,29 @@ const env = {
   ...envFromFiles,
   ...process.env,
 };
+
+// Validate required environment variables
+const requiredEnvVars = [
+  'SITE_URL',
+  'SITE_TITLE',
+  'SITE_DESCRIPTION',
+  'SITE_NAME',
+  'SITE_AUTHOR',
+  'WORDNIK_API_KEY',
+];
+
+const missingEnvVars = requiredEnvVars.filter(envVar => !env[envVar]);
+if (missingEnvVars.length > 0) {
+  throw new Error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+}
+
 const site = env.SITE_URL;
 const base = env.BASE_PATH;
 const isProd = mode === 'production';
 const sentryEnabled = env.SENTRY_ENABLED === 'true';
 const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 const commit = env.GITHUB_SHA || 'local-dev';
-const shortSha = commit.slice(0, 7);
+const shortSha = commit === 'local-dev' ? 'local' : commit.slice(0, 7);
 const version = `${pkg.version}${isProd ? '' : '-dev'}`;
 const release = `${pkg.name}@${version}+${shortSha}`;
 // Add semantic version tags for Sentry's semver detection
@@ -24,6 +40,15 @@ const semanticTags = {
   version: pkg.version,
   semver: pkg.version,
 };
+
+// Debug logging for release configuration
+console.log('Sentry Release Config:', {
+  mode,
+  isProd,
+  environment,
+  release,
+  sentryEnabled,
+});
 const namespaceKey = pkg.name;
 
 export default defineConfig({
@@ -82,13 +107,11 @@ export default defineConfig({
         release,
         environment,
         finalize: isProd,
-        ...(isProd && {
-          setCommits: {
-            auto: true,
-            ignoreMissing: true,
-            ignoreEmpty: true,
-          },
-        }),
+        setCommits: {
+          auto: false,
+          ignoreMissing: true,
+          ignoreEmpty: true,
+        },
       },
       // Standard tagging with semver support
       initialScope: {

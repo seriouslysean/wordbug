@@ -1,6 +1,6 @@
 /**
  * Schema.org types for structured data
- * 
+ *
  * Note: astro-seo-schema accepts any valid JSON-LD schema object.
  * We use unknown for flexibility while maintaining type safety in our functions.
  */
