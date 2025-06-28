@@ -164,79 +164,6 @@ export function getLetterStats(letterFrequency) {
     .sort(([, a], [, b]) => b - a);
 }
 
-export function getStreakStats(words) {
-  let currentStreak = 0;
-  let longestStreak = 0;
-  let perfectWeeks = 0;
-  let perfectMonths = 0;
-  let currentWeek = null;
-  let currentMonth = null;
-  let weekCount = 0;
-  let monthCount = 0;
-
-  // Process words in reverse chronological order for current streak
-  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
-
-  // Helper to check if two dates are consecutive
-  const areConsecutiveDays = (date1, date2) => {
-    const d1 = new Date(date1.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
-    const d2 = new Date(date2.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
-    d1.setHours(0, 0, 0, 0);
-    d2.setHours(0, 0, 0, 0);
-    const diffTime = Math.abs(d2 - d1);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays === 1;
-  };
-
-  sortedWords.forEach((word, index) => {
-    const currentDate = new Date(word.date.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
-
-    if (index === 0) {
-      currentStreak = 1;
-    } else {
-      if (areConsecutiveDays(word.date, sortedWords[index - 1].date)) {
-        currentStreak++;
-      } else {
-        currentStreak = 1;
-      }
-    }
-
-    longestStreak = Math.max(longestStreak, currentStreak);
-
-    // Week and month calculations
-    const week = `${currentDate.getFullYear()}-${getWeekNumber(currentDate)}`;
-    const month = `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
-
-    if (week !== currentWeek) {
-      if (weekCount === 7) {perfectWeeks++;}
-      currentWeek = week;
-      weekCount = 1;
-    } else {
-      weekCount++;
-    }
-
-    if (month !== currentMonth) {
-      if (monthCount === new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()) {
-        perfectMonths++;
-      }
-      currentMonth = month;
-      monthCount = 1;
-    } else {
-      monthCount++;
-    }
-  });
-
-  return { longestStreak, perfectWeeks, perfectMonths };
-}
-
-function getWeekNumber(date) {
-  const d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() + 3 - (d.getDay() + 6) % 7);
-  const week1 = new Date(d.getFullYear(), 0, 4);
-  return 1 + Math.round(((d.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
-}
-
 export function getMilestoneWords(words) {
   return {
     25: words[24],
@@ -255,22 +182,22 @@ export function getLetterPatternStats(words) {
 
   words.forEach(wordObj => {
     const word = wordObj.word.toLowerCase();
-    
+
     // Same start and end letter
     if (word.length > 1 && word[0] === word[word.length - 1]) {
       patterns.startEndSame.push(wordObj);
     }
-    
+
     // Double letters
     if (/(.)\1/.test(word)) {
       patterns.doubleLetters.push(wordObj);
     }
-    
+
     // Triple or more same letters
     if (/(.)\1{2,}/.test(word)) {
       patterns.tripleLetters.push(wordObj);
     }
-    
+
     // Alphabetical order (consecutive letters)
     const letters = word.split('');
     let isAlphabetical = false;
@@ -300,7 +227,7 @@ export function getWordEndingStats(words) {
 
   words.forEach(wordObj => {
     const word = wordObj.word.toLowerCase();
-    
+
     if (word.endsWith('ing')) {
       endings.ing.push(wordObj);
     }
@@ -327,19 +254,19 @@ export function getCurrentStreakStats(words) {
   const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
   const today = new Date();
   const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
-  
+
   // Calculate current streak
   let currentStreak = 0;
   const mostRecentWord = sortedWords[0];
-  
+
   // Check if we have today's word or yesterday's word
-  const isActive = mostRecentWord.date >= todayString || 
+  const isActive = mostRecentWord.date >= todayString ||
     areConsecutiveDays(mostRecentWord.date, todayString);
-  
+
   if (isActive) {
     currentStreak = 1;
     let lastDate = mostRecentWord.date;
-    
+
     for (let i = 1; i < sortedWords.length; i++) {
       if (areConsecutiveDays(sortedWords[i].date, lastDate)) {
         currentStreak++;
@@ -349,11 +276,11 @@ export function getCurrentStreakStats(words) {
       }
     }
   }
-  
+
   // Calculate longest streak
   let longestStreak = 0;
   let tempStreak = 1;
-  
+
   for (let i = 1; i < sortedWords.length; i++) {
     if (areConsecutiveDays(sortedWords[i].date, sortedWords[i - 1].date)) {
       tempStreak++;
@@ -363,7 +290,7 @@ export function getCurrentStreakStats(words) {
     }
   }
   longestStreak = Math.max(longestStreak, tempStreak);
-  
+
   return {
     currentStreak,
     longestStreak,

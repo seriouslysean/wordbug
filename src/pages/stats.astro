@@ -2,7 +2,7 @@
 import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
 import WordLink from '~components/WordLink.astro';
-import { getAllWords, getWordStats, getLetterStats, getStreakStats, countSyllables, getLetterPatternStats, getWordEndingStats, getCurrentStreakStats } from '~utils/word-utils.js';
+import { getAllWords, getWordStats, getLetterStats, countSyllables, getLetterPatternStats, getWordEndingStats, getCurrentStreakStats } from '~utils/word-utils.js';
 
 // Get all words and sort by date
 const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
@@ -11,7 +11,6 @@ const firstWord = words[0];
 const latestWord = words[words.length - 1];
 const wordStats = getWordStats(words);
 const letterStats = getLetterStats(wordStats.letterFrequency);
-const { longestStreak } = getStreakStats(words);
 const letterPatterns = getLetterPatternStats(words);
 const wordEndings = getWordEndingStats(words);
 const streakStats = getCurrentStreakStats(words);
@@ -61,7 +60,7 @@ const findWordDate = (targetWord: string) => {
 
     <section class="stats__section">
       <div class="stats__list">
-        <div class="stats__item stats__item--featured">
+        <div class="stats__item">
           <div class="stats__fact">total words</div>
           <div class="stats__value">
             <a href="/words" class="stats__link">{totalWords}</a>
@@ -132,7 +131,7 @@ const findWordDate = (targetWord: string) => {
         {palindromes.length > 0 && (
           <div class="stats__item">
             <div class="stats__fact">palindromes</div>
-            <div class="value">
+            <div class="stats__value">
               {palindromes.map(w => w.word).join(', ')}
             </div>
           </div>
@@ -140,7 +139,7 @@ const findWordDate = (targetWord: string) => {
         {allConsonants.length > 0 && (
           <div class="stats__item">
             <div class="stats__fact">all consonants</div>
-            <div class="value">
+            <div class="stats__value">
               {allConsonants.map(w => w.word).join(', ')}
             </div>
           </div>
@@ -148,7 +147,7 @@ const findWordDate = (targetWord: string) => {
         {allVowels.length > 0 && (
           <div class="stats__item">
             <div class="stats__fact">all vowels</div>
-            <div class="value">
+            <div class="stats__value">
               {allVowels.map(w => w.word).join(', ')}
             </div>
           </div>
@@ -175,12 +174,12 @@ const findWordDate = (targetWord: string) => {
           <div class="stats__fact">streak comparison</div>
           <div class="streak-chart">
             <div class="streak-chart__bar">
-              <div 
-                class="streak-chart__current" 
+              <div
+                class="streak-chart__current"
                 style={`--current-width: ${Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100)}%`}
               ></div>
-              <div 
-                class="streak-chart__longest" 
+              <div
+                class="streak-chart__longest"
                 style="--longest-width: 100%"
               ></div>
             </div>
@@ -216,7 +215,7 @@ const findWordDate = (targetWord: string) => {
           <div class="stats__item">
             <div class="stats__fact">triple letters</div>
             <div class="stats__value">
-              {letterPatterns.tripleLetters.length}
+              <span>{letterPatterns.tripleLetters.length}</span>
             </div>
           </div>
         )}
@@ -254,7 +253,7 @@ const findWordDate = (targetWord: string) => {
           <div class="stats__item">
             <div class="stats__fact">-ly words</div>
             <div class="stats__value">
-              {wordEndings.ly.length}
+              <span>{wordEndings.ly.length}</span>
             </div>
           </div>
         )}
@@ -290,7 +289,8 @@ const findWordDate = (targetWord: string) => {
     .stats__item {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-small);
+        align-items: stretch;
+        gap: var(--spacing-xs);
         padding-block: var(--spacing-small);
         border-bottom: 1px solid var(--color-border);
     }
@@ -302,38 +302,8 @@ const findWordDate = (targetWord: string) => {
     .stats__value {
         font-size: 1.1rem;
         font-weight: 500;
-    }
-
-    .stats__item--featured {
-        background: var(--color-primary-light);
-        color: white;
-        border-radius: 8px;
-        padding: var(--spacing-base);
-        border: none;
-        margin-bottom: var(--spacing-small);
-    }
-
-    .stats__item--featured .stats__fact {
-        color: rgba(255, 255, 255, 0.8);
-        font-weight: 500;
-        text-transform: uppercase;
-        font-size: var(--font-size-small);
-        letter-spacing: 0.5px;
-    }
-
-    .stats__item--featured .stats__value {
-        font-size: 2rem;
-        font-weight: 800;
-        color: white;
-    }
-
-    .stats__item--featured .stats__link {
-        color: white;
-        text-decoration: none;
-    }
-
-    .stats__item--featured .stats__link:hover {
-        opacity: 0.8;
+        text-align: right;
+        min-width: 0;
     }
 
     .stats__link {
@@ -351,21 +321,23 @@ const findWordDate = (targetWord: string) => {
         font-size: 1.1rem;
         font-weight: 500;
         display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
+        flex-direction: row;
+        gap: var(--spacing-small);
+        text-align: right;
     }
 
     .stats :global(time) {
         color: var(--color-text-lighter);
         font-size: 0.8rem;
         font-weight: normal;
+        margin: 0;
     }
-
 
     /* Streak chart styles */
     .stats__streak-chart {
         flex-direction: column !important;
         gap: var(--spacing-small);
+        align-items: stretch !important;
     }
 
     .streak-chart {
@@ -414,52 +386,23 @@ const findWordDate = (targetWord: string) => {
         font-weight: 500;
     }
 
-    /* Desktop styles */
     @media (min-width: 481px) {
-        .stats__section {
-            margin-bottom: var(--spacing-large);
-        }
-
         .stats__item {
             flex-direction: row;
             justify-content: space-between;
             align-items: baseline;
+            gap: 0;
             padding-block: 0;
-        }
-
-        .stats__streak-chart {
-            flex-direction: column !important;
-            align-items: stretch !important;
-        }
-
-        .stats__item--featured {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .stats__item--featured .stats__value {
-            font-size: 2.5rem;
         }
 
         .stats__fact {
             flex-shrink: 0;
-        }
-
-        .stats :global(a) {
-            flex-direction: row;
-            gap: var(--spacing-small);
-            text-align: right;
-        }
-
-        .stats :global(time) {
-            margin: 0;
+            padding-right: 1rem;
         }
 
         .stats__value {
             text-align: right;
-            min-width: 0;
-            flex-grow: 1;
+            width: auto;
         }
     }
 </style>
