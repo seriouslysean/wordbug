@@ -2,13 +2,12 @@
 import Layout from '~layouts/Layout.astro';
 import WordDisplay from '~components/WordDisplay.astro';
 import { getCurrentWord } from '~utils/word-utils.js';
-import { getEducationalOrgSchemaData } from '~utils/schema-utils.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
 const currentWord = getCurrentWord();
-const schemas = [getEducationalOrgSchemaData()];
 ---
 
-<Layout title="Bug's (Occasional) Word of the Day" word={currentWord} schema={schemas}>
+<Layout word={currentWord} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
   <main>
     <WordDisplay />
   </main>

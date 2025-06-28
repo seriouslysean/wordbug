@@ -1,16 +1,56 @@
 /**
- * Schema.org types for structured data
- *
- * Note: astro-seo-schema accepts any valid JSON-LD schema object.
- * We use unknown for flexibility while maintaining type safety in our functions.
+ * Simple Schema.org types for structured data
+ * Focused on educational vocabulary content
  */
 
-// Schema.org structured data - astro-seo-schema accepts any valid JSON-LD
-export type SchemaItem = unknown;
-export type WebSiteSchema = unknown;
-export type DefinedTermSchema = unknown;
-export type EducationalOrgSchema = unknown;
-export type CollectionPageSchema = unknown;
+// Website schema - appears on every page
+export interface WebSiteSchema {
+  '@context': 'https://schema.org';
+  '@type': 'WebSite';
+  name: string;
+  description: string;
+  url: string;
+  author?: {
+    '@type': 'Person';
+    name: string;
+  };
+  audience?: {
+    '@type': 'EducationalAudience';
+    educationalRole: string;
+  };
+}
+
+// Word definition schema - for individual word pages
+export interface DefinedTermSchema {
+  '@context': 'https://schema.org';
+  '@type': 'DefinedTerm';
+  name: string;
+  description: string;
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet';
+    name: string;
+  };
+  datePublished?: string;
+  url?: string;
+  learningResourceType?: string;
+  educationalUse?: string;
+}
+
+// Collection page schema - for word lists  
+export interface CollectionPageSchema {
+  '@context': 'https://schema.org';
+  '@type': 'CollectionPage';
+  name: string;
+  description: string;
+  mainEntity: {
+    '@type': 'ItemList';
+    numberOfItems: number;
+  };
+  audience?: {
+    '@type': 'EducationalAudience';
+    educationalRole: string;
+  };
+}
 
 // Word data interface for schema generation
 export interface WordSchemaData {

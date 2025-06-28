@@ -5,7 +5,7 @@ import PastWords from '~components/PastWords.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 import { getUrl } from '~utils/utils';
 import { getAllWords } from '~utils/word-utils';
-import { getCollectionSchemaData } from '~utils/schema-utils.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
 const words = getAllWords();
 const wordsByYear = words.reduce((acc, word) => {
@@ -17,15 +17,9 @@ const wordsByYear = words.reduce((acc, word) => {
 
 const totalWords = words.length;
 
-// Collection schema for all words page
-const collectionSchema = getCollectionSchemaData(
-  'All Words',
-  `Complete collection of ${totalWords} vocabulary words chosen by Jacob`,
-  totalWords,
-);
 ---
 
-<Layout title="All Words | Bug's Word of the Day" schema={collectionSchema}>
+<Layout title="All Words" structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="words">
     <Heading text="All Words" secondaryText={`${totalWords} total`} />
 

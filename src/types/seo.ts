@@ -9,6 +9,8 @@ export interface SeoConfig {
   locale: string;
   canonicalBase: string;
   author: string;
+  authorUrl?: string;
+  attributionMessage?: string;
   keywords: string[];
 }
 

@@ -2,23 +2,20 @@
 import '~styles/global.css';
 import Header from '~components/Header.astro';
 import Footer from '~components/Footer.astro';
+import StructuredData from '~components/StructuredData.astro';
 import { getUrl } from '~utils/utils';
-import { getWordByDate } from '~utils/word-utils';
+import { getWordByDate, getWordDetails } from '~utils/word-utils';
 import { getSocialImageUrl } from '~utils/page-utils';
 import { seoConfig, getCanonicalUrl, getMetaDescription } from '~utils/seo-utils.ts';
-import { getWebsiteSchemaData } from '~utils/schema-utils.ts';
-import { Schema } from 'astro-seo-schema';
 import type { WordData } from '~/types/word-data';
 import { getBuildData } from '~utils/build-utils.ts';
 
-const { title, word, description, schema } = Astro.props;
+const { title, word, description, structuredDataType } = Astro.props;
 
-// SEO data generation
+// SEO data generation  
 const currentUrl = getCanonicalUrl(Astro.url.pathname);
-const pageTitle = title || seoConfig.defaultTitle;
+const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
 const metaDescription = description || getMetaDescription();
-// Page-specific schemas (passed from individual pages)
-const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 
 // Legacy word data handling for social images
 const wordData = word ? await getWordByDate(word.date) : null;
@@ -49,6 +46,18 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 
 // Build-time data for client-side injection
 const buildData = getBuildData();
+
+// Structured data
+const wordSchemaData = word ? (() => {
+  const details = getWordDetails(word);
+  return {
+    word: word.word,
+    date: word.date,
+    definition: details.definition,
+    partOfSpeech: details.partOfSpeech,
+    meta: details.meta,
+  };
+})() : null;
 ---
 
 <!doctype html>
@@ -98,13 +107,8 @@ const buildData = getBuildData();
 		<meta name="twitter:description" content={metaDescription} />
 		<meta name="twitter:image" content={socialImageUrl} />
 
-		<!-- Global Website Schema - appears on every page -->
-		<Schema item={getWebsiteSchemaData() as any} />
-
-		<!-- Page-specific schemas -->
-		{pageSchemas.map((schemaData) => (
-		  <Schema item={schemaData as any} />
-		))}
+		<!-- Structured Data -->
+		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} />
   </head>
   <body>
     <div class="layout">

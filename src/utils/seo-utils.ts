@@ -13,6 +13,8 @@ export const seoConfig: SeoConfig = {
   locale: import.meta.env.SITE_LOCALE,
   canonicalBase: import.meta.env.SITE_URL || import.meta.env.BASE_URL,
   author: import.meta.env.SITE_AUTHOR,
+  authorUrl: import.meta.env.SITE_AUTHOR_URL,
+  attributionMessage: import.meta.env.SITE_ATTRIBUTION_MESSAGE,
   keywords: import.meta.env.SITE_KEYWORDS?.split(',') || [],
 };
 

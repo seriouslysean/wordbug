@@ -4,7 +4,7 @@ import WordComponent from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
 import { getWordByDate, getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
 import { getMetaDescription } from '~utils/seo-utils.ts';
-import { getWordSchemaData } from '~utils/schema-utils.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 import type { WordData } from '~/types/word-data';
 
 export async function getStaticPaths() {
@@ -43,18 +43,13 @@ const pageDescription = getMetaDescription({
   word: wordData.word,
   definition: wordDetails.definition,
 });
-const wordSchemaData = getWordSchemaData({
-  word: wordData.word,
-  date: wordData.date,
-  ...wordDetails,
-});
 ---
 
 <Layout
-  title={`${wordData.word} | Bug's Word of the Day`}
+  title={wordData.word}
   word={wordData}
   description={pageDescription}
-  schema={wordSchemaData}
+  structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}
 >
   <main>
     <WordComponent word={wordData} />

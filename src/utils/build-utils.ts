@@ -1,6 +1,5 @@
 export interface BuildData {
   version: string;
-  shortSha: string;
   release: string;
   timestamp: string;
 }

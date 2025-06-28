@@ -1,10 +1,17 @@
 /**
  * Schema data generators - provide data, get schemas
- * Uses astro-seo-schema for type-safe JSON-LD generation
+ * Simple JSON-LD generation with proper typing
  */
 
 import { seoConfig } from './seo-utils.ts';
-import type { WebSiteSchema, DefinedTermSchema, EducationalOrgSchema, CollectionPageSchema, WordSchemaData } from '~/types/schema.ts';
+import type { WebSiteSchema, DefinedTermSchema, CollectionPageSchema, WordSchemaData } from '~/types/schema.ts';
+
+export const STRUCTURED_DATA_TYPE = {
+  WORD_SINGLE: 'WORD_SINGLE',
+  WORD_LIST: 'WORD_LIST',
+} as const;
+
+export type StructuredDataType = typeof STRUCTURED_DATA_TYPE[keyof typeof STRUCTURED_DATA_TYPE];
 
 /**
  * Global website schema data - included on every page
@@ -16,50 +23,17 @@ export function getWebsiteSchemaData(): WebSiteSchema {
     name: seoConfig.siteName,
     description: seoConfig.defaultDescription,
     url: seoConfig.canonicalBase,
-    inLanguage: 'en-US',
     author: {
       '@type': 'Person',
       name: seoConfig.author,
     },
     audience: {
       '@type': 'EducationalAudience',
-      educationalRole: ['student', 'parent', 'teacher'],
+      educationalRole: 'student',
     },
-    genre: ['Education', 'Reference', 'Vocabulary'],
-    keywords: seoConfig.keywords.join(', '),
   };
 }
 
-/**
- * Educational organization schema data for homepage
- */
-export function getEducationalOrgSchemaData(): EducationalOrgSchema {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
-    name: seoConfig.siteName,
-    description: seoConfig.defaultDescription,
-    url: seoConfig.canonicalBase,
-    educationalCredentialAwarded: 'Vocabulary Knowledge',
-    audience: {
-      '@type': 'EducationalAudience',
-      educationalRole: ['student', 'parent', 'teacher'],
-    },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Daily Vocabulary Learning',
-      itemListElement: [{
-        '@type': 'Course',
-        name: 'Word of the Day',
-        description: seoConfig.defaultDescription,
-        educationalLevel: 'All ages',
-        courseMode: 'online',
-        isAccessibleForFree: true,
-        inLanguage: 'en-US',
-      }],
-    },
-  };
-}
 
 /**
  * Generate word schema data from word details
@@ -67,41 +41,26 @@ export function getEducationalOrgSchemaData(): EducationalOrgSchema {
 export function getWordSchemaData(wordData: WordSchemaData): DefinedTermSchema | null {
   if (!wordData || !wordData.word) {return null;}
 
-  const schemaData = {
+  const schemaData: DefinedTermSchema = {
     '@context': 'https://schema.org',
-    '@type': ['DefinedTerm', 'LearningResource'],
+    '@type': 'DefinedTerm',
     name: wordData.word,
     description: wordData.definition || 'Vocabulary word definition',
-    educationalLevel: 'All ages',
-    learningResourceType: 'Vocabulary Definition',
-    educationalUse: ['Vocabulary Building', 'Language Learning', 'Reading Comprehension'],
-    audience: {
-      '@type': 'EducationalAudience',
-      educationalRole: 'student',
-    },
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       name: seoConfig.siteName,
-      description: seoConfig.defaultDescription,
     },
-    datePublished: formatDateToISO(wordData.date),
-    publisher: {
-      '@type': ['Organization', 'EducationalOrganization'],
-      name: seoConfig.siteName,
-      description: seoConfig.defaultDescription,
-    },
-    isAccessibleForFree: true,
-    inLanguage: 'en-US',
+    learningResourceType: 'vocabulary definition',
+    educationalUse: 'vocabulary building',
   };
 
   // Add optional fields if available
-  if (wordData.partOfSpeech) {
-    schemaData.additionalType = `https://schema.org/${wordData.partOfSpeech.charAt(0).toUpperCase() + wordData.partOfSpeech.slice(1)}`;
+  if (wordData.date) {
+    schemaData.datePublished = formatDateToISO(wordData.date);
   }
 
   if (wordData.meta?.sourceUrl) {
     schemaData.url = wordData.meta.sourceUrl;
-    schemaData.citation = wordData.meta.attributionText;
   }
 
   return schemaData;
@@ -118,18 +77,11 @@ export function getCollectionSchemaData(name: string, description: string, itemC
     description,
     mainEntity: {
       '@type': 'ItemList',
-      name,
-      description,
       numberOfItems: itemCount,
     },
     audience: {
       '@type': 'EducationalAudience',
       educationalRole: 'student',
-    },
-    isPartOf: {
-      '@type': 'WebSite',
-      name: seoConfig.siteName,
-      url: seoConfig.canonicalBase,
     },
   };
 }

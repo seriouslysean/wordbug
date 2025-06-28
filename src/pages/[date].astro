@@ -3,6 +3,7 @@ import Layout from '~layouts/Layout.astro';
 import Word from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
 import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
 export async function getStaticPaths() {
   const allWords = import.meta.glob('../data/words/**/*.json');
@@ -34,7 +35,7 @@ const modifiedNextWord = nextWord && {
 };
 ---
 
-<Layout title="Bug's (Occasional) Word of the Day" word={word}>
+<Layout word={word} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
   <main>
     <Word word={word} />
 

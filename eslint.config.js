@@ -19,8 +19,12 @@ export default [
         ...globals.node,
         Astro: 'readonly',
         buildData: 'readonly',
+        // Vite build-time defines
         __SENTRY_DSN__: 'readonly',
+        __SENTRY_ENVIRONMENT__: 'readonly',
+        __VERSION__: 'readonly',
         __RELEASE__: 'readonly',
+        __TIMESTAMP__: 'readonly',
       },
     },
     rules: {

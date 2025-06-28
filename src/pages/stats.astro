@@ -3,7 +3,6 @@ import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
 import WordLink from '~components/WordLink.astro';
 import { getAllWords, getWordStats, getLetterStats, getStreakStats, countSyllables } from '~utils/word-utils.js';
-import { getCollectionSchemaData } from '~utils/schema-utils.ts';
 
 // Get all words and sort by date
 const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
@@ -51,15 +50,9 @@ const findWordDate = (targetWord: string) => {
   return words.find(w => w.word === targetWord)?.date;
 };
 
-// Stats collection schema
-const statsSchema = getCollectionSchemaData(
-  'Word Statistics',
-  `Fun facts and statistics about ${totalWords} vocabulary words`,
-  totalWords,
-);
 ---
 
-<Layout title="Stats | Bug's Word of the Day" schema={statsSchema}>
+<Layout title="Stats">
   <main class="stats">
     <Heading text="Stats" secondaryText="For Nerds" />
 

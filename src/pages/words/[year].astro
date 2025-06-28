@@ -3,6 +3,7 @@ import Layout from '~layouts/Layout.astro';
 import { getAllWords } from '~utils/word-utils.js';
 import PastWords from '~components/PastWords.astro';
 import Heading from '~components/Heading.astro';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
 export async function getStaticPaths() {
   const words = getAllWords();
@@ -24,7 +25,7 @@ if (!words.length) {
 }
 ---
 
-<Layout title={`${year} Words | Bug's Word of the Day`}>
+<Layout title={`${year} Words`} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="year-words">
     <Heading level={1} text={year} secondaryText="Words in" />
     <div class="year-words__content">
