@@ -43,16 +43,7 @@ const generateWordSchema = (word: WordSchemaData): DefinedTermSchema => {
       '@type': 'DefinedTermSet',
       name: seoConfig.siteName,
     },
-    learningResourceType: 'vocabulary definition',
-    educationalUse: 'vocabulary building',
   };
-
-  if (word.date) {
-    const year = word.date.substring(0, 4);
-    const month = word.date.substring(4, 6);
-    const day = word.date.substring(6, 8);
-    wordSchema.datePublished = `${year}-${month}-${day}`;
-  }
   
   if (word.meta?.sourceUrl) {
     wordSchema.url = word.meta.sourceUrl;
@@ -88,10 +79,8 @@ if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
 }
 ---
 
-<!-- Website schema - appears on every page -->
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline />
 
-<!-- Additional schemas based on page content -->
 {schemas.map(schema => (
   <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
 ))}

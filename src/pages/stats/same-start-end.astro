@@ -1,0 +1,79 @@
+---
+import Layout from '~layouts/Layout.astro';
+import Heading from '~components/Heading.astro';
+import WordLink from '~components/WordLink.astro';
+import { getAllWords, getLetterPatternStats } from '~utils/word-utils.js';
+
+const words = getAllWords();
+const letterPatterns = getLetterPatternStats(words);
+const startEndSameWords = letterPatterns.startEndSame;
+---
+
+<Layout title="Start & End Same Letter">
+  <main class="stat-page">
+    <Heading text="Start & End Same Letter" secondaryText={`${startEndSameWords.length} words`} />
+    
+    <div class="stat-page__content">
+      <p class="stat-page__description">
+        Words that start and end with the same letter.
+      </p>
+      
+      <div class="stat-page__word-list">
+        {startEndSameWords.map(word => (
+          <WordLink word={word} />
+        ))}
+      </div>
+      
+      <div class="stat-page__nav">
+        <a href="/stats" class="stat-page__back">← Back to Stats</a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .stat-page {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+  }
+
+  .stat-page__content {
+    margin-top: var(--spacing-large);
+  }
+
+  .stat-page__description {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-large);
+    text-align: center;
+    font-size: var(--font-size-base);
+  }
+
+  .stat-page__word-list {
+    display: grid;
+    gap: var(--spacing-small);
+    margin-bottom: var(--spacing-large);
+  }
+
+  .stat-page__nav {
+    text-align: center;
+    padding-top: var(--spacing-base);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .stat-page__back {
+    color: var(--color-primary-light);
+    text-decoration: none;
+    font-size: var(--font-size-small);
+    transition: opacity 0.2s ease;
+  }
+
+  .stat-page__back:hover {
+    opacity: 0.7;
+  }
+
+  @media (min-width: 768px) {
+    .stat-page__word-list {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+</style>

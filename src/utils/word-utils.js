@@ -244,3 +244,139 @@ export function getMilestoneWords(words) {
     100: words[99],
   };
 }
+
+export function getLetterPatternStats(words) {
+  const patterns = {
+    startEndSame: [],
+    doubleLetters: [],
+    tripleLetters: [],
+    alphabetical: [],
+  };
+
+  words.forEach(wordObj => {
+    const word = wordObj.word.toLowerCase();
+    
+    // Same start and end letter
+    if (word.length > 1 && word[0] === word[word.length - 1]) {
+      patterns.startEndSame.push(wordObj);
+    }
+    
+    // Double letters
+    if (/(.)\1/.test(word)) {
+      patterns.doubleLetters.push(wordObj);
+    }
+    
+    // Triple or more same letters
+    if (/(.)\1{2,}/.test(word)) {
+      patterns.tripleLetters.push(wordObj);
+    }
+    
+    // Alphabetical order (consecutive letters)
+    const letters = word.split('');
+    let isAlphabetical = false;
+    for (let i = 0; i < letters.length - 2; i++) {
+      const a = letters[i].charCodeAt(0);
+      const b = letters[i + 1].charCodeAt(0);
+      const c = letters[i + 2].charCodeAt(0);
+      if (b === a + 1 && c === b + 1) {
+        isAlphabetical = true;
+        break;
+      }
+    }
+    if (isAlphabetical) {
+      patterns.alphabetical.push(wordObj);
+    }
+  });
+
+  return patterns;
+}
+
+export function getWordEndingStats(words) {
+  const endings = {
+    ing: [],
+    ed: [],
+    ly: [],
+  };
+
+  words.forEach(wordObj => {
+    const word = wordObj.word.toLowerCase();
+    
+    if (word.endsWith('ing')) {
+      endings.ing.push(wordObj);
+    }
+    if (word.endsWith('ed')) {
+      endings.ed.push(wordObj);
+    }
+    if (word.endsWith('ly')) {
+      endings.ly.push(wordObj);
+    }
+  });
+
+  return endings;
+}
+
+export function getCurrentStreakStats(words) {
+  if (!words.length) {
+    return {
+      currentStreak: 0,
+      longestStreak: 0,
+      isActive: false,
+    };
+  }
+
+  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+  const today = new Date();
+  const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
+  
+  // Calculate current streak
+  let currentStreak = 0;
+  const mostRecentWord = sortedWords[0];
+  
+  // Check if we have today's word or yesterday's word
+  const isActive = mostRecentWord.date >= todayString || 
+    areConsecutiveDays(mostRecentWord.date, todayString);
+  
+  if (isActive) {
+    currentStreak = 1;
+    let lastDate = mostRecentWord.date;
+    
+    for (let i = 1; i < sortedWords.length; i++) {
+      if (areConsecutiveDays(sortedWords[i].date, lastDate)) {
+        currentStreak++;
+        lastDate = sortedWords[i].date;
+      } else {
+        break;
+      }
+    }
+  }
+  
+  // Calculate longest streak
+  let longestStreak = 0;
+  let tempStreak = 1;
+  
+  for (let i = 1; i < sortedWords.length; i++) {
+    if (areConsecutiveDays(sortedWords[i].date, sortedWords[i - 1].date)) {
+      tempStreak++;
+    } else {
+      longestStreak = Math.max(longestStreak, tempStreak);
+      tempStreak = 1;
+    }
+  }
+  longestStreak = Math.max(longestStreak, tempStreak);
+  
+  return {
+    currentStreak,
+    longestStreak,
+    isActive,
+  };
+}
+
+function areConsecutiveDays(date1, date2) {
+  const d1 = new Date(date1.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+  const d2 = new Date(date2.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+  d1.setHours(0, 0, 0, 0);
+  d2.setHours(0, 0, 0, 0);
+  const diffTime = Math.abs(d2 - d1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays === 1;
+}

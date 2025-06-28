@@ -30,10 +30,7 @@ export interface DefinedTermSchema {
     '@type': 'DefinedTermSet';
     name: string;
   };
-  datePublished?: string;
   url?: string;
-  learningResourceType?: string;
-  educationalUse?: string;
 }
 
 // Collection page schema - for word lists  
