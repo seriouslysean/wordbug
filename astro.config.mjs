@@ -27,7 +27,8 @@ if (missingEnvVars.length > 0) {
 
 const site = process.env.SITE_URL;
 const base = process.env.BASE_PATH;
-const isProdRelease = process.env.SENTRY_ENVIRONMENT === 'production';
+const sentryEnvironment = process.env.SENTRY_ENVIRONMENT || 'development';
+const isProdRelease = sentryEnvironment === 'production';
 const shortSha = execSync('git rev-parse --short HEAD').toString().trim();
 const version = `${pkg.version}${isProdRelease ? '' : '-dev'}`;
 const release = `${pkg.name}@${version}+${shortSha}`;
@@ -62,6 +63,7 @@ export default defineConfig({
       __VERSION__: JSON.stringify(pkg.version),
       __RELEASE__: JSON.stringify(release),
       __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
+      __SENTRY_ENVIRONMENT__: JSON.stringify(sentryEnvironment),
       __TIMESTAMP__: JSON.stringify(timestamp),
     },
   },
