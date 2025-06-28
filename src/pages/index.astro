@@ -3,20 +3,15 @@ import Layout from '~layouts/Layout.astro';
 import WordDisplay from '~components/WordDisplay.astro';
 import { getCurrentWord } from '~utils/word-utils.js';
 import { getEducationalOrgSchemaData } from '~utils/schema-utils.ts';
-import { getWebsiteHealthData } from '~utils/version-utils.js';
 
 const currentWord = getCurrentWord();
 const schemas = [getEducationalOrgSchemaData()];
-const healthData = getWebsiteHealthData();
 ---
 
 <Layout title="Bug's (Occasional) Word of the Day" word={currentWord} schema={schemas}>
   <main>
     <WordDisplay />
   </main>
-  <script define:vars={{ healthData }} is:inline>
-    window.wordbug = healthData;
-  </script>
 </Layout>
 
 <style>

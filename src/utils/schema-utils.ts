@@ -67,7 +67,6 @@ export function getEducationalOrgSchemaData(): EducationalOrgSchema {
 export function getWordSchemaData(wordData: WordSchemaData): DefinedTermSchema | null {
   if (!wordData || !wordData.word) {return null;}
 
-  // @ts-ignore
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': ['DefinedTerm', 'LearningResource'],

@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    wordbug: Record<string, unknown>;
+    app: Record<string, unknown>;
   }
 }
 export {};

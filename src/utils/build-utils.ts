@@ -1,12 +1,6 @@
-/**
- * Build-time utilities - functions for generating build data
- * This data is safe to expose in the browser and uses Vite's define globals
- * Global constants are defined in src/types/vite-env.d.ts
- */
-
 export interface BuildData {
   version: string;
-  sha: string;
+  shortSha: string;
   release: string;
   timestamp: string;
 }
@@ -18,17 +12,9 @@ export interface BuildData {
  */
 export function getBuildData(): BuildData {
   return {
-    version: __BUILD_VERSION__,
-    sha: __BUILD_SHA__,
-    release: __BUILD_RELEASE__,
-    timestamp: __BUILD_TIMESTAMP__,
+    version: __VERSION__,
+    release: __RELEASE__,
+    timestamp: __TIMESTAMP__,
   };
 }
 
-/**
- * Gets the namespace key for window object
- * @returns {string} Namespace key name
- */
-export function getNamespaceKey(): string {
-  return __NAMESPACE_KEY__;
-}
