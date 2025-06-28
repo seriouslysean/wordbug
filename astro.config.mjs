@@ -1,24 +1,14 @@
 import { defineConfig } from 'astro/config';
-import { loadEnv } from 'vite';
 import sentry from '@sentry/astro';
 import sitemap from '@astrojs/sitemap';
+import { execSync } from 'node:child_process';
+
 import pkg from './package.json' with { type: 'json' };
 
-// Set Sentry release name immediately if not already set
-if (!process.env.SENTRY_RELEASE) {
-  const isProd = process.env.NODE_ENV === 'production';
-  const commit = process.env.GITHUB_SHA || 'local-dev';
-  const shortSha = commit === 'local-dev' ? 'local' : commit.slice(0, 7);
-  const version = `${pkg.version}${isProd ? '' : '-dev'}`;
-  process.env.SENTRY_RELEASE = `${pkg.name}@${version}+${shortSha}`;
+// Load .env locally, skip in CI (GitHub Actions etc)
+if (!process.env.CI) {
+  import('dotenv/config');
 }
-
-const mode = process.env.NODE_ENV || 'development';
-const envFromFiles = loadEnv(mode, process.cwd(), '');
-const env = {
-  ...envFromFiles,
-  ...process.env,
-};
 
 // Validate required environment variables
 const requiredEnvVars = [
@@ -30,26 +20,22 @@ const requiredEnvVars = [
   'WORDNIK_API_KEY',
 ];
 
-const missingEnvVars = requiredEnvVars.filter(envVar => !env[envVar]);
+const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
 if (missingEnvVars.length > 0) {
   throw new Error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
 }
 
-const site = env.SITE_URL;
-const base = env.BASE_PATH;
-const isProd = mode === 'production';
-const sentryEnabled = env.SENTRY_ENABLED === 'true';
-const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
-const commit = env.GITHUB_SHA || 'local-dev';
-const shortSha = commit === 'local-dev' ? 'local' : commit.slice(0, 7);
-const version = `${pkg.version}${isProd ? '' : '-dev'}`;
+const site = process.env.SITE_URL;
+const base = process.env.BASE_PATH;
+const isProdRelease = process.env.SENTRY_ENVIRONMENT === 'production';
+const shortSha = execSync('git rev-parse --short HEAD').toString().trim();
+const version = `${pkg.version}${isProdRelease ? '' : '-dev'}`;
 const release = `${pkg.name}@${version}+${shortSha}`;
+const timestamp = new Date().toISOString();
 
-const semanticTags = {
-  version: pkg.version,
-  semver: pkg.version,
-};
-
+if (!process.env.SENTRY_RELEASE) {
+  process.env.SENTRY_RELEASE = release;
+}
 
 export default defineConfig({
   site,
@@ -73,46 +59,18 @@ export default defineConfig({
       },
     },
     define: {
-      __BUILD_VERSION__: JSON.stringify(pkg.version),
-      __BUILD_SHA__: JSON.stringify(shortSha),
-      __BUILD_RELEASE__: JSON.stringify(release),
-      __BUILD_TIMESTAMP__: JSON.stringify(new Date().toISOString()),
-      __NAMESPACE_KEY__: JSON.stringify(pkg.name),
-      __PACKAGE_NAME__: JSON.stringify(pkg.name),
-      __PACKAGE_DESCRIPTION__: JSON.stringify(pkg.description),
-      __PACKAGE_AUTHOR__: JSON.stringify(pkg.author),
+      __VERSION__: JSON.stringify(pkg.version),
+      __RELEASE__: JSON.stringify(release),
+      __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
+      __TIMESTAMP__: JSON.stringify(timestamp),
     },
   },
   integrations: [
-    ...(sentryEnabled ? [sentry({
-      beforeSend(event) {
-        if (!sentryEnabled) {return null;}
-        return event;
-      },
-      project: env.SENTRY_PROJECT,
-      authToken: env.SENTRY_AUTH_TOKEN,
-      release: {
-        name: release,
-        create: true,
-        finalize: isProd,
-        setCommits: {
-          auto: false,
-          ignoreMissing: true,
-          ignoreEmpty: true,
-        },
-      },
+    ...(process.env.SENTRY_ENABLED === 'true' ? [sentry({
       sourceMapsUploadOptions: {
-        project: env.SENTRY_PROJECT,
-        authToken: env.SENTRY_AUTH_TOKEN,
-        release,
-        environment,
-        telemetry: false,
-      },
-      initialScope: {
-        tags: {
-          ...semanticTags,
-          environment,
-        },
+        project: process.env.SENTRY_PROJECT,
+        org: process.env.SENTRY_ORG,
+        authToken: process.env.SENTRY_AUTH_TOKEN,
       },
     })] : []),
     sitemap(),

@@ -9,7 +9,7 @@ import { seoConfig, getCanonicalUrl, getMetaDescription } from '~utils/seo-utils
 import { getWebsiteSchemaData } from '~utils/schema-utils.ts';
 import { Schema } from 'astro-seo-schema';
 import type { WordData } from '~/types/word-data';
-import { getBuildData, getNamespaceKey } from '~utils/build-utils.ts';
+import { getBuildData } from '~utils/build-utils.ts';
 
 const { title, word, description, schema } = Astro.props;
 
@@ -49,7 +49,6 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 
 // Build-time data for client-side injection
 const buildData = getBuildData();
-const namespaceKey = getNamespaceKey();
 ---
 
 <!doctype html>
@@ -108,12 +107,6 @@ const namespaceKey = getNamespaceKey();
 		))}
   </head>
   <body>
-    <script define:vars={{ buildData, namespaceKey }} is:inline>
-      // Initialize window namespace with build-time data
-      if (typeof window !== 'undefined' && !window[namespaceKey]) {
-        window[namespaceKey] = buildData;
-      }
-    </script>
     <div class="layout">
       <Header />
       <div class="content">
@@ -123,6 +116,12 @@ const namespaceKey = getNamespaceKey();
       </div>
       <Footer />
     </div>
+    <script define:vars={{ buildData }} is:inline>
+      // Initialize window namespace with build-time data
+      if (typeof window !== 'undefined' && !window.app) {
+        window.app = buildData;
+      }
+    </script>
   </body>
 </html>
 
