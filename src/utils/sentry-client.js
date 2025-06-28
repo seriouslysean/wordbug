@@ -1,7 +1,7 @@
 import { captureException, captureMessage, withScope } from '@sentry/astro';
 
 export function logError(error, context = {}, level = 'error') {
-  if (!import.meta.env.SENTRY_ENABLED === 'true') {
+  if (import.meta.env.SENTRY_ENABLED !== 'true') {
     return;
   }
   if (Object.keys(context).length > 0) {

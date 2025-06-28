@@ -33,23 +33,11 @@ const sentryEnabled = env.SENTRY_ENABLED === 'true';
 const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 const commit = env.GITHUB_SHA || 'local-dev';
 const shortSha = commit === 'local-dev' ? 'local' : commit.slice(0, 7);
-const version = `${pkg.version}${isProd ? '' : '-dev'}`;
-const release = `${pkg.name}@${version}+${shortSha}`;
-// Add semantic version tags for Sentry's semver detection
+const release = commit;
 const semanticTags = {
   version: pkg.version,
   semver: pkg.version,
 };
-
-// Debug logging for release configuration
-console.log('Sentry Release Config:', {
-  mode,
-  isProd,
-  environment,
-  release,
-  sentryEnabled,
-});
-const namespaceKey = pkg.name;
 
 export default defineConfig({
   site,
@@ -77,7 +65,7 @@ export default defineConfig({
       __BUILD_SHA__: JSON.stringify(shortSha),
       __BUILD_RELEASE__: JSON.stringify(release),
       __BUILD_TIMESTAMP__: JSON.stringify(new Date().toISOString()),
-      __NAMESPACE_KEY__: JSON.stringify(namespaceKey),
+      __NAMESPACE_KEY__: JSON.stringify(pkg.name),
       __PACKAGE_NAME__: JSON.stringify(pkg.name),
       __PACKAGE_DESCRIPTION__: JSON.stringify(pkg.description),
       __PACKAGE_AUTHOR__: JSON.stringify(pkg.author),
@@ -85,22 +73,10 @@ export default defineConfig({
   },
   integrations: [
     ...(sentryEnabled ? [sentry({
-      dsn: env.SENTRY_DSN,
-      environment,
-      release,
-      // Standard performance monitoring
-      tracesSampleRate: isProd ? 0.1 : 1.0,
-      // Standard session replay
-      replaysSessionSampleRate: isProd ? 0.1 : 1.0,
-      replaysOnErrorSampleRate: 1.0,
-      // Standard privacy settings
-      sendDefaultPii: false,
       beforeSend(event) {
-        // Only send in production or when explicitly enabled
         if (!sentryEnabled) {return null;}
         return event;
       },
-      // Standard release management
       sourceMapsUploadOptions: {
         project: env.SENTRY_PROJECT,
         authToken: env.SENTRY_AUTH_TOKEN,
@@ -112,12 +88,11 @@ export default defineConfig({
           ignoreMissing: true,
           ignoreEmpty: true,
         },
+        telemetry: false,
       },
-      // Standard tagging with semver support
       initialScope: {
         tags: {
           ...semanticTags,
-          commit: shortSha,
           environment,
         },
       },
