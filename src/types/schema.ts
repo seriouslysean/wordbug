@@ -33,7 +33,7 @@ export interface DefinedTermSchema {
   url?: string;
 }
 
-// Collection page schema - for word lists  
+// Collection page schema - for word lists
 export interface CollectionPageSchema {
   '@context': 'https://schema.org';
   '@type': 'CollectionPage';
