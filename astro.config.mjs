@@ -12,13 +12,18 @@ const env = {
 };
 const site = env.SITE_URL;
 const base = env.BASE_PATH;
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = mode === 'production';
 const sentryEnabled = env.SENTRY_ENABLED === 'true';
 const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 const commit = env.GITHUB_SHA || 'local-dev';
 const shortSha = commit.slice(0, 7);
 const version = `${pkg.version}${isProd ? '' : '-dev'}`;
 const release = `${pkg.name}@${version}+${shortSha}`;
+// Add semantic version tags for Sentry's semver detection
+const semanticTags = {
+  version: pkg.version,
+  semver: pkg.version,
+};
 const namespaceKey = pkg.name;
 
 export default defineConfig({
@@ -85,10 +90,10 @@ export default defineConfig({
           },
         }),
       },
-      // Standard tagging
+      // Standard tagging with semver support
       initialScope: {
         tags: {
-          version: pkg.version,
+          ...semanticTags,
           commit: shortSha,
           environment,
         },
