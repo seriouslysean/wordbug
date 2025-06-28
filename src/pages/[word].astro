@@ -3,8 +3,8 @@ import Layout from '~layouts/Layout.astro';
 import WordComponent from '~components/Word.astro';
 import WordLink from '~components/WordLink.astro';
 import { getWordByDate, getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
-import { getMetaDescription } from '~config/seo';
-import { getWordSchemaData } from '~config/schema-data';
+import { getMetaDescription } from '~utils/seo-utils.ts';
+import { getWordSchemaData } from '~utils/schema-utils.ts';
 import type { WordData } from '~/types/word-data';
 
 export async function getStaticPaths() {

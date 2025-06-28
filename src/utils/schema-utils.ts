@@ -3,13 +3,13 @@
  * Uses astro-seo-schema for type-safe JSON-LD generation
  */
 
-import { seoConfig } from './seo.js';
+import { seoConfig } from './seo-utils.ts';
+import type { WebSiteSchema, DefinedTermSchema, EducationalOrgSchema, CollectionPageSchema, WordSchemaData } from '~/types/schema.ts';
 
 /**
  * Global website schema data - included on every page
- * @returns {Object} Website schema data
  */
-export function getWebsiteSchemaData() {
+export function getWebsiteSchemaData(): WebSiteSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -32,9 +32,8 @@ export function getWebsiteSchemaData() {
 
 /**
  * Educational organization schema data for homepage
- * @returns {Object} EducationalOrganization schema data
  */
-export function getEducationalOrgSchemaData() {
+export function getEducationalOrgSchemaData(): EducationalOrgSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
@@ -64,18 +63,11 @@ export function getEducationalOrgSchemaData() {
 
 /**
  * Generate word schema data from word details
- * @param {Object} wordData - Word data object
- * @param {string} wordData.word - The word
- * @param {string} wordData.date - Date in YYYYMMDD format
- * @param {string} wordData.definition - Definition text
- * @param {string} wordData.partOfSpeech - Part of speech
- * @param {Object} wordData.meta - Meta information
- * @returns {Object} Word schema data
  */
-export function getWordSchemaData(wordData) {
+export function getWordSchemaData(wordData: WordSchemaData): DefinedTermSchema | null {
   if (!wordData || !wordData.word) {return null;}
 
-  const schemaData = {
+  const schemaData: any = {
     '@context': 'https://schema.org',
     '@type': ['DefinedTerm', 'LearningResource'],
     name: wordData.word,
@@ -117,12 +109,8 @@ export function getWordSchemaData(wordData) {
 
 /**
  * Generate collection schema data
- * @param {string} name - Collection name
- * @param {string} description - Collection description
- * @param {number} itemCount - Number of items
- * @returns {Object} Collection schema data
  */
-export function getCollectionSchemaData(name, description, itemCount) {
+export function getCollectionSchemaData(name: string, description: string, itemCount: number): CollectionPageSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -148,10 +136,8 @@ export function getCollectionSchemaData(name, description, itemCount) {
 
 /**
  * Convert YYYYMMDD date to ISO format
- * @param {string} dateStr - Date in YYYYMMDD format
- * @returns {string} ISO date string
  */
-function formatDateToISO(dateStr) {
+function formatDateToISO(dateStr: string): string {
   if (!dateStr || dateStr.length !== 8) {
     return new Date().toISOString().split('T')[0];
   }

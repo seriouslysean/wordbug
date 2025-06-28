@@ -16,7 +16,9 @@ const isProd = process.env.NODE_ENV === 'production';
 const sentryEnabled = env.SENTRY_ENABLED === 'true';
 const environment = env.SENTRY_ENVIRONMENT || (isProd ? 'production' : 'development');
 const commit = env.GITHUB_SHA || 'local-dev';
-const release = `wordbug@${pkg.version}`;
+const shortSha = commit.slice(0, 7);
+const release = `${pkg.name}@${pkg.version}+${shortSha}`;
+const namespaceKey = pkg.name;
 
 export default defineConfig({
   site,
@@ -38,6 +40,13 @@ export default defineConfig({
         '~styles': '/src/styles',
         '~config': '/src/config',
       },
+    },
+    define: {
+      __BUILD_VERSION__: JSON.stringify(pkg.version),
+      __BUILD_SHA__: JSON.stringify(shortSha),
+      __BUILD_RELEASE__: JSON.stringify(release),
+      __BUILD_TIMESTAMP__: JSON.stringify(new Date().toISOString()),
+      __NAMESPACE_KEY__: JSON.stringify(namespaceKey),
     },
   },
   integrations: [
@@ -76,7 +85,7 @@ export default defineConfig({
       initialScope: {
         tags: {
           version: pkg.version,
-          commit: commit.slice(0, 7),
+          commit: shortSha,
           environment,
         },
       },

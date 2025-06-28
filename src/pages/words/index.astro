@@ -5,7 +5,7 @@ import PastWords from '~components/PastWords.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 import { getUrl } from '~utils/utils';
 import { getAllWords } from '~utils/word-utils';
-import { getCollectionSchemaData } from '~config/schema-data';
+import { getCollectionSchemaData } from '~utils/schema-utils.ts';
 
 const words = getAllWords();
 const wordsByYear = words.reduce((acc, word) => {

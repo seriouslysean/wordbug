@@ -2,7 +2,7 @@
 import Layout from '~layouts/Layout.astro';
 import WordDisplay from '~components/WordDisplay.astro';
 import { getCurrentWord } from '~utils/word-utils.js';
-import { getEducationalOrgSchemaData } from '~config/schema-data.js';
+import { getEducationalOrgSchemaData } from '~utils/schema-utils.ts';
 import { getWebsiteHealthData } from '~utils/version-utils.js';
 
 const currentWord = getCurrentWord();

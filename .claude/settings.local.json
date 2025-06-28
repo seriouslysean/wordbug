@@ -22,7 +22,8 @@
       "WebFetch(domain:docs.astro.build)",
       "Bash(npx eslint:*)",
       "WebFetch(domain:docs.sentry.io)",
-      "Bash(npm run typecheck:*)"
+      "Bash(npm run typecheck:*)",
+      "WebFetch(domain:www.npmjs.com)"
     ],
     "deny": []
   }

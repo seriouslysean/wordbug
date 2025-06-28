@@ -1,13 +1,12 @@
-import { getWebsiteHealthData } from '~utils/version-utils.js';
+import { getBuildData } from '~config/build-config.ts';
 
 export function GET() {
-  const healthData = getWebsiteHealthData();
+  const buildData = getBuildData();
 
   return new Response(
     JSON.stringify({
       status: 'ok',
-      timestamp: new Date().toISOString(),
-      ...healthData,
+      ...buildData,
     }),
     {
       headers: { 'Content-Type': 'application/json' },

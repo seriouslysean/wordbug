@@ -5,10 +5,11 @@ import Footer from '~components/Footer.astro';
 import { getUrl } from '~utils/utils';
 import { getWordByDate } from '~utils/word-utils';
 import { getSocialImageUrl } from '~utils/page-utils';
-import { seoConfig, getCanonicalUrl, getMetaDescription } from '~config/seo';
-import { getWebsiteSchemaData } from '~config/schema-data';
+import { seoConfig, getCanonicalUrl, getMetaDescription } from '~utils/seo-utils.ts';
+import { getWebsiteSchemaData } from '~utils/schema-utils.ts';
 import { Schema } from 'astro-seo-schema';
 import type { WordData } from '~/types/word-data';
+import { getBuildData, getNamespaceKey } from '~config/build-config.ts';
 
 const { title, word, description, schema } = Astro.props;
 
@@ -45,6 +46,10 @@ const formatPageTitle = (pageTitle: string, currentWord: WordData) => {
 
 // Support legacy title formatting
 const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
+
+// Build-time data for client-side injection
+const buildData = getBuildData();
+const namespaceKey = getNamespaceKey();
 ---
 
 <!doctype html>
@@ -95,14 +100,20 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 		<meta name="twitter:image" content={socialImageUrl} />
 
 		<!-- Global Website Schema - appears on every page -->
-		<Schema item={getWebsiteSchemaData()} />
+		<Schema item={getWebsiteSchemaData() as any} />
 
 		<!-- Page-specific schemas -->
 		{pageSchemas.map((schemaData) => (
-		  <Schema item={schemaData} />
+		  <Schema item={schemaData as any} />
 		))}
   </head>
   <body>
+    <script define:vars={{ buildData, namespaceKey }} is:inline>
+      // Initialize window namespace with build-time data
+      if (typeof window !== 'undefined' && !window[namespaceKey]) {
+        window[namespaceKey] = buildData;
+      }
+    </script>
     <div class="layout">
       <Header />
       <div class="content">
