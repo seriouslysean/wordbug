@@ -1,0 +1,143 @@
+{
+    "word": "darned",
+    "date": "20250628",
+    "data": [
+        {
+            "id": "D5031600-1",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Damned.",
+            "sequence": "1",
+            "score": 0,
+            "word": "darned",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/darned",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "text": "an intensifying expletive; a eupehmism for <altname>damned</altname>.",
+            "word": "darned",
+            "exampleUses": [
+                {
+                    "text": "for no <ex>darned</ex> reason at all",
+                    "position": 0
+                }
+            ],
+            "attributionUrl": "http://gcide.gnu.org.ua/",
+            "wordnikUrl": "https://www.wordnik.com/words/darned",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "verb",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "Simple past tense and past participle of <xref>darn</xref>. See <xref>etymology 1</xref> (\"damn\") and <xref>etymology 2</xref> (\"mend\")",
+            "word": "darned",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/darned",
+            "citations": [],
+            "exampleUses": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "A <xref>minced oath</xref> for <xref>damned</xref>",
+            "labels": [
+                {
+                    "text": "euphemistic",
+                    "type": "usage"
+                }
+            ],
+            "word": "darned",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/darned",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adverb",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "text": "<xref>Damned</xref>, <xref>extremely</xref>",
+            "labels": [
+                {
+                    "text": "degree",
+                    "type": "miscellaneous"
+                }
+            ],
+            "word": "darned",
+            "attributionUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+            "wordnikUrl": "https://www.wordnik.com/words/darned",
+            "citations": [],
+            "exampleUses": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "text": "expletives used informally as intensifiers",
+            "word": "darned",
+            "exampleUses": [
+                {
+                    "text": "not a blessed dime",
+                    "position": 0
+                },
+                {
+                    "text": "a deuced idiot",
+                    "position": 0
+                },
+                {
+                    "text": "a blame cold winter",
+                    "position": 0
+                },
+                {
+                    "text": "an infernal nuisance",
+                    "position": 0
+                },
+                {
+                    "text": "I'll be damned (or blessed or darned or goddamned) if I'll do any such thing",
+                    "position": 0
+                },
+                {
+                    "text": "it's a blamed shame",
+                    "position": 0
+                },
+                {
+                    "text": "he's a damn (or goddam or goddamned) fool",
+                    "position": 0
+                }
+            ],
+            "attributionUrl": "https://wordnet.princeton.edu/",
+            "wordnikUrl": "https://www.wordnik.com/words/darned",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        }
+    ]
+}
