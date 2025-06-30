@@ -19,7 +19,15 @@
 import https from 'https';
 import http from 'http';
 import { URL } from 'url';
-import { getArgValue } from './utils.js';
+
+// Get the value for a CLI flag from an argument array
+function getArgValue(flag, argsArr) {
+  const idx = argsArr.findIndex(arg => arg === flag);
+  if (idx !== -1 && argsArr[idx + 1] && !argsArr[idx + 1].startsWith('--')) {
+    return argsArr[idx + 1];
+  }
+  return undefined;
+}
 
 // Parse command line arguments
 const args = process.argv.slice(2);

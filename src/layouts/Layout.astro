@@ -63,7 +63,7 @@ const wordSchemaData = word ? (() => {
 <html lang={seoConfig.locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
 
 		<!-- SEO Meta Tags -->
@@ -76,6 +76,7 @@ const wordSchemaData = word ? (() => {
 		<!-- Mobile/Responsive Meta Tags -->
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="theme-color" content="#121212" />
+		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
@@ -87,8 +88,9 @@ const wordSchemaData = word ? (() => {
 		<meta name="education-level" content="all-ages" />
 		<meta name="resource-type" content="educational-website" />
 
-		<!-- Favicon -->
+		<!-- Favicon and PWA -->
 		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')} />
+		<link rel="manifest" href={getUrl('/manifest.json')} />
 
 		<!-- Humans.txt reference -->
 		<link type="text/plain" rel="author" href={getUrl('/humans.txt')} />

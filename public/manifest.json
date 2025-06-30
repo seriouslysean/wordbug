@@ -1,0 +1,20 @@
+{
+  "name": "Bug's (Occasional) Word of the Day",
+  "short_name": "wordbug",
+  "description": "Educational vocabulary site featuring words that Jacob thinks are cool",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "orientation": "portrait-primary",
+  "categories": ["education", "reference"],
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
