@@ -10,12 +10,12 @@ export const seoConfig: SeoConfig = {
   defaultTitle: import.meta.env.SITE_TITLE,
   defaultDescription: import.meta.env.SITE_DESCRIPTION,
   siteName: import.meta.env.SITE_NAME,
-  locale: import.meta.env.SITE_LOCALE,
+  locale: import.meta.env.SITE_LOCALE || 'en-US',
   canonicalBase: import.meta.env.SITE_URL || import.meta.env.BASE_URL,
   author: import.meta.env.SITE_AUTHOR,
   authorUrl: import.meta.env.SITE_AUTHOR_URL,
   attributionMessage: import.meta.env.SITE_ATTRIBUTION_MESSAGE,
-  keywords: import.meta.env.SITE_KEYWORDS?.split(',') || [],
+  keywords: (import.meta.env.SITE_KEYWORDS || '').split(',').filter(Boolean),
 };
 
 /**
