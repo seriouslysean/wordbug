@@ -1,7 +1,7 @@
 ---
 import Layout from '~layouts/Layout.astro';
 import WordComponent from '~components/Word.astro';
-import WordLink from '~components/WordLink.astro';
+import WordNav from '~components/WordNav.astro';
 import { getWordByDate, getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
 import { getMetaDescription } from '~utils/seo-utils.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
@@ -14,13 +14,27 @@ export async function getStaticPaths() {
 
   for (const path in allWords) {
     const wordData = await allWords[path]();
-    paths.push({ params: { word: wordData.word }, props: { date: wordData.date } });
+    // Ensure word URLs are always lowercase for consistency
+    paths.push({ params: { word: wordData.word.toLowerCase() }, props: { date: wordData.date } });
+
+    // Also add a redirect path if the original word had capital letters
+    if (wordData.word !== wordData.word.toLowerCase()) {
+      paths.push({
+        params: { word: wordData.word },
+        props: { redirect: true, target: wordData.word.toLowerCase() },
+      });
+    }
   }
 
   return paths;
 }
 
-const { date } = Astro.props;
+const { date, redirect, target } = Astro.props;
+
+// Handle redirect for capitalized word variants
+if (redirect && target) {
+  return Astro.redirect(`/${target}`, 301);
+}
 
 const wordData = await getWordByDate(date);
 const { previousWord, nextWord } = await getAdjacentWords(date);
@@ -29,13 +43,7 @@ if (!wordData) {
   return Astro.redirect('/404');
 }
 
-// Check if next word is today's word and modify its URL if it is
-const today = new Date();
-const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
-const modifiedNextWord = nextWord && {
-  ...nextWord,
-  date: nextWord.date === todayString ? '' : nextWord.date,
-};
+// The WordNav component will handle the current word logic
 
 // Generate SEO data
 const wordDetails = getWordDetails(wordData);
@@ -53,79 +61,14 @@ const pageDescription = getMetaDescription({
 >
   <main>
     <WordComponent word={wordData} />
-    <nav class="word-nav" aria-label="Word navigation">
-      <div class="word-nav__container">
-        <div class="word-nav__previous">
-          {previousWord && (
-            <>
-              <span class="word-nav__label">Previous Word</span>
-              <WordLink word={previousWord} />
-            </>
-          )}
-        </div>
-        <div class="word-nav__next">
-          {modifiedNextWord && (
-            <>
-              <span class="word-nav__label">Next Word</span>
-              <WordLink word={modifiedNextWord} />
-            </>
-          )}
-        </div>
-      </div>
-    </nav>
+    <WordNav
+      previousWord={previousWord}
+      nextWord={nextWord}
+      previousLabel="Previous Word"
+      nextLabel="Next Word"
+      ariaLabel="Word navigation"
+    />
   </main>
 </Layout>
 
-<style>
-    .word-nav {
-        width: 100%;
-        margin: var(--spacing-large) 0;
-    }
 
-    .word-nav__container {
-        width: 100%;
-        max-width: var(--content-width-medium);
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        gap: var(--spacing-base);
-    }
-
-    .word-nav__previous,
-    .word-nav__next {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xs);
-        min-width: 160px;
-    }
-
-    .word-nav__next {
-        text-align: right;
-    }
-
-    .word-nav__label {
-        font-size: var(--font-size-small);
-        color: var(--color-text-light);
-        opacity: 0.7;
-    }
-
-    .word-nav__next :global(.word-link) {
-        flex-direction: row-reverse;
-    }
-
-    .word-nav__next :global(.word-link__date) {
-        margin-left: 0;
-        margin-right: var(--spacing-base);
-    }
-
-    .word-nav__placeholder {
-        min-height: 2.5rem;
-    }
-
-    @media (max-width: 768px) {
-        .word-nav__previous,
-        .word-nav__next {
-            min-width: 120px;
-        }
-    }
-</style>

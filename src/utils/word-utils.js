@@ -1,5 +1,6 @@
 import { transformExistingWordData } from '~adapters/wordnik.js';
 import { logSentryError } from './sentry-client.js';
+import crypto from 'crypto';
 
 const wordFiles = import.meta.glob('../data/words/**/*.json', { eager: true });
 
@@ -254,24 +255,29 @@ export function getCurrentStreakStats(words) {
   const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
   const today = new Date();
   const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
+  const yesterdayDate = new Date(today);
+  yesterdayDate.setDate(today.getDate() - 1);
+  const yesterdayString = yesterdayDate.toISOString().slice(0, 10).replace(/-/g, '');
+
+  // Check if streak is active (a word exists for today or yesterday)
+  const mostRecentWord = sortedWords[0];
+  const isActive = mostRecentWord.date === todayString || mostRecentWord.date === yesterdayString;
 
   // Calculate current streak
   let currentStreak = 0;
-  const mostRecentWord = sortedWords[0];
-
-  // Check if we have today's word or yesterday's word
-  const isActive = mostRecentWord.date >= todayString ||
-    areConsecutiveDays(mostRecentWord.date, todayString);
 
   if (isActive) {
+    // Start with 1 for the most recent day
     currentStreak = 1;
     let lastDate = mostRecentWord.date;
 
     for (let i = 1; i < sortedWords.length; i++) {
+      // Check if this word is from the day before the last counted day
       if (areConsecutiveDays(sortedWords[i].date, lastDate)) {
         currentStreak++;
         lastDate = sortedWords[i].date;
       } else {
+        // If a day was missed, the streak is broken
         break;
       }
     }
@@ -291,6 +297,11 @@ export function getCurrentStreakStats(words) {
   }
   longestStreak = Math.max(longestStreak, tempStreak);
 
+  // If there's only one word, longestStreak should be 1
+  if (words.length === 1) {
+    longestStreak = 1;
+  }
+
   return {
     currentStreak,
     longestStreak,
@@ -298,12 +309,35 @@ export function getCurrentStreakStats(words) {
   };
 }
 
-function areConsecutiveDays(date1, date2) {
-  const d1 = new Date(date1.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
-  const d2 = new Date(date2.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
-  d1.setHours(0, 0, 0, 0);
-  d2.setHours(0, 0, 0, 0);
-  const diffTime = Math.abs(d2 - d1);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+function areConsecutiveDays(olderDate, newerDate) {
+  // Convert dates from YYYYMMDD format to Date objects
+  const dOlder = new Date(olderDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+  const dNewer = new Date(newerDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+
+  // Normalize times to midnight
+  dOlder.setHours(0, 0, 0, 0);
+  dNewer.setHours(0, 0, 0, 0);
+
+  // Calculate the difference in milliseconds and convert to days
+  const diffTime = dNewer - dOlder;
+  const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+  // For consecutive days, the older date should be exactly one day before the newer date
   return diffDays === 1;
+}
+
+/**
+ * Generates a SHA-256 hash (hex) from a list of words and their count.
+ * @param words Array of word strings
+ * @returns string hash as hex string
+ */
+export function generateWordDataHash(words) {
+  const sorted = [...words].sort();
+  const input = `${sorted.length}:${sorted.join(',')}`;
+  return crypto.createHash('sha256').update(input).digest('hex');
+}
+
+// Utility function to format word count with singular/plural form
+export function formatWordCount(count) {
+  return `${count} ${count === 1 ? 'word' : 'words'}`;
 }

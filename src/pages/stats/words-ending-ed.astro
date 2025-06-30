@@ -1,61 +1,54 @@
 ---
 import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
-import WordLink from '~components/WordLink.astro';
-import { getAllWords, getWordEndingStats } from '~utils/word-utils.js';
+import WordList from '~components/WordList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
+import { getAllWords, getWordEndingStats, formatWordCount } from '~utils/word-utils.js';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
 const words = getAllWords();
 const wordEndings = getWordEndingStats(words);
 const edWords = wordEndings.ed;
+
+// SEO metadata
+const title = '-ed words';
+const description = `${formatWordCount(edWords.length)} that end with the suffix "-ed".`;
 ---
 
-<Layout title="Words Ending in -ed">
-  <main class="stat-page">
-    <Heading text="Words Ending in -ed" secondaryText={`${edWords.length} words`} />
-    
-    <div class="stat-page__content">
-      <p class="stat-page__description">
-        Words that end with the suffix "-ed".
-      </p>
-      
-      <div class="stat-page__word-list">
-        {edWords.map(word => (
-          <WordLink word={word} />
-        ))}
-      </div>
-      
-      <div class="stat-page__nav">
-        <a href="/stats" class="stat-page__back">← Back to Stats</a>
-      </div>
-    </div>
+<Layout
+  title={title}
+  description={description}
+  structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
+>
+  <main class="words">
+    <Heading text={title} secondaryText={formatWordCount(edWords.length)} />
+
+    <DescriptionText text="Words ending with the suffix '-ed'." />
+
+    <section class="words__section">
+      <WordList words={edWords} columns={2} />
+    </section>
   </main>
 </Layout>
 
 <style>
-  .stat-page {
+  .words {
     max-width: var(--content-width-medium);
     margin: 0 auto;
   }
 
-  .stat-page__content {
-    margin-top: var(--spacing-large);
+  .words__section {
+    margin-bottom: var(--spacing-large);
   }
 
-  .stat-page__description {
+  .words__description {
     color: var(--color-text-light);
     margin-bottom: var(--spacing-large);
-    text-align: center;
     font-size: var(--font-size-base);
   }
 
-  .stat-page__word-list {
-    display: grid;
-    gap: var(--spacing-small);
-    margin-bottom: var(--spacing-large);
-  }
-
-  .stat-page__nav {
-    text-align: center;
+  .words__nav {
+    margin-top: var(--spacing-large);
     padding-top: var(--spacing-base);
     border-top: 1px solid var(--color-border);
   }
@@ -71,9 +64,37 @@ const edWords = wordEndings.ed;
     opacity: 0.7;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .stat-page__word-list {
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
+  }
+
+  .words {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+  }
+
+  .words__section {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .words__description {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-large);
+    font-size: var(--font-size-base);
+  }
+
+  .words__empty {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+  }
+
+  .words__nav {
+    margin-top: var(--spacing-large);
+    padding-top: var(--spacing-base);
+    border-top: 1px solid var(--color-border);
   }
 </style>

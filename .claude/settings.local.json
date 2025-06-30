@@ -27,7 +27,8 @@
       "Bash(npm run preview:*)",
       "Bash(git rev-parse:*)",
       "Bash(NODE_ENV=development npm run build 2 > /dev/null)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(NODE_ENV=development npm run build)"
     ],
     "deny": []
   }

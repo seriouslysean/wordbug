@@ -20,12 +20,21 @@ export const seoConfig: SeoConfig = {
 
 /**
  * Generate canonical URL for a page
+ * Consistently enforces no trailing slash for content pages (except root) and lowercase URLs
  */
 export function getCanonicalUrl(pathname: string): string {
-  const cleanPath = pathname.replace(/\/$/, '') || '';
+  // Convert path to lowercase for consistency
+  const lowercasePath = pathname.toLowerCase();
+
+  // Normalize path: remove trailing slash except for root path
+  const cleanPath = lowercasePath === '/' ? '/' : lowercasePath.replace(/\/$/, '') || '';
+
+  // Normalize baseUrl: ensure no trailing slash
   const baseUrl = seoConfig.canonicalBase.endsWith('/')
     ? seoConfig.canonicalBase.slice(0, -1)
     : seoConfig.canonicalBase;
+
+  // Return the properly formatted canonical URL
   return `${baseUrl}${cleanPath}`;
 }
 

@@ -1,10 +1,10 @@
 ---
 import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
-import PastWords from '~components/PastWords.astro';
+import WordList from '~components/WordList.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 import { getUrl } from '~utils/utils';
-import { getAllWords } from '~utils/word-utils';
+import { getAllWords, formatWordCount } from '~utils/word-utils';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
 const words = getAllWords();
@@ -14,19 +14,16 @@ const wordsByYear = words.reduce((acc, word) => {
   acc[year].push(word);
   return acc;
 }, {} as Record<string, typeof words>);
-
-const totalWords = words.length;
-
 ---
 
 <Layout title="All Words" structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="words">
-    <Heading text="All Words" secondaryText={`${totalWords} total`} />
+    <Heading text="All Words" secondaryText={formatWordCount(words.length)} />
 
     {(Object.entries(wordsByYear) as [string, typeof words][]).reverse().map(([year, words]) => (
       <section class="words__section">
         <SectionHeading text={year} href={getUrl(`/words/${year}`)} />
-        <PastWords words={words} />
+        <WordList words={words} columns={2} />
       </section>
     ))}
   </main>

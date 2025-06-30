@@ -65,38 +65,30 @@ export function getStaticPages() {
   return pages;
 }
 
+import { getFullUrl } from './utils.js';
+
 /**
  * Determines the social image URL based on the page type and data
  * @param {Object} options - Options for determining the social image URL
- * @param {string|URL} options.site - The site's base URL
  * @param {string} options.pathname - The current page path
  * @param {Object} [options.wordData] - Word data if this is a word page
  * @returns {string} The social image URL
  */
-export function getSocialImageUrl({ site, pathname, wordData }) {
+export function getSocialImageUrl({ pathname, wordData }) {
   // If we have word data, use the word image
   if (wordData?.word && wordData?.date) {
     const year = wordData.date.slice(0, 4);
-    return new URL(
-      `/images/social/${year}/${wordData.date}-${wordData.word.toLowerCase()}.png`,
-      site.toString(),
-    ).toString();
+    return getFullUrl(`/images/social/${year}/${wordData.date}-${wordData.word.toLowerCase()}.png`);
   }
 
   // Check if this is a year page
   const yearMatch = pathname.match(/^\/words\/(\d{4})$/);
   if (yearMatch) {
     const year = yearMatch[1];
-    return new URL(
-      `/images/social/${year}/${year}0000-words.png`,
-      site.toString(),
-    ).toString();
+    return getFullUrl(`/images/social/${year}/${year}0000-words.png`);
   }
 
   // For all other pages, use the page-specific image
   const pagePath = pathname.replace(/^\/|\/$/g, '') || 'home';
-  return new URL(
-    `/images/social/pages/${pagePath.replace(/\//g, '-')}.png`,
-    site.toString(),
-  ).toString();
+  return getFullUrl(`/images/social/pages/${pagePath.replace(/\//g, '-')}.png`);
 }

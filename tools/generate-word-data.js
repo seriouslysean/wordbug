@@ -1,4 +1,6 @@
-import { getAllWordFiles, fetchWordData, updateWordFile } from './utils.js';
+import { getAllWordFiles, fetchWordData, updateWordFile, getAllWords, generateWordDataHash } from './utils.js';
+import fs from 'fs';
+import path from 'path';
 
 /**
  * Reprocesses all word data with fresh API data
@@ -69,6 +71,22 @@ async function reprocessWords(options = {}) {
   }
 }
 
+// Generate and write build data to file
+async function writeBuildData() {
+  const words = getAllWords();
+  const wordsCount = words.length;
+  const wordsHash = generateWordDataHash(words.map(w => w.word));
+  const generatedAt = new Date().toISOString();
+  const buildData = {
+    words_count: wordsCount,
+    words_hash: wordsHash,
+    generated_at: generatedAt,
+  };
+  const outPath = path.join(process.cwd(), 'src', 'data', 'build-data.json');
+  fs.writeFileSync(outPath, JSON.stringify(buildData, null, 2));
+  console.log(`Wrote build data to ${outPath}`);
+}
+
 // Parse command line arguments
 const args = process.argv.slice(2);
 const options = {};
@@ -99,4 +117,4 @@ Object.entries(flagMap).forEach(([flag, property]) => {
 });
 
 // Run the script with parsed options
-reprocessWords(options);
+reprocessWords(options).then(writeBuildData);

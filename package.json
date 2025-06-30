@@ -30,7 +30,8 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "tool:ping-search-engines": "node tools/ping-search-engines.js"
   },
   "dependencies": {
     "astro": "^5.10.1",

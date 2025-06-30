@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 import opentype from 'opentype.js';
+import { generateWordDataHash as agnosticGenerateWordDataHash } from '../src/utils/word-hash.ts';
 
 
 // Constants for image generation
@@ -415,4 +416,25 @@ export function isValidWordData(data) {
   return data.some(entry =>
     entry.word || entry.text || entry.partOfSpeech,
   );
+}
+
+/**
+ * Generates a SHA-256 hash of all word strings (sorted) and the count using the agnostic utility.
+ * @returns {Promise<string>} - The hash as a hex string
+ */
+export async function generateWordDataHash() {
+  const words = getAllWords().map(w => w.word);
+  return agnosticGenerateWordDataHash(words);
+}
+
+/**
+ * Get the value for a CLI flag from an argument array.
+ * Example: getArgValue('--foo', process.argv.slice(2))
+ */
+export function getArgValue(flag, argsArr) {
+  const idx = argsArr.findIndex(arg => arg === flag);
+  if (idx !== -1 && argsArr[idx + 1] && !argsArr[idx + 1].startsWith('--')) {
+    return argsArr[idx + 1];
+  }
+  return undefined;
 }

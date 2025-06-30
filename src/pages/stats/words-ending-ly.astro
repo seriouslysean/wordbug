@@ -8,11 +8,11 @@ import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
 const words = getAllWords();
 const wordEndings = getWordEndingStats(words);
-const ingWords = wordEndings.ing;
+const lyWords = wordEndings.ly;
 
 // SEO metadata
-const title = '-ing words';
-const description = `${formatWordCount(ingWords.length)} that end with the suffix "-ing".`;
+const title = '-ly words';
+const description = `${formatWordCount(lyWords.length)} that end with the suffix "-ly".`;
 ---
 
 <Layout
@@ -21,12 +21,12 @@ const description = `${formatWordCount(ingWords.length)} that end with the suffi
   structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
 >
   <main class="words">
-    <Heading text={title} secondaryText={formatWordCount(ingWords.length)} />
+    <Heading text={title} secondaryText={formatWordCount(lyWords.length)} />
 
-    <DescriptionText text="Words ending with the suffix '-ing'." />
+    <DescriptionText text="Words ending with the suffix '-ly'." />
 
     <section class="words__section">
-      <WordList words={ingWords} columns={2} />
+      <WordList words={lyWords} columns={2} />
     </section>
   </main>
 </Layout>

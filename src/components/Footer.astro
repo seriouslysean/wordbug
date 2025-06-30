@@ -1,5 +1,7 @@
 ---
 import wordnikLogo from '../assets/wordnik-gearheart.png';
+import SiteLink from './SiteLink.astro';
+
 const currentYear = new Date().getFullYear();
 const attributionUrl = import.meta.env.SITE_AUTHOR_URL;
 const authorName = import.meta.env.SITE_AUTHOR;
@@ -8,23 +10,41 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
 ---
 
 <footer class="footer" role="contentinfo">
-  <p class="footer__text">
-    <a href="/" aria-label="Return to today's word">Home</a>
-    <span class="footer__separator">&middot;</span>
-    <a href="/words" aria-label="View all words">All Words</a>
-    <span class="footer__separator">&middot;</span>
-    <a href="/stats" aria-label="View word statistics">Stats</a>
-    {showAttribution && (
-      <>
-        <span class="footer__separator">&middot;</span>
-        <a href={attributionUrl} target="_blank" rel="noopener noreferrer" aria-label={`View ${authorName}'s profile (opens in new tab)`}>{attributionMessage}, {currentYear}</a>
-      </>
-    )}
-    <span class="footer__separator">|</span>
-    <a href="https://www.wordnik.com" target="_blank" rel="noopener noreferrer" class="footer__wordnik" title="Powered by Wordnik" aria-label="Powered by Wordnik (opens in new tab)">
-      <img src={wordnikLogo.src} alt="Wordnik" width="16" height="16" />
-    </a>
-  </p>
+  <nav class="footer__nav" aria-label="Footer navigation">
+    <ul class="footer__links">
+      <li class="footer__item">
+        <SiteLink href="/" ariaLabel="Return to today's word">Home</SiteLink>
+      </li>
+      <li class="footer__item">
+        <SiteLink href="/words" ariaLabel="View all words">All Words</SiteLink>
+      </li>
+      <li class="footer__item">
+        <SiteLink href="/stats" ariaLabel="View word statistics">Stats</SiteLink>
+      </li>
+      {showAttribution && (
+        <li class="footer__item">
+          <SiteLink
+            href={attributionUrl}
+            target="_blank"
+            ariaLabel={`View ${authorName}'s profile (opens in new tab)`}
+          >
+            {attributionMessage}, {currentYear}
+          </SiteLink>
+        </li>
+      )}
+      <li class="footer__item">
+        <SiteLink
+          href="https://www.wordnik.com"
+          target="_blank"
+          class="footer__wordnik"
+          title="Powered by Wordnik"
+          ariaLabel="Powered by Wordnik (opens in new tab)"
+        >
+          <img src={wordnikLogo.src} alt="Wordnik" width="16" height="16" />
+        </SiteLink>
+      </li>
+    </ul>
+  </nav>
 </footer>
 
 <style>
@@ -34,40 +54,53 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
         text-align: center;
     }
 
-    .footer__text {
-        margin: 0;
+    .footer__nav {
+        margin: 0 auto;
+    }
+
+    .footer__links {
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
         font-size: 0.875rem;
         color: var(--color-text-lighter);
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 0.25rem;
+        gap: 0.75rem;
+        line-height: 2;
+        max-width: fit-content;
     }
 
-    .footer__text a {
+    .footer__item {
+        position: relative;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+    }
+    .footer__item:not(:last-child)::after {
+        content: "•";
+        margin-left: 0.75rem;
+        opacity: 0.5;
+    }
+
+    .footer__links a {
         color: inherit;
     }
 
-    .footer__separator {
-        margin: 0 0.5rem;
-        opacity: 0.5;
-    }
-
-    .footer__wordnik {
+    /* Use :global() to ensure these styles apply to the SiteLink component */
+    :global(.footer__wordnik) {
         display: flex;
         align-items: center;
-        opacity: 0.5;
+        opacity: 0.8;
+        filter: grayscale(1);
         transition: opacity 0.2s ease;
     }
 
-    .footer__wordnik:hover {
+    :global(.footer__wordnik:hover) {
         opacity: 1;
+        filter: none;
     }
 
-    .footer__wordnik img {
-        height: 16px;
-        width: auto;
-        filter: sepia(0.4) hue-rotate(350deg) saturate(1.5);
-    }
 </style>

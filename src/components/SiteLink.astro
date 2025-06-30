@@ -1,0 +1,39 @@
+---
+import { getUrl } from '~utils/utils';
+
+interface Props {
+  href: string;
+  class?: string;
+  ariaLabel?: string;
+  title?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  href,
+  class: className,
+  ariaLabel,
+  title,
+  target,
+  rel,
+} = Astro.props;
+
+// External URLs (starting with http:// or https://) should not use getUrl()
+const isExternal = href.startsWith('http://') || href.startsWith('https://');
+const finalHref = isExternal ? href : getUrl(href);
+
+// If target is _blank, add noopener and noreferrer for security by default
+const finalRel = (target === '_blank' && !rel) ? 'noopener noreferrer' : rel;
+---
+
+<a
+  href={finalHref}
+  class={className}
+  aria-label={ariaLabel}
+  title={title}
+  target={target}
+  rel={finalRel}
+>
+  <slot />
+</a>

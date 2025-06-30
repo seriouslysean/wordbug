@@ -1,29 +1,39 @@
 ---
-import { getUrl } from '~utils/utils';
 import { formatDate } from '~utils/date-utils';
+import { getWordUrl } from '~utils/utils';
+import SiteLink from './SiteLink.astro';
 
-const { word } = Astro.props;
+interface Props {
+  word: {
+    word: string;
+    date: string;
+  };
+  class?: string;
+  useDate?: boolean; // Option to use date URL instead of word URL
+}
 
+const { word, class: className = 'word-link', useDate = false } = Astro.props;
 const formattedDate = formatDate(word.date);
+
+// Use the consistent URL utility for proper SEO
+const href = useDate ? `/${word.date}` : getWordUrl(word.word);
 ---
 
-<a href={getUrl(`/${word.word}`)} class="word-link" aria-label={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}>
+<SiteLink
+  href={href}
+  class={className}
+  ariaLabel={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}
+>
   <span class="word-link__word">{word.word}</span>
   {formattedDate && <time class="word-link__date">{formattedDate}</time>}
-</a>
+</SiteLink>
 
 <style>
     .word-link {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-small);
         text-decoration: none;
         padding: 0.25rem 0;
-        transition: opacity 0.2s ease;
-    }
-
-    .word-link:hover {
-        opacity: 0.7;
     }
 
     .word-link__word {
@@ -38,7 +48,8 @@ const formattedDate = formatDate(word.date);
         font-weight: normal;
     }
 
-    @media (min-width: 481px) {
+    /* Desktop styles for screens > 1024px */
+    @media (min-width: 1024px) {
         .word-link {
             flex-direction: row;
             justify-content: space-between;

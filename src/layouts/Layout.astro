@@ -12,7 +12,7 @@ import { getBuildData } from '~utils/build-utils.ts';
 
 const { title, word, description, structuredDataType } = Astro.props;
 
-// SEO data generation  
+// SEO data generation
 const currentUrl = getCanonicalUrl(Astro.url.pathname);
 const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
 const metaDescription = description || getMetaDescription();
@@ -20,7 +20,6 @@ const metaDescription = description || getMetaDescription();
 // Legacy word data handling for social images
 const wordData = word ? await getWordByDate(word.date) : null;
 const socialImageUrl = getSocialImageUrl({
-  site: Astro.site,
   pathname: Astro.url.pathname,
   wordData,
 });
@@ -64,7 +63,7 @@ const wordSchemaData = word ? (() => {
 <html lang={seoConfig.locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <meta name="generator" content={Astro.generator} />
 
 		<!-- SEO Meta Tags -->
@@ -73,6 +72,12 @@ const wordSchemaData = word ? (() => {
 		<meta name="keywords" content={seoConfig.keywords.join(', ')} />
 		<meta name="author" content={seoConfig.author} />
 		<link rel="canonical" href={currentUrl} />
+
+		<!-- Mobile/Responsive Meta Tags -->
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="theme-color" content="#121212" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
 		<!-- Educational Content Classification -->
 		<meta name="educational-content" content="true" />
@@ -91,6 +96,9 @@ const wordSchemaData = word ? (() => {
 		<!-- Language and Internationalization -->
 		<link rel="alternate" hreflang={seoConfig.locale} href={currentUrl} />
 		<link rel="alternate" hreflang="x-default" href={currentUrl} />
+		<link rel="alternate" hreflang="en" href={currentUrl} />
+		<meta property="og:locale" content={seoConfig.locale} />
+		<meta http-equiv="content-language" content={seoConfig.locale.split('-')[0]} />
 
 		<!-- OpenGraph/Social Meta Tags -->
 		<meta property="og:title" content={finalTitle} />
@@ -166,13 +174,13 @@ const wordSchemaData = word ? (() => {
 		width: 100%;
 		max-width: var(--content-width-large);
 		margin: 0 auto;
-		padding: 2rem var(--spacing-base);
+		padding: 1rem var(--spacing-base);
 	}
 
-	/* Responsive adjustments */
-	@media (max-width: 768px) {
+	/* Desktop styles (>1024px) */
+	@media (min-width: 1024px) {
 		.content__wrapper {
-			padding: 1rem var(--spacing-base);
+			padding: 2rem var(--spacing-base);
 		}
 	}
 

@@ -65,6 +65,10 @@ export default defineConfig({
       __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
       __SENTRY_ENVIRONMENT__: JSON.stringify(sentryEnvironment),
       __TIMESTAMP__: JSON.stringify(timestamp),
+      __HUMANS_WORD_CURATOR__: JSON.stringify(process.env.HUMANS_WORD_CURATOR || ''),
+      __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),
+      __HUMANS_DEVELOPER_CONTACT__: JSON.stringify(process.env.HUMANS_DEVELOPER_CONTACT || ''),
+      __HUMANS_DEVELOPER_SITE__: JSON.stringify(process.env.HUMANS_DEVELOPER_SITE || ''),
     },
   },
   integrations: [
@@ -75,6 +79,9 @@ export default defineConfig({
         authToken: process.env.SENTRY_AUTH_TOKEN,
       },
     })] : []),
-    sitemap(),
+    sitemap({
+      lastmod: new Date(),
+      filter: (page) => !page.endsWith('.txt'),
+    }),
   ],
 });

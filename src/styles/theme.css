@@ -1,0 +1,74 @@
+/* Theme variables for wordbug-template
+ *
+ * This file centralizes all CSS variables that might change between different sites.
+ * When creating a new site based on this template:
+ *
+ * 1. Create your own theme.css file in your consumer repo
+ * 2. Import the base theme: @import 'path-to-template/src/styles/theme.css';
+ * 3. Override any variables by redeclaring them in your :root {}
+ *
+ * Example for a consumer repo (e.g., wordbun):
+ *
+ * ```css
+ * @import '../../template/src/styles/theme.css';
+ *
+ * :root {
+ *   --color-primary: #8e44ad;
+ *   --color-primary-light: #9b59b6;
+ *   --color-primary-dark: #703688;
+ *
+ *   --site-name: "wordbun";
+ *   --site-logo-text: "wordbun";
+ *   --site-accent-color: var(--color-primary);
+ * }
+ * ```
+ */
+
+:root {
+    /* Colors */
+    --color-primary: #2A6F74;
+    --color-primary-light: #3a8f96;
+    --color-primary-dark: #1d4e51;
+    --color-background: #fff;
+    --color-background-light: #f8f9fa;
+    --color-text: #333;
+    --color-text-light: #666;
+    --color-text-lighter: #8a8f98;
+
+    /* Font weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    /* Font sizes */
+    --font-size-xs: 0.75rem;
+    --font-size-small: clamp(0.875rem, 2vw, 1rem);
+    --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
+    --font-size-huge: clamp(3rem, 15vw, 8rem);
+
+    /* Spacing */
+    --spacing-small: 0.5rem;
+    --spacing-base: 1rem;
+    --spacing-large: 2rem;
+
+    /* Content widths */
+    --content-width-small: min(600px, 90vw);
+    --content-width-medium: min(800px, 90vw);
+    --content-width-large: min(1200px, 90vw);
+    --content-width-full: 95vw;
+
+    /* Other */
+    --border-radius: 8px;
+    --shadow-color: 186deg 47% 28%;
+}
+
+/* Site-specific variables can be defined here and overridden by consumer sites */
+:root {
+    /* Site-specific branding */
+    --site-name: "wordbug";
+    --site-logo-text: "wordbug";
+    --site-accent-color: var(--color-primary);
+}

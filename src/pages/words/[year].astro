@@ -1,7 +1,7 @@
 ---
 import Layout from '~layouts/Layout.astro';
 import { getAllWords } from '~utils/word-utils.js';
-import PastWords from '~components/PastWords.astro';
+import WordList from '~components/WordList.astro';
 import Heading from '~components/Heading.astro';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 
@@ -29,7 +29,7 @@ if (!words.length) {
   <main class="year-words">
     <Heading level={1} text={year} secondaryText="Words in" />
     <div class="year-words__content">
-      <PastWords words={words} />
+      <WordList words={words} columns={2} />
     </div>
   </main>
 </Layout>

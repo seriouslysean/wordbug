@@ -2,6 +2,7 @@
 import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
 import WordLink from '~components/WordLink.astro';
+import SiteLink from '~components/SiteLink.astro';
 import { getAllWords, getWordStats, getLetterStats, countSyllables, getLetterPatternStats, getWordEndingStats, getCurrentStreakStats } from '~utils/word-utils.js';
 
 // Get all words and sort by date
@@ -63,7 +64,7 @@ const findWordDate = (targetWord: string) => {
         <div class="stats__item">
           <div class="stats__fact">total words</div>
           <div class="stats__value">
-            <a href="/words" class="stats__link">{totalWords}</a>
+            <SiteLink href="/words" class="stats__link">{totalWords}</SiteLink>
           </div>
         </div>
         <div class="stats__item">
@@ -197,9 +198,9 @@ const findWordDate = (targetWord: string) => {
       <div class="stats__list">
         {letterPatterns.startEndSame.length > 0 && (
           <div class="stats__item">
-            <div class="stats__fact">start & end same letter</div>
+            <div class="stats__fact">same start/end letter</div>
             <div class="stats__value">
-              <a href="/stats/same-start-end" class="stats__link">{letterPatterns.startEndSame.length}</a>
+              <SiteLink href="/stats/same-start-end" class="stats__link">{letterPatterns.startEndSame.length}</SiteLink>
             </div>
           </div>
         )}
@@ -207,7 +208,7 @@ const findWordDate = (targetWord: string) => {
           <div class="stats__item">
             <div class="stats__fact">double letters</div>
             <div class="stats__value">
-              <a href="/stats/double-letters" class="stats__link">{letterPatterns.doubleLetters.length}</a>
+              <SiteLink href="/stats/double-letters" class="stats__link">{letterPatterns.doubleLetters.length}</SiteLink>
             </div>
           </div>
         )}
@@ -223,7 +224,7 @@ const findWordDate = (targetWord: string) => {
           <div class="stats__item">
             <div class="stats__fact">alphabetical order</div>
             <div class="stats__value">
-              <a href="/stats/alphabetical-order" class="stats__link">{letterPatterns.alphabetical.length}</a>
+              <SiteLink href="/stats/alphabetical-order" class="stats__link">{letterPatterns.alphabetical.length}</SiteLink>
             </div>
           </div>
         )}
@@ -233,30 +234,24 @@ const findWordDate = (targetWord: string) => {
     <section class="stats__section">
       <h2 class="stats__heading">Word Endings</h2>
       <div class="stats__list">
-        {wordEndings.ing.length > 0 && (
-          <div class="stats__item">
-            <div class="stats__fact">-ing words</div>
-            <div class="stats__value">
-              <a href="/stats/words-ending-ing" class="stats__link">{wordEndings.ing.length}</a>
-            </div>
+        <div class="stats__item">
+          <div class="stats__fact">-ing words</div>
+          <div class="stats__value">
+            <SiteLink href="/stats/words-ending-ing" class="stats__link">{wordEndings.ing.length}</SiteLink>
           </div>
-        )}
-        {wordEndings.ed.length > 0 && (
-          <div class="stats__item">
-            <div class="stats__fact">-ed words</div>
-            <div class="stats__value">
-              <a href="/stats/words-ending-ed" class="stats__link">{wordEndings.ed.length}</a>
-            </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__fact">-ed words</div>
+          <div class="stats__value">
+            <SiteLink href="/stats/words-ending-ed" class="stats__link">{wordEndings.ed.length}</SiteLink>
           </div>
-        )}
-        {wordEndings.ly.length > 0 && (
-          <div class="stats__item">
-            <div class="stats__fact">-ly words</div>
-            <div class="stats__value">
-              <span>{wordEndings.ly.length}</span>
-            </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__fact">-ly words</div>
+          <div class="stats__value">
+            <SiteLink href="/stats/words-ending-ly" class="stats__link">{wordEndings.ly.length}</SiteLink>
           </div>
-        )}
+        </div>
       </div>
     </section>
   </main>
@@ -386,7 +381,7 @@ const findWordDate = (targetWord: string) => {
         font-weight: 500;
     }
 
-    @media (min-width: 481px) {
+    @media (min-width: 1024px) {
         .stats__item {
             flex-direction: row;
             justify-content: space-between;

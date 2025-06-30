@@ -1,7 +1,7 @@
 ---
 import { getCurrentWord, getPastWords } from '~utils/word-utils.js';
 import Word from '~components/Word.astro';
-import PastWords from '~components/PastWords.astro';
+import WordList from '~components/WordList.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 
 const currentWord = getCurrentWord();
@@ -46,7 +46,7 @@ if (currentMonthWords.length > 0) {
     <section class="past-words">
       <div class="past-words__container">
         <SectionHeading text={sectionTitle} />
-        <PastWords words={wordsToShow} />
+        <WordList words={wordsToShow} />
       </div>
     </section>
   )}
@@ -78,5 +78,49 @@ if (currentMonthWords.length > 0) {
     .past-words :global(.section-heading) {
         text-align: center;
         border-bottom: none;
+    }
+
+    /* Homepage-specific word list styles */
+    .past-words :global(.word-list__list) {
+        display: block;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Mobile-first: Always use flex layout with proper spacing */
+    .past-words :global(.word-link) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .past-words :global(.word-link__word) {
+        text-align: left;
+        margin: 0;
+    }
+
+    .past-words :global(.word-link__date) {
+        margin: 0;
+        text-align: right;
+        color: var(--color-text-lighter);
+    }
+
+    /* Desktop styles for homepage word lists */
+    @media (min-width: 1024px) {
+        .past-words :global(.word-link) {
+            /* Already using flex in mobile, just ensure consistent spacing */
+            padding: 0.5rem 0;
+        }
+
+        .past-words :global(.word-link__word) {
+            /* Already left-aligned */
+        }
+
+        .past-words :global(.word-link__date) {
+            /* Already right-aligned */
+        }
     }
 </style>

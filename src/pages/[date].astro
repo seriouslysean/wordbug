@@ -1,9 +1,6 @@
 ---
-import Layout from '~layouts/Layout.astro';
-import Word from '~components/Word.astro';
-import WordLink from '~components/WordLink.astro';
-import { getWordByDate, getAdjacentWords } from '~utils/word-utils.js';
-import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { getWordByDate } from '~utils/word-utils.js';
+import { getWordUrl } from '~utils/utils.js';
 
 export async function getStaticPaths() {
   const allWords = import.meta.glob('../data/words/**/*.json');
@@ -21,124 +18,17 @@ export async function getStaticPaths() {
 
 const { date } = Astro.params;
 const word = await getWordByDate(date);
-const { previousWord, nextWord } = await getAdjacentWords(date);
 
 if (!word) {
   return Astro.redirect(import.meta.env.BASE_URL || '/');
 }
 
-const today = new globalThis.Date();
-const todayString = today.toISOString().slice(0, 10).replace(/-/g, '');
-const modifiedNextWord = nextWord && {
-  ...nextWord,
-  date: nextWord.date === todayString ? '' : nextWord.date,
-};
+// Redirect to the canonical word URL for better SEO
+// This helps prevent duplicate content issues between /20250101 and /word-for-that-date
+const wordUrl = getWordUrl(word.word);
+return Astro.redirect(wordUrl, 301);
+
+// The code below will never execute due to the redirect above
 ---
 
-<Layout word={word} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
-  <main>
-    <Word word={word} />
 
-    <nav class="word-nav">
-      <div class="word-nav__container">
-        <div class="word-nav__previous">
-          {previousWord ? (
-            <>
-              <span class="word-nav__label">Previous</span>
-              <WordLink word={previousWord} />
-            </>
-          ) : (
-            <div class="word-nav__placeholder" />
-          )}
-        </div>
-        {modifiedNextWord && (
-          <div class="word-nav__next">
-            <span class="word-nav__label">Next</span>
-            <WordLink word={modifiedNextWord} />
-          </div>
-        )}
-      </div>
-    </nav>
-  </main>
-</Layout>
-
-<style>
-    .word-nav {
-        width: 100%;
-        margin: var(--spacing-large) 0;
-    }
-
-    .word-nav__container {
-        width: 100%;
-        max-width: var(--content-width-medium);
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        gap: var(--spacing-base);
-    }
-
-    .word-nav__previous,
-    .word-nav__next {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xs);
-        min-width: 160px;
-    }
-
-    .word-nav__next {
-        text-align: right;
-    }
-
-    .word-nav__label {
-        font-size: var(--font-size-small);
-        color: var(--color-text-light);
-        margin-bottom: 0.25rem;
-    }
-
-    .word-nav__next :global(.word-link) {
-        flex-direction: row-reverse;
-    }
-
-    .word-nav__next :global(.word-link__date) {
-        margin-left: 0;
-        margin-right: var(--spacing-base);
-    }
-
-    .word-nav__placeholder {
-        min-height: 2.5rem;
-    }
-
-    @media (max-width: 768px) {
-        .word-nav__previous,
-        .word-nav__next {
-            min-width: 120px;
-        }
-    }
-
-    /* Ensure consistent link styling */
-    .word-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        text-decoration: none;
-        padding: 0.25rem 0;
-        transition: opacity 0.2s ease;
-    }
-
-    .word-link:hover {
-        opacity: 0.7;
-    }
-
-    .word-link__word {
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: var(--color-primary-light, #4a7c7d);
-    }
-
-    .word-link__date {
-        font-size: 0.8rem;
-        color: var(--color-text-lighter, #8a8f98);
-        margin-left: 1rem;
-        font-weight: normal;
-    }
-</style>
