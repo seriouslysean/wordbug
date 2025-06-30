@@ -46,20 +46,8 @@ if (!siteUrlArg || !siteNameArg) {
 const siteUrl = siteUrlArg.endsWith('/') ? siteUrlArg.slice(0, -1) : siteUrlArg;
 const sitemapUrl = `${siteUrl}/sitemap-index.xml`;
 
-// List of search engine endpoints as objects with singular key and dynamic content in a nested object
+// List of working sitemap notification services
 const engineList = [
-  {
-    engine: {
-      name: 'Google',
-      url: `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`,
-    },
-  },
-  {
-    engine: {
-      name: 'Bing',
-      url: `https://www.bing.com/webmaster/ping.aspx?sitemap=${encodeURIComponent(sitemapUrl)}`,
-    },
-  },
   {
     engine: {
       name: 'Ping-O-Matic',
@@ -79,7 +67,11 @@ function pingSearchEngine(engineObj) {
       path: url.pathname + url.search,
       method: 'GET',
     };
-    const req = https.request(options, (res) => {
+    
+    // Use http for http URLs, https for https URLs
+    const requestLib = url.protocol === 'https:' ? https : http;
+    
+    const req = requestLib.request(options, (res) => {
       let data = '';
       res.on('data', (chunk) => {
         data += chunk;
