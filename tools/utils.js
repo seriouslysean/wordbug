@@ -15,9 +15,8 @@ const DATE_SIZE = 40;
 const DESCENDER_OFFSET = Math.floor(FONT_SIZE * 0.2);  // Restore descender offset (20% of font size)
 const MAX_WIDTH = CANVAS_WIDTH - (PADDING * 2);
 
-// Load fonts
-const regularFont = opentype.loadSync('public/fonts/opensans/OpenSans-Regular.ttf');
-const boldFont = opentype.loadSync('public/fonts/opensans/OpenSans-ExtraBold.ttf');
+// Note: Font loading removed - using system fonts for better performance
+// Social image generation will need to be updated to use system fonts or web-safe alternatives
 
 /**
  * Gets all word files from the data directory

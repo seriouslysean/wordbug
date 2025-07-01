@@ -45,9 +45,18 @@ export default defineConfig({
   devToolbar: { enabled: false },
   build: {
     assets: 'assets',
-    target: 'esnext',
   },
   vite: {
+    build: {
+      target: 'es2022',
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor': ['astro'],
+          },
+        },
+      },
+    },
     resolve: {
       alias: {
         '~': '/src',
