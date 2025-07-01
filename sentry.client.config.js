@@ -4,6 +4,8 @@ init({
   dsn: __SENTRY_DSN__,
   environment: __SENTRY_ENVIRONMENT__,
 
+  tracesSampleRate: 1.0,
+
   // Adds request headers and IP for users, for more info visit:
   // https://docs.sentry.io/platforms/javascript/configuration/options/#sendDefaultPii
   sendDefaultPii: true,

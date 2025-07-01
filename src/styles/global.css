@@ -7,14 +7,6 @@ body {
     text-transform: lowercase;
 }
 
-/* Font faces */
-@font-face {
-    font-family: 'Open Sans';
-    src: url('/fonts/opensans/OpenSans-Variable.woff2') format('woff2-variations');
-    font-weight: 300 800;
-    font-style: normal;
-    font-display: swap;
-}
 
 /* Base styles */
 html {
@@ -25,7 +17,7 @@ html {
 body {
     min-height: 100vh;
     color: var(--color-text);
-    font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     font-weight: var(--font-weight-normal);
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
