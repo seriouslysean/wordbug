@@ -28,9 +28,8 @@ if (missingEnvVars.length > 0) {
 const site = process.env.SITE_URL;
 const base = process.env.BASE_PATH;
 const sentryEnvironment = process.env.SENTRY_ENVIRONMENT || 'development';
-const isProdRelease = sentryEnvironment === 'production';
 const shortSha = execSync('git rev-parse --short HEAD').toString().trim();
-const version = `${pkg.version}${isProdRelease ? '' : '-dev'}`;
+const version = pkg.version;
 const release = `${pkg.name}@${version}+${shortSha}`;
 const timestamp = new Date().toISOString();
 
