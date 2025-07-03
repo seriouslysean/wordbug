@@ -41,6 +41,7 @@ export default defineConfig({
   site,
   base,
   output: 'static',
+  trailingSlash: 'always',
   devToolbar: { enabled: false },
   build: {
     inlineStylesheets: 'auto',
@@ -67,6 +68,9 @@ export default defineConfig({
       __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),
       __HUMANS_DEVELOPER_CONTACT__: JSON.stringify(process.env.HUMANS_DEVELOPER_CONTACT || ''),
       __HUMANS_DEVELOPER_SITE__: JSON.stringify(process.env.HUMANS_DEVELOPER_SITE || ''),
+    },
+    build: {
+      target: 'esnext',
     },
   },
   integrations: [
