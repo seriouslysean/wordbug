@@ -44,7 +44,7 @@ export default defineConfig({
   trailingSlash: 'always',
   devToolbar: { enabled: false },
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   vite: {
     resolve: {
@@ -71,6 +71,16 @@ export default defineConfig({
     },
     build: {
       target: 'esnext',
+      modulePreload: { polyfill: false },
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+          },
+        },
+      },
     },
   },
   integrations: [
