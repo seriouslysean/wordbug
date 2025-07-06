@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { isValidWordData } from './utils.js';
+import { isValidWordData, getAllWords } from './utils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -10,7 +10,7 @@ const apiKey = process.env.WORDNIK_API_KEY;
 
 // Validate API key
 if (!apiKey) {
-  console.error('Error WORDNIK_API_KEY is required');
+  console.error('Wordnik API key is required');
   process.exit(1);
 }
 
@@ -77,6 +77,27 @@ const isValidDate = (date) => {
 };
 
 /**
+ * Validates that a date is not in the future
+ * @param {string} date - Date string in YYYY-MM-DD format
+ * @returns {boolean} - Whether the date is today or in the past
+ */
+const isNotFutureDate = (date) => {
+  const today = new Date().toISOString().split('T')[0];
+  return date <= today;
+};
+
+/**
+ * Checks if a word already exists in the system
+ * @param {string} word - Word to check
+ * @returns {Object|null} - Existing word data if found, null otherwise
+ */
+const checkExistingWordByName = (word) => {
+  const lowerWord = word.toLowerCase();
+  const words = getAllWords();
+  return words.find(w => w.word?.toLowerCase() === lowerWord) || null;
+};
+
+/**
  * Fetches word data from the Wordnik API
  * @param {string} word - Word to fetch data for
  * @returns {Promise<Object>} - Word data from API
@@ -135,26 +156,48 @@ const formatWordSummary = (data) => {
 async function addWord(input, date, overwrite = false) {
   try {
     const word = input?.trim();
+    
     // Validate inputs
     if (!word) {
-      throw new Error('Word is required');
+      console.error('Word is required', { providedInput: input });
+      process.exit(1);
     }
+    
     if (date && !isValidDate(date)) {
-      throw new Error('Invalid date format. Use YYYY-MM-DD');
+      console.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYY-MM-DD' });
+      process.exit(1);
     }
 
     // If no date provided, use today
     const targetDate = date || new Date().toISOString().split('T')[0];
 
-    // Check if file already exists
+    // Validate that date is not in the future
+    if (!isNotFutureDate(targetDate)) {
+      console.error('Cannot add words for future dates', { 
+        requestedDate: targetDate, 
+        currentDate: new Date().toISOString().split('T')[0], 
+      });
+      process.exit(1);
+    }
+
+    // Check if file already exists for the target date
     const existing = checkExistingWord(targetDate);
     if (existing && !overwrite) {
-      console.error(`::error::A word already exists for ${targetDate}: "${existing.word}"`);
-      console.log('::group::Existing Word Details');
-      console.log(`Date: ${existing.date}`);
-      console.log(`Word: ${existing.word}`);
-      console.log(`File: ${existing.filePath}`);
-      console.log('::endgroup::');
+      console.error('Word already exists for this date', { 
+        date: existing.date, 
+        existingWord: existing.word, 
+      });
+      process.exit(1);
+    }
+
+    // Check if word already exists anywhere else in the system (not same date)
+    const existingWordByName = checkExistingWordByName(word);
+    if (existingWordByName && existingWordByName.date !== targetDate.replace(/-/g, '') && !overwrite) {
+      console.error('Word already exists for different date', { 
+        word: word, 
+        existingDate: existingWordByName.date, 
+        requestedDate: targetDate.replace(/-/g, ''), 
+      });
       process.exit(1);
     }
 
@@ -171,9 +214,9 @@ async function addWord(input, date, overwrite = false) {
 
   } catch (error) {
     if (error.message.includes('not found in dictionary')) {
-      console.error(`::error::${error.message}`);
+      console.error('Word not found in dictionary', { word, errorMessage: error.message });
     } else {
-      console.error('::error::Error adding word:', error.message);
+      console.error('Failed to add word', { word, errorMessage: error.message });
     }
     process.exit(1);
   }

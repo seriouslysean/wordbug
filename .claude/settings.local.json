@@ -29,7 +29,8 @@
       "Bash(NODE_ENV=development npm run build 2 > /dev/null)",
       "Bash(mv:*)",
       "Bash(NODE_ENV=development npm run build)",
-      "WebFetch(domain:support.google.com)"
+      "WebFetch(domain:support.google.com)",
+      "Bash(npm test:*)"
     ],
     "deny": []
   }
