@@ -25,4 +25,4 @@ See it here, [wordbug.fyi](https://wordbug.fyi).
 - [Sentry](https://sentry.io/)
 - [Wordnik](https://wordnik.com/)
 
-Everything else is outlined in the *[technical documentation](technical.md).
+Everything else is outlined in the [technical documentation](technical.md).
