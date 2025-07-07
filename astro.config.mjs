@@ -41,7 +41,7 @@ export default defineConfig({
   site,
   base,
   output: 'static',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
   devToolbar: { enabled: false },
   build: {
     inlineStylesheets: 'always',
