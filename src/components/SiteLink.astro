@@ -21,7 +21,17 @@ const {
 
 // External URLs (starting with http:// or https://) should not use getUrl()
 const isExternal = href.startsWith('http://') || href.startsWith('https://');
-const finalHref = isExternal ? href : getUrl(href);
+
+// Normalize internal links to match trailingSlash: 'never' setting
+const normalizeHref = (path: string) => {
+  if (isExternal) return path;
+  
+  // With 'never' setting: remove all trailing slashes (root '/' can't have one removed)
+  const cleanPath = path.replace(/\/$/, '') || '/';
+  return getUrl(cleanPath);
+};
+
+const finalHref = normalizeHref(href);
 
 // If target is _blank, add noopener and noreferrer for security by default
 const finalRel = (target === '_blank' && !rel) ? 'noopener noreferrer' : rel;

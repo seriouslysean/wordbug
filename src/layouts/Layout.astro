@@ -10,7 +10,7 @@ import { seoConfig, getCanonicalUrl, getMetaDescription } from '~utils/seo-utils
 import type { WordData } from '~/types/word-data';
 import { getBuildData } from '~utils/build-utils.ts';
 
-const { title, word, description, structuredDataType } = Astro.props;
+const { title, word, description, structuredDataType, noindex, nofollow } = Astro.props;
 
 // SEO data generation
 const currentUrl = getCanonicalUrl(Astro.url.pathname);
@@ -71,6 +71,9 @@ const wordSchemaData = word ? (() => {
 		<meta name="description" content={metaDescription} />
 		<meta name="keywords" content={seoConfig.keywords.join(', ')} />
 		<meta name="author" content={seoConfig.author} />
+		{noindex || nofollow ? (
+			<meta name="robots" content={[noindex && 'noindex', nofollow && 'nofollow'].filter(Boolean).join(', ')} />
+		) : null}
 		<link rel="canonical" href={currentUrl} />
 
 		<!-- Mobile/Responsive Meta Tags -->
