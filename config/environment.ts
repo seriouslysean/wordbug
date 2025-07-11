@@ -22,6 +22,7 @@ export const validateAppEnvironment = (): void => {
     'SITE_DESCRIPTION',
     'SITE_URL',
     'SITE_AUTHOR',
+    'SITE_ID',
   ];
 
   validateEnvironment(requiredVars);

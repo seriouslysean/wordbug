@@ -17,6 +17,7 @@ const requiredEnvVars = [
   'SITE_DESCRIPTION',
   'SITE_NAME',
   'SITE_AUTHOR',
+  'SITE_ID',
   'WORDNIK_API_KEY',
 ];
 
@@ -66,6 +67,7 @@ export default defineConfig({
       __RELEASE__: JSON.stringify(release),
       __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
       __SENTRY_ENVIRONMENT__: JSON.stringify(sentryEnvironment),
+      __SITE_ID__: JSON.stringify(process.env.SITE_ID),
       __TIMESTAMP__: JSON.stringify(timestamp),
       __HUMANS_WORD_CURATOR__: JSON.stringify(process.env.HUMANS_WORD_CURATOR || ''),
       __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),

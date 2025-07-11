@@ -26,4 +26,10 @@ init({
     browserTracingIntegration(),
     replayIntegration(),
   ],
+
+  initialScope: {
+    tags: {
+      site: __SITE_ID__,
+    },
+  },
 });

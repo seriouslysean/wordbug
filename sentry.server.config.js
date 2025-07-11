@@ -11,4 +11,10 @@ init({
   // Alternatively, use `process.env.npm_package_version` for a dynamic release version
   // if your build tool supports it.
   release: __RELEASE__,
+
+  initialScope: {
+    tags: {
+      site: __SITE_ID__,
+    },
+  },
 });
