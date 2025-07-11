@@ -4,14 +4,14 @@
  */
 
 // Re-export word-data utilities for Node tools
-export * from '../src/utils/word-data-utils';
-export { getAllWordFiles, updateWordFile } from './utils';
+export * from '~utils/word-data-utils';
+export { getAllWordFiles, updateWordFile, getAllWords, isUsingDemoWords } from '~tools/utils';
 
 // Re-export image generation utilities from tools/utils
-export { createWordSvg, generateShareImage, generateGenericShareImage } from './utils';
+export { createWordSvg, generateShareImage, generateGenericShareImage } from '~tools/utils';
 
 // Provide getWordByName for tools
-import { getAllWords } from '../src/utils/word-data-utils';
+import { getAllWords } from '~tools/utils';
 import type { WordData } from '~types/word';
 
 /**

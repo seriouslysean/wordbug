@@ -22,6 +22,26 @@ const regularFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSa
 const boldFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSans-ExtraBold.ttf'));
 
 /**
+ * Checks if the app is using demo words (no real words available)
+ * @returns true if using demo words, false if real words exist
+ */
+export function isUsingDemoWords(): boolean {
+  if (!fs.existsSync(paths.words)) {
+    return true;
+  }
+  
+  try {
+    const years = fs.readdirSync(paths.words).filter(dir => /^\d{4}$/.test(dir));
+    return !years.some(year => {
+      const yearDir = path.join(paths.words, year);
+      return fs.existsSync(yearDir) && fs.readdirSync(yearDir).length > 0;
+    });
+  } catch {
+    return true;
+  }
+}
+
+/**
  * Gets all word files from the data directory
  * @returns Array of word file information objects
  */
@@ -281,7 +301,12 @@ export function createWordSvg(word: string, date: string): string {
  */
 export async function generateShareImage(word: string, date: string): Promise<void> {
   const year = date.slice(0, 4);
-  const socialDir = path.join(paths.images, 'social', year);
+  
+  // Use demo directory if we're using demo words
+  const socialDir = isUsingDemoWords()
+    ? path.join(paths.images, 'social', 'demo', year)
+    : path.join(paths.images, 'social', year);
+    
   createDirectoryIfNeeded(socialDir);
 
   const svgContent = createWordSvg(word, date);

@@ -1,4 +1,4 @@
-import { createWordSvg, getAllWords } from './word-data-utils';
+import { getAllWords, createWordSvg, isUsingDemoWords } from './word-data-utils';
 import fs from 'fs/promises';
 import path from 'path';
 import sharp from 'sharp';
@@ -10,11 +10,16 @@ import { paths } from '~config/paths';
  */
 async function generateWordImages(): Promise<void> {
   const words = getAllWords();
-  const outputDir = path.join(paths.images, 'social');
+  const usingDemo = isUsingDemoWords();
+  const baseOutputDir = usingDemo 
+    ? path.join(paths.images, 'social', 'demo')
+    : path.join(paths.images, 'social');
+
+  console.log(`Generating images for ${words.length} words (${usingDemo ? 'demo' : 'production'} mode)`);
 
   for (const word of words) {
     const year = word.date.slice(0, 4);
-    const yearDir = path.join(outputDir, year);
+    const yearDir = path.join(baseOutputDir, year);
     await fs.mkdir(yearDir, { recursive: true });
 
     const svg = createWordSvg(word.word, word.date);
