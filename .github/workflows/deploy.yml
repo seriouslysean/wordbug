@@ -49,7 +49,6 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           SITE_TITLE: ${{ vars.SITE_TITLE }}
           SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
-          SITE_NAME: ${{ vars.SITE_NAME }}
           SITE_ID: ${{ vars.SITE_ID }}
           SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}
           SITE_AUTHOR_URL: ${{ vars.SITE_AUTHOR_URL }}

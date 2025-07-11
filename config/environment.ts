@@ -17,7 +17,6 @@ export const validateEnvironment = (requiredVars: string[]): void => {
  */
 export const validateAppEnvironment = (): void => {
   const requiredVars = [
-    'SITE_NAME',
     'SITE_TITLE',
     'SITE_DESCRIPTION',
     'SITE_URL',

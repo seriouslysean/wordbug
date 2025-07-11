@@ -9,7 +9,7 @@ import type { SeoConfig, SeoMetaDescriptionOptions, SeoMetadataOptions, SeoMetad
 export const seoConfig: SeoConfig = {
   defaultTitle: import.meta.env.SITE_TITLE,
   defaultDescription: import.meta.env.SITE_DESCRIPTION,
-  siteName: import.meta.env.SITE_NAME,
+  siteName: import.meta.env.SITE_ID,
   locale: import.meta.env.SITE_LOCALE || 'en-US',
   canonicalBase: import.meta.env.SITE_URL || import.meta.env.BASE_URL,
   author: import.meta.env.SITE_AUTHOR,

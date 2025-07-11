@@ -15,9 +15,8 @@ const requiredEnvVars = [
   'SITE_URL',
   'SITE_TITLE',
   'SITE_DESCRIPTION',
-  'SITE_NAME',
-  'SITE_AUTHOR',
   'SITE_ID',
+  'SITE_AUTHOR',
   'WORDNIK_API_KEY',
 ];
 

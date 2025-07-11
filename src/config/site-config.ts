@@ -9,7 +9,7 @@ import type { SiteConfig } from '~types/config';
 
 export const siteConfig: SiteConfig = {
   // Site information
-  siteName: import.meta.env.SITE_NAME || '',
+  siteName: import.meta.env.SITE_ID || '',
   siteTitle: import.meta.env.SITE_TITLE || '',
   siteDescription: import.meta.env.SITE_DESCRIPTION || '',
   siteUrl: import.meta.env.SITE_URL || '',
