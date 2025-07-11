@@ -24,6 +24,10 @@ export {
   getLetterPatternStats,
   getWordEndingStats,
   getCurrentStreakStats,
+  getSyllableStats,
+  getLetterTypeStats,
+  getPatternStats,
+  findWordDate,
 } from '~utils/word-stats-utils';
 
 export {

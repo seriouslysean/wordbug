@@ -29,7 +29,7 @@ export function isUsingDemoWords(): boolean {
   if (!fs.existsSync(paths.words)) {
     return true;
   }
-  
+
   try {
     const years = fs.readdirSync(paths.words).filter(dir => /^\d{4}$/.test(dir));
     return !years.some(year => {
@@ -301,12 +301,12 @@ export function createWordSvg(word: string, date: string): string {
  */
 export async function generateShareImage(word: string, date: string): Promise<void> {
   const year = date.slice(0, 4);
-  
+
   // Use demo directory if we're using demo words
   const socialDir = isUsingDemoWords()
     ? path.join(paths.images, 'social', 'demo', year)
     : path.join(paths.images, 'social', year);
-    
+
   createDirectoryIfNeeded(socialDir);
 
   const svgContent = createWordSvg(word, date);

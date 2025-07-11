@@ -6,10 +6,17 @@ import WordDescription from '~components/WordDescription.astro';
 import type { WordData } from '~types/word';
 
 interface Props {
-  word: WordData;
+  word: WordData | null;
 }
 
 const { word } = Astro.props;
+
+// Handle case when no word is available
+if (!word) {
+  // Show a message when no word data is available
+  return Astro.redirect('/setup');
+}
+
 const { partOfSpeech, definition, meta } = getWordDetails(word);
 ---
 

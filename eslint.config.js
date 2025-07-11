@@ -20,11 +20,16 @@ export default [
         Astro: 'readonly',
         buildData: 'readonly',
         // Vite build-time defines
+        __HUMANS_DEVELOPER_CONTACT__: 'readonly',
+        __HUMANS_DEVELOPER_NAME__: 'readonly',
+        __HUMANS_DEVELOPER_SITE__: 'readonly',
+        __HUMANS_WORD_CURATOR__: 'readonly',
+        __RELEASE__: 'readonly',
         __SENTRY_DSN__: 'readonly',
         __SENTRY_ENVIRONMENT__: 'readonly',
-        __VERSION__: 'readonly',
-        __RELEASE__: 'readonly',
+        __SITE_ID__: 'readonly',
         __TIMESTAMP__: 'readonly',
+        __VERSION__: 'readonly',
       },
     },
     rules: {

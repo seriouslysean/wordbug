@@ -44,9 +44,9 @@ export interface WordStatsResult {
 export type WordLetterStatsResult = Array<[string, number]>;
 
 export interface WordMilestoneResult {
-  25?: WordData;
-  50?: WordData;
-  100?: WordData;
+  25: WordData | null;
+  50: WordData | null;
+  100: WordData | null;
 }
 
 export interface WordPatternStatsResult {

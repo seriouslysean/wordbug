@@ -105,14 +105,13 @@ export function getProcessedWord(wordData: WordData): WordProcessedData {
  * Falls back to the first available word if none match the date criteria.
  *
  * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
- * @returns {WordData} The current word data that should be displayed
- * @throws {Error} When no word data is available in the system
+ * @returns {WordData | null} The current word data that should be displayed, or null if no words are available
  */
-export const getCurrentWord = (wordProvider: WordDataProvider = defaultWordDataProvider): WordData => {
+export const getCurrentWord = (wordProvider: WordDataProvider = defaultWordDataProvider): WordData | null => {
   const words = wordProvider();
   if (!words.length) {
     logger.error('No word data available in the system', {});
-    throw new Error('No word data available');
+    return null;
   }
 
   const today = new Date();

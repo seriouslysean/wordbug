@@ -11,7 +11,7 @@ import { paths } from '~config/paths';
 async function generateWordImages(): Promise<void> {
   const words = getAllWords();
   const usingDemo = isUsingDemoWords();
-  const baseOutputDir = usingDemo 
+  const baseOutputDir = usingDemo
     ? path.join(paths.images, 'social', 'demo')
     : path.join(paths.images, 'social');
 

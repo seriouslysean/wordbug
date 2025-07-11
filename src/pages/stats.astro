@@ -3,51 +3,56 @@ import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
 import WordLink from '~components/WordLink.astro';
 import SiteLink from '~components/SiteLink.astro';
-import { getAllWords, getWordStats, getLetterStats, countSyllables, getLetterPatternStats, getWordEndingStats, getCurrentStreakStats } from '~utils/word-utils.js';
+import { getAllWords } from '~utils/word-utils';
+import {
+  getWordStats,
+  getLetterStats,
+  getLetterPatternStats,
+  getWordEndingStats,
+  getCurrentStreakStats,
+  getSyllableStats,
+  getLetterTypeStats,
+  getPatternStats,
+  findWordDate,
+} from '~utils/word-stats-utils';
+import { countSyllables, getVowelCount, getConsonantCount } from '~utils/text-utils';
 
+// Get all words and handle empty case
 const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
 const totalWords = words.length;
-const firstWord = words[0];
-const latestWord = words[words.length - 1];
+
+// Initialize variables with safe defaults
+const firstWord = totalWords > 0 ? words[0] : null;
+const latestWord = totalWords > 0 ? words[words.length - 1] : null;
+
+// Get all stats from utility functions
 const wordStats = getWordStats(words);
 const letterStats = getLetterStats(wordStats.letterFrequency);
 const letterPatterns = getLetterPatternStats(words);
 const wordEndings = getWordEndingStats(words);
 const streakStats = getCurrentStreakStats(words);
 
-const wordWithMostSyllables = words.reduce((max, curr) => {
-  const currSyllables = countSyllables(curr.word);
-  const maxSyllables = countSyllables(max.word);
-  return currSyllables > maxSyllables ? curr : max;
-}, words[0]);
+// Get specialized stats
+const { mostSyllables, leastSyllables } = getSyllableStats(words);
+const { mostVowels, mostConsonants } = getLetterTypeStats(words);
+const { allVowels, allConsonants, palindromes } = getPatternStats(words);
 
-const wordWithLeastSyllables = words.reduce((min, curr) => {
-  const currSyllables = countSyllables(curr.word);
-  const minSyllables = countSyllables(min.word);
-  return currSyllables < minSyllables ? curr : min;
-}, words[0]);
-
-const allVowels = words.filter(w => /^[aeiou]+$/i.test(w.word));
-const allConsonants = words.filter(w => /^[^aeiou]+$/i.test(w.word));
-const palindromes = words.filter(w => w.word.toLowerCase() === w.word.toLowerCase().split('').reverse().join(''));
-
-
-import { getVowelCount, getConsonantCount } from '~utils/text-utils.ts';
-
-const mostVowels = words.reduce((max, curr) => {
-  const count = getVowelCount(curr.word);
-  return count > getVowelCount(max.word) ? curr : max;
-}, words[0]);
-
-const mostConsonants = words.reduce((max, curr) => {
-  const count = getConsonantCount(curr.word);
-  return count > getConsonantCount(max.word) ? curr : max;
-}, words[0]);
-
-const findWordDate = (targetWord: string) => {
-  return words.find(w => w.word === targetWord)?.date;
-};
-
+// Pre-calculate values used in template
+const shortestWordDate = wordStats.shortest ? findWordDate(words, wordStats.shortest.word) : null;
+const longestWordDate = wordStats.longest ? findWordDate(words, wordStats.longest.word) : null;
+const leastSyllablesCount = leastSyllables ? countSyllables(leastSyllables.word) : 0;
+const mostSyllablesCount = mostSyllables ? countSyllables(mostSyllables.word) : 0;
+const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
+const mostCommonLetterCount = letterStats.length > 0 ? letterStats[0][1] : 0;
+const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
+const leastCommonLetterCount = letterStats.length > 0 ? letterStats[letterStats.length - 1][1] : 0;
+const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
+const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
+const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
+const palindromesText = palindromes.map(w => w.word).join(', ');
+const allConsonantsText = allConsonants.map(w => w.word).join(', ');
+const allVowelsText = allVowels.map(w => w.word).join(', ');
+const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100);
 ---
 
 <Layout title="Stats">
@@ -62,73 +67,93 @@ const findWordDate = (targetWord: string) => {
             <SiteLink href="/words" class="stats__link">{totalWords}</SiteLink>
           </div>
         </div>
-        <div class="stats__item">
-          <div class="stats__fact">first word</div>
-          <WordLink word={firstWord} />
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">latest word</div>
-          <WordLink word={latestWord} />
-        </div>
+        {firstWord && (
+          <div class="stats__item">
+            <div class="stats__fact">first word</div>
+            <WordLink word={firstWord} />
+          </div>
+        )}
+        {latestWord && (
+          <div class="stats__item">
+            <div class="stats__fact">latest word</div>
+            <WordLink word={latestWord} />
+          </div>
+        )}
       </div>
     </section>
 
     <section class="stats__section">
       <h2 class="stats__heading">Word Facts</h2>
       <div class="stats__list">
-        <div class="stats__item">
-          <div class="stats__fact">shortest ({wordStats.shortest.length} letters)</div>
-          <WordLink word={{
-            word: wordStats.shortest.word,
-            date: findWordDate(wordStats.shortest.word),
-          }} />
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">longest ({wordStats.longest.length} letters)</div>
-          <WordLink word={{
-            word: wordStats.longest.word,
-            date: findWordDate(wordStats.longest.word),
-          }} />
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">least syllables ({countSyllables(wordWithLeastSyllables.word)})</div>
-          <WordLink word={wordWithLeastSyllables} />
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">most syllables ({countSyllables(wordWithMostSyllables.word)})</div>
-          <WordLink word={wordWithMostSyllables} />
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">most common letter ({letterStats[0][1]} words)</div>
-          <div class="stats__value">
-            {letterStats[0][0]}
+        {wordStats.shortest && (
+          <div class="stats__item">
+            <div class="stats__fact">shortest ({wordStats.shortest.length} letters)</div>
+            <WordLink word={{
+              word: wordStats.shortest.word,
+              date: shortestWordDate,
+            }} />
           </div>
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">least common letter ({letterStats[letterStats.length - 1][1]} word{letterStats[letterStats.length - 1][1] !== 1 ? 's' : ''})</div>
-          <div class="stats__value">
-            {letterStats[letterStats.length - 1][0]}
+        )}
+        {wordStats.longest && (
+          <div class="stats__item">
+            <div class="stats__fact">longest ({wordStats.longest.length} letters)</div>
+            <WordLink word={{
+              word: wordStats.longest.word,
+              date: longestWordDate,
+            }} />
           </div>
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">most vowels ({getVowelCount(mostVowels.word)})</div>
-          <WordLink word={{
-            word: mostVowels.word,
-            date: mostVowels.date,
-          }} />
-        </div>
-        <div class="stats__item">
-          <div class="stats__fact">most consonants ({getConsonantCount(mostConsonants.word)})</div>
-          <WordLink word={{
-            word: mostConsonants.word,
-            date: mostConsonants.date,
-          }} />
-        </div>
+        )}
+        {leastSyllables && (
+          <div class="stats__item">
+            <div class="stats__fact">least syllables ({leastSyllablesCount})</div>
+            <WordLink word={leastSyllables} />
+          </div>
+        )}
+        {mostSyllables && (
+          <div class="stats__item">
+            <div class="stats__fact">most syllables ({mostSyllablesCount})</div>
+            <WordLink word={mostSyllables} />
+          </div>
+        )}
+        {letterStats.length > 0 && (
+          <div class="stats__item">
+            <div class="stats__fact">most common letter ({mostCommonLetterCount} words)</div>
+            <div class="stats__value">
+              {mostCommonLetter}
+            </div>
+          </div>
+        )}
+        {letterStats.length > 0 && (
+          <div class="stats__item">
+            <div class="stats__fact">least common letter ({leastCommonLetterCount} word{leastCommonLetterPlural})</div>
+            <div class="stats__value">
+              {leastCommonLetter}
+            </div>
+          </div>
+        )}
+        {mostVowels && (
+          <div class="stats__item">
+            <div class="stats__fact">most vowels ({mostVowelsCount})</div>
+            <WordLink word={{
+              word: mostVowels.word,
+              date: mostVowels.date,
+            }} />
+          </div>
+        )}
+        {mostConsonants && (
+          <div class="stats__item">
+            <div class="stats__fact">most consonants ({mostConsonantsCount})</div>
+            <WordLink word={{
+              word: mostConsonants.word,
+              date: mostConsonants.date,
+            }} />
+          </div>
+        )}
         {palindromes.length > 0 && (
           <div class="stats__item">
             <div class="stats__fact">palindromes</div>
             <div class="stats__value">
-              {palindromes.map(w => w.word).join(', ')}
+              {palindromesText}
             </div>
           </div>
         )}
@@ -136,7 +161,7 @@ const findWordDate = (targetWord: string) => {
           <div class="stats__item">
             <div class="stats__fact">all consonants</div>
             <div class="stats__value">
-              {allConsonants.map(w => w.word).join(', ')}
+              {allConsonantsText}
             </div>
           </div>
         )}
@@ -144,7 +169,7 @@ const findWordDate = (targetWord: string) => {
           <div class="stats__item">
             <div class="stats__fact">all vowels</div>
             <div class="stats__value">
-              {allVowels.map(w => w.word).join(', ')}
+              {allVowelsText}
             </div>
           </div>
         )}
@@ -172,7 +197,7 @@ const findWordDate = (targetWord: string) => {
             <div class="streak-chart__bar">
               <div
                 class="streak-chart__current"
-                style={`--current-width: ${Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100)}%`}
+                style={`--current-width: ${streakChartWidth}%`}
               ></div>
               <div
                 class="streak-chart__longest"
@@ -191,38 +216,30 @@ const findWordDate = (targetWord: string) => {
     <section class="stats__section">
       <h2 class="stats__heading">Letter Patterns</h2>
       <div class="stats__list">
-        {letterPatterns.startEndSame.length > 0 && (
-          <div class="stats__item">
-            <div class="stats__fact">same start/end letter</div>
-            <div class="stats__value">
-              <SiteLink href="/stats/same-start-end" class="stats__link">{letterPatterns.startEndSame.length}</SiteLink>
-            </div>
+        <div class="stats__item">
+          <div class="stats__fact">same start/end letter</div>
+          <div class="stats__value">
+            <SiteLink href="/stats/same-start-end" class="stats__link">{letterPatterns.startEndSame.length}</SiteLink>
           </div>
-        )}
-        {letterPatterns.doubleLetters.length > 0 && (
-          <div class="stats__item">
-            <div class="stats__fact">double letters</div>
-            <div class="stats__value">
-              <SiteLink href="/stats/double-letters" class="stats__link">{letterPatterns.doubleLetters.length}</SiteLink>
-            </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__fact">double letters</div>
+          <div class="stats__value">
+            <SiteLink href="/stats/double-letters" class="stats__link">{letterPatterns.doubleLetters.length}</SiteLink>
           </div>
-        )}
-        {letterPatterns.tripleLetters.length > 0 && (
-          <div class="stats__item">
-            <div class="stats__fact">triple letters</div>
-            <div class="stats__value">
-              <span>{letterPatterns.tripleLetters.length}</span>
-            </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__fact">triple letters</div>
+          <div class="stats__value">
+            <span>{letterPatterns.tripleLetters.length}</span>
           </div>
-        )}
-        {letterPatterns.alphabetical.length > 0 && (
-          <div class="stats__item">
-            <div class="stats__fact">alphabetical order</div>
-            <div class="stats__value">
-              <SiteLink href="/stats/alphabetical-order" class="stats__link">{letterPatterns.alphabetical.length}</SiteLink>
-            </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__fact">alphabetical order</div>
+          <div class="stats__value">
+            <SiteLink href="/stats/alphabetical-order" class="stats__link">{letterPatterns.alphabetical.length}</SiteLink>
           </div>
-        )}
+        </div>
       </div>
     </section>
 
@@ -307,14 +324,14 @@ const findWordDate = (targetWord: string) => {
     }
 
     /* Stats-specific styles */
-    .stats :global(a) {
+    /* .stats :global(a) {
         font-size: 1.1rem;
         font-weight: 500;
         display: flex;
         flex-direction: row;
         gap: var(--spacing-small);
         text-align: right;
-    }
+    } */
 
     .stats :global(time) {
         color: var(--color-text-lighter);
