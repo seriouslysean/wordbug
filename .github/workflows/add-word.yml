@@ -40,6 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
+      WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL || 'https://api.wordnik.com/v4' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -85,7 +86,9 @@ jobs:
             # Generate social image for the new word
             node tools/generate-word-image.js "$WORD"
           else
+            echo "Failed to add word"
             echo "word_added=0" >> $GITHUB_OUTPUT
+            exit 1
           fi
 
       - name: Configure Git
