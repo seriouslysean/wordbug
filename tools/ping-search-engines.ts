@@ -19,7 +19,7 @@ import http from 'http';
 import https from 'https';
 import { URL } from 'url';
 
-import { siteConfig } from '~config/environment';
+import { siteConfig } from '~config/site-config';
 
 /**
  * Gets the value for a CLI flag from an argument array

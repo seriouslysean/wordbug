@@ -54,6 +54,9 @@ jobs:
           SITE_AUTHOR_URL: ${{ vars.SITE_AUTHOR_URL }}
           SITE_ATTRIBUTION_MESSAGE: ${{ vars.SITE_ATTRIBUTION_MESSAGE }}
           SITE_KEYWORDS: ${{ vars.SITE_KEYWORDS }}
+          COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
+          COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
+          COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
           WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
           WORDNIK_WEBSITE_URL: ${{ vars.WORDNIK_WEBSITE_URL }}
           SENTRY_ENABLED: true
@@ -83,9 +86,7 @@ jobs:
       - name: Ping search engines
         env:
           SITE_URL: ${{ vars.SITE_URL }}
-          SITE_NAME: ${{ vars.SITE_NAME }}
         run: |
           npm run tool:ping-search-engines -- \
             --site-url "$SITE_URL" \
-            --site-name "$SITE_NAME" \
             --deployed-hash "${{ steps.get_prev_hash.outputs.PREVIOUS_DEPLOYED_HASH }}"
