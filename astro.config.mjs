@@ -73,6 +73,9 @@ export default defineConfig({
       __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),
       __HUMANS_DEVELOPER_CONTACT__: JSON.stringify(process.env.HUMANS_DEVELOPER_CONTACT || ''),
       __HUMANS_DEVELOPER_SITE__: JSON.stringify(process.env.HUMANS_DEVELOPER_SITE || ''),
+      __COLOR_PRIMARY__: JSON.stringify(process.env.COLOR_PRIMARY || '#4a5d4a'),
+      __COLOR_PRIMARY_LIGHT__: JSON.stringify(process.env.COLOR_PRIMARY_LIGHT || '#5a6d5a'),
+      __COLOR_PRIMARY_DARK__: JSON.stringify(process.env.COLOR_PRIMARY_DARK || '#3a4d3a'),
     },
     build: {
       target: 'esnext',

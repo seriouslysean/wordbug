@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-import { generateHumansTxt } from '../utils/static-file-utils';
+import { generateHumansTxt } from '~utils/static-file-utils';
 
 export const GET: APIRoute = () => {
   const humansTxt = generateHumansTxt();

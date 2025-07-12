@@ -84,7 +84,7 @@ jobs:
             echo "word=$WORD" >> $GITHUB_OUTPUT
 
             # Generate social image for the new word
-            node tools/generate-word-image.js "$WORD"
+            npm run tool:generate-word-image -- "$WORD"
           else
             echo "Failed to add word"
             echo "word_added=0" >> $GITHUB_OUTPUT

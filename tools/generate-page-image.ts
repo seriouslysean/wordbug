@@ -1,5 +1,5 @@
-import { getStaticPages } from '../src/utils/page-utils';
-import { generateGenericShareImage } from './word-data-utils';
+import { getStaticPages } from '~utils/page-utils';
+import { generateGenericShareImage } from '~tools/utils';
 
 /**
  * Generates a social share image for a specific page

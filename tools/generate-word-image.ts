@@ -1,4 +1,4 @@
-import { generateShareImage, getWordByName } from './word-data-utils';
+import { generateShareImage, getWordByName } from '~tools/utils';
 
 /**
  * Command-line script to generate a social share image for a specific word

@@ -4,7 +4,13 @@ import path from 'path';
 import sharp from 'sharp';
 
 import { paths } from '~config/paths';
-import { theme } from '~config/theme';
+// Colors for image generation
+const imageColors = {
+  primary: process.env.COLOR_PRIMARY || '#4a5d4a',
+  primaryLight: process.env.COLOR_PRIMARY_LIGHT || '#5a6d5a',
+  primaryDark: process.env.COLOR_PRIMARY_DARK || '#3a4d3a',
+  textLighter: '#8a8f98',
+};
 import { logger } from '~utils/logger';
 
 
@@ -271,20 +277,20 @@ export function createWordSvg(word: string, date: string): string {
 
     <defs>
         <linearGradient id="wordGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="${theme.imageGradient.light}"/>
-            <stop offset="60%" stop-color="${theme.imageGradient.default}"/>
-            <stop offset="100%" stop-color="${theme.imageGradient.dark}"/>
+            <stop offset="0%" stop-color="${imageColors.primaryLight}"/>
+            <stop offset="60%" stop-color="${imageColors.primary}"/>
+            <stop offset="100%" stop-color="${imageColors.primaryDark}"/>
         </linearGradient>
     </defs>
 
     <!-- Site title -->
     <g transform="translate(${PADDING}, ${PADDING + TITLE_SIZE})">
-        <path d="${titleText.pathData}" fill="${theme.colors.textLighter}"${titleText.transform}/>
+        <path d="${titleText.pathData}" fill="${imageColors.textLighter}"${titleText.transform}/>
     </g>
 
     <!-- Date -->
     <g transform="translate(${PADDING}, ${PADDING + TITLE_SIZE + DATE_SIZE + 16})">
-        <path d="${dateText.pathData}" fill="${theme.colors.textLighter}"${dateText.transform}/>
+        <path d="${dateText.pathData}" fill="${imageColors.textLighter}"${dateText.transform}/>
     </g>
 
     <!-- Main word -->
@@ -345,15 +351,15 @@ export function createGenericSvg(title: string): string {
 
     <defs>
         <linearGradient id="wordGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="${theme.imageGradient.light}"/>
-            <stop offset="60%" stop-color="${theme.imageGradient.default}"/>
-            <stop offset="100%" stop-color="${theme.imageGradient.dark}"/>
+            <stop offset="0%" stop-color="${imageColors.primaryLight}"/>
+            <stop offset="60%" stop-color="${imageColors.primary}"/>
+            <stop offset="100%" stop-color="${imageColors.primaryDark}"/>
         </linearGradient>
     </defs>
 
     <!-- Site title -->
     <g transform="translate(${PADDING}, ${PADDING + TITLE_SIZE})">
-        <path d="${titleText.pathData}" fill="${theme.colors.textLighter}"${titleText.transform}/>
+        <path d="${titleText.pathData}" fill="${imageColors.textLighter}"${titleText.transform}/>
     </g>
 
     <!-- Main word -->

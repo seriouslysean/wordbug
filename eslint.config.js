@@ -34,6 +34,9 @@ export default [
         __SITE_ID__: 'readonly',
         __TIMESTAMP__: 'readonly',
         __VERSION__: 'readonly',
+        __COLOR_PRIMARY__: 'readonly',
+        __COLOR_PRIMARY_LIGHT__: 'readonly',
+        __COLOR_PRIMARY_DARK__: 'readonly',
       },
     },
     rules: {

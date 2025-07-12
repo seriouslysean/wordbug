@@ -4,7 +4,7 @@ import sharp from 'sharp';
 
 import { paths } from '~config/paths';
 
-import { createWordSvg, getAllWords, isUsingDemoWords } from './word-data-utils';
+import { getAllWords, isUsingDemoWords, generateShareImage, createWordSvg } from '~tools/utils';
 
 /**
  * Generates social share images for all words in the collection

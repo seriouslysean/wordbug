@@ -3,7 +3,8 @@ import fs from 'fs';
 import { getAdapter } from '~adapters/factory';
 import { paths } from '~config/paths';
 
-import { generateWordDataHash,getAllWordFiles, getAllWords, updateWordFile } from './word-data-utils';
+import { getAllWordFiles, getAllWords, updateWordFile } from '~tools/utils';
+import { generateWordDataHash } from '~utils/word-data-utils';
 
 /**
  * Reprocesses all word data with fresh API data from the configured dictionary adapter

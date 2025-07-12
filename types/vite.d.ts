@@ -10,3 +10,6 @@ declare const __HUMANS_WORD_CURATOR__: string;
 declare const __HUMANS_DEVELOPER_NAME__: string;
 declare const __HUMANS_DEVELOPER_CONTACT__: string;
 declare const __HUMANS_DEVELOPER_SITE__: string;
+declare const __COLOR_PRIMARY__: string;
+declare const __COLOR_PRIMARY_LIGHT__: string;
+declare const __COLOR_PRIMARY_DARK__: string;
