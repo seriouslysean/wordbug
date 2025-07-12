@@ -2,7 +2,6 @@ import fs from 'fs';
 
 import { getAdapter } from '~adapters/factory';
 import { paths } from '~config/paths';
-
 import { getAllWordFiles, getAllWords, updateWordFile } from '~tools/utils';
 import { generateWordDataHash } from '~utils/word-data-utils';
 

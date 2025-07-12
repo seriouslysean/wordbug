@@ -179,7 +179,7 @@ async function pingAll(): Promise<void> {
   const results = await Promise.all(
     engineList.map(engineObj => pingSearchEngine(engineObj).catch(error => error)),
   );
-  
+
   results.forEach(result => {
     if (result.error) {
       console.error('Failed to ping search engine', { engine: result.engine, error: result.error });
