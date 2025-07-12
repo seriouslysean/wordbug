@@ -1,7 +1,8 @@
-import { defineConfig } from 'astro/config';
-import sentry from '@sentry/astro';
-import sitemap from '@astrojs/sitemap';
 import { execSync } from 'node:child_process';
+
+import sitemap from '@astrojs/sitemap';
+import sentry from '@sentry/astro';
+import { defineConfig } from 'astro/config';
 
 import pkg from './package.json' with { type: 'json' };
 

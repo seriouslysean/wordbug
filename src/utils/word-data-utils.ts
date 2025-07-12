@@ -1,65 +1,64 @@
-import { getAdapter } from '~adapters/factory';
-import { logger } from '~utils/logger';
 import crypto from 'crypto';
-import type {
-  WordData,
-  WordProcessedData,
-  WordAdjacentResult,
-  WordGroupByYearResult,
-  WordFileGlobImport,
-} from '~types/word';
+import fs from 'fs';
+import path from 'path';
+
+import { getAdapter } from '~adapters/factory';
 import type { DictionaryDefinition } from '~types/adapters';
+import type {
+  WordAdjacentResult,
+  WordData,
+  WordGroupByYearResult,
+  WordProcessedData,
+} from '~types/word';
+import { logger } from '~utils/logger';
 
 export type WordDataProvider = () => WordData[];
 
-let defaultWordFiles: WordFileGlobImport = {};
-let defaultDemoFiles: WordFileGlobImport = {};
-if (typeof import.meta.glob !== 'undefined') {
+const loadWordsFromDirectory = (dir: string): WordData[] => {
   try {
-    defaultWordFiles = import.meta.glob('/data/words/**/*.json', { eager: true });
-    logger.info('Imported word data files', { count: Object.keys(defaultWordFiles).length });
-  } catch (error) {
-    logger.warn('Could not import word data files', { error: (error as Error).message });
-  }
+    if (!fs.existsSync(dir)) {
+      return [];
+    }
 
-  try {
-    defaultDemoFiles = import.meta.glob('/data/demo/words/**/*.json', { eager: true });
-    logger.info('Imported demo word data files', { count: Object.keys(defaultDemoFiles).length });
-  } catch (error) {
-    logger.warn('Could not import demo word data files', { error: (error as Error).message });
-  }
-}
+    const files = fs.readdirSync(dir, { recursive: true })
+      .filter((file): file is string => typeof file === 'string' && file.endsWith('.json'))
+      .map(file => path.join(dir, file));
 
-const parseWordFiles = (files: WordFileGlobImport): WordData[] => {
-  return Object.entries(files)
-    .map(([path, data]) => {
-      const date = path.match(/(\d{8})\.json$/)?.[1];
-      if (!date) {
-        logger.error('Word data file is missing date information', { path });
-        return null;
-      }
-      const wordData = Array.isArray(data) ? data[0] : data;
-      return wordData;
-    })
-    .filter((item): item is WordData => item !== null)
-    .sort((a, b) => b.date.localeCompare(a.date));
+    return files
+      .map(filePath => {
+        try {
+          const content = fs.readFileSync(filePath, 'utf-8');
+          const data = JSON.parse(content);
+          const fileName = path.basename(filePath);
+          const date = fileName.match(/(\d{8})\.json$/)?.[1];
+
+          if (!date) {
+            logger.error('Word data file is missing date information', { path: filePath });
+            return null;
+          }
+
+          return Array.isArray(data) ? data[0] : data;
+        } catch (error) {
+          logger.error('Failed to read word file', { path: filePath, error: (error as Error).message });
+          return null;
+        }
+      })
+      .filter((item): item is WordData => item !== null)
+      .sort((a, b) => b.date.localeCompare(a.date));
+  } catch (error) {
+    logger.error('Failed to load word files from directory', { dir, error: (error as Error).message });
+    return [];
+  }
 };
 
-const defaultWordDataProvider: WordDataProvider = () => {
-  const wordEntries = Object.entries(defaultWordFiles);
-  if (wordEntries.length > 0) {
-    logger.info(`Using ${wordEntries.length} real word files`);
-    return parseWordFiles(defaultWordFiles);
-  }
+const getProductionWords = (): WordData[] => {
+  const wordsDir = path.join(process.cwd(), 'data', 'words');
+  return loadWordsFromDirectory(wordsDir);
+};
 
-  const demoEntries = Object.entries(defaultDemoFiles);
-  if (demoEntries.length > 0) {
-    logger.info(`Using ${demoEntries.length} demo word files`);
-    return parseWordFiles(defaultDemoFiles);
-  }
-
-  logger.error('No word files found, returning empty array');
-  return [];
+const getDemoWords = (): WordData[] => {
+  const demoDir = path.join(process.cwd(), 'data', 'demo', 'words');
+  return loadWordsFromDirectory(demoDir);
 };
 
 /**
@@ -69,7 +68,20 @@ const defaultWordDataProvider: WordDataProvider = () => {
  * @returns {WordData[]} Array of all word data entries, sorted by date in descending order
  */
 export const getAllWords = (): WordData[] => {
-  return defaultWordDataProvider();
+  const productionWords = getProductionWords();
+  if (productionWords.length > 0) {
+    logger.info('Using production word files', { count: productionWords.length });
+    return productionWords;
+  }
+
+  const demoWords = getDemoWords();
+  if (demoWords.length > 0) {
+    logger.info('Using demo word files', { count: demoWords.length });
+    return demoWords;
+  }
+
+  logger.error('No word files found');
+  return [];
 };
 
 /**
@@ -104,13 +116,13 @@ export function getProcessedWord(wordData: WordData): WordProcessedData {
  * Returns the most recent word with a date less than or equal to today.
  * Falls back to the first available word if none match the date criteria.
  *
- * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
+ * @param {WordDataProvider} [wordProvider=getAllWords] - Function that provides word data array
  * @returns {WordData | null} The current word data that should be displayed, or null if no words are available
  */
-export const getCurrentWord = (wordProvider: WordDataProvider = defaultWordDataProvider): WordData | null => {
+export const getCurrentWord = (wordProvider: WordDataProvider = getAllWords): WordData | null => {
   const words = wordProvider();
   if (!words.length) {
-    logger.error('No word data available in the system', {});
+    logger.error('No word data available in the system');
     return null;
   }
 
@@ -124,10 +136,10 @@ export const getCurrentWord = (wordProvider: WordDataProvider = defaultWordDataP
  * Useful for showing recent word history or navigation context.
  *
  * @param {string} currentDate - Reference date in YYYYMMDD format to find words before
- * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
+ * @param {WordDataProvider} [wordProvider=getAllWords] - Function that provides word data array
  * @returns {WordData[]} Array of up to 5 word entries that occurred before the given date
  */
-export const getPastWords = (currentDate: string, wordProvider: WordDataProvider = defaultWordDataProvider): WordData[] => {
+export const getPastWords = (currentDate: string, wordProvider: WordDataProvider = getAllWords): WordData[] => {
   if (!currentDate) {
     return [];
   }
@@ -145,7 +157,7 @@ export const getPastWords = (currentDate: string, wordProvider: WordDataProvider
  * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
  * @returns {WordData | null} Word data for the specified date, or null if not found
  */
-export const getWordByDate = (date: string, wordProvider: WordDataProvider = defaultWordDataProvider): WordData | null => {
+export const getWordByDate = (date: string, wordProvider: WordDataProvider = getAllWords): WordData | null => {
   if (!date) {
     return null;
   }
@@ -161,7 +173,7 @@ export const getWordByDate = (date: string, wordProvider: WordDataProvider = def
  * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
  * @returns {WordAdjacentResult} Object containing previousWord and nextWord, or null if not found
  */
-export const getAdjacentWords = (date: string, wordProvider: WordDataProvider = defaultWordDataProvider): WordAdjacentResult => {
+export const getAdjacentWords = (date: string, wordProvider: WordDataProvider = getAllWords): WordAdjacentResult => {
   if (!date) {
     return {
       previousWord: null,
@@ -207,7 +219,7 @@ export const getWordDetails = (word: WordData): WordProcessedData => {
  * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
  * @returns {WordData[]} Array of word data entries from the specified year
  */
-export const getWordsByYear = (year: string, wordProvider: WordDataProvider = defaultWordDataProvider): WordData[] => {
+export const getWordsByYear = (year: string, wordProvider: WordDataProvider = getAllWords): WordData[] => {
   const words = wordProvider();
   return words.filter(word => word.date.startsWith(year));
 };
@@ -249,7 +261,7 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
  * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
  * @returns {string[]} Array of unique years (YYYY format) sorted in descending order
  */
-export const getAvailableYears = (wordProvider: WordDataProvider = defaultWordDataProvider): string[] => {
+export const getAvailableYears = (wordProvider: WordDataProvider = getAllWords): string[] => {
   const words = wordProvider();
   const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
   return years.sort((a, b) => b.localeCompare(a));

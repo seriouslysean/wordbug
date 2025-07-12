@@ -1,10 +1,10 @@
 ---
-import Layout from '~layouts/Layout.astro';
 import WordComponent from '~components/Word.astro';
 import WordNav from '~components/WordNav.astro';
-import { getAllWords, getWordByDate, getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
-import { getMetaDescription } from '~utils/seo-utils.ts';
+import Layout from '~layouts/Layout.astro';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { getMetaDescription } from '~utils/seo-utils.ts';
+import { getAdjacentWords, getAllWords, getWordByDate, getWordDetails } from '~utils/word-utils.js';
 
 export async function getStaticPaths() {
   const words = getAllWords();

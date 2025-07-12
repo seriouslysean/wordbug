@@ -3,8 +3,9 @@
  * Simple JSON-LD generation with proper typing
  */
 
+import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types/schema';
+
 import { seoConfig } from './seo-utils.ts';
-import type { WebSiteSchema, DefinedTermSchema, CollectionPageSchema, WordSchemaData } from '~types/schema';
 
 export const STRUCTURED_DATA_TYPE = {
   WORD_SINGLE: 'WORD_SINGLE',

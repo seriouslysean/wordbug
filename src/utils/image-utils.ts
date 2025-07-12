@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import { getAvailableYears } from '~utils/word-data-utils';
-import { getFullUrl } from '~utils/url-utils';
+
 import { paths } from '~config/paths';
 import type { WordData } from '~types/word';
+import { getFullUrl } from '~utils/url-utils';
+import { getAvailableYears } from '~utils/word-data-utils';
 
 /**
  * Gets all static pages that need generic social images

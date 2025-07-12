@@ -1,11 +1,11 @@
 ---
-import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
-import WordList from '~components/WordList.astro';
 import SectionHeading from '~components/SectionHeading.astro';
-import { getUrl } from '~utils/utils.js';
-import { getAllWords, formatWordCount, groupWordsByYear } from '~utils/word-utils.js';
+import WordList from '~components/WordList.astro';
+import Layout from '~layouts/Layout.astro';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { getUrl } from '~utils/utils.js';
+import { formatWordCount, getAllWords, groupWordsByYear } from '~utils/word-utils.js';
 
 const words = getAllWords();
 const wordsByYear = groupWordsByYear(words);

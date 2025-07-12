@@ -1,13 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import { getAllWords } from '~tools/word-data-utils';
+
 import { getAdapter } from '~adapters/factory';
 import { paths } from '~config/paths';
-import type { WordData } from '~types/word';
+import { getAllWords } from '~tools/word-data-utils';
 import type { DictionaryDefinition } from '~types/adapters';
+import type { WordData } from '~types/word';
 import { isValidDateISO } from '~utils/date-utils';
-import { isValidDictionaryData } from '~utils/word-data-utils';
 import { logger } from '~utils/logger';
+import { isValidDictionaryData } from '~utils/word-data-utils';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found

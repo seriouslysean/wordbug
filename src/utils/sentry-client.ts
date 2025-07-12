@@ -1,4 +1,5 @@
 import { captureException, captureMessage, withScope } from '@sentry/astro';
+
 import type { LogContext } from '~types/utils';
 
 /**

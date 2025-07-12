@@ -16,8 +16,8 @@
  *   --force         Ping regardless of content change detection
  */
 
-import https from 'https';
 import http from 'http';
+import https from 'https';
 import { URL } from 'url';
 
 /**

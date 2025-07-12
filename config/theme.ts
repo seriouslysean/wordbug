@@ -8,7 +8,7 @@
  * by creating your own theme.config.js file at the project root.
  */
 
-import type { ThemeConfig, ThemeColors } from '~types/config';
+import type { ThemeColors,ThemeConfig } from '~types/config';
 
 /**
  * Load optional project-level theme overrides

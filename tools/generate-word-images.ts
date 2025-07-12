@@ -1,8 +1,10 @@
-import { getAllWords, createWordSvg, isUsingDemoWords } from './word-data-utils';
 import fs from 'fs/promises';
 import path from 'path';
 import sharp from 'sharp';
+
 import { paths } from '~config/paths';
+
+import { createWordSvg, getAllWords, isUsingDemoWords } from './word-data-utils';
 
 /**
  * Generates social share images for all words in the collection

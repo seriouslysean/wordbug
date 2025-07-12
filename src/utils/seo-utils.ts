@@ -3,7 +3,7 @@
  * Centralized SEO config following Astro best practices
  */
 
-import type { SeoConfig, SeoMetaDescriptionOptions, SeoMetadataOptions, SeoMetadata } from '~types/seo';
+import type { SeoConfig, SeoMetadata,SeoMetadataOptions, SeoMetaDescriptionOptions } from '~types/seo';
 
 // SEO configuration using environment variables - no fallbacks for security
 export const seoConfig: SeoConfig = {

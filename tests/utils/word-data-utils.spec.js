@@ -1,13 +1,16 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
+ afterEach,beforeEach, describe, expect, it, vi,
+} from 'vitest';
+
+import {
+  getAdjacentWords,
+  getAvailableYears,
   getCurrentWord,
   getPastWords,
   getWordByDate,
-  getAdjacentWords,
   getWordDetails,
   getWordsByYear,
   groupWordsByYear,
-  getAvailableYears,
   isValidDictionaryData,
 } from '~utils/word-data-utils';
 
@@ -91,8 +94,9 @@ describe('word-data-utils', () => {
       expect(result.word).toBe('future');
     });
 
-    it('throws error when no words available', () => {
-      expect(() => getCurrentWord(emptyWordProvider)).toThrow('No word data available');
+    it('returns null when no words available', () => {
+      const result = getCurrentWord(emptyWordProvider);
+      expect(result).toBeNull();
     });
   });
 

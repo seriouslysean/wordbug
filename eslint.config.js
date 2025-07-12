@@ -1,15 +1,19 @@
 import js from '@eslint/js';
-import astro from 'eslint-plugin-astro';
-import tseslint from 'typescript-eslint';
 import tsParser from '@typescript-eslint/parser';
 import astroParser from 'astro-eslint-parser';
+import astro from 'eslint-plugin-astro';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,
   {
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+    },
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -41,6 +45,15 @@ export default [
       'object-curly-spacing': ['error', 'always'],
       'array-bracket-spacing': ['error', 'never'],
       'no-trailing-spaces': 'error',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+      'nonblock-statement-body-position': ['error', 'below'],
+      'object-curly-newline': ['error', {
+        'ImportDeclaration': {
+          'multiline': true,
+          'minProperties': 5,
+        },
+      }],
     },
   },
   {

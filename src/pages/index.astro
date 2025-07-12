@@ -1,8 +1,8 @@
 ---
-import Layout from '~layouts/Layout.astro';
 import WordDisplay from '~components/WordDisplay.astro';
-import { getCurrentWord, getPastWords } from '~utils/word-utils.js';
+import Layout from '~layouts/Layout.astro';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { getCurrentWord, getPastWords } from '~utils/word-utils.js';
 
 const currentWord = getCurrentWord();
 const pastWords = getPastWords(currentWord?.date);

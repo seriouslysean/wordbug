@@ -1,10 +1,12 @@
 ---
-import Layout from '~layouts/Layout.astro';
+import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordList from '~components/WordList.astro';
-import DescriptionText from '~components/DescriptionText.astro';
-import { getAllWords, getWordEndingStats, formatWordCount } from '~utils/word-utils.js';
+import Layout from '~layouts/Layout.astro';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { formatWordCount } from '~utils/text-utils';
+import { getAllWords } from '~utils/word-data-utils';
+import { getWordEndingStats } from '~utils/word-stats-utils';
 
 const words = getAllWords();
 const wordEndings = getWordEndingStats(words);

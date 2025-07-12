@@ -1,15 +1,16 @@
 ---
 import '~styles/global.css';
-import Header from '~components/Header.astro';
+
 import Footer from '~components/Footer.astro';
+import Header from '~components/Header.astro';
 import StructuredData from '~components/StructuredData.astro';
-import { getUrl } from '~utils/utils.js';
-import { getWordByDate, getWordDetails } from '~utils/word-utils.js';
-import { getSocialImageUrl } from '~utils/page-utils.js';
-import { seoConfig, getCanonicalUrl, getMetaDescription } from '~utils/seo-utils.ts';
+import { generateCSSVariables } from '~config/theme.js';
 import type { WordData } from '~types/word';
 import { getBuildData } from '~utils/build-utils.ts';
-import { generateCSSVariables } from '~config/theme.js';
+import { getSocialImageUrl } from '~utils/page-utils.js';
+import { getCanonicalUrl, getMetaDescription,seoConfig } from '~utils/seo-utils.ts';
+import { getUrl } from '~utils/utils.js';
+import { getWordByDate, getWordDetails } from '~utils/word-utils.js';
 
 const { title, word, description, structuredDataType, noindex, nofollow } = Astro.props;
 

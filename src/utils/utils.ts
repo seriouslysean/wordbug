@@ -6,5 +6,5 @@
 // - Word stats functions → word-stats-utils.js
 // - Image functions → image-utils.js
 
-export { getUrl, getFullUrl, getWordUrl, getDateUrl } from '~utils/url-utils';
 export { formatWordCount } from '~utils/text-utils';
+export { getDateUrl,getFullUrl, getUrl, getWordUrl } from '~utils/url-utils';

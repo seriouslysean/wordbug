@@ -1,7 +1,8 @@
 import { decodeHTML } from 'entities';
-import type { WordnikDefinition, WordnikFetchOptions, WordnikConfig } from '~types/wordnik';
-import type { WordProcessedData, WordData } from '~types/word';
-import type { DictionaryAdapter, DictionaryResponse, DictionaryDefinition } from '~types/adapters';
+
+import type { DictionaryAdapter, DictionaryDefinition,DictionaryResponse } from '~types/adapters';
+import type { WordData,WordProcessedData } from '~types/word';
+import type { WordnikConfig,WordnikDefinition, WordnikFetchOptions } from '~types/wordnik';
 
 /**
  * Configuration constants for Wordnik API integration

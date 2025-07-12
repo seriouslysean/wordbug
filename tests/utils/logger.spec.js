@@ -1,5 +1,8 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { logger, config } from '~/utils/logger';
+import {
+ afterEach,beforeEach, describe, expect, it, vi,
+} from 'vitest';
+
+import { config,logger } from '~/utils/logger';
 
 describe('logger', () => {
   let consoleSpy;

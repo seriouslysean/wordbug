@@ -1,4 +1,4 @@
-import { init, browserTracingIntegration, replayIntegration } from '@sentry/astro';
+import { browserTracingIntegration, init, replayIntegration } from '@sentry/astro';
 
 init({
   dsn: __SENTRY_DSN__,

@@ -1,10 +1,11 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect,it } from 'vitest';
+
 import {
-  getVowelCount,
-  getConsonantCount,
-  isPalindrome,
   countSyllables,
   formatWordCount,
+  getConsonantCount,
+  getVowelCount,
+  isPalindrome,
 } from '~utils/text-utils';
 
 describe('text-utils', () => {

@@ -36,7 +36,7 @@ export const isPalindrome = (word: string): boolean => {
 };
 
 /**
- * Estimates syllable count using vowel groups and special cases
+ * Estimates syllable count using improved algorithm based on linguistic patterns
  * @param word - The word to analyze
  * @returns Estimated number of syllables (minimum 1)
  */
@@ -47,18 +47,87 @@ export const countSyllables = (word: string): number => {
 
   const cleanWord = word.toLowerCase().trim();
 
+  // Handle single-letter words
+  if (cleanWord.length === 1) {
+    return 1;
+  }
+
+  // Special cases for common words with irregular syllable patterns
   const specialCases: TextSyllableSpecialCases = {
     'ululated': 4,
+    'the': 1,
+    'a': 1,
+    'an': 1,
+    'and': 1,
+    'are': 1,
+    'as': 1,
+    'at': 1,
+    'be': 1,
+    'by': 1,
+    'for': 1,
+    'from': 1,
+    'has': 1,
+    'he': 1,
+    'in': 1,
+    'is': 1,
+    'it': 1,
+    'its': 1,
+    'of': 1,
+    'on': 1,
+    'that': 1,
+    'to': 1,
+    'was': 1,
+    'were': 2,
+    'will': 1,
+    'with': 1,
+    'you': 1,
+    'your': 1,
+    'yours': 1,
   };
+
   if (specialCases[cleanWord]) {
     return specialCases[cleanWord];
   }
 
-  const processedWord = cleanWord.replace(/([^aeiou])e$/, '$1');
-  const syllableGroups = processedWord.match(/[aeiouy]+/gi) || [];
-  const endsWithE = /[^aeiou]e$/i.test(cleanWord);
-  const syllableCount = syllableGroups.length - (endsWithE ? 1 : 0);
+  // Remove trailing silent e (but not if it's the only vowel)
+  let processedWord = cleanWord;
+  if (processedWord.length > 2 && processedWord.endsWith('e')) {
+    const beforeE = processedWord[processedWord.length - 2];
+    if (beforeE && !'aeiou'.includes(beforeE)) {
+      // Only remove silent e if there are other vowels in the word
+      const withoutE = processedWord.slice(0, -1);
+      if (/[aeiouy]/i.test(withoutE)) {
+        processedWord = withoutE;
+      }
+    }
+  }
 
+  // Handle words ending in -ed (usually silent unless preceded by d or t)
+  if (processedWord.endsWith('ed') && processedWord.length > 2) {
+    const beforeEd = processedWord[processedWord.length - 3];
+    if (beforeEd && !'dt'.includes(beforeEd)) {
+      processedWord = processedWord.slice(0, -2);
+    }
+  }
+
+  // Handle words ending in -es
+  if (processedWord.endsWith('es') && processedWord.length > 2) {
+    const beforeEs = processedWord[processedWord.length - 3];
+    if (beforeEs && 'sxzh'.includes(beforeEs)) {
+      // Keep the 'es' as it adds a syllable (like "boxes", "wishes")
+    } else {
+      processedWord = processedWord.slice(0, -2);
+    }
+  }
+
+  // Handle y at the beginning (consonant) vs middle/end (vowel)
+  processedWord = processedWord.replace(/^y/, '');
+
+  // Count vowel groups (consecutive vowels count as one syllable)
+  const vowelGroups = processedWord.match(/[aeiouy]+/gi) || [];
+  const syllableCount = vowelGroups.length;
+
+  // Ensure minimum of 1 syllable for any non-empty word
   return Math.max(1, syllableCount);
 };
 

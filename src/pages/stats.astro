@@ -1,21 +1,21 @@
 ---
-import Layout from '~layouts/Layout.astro';
 import Heading from '~components/Heading.astro';
-import WordLink from '~components/WordLink.astro';
 import SiteLink from '~components/SiteLink.astro';
-import { getAllWords } from '~utils/word-utils';
+import WordLink from '~components/WordLink.astro';
+import Layout from '~layouts/Layout.astro';
+import { countSyllables, getConsonantCount,getVowelCount } from '~utils/text-utils';
+import { getAllWords } from '~utils/word-data-utils';
 import {
-  getWordStats,
-  getLetterStats,
-  getLetterPatternStats,
-  getWordEndingStats,
+  findWordDate,
   getCurrentStreakStats,
-  getSyllableStats,
+  getLetterPatternStats,
+  getLetterStats,
   getLetterTypeStats,
   getPatternStats,
-  findWordDate,
+  getSyllableStats,
+  getWordEndingStats,
+  getWordStats,
 } from '~utils/word-stats-utils';
-import { countSyllables, getVowelCount, getConsonantCount } from '~utils/text-utils';
 
 // Get all words and handle empty case
 const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));

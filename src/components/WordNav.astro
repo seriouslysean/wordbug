@@ -1,8 +1,9 @@
 ---
-import WordLink from './WordLink.astro';
-import SiteLink from './SiteLink.astro';
-import { getCurrentWord } from '~utils/word-utils.js';
 import { formatDate } from '~utils/date-utils.js';
+import { getCurrentWord } from '~utils/word-utils.js';
+
+import SiteLink from './SiteLink.astro';
+import WordLink from './WordLink.astro';
 
 interface Props {
   previousWord: {

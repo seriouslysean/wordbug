@@ -1,9 +1,10 @@
 import fs from 'fs';
+import opentype from 'opentype.js';
 import path from 'path';
 import sharp from 'sharp';
-import opentype from 'opentype.js';
-import { theme } from '~config/theme';
+
 import { paths } from '~config/paths';
+import { theme } from '~config/theme';
 import { logger } from '~utils/logger';
 
 
@@ -389,10 +390,10 @@ export async function generateGenericShareImage(title: string, slug: string): Pr
   }
 }
 
-import { isValidDictionaryData } from '~utils/word-data-utils';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';
 import { formatDate } from '~utils/date-utils';
+import { isValidDictionaryData } from '~utils/word-data-utils';
 export { isValidDictionaryData as isValidWordData };
 
 // Re-export generateWordDataHash from utils for convenience

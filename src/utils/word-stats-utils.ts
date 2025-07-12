@@ -1,16 +1,21 @@
-import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
-import { logger } from '~utils/logger';
-import { countSyllables, getVowelCount, getConsonantCount } from '~utils/text-utils';
 import type {
   WordData,
-  WordStatsResult,
+  WordEndingStatsResult,
   WordLetterStatsResult,
   WordMilestoneResult,
   WordPatternStatsResult,
-  WordEndingStatsResult,
+  WordStatsResult,
   WordStreakStatsResult,
 } from '~types/word';
+import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
+import { logger } from '~utils/logger';
+import { countSyllables, getConsonantCount,getVowelCount } from '~utils/text-utils';
 
+/**
+ * Analyzes word data to extract basic statistics including longest/shortest words and letter frequency.
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {WordStatsResult} Statistics object containing longest/shortest words, palindromes, and letter frequency
+ */
 export const getWordStats = (words: WordData[]): WordStatsResult => {
   const emptyStats: WordStatsResult = {
     longest: null,
@@ -50,6 +55,11 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
   }, emptyStats);
 };
 
+/**
+ * Converts letter frequency data into sorted statistics.
+ * @param {Record<string, number>} letterFrequency - Object mapping letters to their frequency counts
+ * @returns {WordLetterStatsResult} Array of letter-frequency pairs sorted by frequency (descending)
+ */
 export const getLetterStats = (letterFrequency: Record<string, number>): WordLetterStatsResult => {
   if (Object.keys(letterFrequency).length === 0) {
     return [];
@@ -59,18 +69,11 @@ export const getLetterStats = (letterFrequency: Record<string, number>): WordLet
 };
 
 /**
- * Get words at specific milestone positions
+ * Get words at specific milestone positions (25th, 50th, 100th).
+ * @param {WordData[]} words - Array of word data objects
+ * @returns {WordMilestoneResult} Object containing words at milestone positions or null if not reached
  */
 export const getMilestoneWords = (words: WordData[]): WordMilestoneResult => {
-  // Handle empty words array
-  if (!words || words.length === 0) {
-    return {
-      25: null,
-      50: null,
-      100: null,
-    };
-  }
-
   return {
     25: words.length >= 25 ? words[24] : null,
     50: words.length >= 50 ? words[49] : null,
@@ -78,6 +81,11 @@ export const getMilestoneWords = (words: WordData[]): WordMilestoneResult => {
   };
 };
 
+/**
+ * Analyzes words for various letter patterns including start/end matches, double letters, and alphabetical sequences.
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {WordPatternStatsResult} Object containing arrays of words matching different letter patterns
+ */
 export const getLetterPatternStats = (words: WordData[]): WordPatternStatsResult => {
   const patterns = {
     startEndSame: [],
@@ -85,11 +93,6 @@ export const getLetterPatternStats = (words: WordData[]): WordPatternStatsResult
     tripleLetters: [],
     alphabetical: [],
   };
-
-  // Handle empty words array
-  if (!words || words.length === 0) {
-    return patterns;
-  }
 
   words.forEach(wordObj => {
     const word = wordObj.word.toLowerCase();
@@ -125,17 +128,17 @@ export const getLetterPatternStats = (words: WordData[]): WordPatternStatsResult
   return patterns;
 };
 
+/**
+ * Categorizes words by common endings (-ing, -ed, -ly).
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {WordEndingStatsResult} Object containing arrays of words grouped by ending type
+ */
 export const getWordEndingStats = (words: WordData[]): WordEndingStatsResult => {
   const endings = {
     ing: [],
     ed: [],
     ly: [],
   };
-
-  // Handle empty words array
-  if (!words || words.length === 0) {
-    return endings;
-  }
 
   words.forEach(wordObj => {
     const word = wordObj.word.toLowerCase();
@@ -155,11 +158,12 @@ export const getWordEndingStats = (words: WordData[]): WordEndingStatsResult => 
 };
 
 /**
- * Calculate current and longest word streaks
+ * Calculate current and longest word streaks based on consecutive days.
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {WordStreakStatsResult} Object containing current streak, longest streak, and active status
  */
 export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult => {
-  // Handle empty words array
-  if (!words || words.length === 0) {
+  if (words.length === 0) {
     return {
       currentStreak: 0,
       longestStreak: 0,
@@ -240,7 +244,10 @@ export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult 
 };
 
 /**
- * Check if two dates are consecutive days
+ * Check if two dates are consecutive days.
+ * @param {string} olderDate - Earlier date in YYYYMMDD format
+ * @param {string} newerDate - Later date in YYYYMMDD format
+ * @returns {boolean} True if the dates are exactly one day apart
  */
 const areConsecutiveDays = (olderDate: string, newerDate: string): boolean => {
   const dOlder = YYYYMMDDToDate(olderDate);
@@ -257,9 +264,13 @@ const areConsecutiveDays = (olderDate: string, newerDate: string): boolean => {
   return diffDays === 1;
 };
 
-export const getSyllableStats = (words: WordData[]) => {
-  // Handle empty words array
-  if (!words || words.length === 0) {
+/**
+ * Finds words with the most and least syllables.
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {{mostSyllables: WordData | null, leastSyllables: WordData | null}} Object containing words with extreme syllable counts
+ */
+export const getSyllableStats = (words: WordData[]): { mostSyllables: WordData | null; leastSyllables: WordData | null } => {
+  if (words.length === 0) {
     return {
       mostSyllables: null,
       leastSyllables: null,
@@ -284,7 +295,19 @@ export const getSyllableStats = (words: WordData[]) => {
   });
 };
 
-export const getLetterTypeStats = (words: WordData[]) => {
+/**
+ * Finds words with the most vowels and most consonants.
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {{mostVowels: WordData | null, mostConsonants: WordData | null}} Object containing words with extreme vowel/consonant counts
+ */
+export const getLetterTypeStats = (words: WordData[]): { mostVowels: WordData | null; mostConsonants: WordData | null } => {
+  if (words.length === 0) {
+    return {
+      mostVowels: null,
+      mostConsonants: null,
+    };
+  }
+
   return words.reduce((acc, word) => {
     const vowelCount = getVowelCount(word.word);
     const consonantCount = getConsonantCount(word.word);
@@ -299,23 +322,33 @@ export const getLetterTypeStats = (words: WordData[]) => {
 
     return acc;
   }, {
-    mostVowels: words?.[0] || null,
-    mostConsonants: words?.[0] || null,
+    mostVowels: words[0],
+    mostConsonants: words[0],
   });
 };
 
-export const getPatternStats = (words: WordData[]) => {
-  // Empty arrays are fine here since we're just filtering the array
+/**
+ * Finds words matching special patterns (all vowels, all consonants, palindromes).
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {{allVowels: WordData[], allConsonants: WordData[], palindromes: WordData[]}} Object containing arrays of words matching special patterns
+ */
+export const getPatternStats = (words: WordData[]): { allVowels: WordData[]; allConsonants: WordData[]; palindromes: WordData[] } => {
   return {
-    allVowels: words ? words.filter(w => /^[aeiou]+$/i.test(w.word)) : [],
-    allConsonants: words ? words.filter(w => /^[^aeiou]+$/i.test(w.word)) : [],
-    palindromes: words ? words.filter(w => w.word.toLowerCase() === w.word.toLowerCase().split('').reverse().join('')) : [],
+    allVowels: words.filter(w => /^[aeiou]+$/i.test(w.word)),
+    allConsonants: words.filter(w => /^[^aeiou]+$/i.test(w.word)),
+    palindromes: words.filter(w => w.word.toLowerCase() === w.word.toLowerCase().split('').reverse().join('')),
   };
 };
 
 /**
- * Helper function to find a word's date from a list of words
+ * Helper function to find a word's date from a list of words.
+ * @param {WordData[]} words - Array of word data objects to search through
+ * @param {string} targetWord - The word to find the date for
+ * @returns {string | undefined} The date of the word in YYYYMMDD format, or undefined if not found
  */
-export const findWordDate = (words: WordData[], targetWord: string) => {
-  return words.find(w => w.word === targetWord)?.date;
+export const findWordDate = (words: WordData[], targetWord: string): string | undefined => {
+  if (!targetWord) {
+    return undefined;
+  }
+  return words.find(w => w?.word === targetWord)?.date;
 };

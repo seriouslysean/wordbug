@@ -1,9 +1,9 @@
 ---
-import Layout from '~layouts/Layout.astro';
-import { getAvailableYears, getWordsByYear } from '~utils/word-utils.js';
-import WordList from '~components/WordList.astro';
 import Heading from '~components/Heading.astro';
+import WordList from '~components/WordList.astro';
+import Layout from '~layouts/Layout.astro';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { getAvailableYears, getWordsByYear } from '~utils/word-utils.js';
 
 export async function getStaticPaths() {
   const years = getAvailableYears();

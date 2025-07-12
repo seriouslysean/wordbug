@@ -5,32 +5,30 @@
 // - Text formatting functions → text-utils.js
 
 export {
-  getAllWords,
-  getCurrentWord,
-  getPastWords,
-  getWordByDate,
-  getAdjacentWords,
-  getWordDetails,
-  getWordsByYear,
-  generateWordDataHash,
-  groupWordsByYear,
-  getAvailableYears,
-} from '~utils/word-data-utils';
-
-export {
-  getWordStats,
-  getLetterStats,
-  getMilestoneWords,
-  getLetterPatternStats,
-  getWordEndingStats,
-  getCurrentStreakStats,
-  getSyllableStats,
-  getLetterTypeStats,
-  getPatternStats,
-  findWordDate,
-} from '~utils/word-stats-utils';
-
-export {
   countSyllables,
   formatWordCount,
 } from '~utils/text-utils';
+export {
+  generateWordDataHash,
+  getAdjacentWords,
+  getAllWords,
+  getAvailableYears,
+  getCurrentWord,
+  getPastWords,
+  getWordByDate,
+  getWordDetails,
+  getWordsByYear,
+  groupWordsByYear,
+} from '~utils/word-data-utils';
+export {
+  findWordDate,
+  getCurrentStreakStats,
+  getLetterPatternStats,
+  getLetterStats,
+  getLetterTypeStats,
+  getMilestoneWords,
+  getPatternStats,
+  getSyllableStats,
+  getWordEndingStats,
+  getWordStats,
+} from '~utils/word-stats-utils';

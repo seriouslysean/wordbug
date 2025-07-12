@@ -1,8 +1,11 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { isValidDictionaryData as isValidWordData } from '~utils/word-data-utils';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import {
+ afterEach,beforeEach, describe, expect, it,
+} from 'vitest';
+
+import { isValidDictionaryData as isValidWordData } from '~utils/word-data-utils';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

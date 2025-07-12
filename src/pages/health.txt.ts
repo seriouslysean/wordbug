@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+
 import { generateHealthTxt } from '../utils/static-file-utils';
 
 export const GET: APIRoute = () => {

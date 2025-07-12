@@ -6,6 +6,7 @@
 
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import type { PathConfig } from '~types/config';
 
 // Get the directory name of the current module

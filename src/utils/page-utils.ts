@@ -3,6 +3,6 @@
 // - Image functions → image-utils.ts
 
 export {
-  getStaticPages,
   getSocialImageUrl,
+  getStaticPages,
 } from '~utils/image-utils';

@@ -1,5 +1,6 @@
+import { format, isValid, parse, startOfDay } from 'date-fns';
+
 import { logger } from './logger';
-import { format, parse, isValid, startOfDay } from 'date-fns';
 
 /**
  * Validates if a date string is in correct YYYYMMDD format

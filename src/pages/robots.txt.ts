@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+
 import { generateRobotsTxt } from '../utils/static-file-utils';
 
 export const GET: APIRoute = () => {
