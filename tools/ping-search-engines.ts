@@ -6,11 +6,10 @@
  * This script pings search engines to notify them about sitemap updates.
  * Run this script after deploying new content to help search engines discover changes faster.
  *
- * Usage: node ping-search-engines.js [--site-url URL] [--site-name NAME] [--deployed-hash HASH] [--dry-run] [--force]
+ * Usage: node ping-search-engines.js [--site-url URL] [--deployed-hash HASH] [--dry-run] [--force]
  *
  * Options:
  *   --site-url      The base URL of the deployed site (e.g. https://example.com)
- *   --site-name     The name of the site (for Ping-O-Matic)
  *   --deployed-hash The hash of the deployed content (for change detection)
  *   --dry-run       Don't actually ping services, just show what would be pinged
  *   --force         Ping regardless of content change detection
@@ -19,6 +18,8 @@
 import http from 'http';
 import https from 'https';
 import { URL } from 'url';
+
+import { siteConfig } from '~config/environment';
 
 /**
  * Gets the value for a CLI flag from an argument array
@@ -40,11 +41,10 @@ const isDryRun = args.includes('--dry-run');
 const isForce = args.includes('--force');
 
 const siteUrlArg = getArgValue('--site-url', args);
-const siteNameArg = getArgValue('--site-name', args);
 const deployedHashArg = getArgValue('--deployed-hash', args);
 
-if (!siteUrlArg || !siteNameArg) {
-  console.error('Error: Missing required arguments: --site-url and --site-name are required.');
+if (!siteUrlArg) {
+  console.error('Error: Missing required argument: --site-url is required.');
   process.exit(1);
 }
 
@@ -56,7 +56,7 @@ const engineList = [
   {
     engine: {
       name: 'Ping-O-Matic',
-      url: `http://rpc.pingomatic.com/ping/?title=${encodeURIComponent(siteNameArg)}&blogurl=${encodeURIComponent(siteUrl)}&rssurl=${encodeURIComponent(sitemapUrl)}&chk_weblogscom=on&chk_blogs=on&chk_feedburner=on&chk_newsgator=on&chk_newsburst=on&chk_feedster=on&chk_topicexchange=on&chk_google=on&chk_tailrank=on&chk_bloglines=on`,
+      url: `http://rpc.pingomatic.com/ping/?title=${encodeURIComponent(siteConfig.title)}&blogurl=${encodeURIComponent(siteUrl)}&rssurl=${encodeURIComponent(sitemapUrl)}&chk_weblogscom=on&chk_google=on`,
     },
   },
 ];
@@ -180,14 +180,18 @@ async function pingAll(): Promise<void> {
   const results = await Promise.all(
     engineList.map(engineObj => pingSearchEngine(engineObj).catch(error => error)),
   );
+  
   results.forEach(result => {
     if (result.error) {
-      console.error(`${result.engine}: ${result.error}`);
-    } else {
-      console.log(`${result.engine}: Status ${result.status}`);
+      console.error('Failed to ping search engine', { engine: result.engine, error: result.error });
+      return;
     }
+    console.log('Successfully pinged search engine', { engine: result.engine, status: result.status });
   });
   console.log('Finished pinging search engines');
 }
 
-pingAll();
+pingAll().catch(error => {
+  console.error('Failed to complete ping service', { error: error.message });
+  process.exit(0); // Exit with success to not fail workflows
+});
