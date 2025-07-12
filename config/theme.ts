@@ -4,39 +4,20 @@
  * This file centralizes theme colors that are used across different parts
  * of the application, including CSS variables and image generation.
  *
- * When creating a consumer project, you can override these colors
- * by creating your own theme.config.js file at the project root.
+ * Override colors using environment variables:
+ * - COLOR_PRIMARY
+ * - COLOR_PRIMARY_DARK
+ * - COLOR_PRIMARY_LIGHT
  */
 
 import type { ThemeColors,ThemeConfig } from '~types/config';
 
-/**
- * Load optional project-level theme overrides
- */
-async function loadThemeOverrides(): Promise<Partial<ThemeConfig>> {
-  try {
-    // Dynamically construct import path to avoid static analysis
-    const basePath = '..';
-    const fileName = 'theme.config';
-    const extension = 'ts';
-    const fullPath = `${basePath}/${fileName}.${extension}`;
-
-    const module = await import(/* @vite-ignore */fullPath);
-    return (module.default || module) as Partial<ThemeConfig>;
-  } catch {
-    return {};
-  }
-}
-
-// Load overrides at module initialization
-const overrides = await loadThemeOverrides();
-
 export const theme: ThemeConfig = {
   colors: {
-    // Primary brand colors
-    primary: '#6b8e6b',
-    primaryLight: '#7a9f7a',
-    primaryDark: '#4a6a4a',
+    // Primary brand colors - can be overridden with environment variables
+    primary: process.env.COLOR_PRIMARY || '#6b8e6b',
+    primaryLight: process.env.COLOR_PRIMARY_LIGHT || '#7a9f7a',
+    primaryDark: process.env.COLOR_PRIMARY_DARK || '#4a6a4a',
 
     // Background colors
     background: '#fff',
@@ -46,9 +27,6 @@ export const theme: ThemeConfig = {
     text: '#333',
     textLight: '#666',
     textLighter: '#8a8f98',
-
-    // Apply overrides
-    ...overrides.colors,
   } as ThemeColors,
 
   // Font weights
@@ -93,9 +71,9 @@ export const theme: ThemeConfig = {
   // Image generation specific colors
   // These are used in SVG gradients for social share images
   imageGradient: {
-    light: '#7a9f7a',   // primaryLight
-    default: '#6b8e6b', // primary
-    dark: '#4a6a4a',    // primaryDark
+    light: process.env.COLOR_PRIMARY_LIGHT || '#7a9f7a',
+    default: process.env.COLOR_PRIMARY || '#6b8e6b',
+    dark: process.env.COLOR_PRIMARY_DARK || '#4a6a4a',
   },
 };
 
