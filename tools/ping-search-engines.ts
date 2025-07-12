@@ -19,7 +19,6 @@ import http from 'http';
 import https from 'https';
 import { URL } from 'url';
 
-import { siteConfig } from '~config/site-config';
 
 /**
  * Gets the value for a CLI flag from an argument array
@@ -56,7 +55,7 @@ const engineList = [
   {
     engine: {
       name: 'Ping-O-Matic',
-      url: `http://rpc.pingomatic.com/ping/?title=${encodeURIComponent(siteConfig.title)}&blogurl=${encodeURIComponent(siteUrl)}&rssurl=${encodeURIComponent(sitemapUrl)}&chk_weblogscom=on&chk_google=on`,
+      url: `http://rpc.pingomatic.com/ping/?title=${encodeURIComponent(process.env.SITE_TITLE || 'Occasional Word of the Day')}&blogurl=${encodeURIComponent(siteUrl)}&rssurl=${encodeURIComponent(sitemapUrl)}&chk_weblogscom=on&chk_google=on`,
     },
   },
 ];
