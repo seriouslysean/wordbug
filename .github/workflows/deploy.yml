@@ -46,25 +46,26 @@ jobs:
         env:
           # disables dotenv in production builds
           CI: true
-          SITE_URL: ${{ vars.SITE_URL }}
-          SITE_TITLE: ${{ vars.SITE_TITLE }}
-          SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
-          SITE_ID: ${{ vars.SITE_ID }}
-          SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}
-          SITE_AUTHOR_URL: ${{ vars.SITE_AUTHOR_URL }}
-          SITE_ATTRIBUTION_MESSAGE: ${{ vars.SITE_ATTRIBUTION_MESSAGE }}
-          SITE_KEYWORDS: ${{ vars.SITE_KEYWORDS }}
           COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
-          COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
           COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
-          WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
-          WORDNIK_WEBSITE_URL: ${{ vars.WORDNIK_WEBSITE_URL }}
-          SENTRY_ENABLED: true
-          SENTRY_ENVIRONMENT: production
+          COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
+          GITHUB_SHA: ${{ github.sha }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_ENABLED: true
+          SENTRY_ENVIRONMENT: production
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-          GITHUB_SHA: ${{ github.sha }}
+          SITE_ATTRIBUTION_MESSAGE: ${{ vars.SITE_ATTRIBUTION_MESSAGE }}
+          SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}
+          SITE_AUTHOR_URL: ${{ vars.SITE_AUTHOR_URL }}
+          SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
+          SITE_ID: ${{ vars.SITE_ID }}
+          SITE_KEYWORDS: ${{ vars.SITE_KEYWORDS }}
+          SITE_TITLE: ${{ vars.SITE_TITLE }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          TZ: America/New_York
+          WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
+          WORDNIK_WEBSITE_URL: ${{ vars.WORDNIK_WEBSITE_URL }}
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4

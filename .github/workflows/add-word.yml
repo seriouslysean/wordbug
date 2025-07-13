@@ -39,16 +39,15 @@ jobs:
     needs: [prepare-manual]
     runs-on: ubuntu-latest
     env:
+      TZ: America/New_York
+      COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
+      COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
+      COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
       WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
-      WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL || 'https://api.wordnik.com/v4' }}
+      WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set timezone
-        uses: szenius/set-timezone@v1.2
-        with:
-          timezoneLinux: ${{ vars.TIMEZONE || 'America/New_York' }}
 
       - name: Set up Node
         uses: actions/setup-node@v4
