@@ -224,23 +224,6 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
   }
 }
 
-/**
- * Generates and writes build metadata to file including word count and hash
- */
-async function writeBuildData(): Promise<void> {
-  const words = getAllWords();
-  const wordsCount = words.length;
-  const wordsHash = generateWordDataHash(words.map(w => w.word));
-  const generatedAt = new Date().toISOString();
-  const buildData = {
-    words_count: wordsCount,
-    words_hash: wordsHash,
-    generated_at: generatedAt,
-  };
-  const outPath = paths.buildData;
-  fs.writeFileSync(outPath, JSON.stringify(buildData, null, 2));
-  console.log(`Wrote build data to ${outPath}`);
-}
 
 function showHelp(): void {
   console.log(`
@@ -364,4 +347,4 @@ for (let i = 0; i < args.length; i++) {
 }
 
 // Run the regeneration and write build data
-regenerateAllWords(options).then(writeBuildData);
+regenerateAllWords(options);

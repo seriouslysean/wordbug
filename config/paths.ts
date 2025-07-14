@@ -18,7 +18,6 @@ const ROOT = path.resolve(__dirname, '..');
 export const paths: PathConfig = {
   words: path.join(ROOT, 'data', 'words'),
   demoWords: path.join(ROOT, 'data', 'demo', 'words'),
-  buildData: path.join(ROOT, 'data', 'build-data.json'),
   pages: path.join(ROOT, 'src', 'pages'),
   images: path.join(ROOT, 'public', 'images'),
   fonts: path.join(ROOT, 'public', 'fonts'),
