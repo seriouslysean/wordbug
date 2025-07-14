@@ -6,9 +6,9 @@ import sharp from 'sharp';
 import { paths } from '~config/paths';
 // Colors for image generation
 const imageColors = {
-  primary: process.env.COLOR_PRIMARY || '#4a5d4a',
-  primaryLight: process.env.COLOR_PRIMARY_LIGHT || '#5a6d5a',
-  primaryDark: process.env.COLOR_PRIMARY_DARK || '#3a4d3a',
+  primary: process.env.COLOR_PRIMARY || '#b45309',
+  primaryLight: process.env.COLOR_PRIMARY_LIGHT || '#d97706',
+  primaryDark: process.env.COLOR_PRIMARY_DARK || '#78350f',
   textLighter: '#8a8f98',
 };
 import { logger } from '~utils/logger';
