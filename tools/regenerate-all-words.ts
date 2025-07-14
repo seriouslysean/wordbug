@@ -73,9 +73,12 @@ function extractWordInfo(filePath: string, wordField: string, dateField: string)
  * @param word - Word to fetch data for
  * @param date - Date in YYYYMMDD format
  * @param originalPath - Original file path
+ * @param retryCount - Current retry attempt (for exponential backoff)
  * @returns True if successful, false otherwise
  */
-async function regenerateWordFile(word: string, date: string, originalPath: string): Promise<boolean> {
+async function regenerateWordFile(word: string, date: string, originalPath: string, retryCount: number = 0): Promise<boolean> {
+  const maxRetries = 3;
+
   try {
     if (!process.env.DICTIONARY_ADAPTER) {
       throw new Error('DICTIONARY_ADAPTER environment variable is required');
@@ -100,7 +103,30 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
     fs.writeFileSync(originalPath, JSON.stringify(wordData, null, 4));
     return true;
   } catch (error) {
-    logger.error('Failed to regenerate word file', { word, date, originalPath, error: (error as Error).message });
+    const errorMessage = (error as Error).message;
+
+    // Check if this is a rate limit error
+    const isRateLimit = errorMessage.includes('Rate limit') ||
+                       errorMessage.includes('rate limit') ||
+                       errorMessage.includes('429') ||
+                       ('status' in error && error.status === 429);
+
+    if (isRateLimit && retryCount < maxRetries) {
+      // Exponential backoff: 2^retryCount * 30 seconds
+      const backoffDelay = Math.pow(2, retryCount) * 30000;
+      console.log(`Rate limit for ${word}, retrying in ${backoffDelay/1000} seconds (attempt ${retryCount + 1}/${maxRetries})`);
+      await new Promise(resolve => setTimeout(resolve, backoffDelay));
+      return regenerateWordFile(word, date, originalPath, retryCount + 1);
+    }
+
+    // Log the error with retry info
+    console.error('Failed to regenerate word file', {
+      word,
+      date,
+      originalPath: originalPath,
+      error: errorMessage,
+    });
+
     return false;
   }
 }
@@ -184,12 +210,6 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
       } catch (error) {
         console.error(`Error processing ${item.word}:`, (error as Error).message);
         failureCount++;
-
-        // If it's a rate limit error (HTTP 429), wait for the specified timeout
-        if ('status' in error && error.status === 429) {
-          console.log(`Rate limit hit, waiting for ${options.rateLimitTimeout/1000} seconds...`);
-          await new Promise(resolve => setTimeout(resolve, options.rateLimitTimeout));
-        }
       }
     }
 
@@ -274,10 +294,10 @@ const options: RegenerateOptions = {
   dateField: 'date',
   dryRun: false,
   force: false,
-  timeout: 1000,
-  rateLimitTimeout: 65000,
-  batchSize: 4,
-  batchTimeout: 10000,
+  timeout: 4000,
+  rateLimitTimeout: 3600000,
+  batchSize: 10,
+  batchTimeout: 60000,
 };
 
 // Parse flags
