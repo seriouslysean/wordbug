@@ -1,11 +1,10 @@
 import fs from 'fs';
 
 import { getAdapter } from '~adapters/factory';
-import { paths } from '~config/paths';
-import { getAllWordFiles, getAllWords } from '~tools/utils';
+import { getAllWordFiles } from '~tools/utils';
 import type { WordData } from '~types/word';
 import { logger } from '~utils/logger';
-import { generateWordDataHash, isValidDictionaryData } from '~utils/word-data-utils';
+import { isValidDictionaryData } from '~utils/word-data-utils';
 
 interface RegenerateOptions {
   wordField: string;
