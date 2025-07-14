@@ -49,6 +49,7 @@ jobs:
           COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
           COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
           COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
+          DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
           GITHUB_SHA: ${{ github.sha }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}

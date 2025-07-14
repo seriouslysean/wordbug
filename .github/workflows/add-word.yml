@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       date:
-        description: 'Date to add the word to (YYYY-MM-DD). Leave empty for today.'
+        description: 'Date to add the word to (YYYYMMDD). Leave empty for today.'
         required: false
         type: string
       overwrite:
@@ -43,6 +43,7 @@ jobs:
       COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
       COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
       COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
+      DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
       WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
       WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
     steps:

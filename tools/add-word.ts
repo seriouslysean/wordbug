@@ -1,23 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 
-import { getAdapter } from '~adapters/factory';
 import { paths } from '~config/paths';
+import { createWordEntry } from '~tools/utils';
 import { getAllWords } from '~tools/word-data-utils';
-import type { DictionaryDefinition } from '~types/adapters';
 import type { WordData } from '~types/word';
-import { isValidDateISO } from '~utils/date-utils';
+import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
 import { logger } from '~utils/logger';
-import { isValidDictionaryData } from '~utils/word-data-utils';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found
- * @param date - Date in YYYY-MM-DD format
+ * @param date - Date in YYYYMMDD format
  * @returns Existing word data if found, null otherwise
  */
 const checkExistingWord = (date: string): WordData | null => {
-  const [year, month, day] = date.split('-');
-  const filePath = path.join(paths.words, year, `${year}${month}${day}.json`);
+  const year = date.slice(0, 4);
+  const filePath = path.join(paths.words, year, `${date}.json`);
   if (fs.existsSync(filePath)) {
     try {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -30,52 +28,13 @@ const checkExistingWord = (date: string): WordData | null => {
 };
 
 /**
- * Creates a word file for the given date and word data
- * @param word - Word to add
- * @param date - Date in YYYY-MM-DD format
- * @param data - Dictionary definitions from API
- * @returns Path to created file
- */
-const createWordFile = (word: string, date: string, data: DictionaryDefinition[]): string => {
-  const [year] = date.split('-');
-  const dirPath = path.join(paths.words, year);
-  const filePath = path.join(dirPath, `${date.replace(/-/g, '')}.json`);
-
-  // Create year directory if it doesn't exist
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
-
-  const wordData: WordData = {
-    word: word.toLowerCase(),
-    date: date.replace(/-/g, ''),
-    adapter: process.env.DICTIONARY_ADAPTER || 'wordnik',
-    data,
-  };
-  fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
-  return filePath;
-};
-
-/**
- * Gets the current date in YYYY-MM-DD format using local timezone
- * @returns Current date string in YYYY-MM-DD format
- */
-const getCurrentLocalDate = (): string => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-};
-
-/**
  * Validates that a date is not in the future
- * @param date - Date string in YYYY-MM-DD format
+ * @param date - Date string in YYYYMMDD format
  * @returns Whether the date is today or in the past
  */
 const isNotFutureDate = (date: string): boolean => {
-  const today = getCurrentLocalDate();
-  return date <= today;
+  const today = getTodayYYYYMMDD();
+  return today ? date <= today : false;
 };
 
 /**
@@ -90,24 +49,6 @@ const checkExistingWordByName = (word: string): WordData | null => {
 };
 
 
-/**
- * Formats dictionary definitions for summary output
- * @param data - Dictionary definitions array
- * @returns Formatted summary string
- */
-const formatWordSummary = (data: DictionaryDefinition[]): string => {
-  if (!data || !Array.isArray(data)) {
-    return 'Word: No data available';
-  }
-
-  const firstEntry = data[0] || {};
-
-  return [
-    `Part of Speech: ${firstEntry.partOfSpeech || 'N/A'}`,
-    `Definition: ${firstEntry.text || 'N/A'}`,
-    firstEntry.attributionText ? `Source: ${firstEntry.attributionText}` : null,
-  ].filter(Boolean).join('\n');
-};
 
 /**
  * Adds a new word to the collection
@@ -125,19 +66,24 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
       process.exit(1);
     }
 
-    if (date && !isValidDateISO(date)) {
-      logger.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYY-MM-DD' });
+    if (date && !isValidDate(date)) {
+      logger.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYYMMDD' });
       process.exit(1);
     }
 
     // If no date provided, use today (local timezone)
-    const targetDate = date || getCurrentLocalDate();
+    const targetDate = date || getTodayYYYYMMDD();
+
+    if (!targetDate) {
+      logger.error('Failed to get current date');
+      process.exit(1);
+    }
 
     // Validate that date is not in the future
     if (!isNotFutureDate(targetDate)) {
       logger.error('Cannot add words for future dates', {
         requestedDate: targetDate,
-        currentDate: getCurrentLocalDate(),
+        currentDate: getTodayYYYYMMDD(),
       });
       process.exit(1);
     }
@@ -152,44 +98,19 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
       process.exit(1);
     }
 
-    // Check if word already exists anywhere else in the system (not same date)
+    // Check if word already exists anywhere else in the system (always enforce global uniqueness)
     const existingWordByName = checkExistingWordByName(word);
-    if (existingWordByName && existingWordByName.date !== targetDate.replace(/-/g, '') && !overwrite) {
+    if (existingWordByName && existingWordByName.date !== targetDate) {
       logger.error('Word already exists for different date', {
         word: word,
         existingDate: existingWordByName.date,
-        requestedDate: targetDate.replace(/-/g, ''),
+        requestedDate: targetDate,
       });
       process.exit(1);
     }
 
-    // Fetch word data using the configured adapter
-    const adapter = getAdapter();
-    const response = await adapter.fetchWordData(word);
-    // The adapter returns a DictionaryResponse with definitions in generic format
-    const data = response.definitions;
-    const adapterName = adapter.name;
-
-    // Validate the word data before saving
-    if (!isValidDictionaryData(data)) {
-      logger.error('Invalid word data received from adapter', { word, adapter: adapterName });
-      throw new Error(`No valid definitions found for word: ${word}`);
-    }
-
-    const filePath = createWordFile(word, targetDate, data);
-    logger.info('Word added successfully', {
-      word,
-      date: targetDate,
-      adapter: adapterName,
-      filePath,
-    });
-
-    // Output summary for GitHub Actions (using console for workflow output)
-    console.log('::group::Word Added Successfully');
-    console.log(`New Word Added for ${targetDate}`);
-    console.log(formatWordSummary(data));
-    console.log(`File created: ${filePath}`);
-    console.log('::endgroup::');
+    // Use shared word creation logic
+    await createWordEntry(word, targetDate, hasOverwrite);
 
   } catch (error) {
     if (error.message.includes('not found in dictionary')) {
@@ -210,7 +131,7 @@ Usage:
 
 Arguments:
   word    The word to add (required)
-  date    Date in YYYY-MM-DD format (optional, defaults to today)
+  date    Date in YYYYMMDD format (optional, defaults to today)
 
 Options:
   -o, --overwrite    Overwrite existing word if it exists
@@ -218,12 +139,12 @@ Options:
 
 Examples:
   npm run tool:add-word "serendipity"
-  npm run tool:add-word "ephemeral" "2024-01-16"
+  npm run tool:add-word "ephemeral" "20240116"
   npm run tool:add-word "ubiquitous" --overwrite
 
 Requirements:
-  - Word must exist in Wordnik dictionary
-  - Date must be today or in the past
+  - Word must exist in dictionary
+  - Date must be today or in the past (YYYYMMDD format)
   - Tool prevents duplicate words unless --overwrite is used\n`);
 }
 

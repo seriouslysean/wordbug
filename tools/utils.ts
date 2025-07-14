@@ -396,12 +396,74 @@ export async function generateGenericShareImage(title: string, slug: string): Pr
   }
 }
 
+import { getAdapter } from '~adapters/factory';
+import type { CreateWordEntryResult } from '~types/tools';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';
-import { formatDate } from '~utils/date-utils';
+import { formatDate, isValidDate } from '~utils/date-utils';
 import { isValidDictionaryData } from '~utils/word-data-utils';
 export { isValidDictionaryData as isValidWordData };
 
 // Re-export generateWordDataHash from utils for convenience
 export { generateWordDataHash } from '~utils/word-data-utils';
+
+/**
+ * Creates a word data object and saves it to the appropriate file
+ * @param word - Word to add
+ * @param date - Date in YYYYMMDD format
+ * @param overwrite - Whether to overwrite existing files
+ * @returns Object with file path and word data
+ */
+export async function createWordEntry(word: string, date: string, overwrite: boolean = false): Promise<CreateWordEntryResult> {
+  // Validate inputs
+  if (!word?.trim()) {
+    throw new Error('Word is required');
+  }
+
+  if (!isValidDate(date)) {
+    throw new Error(`Invalid date format: ${date}. Expected YYYYMMDD format`);
+  }
+
+  if (!process.env.DICTIONARY_ADAPTER) {
+    throw new Error('DICTIONARY_ADAPTER environment variable is required');
+  }
+
+  const trimmedWord = word.trim().toLowerCase();
+  const year = date.slice(0, 4);
+  const dirPath = path.join(paths.words, year);
+  const filePath = path.join(dirPath, `${date}.json`);
+
+  // Check if file already exists
+  if (fs.existsSync(filePath) && !overwrite) {
+    throw new Error(`Word already exists for date ${date}`);
+  }
+
+  // Create year directory if it doesn't exist
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+
+  // Fetch word data using the configured adapter
+  const adapter = getAdapter();
+  const response = await adapter.fetchWordData(trimmedWord);
+  const data = response.definitions;
+
+  // Validate the word data before saving
+  if (!isValidDictionaryData(data)) {
+    throw new Error(`No valid definitions found for word: ${trimmedWord}`);
+  }
+
+  const wordData: WordData = {
+    word: trimmedWord,
+    date,
+    adapter: process.env.DICTIONARY_ADAPTER,
+    data,
+  };
+
+  fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
+
+  logger.info('Word entry created', { word: trimmedWord, date });
+
+  return { filePath, data };
+}
 

@@ -12,7 +12,7 @@ export interface PathConfig {
 }
 
 export interface SiteConfig {
-  siteName: string;
+  siteId: string;
   siteTitle: string;
   siteDescription: string;
   siteUrl: string;
@@ -82,7 +82,7 @@ export interface ThemeConfig {
 
 export interface EnvironmentConfig {
   // Site configuration
-  SITE_NAME: string;
+  SITE_ID: string;
   SITE_TITLE: string;
   SITE_DESCRIPTION: string;
   SITE_URL: string;
