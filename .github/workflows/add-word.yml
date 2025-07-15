@@ -39,11 +39,12 @@ jobs:
     needs: [prepare-manual]
     runs-on: ubuntu-latest
     env:
-      TZ: America/New_York
       COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
       COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
       COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
       DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
+      SITE_TITLE: ${{ vars.SITE_TITLE }}
+      TZ: America/New_York
       WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
       WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
     steps:
