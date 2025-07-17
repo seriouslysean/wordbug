@@ -40,10 +40,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
-      COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
       COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
+      COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
       DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
+      SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}
+      SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
+      SITE_ID: ${{ vars.SITE_ID }}
       SITE_TITLE: ${{ vars.SITE_TITLE }}
+      SITE_URL: ${{ vars.SITE_URL }}
       TZ: America/New_York
       WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
       WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
