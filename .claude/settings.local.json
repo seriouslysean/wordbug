@@ -11,8 +11,7 @@
       "Bash(npm test)",
       "Bash(ls:*)",
       "Bash(npm test:*)",
-      "WebFetch(domain:docs.astro.build)",
-      "Bash(diff:*)"
+      "WebFetch(domain:docs.astro.build)"
     ],
     "deny": []
   }
