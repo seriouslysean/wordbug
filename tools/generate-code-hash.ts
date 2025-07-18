@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
-import { readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { execSync } from 'node:child_process';
+import { statSync } from 'node:fs';
 
 /**
  * Command-line script to generate a code hash based on src/ directory contents
@@ -11,14 +11,15 @@ import { join } from 'node:path';
 function getCodeHash(): string {
   const hash = createHash('sha256');
   
-  const srcFiles = readdirSync('src', { recursive: true, withFileTypes: true })
-    .filter(file => file.isFile())
-    .map(file => join(file.parentPath || file.path, file.name))
+  const srcFiles = execSync('git ls-files src/', { encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .filter(file => file.length > 0)
     .sort();
   
   srcFiles.forEach(file => {
-    const { size, mtimeMs } = statSync(file);
-    hash.update(`${file}:${size}:${mtimeMs}`);
+    const { size } = statSync(file);
+    hash.update(`${file}:${size}`);
   });
   
   return hash.digest('hex').substring(0, 8);
