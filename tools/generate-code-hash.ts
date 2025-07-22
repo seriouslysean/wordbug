@@ -8,7 +8,7 @@ import { statSync } from 'node:fs';
  * Usage: npm run tool:generate-code-hash
  */
 
-function getCodeHash(): string {
+export function getCodeHash(): string {
   const hash = createHash('sha256');
   
   const srcFiles = execSync('git ls-files src/', { encoding: 'utf8' })
