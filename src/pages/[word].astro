@@ -1,10 +1,6 @@
 ---
-import WordComponent from '~components/Word.astro';
-import WordNav from '~components/WordNav.astro';
-import Layout from '~layouts/Layout.astro';
-import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
-import { getMetaDescription } from '~utils/seo-utils.ts';
-import { getAdjacentWords, getAllWords, getWordByDate, getWordDetails } from '~utils/word-utils.js';
+import WordPage from '~components/WordPage.astro';
+import { getAllWords, getWordByDate } from '~utils/word-utils.js';
 
 export async function getStaticPaths() {
   const words = getAllWords();
@@ -18,38 +14,9 @@ export async function getStaticPaths() {
 }
 
 const { date } = Astro.props;
-
 const wordData = getWordByDate(date);
-const { previousWord, nextWord } = getAdjacentWords(date);
-
-if (!wordData) {
-  return Astro.redirect('/404');
-}
-
-
-const wordDetails = getWordDetails(wordData);
-const pageDescription = getMetaDescription({
-  word: wordData.word,
-  definition: wordDetails.definition,
-});
 ---
 
-<Layout
-  title={wordData.word}
-  word={wordData}
-  description={pageDescription}
-  structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}
->
-  <main>
-    <WordComponent word={wordData} />
-    <WordNav
-      previousWord={previousWord}
-      nextWord={nextWord}
-      previousLabel="Previous Word"
-      nextLabel="Next Word"
-      ariaLabel="Word navigation"
-    />
-  </main>
-</Layout>
+<WordPage wordData={wordData} />
 
 

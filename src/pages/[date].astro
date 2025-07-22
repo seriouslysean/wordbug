@@ -1,5 +1,6 @@
 ---
-import { getWordUrl as _getWordUrl } from '~utils/utils.js';
+import WordPage from '~components/WordPage.astro';
+import { getWordUrl as _getWordUrl, getFullUrl } from '~utils/url-utils.js';
 import { getAllWords, getWordByDate } from '~utils/word-utils.js';
 
 export async function getStaticPaths() {
@@ -17,16 +18,16 @@ export async function getStaticPaths() {
 }
 
 const { date } = Astro.params;
-const word = getWordByDate(date);
+const wordData = getWordByDate(date);
 
-if (!word) {
+if (!wordData) {
   return Astro.redirect(import.meta.env.BASE_URL || '/');
 }
 
-// Redirect to canonical word URL to prevent duplicate content between date and word URLs
-return Astro.redirect(_getWordUrl(word.word), 301);
-
-// The code below will never execute due to the redirect above
+// Generate canonical URL pointing to the word page (not the date page)
+const canonicalUrl = getFullUrl(_getWordUrl(wordData.word));
 ---
+
+<WordPage wordData={wordData} canonicalUrl={canonicalUrl} />
 
 

@@ -1,0 +1,46 @@
+---
+import WordComponent from '~components/Word.astro';
+import WordNav from '~components/WordNav.astro';
+import Layout from '~layouts/Layout.astro';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { getMetaDescription } from '~utils/seo-utils.ts';
+import { getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
+
+interface Props {
+  wordData: any;
+  canonicalUrl?: string;
+  structuredDataType?: string;
+}
+
+const { wordData, canonicalUrl, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE } = Astro.props;
+
+if (!wordData) {
+  return Astro.redirect('/404');
+}
+
+const { previousWord, nextWord } = getAdjacentWords(wordData.date);
+const wordDetails = getWordDetails(wordData);
+const pageDescription = getMetaDescription({
+  word: wordData.word,
+  definition: wordDetails.definition,
+});
+---
+
+<Layout
+  title={wordData.word}
+  word={wordData}
+  description={pageDescription}
+  structuredDataType={structuredDataType}
+  canonicalUrl={canonicalUrl}
+>
+  <main>
+    <WordComponent word={wordData} />
+    <WordNav
+      previousWord={previousWord}
+      nextWord={nextWord}
+      previousLabel="Previous Word"
+      nextLabel="Next Word"
+      ariaLabel="Word navigation"
+    />
+  </main>
+</Layout>

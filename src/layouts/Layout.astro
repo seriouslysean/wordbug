@@ -12,9 +12,9 @@ import { getCanonicalUrl, getMetaDescription,seoConfig } from '~utils/seo-utils.
 import { getUrl } from '~utils/utils.js';
 import { getWordByDate, getWordDetails } from '~utils/word-utils.js';
 
-const { title, word, description, structuredDataType, noindex, nofollow } = Astro.props;
+const { title, word, description, structuredDataType, noindex, nofollow, canonicalUrl } = Astro.props;
 
-const currentUrl = getCanonicalUrl(Astro.url.pathname);
+const currentUrl = canonicalUrl || getCanonicalUrl(Astro.url.pathname);
 const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
 const metaDescription = description || getMetaDescription();
 
