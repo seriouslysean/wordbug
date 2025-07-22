@@ -5,6 +5,7 @@ import sentry from '@sentry/astro';
 import { defineConfig } from 'astro/config';
 
 import pkg from './package.json' with { type: 'json' };
+import { getCodeHash } from '~tools/generate-code-hash';
 
 // Load .env locally, skip in CI (GitHub Actions etc)
 if (!process.env.CI) {
@@ -29,9 +30,9 @@ if (missingEnvVars.length > 0) {
 const site = process.env.SITE_URL;
 const base = process.env.BASE_PATH;
 const sentryEnvironment = process.env.SENTRY_ENVIRONMENT || 'development';
-const shortSha = execSync('git rev-parse --short HEAD').toString().trim();
+const codeHash = getCodeHash();
 const version = pkg.version;
-const release = `${pkg.name}@${version}+${shortSha}`;
+const release = `${pkg.name}@${version}+${codeHash}`;
 const timestamp = new Date().toISOString();
 
 if (!process.env.SENTRY_RELEASE) {
