@@ -21,7 +21,6 @@
     "astro": "astro",
     "tool:add-word": "tsx tools/add-word.ts",
     "tool:generate-all-images": "npm run tool:generate-word-images && npm run tool:generate-generic-images",
-    "tool:generate-code-hash": "tsx tools/generate-code-hash.ts",
     "tool:generate-generic-images": "tsx tools/generate-generic-images.ts",
     "tool:generate-page-image": "tsx tools/generate-page-image.ts",
     "tool:generate-word-image": "tsx tools/generate-word-image.ts",

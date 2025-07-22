@@ -1,10 +1,30 @@
+import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
+import { statSync } from 'node:fs';
 
 import sitemap from '@astrojs/sitemap';
 import sentry from '@sentry/astro';
 import { defineConfig } from 'astro/config';
 
 import pkg from './package.json' with { type: 'json' };
+
+// Generate code hash for Sentry release version
+function getCodeHash() {
+  const hash = createHash('sha256');
+  
+  const srcFiles = execSync('git ls-files src/', { encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .filter(file => file.length > 0)
+    .sort();
+  
+  srcFiles.forEach(file => {
+    const { size } = statSync(file);
+    hash.update(`${file}:${size}`);
+  });
+  
+  return hash.digest('hex').substring(0, 8);
+}
 
 // Load .env locally, skip in CI (GitHub Actions etc)
 if (!process.env.CI) {
@@ -29,7 +49,7 @@ if (missingEnvVars.length > 0) {
 const site = process.env.SITE_URL;
 const base = process.env.BASE_PATH;
 const sentryEnvironment = process.env.SENTRY_ENVIRONMENT || 'development';
-const codeHash = execSync('npm run tool:generate-code-hash', { encoding: 'utf8' }).trim();
+const codeHash = getCodeHash();
 const version = pkg.version;
 const release = `${pkg.name}@${version}+${codeHash}`;
 const timestamp = new Date().toISOString();
