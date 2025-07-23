@@ -37,6 +37,10 @@ export default [
         __COLOR_PRIMARY__: 'readonly',
         __COLOR_PRIMARY_LIGHT__: 'readonly',
         __COLOR_PRIMARY_DARK__: 'readonly',
+        __GA_ENABLED__: 'readonly',
+        __GA_MEASUREMENT_ID__: 'readonly',
+        __SITE_TITLE__: 'readonly',
+        __SITE_DESCRIPTION__: 'readonly',
       },
     },
     rules: {

@@ -1,4 +1,9 @@
-import { generateWordDataHash,getAllWords } from './word-utils';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+import { formatDate } from '~utils/date-utils';
+import { getAllPageMetadata } from '~utils/page-metadata';
+import { generateWordDataHash,getAllWords } from '~utils/word-utils';
 
 /**
  * List of supported static text files
@@ -7,7 +12,36 @@ export const STATIC_FILES = [
   'robots.txt',
   'humans.txt',
   'health.txt',
+  'llms.txt',
 ];
+
+/**
+ * Reads ASCII art from public directory
+ * Tries site-specific file first, then fallback to default
+ * @returns ASCII art string or null if not found
+ */
+export function getAsciiArt(): string | null {
+  const siteId = __SITE_ID__;
+  const publicDir = join(process.cwd(), 'public');
+
+  // Try site-specific file first, then default
+  const filesToTry = [
+    siteId ? `ascii-${siteId}.txt` : null,
+    'ascii.txt',
+  ].filter(Boolean) as string[];
+
+  for (const filename of filesToTry) {
+    try {
+      const filePath = join(publicDir, filename);
+      return readFileSync(filePath, 'utf-8').trimEnd();
+    } catch {
+      // File doesn't exist, try next one
+      continue;
+    }
+  }
+
+  return null;
+}
 
 /**
  * Generates robots.txt content
@@ -37,14 +71,10 @@ export function generateHumansTxt(): string {
     '/* TEAM */',
     // These will be replaced with actual values at build time via Vite's define
     // If they're empty, they won't be included
-    typeof __HUMANS_WORD_CURATOR__ !== 'undefined' && __HUMANS_WORD_CURATOR__ &&
-      `Word Curator: ${__HUMANS_WORD_CURATOR__}`,
-    typeof __HUMANS_DEVELOPER_NAME__ !== 'undefined' && __HUMANS_DEVELOPER_NAME__ &&
-      `Developer: ${__HUMANS_DEVELOPER_NAME__}`,
-    typeof __HUMANS_DEVELOPER_CONTACT__ !== 'undefined' && __HUMANS_DEVELOPER_CONTACT__ &&
-      `Contact: ${__HUMANS_DEVELOPER_CONTACT__}`,
-    typeof __HUMANS_DEVELOPER_SITE__ !== 'undefined' && __HUMANS_DEVELOPER_SITE__ &&
-      `Site: ${__HUMANS_DEVELOPER_SITE__}`,
+    __HUMANS_WORD_CURATOR__ && `Word Curator: ${__HUMANS_WORD_CURATOR__}`,
+    __HUMANS_DEVELOPER_NAME__ && `Developer: ${__HUMANS_DEVELOPER_NAME__}`,
+    __HUMANS_DEVELOPER_CONTACT__ && `Contact: ${__HUMANS_DEVELOPER_CONTACT__}`,
+    __HUMANS_DEVELOPER_SITE__ && `Site: ${__HUMANS_DEVELOPER_SITE__}`,
     '',
   ].filter(Boolean).join('\n');
 
@@ -77,9 +107,9 @@ export function generateHealthTxt(): string {
   // Get the current time for timestamp
   const currentTime = new Date().toISOString();
   // Use Vite's injected constants, which will be replaced at build time
-  const version = typeof __VERSION__ !== 'undefined' ? __VERSION__ : '0.0.0-dev';
-  const release = typeof __RELEASE__ !== 'undefined' ? __RELEASE__ : 'occasional-wotd@dev';
-  const buildTime = typeof __TIMESTAMP__ !== 'undefined' ? __TIMESTAMP__ : currentTime;
+  const version = __VERSION__;
+  const release = __RELEASE__;
+  const buildTime = __TIMESTAMP__;
   // Get all words and hash
   const words = getAllWords();
   const wordCount = words.length;
@@ -94,6 +124,72 @@ export function generateHealthTxt(): string {
     `words_count: ${wordCount}`,
     `words_hash: ${wordHash}`,
   ].join('\n');
+}
+
+/**
+ * Generates llms.txt content with recent words and key site links
+ *
+ * @returns The content for llms.txt or null if required data is missing
+ */
+export function generateLlmsTxt(): string | null {
+  const siteTitle = __SITE_TITLE__;
+  const siteDescription = __SITE_DESCRIPTION__;
+  const siteUrl = process.env.SITE_URL;
+
+  if (!siteTitle || !siteDescription || !siteUrl) {
+    return null;
+  }
+
+  const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
+  const words = getAllWords();
+  const recentWords = words.slice(-5);
+
+  const curatorInfo = __HUMANS_WORD_CURATOR__ ? ` Curated by ${__HUMANS_WORD_CURATOR__}.` : '';
+  const lastUpdated = words.length > 0 ? formatDate(words[words.length - 1].date) : null;
+
+  const recentWordLinks = recentWords
+    .map(word => `- [${word.word}](${baseUrl}/${word.word}): ${formatDate(word.date)}`)
+    .join('\n');
+
+  // Get all pages and group by category
+  const allPages = getAllPageMetadata();
+  const pagesByCategory = allPages.reduce((acc, page) => {
+    if (!acc[page.category]) {
+acc[page.category] = [];
+}
+    acc[page.category].push(page);
+    return acc;
+  }, {} as Record<string, typeof allPages>);
+
+  const pagesLinks = pagesByCategory.pages
+    ?.map((page: { title: string; path: string; description: string }) => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`)
+    .join('\n') || '';
+
+  const statsLinks = pagesByCategory.stats
+    ?.map((page: { title: string; path: string; description: string }) => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`)
+    .join('\n') || '';
+
+  return `# ${siteTitle}
+
+> ${siteDescription}
+
+Daily word-of-the-day site with curated vocabulary selections.${curatorInfo}${lastUpdated ? ` Last updated: ${lastUpdated}.` : ''}
+
+## Recent Words (Last 5)
+
+${recentWordLinks}
+
+## Pages
+
+${pagesLinks}
+- [Current Word](${baseUrl}): Today's featured word
+
+## Word Statistics
+
+${statsLinks}
+
+Each word includes definition, pronunciation, etymology, and usage examples.
+`;
 }
 
 /**
@@ -119,6 +215,8 @@ export function getStaticFileContent(pathname: string, siteUrl?: string): string
       return generateHumansTxt();
     case 'health.txt':
       return generateHealthTxt();
+    case 'llms.txt':
+      return generateLlmsTxt();
     default:
       return null;
   }

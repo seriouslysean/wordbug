@@ -9,6 +9,7 @@ import type { WordData } from '~types/word';
 import { getBuildData } from '~utils/build-utils.ts';
 import { getSocialImageUrl } from '~utils/page-utils.js';
 import { getCanonicalUrl, getMetaDescription,seoConfig } from '~utils/seo-utils.ts';
+import { getAsciiArt } from '~utils/static-file-utils.ts';
 import { getUrl } from '~utils/utils.js';
 import { getWordByDate, getWordDetails } from '~utils/word-utils.js';
 
@@ -43,6 +44,14 @@ const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 
 const buildData = getBuildData();
 
+// Get ASCII art for HTML comment
+const asciiArt = getAsciiArt();
+const asciiComment = asciiArt ? `<!--
+
+${asciiArt}
+
+-->` : '';
+
 // Generate color CSS variables using build-time constants
 const colorPrimary = __COLOR_PRIMARY__;
 const colorPrimaryLight = __COLOR_PRIMARY_LIGHT__;
@@ -65,6 +74,7 @@ const wordSchemaData = word ? (() => {
 <!doctype html>
 <html lang={seoConfig.locale}>
   <head>
+    <Fragment set:html={asciiComment} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
@@ -119,19 +129,21 @@ const wordSchemaData = word ? (() => {
 
 		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} />
 
-		{__GA_ENABLED__ && <script async src={`https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}`}></script>}
+		{__GA_ENABLED__ && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}`}></script>}
 		{__GA_ENABLED__ && (
 			<script is:inline define:vars={{ measurementId: __GA_MEASUREMENT_ID__ }}>
 				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
+				function gtag(...args){
+dataLayer.push(args);
+}
 				gtag('js', new Date());
 				gtag('config', measurementId, {
 					client_storage: 'none',
 					anonymize_ip: true,
 					allow_google_signals: false,
-					allow_ad_personalization_signals: false
-				});
-			</script>
+					allow_ad_personalization_signals: false,
+});
+</script>
 		)}
 
 		<style set:html={`:root { ${colorVariables} }`}></style>
