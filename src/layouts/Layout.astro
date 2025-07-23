@@ -119,6 +119,21 @@ const wordSchemaData = word ? (() => {
 
 		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} />
 
+		{__GA_ENABLED__ && <script async src={`https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}`}></script>}
+		{__GA_ENABLED__ && (
+			<script is:inline define:vars={{ measurementId: __GA_MEASUREMENT_ID__ }}>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('config', measurementId, {
+					client_storage: 'none',
+					anonymize_ip: true,
+					allow_google_signals: false,
+					allow_ad_personalization_signals: false
+				});
+			</script>
+		)}
+
 		<style set:html={`:root { ${colorVariables} }`}></style>
   </head>
   <body>

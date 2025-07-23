@@ -50,11 +50,14 @@ jobs:
           COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
           COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
           DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
+          GA_ENABLED: ${{ secrets.GA_ENABLED }}
+          GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
           GITHUB_SHA: ${{ github.sha }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-          SENTRY_ENABLED: true
+          SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
           SENTRY_ENVIRONMENT: production
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
           SITE_ATTRIBUTION_MESSAGE: ${{ vars.SITE_ATTRIBUTION_MESSAGE }}
           SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}

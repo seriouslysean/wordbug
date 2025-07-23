@@ -96,6 +96,8 @@ export default defineConfig({
       __COLOR_PRIMARY__: JSON.stringify(process.env.COLOR_PRIMARY || '#4a5d4a'),
       __COLOR_PRIMARY_LIGHT__: JSON.stringify(process.env.COLOR_PRIMARY_LIGHT || '#5a6d5a'),
       __COLOR_PRIMARY_DARK__: JSON.stringify(process.env.COLOR_PRIMARY_DARK || '#3a4d3a'),
+      __GA_MEASUREMENT_ID__: JSON.stringify(process.env.GA_MEASUREMENT_ID),
+      __GA_ENABLED__: JSON.stringify(process.env.GA_ENABLED === 'true'),
     },
     build: {
       target: 'esnext',
