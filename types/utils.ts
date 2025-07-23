@@ -43,3 +43,5 @@ export interface TextValidationOptions {
   maxLength?: number;
   minLength?: number;
 }
+
+export type GtagArgs = (string | Date | Record<string, unknown>)[];

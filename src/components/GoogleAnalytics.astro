@@ -2,15 +2,17 @@
 const measurementId = __GA_MEASUREMENT_ID__;
 ---
 
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
 <script is:inline define:vars={{ measurementId }}>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(...args){
+dataLayer.push(args);
+}
   gtag('js', new Date());
   gtag('config', measurementId, {
     client_storage: 'none',
     anonymize_ip: true,
     allow_google_signals: false,
-    allow_ad_personalization_signals: false
-  });
+    allow_ad_personalization_signals: false,
+});
 </script>

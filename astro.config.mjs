@@ -1,5 +1,5 @@
-import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { statSync } from 'node:fs';
 
 import sitemap from '@astrojs/sitemap';
@@ -11,18 +11,18 @@ import pkg from './package.json' with { type: 'json' };
 // Generate code hash for Sentry release version
 function getCodeHash() {
   const hash = createHash('sha256');
-  
+
   const srcFiles = execSync('git ls-files src/', { encoding: 'utf8' })
     .trim()
     .split('\n')
     .filter(file => file.length > 0)
     .sort();
-  
+
   srcFiles.forEach(file => {
     const { size } = statSync(file);
     hash.update(`${file}:${size}`);
   });
-  
+
   return hash.digest('hex').substring(0, 8);
 }
 
@@ -88,6 +88,8 @@ export default defineConfig({
       __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
       __SENTRY_ENVIRONMENT__: JSON.stringify(sentryEnvironment),
       __SITE_ID__: JSON.stringify(process.env.SITE_ID),
+      __SITE_TITLE__: JSON.stringify(process.env.SITE_TITLE),
+      __SITE_DESCRIPTION__: JSON.stringify(process.env.SITE_DESCRIPTION),
       __TIMESTAMP__: JSON.stringify(timestamp),
       __HUMANS_WORD_CURATOR__: JSON.stringify(process.env.HUMANS_WORD_CURATOR || ''),
       __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),
