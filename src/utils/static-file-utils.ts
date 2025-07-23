@@ -57,6 +57,7 @@ export function generateRobotsTxt(siteUrl: string): string {
   return `User-agent: *
 Allow: /
 Sitemap: ${baseUrl}/sitemap-index.xml
+LLMS: ${baseUrl}/llms.txt
 `;
 }
 
