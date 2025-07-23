@@ -53,6 +53,10 @@ jobs:
           GA_ENABLED: ${{ secrets.GA_ENABLED }}
           GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
           GITHUB_SHA: ${{ github.sha }}
+          HUMANS_DEVELOPER_CONTACT: ${{ vars.HUMANS_DEVELOPER_CONTACT }}
+          HUMANS_DEVELOPER_NAME: ${{ vars.HUMANS_DEVELOPER_NAME }}
+          HUMANS_DEVELOPER_SITE: ${{ vars.HUMANS_DEVELOPER_SITE }}
+          HUMANS_WORD_CURATOR: ${{ vars.HUMANS_WORD_CURATOR }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
