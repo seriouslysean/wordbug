@@ -129,7 +129,7 @@ export const getLetterPatternStats = (words: WordData[]): WordPatternStatsResult
 };
 
 /**
- * Categorizes words by common endings (-ing, -ed, -ly).
+ * Categorizes words by common endings (-ing, -ed, -ly, -ness, -ful, -less).
  * @param {WordData[]} words - Array of word data objects to analyze
  * @returns {WordEndingStatsResult} Object containing arrays of words grouped by ending type
  */
@@ -138,6 +138,9 @@ export const getWordEndingStats = (words: WordData[]): WordEndingStatsResult => 
     ing: [],
     ed: [],
     ly: [],
+    ness: [],
+    ful: [],
+    less: [],
   };
 
   words.forEach(wordObj => {
@@ -151,6 +154,15 @@ export const getWordEndingStats = (words: WordData[]): WordEndingStatsResult => 
     }
     if (word.endsWith('ly')) {
       endings.ly.push(wordObj);
+    }
+    if (word.endsWith('ness')) {
+      endings.ness.push(wordObj);
+    }
+    if (word.endsWith('ful')) {
+      endings.ful.push(wordObj);
+    }
+    if (word.endsWith('less')) {
+      endings.less.push(wordObj);
     }
   });
 

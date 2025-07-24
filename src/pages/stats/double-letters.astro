@@ -3,12 +3,21 @@ import StatsWordListPage from '~components/StatsWordListPage.astro';
 import { getAllWords } from '~utils/word-data-utils';
 import { getLetterPatternStats } from '~utils/word-stats-utils';
 
+export async function getStaticPaths() {
+  const words = getAllWords();
+  const letterPatterns = getLetterPatternStats(words);
+  const doubleLetterWords = letterPatterns.doubleLetters;
+
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  return (showEmptyPages || doubleLetterWords.length > 0) ? [{}] : [];
+}
+
 const words = getAllWords();
 const letterPatterns = getLetterPatternStats(words);
 const doubleLetterWords = letterPatterns.doubleLetters;
 ---
 
-<StatsWordListPage 
+<StatsWordListPage
   words={doubleLetterWords}
   descriptionText="Words containing double letters (the same letter appearing twice in a row)."
 />

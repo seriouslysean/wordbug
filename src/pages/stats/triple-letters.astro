@@ -3,12 +3,21 @@ import StatsWordListPage from '~components/StatsWordListPage.astro';
 import { getAllWords } from '~utils/word-data-utils';
 import { getLetterPatternStats } from '~utils/word-stats-utils';
 
+export async function getStaticPaths() {
+  const words = getAllWords();
+  const letterPatterns = getLetterPatternStats(words);
+  const tripleLetterWords = letterPatterns.tripleLetters;
+
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  return (showEmptyPages || tripleLetterWords.length > 0) ? [{}] : [];
+}
+
 const words = getAllWords();
 const letterPatterns = getLetterPatternStats(words);
 const tripleLetterWords = letterPatterns.tripleLetters;
 ---
 
-<StatsWordListPage 
+<StatsWordListPage
   words={tripleLetterWords}
   descriptionText="Words containing triple letters (the same letter appearing three or more times in a row)."
 />

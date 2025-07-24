@@ -19,8 +19,13 @@ function getCodeHash() {
     .sort();
 
   srcFiles.forEach(file => {
-    const { size } = statSync(file);
-    hash.update(`${file}:${size}`);
+    try {
+      const { size } = statSync(file);
+      hash.update(`${file}:${size}`);
+    } catch {
+      // Skip files that don't exist (deleted but not yet committed)
+      // This ensures consistent fingerprints across downstream apps
+    }
   });
 
   return hash.digest('hex').substring(0, 8);
@@ -100,7 +105,8 @@ export default defineConfig({
       __COLOR_PRIMARY_LIGHT__: JSON.stringify(process.env.COLOR_PRIMARY_LIGHT || '#5a6d5a'),
       __COLOR_PRIMARY_DARK__: JSON.stringify(process.env.COLOR_PRIMARY_DARK || '#3a4d3a'),
       __GA_MEASUREMENT_ID__: JSON.stringify(process.env.GA_MEASUREMENT_ID),
-      __GA_ENABLED__: JSON.stringify(process.env.GA_ENABLED === 'true'),
+      __GA_ENABLED__: process.env.GA_ENABLED === 'true',
+      __SHOW_EMPTY_STATS__: process.env.SHOW_EMPTY_STATS === 'true',
     },
     build: {
       target: 'esnext',

@@ -3,12 +3,21 @@ import StatsWordListPage from '~components/StatsWordListPage.astro';
 import { getAllWords } from '~utils/word-data-utils';
 import { getLetterPatternStats } from '~utils/word-stats-utils';
 
+export async function getStaticPaths() {
+  const words = getAllWords();
+  const letterPatterns = getLetterPatternStats(words);
+  const sameStartEndWords = letterPatterns.startEndSame;
+
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  return (showEmptyPages || sameStartEndWords.length > 0) ? [{}] : [];
+}
+
 const words = getAllWords();
 const letterPatterns = getLetterPatternStats(words);
 const sameStartEndWords = letterPatterns.startEndSame;
 ---
 
-<StatsWordListPage 
+<StatsWordListPage
   words={sameStartEndWords}
   descriptionText="Words that begin and end with the same letter."
 />

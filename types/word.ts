@@ -60,6 +60,9 @@ export interface WordEndingStatsResult {
   ing: WordData[];
   ed: WordData[];
   ly: WordData[];
+  ness: WordData[];
+  ful: WordData[];
+  less: WordData[];
 }
 
 export interface WordStreakStatsResult {

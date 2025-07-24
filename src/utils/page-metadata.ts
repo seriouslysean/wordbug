@@ -142,6 +142,24 @@ const PAGE_METADATA: Record<string, PageMeta> = {
     description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ly".`,
     category: 'stats',
   },
+  'stats/words-ending-ness': {
+    type: 'stats',
+    title: '-ness words',
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ness".`,
+    category: 'stats',
+  },
+  'stats/words-ending-ful': {
+    type: 'stats',
+    title: '-ful words',
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ful".`,
+    category: 'stats',
+  },
+  'stats/words-ending-less': {
+    type: 'stats',
+    title: '-less words',
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-less".`,
+    category: 'stats',
+  },
 } as const;
 
 function getCountForPath(path: string): number {
@@ -154,6 +172,12 @@ function getCountForPath(path: string): number {
       return getWordEndingStats(words).ing.length;
     case 'stats/words-ending-ed':
       return getWordEndingStats(words).ed.length;
+    case 'stats/words-ending-ness':
+      return getWordEndingStats(words).ness.length;
+    case 'stats/words-ending-ful':
+      return getWordEndingStats(words).ful.length;
+    case 'stats/words-ending-less':
+      return getWordEndingStats(words).less.length;
     case 'stats/double-letters':
       return getLetterPatternStats(words).doubleLetters.length;
     case 'stats/same-start-end':
@@ -241,9 +265,19 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
 export function getAllPageMetadata() {
   const pages = [];
 
-  // Add static pages
+  // Check for debug flag to show all pages (including empty ones)
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+
+  // Add static pages, filtering out empty stats pages
   for (const [path] of Object.entries(PAGE_METADATA)) {
     if (path !== '') {
+      // Filter out stats pages with 0 results (unless debug flag is set)
+      if (path.startsWith('stats/') && path !== 'stats') {
+        const count = getCountForPath(path);
+        if (count === 0 && !showEmptyPages) {
+          continue; // Skip empty pages
+        }
+      }
       pages.push({ path, ...getPageMetadata(path) });
     }
   }

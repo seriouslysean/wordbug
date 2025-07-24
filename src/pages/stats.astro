@@ -1,13 +1,14 @@
 ---
 import Heading from '~components/Heading.astro';
-import Layout from '~layouts/Layout.astro';
 import SiteLink from '~components/SiteLink.astro';
 import WordLink from '~components/WordLink.astro';
+import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils/page-metadata.ts';
 import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
 import { getAllWords } from '~utils/word-data-utils';
 import {
   findWordDate,
+  getChronologicalMilestones,
   getCurrentStreakStats,
   getLetterPatternStats,
   getLetterStats,
@@ -16,7 +17,6 @@ import {
   getSyllableStats,
   getWordEndingStats,
   getWordStats,
-  getChronologicalMilestones,
 } from '~utils/word-stats-utils';
 
 // Get all words and handle empty case
@@ -57,6 +57,26 @@ const allConsonantsText = allConsonants.map(w => w.word).join(', ');
 const allVowelsText = allVowels.map(w => w.word).join(', ');
 const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100);
 const milestoneCount = getChronologicalMilestones(words).length;
+
+// Prepare data for template loops
+const letterPatternItems = [
+  { key: 'startEndSame', label: 'same start/end letter', count: letterPatterns.startEndSame.length, href: '/stats/same-start-end' },
+  { key: 'doubleLetters', label: 'double letters', count: letterPatterns.doubleLetters.length, href: '/stats/double-letters' },
+  { key: 'tripleLetters', label: 'triple letters', count: letterPatterns.tripleLetters.length, href: '/stats/triple-letters' },
+  { key: 'alphabetical', label: 'alphabetical order', count: letterPatterns.alphabetical.length, href: '/stats/alphabetical-order' },
+].filter(item => item.count > 0);
+
+const wordEndingItems = [
+  { key: 'ing', label: '-ing words', count: wordEndings.ing.length, href: '/stats/words-ending-ing' },
+  { key: 'ed', label: '-ed words', count: wordEndings.ed.length, href: '/stats/words-ending-ed' },
+  { key: 'ly', label: '-ly words', count: wordEndings.ly.length, href: '/stats/words-ending-ly' },
+  { key: 'ness', label: '-ness words', count: wordEndings.ness.length, href: '/stats/words-ending-ness' },
+  { key: 'ful', label: '-ful words', count: wordEndings.ful.length, href: '/stats/words-ending-ful' },
+  { key: 'less', label: '-less words', count: wordEndings.less.length, href: '/stats/words-ending-less' },
+].filter(item => item.count > 0);
+
+const hasLetterPatterns = letterPatternItems.length > 0;
+const hasWordEndings = wordEndingItems.length > 0;
 
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
@@ -237,45 +257,37 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
       </dl>
     </section>
 
-    <section class="stats__section">
-      <h2 class="stats__heading">Letter Patterns</h2>
-      <dl class="stats__list">
-        <dt class="stats__fact">same start/end letter</dt>
-        <dd class="stats__value">
-          <SiteLink href="/stats/same-start-end" class="stats__link">{letterPatterns.startEndSame.length}</SiteLink>
-        </dd>
-        <dt class="stats__fact">double letters</dt>
-        <dd class="stats__value">
-          <SiteLink href="/stats/double-letters" class="stats__link">{letterPatterns.doubleLetters.length}</SiteLink>
-        </dd>
-        <dt class="stats__fact">triple letters</dt>
-        <dd class="stats__value">
-          <SiteLink href="/stats/triple-letters" class="stats__link">{letterPatterns.tripleLetters.length}</SiteLink>
-        </dd>
-        <dt class="stats__fact">alphabetical order</dt>
-        <dd class="stats__value">
-          <SiteLink href="/stats/alphabetical-order" class="stats__link">{letterPatterns.alphabetical.length}</SiteLink>
-        </dd>
-      </dl>
-    </section>
+{hasLetterPatterns && (
+      <section class="stats__section">
+        <h2 class="stats__heading">Letter Patterns</h2>
+        <dl class="stats__list">
+          {letterPatternItems.map(item => (
+            <>
+              <dt class="stats__fact">{item.label}</dt>
+              <dd class="stats__value">
+                <SiteLink href={item.href} class="stats__link">{item.count}</SiteLink>
+              </dd>
+            </>
+          ))}
+        </dl>
+      </section>
+    )}
 
-    <section class="stats__section">
-      <h2 class="stats__heading">Word Endings</h2>
-      <dl class="stats__list">
-        <dt class="stats__fact">-ing words</dt>
-        <dd class="stats__value">
-          <SiteLink href="/stats/words-ending-ing" class="stats__link">{wordEndings.ing.length}</SiteLink>
-        </dd>
-        <dt class="stats__fact">-ed words</dt>
-        <dd class="stats__value">
-          <SiteLink href="/stats/words-ending-ed" class="stats__link">{wordEndings.ed.length}</SiteLink>
-        </dd>
-        <dt class="stats__fact">-ly words</dt>
-        <dd class="stats__value">
-          <SiteLink href="/stats/words-ending-ly" class="stats__link">{wordEndings.ly.length}</SiteLink>
-        </dd>
-      </dl>
-    </section>
+{hasWordEndings && (
+      <section class="stats__section">
+        <h2 class="stats__heading">Word Endings</h2>
+        <dl class="stats__list">
+          {wordEndingItems.map(item => (
+            <>
+              <dt class="stats__fact">{item.label}</dt>
+              <dd class="stats__value">
+                <SiteLink href={item.href} class="stats__link">{item.count}</SiteLink>
+              </dd>
+            </>
+          ))}
+        </dl>
+      </section>
+    )}
   </main>
 </Layout>
 

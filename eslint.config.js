@@ -41,6 +41,8 @@ export default [
         __GA_MEASUREMENT_ID__: 'readonly',
         __SITE_TITLE__: 'readonly',
         __SITE_DESCRIPTION__: 'readonly',
+        __SITE_URL__: 'readonly',
+        __SHOW_EMPTY_STATS__: 'readonly',
       },
     },
     rules: {

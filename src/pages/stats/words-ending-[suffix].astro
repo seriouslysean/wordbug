@@ -1,0 +1,40 @@
+---
+import StatsWordListPage from '~components/StatsWordListPage.astro';
+import { getAllWords } from '~utils/word-data-utils';
+import { getWordEndingStats } from '~utils/word-stats-utils';
+
+export async function getStaticPaths() {
+  const suffixDescriptions = {
+    'ed': 'Words ending with the suffix \'-ed\', typically indicating past tense or past participle forms.',
+    'ing': 'Words ending with the suffix \'-ing\', typically indicating present participle or gerund forms.',
+    'ly': 'Words ending with the suffix \'-ly\', typically forming adverbs.',
+    'ness': 'Words ending with the suffix \'-ness\', typically forming abstract nouns expressing a state or quality.',
+    'ful': 'Words ending with the suffix \'-ful\', meaning \'full of\' or \'characterized by\' a particular quality.',
+    'less': 'Words ending with the suffix \'-less\', meaning \'without\' or \'lacking\' a particular quality.',
+  };
+
+  const words = getAllWords();
+  const endings = getWordEndingStats(words);
+
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+
+  return Object.entries(endings)
+    .filter(([suffix]) => suffixDescriptions[suffix])
+    .filter(([, wordList]) => showEmptyPages || wordList.length > 0)
+    .map(([suffix, words]) => ({
+      params: { suffix },
+      props: {
+        words,
+        suffix,
+        description: suffixDescriptions[suffix],
+      },
+    }));
+}
+
+const { words, description } = Astro.props;
+---
+
+<StatsWordListPage
+  words={words}
+  descriptionText={description}
+/>

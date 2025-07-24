@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import { formatDate } from '~utils/date-utils';
 import { getAllPageMetadata } from '~utils/page-metadata';
-import { getAllWords, generateWordDataHash } from '~utils/word-data-utils';
+import { generateWordDataHash, getAllWords } from '~utils/word-data-utils';
 
 /**
  * List of supported static text files
