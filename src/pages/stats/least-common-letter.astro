@@ -1,0 +1,75 @@
+---
+import DescriptionText from '~components/DescriptionText.astro';
+import Heading from '~components/Heading.astro';
+import WordList from '~components/WordList.astro';
+import Layout from '~layouts/Layout.astro';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { formatWordCount } from '~utils/text-utils';
+import { getAllWords } from '~utils/word-data-utils';
+import { getLetterStats, getWordStats } from '~utils/word-stats-utils';
+
+const words = getAllWords();
+const wordStats = getWordStats(words);
+const letterStats = getLetterStats(wordStats.letterFrequency);
+
+// Get the least common letter and its count
+const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
+const leastCommonLetterCount = letterStats.length > 0 ? letterStats[letterStats.length - 1][1] : 0;
+
+// Filter words that contain the least common letter
+const wordsWithLeastCommonLetter = words.filter(wordData => 
+  wordData.word.toLowerCase().includes(leastCommonLetter)
+);
+
+const title = 'least common letter';
+const description = `The letter "${leastCommonLetter}" appears in ${formatWordCount(leastCommonLetterCount)}, making it the least frequently used letter across all words.`;
+---
+
+<Layout
+  title={title}
+  description={description}
+  structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
+>
+  <main class="words">
+    <Heading text={title} secondaryText={formatWordCount(wordsWithLeastCommonLetter.length)} />
+
+    <DescriptionText text={`The letter "${leastCommonLetter}" appears in ${formatWordCount(leastCommonLetterCount)}, making it the least frequently used letter.`} />
+
+    <section class="words__section">
+      <WordList words={wordsWithLeastCommonLetter} columns={2} />
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .words {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+  }
+
+  .words__section {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .words__description {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-large);
+    font-size: var(--font-size-base);
+  }
+
+  .words__nav {
+    margin-top: var(--spacing-large);
+    padding-top: var(--spacing-base);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .words__back {
+    color: var(--color-primary-light);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .words__back:hover {
+    opacity: 0.7;
+  }
+</style>

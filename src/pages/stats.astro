@@ -129,7 +129,7 @@ const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(str
           <>
             <dt class="stats__fact">most common letter ({mostCommonLetterCount} words)</dt>
             <dd class="stats__value">
-              {mostCommonLetter}
+              <SiteLink href="/stats/most-common-letter" class="stats__link">{mostCommonLetter}</SiteLink>
             </dd>
           </>
         )}
@@ -137,7 +137,7 @@ const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(str
           <>
             <dt class="stats__fact">least common letter ({leastCommonLetterCount} word{leastCommonLetterPlural})</dt>
             <dd class="stats__value">
-              {leastCommonLetter}
+              <SiteLink href="/stats/least-common-letter" class="stats__link">{leastCommonLetter}</SiteLink>
             </dd>
           </>
         )}

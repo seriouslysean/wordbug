@@ -1,6 +1,6 @@
 import { formatWordCount } from '~utils/text-utils';
 import { getAllWords, getAvailableYears, getWordsByYear } from '~utils/word-data-utils';
-import { getLetterPatternStats,getWordEndingStats } from '~utils/word-stats-utils';
+import { getLetterPatternStats, getLetterStats, getWordEndingStats, getWordStats } from '~utils/word-stats-utils';
 
 export const PAGE_METADATA = {
   '': {
@@ -48,6 +48,21 @@ export const PAGE_METADATA = {
     description: (count: number) => `${formatWordCount(count)} with letters in alphabetical sequence.`,
     category: 'stats',
   },
+  'stats/triple-letters': {
+    title: 'Triple Letters',
+    description: (count: number) => `${formatWordCount(count)} with three or more consecutive identical letters.`,
+    category: 'stats',
+  },
+  'stats/most-common-letter': {
+    title: 'Most Common Letter',
+    description: (count: number) => `${formatWordCount(count)} containing the most frequently used letter.`,
+    category: 'stats',
+  },
+  'stats/least-common-letter': {
+    title: 'Least Common Letter',
+    description: (count: number) => `${formatWordCount(count)} containing the least frequently used letter.`,
+    category: 'stats',
+  },
 };
 
 function getCountForPath(path: string): number {
@@ -66,6 +81,20 @@ function getCountForPath(path: string): number {
       return getLetterPatternStats(words).startEndSame.length;
     case 'stats/alphabetical-order':
       return getLetterPatternStats(words).alphabetical.length;
+    case 'stats/triple-letters':
+      return getLetterPatternStats(words).tripleLetters.length;
+    case 'stats/most-common-letter': {
+      const wordStats = getWordStats(words);
+      const letterStats = getLetterStats(wordStats.letterFrequency);
+      const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
+      return words.filter(wordData => wordData.word.toLowerCase().includes(mostCommonLetter)).length;
+    }
+    case 'stats/least-common-letter': {
+      const wordStats = getWordStats(words);
+      const letterStats = getLetterStats(wordStats.letterFrequency);
+      const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
+      return words.filter(wordData => wordData.word.toLowerCase().includes(leastCommonLetter)).length;
+    }
     default:
       // Handle dynamic year pages
       if (path.startsWith('words/')) {
