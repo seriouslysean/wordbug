@@ -3,6 +3,7 @@ import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 import { formatWordCount } from '~utils/text-utils';
 import { getAllWords } from '~utils/word-data-utils';
@@ -12,8 +13,7 @@ const words = getAllWords();
 const wordEndings = getWordEndingStats(words);
 const lyWords = wordEndings.ly;
 
-const title = '-ly words';
-const description = `${formatWordCount(lyWords.length)} that end with the suffix "-ly".`;
+const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
 <Layout
@@ -23,9 +23,7 @@ const description = `${formatWordCount(lyWords.length)} that end with the suffix
 >
   <main class="words">
     <Heading text={title} secondaryText={formatWordCount(lyWords.length)} />
-
     <DescriptionText text="Words ending with the suffix '-ly'." />
-
     <section class="words__section">
       <WordList words={lyWords} columns={2} />
     </section>

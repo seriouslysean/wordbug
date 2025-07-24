@@ -12,8 +12,8 @@ const words = getAllWords();
 const letterPatterns = getLetterPatternStats(words);
 const alphabeticalWords = letterPatterns.alphabetical;
 
-const title = 'alphabetical order';
-const description = `${formatWordCount(alphabeticalWords.length)} with consecutive letters in alphabetical order.`;
+import { getPageMetadata } from '~utils/page-metadata.ts';
+const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
 <Layout

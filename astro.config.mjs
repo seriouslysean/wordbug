@@ -90,6 +90,7 @@ export default defineConfig({
       __SITE_ID__: JSON.stringify(process.env.SITE_ID),
       __SITE_TITLE__: JSON.stringify(process.env.SITE_TITLE),
       __SITE_DESCRIPTION__: JSON.stringify(process.env.SITE_DESCRIPTION),
+      __SITE_URL__: JSON.stringify(process.env.SITE_URL || ''),
       __TIMESTAMP__: JSON.stringify(timestamp),
       __HUMANS_WORD_CURATOR__: JSON.stringify(process.env.HUMANS_WORD_CURATOR || ''),
       __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),

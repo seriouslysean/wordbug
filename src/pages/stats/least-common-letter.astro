@@ -3,6 +3,7 @@ import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 import { formatWordCount } from '~utils/text-utils';
 import { getAllWords } from '~utils/word-data-utils';
@@ -17,12 +18,11 @@ const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.lengt
 const leastCommonLetterCount = letterStats.length > 0 ? letterStats[letterStats.length - 1][1] : 0;
 
 // Filter words that contain the least common letter
-const wordsWithLeastCommonLetter = words.filter(wordData => 
-  wordData.word.toLowerCase().includes(leastCommonLetter)
+const wordsWithLeastCommonLetter = words.filter(wordData =>
+  wordData.word.toLowerCase().includes(leastCommonLetter),
 );
 
-const title = 'least common letter';
-const description = `The letter "${leastCommonLetter}" appears in ${formatWordCount(leastCommonLetterCount)}, making it the least frequently used letter across all words.`;
+const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
 <Layout

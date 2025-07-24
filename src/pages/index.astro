@@ -1,6 +1,7 @@
 ---
 import WordDisplay from '~components/WordDisplay.astro';
 import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 import { getCurrentWord, getPastWords } from '~utils/word-utils.js';
 
@@ -26,19 +27,17 @@ const recentWords = pastWords.filter(word =>
   word && word.word !== currentWord.word,
 ).slice(0, MAX_WORDS);
 
-let wordsToShow = [];
-let sectionTitle = '';
 
-if (currentMonthWords.length > 0) {
-  wordsToShow = currentMonthWords;
-  sectionTitle = 'this month\'s words';
-} else if (recentWords.length > 0) {
-  wordsToShow = recentWords;
-  sectionTitle = 'previous words';
-}
+const [wordsToShow, sectionTitle] = currentMonthWords.length > 0
+  ? [currentMonthWords, 'This Month\'s Words']
+  : recentWords.length > 0
+    ? [recentWords, 'Previous Words']
+    : [[], ''];
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
-<Layout word={currentWord} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
+<Layout word={currentWord} title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
   <main>
     <WordDisplay
       currentWord={currentWord}
