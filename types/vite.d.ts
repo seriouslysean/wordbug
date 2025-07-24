@@ -18,3 +18,4 @@ declare const __COLOR_PRIMARY_LIGHT__: string;
 declare const __COLOR_PRIMARY_DARK__: string;
 declare const __GA_MEASUREMENT_ID__: string;
 declare const __GA_ENABLED__: boolean;
+declare const __SHOW_EMPTY_STATS__: boolean;

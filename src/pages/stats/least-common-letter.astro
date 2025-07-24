@@ -17,7 +17,7 @@ const wordsWithLeastCommonLetter = words.filter(wordData =>
 );
 ---
 
-<StatsWordListPage 
+<StatsWordListPage
   words={wordsWithLeastCommonLetter}
   descriptionText={`The letter "${leastCommonLetter}" appears in only ${leastCommonLetterCount} word${leastCommonLetterCount !== 1 ? 's' : ''}, making it the least frequently used letter.`}
 />
