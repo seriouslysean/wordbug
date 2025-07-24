@@ -1,64 +1,14 @@
 ---
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
-import WordList from '~components/WordList.astro';
-import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
-import { formatWordCount } from '~utils/text-utils';
+import StatsWordListPage from '~components/StatsWordListPage.astro';
 import { getAllWords } from '~utils/word-data-utils';
 import { getLetterPatternStats } from '~utils/word-stats-utils';
 
 const words = getAllWords();
 const letterPatterns = getLetterPatternStats(words);
 const doubleLetterWords = letterPatterns.doubleLetters;
-
-const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
-<Layout
-  title={title}
-  description={description}
-  structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
->
-  <main class="words">
-    <Heading text={title} secondaryText={formatWordCount(doubleLetterWords.length)} />
-    <DescriptionText text="Words containing double letters (the same letter appearing twice in a row)." />
-    <section class="words__section">
-      <WordList words={doubleLetterWords} columns={2} />
-    </section>
-  </main>
-</Layout>
-
-<style>
-  .words {
-    max-width: var(--content-width-medium);
-    margin: 0 auto;
-  }
-
-  .words__section {
-    margin-bottom: var(--spacing-large);
-  }
-
-  .words__description {
-    color: var(--color-text-light);
-    margin-bottom: var(--spacing-large);
-    font-size: var(--font-size-base);
-  }
-
-  .words__nav {
-    margin-top: var(--spacing-large);
-    padding-top: var(--spacing-base);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .words__back {
-    color: var(--color-primary-light);
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-
-  .words__back:hover {
-    opacity: 0.7;
-  }
-</style>
+<StatsWordListPage 
+  words={doubleLetterWords}
+  descriptionText="Words containing double letters (the same letter appearing twice in a row)."
+/>
