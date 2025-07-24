@@ -14,6 +14,9 @@ import { logger } from '~utils/logger';
 
 export type WordDataProvider = () => WordData[];
 
+// Build-time cache for word data to prevent multiple filesystem reads
+const wordsCache = new Map<string, WordData[]>();
+
 const loadWordsFromDirectory = (dir: string): WordData[] => {
   try {
     if (!fs.existsSync(dir)) {
@@ -64,24 +67,35 @@ const getDemoWords = (): WordData[] => {
 /**
  * Retrieves all available word data from the system's word files.
  * Falls back to demo data if no production word files are available.
+ * Caches result during build to prevent multiple filesystem reads.
  *
  * @returns {WordData[]} Array of all word data entries, sorted by date in descending order
  */
 export const getAllWords = (): WordData[] => {
+  // Return cached data if available
+  if (wordsCache.has('words')) {
+    return wordsCache.get('words')!;
+  }
+
+  // Load data from filesystem
   const productionWords = getProductionWords();
   if (productionWords.length > 0) {
     logger.info('Using production word files', { count: productionWords.length });
+    wordsCache.set('words', productionWords);
     return productionWords;
   }
 
   const demoWords = getDemoWords();
   if (demoWords.length > 0) {
     logger.info('Using demo word files', { count: demoWords.length });
+    wordsCache.set('words', demoWords);
     return demoWords;
   }
 
   logger.error('No word files found');
-  return [];
+  const emptyWords: WordData[] = [];
+  wordsCache.set('words', emptyWords);
+  return emptyWords;
 };
 
 /**
