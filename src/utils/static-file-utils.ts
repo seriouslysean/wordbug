@@ -50,10 +50,10 @@ export function getAsciiArt(): string | null {
  * @returns The content for robots.txt
  */
 export function generateRobotsTxt(siteUrl: string): string {
-  // Ensure siteUrl is valid, with a fallback for dev environments
-  const baseUrl = !siteUrl ? 'http://localhost:4321' :
-                 siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
-
+  // Use injected __SITE_URL__ if available, else fallback to param, else fallback to localhost
+  const envUrl = typeof __SITE_URL__ !== 'undefined' ? __SITE_URL__ : '';
+  const url = envUrl || siteUrl;
+  const baseUrl = !url ? 'http://localhost:4321' : url.endsWith('/') ? url.slice(0, -1) : url;
   return `User-agent: *
 Allow: /
 Sitemap: ${baseUrl}/sitemap-index.xml
@@ -134,7 +134,7 @@ export function generateHealthTxt(): string {
 export function generateLlmsTxt(): string | null {
   const siteTitle = __SITE_TITLE__;
   const siteDescription = __SITE_DESCRIPTION__;
-  const siteUrl = process.env.SITE_URL;
+  const siteUrl = __SITE_URL__;
 
   if (!siteTitle || !siteDescription || !siteUrl) {
     return null;
@@ -147,49 +147,71 @@ export function generateLlmsTxt(): string | null {
   const curatorInfo = __HUMANS_WORD_CURATOR__ ? ` Curated by ${__HUMANS_WORD_CURATOR__}.` : '';
   const lastUpdated = words.length > 0 ? formatDate(words[words.length - 1].date) : null;
 
-  const recentWordLinks = recentWords
-    .map(word => `- [${word.word}](${baseUrl}/${word.word}): ${formatDate(word.date)}`)
+
+  let recentWordSection = '';
+  if (recentWords.length > 0) {
+    const [todayWord, ...previousWords] = [...recentWords].reverse();
+    recentWordSection = [
+      `- [${todayWord.word}](${baseUrl}/${todayWord.word}): ${formatDate(todayWord.date)}`,
+      ...previousWords.map(word => `- [${word.word}](${baseUrl}/${word.word}): ${formatDate(word.date)}`),
+    ].join('\n');
+  }
+
+  const allPages = getAllPageMetadata();
+  const allWordsPage = allPages.find(p => p.path === 'words');
+  const yearPages = allPages.filter(p => /^words\/[0-9]{4}$/.test(p.path)).sort((a, b) => b.path.localeCompare(a.path));
+  const staticPages = allPages.filter(p =>
+    !['', 'words', 'stats'].includes(p.path) &&
+    !/^words\/[0-9]{4}$/.test(p.path) &&
+    !p.path.startsWith('stats/'),
+  );
+  const statsPage = allPages.find(p => p.path === 'stats');
+  const statsSubpages = allPages.filter(p => p.path.startsWith('stats/') && p.path !== 'stats')
+    .sort((a, b) => a.title.localeCompare(b.title));
+
+  // Build Pages section
+  const pagesLinks = [
+    allWordsPage && `- [${allWordsPage.title}](${baseUrl}/words): ${allWordsPage.description}`,
+    yearPages.length > 0 && [
+      '### Year Archives',
+      ...yearPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+    ],
+    staticPages.length > 0 && [
+      '### Other Pages',
+      ...staticPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+    ],
+    statsPage && `- [${statsPage.title}](${baseUrl}/stats): ${statsPage.description}`,
+  ]
+    .flat()
+    .filter(Boolean)
     .join('\n');
 
-  // Get all pages and group by category
-  const allPages = getAllPageMetadata();
-  const pagesByCategory = allPages.reduce((acc, page) => {
-    if (!acc[page.category]) {
-acc[page.category] = [];
-}
-    acc[page.category].push(page);
-    return acc;
-  }, {} as Record<string, typeof allPages>);
+  const statsLinks = statsSubpages
+    .map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`)
+    .join('\n');
 
-  const pagesLinks = pagesByCategory.pages
-    ?.map((page: { title: string; path: string; description: string }) => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`)
-    .join('\n') || '';
-
-  const statsLinks = pagesByCategory.stats
-    ?.map((page: { title: string; path: string; description: string }) => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`)
-    .join('\n') || '';
-
-  return `# ${siteTitle}
-
-> ${siteDescription}
-
-Daily word-of-the-day site with curated vocabulary selections.${curatorInfo}${lastUpdated ? ` Last updated: ${lastUpdated}.` : ''}
-
-## Recent Words (Last 5)
-
-${recentWordLinks}
-
-## Pages
-
-${pagesLinks}
-- [Current Word](${baseUrl}): Today's featured word
-
-## Word Statistics
-
-${statsLinks}
-
-Each word includes definition, pronunciation, etymology, and usage examples.
-`;
+  return [
+    `# ${siteTitle}`,
+    '',
+    `> ${siteDescription}`,
+    '',
+    `Daily word-of-the-day site with curated vocabulary selections.${curatorInfo}${lastUpdated ? ` Last updated: ${lastUpdated}.` : ''}`,
+    '',
+    '## Recent Words (Last 5)',
+    '',
+    recentWordSection,
+    '',
+    '## Pages',
+    '',
+    pagesLinks,
+    '',
+    '## Word Statistics',
+    '',
+    statsLinks,
+    '',
+    'Each word includes definition, pronunciation, etymology, and usage examples.',
+    '',
+  ].join('\n');
 }
 
 /**

@@ -1,0 +1,110 @@
+---
+import DescriptionText from '~components/DescriptionText.astro';
+import Heading from '~components/Heading.astro';
+import WordLink from '~components/WordLink.astro';
+import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { formatWordCount } from '~utils/text-utils';
+import { getAllWords } from '~utils/word-data-utils';
+import { getChronologicalMilestones } from '~utils/word-stats-utils';
+
+const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
+const milestoneWords = getChronologicalMilestones(words);
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
+
+// Helper function to format milestone ordinals
+const formatMilestone = (milestone: number): string => {
+  if (milestone === 1) {
+return '1st Word';
+}
+  if (milestone % 100 === 0) {
+return `${milestone}th Word`;
+}
+  return `${milestone}th Word`;
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
+>
+  <main class="milestones">
+    <Heading text={title} secondaryText={formatWordCount(milestoneWords.length)} />
+
+    <DescriptionText text="Important word milestones from our collection's chronological journey." />
+
+    <section class="milestones__section">
+      <dl class="milestones__list">
+        {milestoneWords.map(({ milestone, word }) => (
+          <>
+            <dt class="milestones__fact">{formatMilestone(milestone)}</dt>
+            <dd class="milestones__value">
+              <WordLink word={word} />
+            </dd>
+          </>
+        ))}
+      </dl>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .milestones {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+  }
+
+  .milestones__section {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .milestones__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+
+  .milestones__fact {
+    color: var(--color-text-light);
+    margin: 0;
+    padding-top: var(--spacing-small);
+  }
+
+  .milestones__value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: right;
+    min-width: 0;
+    margin: 0;
+    padding-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-small);
+  }
+
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    .milestones__list {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 1rem;
+      row-gap: 0;
+      align-items: baseline;
+    }
+
+    .milestones__fact {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .milestones__value {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+  }
+</style>

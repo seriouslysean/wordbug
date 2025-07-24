@@ -352,3 +352,28 @@ export const findWordDate = (words: WordData[], targetWord: string): string | un
   }
   return words.find(w => w?.word === targetWord)?.date;
 };
+
+/**
+ * Calculate chronological milestone words (1st, 100th, 200th, etc.) from sorted words.
+ * @param {WordData[]} words - Array of word data objects sorted by date
+ * @returns {Array<{milestone: number, word: WordData}>} Array of milestone word objects
+ */
+export const getChronologicalMilestones = (words: WordData[]): Array<{milestone: number, word: WordData}> => {
+  if (words.length === 0) {
+    return [];
+  }
+
+  const milestones: Array<{milestone: number, word: WordData}> = [];
+
+  // Add 1st word if it exists
+  if (words.length >= 1) {
+    milestones.push({ milestone: 1, word: words[0] });
+  }
+
+  // Add every 100th word (100th, 200th, 300th, etc.)
+  for (let i = 100; i <= words.length; i += 100) {
+    milestones.push({ milestone: i, word: words[i - 1] }); // i-1 because array is 0-indexed
+  }
+
+  return milestones;
+};

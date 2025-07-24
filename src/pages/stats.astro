@@ -1,9 +1,10 @@
 ---
 import Heading from '~components/Heading.astro';
+import Layout from '~layouts/Layout.astro';
 import SiteLink from '~components/SiteLink.astro';
 import WordLink from '~components/WordLink.astro';
-import Layout from '~layouts/Layout.astro';
-import { countSyllables, getConsonantCount,getVowelCount } from '~utils/text-utils';
+import { getPageMetadata } from '~utils/page-metadata.ts';
+import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
 import { getAllWords } from '~utils/word-data-utils';
 import {
   findWordDate,
@@ -15,6 +16,7 @@ import {
   getSyllableStats,
   getWordEndingStats,
   getWordStats,
+  getChronologicalMilestones,
 } from '~utils/word-stats-utils';
 
 // Get all words and handle empty case
@@ -37,6 +39,7 @@ const { mostSyllables, leastSyllables } = getSyllableStats(words);
 const { mostVowels, mostConsonants } = getLetterTypeStats(words);
 const { allVowels, allConsonants, palindromes } = getPatternStats(words);
 
+
 // Pre-calculate values used in template
 const shortestWordDate = wordStats.shortest ? findWordDate(words, wordStats.shortest.word) : null;
 const longestWordDate = wordStats.longest ? findWordDate(words, wordStats.longest.word) : null;
@@ -53,9 +56,11 @@ const palindromesText = palindromes.map(w => w.word).join(', ');
 const allConsonantsText = allConsonants.map(w => w.word).join(', ');
 const allVowelsText = allVowels.map(w => w.word).join(', ');
 const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100);
----
+const milestoneCount = getChronologicalMilestones(words).length;
 
-<Layout title="Stats">
+const { title, description } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description}>
   <main class="stats">
     <Heading text="Stats" secondaryText="For Nerds" />
 
@@ -73,14 +78,23 @@ const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(str
             </dd>
           </>
         )}
-        {latestWord && (
-          <>
-            <dt class="stats__fact">latest word</dt>
-            <dd class="stats__value">
-              <WordLink word={latestWord} />
-            </dd>
-          </>
-        )}
+{latestWord && (
+  <>
+    <dt class="stats__fact">latest word</dt>
+    <dd class="stats__value">
+      <WordLink word={latestWord} />
+    </dd>
+  </>
+)}
+{milestoneCount > 0 && (
+  <>
+    <dt class="stats__fact">milestone words</dt>
+    <dd class="stats__value">
+      <SiteLink href="/stats/milestone-words" class="stats__link">{milestoneCount}</SiteLink>
+    </dd>
+  </>
+)}
+{/* Most/Least common letter stats */}
       </dl>
     </section>
 

@@ -3,6 +3,7 @@ import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 import { formatWordCount } from '~utils/text-utils';
 import { getAllWords } from '~utils/word-data-utils';
@@ -17,12 +18,11 @@ const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
 const mostCommonLetterCount = letterStats.length > 0 ? letterStats[0][1] : 0;
 
 // Filter words that contain the most common letter
-const wordsWithMostCommonLetter = words.filter(wordData => 
-  wordData.word.toLowerCase().includes(mostCommonLetter)
+const wordsWithMostCommonLetter = words.filter(wordData =>
+  wordData.word.toLowerCase().includes(mostCommonLetter),
 );
 
-const title = 'most common letter';
-const description = `The letter "${mostCommonLetter}" appears in ${formatWordCount(mostCommonLetterCount)}, making it the most frequently used letter across all words.`;
+const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
 <Layout

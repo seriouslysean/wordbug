@@ -1,33 +1,22 @@
 ---
 import WordPage from '~components/WordPage.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
 import { getFullUrl,getWordUrl as _getWordUrl } from '~utils/url-utils.js';
 import { getAllWords, getWordByDate } from '~utils/word-utils.js';
+getPageMetadata(Astro.url.pathname);
 
 export async function getStaticPaths() {
   const words = getAllWords();
-  const paths = [];
-
-  for (const word of words) {
-    const date = word.date;
-    if (date) {
-      paths.push({ params: { date } });
-    }
-  }
-
-  return paths;
+  return words
+    .filter(word => word.date && getWordByDate(word.date))
+    .map(word => ({ params: { date: word.date } }));
 }
 
 const { date } = Astro.params;
 const wordData = getWordByDate(date);
-
-if (!wordData) {
-  return Astro.redirect(import.meta.env.BASE_URL || '/');
-}
 
 // Generate canonical URL pointing to the word page (not the date page)
 const canonicalUrl = getFullUrl(_getWordUrl(wordData.word));
 ---
 
 <WordPage wordData={wordData} canonicalUrl={canonicalUrl} />
-
-

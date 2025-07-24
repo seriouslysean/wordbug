@@ -3,18 +3,19 @@ import Heading from '~components/Heading.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 import { getUrl } from '~utils/utils.js';
 import { formatWordCount, getAllWords, groupWordsByYear } from '~utils/word-utils.js';
 
 const words = getAllWords();
 const wordsByYear = groupWordsByYear(words);
+const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
-<Layout title="All Words" structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="words">
-    <Heading text="All Words" secondaryText={formatWordCount(words.length)} />
-
+    <Heading text={title} secondaryText={formatWordCount(words.length)} />
     {(Object.entries(wordsByYear) as [string, typeof words][]).reverse().map(([year, words]) => (
       <section class="words__section">
         <SectionHeading text={year} href={getUrl(`/words/${year}`)} />
