@@ -1,8 +1,6 @@
 ---
-import { formatDate } from '~utils/date-utils.js';
 import { getCurrentWord } from '~utils/word-utils.js';
 
-import SiteLink from './SiteLink.astro';
 import WordLink from './WordLink.astro';
 
 interface Props {
@@ -44,7 +42,7 @@ const isCurrentWord = nextWord?.word === currentWord?.word;
     {nextWord && (
       <div class="word-nav__next">
         <span class="word-nav__label">{nextLabel}</span>
-        <WordLink word={nextWord} href={isCurrentWord ? "/" : undefined} />
+        <WordLink word={nextWord} href={isCurrentWord ? '/' : undefined} />
       </div>
     )}
   </div>
