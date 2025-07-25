@@ -5,6 +5,7 @@ import {
   getLetterPatternStats,
   getLetterStats,
   getLongestStreakWords,
+  getPatternStats,
   getWordEndingStats,
   getWordStats,
 } from '~utils/word-stats-utils';
@@ -19,6 +20,31 @@ export const generateStatsStaticPaths = () => {
   const words = getAllWords();
   const showEmptyPages = __SHOW_EMPTY_STATS__;
   const stats = [];
+
+  // All consonants and all vowels stat pages (after words/showEmptyPages/stats are defined)
+  const patternStats = getPatternStats(words);
+  const allConsonants = patternStats.allConsonants;
+  const allVowels = patternStats.allVowels;
+  if (showEmptyPages || allConsonants.length > 0) {
+    stats.push({
+      params: { stat: 'all-consonants' },
+      props: {
+        words: allConsonants.map((w, i) => ({ ...w, label: ordinal(i + 1) })),
+        description: `Words made up of only consonants (no vowels).`,
+        template: 'word-list',
+      },
+    });
+  }
+  if (showEmptyPages || allVowels.length > 0) {
+    stats.push({
+      params: { stat: 'all-vowels' },
+      props: {
+        words: allVowels.map((w, i) => ({ ...w, label: ordinal(i + 1) })),
+        description: `Words made up of only vowels (no consonants).`,
+        template: 'word-list',
+      },
+    });
+  }
 
   const suffixDescriptions = {
     ed: `Words ending with the suffix '-ed', typically indicating past tense or past participle forms.`,
@@ -118,6 +144,7 @@ export const generateStatsStaticPaths = () => {
   });
 
   const milestoneWords = getChronologicalMilestones([...words].sort((a, b) => a.date.localeCompare(b.date)))
+    .reverse()
     .map(w => ({
       word: w.word.word,
       date: w.word.date,

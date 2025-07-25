@@ -53,8 +53,6 @@ const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
 const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
 const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
 const palindromeCount = palindromes.length;
-const allConsonantsText = allConsonants.map(w => w.word).join(', ');
-const allVowelsText = allVowels.map(w => w.word).join(', ');
 const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100);
 const milestoneCount = getChronologicalMilestones(words).length;
 
@@ -205,22 +203,22 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
             </dd>
           </>
         )}
-        {allConsonants.length > 0 && (
-          <>
-            <dt class="stats__fact">all consonants</dt>
-            <dd class="stats__value">
-              {allConsonantsText}
-            </dd>
-          </>
-        )}
-        {allVowels.length > 0 && (
-          <>
-            <dt class="stats__fact">all vowels</dt>
-            <dd class="stats__value">
-              {allVowelsText}
-            </dd>
-          </>
-        )}
+{allConsonants.length > 0 && (
+  <>
+    <dt class="stats__fact">all consonants</dt>
+    <dd class="stats__value">
+      <SiteLink href="/stats/all-consonants" class="stats__link">{allConsonants.length}</SiteLink>
+    </dd>
+  </>
+)}
+{allVowels.length > 0 && (
+  <>
+    <dt class="stats__fact">all vowels</dt>
+    <dd class="stats__value">
+      <SiteLink href="/stats/all-vowels" class="stats__link">{allVowels.length}</SiteLink>
+    </dd>
+  </>
+)}
       </dl>
     </section>
 

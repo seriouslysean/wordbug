@@ -5,6 +5,7 @@ import {
   getChronologicalMilestones,
   getLetterPatternStats,
   getLetterStats,
+  getPatternStats,
   getWordEndingStats,
   getWordStats,
 } from '~utils/word-stats-utils';
@@ -178,6 +179,18 @@ const PAGE_METADATA: Record<string, PageMeta> = {
     description: (count: number) => `${formatWordCount(count)} that are palindromes (words that read the same forwards and backwards)`,
     category: 'stats',
   },
+  'stats/all-consonants': {
+    type: 'stats',
+    title: 'All Consonants',
+    description: (count: number) => `${formatWordCount(count)} made up of only consonants (no vowels).`,
+    category: 'stats',
+  },
+  'stats/all-vowels': {
+    type: 'stats',
+    title: 'All Vowels',
+    description: (count: number) => `${formatWordCount(count)} made up of only vowels (no consonants).`,
+    category: 'stats',
+  },
 } as const;
 
 function getCountForPath(path: string): number {
@@ -219,6 +232,12 @@ function getCountForPath(path: string): number {
     case 'stats/milestone-words': {
       const sortedWords = words.sort((a, b) => a.date.localeCompare(b.date));
       return getChronologicalMilestones(sortedWords).length;
+    }
+    case 'stats/all-consonants': {
+      return getPatternStats(words).allConsonants.length;
+    }
+    case 'stats/all-vowels': {
+      return getPatternStats(words).allVowels.length;
     }
     case 'stats/palindromes': {
       return getLetterPatternStats(words).palindromes.length;

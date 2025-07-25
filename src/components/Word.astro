@@ -3,7 +3,7 @@ import Heading from '~components/Heading.astro';
 import WordDescription from '~components/WordDescription.astro';
 import type { WordData } from '~types/word';
 import { formatDate } from '~utils/date-utils.js';
-import { getWordDetails } from '~utils/word-utils.js';
+import { getWordDetails } from '~utils/word-data-utils';
 
 interface Props {
   word: WordData | null;
@@ -13,8 +13,7 @@ const { word } = Astro.props;
 
 // Handle case when no word is available
 if (!word) {
-  // Show a message when no word data is available
-  return Astro.redirect('/setup');
+  throw new Error('Word not found');
 }
 
 const { partOfSpeech, definition, meta } = getWordDetails(word);

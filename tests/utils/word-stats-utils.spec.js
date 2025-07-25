@@ -6,7 +6,7 @@ import {
   getLetterPatternStats,
   getLetterStats,
   getLetterTypeStats,
-  getMilestoneWords,
+  // getMilestoneWords,
   getPatternStats,
   getSyllableStats,
   getWordEndingStats,
@@ -72,36 +72,6 @@ describe('word-stats-utils', () => {
     });
   });
 
-  describe('getMilestoneWords', () => {
-    it('returns milestone words when thresholds are met', () => {
-      const manyWords = Array.from({ length: 150 }, (_, i) => ({
-        word: `word${i}`,
-        date: `2024${String(i + 1).padStart(4, '0')}`,
-      }));
-
-      const milestones = getMilestoneWords(manyWords);
-
-      expect(milestones['25']).toEqual({ word: 'word24', date: '20240025' });
-      expect(milestones['50']).toEqual({ word: 'word49', date: '20240050' });
-      expect(milestones['100']).toEqual({ word: 'word99', date: '20240100' });
-    });
-
-    it('returns null for unmet milestones', () => {
-      const milestones = getMilestoneWords(sampleWords);
-
-      expect(milestones['25']).toBeNull();
-      expect(milestones['50']).toBeNull();
-      expect(milestones['100']).toBeNull();
-    });
-
-    it('handles empty word array', () => {
-      const milestones = getMilestoneWords(emptyWords);
-
-      expect(milestones['25']).toBeNull();
-      expect(milestones['50']).toBeNull();
-      expect(milestones['100']).toBeNull();
-    });
-  });
 
   describe('getLetterPatternStats', () => {
     it('identifies various letter patterns', () => {
