@@ -11,12 +11,13 @@ interface Props {
   };
   class?: string;
   useDate?: boolean;
+  href?: string;
 }
 
-const { word, class: className = 'word-link', useDate = false } = Astro.props;
+const { word, class: className = 'word-link', useDate = false, href: overrideHref } = Astro.props;
 const formattedDate = formatDate(word.date);
 
-const href = useDate ? getDateUrl(word.date) : getWordUrl(word.word);
+const href = overrideHref || (useDate ? getDateUrl(word.date) : getWordUrl(word.word));
 ---
 
 <SiteLink
