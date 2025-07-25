@@ -1,4 +1,6 @@
 ---
+import SiteLink from '~components/SiteLink.astro';
+
 interface Props {
   text: string;
   href?: string;
@@ -11,7 +13,7 @@ const { text, href, align = 'left', underline = true } = Astro.props;
 
 {href ? (
   <h2 class:list={['section-heading', `section-heading--${align}`, { 'section-heading--underline': underline }]}>
-    <a href={href} class="section-heading__link">{text}</a>
+    <SiteLink href={href} class="section-heading__link">{text}</SiteLink>
   </h2>
 ) : (
   <h2 class:list={['section-heading', `section-heading--${align}`, { 'section-heading--underline': underline }]}>{text}</h2>

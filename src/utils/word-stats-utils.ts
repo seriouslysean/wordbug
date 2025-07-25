@@ -256,6 +256,44 @@ export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult 
 };
 
 /**
+ * Get the words that make up the longest streak in the collection.
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {WordData[]} Array of words from the longest consecutive streak
+ */
+export const getLongestStreakWords = (words: WordData[]): WordData[] => {
+  if (words.length <= 1) {
+    return words;
+  }
+
+  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+
+  let longestStreak: WordData[] = [];
+  let currentStreak: WordData[] = [sortedWords[0]];
+
+  for (let i = 1; i < sortedWords.length; i++) {
+    const currentWord = sortedWords[i];
+    const previousWord = sortedWords[i - 1];
+
+    if (areConsecutiveDays(currentWord.date, previousWord.date)) {
+      currentStreak.push(currentWord);
+    } else {
+      if (currentStreak.length > longestStreak.length) {
+        longestStreak = [...currentStreak];
+      }
+      currentStreak = [currentWord];
+    }
+  }
+
+  // Check final streak
+  if (currentStreak.length > longestStreak.length) {
+    longestStreak = [...currentStreak];
+  }
+
+  // Return in chronological order (oldest first)
+  return longestStreak.reverse();
+};
+
+/**
  * Check if two dates are consecutive days.
  * @param {string} olderDate - Earlier date in YYYYMMDD format
  * @param {string} newerDate - Later date in YYYYMMDD format
