@@ -1,0 +1,119 @@
+{
+    "word": "book",
+    "date": "20250108",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "B5400900-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-2",
+            "partOfSpeech": "noun",
+            "text": "A set of written, printed, or blank pages fastened along one side and encased between protective covers.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-3",
+            "partOfSpeech": "noun",
+            "text": "An e-book or other electronic resource structured like a book.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-4",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-5",
+            "partOfSpeech": "noun",
+            "text": "A printed or written literary work.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [
+                "Did you ever finish writing that book?"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-6",
+            "partOfSpeech": "noun",
+            "text": "A main division of a larger printed or written work.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [
+                "a book of the Old Testament."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-7",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-8",
+            "partOfSpeech": "noun",
+            "text": "A volume in which financial or business transactions are recorded.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-9",
+            "partOfSpeech": "noun",
+            "text": "Financial or business records considered as a group.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [
+                "checked the expenditures on the books."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5400900-10",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/book",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

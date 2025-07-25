@@ -1,0 +1,112 @@
+{
+    "word": "learned",
+    "date": "20250106",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "L5097700-1",
+            "partOfSpeech": "adjective",
+            "text": "Having profound, often systematic knowledge; erudite.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5097700-2",
+            "partOfSpeech": "adjective",
+            "text": "Showing or characterized by such knowledge.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [
+                "a learned journal."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5097700-3",
+            "partOfSpeech": "adjective",
+            "text": "Acquired by learning or experience.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [
+                "learned behavior."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Possessed of the learning of schools; well furnished with literary and scientific knowledge; erudite: as, a <em>learned</em> man.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Well acquainted; having much experience; skilful: often with <em>in</em>: as, <em>learned in</em> art.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Pertaining to or manifesting learning; exhibiting the effect of instruction or learning; scholastic: as, <em>learned</em> accomplishments; a <em>learned</em> treatise.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "<strong>Synonyms</strong> and <em>Learned, Scholarly</em>, erudite, deep read. These words agree in representing the possession of a knowledge obtained by careful and protracted study, especially in books. They differ in that <em>learned</em> expresses depth and fullness in the knowledge, while <em>scholarly</em> expresses accuracy: as, a <em>learned</em> and <em>scholarly</em> treatise upon the use of the dative case. <em>Learned</em> expresses only the result of study; <em>scholarly</em> may express the result or the spirit: as, <em>scholarly</em> tastes. See <internalXref urlencoded=\"ignorant\">ignorant</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Of or pertaining to learning; possessing, or characterized by, learning, esp. scholastic learning; erudite; well-informed",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [
+                "a <ex>learned</ex> scholar, writer, or lawyer; a <ex>learned</ex> book; a <ex>learned</ex> theory."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "learned men; men of erudition; scholars.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "Simple past tense and past participle of <xref>learn</xref>: <xref>taught</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/learned",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

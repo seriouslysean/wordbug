@@ -10,8 +10,8 @@ import type {
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types/word';
-import { createWordDataProvider, createMemoryCache, type WordFileInfo } from '~utils/word-data-shared';
 import { logger } from '~utils/logger';
+import { createMemoryCache, createWordDataProvider, type WordFileInfo } from '~utils/word-data-shared';
 
 export type WordDataProvider = () => WordData[];
 
@@ -26,17 +26,19 @@ const createAstroFileLoader = () => (): WordFileInfo[] => {
       .filter((file): file is string => typeof file === 'string' && file.endsWith('.json'))
       .map(file => path.join(dir, file));
 
-    return files.map(filePath => {
+    const result = files.map(filePath => {
       const content = fs.readFileSync(filePath, 'utf-8');
       const fileName = path.basename(filePath);
       const date = fileName.match(/(\d{8})\.json$/)?.[1] || '';
-      
+
       return {
         filePath,
         date,
         content,
       };
     });
+
+    return result;
   };
 
   // Try production words first, then demo words
@@ -52,7 +54,7 @@ const createAstroFileLoader = () => (): WordFileInfo[] => {
 export const getAllWords = createWordDataProvider(
   createAstroFileLoader(),
   createMemoryCache(),
-  'words'
+  'words',
 );
 
 /**
@@ -99,7 +101,8 @@ export const getCurrentWord = (wordProvider: WordDataProvider = getAllWords): Wo
 
   const today = new Date();
   const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
-  return words.find(word => word.date <= dateString) || words[0];
+  const found = words.find(word => word.date <= dateString) || words[0];
+  return found;
 };
 
 /**

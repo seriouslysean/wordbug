@@ -1,18 +1,19 @@
 {
-    "word": "the",
-    "date": "20250102",
+    "word": "day",
+    "date": "20250117",
     "adapter": "wordnik",
     "data": [
         {
-            "id": "T5158500-1",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-1",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
+            "text": "The period of light between dawn and nightfall; the interval from sunrise to sunset.",
             "sequence": "1",
             "score": 0,
-            "word": "the",
+            "word": "day",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
             "exampleUses": [],
             "labels": [],
@@ -21,109 +22,92 @@
             "textProns": []
         },
         {
-            "id": "T5158500-2",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-2",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used before singular or plural nouns and noun phrases that denote particular, specified persons or things.",
             "sequence": "2",
             "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the baby; the dress I wore."
-                }
-            ],
+            "word": "day",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
+            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "T5158500-3",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-3",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used before a noun, and generally stressed, to emphasize one of a group or type as the most outstanding or prominent.",
+            "text": "The 24-hour period during which the earth completes one rotation on its axis, traditionally measured from midnight to midnight.",
             "sequence": "3",
             "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "considered Wicker Park to be the neighborhood to live in these days."
-                }
-            ],
+            "word": "day",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
+            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "T5158500-4",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-4",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used to indicate uniqueness.",
+            "text": "The period during which a celestial body makes a similar rotation.",
             "sequence": "4",
             "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the Prince of Wales; the moon."
-                }
-            ],
+            "word": "day",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
+            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "T5158500-5",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-5",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used before nouns that designate natural phenomena or points of the compass.",
+            "text": "One of the numbered 24-hour periods into which a week, month, or year is divided.",
             "sequence": "5",
             "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the weather; a wind from the south."
-                }
-            ],
+            "word": "day",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
+            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "T5158500-6",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-6",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used as the equivalent of a possessive adjective before names of some parts of the body.",
+            "text": "The portion of a 24-hour period that is devoted to work, school, or business.",
             "sequence": "6",
             "score": 0,
-            "word": "the",
+            "word": "day",
             "exampleUses": [
                 {
-                    "text": "grab him by the neck; an infection of the hand."
+                    "text": "an eight-hour day; a sale that lasted for three days."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -131,21 +115,21 @@
             "textProns": []
         },
         {
-            "id": "T5158500-7",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-7",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used before a noun specifying a field of endeavor.",
+            "text": "A 24-hour period or a portion of it that is reserved for a certain activity.",
             "sequence": "7",
             "score": 0,
-            "word": "the",
+            "word": "day",
             "exampleUses": [
                 {
-                    "text": "the law; the film industry; the stage."
+                    "text": "a day of rest."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -153,43 +137,38 @@
             "textProns": []
         },
         {
-            "id": "T5158500-8",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-8",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used before a proper name, as of a monument or ship.",
             "sequence": "8",
             "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the Alamo; the Titanic."
-                }
-            ],
+            "word": "day",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
+            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "T5158500-9",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-9",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used before the plural form of a numeral denoting a specific decade of a century or of a lifespan.",
+            "text": "A specific, characteristic period in one's lifetime.",
             "sequence": "9",
             "score": 0,
-            "word": "the",
+            "word": "day",
             "exampleUses": [
                 {
-                    "text": "rural life in the Thirties."
+                    "text": "In Grandmother's day, skirts were long."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -197,21 +176,21 @@
             "textProns": []
         },
         {
-            "id": "T5158500-10",
-            "partOfSpeech": "definite article.",
+            "id": "D5043200-10",
+            "partOfSpeech": "noun",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Used before a singular noun indicating that the noun is generic.",
+            "text": "A period of opportunity or prominence.",
             "sequence": "10",
             "score": 0,
-            "word": "the",
+            "word": "day",
             "exampleUses": [
                 {
-                    "text": "The loggerhead turtle is an endangered species."
+                    "text": "Every defendant is entitled to a day in court. That child will have her day."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "wordnikUrl": "https://www.wordnik.com/words/day",
             "citations": [],
             "labels": [],
             "notes": [],

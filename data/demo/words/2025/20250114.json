@@ -1,0 +1,109 @@
+{
+    "word": "endless",
+    "date": "20250114",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "E5134700-1",
+            "partOfSpeech": "adjective",
+            "text": "Being or seeming to be without an end or limit; boundless.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [
+                "an endless universe; an endless conversation."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "E5134700-2",
+            "partOfSpeech": "adjective",
+            "text": "Formed with the ends joined; continuous.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [
+                "an endless chain."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Not having a termination; continuing without end, really or apparently; having no limit or conclusion: as, <em>endless</em> progression; <em>endless</em> bliss; the <em>endless</em> pursuit of an object.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Not having ends; returning upon itself so as to exhibit neither beginning nor end: as, an <em>endless</em> belt or chain; a circular race-course is <em>endless.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Perpetually recurring; interminable; incessant; continual: as, <em>endless</em> praise; <em>endless</em> clamor.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Without object, purpose, or use.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Without profitable conclusion; fruitless.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "<strong>Synonyms</strong> Eternal, everlasting, perpetual, unceasing, imperishable, uninterrupted, boundless, immeasurable, unlimited.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Without end; having no end or conclusion; perpetual; interminable; -- applied to length, and to duration",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [
+                "an <ex>endless</ex> line; <ex>endless</ex> time; <ex>endless</ex> bliss; <ex>endless</ex> praise; <ex>endless</ex> clamor."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Infinite; excessive; unlimited.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/endless",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
