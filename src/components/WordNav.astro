@@ -44,18 +44,7 @@ const isCurrentWord = nextWord?.word === currentWord?.word;
     {nextWord && (
       <div class="word-nav__next">
         <span class="word-nav__label">{nextLabel}</span>
-        {isCurrentWord ? (
-          <SiteLink
-            href="/"
-            class="word-link"
-            ariaLabel={`View ${nextWord.word}`}
-          >
-            <span class="word-link__word">{nextWord.word}</span>
-            <time class="word-link__date">{formatDate(nextWord.date)}</time>
-          </SiteLink>
-        ) : (
-          <WordLink word={nextWord} />
-        )}
+        <WordLink word={nextWord} href={isCurrentWord ? "/" : undefined} />
       </div>
     )}
   </div>
