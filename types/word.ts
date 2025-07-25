@@ -54,6 +54,7 @@ export interface WordPatternStatsResult {
   doubleLetters: WordData[];
   tripleLetters: WordData[];
   alphabetical: WordData[];
+  palindromes: WordData[];
 }
 
 export interface WordEndingStatsResult {

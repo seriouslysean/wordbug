@@ -20,7 +20,7 @@ export const getUrl = (path = '/'): string => {
     throw new Error('Invalid path: contains multiple consecutive slashes');
   }
 
-  const normalizedPath = path.toLowerCase().startsWith('/') ? path.toLowerCase() : `/${path.toLowerCase()}`;
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
 
   if (normalizedPath.includes('.')) {
@@ -43,9 +43,9 @@ export const getFullUrl = (path = '/'): string => {
     return `${siteUrl}/`;
   }
 
-  const normalizedPath = path.toLowerCase().startsWith('/')
-    ? path.toLowerCase()
-    : `/${path.toLowerCase()}`;
+  const normalizedPath = path.startsWith('/')
+    ? path
+    : `/${path}`;
 
   if (normalizedPath.includes('.')) {
     return `${siteUrl}${normalizedPath}`;
@@ -58,7 +58,7 @@ export const getFullUrl = (path = '/'): string => {
  * Creates a consistent, SEO-friendly internal link URL
  */
 export const getWordUrl = (word: string): string => {
-  return word ? getUrl(`/${word.toLowerCase()}`) : '';
+  return word ? getUrl(`/${word}`) : '';
 };
 
 /**

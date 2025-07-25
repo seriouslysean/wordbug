@@ -75,37 +75,37 @@ const PAGE_METADATA: Record<string, PageMeta> = {
   'stats/alphabetical-order': {
     type: 'stats',
     title: 'Alphabetical Order',
-    description: (count: number) => `${formatWordCount(count)} with consecutive letters in alphabetical order.`,
+    description: (count: number) => `${formatWordCount(count)} with consecutive letters in alphabetical order`,
     category: 'stats',
   },
   'stats/double-letters': {
     type: 'stats',
     title: 'Double Letters',
-    description: (count: number) => `${formatWordCount(count)} with repeated letters.`,
+    description: (count: number) => `${formatWordCount(count)} with repeated letters`,
     category: 'stats',
   },
   'stats/same-start-end': {
     type: 'stats',
     title: 'Same Start/End Letter',
-    description: (count: number) => `${formatWordCount(count)} that start and end with the same letter.`,
+    description: (count: number) => `${formatWordCount(count)} that start and end with the same letter`,
     category: 'stats',
   },
   'stats/triple-letters': {
     type: 'stats',
     title: 'Triple Letters',
-    description: (count: number) => `${formatWordCount(count)} with three or more consecutive identical letters.`,
+    description: (count: number) => `${formatWordCount(count)} with three or more consecutive identical letters`,
     category: 'stats',
   },
   'stats/words-ending-ed': {
     type: 'stats',
     title: '-ed words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ed".`,
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ed'`,
     category: 'stats',
   },
   'stats/words-ending-ing': {
     type: 'stats',
     title: '-ing words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ing".`,
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ing'`,
     category: 'stats',
   },
   'stats/most-common-letter': {
@@ -151,25 +151,31 @@ const PAGE_METADATA: Record<string, PageMeta> = {
   'stats/words-ending-ly': {
     type: 'stats',
     title: '-ly words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ly".`,
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ly'`,
     category: 'stats',
   },
   'stats/words-ending-ness': {
     type: 'stats',
     title: '-ness words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ness".`,
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ness'`,
     category: 'stats',
   },
   'stats/words-ending-ful': {
     type: 'stats',
     title: '-ful words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-ful".`,
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ful'`,
     category: 'stats',
   },
   'stats/words-ending-less': {
     type: 'stats',
     title: '-less words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix "-less".`,
+    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-less'`,
+    category: 'stats',
+  },
+  'stats/palindromes': {
+    type: 'stats',
+    title: 'palindrome words',
+    description: (count: number) => `${formatWordCount(count)} that are palindromes (words that read the same forwards and backwards)`,
     category: 'stats',
   },
 } as const;
@@ -202,17 +208,20 @@ function getCountForPath(path: string): number {
       const wordStats = getWordStats(words);
       const letterStats = getLetterStats(wordStats.letterFrequency);
       const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
-      return words.filter(wordData => wordData.word.toLowerCase().includes(mostCommonLetter)).length;
+      return words.filter(wordData => wordData.word.includes(mostCommonLetter)).length;
     }
     case 'stats/least-common-letter': {
       const wordStats = getWordStats(words);
       const letterStats = getLetterStats(wordStats.letterFrequency);
       const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
-      return words.filter(wordData => wordData.word.toLowerCase().includes(leastCommonLetter)).length;
+      return words.filter(wordData => wordData.word.includes(leastCommonLetter)).length;
     }
     case 'stats/milestone-words': {
       const sortedWords = words.sort((a, b) => a.date.localeCompare(b.date));
       return getChronologicalMilestones(sortedWords).length;
+    }
+    case 'stats/palindromes': {
+      return getLetterPatternStats(words).palindromes.length;
     }
     default:
       if (path.startsWith('words/')) {

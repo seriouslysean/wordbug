@@ -77,7 +77,7 @@ export const getSocialImageUrl = ({ pathname, wordData }: { pathname: string; wo
   // If we have word data, use the word image
   if (wordData?.word && wordData?.date) {
     const year = wordData.date.slice(0, 4);
-    return getFullUrl(`/images/social/${year}/${wordData.date}-${wordData.word.toLowerCase()}.png`);
+    return getFullUrl(`/images/social/${year}/${wordData.date}-${wordData.word}.png`);
   }
 
   // Check if this is a year page
