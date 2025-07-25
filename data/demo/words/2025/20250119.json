@@ -1,113 +1,134 @@
 {
-    "word": "day",
-    "date": "20250101",
+    "word": "of",
+    "date": "20250119",
     "adapter": "wordnik",
     "data": [
         {
-            "id": "D5043200-1",
-            "partOfSpeech": "noun",
+            "id": "O5039800-1",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "The period of light between dawn and nightfall; the interval from sunrise to sunset.",
+            "text": "Derived or coming from; originating at or from.",
             "sequence": "1",
             "score": 0,
-            "word": "day",
+            "word": "of",
+            "exampleUses": [
+                {
+                    "text": "customs of the South."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
-            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "D5043200-2",
-            "partOfSpeech": "noun",
+            "id": "O5039800-2",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
+            "text": "Caused by; resulting from.",
             "sequence": "2",
             "score": 0,
-            "word": "day",
+            "word": "of",
+            "exampleUses": [
+                {
+                    "text": "a death of tuberculosis."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
-            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "D5043200-3",
-            "partOfSpeech": "noun",
+            "id": "O5039800-3",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "The 24-hour period during which the earth completes one rotation on its axis, traditionally measured from midnight to midnight.",
+            "text": "Away from; at a distance from.",
             "sequence": "3",
             "score": 0,
-            "word": "day",
+            "word": "of",
+            "exampleUses": [
+                {
+                    "text": "a mile east of here."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
-            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "D5043200-4",
-            "partOfSpeech": "noun",
+            "id": "O5039800-4",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "The period during which a celestial body makes a similar rotation.",
+            "text": "So as to be separated or relieved from.",
             "sequence": "4",
             "score": 0,
-            "word": "day",
+            "word": "of",
+            "exampleUses": [
+                {
+                    "text": "robbed of one's dignity; cured of distemper."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
-            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "D5043200-5",
-            "partOfSpeech": "noun",
+            "id": "O5039800-5",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "One of the numbered 24-hour periods into which a week, month, or year is divided.",
+            "text": "From the total or group comprising.",
             "sequence": "5",
             "score": 0,
-            "word": "day",
+            "word": "of",
+            "exampleUses": [
+                {
+                    "text": "give of one's time; two of my friends; most of the cases."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
-            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "D5043200-6",
-            "partOfSpeech": "noun",
+            "id": "O5039800-6",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "The portion of a 24-hour period that is devoted to work, school, or business.",
+            "text": "Composed or made from.",
             "sequence": "6",
             "score": 0,
-            "word": "day",
+            "word": "of",
             "exampleUses": [
                 {
-                    "text": "an eight-hour day; a sale that lasted for three days."
+                    "text": "a dress of silk."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -115,21 +136,21 @@
             "textProns": []
         },
         {
-            "id": "D5043200-7",
-            "partOfSpeech": "noun",
+            "id": "O5039800-7",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "A 24-hour period or a portion of it that is reserved for a certain activity.",
+            "text": "Associated with or adhering to.",
             "sequence": "7",
             "score": 0,
-            "word": "day",
+            "word": "of",
             "exampleUses": [
                 {
-                    "text": "a day of rest."
+                    "text": "people of your religion."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -137,15 +158,37 @@
             "textProns": []
         },
         {
-            "id": "D5043200-8",
-            "partOfSpeech": "noun",
+            "id": "O5039800-8",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
+            "text": "Belonging or connected to.",
             "sequence": "8",
             "score": 0,
-            "word": "day",
+            "word": "of",
+            "exampleUses": [
+                {
+                    "text": "the rungs of a ladder."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "O5039800-9",
+            "partOfSpeech": "preposition",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sequence": "9",
+            "score": 0,
+            "word": "of",
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
             "exampleUses": [],
             "labels": [],
@@ -154,43 +197,21 @@
             "textProns": []
         },
         {
-            "id": "D5043200-9",
-            "partOfSpeech": "noun",
+            "id": "O5039800-10",
+            "partOfSpeech": "preposition",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "A specific, characteristic period in one's lifetime.",
-            "sequence": "9",
-            "score": 0,
-            "word": "day",
-            "exampleUses": [
-                {
-                    "text": "In Grandmother's day, skirts were long."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
-        },
-        {
-            "id": "D5043200-10",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "A period of opportunity or prominence.",
+            "text": "Possessing; having.",
             "sequence": "10",
             "score": 0,
-            "word": "day",
+            "word": "of",
             "exampleUses": [
                 {
-                    "text": "Every defendant is entitled to a day in court. That child will have her day."
+                    "text": "a person of honor."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
+            "wordnikUrl": "https://www.wordnik.com/words/of",
             "citations": [],
             "labels": [],
             "notes": [],

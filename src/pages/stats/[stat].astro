@@ -1,0 +1,16 @@
+---
+import StatsMilestonePage from '~components/StatsMilestonePage.astro';
+import StatsWordListPage from '~components/StatsWordListPage.astro';
+import { generateStatsStaticPaths } from '~utils/static-paths-utils';
+
+export const getStaticPaths = generateStatsStaticPaths;
+
+const { words, description, template } = Astro.props;
+
+const Component = template === 'milestone' ? StatsMilestonePage : StatsWordListPage;
+const componentProps = template === 'milestone'
+  ? { words: [...words].reverse(), descriptionText: description }
+  : { words, descriptionText: description };
+---
+
+<Component {...componentProps} />

@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",

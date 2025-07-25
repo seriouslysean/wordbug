@@ -54,12 +54,16 @@ export interface WordPatternStatsResult {
   doubleLetters: WordData[];
   tripleLetters: WordData[];
   alphabetical: WordData[];
+  palindromes: WordData[];
 }
 
 export interface WordEndingStatsResult {
   ing: WordData[];
   ed: WordData[];
   ly: WordData[];
+  ness: WordData[];
+  ful: WordData[];
+  less: WordData[];
 }
 
 export interface WordStreakStatsResult {
@@ -79,4 +83,8 @@ export interface WordGroupByYearResult {
 
 export interface WordFileGlobImport {
   [path: string]: WordData | WordData[];
+}
+
+export interface WordMilestoneItem extends WordData {
+  label: string;
 }

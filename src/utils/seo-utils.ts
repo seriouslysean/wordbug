@@ -24,7 +24,7 @@ export const seoConfig: SeoConfig = {
  */
 export function getCanonicalUrl(pathname: string): string {
   // Convert path to lowercase for consistency
-  const lowercasePath = pathname.toLowerCase();
+  const lowercasePath = pathname;
 
   // Normalize path: remove trailing slash except for root path
   const cleanPath = lowercasePath === '/' ? '/' : lowercasePath.replace(/\/$/, '') || '';

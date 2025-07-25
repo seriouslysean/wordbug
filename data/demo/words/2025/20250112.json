@@ -1,0 +1,113 @@
+{
+    "word": "weekly",
+    "date": "20250112",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "W5083700-1",
+            "partOfSpeech": "adverb",
+            "text": "Once a week.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5083700-2",
+            "partOfSpeech": "adverb",
+            "text": "Every week.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5083700-3",
+            "partOfSpeech": "adverb",
+            "text": "By the week.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5083700-4",
+            "partOfSpeech": "adjective",
+            "text": "Of or relating to a week.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5083700-5",
+            "partOfSpeech": "adjective",
+            "text": "Occurring, appearing, or done once a week or every week.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5083700-6",
+            "partOfSpeech": "adjective",
+            "text": "Computed by the week.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [
+                "a weekly rate."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5083700-7",
+            "partOfSpeech": "noun",
+            "text": "A publication issued once a week.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Once a week; at intervals of seven days: as, a paper published <em>weekly</em>; wages paid <em>weekly.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Of, pertaining to, or lasting for a week; reckoned by the week; produced or performed between one Sunday and the next: as, <em>weekly</em> work.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Coming, happening, or done once a week: as, a <em>weekly</em> payment; a <em>weekly</em> paper; a <em>weekly</em> allowance; the -<em>weekly</em> sailings of steamers; a <em>weekly</em> mail.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/weekly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

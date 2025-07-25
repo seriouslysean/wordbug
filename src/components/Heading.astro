@@ -12,7 +12,7 @@ const HeadingTag = `h${level}`;
 
 <div class="heading">
   {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
-  <component is={HeadingTag} class="heading__text text-lowercase" id={id}>
+  <component is={HeadingTag} class="heading__text" id={id}>
     {text}
   </component>
 </div>

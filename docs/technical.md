@@ -103,9 +103,100 @@ tests/                   # Test suites
 public/                  # Static assets including generated images
 ```
 
+## URL and Link Management
+
+### Consistent URL Generation
+- **All internal links** use the `SiteLink` component which has `getUrl()` built-in
+- **Import directly** from `~utils/url-utils` instead of deprecated re-export files
+- **No hardcoded URLs** - always use `SiteLink` for consistency across base path configurations
+
+### Component Guidelines
+- `SiteLink`: Use for all internal navigation (replaces raw `<a>` tags)
+- `WordLink`: Specialized component for word-to-word navigation with date display
+- `SectionHeading`: Page section headers with optional navigation links
+
+## Stats Pages Architecture
+
+### Current Implementation
+- Individual `.astro` files for each stats category (alphabetical-order, double-letters, etc.)
+- Shared `StatsWordListPage` component template for consistent layout
+- Conditional page generation via `getStaticPaths()` based on `__SHOW_EMPTY_STATS__` environment variable
+
+### New Streak Pages (Added)
+- `/stats/current-streak`: Shows words from active consecutive streak
+- `/stats/longest-streak`: Shows words from historical longest streak
+- Both use milestone-style template with day-by-day breakdown
+
+### Stats Page Generation
+```javascript
+// Pattern for conditional stats page generation
+export async function getStaticPaths() {
+  const words = getAllWords();
+  const statsData = getStatsFunction(words);
+  
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  return (showEmptyPages || statsData.length > 0) ? [{}] : [];
+}
+```
+
+## Code Organization Best Practices
+
+### Import Guidelines
+- **Avoid re-export files** - Import directly from specific utility files
+- **Use dedicated utils** - `url-utils.ts`, `text-utils.ts`, `word-stats-utils.ts`, etc.
+- **No barrel exports** - Deprecated pattern that makes dependency tracking harder
+
+### Performance Optimizations
+- **Build-time caching** - Word data cached during static generation
+- **Shared computations** - Expensive stats calculations shared where possible
+- **Conditional generation** - Empty pages only generate in development mode
+
+## Homepage Logic
+
+### Word Display Strategy
+- **Current word**: Most recent word ≤ today's date
+- **Previous words**: Last 5 words excluding current (simplified from complex month-based logic)
+- **Demo data fallback**: Graceful handling when no production data exists
+
+```javascript
+// Simplified homepage word logic
+const currentWord = getCurrentWord();
+const allWords = getAllWords();
+const wordsToShow = allWords
+  .filter(word => word && word.word !== currentWord?.word)
+  .slice(0, 5);
+```
+
+## Recent Architectural Improvements
+
+### URL Consistency (Fixed)
+- Standardized all internal links to use `SiteLink` component  
+- Eliminated mixed `getUrl()` usage patterns
+- Updated `SectionHeading` component to use `SiteLink` instead of raw `<a>` tags
+- Fixed imports from deprecated re-export files to direct utility imports
+
+### Homepage Previous Words (Fixed)
+- Simplified complex month-based filtering logic
+- Fixed issue where no previous words were showing with demo data
+- Now displays last 5 words excluding current word
+
+### Stats Page Infrastructure (Completed)
+- Added conditional page generation for empty stats
+- Implemented new streak stats pages with milestone-style layouts
+- Fixed page metadata for SEO consistency
+
+### Upcoming Optimizations (Identified)
+- **Stats page consolidation**: Replace 6 individual pages with single dynamic route
+- **Pre-computed stats system**: Cache expensive calculations at build time  
+- **Tools/Astro code unification**: Resolve duplicate word loading logic
+
 ## Key Constraints
 
 - **No Real-time Updates**: Site only updates on deployment
 - **Single Word Per Date**: Each date can only have one word
 - **Unique Words**: Each word can only be used once across all dates
 - **Past/Present Only**: Words cannot be scheduled for future dates
+- **Kid-friendly language**: Avoid possessive language ("your"), use educational tone
+- **Low-JS approach**: All JavaScript in frontmatter for build-time pre-computation
+- **KISS & DRY principles**: Keep it simple, don't repeat yourself
+- **Performance first**: Optimize for build-time over runtime (static generation)

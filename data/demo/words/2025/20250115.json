@@ -1,0 +1,115 @@
+{
+    "word": "knowledge",
+    "date": "20250115",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "K5098900-1",
+            "partOfSpeech": "noun",
+            "text": "The state or fact of knowing.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [
+                "Humans naturally aspire to knowledge."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "K5098900-2",
+            "partOfSpeech": "noun",
+            "text": "Familiarity, awareness, or understanding gained through experience or study.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [
+                "has great knowledge of these parts; has only limited knowledge of chemistry."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "K5098900-3",
+            "partOfSpeech": "noun",
+            "text": "The sum or range of what has been perceived, discovered, or learned.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [
+                "the extraordinary knowledge housed in the library."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "K5098900-4",
+            "partOfSpeech": "noun",
+            "text": "Carnal knowledge.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "To acknowledge; confess; avow.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "To confess.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The state of being or of having become aware of fact or truth; intellectual recognition of or acquaintance with fact or truth; the condition of knowing.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A perception, judgment, or idea which is in accord with fact or truth; that which is known.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Acquaintance with things ascertained or ascertainable; acquired information; learning.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Practical understanding; familiarity gained by actual experience; acquaintance with any fact or person: as, a <em>knowledge</em> of seamanship; I have no <em>knowledge</em> of the man.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

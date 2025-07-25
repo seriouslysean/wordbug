@@ -1,44 +1,24 @@
 ---
 import WordDisplay from '~components/WordDisplay.astro';
 import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
-import { getCurrentWord, getPastWords } from '~utils/word-utils.js';
+import { getAllWords, getCurrentWord } from '~utils/word-utils.js';
 
 const currentWord = getCurrentWord();
-const pastWords = getPastWords(currentWord?.date);
 
-const MAX_WORDS = 15;
+// Get last 5 words excluding the current one
+const allWords = getAllWords();
+const wordsToShow = allWords
+  .filter(word => word && word.word !== currentWord?.word)
+  .slice(0, 5);
 
-const today = new Date();
-const currentMonth = today.getMonth();
-const currentYear = today.getFullYear();
+const sectionTitle = wordsToShow.length > 0 ? 'Previous Words' : '';
 
-const currentMonthWords = pastWords.filter(word => {
-  if (!word || word.word === currentWord.word) {
-return false;
-}
-  const wordDate = new Date(word.date);
-  return wordDate.getMonth() === currentMonth &&
-           wordDate.getFullYear() === currentYear;
-});
-
-const recentWords = pastWords.filter(word =>
-  word && word.word !== currentWord.word,
-).slice(0, MAX_WORDS);
-
-let wordsToShow = [];
-let sectionTitle = '';
-
-if (currentMonthWords.length > 0) {
-  wordsToShow = currentMonthWords;
-  sectionTitle = 'this month\'s words';
-} else if (recentWords.length > 0) {
-  wordsToShow = recentWords;
-  sectionTitle = 'previous words';
-}
+const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
-<Layout word={currentWord} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
+<Layout word={currentWord} title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
   <main>
     <WordDisplay
       currentWord={currentWord}
