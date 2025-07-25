@@ -4,6 +4,9 @@ import path from 'path';
 import sharp from 'sharp';
 
 import { paths } from '~config/paths';
+import { createWordDataProvider, type WordFileInfo as SharedWordFileInfo } from '~utils/word-data-shared';
+import { logger } from '~utils/logger';
+
 // Colors for image generation
 const imageColors = {
   primary: process.env.COLOR_PRIMARY || '#b45309',
@@ -11,7 +14,6 @@ const imageColors = {
   primaryDark: process.env.COLOR_PRIMARY_DARK || '#78350f',
   textLighter: '#8a8f98',
 };
-import { logger } from '~utils/logger';
 
 
 // Constants for image generation
@@ -135,29 +137,20 @@ export function getAllWordFiles(): WordFileInfo[] {
   }
 }
 
+// Create file loader for Node.js tools environment
+const createNodeFileLoader = () => (): SharedWordFileInfo[] => {
+  return getAllWordFiles().map(file => ({
+    filePath: file.path,
+    date: file.date,
+    content: fs.readFileSync(file.path, 'utf-8'),
+  }));
+};
+
 /**
  * Gets all words with their data from the data directory
  * @returns Array of word data objects sorted by date (newest first)
  */
-export const getAllWords = (): WordData[] => {
-  try {
-    return getAllWordFiles()
-      .map(file => {
-        try {
-          const data = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
-          return { ...data, date: file.date };
-        } catch (error) {
-          logger.error('Error parsing word file', { path: file.path, error: (error as Error).message });
-          return null;
-        }
-      })
-      .filter(Boolean)
-      .sort((a, b) => b.date.localeCompare(a.date));
-  } catch (error) {
-    logger.error('Error getting all words', { error: (error as Error).message });
-    return [];
-  }
-};
+export const getAllWords = createWordDataProvider(createNodeFileLoader());
 
 /**
  * Gets all available years from word data

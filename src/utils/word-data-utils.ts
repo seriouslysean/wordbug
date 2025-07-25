@@ -10,15 +10,14 @@ import type {
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types/word';
+import { createWordDataProvider, createMemoryCache, type WordFileInfo } from '~utils/word-data-shared';
 import { logger } from '~utils/logger';
 
 export type WordDataProvider = () => WordData[];
 
-// Build-time cache for word data to prevent multiple filesystem reads
-const wordsCache = new Map<string, WordData[]>();
-
-const loadWordsFromDirectory = (dir: string): WordData[] => {
-  try {
+// Create file loader for Astro build environment
+const createAstroFileLoader = () => (): WordFileInfo[] => {
+  const loadFromDirectory = (dir: string): WordFileInfo[] => {
     if (!fs.existsSync(dir)) {
       return [];
     }
@@ -27,76 +26,34 @@ const loadWordsFromDirectory = (dir: string): WordData[] => {
       .filter((file): file is string => typeof file === 'string' && file.endsWith('.json'))
       .map(file => path.join(dir, file));
 
-    return files
-      .map(filePath => {
-        try {
-          const content = fs.readFileSync(filePath, 'utf-8');
-          const data = JSON.parse(content);
-          const fileName = path.basename(filePath);
-          const date = fileName.match(/(\d{8})\.json$/)?.[1];
+    return files.map(filePath => {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      const fileName = path.basename(filePath);
+      const date = fileName.match(/(\d{8})\.json$/)?.[1] || '';
+      
+      return {
+        filePath,
+        date,
+        content,
+      };
+    });
+  };
 
-          if (!date) {
-            logger.error('Word data file is missing date information', { path: filePath });
-            return null;
-          }
-
-          return Array.isArray(data) ? data[0] : data;
-        } catch (error) {
-          logger.error('Failed to read word file', { path: filePath, error: (error as Error).message });
-          return null;
-        }
-      })
-      .filter((item): item is WordData => item !== null)
-      .sort((a, b) => b.date.localeCompare(a.date));
-  } catch (error) {
-    logger.error('Failed to load word files from directory', { dir, error: (error as Error).message });
-    return [];
-  }
-};
-
-const getProductionWords = (): WordData[] => {
-  const wordsDir = path.join(process.cwd(), 'data', 'words');
-  return loadWordsFromDirectory(wordsDir);
-};
-
-const getDemoWords = (): WordData[] => {
-  const demoDir = path.join(process.cwd(), 'data', 'demo', 'words');
-  return loadWordsFromDirectory(demoDir);
-};
-
-/**
- * Retrieves all available word data from the system's word files.
- * Falls back to demo data if no production word files are available.
- * Caches result during build to prevent multiple filesystem reads.
- *
- * @returns {WordData[]} Array of all word data entries, sorted by date in descending order
- */
-export const getAllWords = (): WordData[] => {
-  // Return cached data if available
-  if (wordsCache.has('words')) {
-    return wordsCache.get('words')!;
-  }
-
-  // Load data from filesystem
-  const productionWords = getProductionWords();
+  // Try production words first, then demo words
+  const productionWords = loadFromDirectory(path.join(process.cwd(), 'data', 'words'));
   if (productionWords.length > 0) {
-    logger.info('Using production word files', { count: productionWords.length });
-    wordsCache.set('words', productionWords);
     return productionWords;
   }
 
-  const demoWords = getDemoWords();
-  if (demoWords.length > 0) {
-    logger.info('Using demo word files', { count: demoWords.length });
-    wordsCache.set('words', demoWords);
-    return demoWords;
-  }
-
-  logger.error('No word files found');
-  const emptyWords: WordData[] = [];
-  wordsCache.set('words', emptyWords);
-  return emptyWords;
+  return loadFromDirectory(path.join(process.cwd(), 'data', 'demo', 'words'));
 };
+
+// Create the getAllWords function using shared logic
+export const getAllWords = createWordDataProvider(
+  createAstroFileLoader(),
+  createMemoryCache(),
+  'words'
+);
 
 /**
  * Fetches word data from the configured dictionary adapter and transforms it to our internal format.
