@@ -1,4 +1,5 @@
 import path from 'path';
+
 import type { WordData } from '~types/word';
 import { logger } from '~utils/logger';
 
@@ -32,7 +33,7 @@ export type CacheProvider = {
 export const createWordDataProvider = (
   fileLoader: WordFileLoader,
   cache?: CacheProvider,
-  cacheKey = 'words'
+  cacheKey = 'words',
 ) => {
   return (): WordData[] => {
     // Check cache first if available
@@ -47,7 +48,9 @@ export const createWordDataProvider = (
       if (files.length === 0) {
         logger.error('No word files found');
         const emptyWords: WordData[] = [];
-        if (cache) cache.set(cacheKey, emptyWords);
+        if (cache) {
+cache.set(cacheKey, emptyWords);
+}
         return emptyWords;
       }
 
@@ -66,30 +69,36 @@ export const createWordDataProvider = (
 
             // Handle both array and single object formats
             const wordData = Array.isArray(data) ? data[0] : data;
-            
+
             // Ensure the date matches the filename
             return { ...wordData, date: file.date || dateFromFile };
           } catch (error) {
-            logger.error('Failed to parse word file', { 
-              path: file.filePath, 
-              error: (error as Error).message 
+            logger.error('Failed to parse word file', {
+              path: file.filePath,
+              error: (error as Error).message,
             });
             return null;
           }
         })
         .filter((item): item is WordData => item !== null)
-        .sort((a, b) => b.date.localeCompare(a.date));
+        .sort((a, b) => {
+          return b.date.localeCompare(a.date);
+        });
 
       logger.info('Loaded word files successfully', { count: words.length });
 
       // Cache result if cache is available
-      if (cache) cache.set(cacheKey, words);
-      return words;
+      if (cache) {
+        cache.set(cacheKey, words);
+      }
 
+      return words;
     } catch (error) {
       logger.error('Failed to load word data', { error: (error as Error).message });
       const emptyWords: WordData[] = [];
-      if (cache) cache.set(cacheKey, emptyWords);
+      if (cache) {
+cache.set(cacheKey, emptyWords);
+}
       return emptyWords;
     }
   };
@@ -100,7 +109,7 @@ export const createWordDataProvider = (
  */
 export const createMemoryCache = (): CacheProvider => {
   const cache = new Map<string, WordData[]>();
-  
+
   return {
     get: (key: string) => cache.get(key),
     set: (key: string, data: WordData[]) => cache.set(key, data),

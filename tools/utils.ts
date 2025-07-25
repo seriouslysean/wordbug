@@ -4,8 +4,8 @@ import path from 'path';
 import sharp from 'sharp';
 
 import { paths } from '~config/paths';
-import { createWordDataProvider, type WordFileInfo as SharedWordFileInfo } from '~utils/word-data-shared';
 import { logger } from '~utils/logger';
+import { createWordDataProvider, type WordFileInfo as SharedWordFileInfo } from '~utils/word-data-shared';
 
 // Colors for image generation
 const imageColors = {

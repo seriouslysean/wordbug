@@ -1,0 +1,123 @@
+{
+    "word": "daily",
+    "date": "20250107",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "D5008000-1",
+            "partOfSpeech": "adjective",
+            "text": "Of or occurring during the day.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5008000-2",
+            "partOfSpeech": "adjective",
+            "text": "Happening or done every day.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [
+                "the physician's daily rounds."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5008000-3",
+            "partOfSpeech": "adjective",
+            "text": "Computed or assessed for each day.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [
+                "a daily record."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5008000-4",
+            "partOfSpeech": "adjective",
+            "text": "Everyday.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [
+                "casual clothes only for daily use."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5008000-5",
+            "partOfSpeech": "adverb",
+            "text": "Every day.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [
+                "Exercise daily."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5008000-6",
+            "partOfSpeech": "adverb",
+            "text": "Once a day.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [
+                "Wind the clock daily."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5008000-7",
+            "partOfSpeech": "noun",
+            "text": "A newspaper published every day or every weekday.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5008000-8",
+            "partOfSpeech": "noun",
+            "text": "The first, unedited print of movie film usually viewed after a day's shooting; the rushes.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Every day; day by day.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Happening or being every day; pertaining to each successive day; diurnal: as, <em>daily</em> labor; a <em>daily</em> allowance; a <em>daily</em> newspaper.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

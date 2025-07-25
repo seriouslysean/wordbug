@@ -1,0 +1,124 @@
+{
+    "word": "reading",
+    "date": "20250111",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "R5074300-1",
+            "partOfSpeech": "noun",
+            "text": "The act or activity of one that reads.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-2",
+            "partOfSpeech": "noun",
+            "text": "The act or practice of rendering aloud written or printed matter.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [
+                "skilled at forensic reading."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-3",
+            "partOfSpeech": "noun",
+            "text": "An official or public recitation of written material.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [
+                "the reading of a will; a reading by the poet of her own works."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-4",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-5",
+            "partOfSpeech": "noun",
+            "text": "The specific form of a particular passage in a text.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [
+                "a manuscript with a variant reading."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-6",
+            "partOfSpeech": "noun",
+            "text": "The distinctive interpretation of a work of performing art given by the person or persons performing it.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-7",
+            "partOfSpeech": "noun",
+            "text": "An interpretation or appraisal.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [
+                "He gave us his reading of the situation."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-8",
+            "partOfSpeech": "noun",
+            "text": "Written or printed material.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [
+                "The survivors' account is fascinating reading."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5074300-9",
+            "partOfSpeech": "noun",
+            "text": "The information indicated by a gauge or graduated instrument.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Inclined to read; having a taste for reading; of a studious disposition: as, a <em>reading</em> community.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

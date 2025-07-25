@@ -1,19 +1,18 @@
 {
-    "word": "word",
-    "date": "20250104",
+    "word": "the",
+    "date": "20250118",
     "adapter": "wordnik",
     "data": [
         {
-            "id": "W5229000-1",
-            "partOfSpeech": "noun",
+            "id": "T5158500-1",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "A sound or a combination of sounds, or its representation in writing or printing, that symbolizes and communicates a meaning and may consist of a single morpheme or of a combination of morphemes.",
             "sequence": "1",
             "score": 0,
-            "word": "word",
+            "word": "the",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
             "exampleUses": [],
             "labels": [],
@@ -22,38 +21,43 @@
             "textProns": []
         },
         {
-            "id": "W5229000-2",
-            "partOfSpeech": "noun",
+            "id": "T5158500-2",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
+            "text": "Used before singular or plural nouns and noun phrases that denote particular, specified persons or things.",
             "sequence": "2",
             "score": 0,
-            "word": "word",
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "the baby; the dress I wore."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
-            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "W5229000-3",
-            "partOfSpeech": "noun",
+            "id": "T5158500-3",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Something said; an utterance, remark, or comment.",
+            "text": "Used before a noun, and generally stressed, to emphasize one of a group or type as the most outstanding or prominent.",
             "sequence": "3",
             "score": 0,
-            "word": "word",
+            "word": "the",
             "exampleUses": [
                 {
-                    "text": "May I say a word about that?"
+                    "text": "considered Wicker Park to be the neighborhood to live in these days."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -61,21 +65,21 @@
             "textProns": []
         },
         {
-            "id": "W5229000-4",
-            "partOfSpeech": "noun",
+            "id": "T5158500-4",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "A command or direction; an order.",
+            "text": "Used to indicate uniqueness.",
             "sequence": "4",
             "score": 0,
-            "word": "word",
+            "word": "the",
             "exampleUses": [
                 {
-                    "text": "gave the word to retreat."
+                    "text": "the Prince of Wales; the moon."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -83,21 +87,21 @@
             "textProns": []
         },
         {
-            "id": "W5229000-5",
-            "partOfSpeech": "noun",
+            "id": "T5158500-5",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "An assurance or promise; sworn intention.",
+            "text": "Used before nouns that designate natural phenomena or points of the compass.",
             "sequence": "5",
             "score": 0,
-            "word": "word",
+            "word": "the",
             "exampleUses": [
                 {
-                    "text": "She has kept her word."
+                    "text": "the weather; a wind from the south."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -105,56 +109,21 @@
             "textProns": []
         },
         {
-            "id": "W5229000-6",
-            "partOfSpeech": "noun",
+            "id": "T5158500-6",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "A verbal signal; a password or watchword.",
+            "text": "Used as the equivalent of a possessive adjective before names of some parts of the body.",
             "sequence": "6",
             "score": 0,
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
-        },
-        {
-            "id": "W5229000-7",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sequence": "7",
-            "score": 0,
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
-        },
-        {
-            "id": "W5229000-8",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Discourse or talk; speech.",
-            "sequence": "8",
-            "score": 0,
-            "word": "word",
+            "word": "the",
             "exampleUses": [
                 {
-                    "text": "Actions speak louder than words."
+                    "text": "grab him by the neck; an infection of the hand."
                 }
             ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
             "labels": [],
             "notes": [],
@@ -162,41 +131,88 @@
             "textProns": []
         },
         {
-            "id": "W5229000-9",
-            "partOfSpeech": "noun",
+            "id": "T5158500-7",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "The text of a vocal composition; lyrics.",
-            "sequence": "9",
+            "text": "Used before a noun specifying a field of endeavor.",
+            "sequence": "7",
             "score": 0,
-            "labels": [
+            "word": "the",
+            "exampleUses": [
                 {
-                    "text": "Music",
-                    "type": "fld"
+                    "text": "the law; the film industry; the stage."
                 }
             ],
-            "word": "word",
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
-            "exampleUses": [],
+            "labels": [],
             "notes": [],
             "relatedWords": [],
             "textProns": []
         },
         {
-            "id": "W5229000-10",
-            "partOfSpeech": "noun",
+            "id": "T5158500-8",
+            "partOfSpeech": "definite article.",
             "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
             "sourceDictionary": "ahd-5",
-            "text": "Hostile or angry remarks made back and forth.",
+            "text": "Used before a proper name, as of a monument or ship.",
+            "sequence": "8",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "the Alamo; the Titanic."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-9",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before the plural form of a numeral denoting a specific decade of a century or of a lifespan.",
+            "sequence": "9",
+            "score": 0,
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "rural life in the Thirties."
+                }
+            ],
+            "attributionUrl": "https://ahdictionary.com/",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
+            "citations": [],
+            "labels": [],
+            "notes": [],
+            "relatedWords": [],
+            "textProns": []
+        },
+        {
+            "id": "T5158500-10",
+            "partOfSpeech": "definite article.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "text": "Used before a singular noun indicating that the noun is generic.",
             "sequence": "10",
             "score": 0,
-            "word": "word",
+            "word": "the",
+            "exampleUses": [
+                {
+                    "text": "The loggerhead turtle is an endangered species."
+                }
+            ],
             "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
+            "wordnikUrl": "https://www.wordnik.com/words/the",
             "citations": [],
-            "exampleUses": [],
             "labels": [],
             "notes": [],
             "relatedWords": [],

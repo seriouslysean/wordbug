@@ -28,7 +28,7 @@ export const generateStatsStaticPaths = () => {
     ful: `Words ending with the suffix '-ful', meaning 'full of' or 'characterized by' a particular quality.`,
     less: `Words ending with the suffix '-less', meaning 'without' or 'lacking' a particular quality.`,
   };
-  
+
   const endings = getWordEndingStats(words);
   for (const suffix of Object.keys(suffixDescriptions)) {
     const endingWords = endings[suffix as keyof typeof endings] || [];
@@ -52,13 +52,13 @@ export const generateStatsStaticPaths = () => {
       description: 'Words with three or more consecutive letters in alphabetical order.',
     },
     {
-      key: 'double-letters', 
+      key: 'double-letters',
       data: letterPatterns.doubleLetters,
       description: 'Words containing double letters (the same letter appearing twice in a row).',
     },
     {
       key: 'triple-letters',
-      data: letterPatterns.tripleLetters, 
+      data: letterPatterns.tripleLetters,
       description: 'Words containing triple letters (the same letter appearing three or more times in a row).',
     },
     {
@@ -94,7 +94,7 @@ export const generateStatsStaticPaths = () => {
       words: mostCommon ? words.filter(w => w.word.toLowerCase().includes(mostCommon[0])) : [],
     },
     {
-      key: 'least-common-letter', 
+      key: 'least-common-letter',
       letter: leastCommon,
       words: leastCommon ? words.filter(w => w.word.toLowerCase().includes(leastCommon[0])) : [],
     },
@@ -135,7 +135,7 @@ export const generateStatsStaticPaths = () => {
 
   const streakStats = getCurrentStreakStats([...words].sort((a, b) => b.date.localeCompare(a.date)));
   const currentStreakWords = [];
-  
+
   if (streakStats.currentStreak > 0) {
     const sorted = [...words].sort((a, b) => b.date.localeCompare(a.date));
     for (let i = 0; i < streakStats.currentStreak && i < sorted.length; i++) {
@@ -154,26 +154,39 @@ export const generateStatsStaticPaths = () => {
     label: `${ordinal(i + 1)} Day`,
   }));
 
+  const palindromeCount = words.filter(wordData => {
+    const word = wordData.word.toLowerCase();
+    return word === word.split('').reverse().join('');
+  }).length;
+
   const streakConfigs = [
     {
       key: 'current-streak',
       words: currentStreakWords,
       description: `Words from the current ${streakStats.currentStreak}-word streak.`,
+      template: 'milestone',
     },
     {
       key: 'longest-streak',
-      words: longestStreakWords, 
+      words: longestStreakWords,
       description: `Words from the longest ${streakStats.longestStreak}-word streak.`,
+      template: 'milestone',
+    },
+    {
+      key: 'palindromes-count',
+      words: [{ word: palindromeCount.toString(), date: '', label: 'Total Palindromes' }],
+      description: `Total number of palindromes (words that read the same forwards and backwards) in our collection.`,
+      template: 'word-list',
     },
   ];
 
-  streakConfigs.forEach(({ key, words: streakWords, description }) => {
+  streakConfigs.forEach(({ key, words: streakWords, description, template }) => {
     stats.push({
       params: { stat: key },
       props: {
         words: streakWords,
         description,
-        template: 'milestone',
+        template,
       },
     });
   });
