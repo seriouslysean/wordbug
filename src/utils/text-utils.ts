@@ -1,3 +1,64 @@
+/**
+ * Checks if a word starts and ends with the same letter (length > 1).
+ */
+export function isStartEndSame(word: string): boolean {
+  return word.length > 1 && word[0] === word[word.length - 1];
+}
+
+/**
+ * Checks if a word contains double letters (e.g., 'letter').
+ */
+export function hasDoubleLetters(word: string): boolean {
+  return /(.)(\1)/.test(word);
+}
+
+/**
+ * Checks if a word contains triple (or more) consecutive letters (e.g., 'bookkeeper').
+ */
+export function hasTripleLetters(word: string): boolean {
+  return /(.)(\1){2,}/.test(word);
+}
+
+/**
+ * Checks if a word contains any sequence of three consecutive alphabetical letters (e.g., 'abc', 'def').
+ */
+export function hasAlphabeticalSequence(word: string): boolean {
+  const letters = word.split('');
+  for (let i = 0; i < letters.length - 2; i++) {
+    const a = letters[i].charCodeAt(0);
+    const b = letters[i + 1].charCodeAt(0);
+    const c = letters[i + 2].charCodeAt(0);
+    if (b === a + 1 && c === b + 1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Returns an array of common word endings the word matches (e.g., ['ing', 'ed']).
+ */
+export function getWordEndings(word: string): string[] {
+  const endings = ['ing', 'ed', 'ly', 'ness', 'ful', 'less'];
+  return endings.filter(ending => word.endsWith(ending));
+}
+/**
+ * Checks if a word consists of only vowels (a, e, i, o, u)
+ * @param word - The word to check
+ * @returns True if the word contains only vowels
+ */
+export const isAllVowels = (word: string): boolean => {
+  return /^[aeiou]+$/i.test(word);
+};
+
+/**
+ * Checks if a word consists of only consonants (no vowels)
+ * @param word - The word to check
+ * @returns True if the word contains only consonants
+ */
+export const isAllConsonants = (word: string): boolean => {
+  return /^[^aeiou]+$/i.test(word);
+};
 import type { TextSyllableSpecialCases } from '~types/utils';
 
 /**
@@ -31,8 +92,8 @@ export const isPalindrome = (word: string): boolean => {
   if (!word) {
     return false;
   }
-  const lower = word.toLowerCase();
-  return lower === lower.split('').reverse().join('');
+  const normalized = word.toLowerCase();
+  return normalized === normalized.split('').reverse().join('');
 };
 
 /**
@@ -45,7 +106,7 @@ export const countSyllables = (word: string): number => {
     return 0;
   }
 
-  const cleanWord = word.toLowerCase().trim();
+  const cleanWord = word.trim();
 
   // Handle single-letter words
   if (cleanWord.length === 1) {

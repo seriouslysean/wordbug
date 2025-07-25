@@ -9,7 +9,19 @@ import type {
 } from '~types/word';
 import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
 import { logger } from '~utils/logger';
-import { countSyllables, getConsonantCount,getVowelCount } from '~utils/text-utils';
+import {
+  countSyllables,
+  getConsonantCount,
+  getVowelCount,
+  getWordEndings,
+  hasAlphabeticalSequence,
+  hasDoubleLetters,
+  hasTripleLetters,
+  isAllConsonants,
+  isAllVowels,
+  isPalindrome,
+  isStartEndSame,
+} from '~utils/text-utils';
 
 /**
  * Analyzes word data to extract basic statistics including longest/shortest words and letter frequency.
@@ -37,8 +49,7 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
       stats.shortest = { word, length };
     }
 
-    const isPalindrome = word.toLowerCase() === word.toLowerCase().split('').reverse().join('');
-    if (isPalindrome) {
+    if (isPalindrome(word)) {
       if (!stats.longestPalindrome || length > stats.longestPalindrome.length) {
         stats.longestPalindrome = { word, length };
       }
@@ -47,7 +58,7 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
       }
     }
 
-    for (const letter of word.toLowerCase()) {
+    for (const letter of word) {
       stats.letterFrequency[letter] = (stats.letterFrequency[letter] || 0) + 1;
     }
 
@@ -92,36 +103,25 @@ export const getLetterPatternStats = (words: WordData[]): WordPatternStatsResult
     doubleLetters: [],
     tripleLetters: [],
     alphabetical: [],
+    palindromes: [],
   };
 
   words.forEach(wordObj => {
-    const word = wordObj.word.toLowerCase();
-
-    if (word.length > 1 && word[0] === word[word.length - 1]) {
+    const word = wordObj.word;
+    if (isStartEndSame(word)) {
       patterns.startEndSame.push(wordObj);
     }
-
-    if (/(.)\1/.test(word)) {
+    if (hasDoubleLetters(word)) {
       patterns.doubleLetters.push(wordObj);
     }
-
-    if (/(.)\1{2,}/.test(word)) {
+    if (hasTripleLetters(word)) {
       patterns.tripleLetters.push(wordObj);
     }
-
-    const letters = word.split('');
-    let isAlphabetical = false;
-    for (let i = 0; i < letters.length - 2; i++) {
-      const a = letters[i].charCodeAt(0);
-      const b = letters[i + 1].charCodeAt(0);
-      const c = letters[i + 2].charCodeAt(0);
-      if (b === a + 1 && c === b + 1) {
-        isAlphabetical = true;
-        break;
-      }
-    }
-    if (isAlphabetical) {
+    if (hasAlphabeticalSequence(word)) {
       patterns.alphabetical.push(wordObj);
+    }
+    if (isPalindrome(word)) {
+      patterns.palindromes.push(wordObj);
     }
   });
 
@@ -144,26 +144,13 @@ export const getWordEndingStats = (words: WordData[]): WordEndingStatsResult => 
   };
 
   words.forEach(wordObj => {
-    const word = wordObj.word.toLowerCase();
-
-    if (word.endsWith('ing')) {
-      endings.ing.push(wordObj);
-    }
-    if (word.endsWith('ed')) {
-      endings.ed.push(wordObj);
-    }
-    if (word.endsWith('ly')) {
-      endings.ly.push(wordObj);
-    }
-    if (word.endsWith('ness')) {
-      endings.ness.push(wordObj);
-    }
-    if (word.endsWith('ful')) {
-      endings.ful.push(wordObj);
-    }
-    if (word.endsWith('less')) {
-      endings.less.push(wordObj);
-    }
+    const word = wordObj.word;
+    const matchedEndings = getWordEndings(word);
+    matchedEndings.forEach(ending => {
+      if (endings[ending]) {
+        endings[ending].push(wordObj);
+      }
+    });
   });
 
   return endings;
@@ -384,9 +371,9 @@ export const getLetterTypeStats = (words: WordData[]): { mostVowels: WordData | 
  */
 export const getPatternStats = (words: WordData[]): { allVowels: WordData[]; allConsonants: WordData[]; palindromes: WordData[] } => {
   return {
-    allVowels: words.filter(w => /^[aeiou]+$/i.test(w.word)),
-    allConsonants: words.filter(w => /^[^aeiou]+$/i.test(w.word)),
-    palindromes: words.filter(w => w.word.toLowerCase() === w.word.toLowerCase().split('').reverse().join('')),
+    allVowels: words.filter(w => isAllVowels(w.word)),
+    allConsonants: words.filter(w => isAllConsonants(w.word)),
+    palindromes: words.filter(w => isPalindrome(w.word)),
   };
 };
 

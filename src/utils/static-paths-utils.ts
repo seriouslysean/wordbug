@@ -91,12 +91,12 @@ export const generateStatsStaticPaths = () => {
     {
       key: 'most-common-letter',
       letter: mostCommon,
-      words: mostCommon ? words.filter(w => w.word.toLowerCase().includes(mostCommon[0])) : [],
+      words: mostCommon ? words.filter(w => w.word.includes(mostCommon[0])) : [],
     },
     {
       key: 'least-common-letter',
       letter: leastCommon,
-      words: leastCommon ? words.filter(w => w.word.toLowerCase().includes(leastCommon[0])) : [],
+      words: leastCommon ? words.filter(w => w.word.includes(leastCommon[0])) : [],
     },
   ];
 
@@ -154,10 +154,6 @@ export const generateStatsStaticPaths = () => {
     label: `${ordinal(i + 1)} Day`,
   }));
 
-  const palindromeCount = words.filter(wordData => {
-    const word = wordData.word.toLowerCase();
-    return word === word.split('').reverse().join('');
-  }).length;
 
   const streakConfigs = [
     {
@@ -173,8 +169,12 @@ export const generateStatsStaticPaths = () => {
       template: 'milestone',
     },
     {
-      key: 'palindromes-count',
-      words: [{ word: palindromeCount.toString(), date: '', label: 'Total Palindromes' }],
+      key: 'palindromes',
+      words: getLetterPatternStats(words).palindromes.map((w, i) => ({
+        word: w.word,
+        date: w.date,
+        label: ordinal(i + 1),
+      })),
       description: `Total number of palindromes (words that read the same forwards and backwards) in our collection.`,
       template: 'word-list',
     },
