@@ -136,6 +136,18 @@ const PAGE_METADATA: Record<string, PageMeta> = {
     description: (count: number) => `${formatWordCount(count)} that mark major milestones in the collection.`,
     category: 'stats',
   },
+  'stats/current-streak': {
+    type: 'stats',
+    title: 'Current Streak',
+    description: (count: number) => `${formatWordCount(count)} from the current word streak.`,
+    category: 'stats',
+  },
+  'stats/longest-streak': {
+    type: 'stats',
+    title: 'Longest Streak',
+    description: (count: number) => `${formatWordCount(count)} from the longest word streak.`,
+    category: 'stats',
+  },
   'stats/words-ending-ly': {
     type: 'stats',
     title: '-ly words',

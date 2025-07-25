@@ -229,11 +229,19 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
       <dl class="stats__list">
         <dt class="stats__fact">current streak</dt>
         <dd class="stats__value">
-          {streakStats.currentStreak} days
+          {streakStats.currentStreak > 0 ? (
+            <SiteLink href="/stats/current-streak" class="stats__link">{streakStats.currentStreak} days</SiteLink>
+          ) : (
+            `${streakStats.currentStreak} days`
+          )}
         </dd>
         <dt class="stats__fact">longest streak</dt>
         <dd class="stats__value">
-          {streakStats.longestStreak} days
+          {streakStats.longestStreak > 0 ? (
+            <SiteLink href="/stats/longest-streak" class="stats__link">{streakStats.longestStreak} days</SiteLink>
+          ) : (
+            `${streakStats.longestStreak} days`
+          )}
         </dd>
         <dt class="stats__fact">streak comparison</dt>
         <dd class="stats__value stats__streak-chart">

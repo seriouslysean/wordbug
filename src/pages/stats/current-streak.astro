@@ -1,0 +1,133 @@
+---
+import DescriptionText from '~components/DescriptionText.astro';
+import Heading from '~components/Heading.astro';
+import WordLink from '~components/WordLink.astro';
+import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
+import { formatWordCount } from '~utils/text-utils';
+import { getAllWords } from '~utils/word-data-utils';
+import { getCurrentStreakStats } from '~utils/word-stats-utils';
+
+export async function getStaticPaths() {
+  const words = getAllWords();
+  const streakStats = getCurrentStreakStats(words);
+
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  return (showEmptyPages || streakStats.currentStreak > 0) ? [{}] : [];
+}
+
+const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
+const streakStats = getCurrentStreakStats(words.sort((a, b) => b.date.localeCompare(a.date)));
+
+// Get current streak words (most recent consecutive words)
+const currentStreakWords = [];
+if (streakStats.currentStreak > 0) {
+  const sortedWords = words.sort((a, b) => b.date.localeCompare(a.date));
+  for (let i = 0; i < streakStats.currentStreak && i < sortedWords.length; i++) {
+    currentStreakWords.push(sortedWords[i]);
+  }
+}
+
+// Reverse to show chronological order (oldest first)
+currentStreakWords.reverse();
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
+
+// Helper function to format streak position
+const formatStreakPosition = (position: number): string => {
+  if (position === 1) {
+return '1st Day';
+}
+  if (position === 2) {
+return '2nd Day';
+}
+  if (position === 3) {
+return '3rd Day';
+}
+  return `${position}th Day`;
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
+>
+  <main class="streak">
+    <Heading text={title} secondaryText={formatWordCount(currentStreakWords.length)} />
+
+    <DescriptionText text={`${formatWordCount(currentStreakWords.length)} from the current ${streakStats.currentStreak}-word streak.`} />
+
+    <section class="streak__section">
+      <dl class="streak__list">
+        {currentStreakWords.map((word, index) => (
+          <>
+            <dt class="streak__fact">{formatStreakPosition(index + 1)}</dt>
+            <dd class="streak__value">
+              <WordLink word={word} />
+            </dd>
+          </>
+        ))}
+      </dl>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .streak {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+  }
+
+  .streak__section {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .streak__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+
+  .streak__fact {
+    color: var(--color-text-light);
+    margin: 0;
+    padding-top: var(--spacing-small);
+  }
+
+  .streak__value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: right;
+    min-width: 0;
+    margin: 0;
+    padding-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-small);
+  }
+
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    .streak__list {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 1rem;
+      row-gap: 0;
+      align-items: baseline;
+    }
+
+    .streak__fact {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .streak__value {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+  }
+</style>
