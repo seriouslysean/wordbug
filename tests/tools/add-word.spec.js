@@ -153,7 +153,7 @@ describe('add-word tool validation logic', () => {
     });
 
     describe('isNotFutureDate function', () => {
-      it('should accept today\'s date', () => {
+      it(`should accept today's date`, () => {
         const today = new Date().toISOString().split('T')[0];
         expect(isNotFutureDate(today)).toBe(true);
       });

@@ -1,0 +1,222 @@
+---
+import StatsMilestonePage from '~components/StatsMilestonePage.astro';
+import StatsWordListPage from '~components/StatsWordListPage.astro';
+import { getAllWords } from '~utils/word-data-utils';
+import {
+  getChronologicalMilestones,
+  getCurrentStreakStats,
+  getLetterPatternStats,
+  getLetterStats,
+  getLongestStreakWords,
+  getWordEndingStats,
+  getWordStats,
+} from '~utils/word-stats-utils';
+
+
+export async function getStaticPaths() {
+
+
+  const words = getAllWords();
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  const stats = [];
+
+  // Suffix (ending) stats (must come after all other stats and after words, showEmptyPages, stats are declared)
+  const suffixDescriptions = {
+    ed: `Words ending with the suffix '-ed', typically indicating past tense or past participle forms.`,
+    ing: `Words ending with the suffix '-ing', typically indicating present participle or gerund forms.`,
+    ly: `Words ending with the suffix '-ly', typically forming adverbs.`,
+    ness: `Words ending with the suffix '-ness', typically forming abstract nouns expressing a state or quality.`,
+    ful: `Words ending with the suffix '-ful', meaning 'full of' or 'characterized by' a particular quality.`,
+    less: `Words ending with the suffix '-less', meaning 'without' or 'lacking' a particular quality.`,
+  };
+  const endings = getWordEndingStats(words);
+  for (const suffix of Object.keys(suffixDescriptions)) {
+    const endingWords = endings[suffix] || [];
+    if (showEmptyPages || endingWords.length > 0) {
+      stats.push({
+        params: { stat: `words-ending-${suffix}` },
+        props: {
+          words: endingWords.map((w, i) => ({ ...w, label: ordinal(i + 1) })),
+          description: suffixDescriptions[suffix],
+          template: 'word-list',
+        },
+      });
+    }
+  }
+
+
+// Ordinal suffix helper (must be available in frontmatter for Astro static generation and prop passing)
+function ordinal(n) {
+  const s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+  // Precompute all stat pages
+  // Alphabetical order
+  const alphabetical = getLetterPatternStats(words).alphabetical.map((w, i) => ({
+    word: w.word,
+    date: w.date,
+    label: ordinal(i + 1),
+  }));
+  stats.push({
+    params: { stat: 'alphabetical-order' },
+    props: {
+      words: alphabetical,
+      description: 'Words with three or more consecutive letters in alphabetical order.',
+      template: 'word-list',
+    },
+  });
+
+  // Double letters
+  const doubleLetters = getLetterPatternStats(words).doubleLetters.map((w, i) => ({
+    word: w.word,
+    date: w.date,
+    label: ordinal(i + 1),
+  }));
+  stats.push({
+    params: { stat: 'double-letters' },
+    props: {
+      words: doubleLetters,
+      description: 'Words containing double letters (the same letter appearing twice in a row).',
+      template: 'word-list',
+    },
+  });
+
+  // Triple letters
+  const tripleLetters = getLetterPatternStats(words).tripleLetters.map((w, i) => ({
+    word: w.word,
+    date: w.date,
+    label: ordinal(i + 1),
+  }));
+  stats.push({
+    params: { stat: 'triple-letters' },
+    props: {
+      words: tripleLetters,
+      description: 'Words containing triple letters (the same letter appearing three or more times in a row).',
+      template: 'word-list',
+    },
+  });
+
+  // Same start/end
+  const sameStartEnd = getLetterPatternStats(words).startEndSame.map((w, i) => ({
+    word: w.word,
+    date: w.date,
+    label: ordinal(i + 1),
+  }));
+  stats.push({
+    params: { stat: 'same-start-end' },
+    props: {
+      words: sameStartEnd,
+      description: 'Words that begin and end with the same letter.',
+      template: 'word-list',
+    },
+  });
+
+  // Most common letter
+  const letterStats = getLetterStats(getWordStats(words).letterFrequency);
+  const mostCommon = letterStats.length > 0 ? letterStats[0] : undefined;
+  const mostCommonWords = mostCommon
+    ? words.filter(w => w.word.toLowerCase().includes(mostCommon[0])).map((w, i) => ({
+        word: w.word,
+        date: w.date,
+        label: ordinal(i + 1),
+      }))
+    : [];
+  stats.push({
+    params: { stat: 'most-common-letter' },
+    props: {
+      words: mostCommonWords,
+      description: mostCommon
+        ? `Words containing the letter "${mostCommon[0]}" (appears in ${mostCommon[1]} words).`
+        : 'No letter frequency data available.',
+      template: 'word-list',
+    },
+  });
+
+  // Least common letter
+  const leastCommon = letterStats.length > 0 ? letterStats[letterStats.length - 1] : undefined;
+  const leastCommonWords = leastCommon
+    ? words.filter(w => w.word.toLowerCase().includes(leastCommon[0])).map((w, i) => ({
+        word: w.word,
+        date: w.date,
+        label: ordinal(i + 1),
+      }))
+    : [];
+  stats.push({
+    params: { stat: 'least-common-letter' },
+    props: {
+      words: leastCommonWords,
+      description: leastCommon
+        ? `Words containing the letter "${leastCommon[0]}" (appears in ${leastCommon[1]} words).`
+        : 'No letter frequency data available.',
+      template: 'word-list',
+    },
+  });
+
+  // Milestone words
+  const milestoneWords = getChronologicalMilestones([...words].sort((a, b) => a.date.localeCompare(b.date))).map(w => ({
+    word: w.word.word,
+    date: w.word.date,
+    label: `${ordinal(w.milestone)} Word`,
+  }));
+  stats.push({
+    params: { stat: 'milestone-words' },
+    props: {
+      words: milestoneWords,
+      description: `Important word milestones from our collection's chronological journey.`,
+      template: 'milestone',
+    },
+  });
+
+  // Current streak
+  const streakStats = getCurrentStreakStats([...words].sort((a, b) => b.date.localeCompare(a.date)));
+  let currentStreakWords = [];
+  if (streakStats.currentStreak > 0) {
+    const sorted = [...words].sort((a, b) => b.date.localeCompare(a.date));
+    for (let i = 0; i < streakStats.currentStreak && i < sorted.length; i++) {
+      currentStreakWords.push({
+        word: sorted[i].word,
+        date: sorted[i].date,
+        label: `${ordinal(i + 1)} Day`,
+      });
+    }
+    currentStreakWords = currentStreakWords.reverse();
+  }
+  stats.push({
+    params: { stat: 'current-streak' },
+    props: {
+      words: currentStreakWords,
+      description: `Words from the current ${streakStats.currentStreak}-word streak.`,
+      template: 'milestone',
+    },
+  });
+
+  // Longest streak
+  const longestStreakWords = getLongestStreakWords(words).map((w, i) => ({
+    word: w.word,
+    date: w.date,
+    label: `${ordinal(i + 1)} Day`,
+  }));
+  const longestStreakStats = getCurrentStreakStats(words);
+  stats.push({
+    params: { stat: 'longest-streak' },
+    props: {
+      words: longestStreakWords,
+      description: `Words from the longest ${longestStreakStats.longestStreak}-word streak.`,
+      template: 'milestone',
+    },
+  });
+
+  // Only include non-empty or all if showEmptyPages
+  return stats.filter(stat => showEmptyPages || (stat.props.words && stat.props.words.length > 0));
+}
+
+const { words, description, template } = Astro.props;
+
+const Component = template === 'milestone' ? StatsMilestonePage : StatsWordListPage;
+const componentProps = template === 'milestone'
+  ? { words: [...words].reverse(), descriptionText: description }
+  : { words, descriptionText: description };
+---
+
+<Component {...componentProps} />

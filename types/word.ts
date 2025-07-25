@@ -83,3 +83,7 @@ export interface WordGroupByYearResult {
 export interface WordFileGlobImport {
   [path: string]: WordData | WordData[];
 }
+
+export interface WordMilestoneItem extends WordData {
+  label: string;
+}
