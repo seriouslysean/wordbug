@@ -51,11 +51,17 @@ const createAstroFileLoader = () => (): WordFileInfo[] => {
 };
 
 // Create the getAllWords function using shared logic
-export const getAllWords = createWordDataProvider(
-  createAstroFileLoader(),
-  createMemoryCache(),
-  'words',
-);
+export const getAllWords = (() => {
+  const provider = createWordDataProvider(
+    createAstroFileLoader(),
+    createMemoryCache(),
+    'words',
+  );
+  return () => {
+    const words = provider();
+    return words.sort((a, b) => b.date.localeCompare(a.date));
+  };
+})();
 
 /**
  * Fetches word data from the configured dictionary adapter and transforms it to our internal format.
