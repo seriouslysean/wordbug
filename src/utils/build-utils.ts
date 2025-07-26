@@ -1,4 +1,4 @@
-import { generateWordDataHash,getAllWords } from './word-utils';
+import { generateWordDataHash, getAllWords } from './word-data-utils';
 
 export interface BuildData {
   version: string;

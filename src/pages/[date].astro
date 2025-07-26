@@ -1,7 +1,7 @@
 ---
 import WordPage from '~components/WordPage.astro';
 import { getFullUrl, getWordUrl } from '~utils/url-utils.js';
-import { getAllWords, getWordByDate } from '~utils/word-utils.js';
+import { getAllWords, getWordByDate } from '~utils/word-data-utils';
 
 export async function getStaticPaths() {
   const words = getAllWords();

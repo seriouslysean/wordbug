@@ -2,7 +2,6 @@ import type {
   WordData,
   WordEndingStatsResult,
   WordLetterStatsResult,
-  WordMilestoneResult,
   WordPatternStatsResult,
   WordStatsResult,
   WordStreakStatsResult,
@@ -71,26 +70,31 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
  * @param {Record<string, number>} letterFrequency - Object mapping letters to their frequency counts
  * @returns {WordLetterStatsResult} Array of letter-frequency pairs sorted by frequency (descending)
  */
+
+/**
+ * Converts letter frequency data into sorted statistics, filtering to a-z only (case-insensitive).
+ * @param {Record<string, number>} letterFrequency - Object mapping letters to their frequency counts
+ * @returns {WordLetterStatsResult} Array of letter-frequency pairs sorted by frequency (descending), only a-z
+ *
+ * Note: This intentionally ignores spaces, punctuation, and accented letters for stats purposes.
+ */
 export const getLetterStats = (letterFrequency: Record<string, number>): WordLetterStatsResult => {
   if (Object.keys(letterFrequency).length === 0) {
     return [];
   }
   return Object.entries(letterFrequency)
+    .filter(([letter]) => /^[a-z]$/i.test(letter))
     .sort(([, a], [, b]) => b - a);
 };
+
+
 
 /**
  * Get words at specific milestone positions (25th, 50th, 100th).
  * @param {WordData[]} words - Array of word data objects
  * @returns {WordMilestoneResult} Object containing words at milestone positions or null if not reached
  */
-export const getMilestoneWords = (words: WordData[]): WordMilestoneResult => {
-  return {
-    25: words.length >= 25 ? words[24] : null,
-    50: words.length >= 50 ? words[49] : null,
-    100: words.length >= 100 ? words[99] : null,
-  };
-};
+
 
 /**
  * Analyzes words for various letter patterns including start/end matches, double letters, and alphabetical sequences.
@@ -395,22 +399,28 @@ export const findWordDate = (words: WordData[], targetWord: string): string | un
  * @param {WordData[]} words - Array of word data objects sorted by date
  * @returns {Array<{milestone: number, word: WordData}>} Array of milestone word objects
  */
-export const getChronologicalMilestones = (words: WordData[]): Array<{milestone: number, word: WordData}> => {
+export function getChronologicalMilestones(words: WordData[]): Array<{milestone: number, word: WordData}> {
   if (words.length === 0) {
     return [];
   }
 
   const milestones: Array<{milestone: number, word: WordData}> = [];
 
-  // Add 1st word if it exists
+  // Always add 1st word if it exists
   if (words.length >= 1) {
     milestones.push({ milestone: 1, word: words[0] });
   }
 
-  // Add every 100th word (100th, 200th, 300th, etc.)
+  // Add 25th, 50th, 75th, 100th, then every 100th after
+  [25, 50, 75].forEach(m => {
+    if (words.length >= m) {
+      milestones.push({ milestone: m, word: words[m - 1] });
+    }
+  });
+
   for (let i = 100; i <= words.length; i += 100) {
-    milestones.push({ milestone: i, word: words[i - 1] }); // i-1 because array is 0-indexed
+    milestones.push({ milestone: i, word: words[i - 1] });
   }
 
   return milestones;
-};
+}

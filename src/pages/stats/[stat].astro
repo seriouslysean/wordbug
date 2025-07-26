@@ -5,12 +5,16 @@ import { generateStatsStaticPaths } from '~utils/static-paths-utils';
 
 export const getStaticPaths = generateStatsStaticPaths;
 
+import type { WordData, WordMilestoneItem } from '~types/word';
+
 const { words, description, template } = Astro.props;
 
-const Component = template === 'milestone' ? StatsMilestonePage : StatsWordListPage;
-const componentProps = template === 'milestone'
-  ? { words: [...words].reverse(), descriptionText: description }
-  : { words, descriptionText: description };
+const milestoneWords = template === 'milestone' ? (words as WordMilestoneItem[]) : undefined;
+const wordListWords = template === 'word-list' ? (words as WordData[]) : undefined;
 ---
 
-<Component {...componentProps} />
+{template === 'milestone' ? (
+  <StatsMilestonePage words={[...milestoneWords!].reverse()} descriptionText={description} />
+) : (
+  <StatsWordListPage words={wordListWords!} descriptionText={description} />
+)}

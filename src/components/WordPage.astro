@@ -5,7 +5,7 @@ import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types/word';
 import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
 import { getMetaDescription } from '~utils/seo-utils.ts';
-import { getAdjacentWords, getWordDetails } from '~utils/word-utils.js';
+import { getAdjacentWords, getWordDetails } from '~utils/word-data-utils';
 
 interface Props {
   wordData: WordData;
