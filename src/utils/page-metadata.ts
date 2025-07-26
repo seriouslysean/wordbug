@@ -1,5 +1,11 @@
 import { logger } from '~utils/logger';
-import { formatWordCount } from '~utils/text-utils';
+import {
+  DYNAMIC_STATS_DEFINITIONS,
+  LETTER_PATTERN_DEFINITIONS,
+  PATTERN_DEFINITIONS,
+  STATS_SLUGS,
+  SUFFIX_DEFINITIONS,
+} from '~utils/stats-definitions';
 import { getAllWords, getAvailableYears, getWordsByYear } from '~utils/word-data-utils';
 import {
   getChronologicalMilestones,
@@ -73,122 +79,122 @@ const PAGE_METADATA: Record<string, PageMeta> = {
     description: 'Explore word statistics, patterns, and linguistic analysis for all featured words.',
     category: 'pages',
   },
-  'stats/alphabetical-order': {
+  [`stats/${STATS_SLUGS.ALPHABETICAL_ORDER}`]: {
     type: 'stats',
-    title: 'Alphabetical Order',
-    description: (count: number) => `${formatWordCount(count)} with consecutive letters in alphabetical order`,
+    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].title,
+    description: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].metaDescription,
     category: 'stats',
   },
-  'stats/double-letters': {
+  [`stats/${STATS_SLUGS.DOUBLE_LETTERS}`]: {
     type: 'stats',
-    title: 'Double Letters',
-    description: (count: number) => `${formatWordCount(count)} with repeated letters`,
+    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].title,
+    description: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].metaDescription,
     category: 'stats',
   },
-  'stats/same-start-end': {
+  [`stats/${STATS_SLUGS.SAME_START_END}`]: {
     type: 'stats',
-    title: 'Same Start/End Letter',
-    description: (count: number) => `${formatWordCount(count)} that start and end with the same letter`,
+    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].title,
+    description: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].metaDescription,
     category: 'stats',
   },
-  'stats/triple-letters': {
+  [`stats/${STATS_SLUGS.TRIPLE_LETTERS}`]: {
     type: 'stats',
-    title: 'Triple Letters',
-    description: (count: number) => `${formatWordCount(count)} with three or more consecutive identical letters`,
+    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].title,
+    description: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].metaDescription,
     category: 'stats',
   },
-  'stats/words-ending-ed': {
+  [`stats/${STATS_SLUGS.WORDS_ENDING_ED}`]: {
     type: 'stats',
-    title: '-ed words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ed'`,
+    title: SUFFIX_DEFINITIONS.ed.title,
+    description: SUFFIX_DEFINITIONS.ed.metaDescription,
     category: 'stats',
   },
-  'stats/words-ending-ing': {
+  [`stats/${STATS_SLUGS.WORDS_ENDING_ING}`]: {
     type: 'stats',
-    title: '-ing words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ing'`,
+    title: SUFFIX_DEFINITIONS.ing.title,
+    description: SUFFIX_DEFINITIONS.ing.metaDescription,
     category: 'stats',
   },
-  'stats/most-common-letter': {
+  [`stats/${STATS_SLUGS.MOST_COMMON_LETTER}`]: {
     type: 'stats',
-    title: 'Most Common Letter',
+    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER].title,
     description: (count: number) => {
       const wordStats = getWordStats(words);
       const letterStats = getLetterStats(wordStats.letterFrequency);
       const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
-      return `The most common letter is "${mostCommonLetter}" and has ${formatWordCount(count)}.`;
+      return DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER].metaDescription(count, mostCommonLetter);
     },
     category: 'stats',
   },
-  'stats/least-common-letter': {
+  [`stats/${STATS_SLUGS.LEAST_COMMON_LETTER}`]: {
     type: 'stats',
-    title: 'Least Common Letter',
+    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER].title,
     description: (count: number) => {
       const wordStats = getWordStats(words);
       const letterStats = getLetterStats(wordStats.letterFrequency);
       const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
-      return `The least common letter is "${leastCommonLetter}" and has ${formatWordCount(count)}.`;
+      return DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER].metaDescription(count, leastCommonLetter);
     },
     category: 'stats',
   },
-  'stats/milestone-words': {
+  [`stats/${STATS_SLUGS.MILESTONE_WORDS}`]: {
     type: 'stats',
-    title: 'Milestone Words',
-    description: (count: number) => `${formatWordCount(count)} that mark major milestones in the collection.`,
+    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].title,
+    description: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].metaDescription,
     category: 'stats',
   },
-  'stats/current-streak': {
+  [`stats/${STATS_SLUGS.CURRENT_STREAK}`]: {
     type: 'stats',
-    title: 'Current Streak',
-    description: (count: number) => `${formatWordCount(count)} from the current word streak.`,
+    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].title,
+    description: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].metaDescription,
     category: 'stats',
   },
-  'stats/longest-streak': {
+  [`stats/${STATS_SLUGS.LONGEST_STREAK}`]: {
     type: 'stats',
-    title: 'Longest Streak',
-    description: (count: number) => `${formatWordCount(count)} from the longest word streak.`,
+    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].title,
+    description: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].metaDescription,
     category: 'stats',
   },
-  'stats/words-ending-ly': {
+  [`stats/${STATS_SLUGS.WORDS_ENDING_LY}`]: {
     type: 'stats',
-    title: '-ly words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ly'`,
+    title: SUFFIX_DEFINITIONS.ly.title,
+    description: SUFFIX_DEFINITIONS.ly.metaDescription,
     category: 'stats',
   },
-  'stats/words-ending-ness': {
+  [`stats/${STATS_SLUGS.WORDS_ENDING_NESS}`]: {
     type: 'stats',
-    title: '-ness words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ness'`,
+    title: SUFFIX_DEFINITIONS.ness.title,
+    description: SUFFIX_DEFINITIONS.ness.metaDescription,
     category: 'stats',
   },
-  'stats/words-ending-ful': {
+  [`stats/${STATS_SLUGS.WORDS_ENDING_FUL}`]: {
     type: 'stats',
-    title: '-ful words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-ful'`,
+    title: SUFFIX_DEFINITIONS.ful.title,
+    description: SUFFIX_DEFINITIONS.ful.metaDescription,
     category: 'stats',
   },
-  'stats/words-ending-less': {
+  [`stats/${STATS_SLUGS.WORDS_ENDING_LESS}`]: {
     type: 'stats',
-    title: '-less words',
-    description: (count: number) => `${formatWordCount(count)} that end with the suffix '-less'`,
+    title: SUFFIX_DEFINITIONS.less.title,
+    description: SUFFIX_DEFINITIONS.less.metaDescription,
     category: 'stats',
   },
-  'stats/palindromes': {
+  [`stats/${STATS_SLUGS.PALINDROMES}`]: {
     type: 'stats',
-    title: 'palindrome words',
-    description: (count: number) => `${formatWordCount(count)} that are palindromes (words that read the same forwards and backwards)`,
+    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].title,
+    description: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].metaDescription,
     category: 'stats',
   },
-  'stats/all-consonants': {
+  [`stats/${STATS_SLUGS.ALL_CONSONANTS}`]: {
     type: 'stats',
-    title: 'All Consonants',
-    description: (count: number) => `${formatWordCount(count)} made up of only consonants (no vowels).`,
+    title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].title,
+    description: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].metaDescription,
     category: 'stats',
   },
-  'stats/all-vowels': {
+  [`stats/${STATS_SLUGS.ALL_VOWELS}`]: {
     type: 'stats',
-    title: 'All Vowels',
-    description: (count: number) => `${formatWordCount(count)} made up of only vowels (no consonants).`,
+    title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].title,
+    description: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].metaDescription,
     category: 'stats',
   },
 } as const;
@@ -283,20 +289,20 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
     case 'home':
       return {
         ...metadata,
-        title: metadata.title?.toLowerCase(),
+        title: metadata.title,
         description: metadata.description(words.length > 0 ? words[words.length - 1].word : ''),
       };
     case 'stats':
       return {
         ...metadata,
-        title: metadata.title?.toLowerCase(),
+        title: metadata.title,
         description: metadata.description(getCountForPath(path)),
       };
     case 'static':
     default:
       return {
         ...metadata,
-        title: metadata.title?.toLowerCase(),
+        title: metadata.title,
         description: metadata.description,
       };
   }

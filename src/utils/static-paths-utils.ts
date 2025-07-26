@@ -1,3 +1,10 @@
+import {
+  DYNAMIC_STATS_DEFINITIONS,
+  LETTER_PATTERN_DEFINITIONS,
+  PATTERN_DEFINITIONS,
+  STATS_SLUGS,
+  SUFFIX_DEFINITIONS,
+} from '~utils/stats-definitions';
 import { getAllWords } from '~utils/word-data-utils';
 import {
   getChronologicalMilestones,
@@ -16,207 +23,138 @@ const ordinal = (n: number): string => {
   return n + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0]);
 };
 
-export const generateStatsStaticPaths = () => {
-  const words = getAllWords();
-  const showEmptyPages = __SHOW_EMPTY_STATS__;
-  const stats = [];
+import type { WordData, WordMilestoneItem } from '~types/word';
 
-  // All consonants and all vowels stat pages (after words/showEmptyPages/stats are defined)
-  const patternStats = getPatternStats(words);
-  const allConsonants = patternStats.allConsonants;
-  const allVowels = patternStats.allVowels;
-  if (showEmptyPages || allConsonants.length > 0) {
-    stats.push({
-      params: { stat: 'all-consonants' },
-      props: {
-        words: allConsonants.map((w, i) => ({ ...w, label: ordinal(i + 1) })),
-        description: `Words made up of only consonants (no vowels).`,
-        template: 'word-list',
-      },
-    });
-  }
-  if (showEmptyPages || allVowels.length > 0) {
-    stats.push({
-      params: { stat: 'all-vowels' },
-      props: {
-        words: allVowels.map((w, i) => ({ ...w, label: ordinal(i + 1) })),
-        description: `Words made up of only vowels (no consonants).`,
-        template: 'word-list',
-      },
-    });
-  }
+// Template constants
+const TEMPLATE = {
+  WORD_LIST: 'word-list',
+  MILESTONE: 'milestone',
+} as const;
 
-  const suffixDescriptions = {
-    ed: `Words ending with the suffix '-ed', typically indicating past tense or past participle forms.`,
-    ing: `Words ending with the suffix '-ing', typically indicating present participle or gerund forms.`,
-    ly: `Words ending with the suffix '-ly', typically forming adverbs.`,
-    ness: `Words ending with the suffix '-ness', typically forming abstract nouns expressing a state or quality.`,
-    ful: `Words ending with the suffix '-ful', meaning 'full of' or 'characterized by' a particular quality.`,
-    less: `Words ending with the suffix '-less', meaning 'without' or 'lacking' a particular quality.`,
+
+// Configuration for stats generation - eliminates duplication
+interface StatsConfig {
+  slug: string;
+  data: WordData[] | WordMilestoneItem[];
+  def: {
+    pageDescription: string | ((arg?: string | number) => string);
+    title: string;
+    metaDescription: ((count: number, arg?: string) => string) | string;
   };
+  template: typeof TEMPLATE[keyof typeof TEMPLATE];
+  arg?: string | number;
+}
 
-  const endings = getWordEndingStats(words);
-  for (const suffix of Object.keys(suffixDescriptions)) {
-    const endingWords = endings[suffix as keyof typeof endings] || [];
-    if (showEmptyPages || endingWords.length > 0) {
-      stats.push({
-        params: { stat: `words-ending-${suffix}` },
-        props: {
-          words: endingWords.map((w, i) => ({ ...w, label: ordinal(i + 1) })),
-          description: suffixDescriptions[suffix as keyof typeof suffixDescriptions],
-          template: 'word-list',
-        },
-      });
-    }
-  }
-
+const createStatsConfig = (words: WordData[]): StatsConfig[] => {
   const letterPatterns = getLetterPatternStats(words);
-  const patterns = [
-    {
-      key: 'alphabetical-order',
-      data: letterPatterns.alphabetical,
-      description: 'Words with three or more consecutive letters in alphabetical order.',
-    },
-    {
-      key: 'double-letters',
-      data: letterPatterns.doubleLetters,
-      description: 'Words containing double letters (the same letter appearing twice in a row).',
-    },
-    {
-      key: 'triple-letters',
-      data: letterPatterns.tripleLetters,
-      description: 'Words containing triple letters (the same letter appearing three or more times in a row).',
-    },
-    {
-      key: 'same-start-end',
-      data: letterPatterns.startEndSame,
-      description: 'Words that begin and end with the same letter.',
-    },
-  ];
-
-  patterns.forEach(({ key, data, description }) => {
-    stats.push({
-      params: { stat: key },
-      props: {
-        words: data.map((w, i) => ({
-          word: w.word,
-          date: w.date,
-          label: ordinal(i + 1),
-        })),
-        description,
-        template: 'word-list',
-      },
-    });
-  });
-
+  const patternStats = getPatternStats(words);
+  const endings = getWordEndingStats(words);
   const letterStats = getLetterStats(getWordStats(words).letterFrequency);
   const mostCommon = letterStats[0];
   const leastCommon = letterStats[letterStats.length - 1];
+  const streakStats = getCurrentStreakStats([...words].sort((a, b) => b.date.localeCompare(a.date)));
 
-  const letterFrequencyStats = [
+  return [
+    // Pattern stats
+    { slug: STATS_SLUGS.ALL_CONSONANTS, data: patternStats.allConsonants, def: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.ALL_VOWELS, data: patternStats.allVowels, def: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS], template: TEMPLATE.WORD_LIST },
+
+    // Suffix stats
+    ...Object.keys(SUFFIX_DEFINITIONS).map(suffix => ({
+      slug: STATS_SLUGS[`WORDS_ENDING_${suffix.toUpperCase()}` as keyof typeof STATS_SLUGS],
+      data: endings[suffix as keyof typeof endings] || [],
+      def: SUFFIX_DEFINITIONS[suffix as keyof typeof SUFFIX_DEFINITIONS],
+      template: TEMPLATE.WORD_LIST,
+    })),
+
+    // Letter pattern stats
+    { slug: STATS_SLUGS.ALPHABETICAL_ORDER, data: letterPatterns.alphabetical, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.DOUBLE_LETTERS, data: letterPatterns.doubleLetters, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.TRIPLE_LETTERS, data: letterPatterns.tripleLetters, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.SAME_START_END, data: letterPatterns.startEndSame, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.PALINDROMES, data: letterPatterns.palindromes, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES], template: TEMPLATE.WORD_LIST },
+
+    // Letter frequency stats
     {
-      key: 'most-common-letter',
-      letter: mostCommon,
-      words: mostCommon ? words.filter(w => w.word.includes(mostCommon[0])) : [],
+      slug: STATS_SLUGS.MOST_COMMON_LETTER,
+      data: mostCommon ? words.filter(w => w.word.includes(mostCommon[0])) : [],
+      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER],
+      template: TEMPLATE.WORD_LIST,
+      arg: mostCommon?.[0],
     },
     {
-      key: 'least-common-letter',
-      letter: leastCommon,
-      words: leastCommon ? words.filter(w => w.word.includes(leastCommon[0])) : [],
+      slug: STATS_SLUGS.LEAST_COMMON_LETTER,
+      data: leastCommon ? words.filter(w => w.word.includes(leastCommon[0])) : [],
+      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER],
+      template: TEMPLATE.WORD_LIST,
+      arg: leastCommon?.[0],
+    },
+
+    // Milestone stats
+    {
+      slug: STATS_SLUGS.MILESTONE_WORDS,
+      data: getChronologicalMilestones([...words].sort((a, b) => a.date.localeCompare(b.date)))
+        .reverse()
+        .map(w => ({ ...w.word, label: `${ordinal(w.milestone)} Word` })),
+      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS],
+      template: TEMPLATE.MILESTONE,
+    },
+
+    // Streak stats
+    {
+      slug: STATS_SLUGS.CURRENT_STREAK,
+      data: (() => {
+        const currentStreakWords: WordMilestoneItem[] = [];
+        if (streakStats.currentStreak > 0) {
+          const sorted = [...words].sort((a, b) => b.date.localeCompare(a.date));
+          for (let i = 0; i < streakStats.currentStreak && i < sorted.length; i++) {
+            currentStreakWords.push({
+              ...sorted[i],
+              label: `${ordinal(i + 1)} Day`,
+            });
+          }
+          currentStreakWords.reverse();
+        }
+        return currentStreakWords;
+      })(),
+      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK],
+      template: TEMPLATE.MILESTONE,
+      arg: streakStats.currentStreak,
+    },
+    {
+      slug: STATS_SLUGS.LONGEST_STREAK,
+      data: getLongestStreakWords(words).map((w, i) => ({
+        ...w,
+        label: `${ordinal(i + 1)} Day`,
+      })),
+      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK],
+      template: TEMPLATE.MILESTONE,
+      arg: streakStats.longestStreak,
     },
   ];
+};
 
-  letterFrequencyStats.forEach(({ key, letter, words: filteredWords }) => {
-    stats.push({
-      params: { stat: key },
+export const generateStatsStaticPaths = () => {
+  const words = getAllWords();
+  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  const statsConfig = createStatsConfig(words);
+
+  const stats = statsConfig
+    .filter(config => showEmptyPages || (config.data?.length > 0))
+    .map(config => ({
+      params: { stat: config.slug },
       props: {
-        words: filteredWords.map((w, i) => ({
-          word: w.word,
-          date: w.date,
-          label: ordinal(i + 1),
-        })),
-        description: letter
-          ? `Words containing the letter "${letter[0]}" (appears in ${letter[1]} words).`
-          : 'No letter frequency data available.',
-        template: 'word-list',
+        words: config.data,
+        description: config.arg
+          ? (typeof config.def.pageDescription === 'function'
+              ? config.def.pageDescription(config.arg)
+              : config.def.pageDescription)
+          : (typeof config.def.pageDescription === 'function'
+              ? config.def.pageDescription()
+              : config.def.pageDescription),
+        template: config.template,
       },
-    });
-  });
-
-  const milestoneWords = getChronologicalMilestones([...words].sort((a, b) => a.date.localeCompare(b.date)))
-    .reverse()
-    .map(w => ({
-      word: w.word.word,
-      date: w.word.date,
-      label: `${ordinal(w.milestone)} Word`,
     }));
 
-  stats.push({
-    params: { stat: 'milestone-words' },
-    props: {
-      words: milestoneWords,
-      description: `Important word milestones from our collection's chronological journey.`,
-      template: 'milestone',
-    },
-  });
-
-  const streakStats = getCurrentStreakStats([...words].sort((a, b) => b.date.localeCompare(a.date)));
-  const currentStreakWords = [];
-
-  if (streakStats.currentStreak > 0) {
-    const sorted = [...words].sort((a, b) => b.date.localeCompare(a.date));
-    for (let i = 0; i < streakStats.currentStreak && i < sorted.length; i++) {
-      currentStreakWords.push({
-        word: sorted[i].word,
-        date: sorted[i].date,
-        label: `${ordinal(i + 1)} Day`,
-      });
-    }
-    currentStreakWords.reverse();
-  }
-
-  const longestStreakWords = getLongestStreakWords(words).map((w, i) => ({
-    word: w.word,
-    date: w.date,
-    label: `${ordinal(i + 1)} Day`,
-  }));
-
-
-  const streakConfigs = [
-    {
-      key: 'current-streak',
-      words: currentStreakWords,
-      description: `Words from the current ${streakStats.currentStreak}-word streak.`,
-      template: 'milestone',
-    },
-    {
-      key: 'longest-streak',
-      words: longestStreakWords,
-      description: `Words from the longest ${streakStats.longestStreak}-word streak.`,
-      template: 'milestone',
-    },
-    {
-      key: 'palindromes',
-      words: getLetterPatternStats(words).palindromes.map((w, i) => ({
-        word: w.word,
-        date: w.date,
-        label: ordinal(i + 1),
-      })),
-      description: `Total number of palindromes (words that read the same forwards and backwards) in our collection.`,
-      template: 'word-list',
-    },
-  ];
-
-  streakConfigs.forEach(({ key, words: streakWords, description, template }) => {
-    stats.push({
-      params: { stat: key },
-      props: {
-        words: streakWords,
-        description,
-        template,
-      },
-    });
-  });
-
-  return stats.filter(stat => showEmptyPages || (stat.props.words?.length > 0));
+  return stats;
 };

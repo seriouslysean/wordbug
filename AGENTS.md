@@ -1,13 +1,13 @@
 # AGENTS.md - Project Instructions
 
-> **For AI Agents**: Read the documentation in `docs/` for project context and technical details.
+> **For AI Agents**: This file contains MANDATORY instructions that must be followed on every interaction. Read and follow ALL guidelines below.
 
-## Quick Start
+## MANDATORY First Steps
 
-1. **Read the documentation**: Start with `docs/README.md` for project overview
-2. **Technical details**: Check `docs/technical.md` for setup and architecture
-3. **Follow patterns**: Use existing code patterns and conventions
-4. **Environment-driven**: All configuration is in environment variables
+1. **ALWAYS read documentation first**: Start with `docs/README.md` then `docs/technical.md` - this is REQUIRED before any code changes
+2. **USE the TodoWrite tool**: Create and maintain a todo list for ANY multi-step task - this is REQUIRED for project tracking
+3. **Follow existing patterns**: Check similar files for code style and architecture patterns BEFORE writing new code
+4. **Environment-driven**: All configuration uses environment variables - NEVER hardcode values
 
 ## Key Commands
 
@@ -18,12 +18,21 @@ npm run test            # Run tests
 npm run tool:add-word   # Add new word interactively
 ```
 
-## Important Notes
+## CRITICAL Requirements
 
-- **No hardcoded values**: Everything uses environment variables
-- **Test before committing**: Always run `npm run build` to verify
-- **Follow existing patterns**: Check similar files for code style
-- **Preserve functionality**: Don't break existing word display or navigation
+- **ALWAYS run `npm run lint` and `npm run typecheck`** after ANY code changes - this is MANDATORY
+- **NO hardcoded values**: Everything uses environment variables
+- **PRESERVE functionality**: Never break existing word display, navigation, or data loading
+- **TEST builds**: Always run `npm run build` to verify before suggesting changes
+- **ASK before major changes**: Get user approval for architectural changes or refactoring
+
+## MANDATORY Workflow
+
+1. **Read docs/README.md and docs/technical.md FIRST**
+2. **Create TodoWrite list for multi-step tasks**
+3. **Follow existing code patterns** - check similar files before writing new code
+4. **Run lint/typecheck after changes**
+5. **Verify build succeeds**
 
 ## Code Style Guidelines
 
@@ -32,6 +41,8 @@ npm run tool:add-word   # Add new word interactively
 - **Modern ES6+ syntax**: Use destructuring, arrow functions, template literals
 - **camelCase for object keys**: JavaScript convention, not snake_case
 - **Clean error handling**: One `console.error()` call per error with message + data object
+- **Proper sentence structure**: All descriptions and text content should end with periods for proper sentence structure
+- **Proper casing**: Use proper title case for headings and descriptions - avoid `.toLowerCase()` except for data storage. Let CSS handle display formatting
 
 ---
 
