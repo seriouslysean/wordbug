@@ -19,11 +19,9 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
 <Layout word={currentWord} title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
-  <main>
-    <WordDisplay
-      currentWord={currentWord}
-      wordsToShow={wordsToShow}
-      sectionTitle={sectionTitle}
-    />
-  </main>
+  <WordDisplay
+    currentWord={currentWord}
+    wordsToShow={wordsToShow}
+    sectionTitle={sectionTitle}
+  />
 </Layout>
