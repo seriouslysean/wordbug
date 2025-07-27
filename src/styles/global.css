@@ -11,7 +11,7 @@ body {
 html {
     min-height: 100%;
     background: var(--color-background);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: var(--font-family-base);
     font-weight: var(--font-weight-normal);
 }
 
@@ -24,6 +24,7 @@ body {
     font-size: var(--font-size-base);
     display: flex;
     flex-direction: column;
+    background: var(--color-background); /* Ensure background continues during overscroll */
 }
 
 /* Cross-reference link styles */
@@ -74,7 +75,8 @@ main {
 a {
     text-decoration: none;
     color: var(--color-primary-light);
-    transition: opacity 0.2s ease;
+    transition: opacity var(--transition);
+    cursor: pointer;
 }
 
 a:hover {
