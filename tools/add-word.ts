@@ -3,7 +3,7 @@ import path from 'path';
 
 import { paths } from '~config/paths';
 import { createWordEntry } from '~tools/utils';
-import { getAllWords } from '~tools/word-data-utils';
+import { getAllWords } from '~tools/utils';
 import type { WordData } from '~types/word';
 import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
 import { logger } from '~utils/logger';
