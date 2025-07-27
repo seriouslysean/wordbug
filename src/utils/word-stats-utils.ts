@@ -23,9 +23,9 @@ import {
 } from '~utils/text-utils';
 
 /**
- * Analyzes word data to extract basic statistics including longest/shortest words and letter frequency.
+ * Analyzes word data to extract basic statistics including longest/shortest words and word count by letter.
  * @param {WordData[]} words - Array of word data objects to analyze
- * @returns {WordStatsResult} Statistics object containing longest/shortest words, palindromes, and letter frequency
+ * @returns {WordStatsResult} Statistics object containing longest/shortest words, palindromes, and count of words containing each letter
  */
 export const getWordStats = (words: WordData[]): WordStatsResult => {
   const emptyStats: WordStatsResult = {
@@ -57,7 +57,9 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
       }
     }
 
-    for (const letter of word) {
+    // Count unique letters in this word (each letter only counted once per word)
+    const uniqueLetters = new Set(word.toLowerCase());
+    for (const letter of uniqueLetters) {
       stats.letterFrequency[letter] = (stats.letterFrequency[letter] || 0) + 1;
     }
 
@@ -72,9 +74,9 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
  */
 
 /**
- * Converts letter frequency data into sorted statistics, filtering to a-z only (case-insensitive).
- * @param {Record<string, number>} letterFrequency - Object mapping letters to their frequency counts
- * @returns {WordLetterStatsResult} Array of letter-frequency pairs sorted by frequency (descending), only a-z
+ * Converts letter word count data into sorted statistics, filtering to a-z only (case-insensitive).
+ * @param {Record<string, number>} letterFrequency - Object mapping letters to count of words containing them
+ * @returns {WordLetterStatsResult} Array of letter-wordcount pairs sorted by word count (descending), only a-z
  *
  * Note: This intentionally ignores spaces, punctuation, and accented letters for stats purposes.
  */
