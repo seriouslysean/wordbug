@@ -1,6 +1,6 @@
 import { wordnikAdapter } from '~adapters/wordnik';
 import type { DictionaryAdapter } from '~types/adapters';
-import { logger } from '~utils/logger';
+import { logger } from '~utils-client/logger';
 
 /**
  * Gets the configured dictionary adapter based on DICTIONARY_ADAPTER environment variable

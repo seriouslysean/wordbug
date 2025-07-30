@@ -4,7 +4,6 @@
 
 export interface PathConfig {
   words: string;
-  demoWords: string;
   pages: string;
   images: string;
   fonts: string;

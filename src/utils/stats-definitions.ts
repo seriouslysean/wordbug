@@ -6,7 +6,7 @@ import type {
   SuffixDefinition,
   SuffixKey,
 } from '~types/stats';
-import { formatWordCount } from '~utils/text-utils';
+import { formatWordCount } from '~utils-client/text-utils';
 
 // Stats page slug constants - defined here since this is where they're used
 export const STATS_SLUGS = {

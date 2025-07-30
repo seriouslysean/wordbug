@@ -1,4 +1,6 @@
-import { generateWordDataHash, getAllWords } from './word-data-utils';
+import type { WordData } from '~types/word';
+
+import { allWords, generateWordDataHash } from './word-data-utils';
 
 export interface BuildData {
   version: string;
@@ -11,10 +13,10 @@ export interface BuildData {
 /**
  * Gets build-time data that was injected at build time
  * All values are compile-time constants from Vite's define
+ * @param {WordData[]} [words=allWords] - Array of word data to use for stats
  * @returns {Object} Build data for browser exposure
  */
-export function getBuildData(): BuildData {
-  const words = getAllWords();
+export function getBuildData(words: WordData[] = allWords): BuildData {
   return {
     version: __VERSION__,
     release: __RELEASE__,

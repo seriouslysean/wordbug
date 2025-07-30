@@ -5,7 +5,7 @@ import {
  afterEach,beforeEach, describe, expect, it,
 } from 'vitest';
 
-import { isValidDictionaryData as isValidWordData } from '~utils/word-data-utils';
+import { isValidDictionaryData as isValidWordData } from '~utils-client/word-data-utils';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

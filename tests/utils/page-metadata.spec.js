@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { getAllPageMetadata, getPageMetadata } from '~utils/page-metadata';
+import { getAllPageMetadata, getPageMetadata } from '~utils-client/page-metadata';
 
 // Mock Astro global
 beforeEach(() => {
@@ -11,13 +11,14 @@ beforeEach(() => {
   };
 });
 
-describe.skip('page-metadata', () => {
+describe('page-metadata', () => {
   describe('getPageMetadata', () => {
     it('returns metadata for static pages', () => {
       const metadata = getPageMetadata('words');
       expect(metadata).toEqual({
-        title: 'all words',
-        description: 'Complete alphabetical list of all featured words',
+        type: 'static',
+        title: 'All Words',
+        description: 'Browse the complete alphabetical list of all featured words, organized by year.',
         category: 'pages',
       });
     });
@@ -26,7 +27,7 @@ describe.skip('page-metadata', () => {
       const metadata = getPageMetadata('stats/words-ending-ly');
       expect(metadata.title).toBe('-ly words');
       expect(metadata.category).toBe('stats');
-      expect(metadata.description).toBe('Words that end with the suffix "-ly"');
+      expect(metadata.description).toContain('words that end with the suffix');
     });
 
     it('returns metadata for dynamic year pages', () => {
@@ -38,19 +39,17 @@ describe.skip('page-metadata', () => {
       });
     });
 
-    it('returns empty object for unknown paths', () => {
+    it('returns fallback metadata for unknown paths', () => {
       const metadata = getPageMetadata('unknown-path');
-      expect(metadata).toEqual({});
+      expect(metadata).toEqual({
+        title: 'Unknown Page',
+        description: '',
+        category: 'unknown',
+      });
     });
 
-    it('handles undefined pathname by using Astro.url.pathname', () => {
-      global.Astro.url.pathname = '/';
-      const metadata = getPageMetadata();
-      expect(metadata).toEqual({
-        title: null,
-        description: null,
-        category: 'root',
-      });
+    it('throws error for undefined pathname', () => {
+      expect(() => getPageMetadata()).toThrow('getPageMetadata: pathname is required');
     });
   });
 
@@ -64,7 +63,7 @@ describe.skip('page-metadata', () => {
       // Should include static pages
       const wordsPage = allPages.find(page => page.path === 'words');
       expect(wordsPage).toBeDefined();
-      expect(wordsPage.title).toBe('all words');
+      expect(wordsPage.title).toBe('All Words');
     });
 
     it('excludes root path from results', () => {

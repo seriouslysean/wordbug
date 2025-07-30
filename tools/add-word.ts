@@ -2,11 +2,10 @@ import fs from 'fs';
 import path from 'path';
 
 import { paths } from '~config/paths';
-import { createWordEntry } from '~tools/utils';
-import { getAllWords } from '~tools/utils';
+import { allWords, createWordEntry } from '~tools/utils';
 import type { WordData } from '~types/word';
-import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
-import { logger } from '~utils/logger';
+import { getTodayYYYYMMDD, isValidDate } from '~utils-tools/date-utils';
+import { logger } from '~utils-tools/logger';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found
@@ -44,8 +43,7 @@ const isNotFutureDate = (date: string): boolean => {
  */
 const checkExistingWordByName = (word: string): WordData | null => {
   const lowerWord = word.toLowerCase();
-  const words = getAllWords();
-  return words.find(w => w.word?.toLowerCase() === lowerWord) || null;
+  return allWords.find(w => w.word?.toLowerCase() === lowerWord) || null;
 };
 
 

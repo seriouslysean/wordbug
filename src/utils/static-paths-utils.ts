@@ -4,8 +4,8 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
-} from '~utils/stats-definitions';
-import { getAllWords } from '~utils/word-data-utils';
+} from '~utils-client/stats-definitions';
+import { allWords } from '~utils-client/word-data-utils';
 import {
   getChronologicalMilestones,
   getCurrentStreakStats,
@@ -15,7 +15,7 @@ import {
   getPatternStats,
   getWordEndingStats,
   getWordStats,
-} from '~utils/word-stats-utils';
+} from '~utils-client/word-stats-utils';
 
 const ordinal = (n: number): string => {
   const suffixes = ['th', 'st', 'nd', 'rd'];
@@ -135,7 +135,8 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
 };
 
 export const generateStatsStaticPaths = () => {
-  const words = getAllWords();
+  const words = allWords;
+
   const showEmptyPages = __SHOW_EMPTY_STATS__;
   const statsConfig = createStatsConfig(words);
 

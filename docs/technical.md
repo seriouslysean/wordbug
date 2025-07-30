@@ -17,11 +17,14 @@
 - Updates only when code changes are pushed to main branch
 
 ### Data Structure
-- Words stored as JSON files in `data/words/{year}/{YYYYMMDD}.json`
+- Words stored as JSON files in configurable directory via `SOURCE_DIR`
+- Default uses `data/words/{YYYYMMDD}.json` (`SOURCE_DIR=""`)
+- External data source uses `wordbun/data/words/2025/{YYYYMMDD}.json` (`SOURCE_DIR="2025"`)
 - Each word file contains:
   - `word`: lowercase word string
   - `date`: YYYYMMDD format
-  - `data`: Array of Wordnik API response objects
+  - `adapter`: dictionary adapter used (e.g., "wordnik")
+  - `data`: Array of dictionary definition objects
 
 ### Key Components
 - **Pages**: Dynamic routes for words, dates, and stats
@@ -76,9 +79,25 @@ The theme system supports optional project-level customization:
 ## Environment Variables
 
 All configuration uses environment variables:
+
+### Required Variables
 - `WORDNIK_API_KEY`: Required for word definitions
-- `SITE_*`: Site metadata (title, description, etc.)
+- `DICTIONARY_ADAPTER`: Dictionary service to use (default: "wordnik")
+
+### Site Configuration
+- `SITE_*`: Site metadata (title, description, URL, etc.)
+- `COLOR_*`: Theme color overrides (PRIMARY, PRIMARY_LIGHT, PRIMARY_DARK)
+
+### Data Configuration
+- `SOURCE_DIR` (formerly `DATA_PATH`): Source directory for word data (default: "")
+  - Empty string uses local `data/words/` directory
+  - Non-empty value like "2025" uses external path `wordbun/data/words/2025/`
+  - Words are stored at configured path with `{YYYYMMDD}.json` format
+  - Social images are generated at `public/images/social/{year}/`
+
+### Optional Features
 - `SENTRY_*`: Error tracking configuration
+- `SHOW_EMPTY_STATS`: Show stats pages even when they have no data
 
 ## Testing
 
@@ -169,6 +188,13 @@ const wordsToShow = allWords
 
 ## Recent Architectural Improvements
 
+### Word Data Loading Architecture Audit (Completed)
+- **Dependency Injection Pattern**: Implemented `getAllWords()` function that accepts loader functions for different environments
+- **Environment Separation**: Clean separation between Astro (build-time) and tools (CLI) environments
+- **Centralized Word Access**: All code now uses `allWords` constant from `word-data-utils.ts`
+- **Eliminated Direct File Access**: Tools no longer directly read files, use centralized loading mechanism
+- **Fixed Code Duplication**: Removed duplicate word loading logic across different modules
+
 ### URL Consistency (Fixed)
 - Standardized all internal links to use `SiteLink` component  
 - Eliminated mixed `getUrl()` usage patterns
@@ -185,10 +211,33 @@ const wordsToShow = allWords
 - Implemented new streak stats pages with milestone-style layouts
 - Fixed page metadata for SEO consistency
 
-### Upcoming Optimizations (Identified)
-- **Stats page consolidation**: Replace 6 individual pages with single dynamic route
-- **Pre-computed stats system**: Cache expensive calculations at build time  
-- **Tools/Astro code unification**: Resolve duplicate word loading logic
+### Code Quality Improvements (Completed)
+- **Linting & TypeCheck**: All ESLint and TypeScript errors resolved
+- **Test Suite**: All tests passing with proper word data loading
+- **Import Cleanup**: Removed anti-pattern re-exports, using direct imports
+- **Type Safety**: Enhanced type definitions for word data structures
+
+## Accessibility
+
+### Core Features
+- **Semantic HTML**: Proper heading hierarchy and landmark elements
+- **Keyboard Navigation**: All interactive elements accessible via keyboard  
+- **Screen Reader Support**: Descriptive labels and ARIA attributes where needed
+- **Color Contrast**: High contrast ratios for text readability
+- **Focus Management**: Visible focus indicators for all interactive elements
+
+### Implementation Details
+- **SiteLink Component**: Handles internal navigation with proper focus states
+- **WordLink Component**: Provides context for word-to-word navigation
+- **Image Alt Text**: All generated social images include descriptive alt text
+- **Language Attributes**: Proper lang attributes for word pronunciation
+- **Skip Links**: Navigation shortcuts for screen reader users
+
+### Testing Approach
+- Manual keyboard navigation testing
+- Screen reader compatibility verification
+- Color contrast validation
+- Responsive design testing across devices
 
 ## Key Constraints
 

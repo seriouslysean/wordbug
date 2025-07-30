@@ -46,4 +46,8 @@ npm run tool:add-word   # Add new word interactively
 
 ---
 
-For complete project context, architecture details, and implementation notes, see the documentation in the `docs/` directory.
+For complete project context, architecture details, and implementation notes, see the documentation in the `docs/` directory:
+
+- `docs/README.md` - Project overview and technology stack
+- `docs/technical.md` - Detailed architecture, build process, and constraints
+- `docs/potential-features.md` - Future enhancement ideas organized by complexity and impact

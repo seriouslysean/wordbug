@@ -1,9 +1,10 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { formatDate } from '~utils/date-utils';
-import { getAllPageMetadata } from '~utils/page-metadata';
-import { generateWordDataHash, getAllWords } from '~utils/word-data-utils';
+import type { WordData } from '~types/word';
+import { formatDate } from '~utils-client/date-utils';
+import { getAllPageMetadata } from '~utils-client/page-metadata';
+import { allWords, generateWordDataHash } from '~utils-client/word-data-utils';
 
 /**
  * List of supported static text files
@@ -101,9 +102,10 @@ export function generateHumansTxt(): string {
 /**
  * Generates health.txt content
  *
+ * @param {WordData[]} [words=allWords] - Array of word data to use for stats
  * @returns The content for health.txt
  */
-export function generateHealthTxt(): string {
+export function generateHealthTxt(words: WordData[] = allWords): string {
   // Get the current time for timestamp
   const currentTime = new Date().toISOString();
   // Use Vite's injected constants, which will be replaced at build time
@@ -111,7 +113,6 @@ export function generateHealthTxt(): string {
   const release = __RELEASE__;
   const buildTime = __TIMESTAMP__;
   // Get all words and hash
-  const words = getAllWords();
   const wordCount = words.length;
   const wordHash = generateWordDataHash(words.map(w => w.word));
   // Format as simple text with one value per line
@@ -129,9 +130,10 @@ export function generateHealthTxt(): string {
 /**
  * Generates llms.txt content with recent words and key site links
  *
+ * @param {WordData[]} [words=allWords] - Array of word data to use for stats
  * @returns The content for llms.txt or null if required data is missing
  */
-export function generateLlmsTxt(): string | null {
+export function generateLlmsTxt(words: WordData[] = allWords): string | null {
   const siteTitle = __SITE_TITLE__;
   const siteDescription = __SITE_DESCRIPTION__;
   const siteUrl = __SITE_URL__;
@@ -141,7 +143,6 @@ export function generateLlmsTxt(): string | null {
   }
 
   const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
-  const words = getAllWords();
   const recentWords = words.slice(-5);
 
   const curatorInfo = __HUMANS_WORD_CURATOR__ ? ` Curated by ${__HUMANS_WORD_CURATOR__}.` : '';
@@ -157,7 +158,7 @@ export function generateLlmsTxt(): string | null {
     ].join('\n');
   }
 
-  const allPages = getAllPageMetadata();
+  const allPages = getAllPageMetadata(words);
   const allWordsPage = allPages.find(p => p.path === 'words');
   const yearPages = allPages.filter(p => /^words\/[0-9]{4}$/.test(p.path)).sort((a, b) => b.path.localeCompare(a.path));
   const staticPages = allPages.filter(p =>

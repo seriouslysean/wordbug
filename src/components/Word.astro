@@ -2,8 +2,8 @@
 import Heading from '~components/Heading.astro';
 import WordDescription from '~components/WordDescription.astro';
 import type { WordData } from '~types/word';
-import { formatDate } from '~utils/date-utils.js';
-import { getWordDetails } from '~utils/word-data-utils';
+import { formatDate } from '~utils-client/date-utils.js';
+import { getWordDetails } from '~utils-client/word-data-utils';
 
 interface Props {
   word: WordData | null;

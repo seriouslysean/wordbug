@@ -6,12 +6,12 @@ import Footer from '~components/Footer.astro';
 import Header from '~components/Header.astro';
 import StructuredData from '~components/StructuredData.astro';
 import type { WordData } from '~types/word';
-import { getBuildData } from '~utils/build-utils.ts';
-import { getSocialImageUrl } from '~utils/page-utils.js';
-import { getCanonicalUrl, getMetaDescription,seoConfig } from '~utils/seo-utils.ts';
-import { getAsciiArt } from '~utils/static-file-utils.ts';
-import { getUrl } from '~utils/url-utils';
-import { getWordByDate, getWordDetails } from '~utils/word-data-utils';
+import { getBuildData } from '~utils-client/build-utils.ts';
+import { getSocialImageUrl } from '~utils-client/page-utils.js';
+import { getCanonicalUrl, getMetaDescription,seoConfig } from '~utils-client/seo-utils.ts';
+import { getAsciiArt } from '~utils-client/static-file-utils.ts';
+import { getUrl } from '~utils-client/url-utils';
+import { getWordByDate, getWordDetails } from '~utils-client/word-data-utils';
 
 const { title, word, description, structuredDataType, noindex, nofollow, canonicalUrl } = Astro.props;
 
@@ -155,7 +155,6 @@ dataLayer.push(args);
 	  <slot />
 	</main>
 	<Footer />
-  </body>
 	<script define:vars={{ buildData }} is:inline>
 	  if (typeof window !== 'undefined' && !window.app) {
 		window.app = buildData;

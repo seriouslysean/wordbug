@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { getAdapter } from '~adapters/factory';
+import { createPaths } from '~config/paths';
 import type { DictionaryDefinition } from '~types/adapters';
 import type {
   WordAdjacentResult,
@@ -10,13 +11,12 @@ import type {
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types/word';
-import { logger } from '~utils/logger';
-import { createMemoryCache, createWordDataProvider, type WordFileInfo } from '~utils/word-data-shared';
+import { logger } from '~utils-client/logger';
+import { getAllWords, type WordFileInfo } from '~utils-client/word-data-shared';
 
-export type WordDataProvider = () => WordData[];
 
-// Create file loader for Astro build environment
-const createAstroFileLoader = () => (): WordFileInfo[] => {
+// Astro file loader for dependency injection
+const getAllWordsAstro = (): WordFileInfo[] => {
   const loadFromDirectory = (dir: string): WordFileInfo[] => {
     if (!fs.existsSync(dir)) {
       return [];
@@ -41,27 +41,23 @@ const createAstroFileLoader = () => (): WordFileInfo[] => {
     return result;
   };
 
-  // Try production words first, then demo words
-  const productionWords = loadFromDirectory(path.join(process.cwd(), 'data', 'words'));
-  if (productionWords.length > 0) {
-    return productionWords;
-  }
+  // Load words from configured path and sort by date (newest first) for consistency
+  const paths = createPaths(process.env.SOURCE_DIR || '');
+  const files = loadFromDirectory(paths.words);
+  const sortedFiles = files.sort((a, b) => b.date.localeCompare(a.date));
 
-  return loadFromDirectory(path.join(process.cwd(), 'data', 'demo', 'words'));
+  return sortedFiles;
 };
 
-// Create the getAllWords function using shared logic
-export const getAllWords = (() => {
-  const provider = createWordDataProvider(
-    createAstroFileLoader(),
-    createMemoryCache(),
-    'words',
-  );
-  return () => {
-    const words = provider();
-    return words.sort((a, b) => b.date.localeCompare(a.date));
-  };
-})();
+// Import Node.js loader from shared utils for production builds
+import { getWordFilesNode } from '~utils/word-data-node';
+
+/**
+ * All words loaded once and cached - environment-aware loader selection
+ */
+export const allWords = __ENVIRONMENT__ === 'production' || __ENVIRONMENT__ === 'build'
+  ? getAllWords(getWordFilesNode)
+  : getAllWords(getAllWordsAstro);
 
 /**
  * Fetches word data from the configured dictionary adapter and transforms it to our internal format.
@@ -95,11 +91,10 @@ export function getProcessedWord(wordData: WordData): WordProcessedData {
  * Returns the most recent word with a date less than or equal to today.
  * Falls back to the first available word if none match the date criteria.
  *
- * @param {WordDataProvider} [wordProvider=getAllWords] - Function that provides word data array
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
  * @returns {WordData | null} The current word data that should be displayed, or null if no words are available
  */
-export const getCurrentWord = (wordProvider: WordDataProvider = getAllWords): WordData | null => {
-  const words = wordProvider();
+export const getCurrentWord = (words: WordData[] = allWords): WordData | null => {
   if (!words.length) {
     logger.error('No word data available in the system');
     return null;
@@ -116,14 +111,13 @@ export const getCurrentWord = (wordProvider: WordDataProvider = getAllWords): Wo
  * Useful for showing recent word history or navigation context.
  *
  * @param {string} currentDate - Reference date in YYYYMMDD format to find words before
- * @param {WordDataProvider} [wordProvider=getAllWords] - Function that provides word data array
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
  * @returns {WordData[]} Array of up to 5 word entries that occurred before the given date
  */
-export const getPastWords = (currentDate: string, wordProvider: WordDataProvider = getAllWords): WordData[] => {
+export const getPastWords = (currentDate: string, words: WordData[] = allWords): WordData[] => {
   if (!currentDate) {
     return [];
   }
-  const words = wordProvider();
   return words
     .filter(word => word.date < currentDate)
     .slice(0, 5);
@@ -134,14 +128,13 @@ export const getPastWords = (currentDate: string, wordProvider: WordDataProvider
  * Returns null if no word exists for the given date or if date is invalid.
  *
  * @param {string} date - Date to search for in YYYYMMDD format
- * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
  * @returns {WordData | null} Word data for the specified date, or null if not found
  */
-export const getWordByDate = (date: string, wordProvider: WordDataProvider = getAllWords): WordData | null => {
+export const getWordByDate = (date: string, words: WordData[] = allWords): WordData | null => {
   if (!date) {
     return null;
   }
-  const words = wordProvider();
   return words.find(word => word.date === date) || null;
 };
 
@@ -150,17 +143,16 @@ export const getWordByDate = (date: string, wordProvider: WordDataProvider = get
  * Previous word has an earlier date, next word has a later date.
  *
  * @param {string} date - Reference date in YYYYMMDD format to find adjacent words for
- * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
  * @returns {WordAdjacentResult} Object containing previousWord and nextWord, or null if not found
  */
-export const getAdjacentWords = (date: string, wordProvider: WordDataProvider = getAllWords): WordAdjacentResult => {
+export const getAdjacentWords = (date: string, words: WordData[] = allWords): WordAdjacentResult => {
   if (!date) {
     return {
       previousWord: null,
       nextWord: null,
     };
   }
-  const words = wordProvider();
   const currentIndex = words.findIndex(word => word.date === date);
 
   if (currentIndex === -1) {
@@ -196,11 +188,10 @@ export const getWordDetails = (word: WordData): WordProcessedData => {
  * Useful for generating yearly statistics or archives.
  *
  * @param {string} year - Year to filter by (YYYY format)
- * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
  * @returns {WordData[]} Array of word data entries from the specified year
  */
-export const getWordsByYear = (year: string, wordProvider: WordDataProvider = getAllWords): WordData[] => {
-  const words = wordProvider();
+export const getWordsByYear = (year: string, words: WordData[] = allWords): WordData[] => {
   return words.filter(word => word.date.startsWith(year));
 };
 
@@ -238,11 +229,10 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
  * Retrieves a list of all years that have word data available.
  * Returns years in descending order (newest first) for UI display purposes.
  *
- * @param {WordDataProvider} [wordProvider=defaultWordDataProvider] - Function that provides word data array
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
  * @returns {string[]} Array of unique years (YYYY format) sorted in descending order
  */
-export const getAvailableYears = (wordProvider: WordDataProvider = getAllWords): string[] => {
-  const words = wordProvider();
+export const getAvailableYears = (words: WordData[] = allWords): string[] => {
   const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
   return years.sort((a, b) => b.localeCompare(a));
 };

@@ -1,12 +1,11 @@
 ---
 import WordPage from '~components/WordPage.astro';
-import { getAllWords, getWordByDate } from '~utils/word-data-utils';
+import { allWords, getWordByDate } from '~utils-client/word-data-utils';
 
 export async function getStaticPaths() {
-  const words = getAllWords();
   const paths = [];
 
-  for (const wordData of words) {
+  for (const wordData of allWords) {
     paths.push({ params: { word: wordData.word }, props: { date: wordData.date } });
   }
 

@@ -1,11 +1,10 @@
 ---
 import WordPage from '~components/WordPage.astro';
-import { getFullUrl, getWordUrl } from '~utils/url-utils.js';
-import { getAllWords, getWordByDate } from '~utils/word-data-utils';
+import { getFullUrl, getWordUrl } from '~utils-client/url-utils.js';
+import { allWords, getWordByDate } from '~utils-client/word-data-utils';
 
 export async function getStaticPaths() {
-  const words = getAllWords();
-  return words
+  return allWords
     .filter(word => word.date && getWordByDate(word.date))
     .map(word => ({ params: { date: word.date } }));
 }

@@ -3,20 +3,19 @@ import Heading from '~components/Heading.astro';
 import SectionHeading from '~components/SectionHeading.astro';
 import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
-import { formatWordCount } from '~utils/text-utils';
-import { getAllWords, groupWordsByYear } from '~utils/word-data-utils';
+import { getPageMetadata } from '~utils-client/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
+import { formatWordCount } from '~utils-client/text-utils';
+import { allWords, groupWordsByYear } from '~utils-client/word-data-utils';
 
-const words = getAllWords();
-const wordsByYear = groupWordsByYear(words);
+const wordsByYear = groupWordsByYear(allWords);
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="words">
-    <Heading text={title} secondaryText={formatWordCount(words.length)} />
-    {(Object.entries(wordsByYear) as [string, typeof words][]).reverse().map(([year, words]) => (
+    <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
+    {(Object.entries(wordsByYear) as [string, typeof allWords][]).reverse().map(([year, words]) => (
       <section class="words__section">
         <SectionHeading text={year} href={`/words/${year}`} />
         <WordList words={words} columns={2} />

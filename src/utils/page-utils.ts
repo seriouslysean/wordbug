@@ -5,4 +5,4 @@
 export {
   getSocialImageUrl,
   getStaticPages,
-} from '~utils/image-utils';
+} from '~utils-client/image-utils';

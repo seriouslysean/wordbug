@@ -4,8 +4,8 @@ import path from 'path';
 import sharp from 'sharp';
 
 import { paths } from '~config/paths';
-import { logger } from '~utils/logger';
-import { createWordDataProvider, type WordFileInfo as SharedWordFileInfo } from '~utils/word-data-shared';
+import { logger } from '~utils-tools/logger';
+import { getAllWords, type WordFileInfo as SharedWordFileInfo } from '~utils-tools/word-data-shared';
 
 // Colors for image generation
 const imageColors = {
@@ -30,25 +30,6 @@ const MAX_WIDTH = CANVAS_WIDTH - (PADDING * 2);
 const regularFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSans-Regular.ttf'));
 const boldFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSans-ExtraBold.ttf'));
 
-/**
- * Checks if the app is using demo words (no real words available)
- * @returns true if using demo words, false if real words exist
- */
-export function isUsingDemoWords(): boolean {
-  if (!fs.existsSync(paths.words)) {
-    return true;
-  }
-
-  try {
-    const years = fs.readdirSync(paths.words).filter(dir => /^\d{4}$/.test(dir));
-    return !years.some(year => {
-      const yearDir = path.join(paths.words, year);
-      return fs.existsSync(yearDir) && fs.readdirSync(yearDir).length > 0;
-    });
-  } catch {
-    return true;
-  }
-}
 
 /**
  * Gets all word files from the data directory
@@ -60,31 +41,26 @@ interface WordFileInfo {
   path: string;
 }
 
-const getWordFilesFromDirectory = (searchDir: string): WordFileInfo[] => {
-  if (!fs.existsSync(searchDir)) {
-    logger.error('Directory does not exist', { searchDir });
+export const getWordFiles = (): WordFileInfo[] => {
+  if (!fs.existsSync(paths.words)) {
+    logger.error('Word directory does not exist', { path: paths.words });
     return [];
   }
 
-  const years = fs.readdirSync(searchDir).filter(dir => /^\d{4}$/.test(dir));
+  const years = fs.readdirSync(paths.words).filter(dir => /^\d{4}$/.test(dir));
 
   if (years.length === 0) {
-    logger.error('No year directories found', { searchDir });
+    logger.error('No year directories found', { path: paths.words });
     return [];
   }
 
-  return years.flatMap(year => {
+  const files = years.flatMap(year => {
     try {
-      const yearDir = path.join(searchDir, year);
-      const files = fs.readdirSync(yearDir)
+      const yearDir = path.join(paths.words, year);
+      const jsonFiles = fs.readdirSync(yearDir)
         .filter(file => file.endsWith('.json'));
 
-      if (files.length === 0) {
-        logger.warn('No word files found in year directory', { yearDir });
-        return [];
-      }
-
-      return files.map(file => {
+      return jsonFiles.map(file => {
         try {
           const filePath = path.join(yearDir, file);
           const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -97,49 +73,21 @@ const getWordFilesFromDirectory = (searchDir: string): WordFileInfo[] => {
           logger.error('Error reading word file', { file, error: (error as Error).message });
           return null;
         }
-      })
-      .filter(Boolean) as WordFileInfo[];
+      }).filter(Boolean) as WordFileInfo[];
     } catch (error) {
       logger.error('Error reading year directory', { year, error: (error as Error).message });
       return [];
     }
   });
+
+  // Sort by date (newest first) for consistency
+  return files.sort((a, b) => b.date.localeCompare(a.date));
 };
 
-export function getAllWordFiles(): WordFileInfo[] {
-  try {
-    // Try to get words from the main words directory
-    if (fs.existsSync(paths.words)) {
-      const files = getWordFilesFromDirectory(paths.words);
-      // If we found some files, return them
-      if (files.length > 0) {
-        return files;
-      }
-    }
-
-    // If we get here, either:
-    // 1. paths.words doesn't exist, or
-    // 2. paths.words exists but is empty
-    // In both cases, we should fall back to demo words
-    if (fs.existsSync(paths.demoWords)) {
-      logger.info('Using demo words directory', { path: paths.demoWords });
-      return getWordFilesFromDirectory(paths.demoWords);
-    }
-
-    logger.error('No word directories found', {
-      wordsPath: paths.words,
-      demoPath: paths.demoWords,
-    });
-    return [];
-  } catch (error) {
-    logger.error('Error getting word files', { error: (error as Error).message });
-    return [];
-  }
-}
-
-// Create file loader for Node.js tools environment
-const createNodeFileLoader = () => (): SharedWordFileInfo[] => {
-  return getAllWordFiles().map(file => ({
+// Node.js file loader for dependency injection
+const getAllWordsNode = (): SharedWordFileInfo[] => {
+  const files = getWordFiles();
+  return files.map(file => ({
     filePath: file.path,
     date: file.date,
     content: fs.readFileSync(file.path, 'utf-8'),
@@ -147,20 +95,10 @@ const createNodeFileLoader = () => (): SharedWordFileInfo[] => {
 };
 
 /**
- * Gets all words with their data from the data directory
- * @returns Array of word data objects sorted by date (newest first)
+ * All words loaded once and cached - Node.js environment
  */
-export const getAllWords = createWordDataProvider(createNodeFileLoader());
+export const allWords = getAllWords(getAllWordsNode);
 
-/**
- * Gets all available years from word data
- * @returns Array of year strings sorted newest to oldest
- */
-export const getAvailableYears = (): string[] => {
-  const words = getAllWords();
-  const years = [...new Set(words.map(word => word.date.slice(0, 4)))];
-  return years.sort((a, b) => b.localeCompare(a));
-};
 
 /**
  * Updates a word file with new dictionary data
@@ -203,8 +141,7 @@ export function createDirectoryIfNeeded(dir: string): void {
  * @returns Word data or null if not found
  */
 export function getWordByName(word: string): WordData | null {
-  const words = getAllWords();
-  return words.find(w => w.word.toLowerCase() === word.toLowerCase()) || null;
+  return allWords.find(w => w.word.toLowerCase() === word.toLowerCase()) || null;
 }
 
 /**
@@ -302,9 +239,10 @@ export function createWordSvg(word: string, date: string): string {
 export async function generateShareImage(word: string, date: string): Promise<void> {
   const year = date.slice(0, 4);
 
-  // Use demo directory if we're using demo words
-  const socialDir = isUsingDemoWords()
-    ? path.join(paths.images, 'social', 'demo', year)
+  // Mirror the SOURCE_DIR structure for social images
+  const sourceDir = process.env.SOURCE_DIR || '';
+  const socialDir = sourceDir
+    ? path.join(paths.images, 'social', sourceDir, year)
     : path.join(paths.images, 'social', year);
 
   createDirectoryIfNeeded(socialDir);
@@ -393,12 +331,10 @@ import { getAdapter } from '~adapters/factory';
 import type { CreateWordEntryResult } from '~types/tools';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';
-import { formatDate, isValidDate } from '~utils/date-utils';
-import { isValidDictionaryData } from '~utils/word-data-utils';
+import { formatDate, isValidDate } from '~utils-tools/date-utils';
+import { isValidDictionaryData } from '~utils-tools/word-data-utils';
 export { isValidDictionaryData as isValidWordData };
 
-// Re-export generateWordDataHash from utils for convenience
-export { generateWordDataHash } from '~utils/word-data-utils';
 
 /**
  * Creates a word data object and saves it to the appropriate file

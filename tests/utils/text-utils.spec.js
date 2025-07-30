@@ -6,7 +6,7 @@ import {
   getConsonantCount,
   getVowelCount,
   isPalindrome,
-} from '~utils/text-utils';
+} from '~utils-client/text-utils';
 
 describe('text-utils', () => {
   describe('getVowelCount', () => {

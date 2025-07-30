@@ -4,9 +4,9 @@ import Heading from '~components/Heading.astro';
 import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types/word';
-import { getPageMetadata } from '~utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
-import { formatWordCount } from '~utils/text-utils';
+import { getPageMetadata } from '~utils-client/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
+import { formatWordCount } from '~utils-client/text-utils';
 
 interface Props {
   words: WordData[];

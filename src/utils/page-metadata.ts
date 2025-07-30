@@ -1,12 +1,13 @@
-import { logger } from '~utils/logger';
+import type { WordData } from '~types/word';
+import { logger } from '~utils-client/logger';
 import {
   DYNAMIC_STATS_DEFINITIONS,
   LETTER_PATTERN_DEFINITIONS,
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
-} from '~utils/stats-definitions';
-import { getAllWords, getAvailableYears, getWordsByYear } from '~utils/word-data-utils';
+} from '~utils-client/stats-definitions';
+import { allWords, getAvailableYears, getWordsByYear } from '~utils-client/word-data-utils';
 import {
   getChronologicalMilestones,
   getLetterPatternStats,
@@ -14,10 +15,7 @@ import {
   getPatternStats,
   getWordEndingStats,
   getWordStats,
-} from '~utils/word-stats-utils';
-
-const words = getAllWords();
-
+} from '~utils-client/word-stats-utils';
 
 type StaticPageMeta = {
   type: 'static';
@@ -39,7 +37,8 @@ type StatsPageMeta = {
 };
 type PageMeta = StaticPageMeta | HomepageMeta | StatsPageMeta;
 
-const PAGE_METADATA: Record<string, PageMeta> = {
+function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
+  return {
   '': {
     type: 'home',
     title: 'Word of the Day',
@@ -197,11 +196,10 @@ const PAGE_METADATA: Record<string, PageMeta> = {
     description: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].metaDescription,
     category: 'stats',
   },
-} as const;
+  } as const;
+}
 
-function getCountForPath(path: string): number {
-  // use top-level words
-
+function getCountForPath(path: string, words: WordData[] = allWords): number {
   switch (path) {
     case 'stats/words-ending-ly':
       return getWordEndingStats(words).ly.length;
@@ -251,14 +249,14 @@ function getCountForPath(path: string): number {
     default:
       if (path.startsWith('words/')) {
         const year = path.replace('words/', '');
-        return getWordsByYear(year).length;
+        return getWordsByYear(year, words).length;
       }
       return 0;
   }
 }
 
 
-export function getPageMetadata(pathname?: string) {
+export function getPageMetadata(pathname?: string, words: WordData[] = allWords) {
   if (!pathname) {
 throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname from your page.');
 }
@@ -273,6 +271,7 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
     };
   }
 
+  const PAGE_METADATA = createPageMetadata(words);
   const metadata = PAGE_METADATA[path as keyof typeof PAGE_METADATA];
   if (!metadata) {
     logger.warn('No metadata found', {
@@ -296,7 +295,7 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
       return {
         ...metadata,
         title: metadata.title,
-        description: metadata.description(getCountForPath(path)),
+        description: metadata.description(getCountForPath(path, words)),
       };
     case 'static':
     default:
@@ -308,31 +307,32 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
   }
 }
 
-export function getAllPageMetadata() {
+export function getAllPageMetadata(words: WordData[] = allWords) {
   const pages = [];
 
   // Check for debug flag to show all pages (including empty ones)
-  const showEmptyPages = __SHOW_EMPTY_STATS__;
+  const showEmptyPages = (globalThis as Record<string, unknown>).__SHOW_EMPTY_STATS__ || false;
 
+  const PAGE_METADATA = createPageMetadata(words);
   // Add static pages, filtering out empty stats pages
   for (const [path] of Object.entries(PAGE_METADATA)) {
     if (path !== '') {
       // Filter out stats pages with 0 results (unless debug flag is set)
       if (path.startsWith('stats/') && path !== 'stats') {
-        const count = getCountForPath(path);
+        const count = getCountForPath(path, words);
         if (count === 0 && !showEmptyPages) {
           continue; // Skip empty pages
         }
       }
-      pages.push({ path, ...getPageMetadata(path) });
+      pages.push({ path, ...getPageMetadata(path, words) });
     }
   }
 
   // Add dynamic year pages
-  const years = getAvailableYears();
+  const years = getAvailableYears(words);
   for (const year of years) {
     const path = `words/${year}`;
-    pages.push({ path, ...getPageMetadata(path) });
+    pages.push({ path, ...getPageMetadata(path, words) });
   }
 
   return pages;

@@ -16,6 +16,8 @@ declare const __HUMANS_DEVELOPER_SITE__: string;
 declare const __COLOR_PRIMARY__: string;
 declare const __COLOR_PRIMARY_LIGHT__: string;
 declare const __COLOR_PRIMARY_DARK__: string;
+declare const __ENVIRONMENT__: string;
 declare const __GA_MEASUREMENT_ID__: string;
 declare const __GA_ENABLED__: boolean;
 declare const __SHOW_EMPTY_STATS__: boolean;
+declare const __SOURCE_DIR__: string;

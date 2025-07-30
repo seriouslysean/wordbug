@@ -1,7 +1,7 @@
 import { getAdapter } from '~adapters/factory';
 import type { WordData } from '~types/word';
 import type { WordnikDefinition } from '~types/wordnik';
-import { logger } from '~utils/logger';
+import { logger } from '~utils-client/logger';
 
 /**
  * Universal wrapper for fetching word data from any dictionary API

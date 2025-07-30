@@ -3,9 +3,9 @@ import WordComponent from '~components/Word.astro';
 import WordNav from '~components/WordNav.astro';
 import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types/word';
-import { STRUCTURED_DATA_TYPE } from '~utils/schema-utils.ts';
-import { getMetaDescription } from '~utils/seo-utils.ts';
-import { getAdjacentWords, getWordDetails } from '~utils/word-data-utils';
+import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
+import { getMetaDescription } from '~utils-client/seo-utils.ts';
+import { getAdjacentWords, getWordDetails } from '~utils-client/word-data-utils';
 
 interface Props {
   wordData: WordData;
@@ -34,7 +34,7 @@ const pageDescription = getMetaDescription({
   structuredDataType={structuredDataType}
   canonicalUrl={canonicalUrl}
 >
-  
+
     <WordComponent word={wordData} />
     <WordNav
       previousWord={previousWord}
@@ -43,5 +43,5 @@ const pageDescription = getMetaDescription({
       nextLabel="Next Word"
       ariaLabel="Word navigation"
     />
-  
+
 </Layout>

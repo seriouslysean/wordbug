@@ -6,8 +6,8 @@ import type {
   WordStatsResult,
   WordStreakStatsResult,
 } from '~types/word';
-import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
-import { logger } from '~utils/logger';
+import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils-client/date-utils';
+import { logger } from '~utils-client/logger';
 import {
   countSyllables,
   getConsonantCount,
@@ -20,7 +20,7 @@ import {
   isAllVowels,
   isPalindrome,
   isStartEndSame,
-} from '~utils/text-utils';
+} from '~utils-client/text-utils';
 
 /**
  * Analyzes word data to extract basic statistics including longest/shortest words and word count by letter.
@@ -35,7 +35,6 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
     shortestPalindrome: null,
     letterFrequency: {},
   };
-
 
   return words.reduce((stats, wordData) => {
     const word = wordData.word;

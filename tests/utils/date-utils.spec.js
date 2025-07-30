@@ -1,6 +1,6 @@
 import { describe, expect,it } from 'vitest';
 
-import { formatDate } from '~utils/date-utils.js';
+import { formatDate } from '~utils-client/date-utils.js';
 
 describe('date-utils', () => {
   describe('formatDate', () => {

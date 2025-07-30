@@ -12,7 +12,7 @@ import {
   getWordsByYear,
   groupWordsByYear,
   isValidDictionaryData,
-} from '~utils/word-data-utils';
+} from '~utils-client/word-data-utils';
 
 describe('word-data-utils', () => {
   const mockWordData = [
@@ -23,8 +23,6 @@ describe('word-data-utils', () => {
     { word: 'year2023', date: '20231201', data: [{ text: '2023 word', partOfSpeech: 'verb' }] },
   ];
 
-  const mockWordProvider = () => mockWordData;
-  const emptyWordProvider = () => [];
 
   beforeEach(() => {
     vi.useFakeTimers();
@@ -81,28 +79,28 @@ describe('word-data-utils', () => {
 
   describe('getCurrentWord', () => {
     it('returns most recent word not after today', () => {
-      const result = getCurrentWord(mockWordProvider);
+      const result = getCurrentWord(mockWordData);
       expect(result.word).toBe('current');
       expect(result.date).toBe('20250110');
     });
 
     it('returns first word when no words match date criteria', () => {
-      const futureWordProvider = () => [
+      const futureWords = [
         { word: 'future', date: '20250115', data: [] }, // future date
       ];
-      const result = getCurrentWord(futureWordProvider);
+      const result = getCurrentWord(futureWords);
       expect(result.word).toBe('future');
     });
 
     it('returns null when no words available', () => {
-      const result = getCurrentWord(emptyWordProvider);
+      const result = getCurrentWord([]);
       expect(result).toBeNull();
     });
   });
 
   describe('getPastWords', () => {
     it('returns words before given date', () => {
-      const result = getPastWords('20250110', mockWordProvider);
+      const result = getPastWords('20250110', mockWordData);
       const [first, second, third, fourth] = result;
 
       expect(result).toHaveLength(4);
@@ -113,59 +111,59 @@ describe('word-data-utils', () => {
     });
 
     it('limits to 5 words', () => {
-      const manyWordsProvider = () => Array.from({ length: 10 }, (_, i) => ({
+      const manyWords = Array.from({ length: 10 }, (_, i) => ({
         word: `word${i}`,
         date: `2025010${9 - i}`, // descending dates
         data: [],
       }));
-      const result = getPastWords('20250110', manyWordsProvider);
+      const result = getPastWords('20250110', manyWords);
       expect(result).toHaveLength(5);
     });
 
     it('returns empty array for empty date', () => {
-      expect(getPastWords('', mockWordProvider)).toEqual([]);
-      expect(getPastWords(null, mockWordProvider)).toEqual([]);
+      expect(getPastWords('', mockWordData)).toEqual([]);
+      expect(getPastWords(null, mockWordData)).toEqual([]);
     });
   });
 
   describe('getWordByDate', () => {
     it('finds word by exact date match', () => {
-      const result = getWordByDate('20250109', mockWordProvider);
+      const result = getWordByDate('20250109', mockWordData);
       expect(result.word).toBe('yesterday');
     });
 
     it('returns null for non-existent date', () => {
-      const result = getWordByDate('20250101', mockWordProvider);
+      const result = getWordByDate('20250101', mockWordData);
       expect(result).toBeNull();
     });
 
     it('returns null for empty date', () => {
-      expect(getWordByDate('', mockWordProvider)).toBeNull();
-      expect(getWordByDate(null, mockWordProvider)).toBeNull();
+      expect(getWordByDate('', mockWordData)).toBeNull();
+      expect(getWordByDate(null, mockWordData)).toBeNull();
     });
   });
 
   describe('getAdjacentWords', () => {
     it('returns previous and next words', () => {
-      const result = getAdjacentWords('20250109', mockWordProvider);
+      const result = getAdjacentWords('20250109', mockWordData);
       expect(result.previousWord.word).toBe('older'); // older date
       expect(result.nextWord.word).toBe('current'); // newer date
     });
 
     it('handles word at beginning of array', () => {
-      const result = getAdjacentWords('20250110', mockWordProvider);
+      const result = getAdjacentWords('20250110', mockWordData);
       expect(result.previousWord.word).toBe('yesterday');
       expect(result.nextWord).toBeNull(); // no newer word
     });
 
     it('handles word at end of array', () => {
-      const result = getAdjacentWords('20231201', mockWordProvider);
+      const result = getAdjacentWords('20231201', mockWordData);
       expect(result.previousWord).toBeNull(); // no older word
       expect(result.nextWord.word).toBe('year2024');
     });
 
     it('returns null for non-existent date', () => {
-      const result = getAdjacentWords('20250101', mockWordProvider);
+      const result = getAdjacentWords('20250101', mockWordData);
       expect(result.previousWord).toBeNull();
       expect(result.nextWord).toBeNull();
     });
@@ -185,17 +183,17 @@ describe('word-data-utils', () => {
 
   describe('getWordsByYear', () => {
     it('filters words by year', () => {
-      const result2025 = getWordsByYear('2025', mockWordProvider);
+      const result2025 = getWordsByYear('2025', mockWordData);
       expect(result2025).toHaveLength(3);
       expect(result2025.every(w => w.date.startsWith('2025'))).toBe(true);
 
-      const result2024 = getWordsByYear('2024', mockWordProvider);
+      const result2024 = getWordsByYear('2024', mockWordData);
       expect(result2024).toHaveLength(1);
       expect(result2024[0].word).toBe('year2024');
     });
 
     it('returns empty array for non-existent year', () => {
-      const result = getWordsByYear('2020', mockWordProvider);
+      const result = getWordsByYear('2020', mockWordData);
       expect(result).toEqual([]);
     });
   });
@@ -216,12 +214,12 @@ describe('word-data-utils', () => {
 
   describe('getAvailableYears', () => {
     it('returns unique years in descending order', () => {
-      const result = getAvailableYears(mockWordProvider);
+      const result = getAvailableYears(mockWordData);
       expect(result).toEqual(['2025', '2024', '2023']);
     });
 
     it('returns empty array for no words', () => {
-      const result = getAvailableYears(emptyWordProvider);
+      const result = getAvailableYears([]);
       expect(result).toEqual([]);
     });
   });

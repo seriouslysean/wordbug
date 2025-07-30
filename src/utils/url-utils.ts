@@ -1,4 +1,4 @@
-import { logger } from '~utils/logger';
+import { logger } from '~utils-client/logger';
 
 /**
  * Constructs a URL with the base URL if configured

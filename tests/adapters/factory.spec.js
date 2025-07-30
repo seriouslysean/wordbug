@@ -76,7 +76,7 @@ describe('adapter factory', () => {
         debug: vi.fn(),
       };
 
-      vi.doMock('~utils/logger', () => ({
+      vi.doMock('~utils-client/logger', () => ({
         logger: mockLogger,
       }));
 

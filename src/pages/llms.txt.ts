@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-import { generateLlmsTxt } from '~utils/static-file-utils';
+import { generateLlmsTxt } from '~utils-client/static-file-utils';
 
 export const GET: APIRoute = () => {
   const llmsTxt = generateLlmsTxt();

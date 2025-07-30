@@ -2,7 +2,7 @@ import {
  beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
-import { getUrl } from '~utils/url-utils';
+import { getUrl } from '~utils-client/url-utils';
 
 describe('utils', () => {
   describe('getUrl', () => {

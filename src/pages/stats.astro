@@ -3,9 +3,9 @@ import Heading from '~components/Heading.astro';
 import SiteLink from '~components/SiteLink.astro';
 import WordLink from '~components/WordLink.astro';
 import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~utils/page-metadata.ts';
-import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
-import { getAllWords } from '~utils/word-data-utils';
+import { getPageMetadata } from '~utils-client/page-metadata.ts';
+import { countSyllables, getConsonantCount, getVowelCount } from '~utils-client/text-utils';
+import { allWords } from '~utils-client/word-data-utils';
 import {
   findWordDate,
   getChronologicalMilestones,
@@ -17,10 +17,10 @@ import {
   getSyllableStats,
   getWordEndingStats,
   getWordStats,
-} from '~utils/word-stats-utils';
+} from '~utils-client/word-stats-utils';
 
 // Get all words and handle empty case
-const words = getAllWords().sort((a, b) => a.date.localeCompare(b.date));
+const words = [...allWords].sort((a, b) => a.date.localeCompare(b.date));
 const totalWords = words.length;
 
 // Initialize variables with safe defaults

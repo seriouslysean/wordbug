@@ -1,5 +1,5 @@
 import { generateGenericShareImage } from '~tools/utils';
-import { getStaticPages } from '~utils/page-utils';
+import { getStaticPages } from '~utils-tools/page-utils';
 
 /**
  * Generates a social share image for a specific page

@@ -1,10 +1,10 @@
 import fs from 'fs';
 
 import { getAdapter } from '~adapters/factory';
-import { getAllWordFiles } from '~tools/utils';
+import { allWords } from '~tools/utils';
 import type { WordData } from '~types/word';
-import { logger } from '~utils/logger';
-import { isValidDictionaryData } from '~utils/word-data-utils';
+import { logger } from '~utils-tools/logger';
+import { isValidDictionaryData } from '~utils-tools/word-data-utils';
 
 interface RegenerateOptions {
   wordField: string;
@@ -17,55 +17,6 @@ interface RegenerateOptions {
   batchTimeout: number;
 }
 
-/**
- * Extracts a value from a nested object using dot notation
- * @param obj - Object to extract value from
- * @param path - Dot-separated path (e.g., "metadata.term" or "word")
- * @returns Extracted value or undefined
- */
-function getNestedValue(obj: unknown, path: string): unknown {
-  return path.split('.').reduce((current, key) => (current as Record<string, unknown>)?.[key], obj);
-}
-
-/**
- * Reads and parses a word file, extracting word and date using specified field paths
- * @param filePath - Path to the word file
- * @param wordField - Dot-separated path to word field
- * @param dateField - Dot-separated path to date field
- * @returns Object with word, date, and file path, or null if extraction fails
- */
-function extractWordInfo(filePath: string, wordField: string, dateField: string): { word: string; date: string; path: string } | null {
-  try {
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const data = JSON.parse(content);
-
-    const word = getNestedValue(data, wordField);
-    const date = getNestedValue(data, dateField);
-
-    if (!word || !date) {
-      logger.warn('Failed to extract word or date from file', {
-        filePath,
-        wordField,
-        dateField,
-        extractedWord: word,
-        extractedDate: date,
-      });
-      return null;
-    }
-
-    // Normalize date to YYYYMMDD format (remove dashes if present)
-    const normalizedDate = String(date).replace(/-/g, '');
-
-    return {
-      word: String(word).toLowerCase(),
-      date: normalizedDate,
-      path: filePath,
-    };
-  } catch (error) {
-    logger.error('Error reading word file', { filePath, error: (error as Error).message });
-    return null;
-  }
-}
 
 /**
  * Creates a new word file with fresh data from the dictionary adapter
@@ -136,17 +87,18 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
  */
 async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
   try {
-    const wordFiles = getAllWordFiles();
-    console.log(`Found ${wordFiles.length} word files to process`);
+    console.log(`Found ${allWords.length} word files to process`);
 
-    // Extract word info from all files
+    // Extract word info from all words
     const wordsToRegenerate: Array<{ word: string; date: string; path: string }> = [];
 
-    for (const file of wordFiles) {
-      const wordInfo = extractWordInfo(file.path, options.wordField, options.dateField);
-      if (wordInfo) {
-        wordsToRegenerate.push(wordInfo);
-      }
+    for (const wordData of allWords) {
+      const wordInfo = {
+        word: wordData.word,
+        date: wordData.date,
+        path: `data/words/${wordData.date.slice(0, 4)}/${wordData.date}.json`,
+      };
+      wordsToRegenerate.push(wordInfo);
     }
 
     console.log(`Successfully extracted ${wordsToRegenerate.length} words to regenerate`);
