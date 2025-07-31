@@ -3,8 +3,8 @@ import fs from 'fs';
 import { getAdapter } from '~adapters/factory';
 import { allWords } from '~tools/utils';
 import type { WordData } from '~types/word';
-import { logger } from '~utils-tools/logger';
-import { isValidDictionaryData } from '~utils-tools/word-data-utils';
+import { logger } from '~utils-client/logger';
+import { isValidDictionaryData } from '~utils-client/word-data-utils';
 
 interface RegenerateOptions {
   wordField: string;

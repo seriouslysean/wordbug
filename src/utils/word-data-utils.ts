@@ -1,9 +1,6 @@
 import crypto from 'crypto';
-import fs from 'fs';
-import path from 'path';
 
 import { getAdapter } from '~adapters/factory';
-import { createPaths } from '~config/paths';
 import type { DictionaryDefinition } from '~types/adapters';
 import type {
   WordAdjacentResult,
@@ -12,67 +9,72 @@ import type {
   WordProcessedData,
 } from '~types/word';
 import { logger } from '~utils-client/logger';
-import { getAllWords, type WordFileInfo } from '~utils-client/word-data-shared';
-
-
-// Astro file loader for dependency injection
-const getAllWordsAstro = (): WordFileInfo[] => {
-  const loadFromDirectory = (dir: string): WordFileInfo[] => {
-    if (!fs.existsSync(dir)) {
-      return [];
-    }
-
-    const files = fs.readdirSync(dir, { recursive: true })
-      .filter((file): file is string => typeof file === 'string' && file.endsWith('.json'))
-      .map(file => path.join(dir, file));
-
-    const result = files.map(filePath => {
-      const content = fs.readFileSync(filePath, 'utf-8');
-      const fileName = path.basename(filePath);
-      const date = fileName.match(/(\d{8})\.json$/)?.[1] || '';
-
-      return {
-        filePath,
-        date,
-        content,
-      };
-    });
-
-    return result;
-  };
-
-  // Load words from configured path and sort by date (newest first) for consistency
-  const paths = createPaths(process.env.SOURCE_DIR || '');
-  const files = loadFromDirectory(paths.words);
-  const sortedFiles = files.sort((a, b) => b.date.localeCompare(a.date));
-
-  return sortedFiles;
-};
-
-// Import Node.js loader from shared utils for production builds
-import { getWordFilesNode } from '~utils/word-data-node';
 
 /**
- * All words loaded once and cached - environment-aware loader selection
+ * Shared utility to get words from Content Collections with fallback for tools
+ * Use this in all Astro components, pages, and Node.js contexts
  */
-export const allWords = __ENVIRONMENT__ === 'production' || __ENVIRONMENT__ === 'build'
-  ? getAllWords(getWordFilesNode)
-  : getAllWords(getAllWordsAstro);
+export async function getWordsFromCollection(): Promise<WordData[]> {
+  try {
+    // Dynamic import to avoid issues in non-Astro contexts (like tools)
+    const { getCollection } = await import('astro:content');
+    const words = await getCollection('words');
 
-/**
- * Fetches word data from the configured dictionary adapter and transforms it to our internal format.
- * Uses the current date if no date is provided.
- *
- * @param {string} word - The word to fetch dictionary data for
- * @param {Record<string, unknown>} options - Additional options to pass to the adapter
- * @param {string} [date] - Optional date in YYYYMMDD format; defaults to current date
- * @returns {Promise<WordData>} Promise resolving to transformed word data in our internal format
- */
-export async function fetchWordFromAdapter(word: string, options: Record<string, unknown> = {}, date?: string): Promise<WordData> {
-  const adapter = getAdapter();
-  const response = await adapter.fetchWordData(word, options);
-  return adapter.transformToWordData(response, date || new Date().toISOString().slice(0,10).replace(/-/g, ''));
+    // Convert collection entries to WordData format and sort by date (newest first)
+    return words
+      .map(entry => {
+        const extractedDate = entry.id.includes('/') ? entry.id.split('/').pop() : entry.id;
+        return {
+          ...entry.data,
+          // Override date if extracted from filename (preserves original if already correct)
+          date: extractedDate || entry.data.date,
+        };
+      })
+      .sort((a, b) => b.date.localeCompare(a.date));
+  } catch {
+    // Fallback to tools loader when Astro collections are not available
+    const { allWords: toolsWords } = await import('~tools/utils');
+    return toolsWords;
+  }
 }
+
+/**
+ * Shared utility to extract definition and part of speech from word data
+ * Handles the array structure of word.data consistently across components
+ */
+export function extractWordDefinition(wordData: WordData): { definition: string; partOfSpeech: string } {
+  if (!wordData?.data || !Array.isArray(wordData.data) || wordData.data.length === 0) {
+    return { definition: '', partOfSpeech: '' };
+  }
+
+  const firstDefinition = wordData.data[0];
+  return {
+    definition: firstDefinition.text || '',
+    partOfSpeech: firstDefinition.partOfSpeech || '',
+  };
+}
+
+/**
+ * All words loaded with consistent sorting across environments
+ */
+let _cachedWords: WordData[] | null = null;
+
+async function getAllWords(): Promise<WordData[]> {
+  if (_cachedWords === null) {
+    try {
+      _cachedWords = await getWordsFromCollection();
+      logger.info('Loaded words successfully', { count: _cachedWords.length });
+    } catch (error) {
+      logger.error('Failed to load words', { error: (error as Error).message });
+      _cachedWords = [];
+    }
+  }
+  return _cachedWords;
+}
+
+// For synchronous access in places that need it immediately
+export const allWords = await getAllWords();
+
 
 /**
  * Processes raw word data into a standardized format for display.
@@ -102,8 +104,13 @@ export const getCurrentWord = (words: WordData[] = allWords): WordData | null =>
 
   const today = new Date();
   const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
-  const found = words.find(word => word.date <= dateString) || words[0];
-  return found;
+
+  // Find the most recent word that's not in the future
+  // Since words are sorted newest first, find the first one <= today
+  const found = words.find(word => word.date <= dateString);
+
+  // If no word is found (all are in the future), return the oldest word (last in array)
+  return found || words[words.length - 1];
 };
 
 /**

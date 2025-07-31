@@ -7,4 +7,4 @@
 // - Image functions → image-utils.js
 
 export { formatWordCount } from '~utils-client/text-utils';
-export { getDateUrl,getFullUrl, getUrl, getWordUrl } from '~utils-client/url-utils';
+export { getFullUrl, getUrl, getWordUrl } from '~utils-client/url-utils';

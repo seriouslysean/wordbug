@@ -58,12 +58,6 @@ export const getFullUrl = (path = '/'): string => {
  * Creates a consistent, SEO-friendly internal link URL
  */
 export const getWordUrl = (word: string): string => {
-  return word ? getUrl(`/${word}`) : '';
+  return word ? getUrl(`/words/${word}`) : '';
 };
 
-/**
- * Creates a consistent, SEO-friendly date-based link URL
- */
-export const getDateUrl = (date: string): string => {
-  return date ? getUrl(`/${date}`) : '';
-};

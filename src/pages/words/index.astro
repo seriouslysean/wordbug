@@ -6,8 +6,9 @@ import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
 import { formatWordCount } from '~utils-client/text-utils';
-import { allWords, groupWordsByYear } from '~utils-client/word-data-utils';
+import { getWordsFromCollection, groupWordsByYear } from '~utils-client/word-data-utils';
 
+const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---

@@ -42,8 +42,7 @@ const requiredEnvVars = [
   'SITE_TITLE',
   'SITE_DESCRIPTION',
   'SITE_ID',
-  'SITE_AUTHOR',
-  'WORDNIK_API_KEY',
+  'WORD_DATA_PATH',
 ];
 
 const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
@@ -98,6 +97,7 @@ export default defineConfig({
       __SITE_TITLE__: JSON.stringify(process.env.SITE_TITLE),
       __SITE_DESCRIPTION__: JSON.stringify(process.env.SITE_DESCRIPTION),
       __SITE_URL__: JSON.stringify(process.env.SITE_URL || ''),
+      __WORD_DATA_PATH__: JSON.stringify(process.env.WORD_DATA_PATH),
       __TIMESTAMP__: JSON.stringify(timestamp),
       __HUMANS_WORD_CURATOR__: JSON.stringify(process.env.HUMANS_WORD_CURATOR || ''),
       __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),

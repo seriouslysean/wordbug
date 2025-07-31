@@ -5,25 +5,27 @@ import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types/word';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
 import { getMetaDescription } from '~utils-client/seo-utils.ts';
-import { getAdjacentWords, getWordDetails } from '~utils-client/word-data-utils';
+import { extractWordDefinition } from '~utils-client/word-data-utils';
 
 interface Props {
   wordData: WordData;
+  previousWord?: WordData | null;
+  nextWord?: WordData | null;
   canonicalUrl?: string;
   structuredDataType?: string;
 }
 
-const { wordData, canonicalUrl, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE } = Astro.props;
+const { wordData, previousWord, nextWord, canonicalUrl, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE } = Astro.props;
 
 if (!wordData) {
   return Astro.redirect('/404');
 }
 
-const { previousWord, nextWord } = getAdjacentWords(wordData.date);
-const wordDetails = getWordDetails(wordData);
+// Extract definition using shared utility
+const { definition } = extractWordDefinition(wordData);
 const pageDescription = getMetaDescription({
   word: wordData.word,
-  definition: wordDetails.definition,
+  definition,
 });
 ---
 

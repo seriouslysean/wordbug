@@ -12,7 +12,7 @@ import { getAvailableYears } from '~utils-client/word-data-utils';
  */
 export const getStaticPages = (): Array<{ title: string; path: string }> => {
   const pages: Array<{ title: string; path: string }> = [];
-  const paths = createPaths(process.env.SOURCE_DIR || '');
+  const paths = createPaths();
   const pagesDir = paths.pages;
 
   const scanDirectory = (dir: string, basePath = ''): void => {

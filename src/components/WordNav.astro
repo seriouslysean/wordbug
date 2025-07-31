@@ -1,7 +1,6 @@
 ---
-import { getCurrentWord } from '~utils-client/word-data-utils';
-
 import WordLink from './WordLink.astro';
+import { getCurrentWord, getWordsFromCollection } from '~utils-client/word-data-utils';
 
 interface Props {
   previousWord: {
@@ -25,8 +24,9 @@ const {
   ariaLabel = 'Word navigation',
 } = Astro.props;
 
-const currentWord = getCurrentWord();
-const isCurrentWord = nextWord?.word === currentWord?.word;
+// Get the word that should be displayed on the homepage (today's word)
+const allWords = await getWordsFromCollection();
+const homepageWord = getCurrentWord(allWords);
 ---
 
 <nav class="word-nav" aria-label={ariaLabel}>
@@ -42,7 +42,7 @@ const isCurrentWord = nextWord?.word === currentWord?.word;
     {nextWord && (
       <div class="word-nav__next">
         <span class="word-nav__label">{nextLabel}</span>
-        <WordLink word={nextWord} href={isCurrentWord ? '/' : undefined} />
+        <WordLink word={nextWord} {...(nextWord.word === homepageWord?.word && { href: '/' })} />
       </div>
     )}
   </div>

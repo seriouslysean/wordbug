@@ -4,8 +4,8 @@ import path from 'path';
 import { paths } from '~config/paths';
 import { allWords, createWordEntry } from '~tools/utils';
 import type { WordData } from '~types/word';
-import { getTodayYYYYMMDD, isValidDate } from '~utils-tools/date-utils';
-import { logger } from '~utils-tools/logger';
+import { getTodayYYYYMMDD, isValidDate } from '~utils-client/date-utils';
+import { logger } from '~utils-client/logger';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found

@@ -5,7 +5,6 @@ import {
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
 } from '~utils-client/stats-definitions';
-import { allWords } from '~utils-client/word-data-utils';
 import {
   getChronologicalMilestones,
   getCurrentStreakStats,
@@ -134,8 +133,9 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
   ];
 };
 
-export const generateStatsStaticPaths = () => {
-  const words = allWords;
+export const generateStatsStaticPaths = async () => {
+  const { getWordsFromCollection } = await import('~utils-client/word-data-utils');
+  const words = await getWordsFromCollection();
 
   const showEmptyPages = __SHOW_EMPTY_STATS__;
   const statsConfig = createStatsConfig(words);

@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import type { WordData } from '~types/word';
 import { formatDate } from '~utils-client/date-utils';
 import { getAllPageMetadata } from '~utils-client/page-metadata';
-import { allWords, generateWordDataHash } from '~utils-client/word-data-utils';
+import { generateWordDataHash } from '~utils-client/word-data-utils';
 
 /**
  * List of supported static text files
@@ -105,7 +105,7 @@ export function generateHumansTxt(): string {
  * @param {WordData[]} [words=allWords] - Array of word data to use for stats
  * @returns The content for health.txt
  */
-export function generateHealthTxt(words: WordData[] = allWords): string {
+export function generateHealthTxt(words: WordData[]): string {
   // Get the current time for timestamp
   const currentTime = new Date().toISOString();
   // Use Vite's injected constants, which will be replaced at build time
@@ -133,7 +133,7 @@ export function generateHealthTxt(words: WordData[] = allWords): string {
  * @param {WordData[]} [words=allWords] - Array of word data to use for stats
  * @returns The content for llms.txt or null if required data is missing
  */
-export function generateLlmsTxt(words: WordData[] = allWords): string | null {
+export function generateLlmsTxt(words: WordData[]): string | null {
   const siteTitle = __SITE_TITLE__;
   const siteDescription = __SITE_DESCRIPTION__;
   const siteUrl = __SITE_URL__;
@@ -222,7 +222,7 @@ export function generateLlmsTxt(words: WordData[] = allWords): string | null {
  * @param siteUrl - The base URL of the site (required for robots.txt)
  * @returns The content of the requested file, or null if not a supported static file
  */
-export function getStaticFileContent(pathname: string, siteUrl?: string): string | null {
+export function getStaticFileContent(pathname: string, words: WordData[], siteUrl?: string): string | null {
   // Remove leading slash if present
   const filename = pathname.startsWith('/') ? pathname.substring(1) : pathname;
 
@@ -237,9 +237,9 @@ export function getStaticFileContent(pathname: string, siteUrl?: string): string
     case 'humans.txt':
       return generateHumansTxt();
     case 'health.txt':
-      return generateHealthTxt();
+      return generateHealthTxt(words);
     case 'llms.txt':
-      return generateLlmsTxt();
+      return generateLlmsTxt(words);
     default:
       return null;
   }

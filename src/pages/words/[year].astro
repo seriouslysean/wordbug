@@ -4,15 +4,19 @@ import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
-import { getAvailableYears, getWordsByYear } from '~utils-client/word-data-utils';
+import { getWordsFromCollection } from '~utils-client/word-data-utils';
 const { title, description } = getPageMetadata(Astro.url.pathname);
 
 export async function getStaticPaths() {
-  const years = getAvailableYears();
+  const allWords = await getWordsFromCollection();
+
+  const years = [...new Set(allWords.map(word => word.date.substring(0, 4)))]
+    .sort((a, b) => b.localeCompare(a));
+
   return years
     .map(year => ({
       params: { year },
-      props: { words: getWordsByYear(year) },
+      props: { words: allWords.filter(word => word.date.startsWith(year)) },
     }))
     .filter(({ props }) => props.words.length > 0);
 }

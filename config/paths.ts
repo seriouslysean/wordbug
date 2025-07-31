@@ -5,24 +5,35 @@
  */
 
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import type { PathConfig } from '~types/config';
 
-// Get the directory name of the current module
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// Get the project root (one level up from config directory)
-const ROOT = path.resolve(__dirname, '..');
+// Get the project root - use process.cwd() to ensure we get the actual project root
+// regardless of where this file is executed from (source or built)
+const ROOT = process.cwd();
 
-// Shared path construction logic
-export const createPaths = (sourceDir: string = process.env.SOURCE_DIR || ''): PathConfig => ({
-  words: path.join(ROOT, 'data', sourceDir, 'words'),
+// Shared path construction logic - now uses WORD_DATA_PATH directly
+const getWordsPath = (): string => {
+  const wordDataPath = process.env.WORD_DATA_PATH;
+  if (!wordDataPath) {
+    throw new Error('WORD_DATA_PATH environment variable is required');
+  }
+  return path.isAbsolute(wordDataPath) ? wordDataPath : path.join(ROOT, wordDataPath);
+};
+
+const getImagesPath = (): string => {
+  const sourceDir = process.env.SOURCE_DIR || '';
+  return sourceDir ? path.join(ROOT, 'public', sourceDir, 'images') : path.join(ROOT, 'public', 'images');
+};
+
+export const createPaths = (): PathConfig => ({
+  words: getWordsPath(),
   pages: path.join(ROOT, 'src', 'pages'),
-  images: path.join(ROOT, 'public', sourceDir, 'images'),
+  images: getImagesPath(),
   fonts: path.join(ROOT, 'public', 'fonts'),
 });
 
-// Default paths for tools (using process.env)
+// Default paths for tools
 export const paths = createPaths();
 
 export default { paths };

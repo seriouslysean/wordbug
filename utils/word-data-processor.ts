@@ -1,4 +1,3 @@
-import path from 'path';
 
 import type { WordData } from '~types/word';
 import { logger } from '~utils-client/logger';
@@ -18,10 +17,10 @@ export interface WordFileInfo {
 export type WordFileLoader = () => WordFileInfo[];
 
 /**
- * Core word data processing logic shared between environments
+ * Core word data processing logic shared between all environments
  * Accepts dependency injection for file loading
  */
-export const getAllWords = (fileLoader: WordFileLoader): WordData[] => {
+export const processWordFiles = (fileLoader: WordFileLoader): WordData[] => {
   try {
     // Load files using injected loader
     const files = fileLoader();
@@ -36,19 +35,12 @@ export const getAllWords = (fileLoader: WordFileLoader): WordData[] => {
       .map(file => {
         try {
           const data = JSON.parse(file.content);
-          const fileName = path.basename(file.filePath);
-          const dateFromFile = fileName.match(/(\d{8})\.json$/)?.[1];
-
-          if (!dateFromFile) {
-            logger.error('Word data file is missing date information', { path: file.filePath });
-            return null;
-          }
 
           // Handle both array and single object formats
           const wordData = Array.isArray(data) ? data[0] : data;
 
-          // Ensure the date matches the filename
-          return { ...wordData, date: file.date || dateFromFile };
+          // Use the normalized date from the loader
+          return { ...wordData, date: file.date };
         } catch (error) {
           logger.error('Failed to parse word file', {
             path: file.filePath,
@@ -57,16 +49,12 @@ export const getAllWords = (fileLoader: WordFileLoader): WordData[] => {
           return null;
         }
       })
-      .filter((item): item is WordData => item !== null)
-      .sort((a, b) => {
-        return b.date.localeCompare(a.date);
-      });
+      .filter((item): item is WordData => item !== null);
 
-    logger.info('Loaded word files successfully', {
-      count: words.length,
-      isArray: Array.isArray(words),
-      firstWordSample: words[0] ? { word: words[0].word, date: words[0].date } : null,
-    });
+    // Ensure consistent sorting - newest first by date
+    words.sort((a, b) => b.date.localeCompare(a.date));
+
+    logger.info('Loaded word files successfully', { count: words.length });
     return words;
   } catch (error) {
     logger.error('Failed to load word data', { error: (error as Error).message });

@@ -29,6 +29,7 @@
     "tool:ping-search-engines": "tsx tools/ping-search-engines.ts",
     "tool:regenerate-all-words": "tsx tools/regenerate-all-words.ts",
     "test": "vitest run",
+    "test:silent": "vitest run --silent",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint .",

@@ -1,6 +1,6 @@
 import { generateGenericShareImage } from '~tools/utils';
-import { getStaticPages } from '~utils-tools/page-utils';
-import { getAvailableYears } from '~utils-tools/word-data-utils';
+import { getStaticPages } from '~utils-client/page-utils';
+import { getAvailableYears } from '~utils-client/word-data-utils';
 
 /**
  * Generates social share images for all static pages including year archives and special pages

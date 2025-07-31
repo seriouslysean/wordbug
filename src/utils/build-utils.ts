@@ -1,6 +1,6 @@
 import type { WordData } from '~types/word';
 
-import { allWords, generateWordDataHash } from './word-data-utils';
+import { generateWordDataHash } from './word-data-utils';
 
 export interface BuildData {
   version: string;
@@ -16,7 +16,7 @@ export interface BuildData {
  * @param {WordData[]} [words=allWords] - Array of word data to use for stats
  * @returns {Object} Build data for browser exposure
  */
-export function getBuildData(words: WordData[] = allWords): BuildData {
+export function getBuildData(words: WordData[]): BuildData {
   return {
     version: __VERSION__,
     release: __RELEASE__,

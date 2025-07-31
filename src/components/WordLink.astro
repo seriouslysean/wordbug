@@ -1,6 +1,6 @@
 ---
 import { formatDate } from '~utils-client/date-utils.js';
-import { getDateUrl, getWordUrl } from '~utils-client/url-utils';
+import { getWordUrl } from '~utils-client/url-utils';
 
 import SiteLink from './SiteLink.astro';
 
@@ -10,14 +10,13 @@ interface Props {
     date: string;
   };
   class?: string;
-  useDate?: boolean;
   href?: string;
 }
 
-const { word, class: className = 'word-link', useDate = false, href: overrideHref } = Astro.props;
+const { word, class: className = 'word-link', href: overrideHref } = Astro.props;
 const formattedDate = formatDate(word.date);
 
-const href = overrideHref || (useDate ? getDateUrl(word.date) : getWordUrl(word.word));
+const href = overrideHref || getWordUrl(word.word);
 ---
 
 <SiteLink

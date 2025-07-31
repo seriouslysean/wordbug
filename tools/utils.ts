@@ -4,8 +4,8 @@ import path from 'path';
 import sharp from 'sharp';
 
 import { paths } from '~config/paths';
-import { logger } from '~utils-tools/logger';
-import { getAllWords, type WordFileInfo as SharedWordFileInfo } from '~utils-tools/word-data-shared';
+import { processWordFiles } from '~utils/word-data-processor';
+import { logger } from '~utils-client/logger';
 
 // Colors for image generation
 const imageColors = {
@@ -84,20 +84,17 @@ export const getWordFiles = (): WordFileInfo[] => {
   return files.sort((a, b) => b.date.localeCompare(a.date));
 };
 
-// Node.js file loader for dependency injection
-const getAllWordsNode = (): SharedWordFileInfo[] => {
+/**
+ * All words loaded once and cached - Node.js environment
+ */
+export const allWords = processWordFiles(() => {
   const files = getWordFiles();
   return files.map(file => ({
     filePath: file.path,
     date: file.date,
     content: fs.readFileSync(file.path, 'utf-8'),
   }));
-};
-
-/**
- * All words loaded once and cached - Node.js environment
- */
-export const allWords = getAllWords(getAllWordsNode);
+});
 
 
 /**
@@ -238,12 +235,7 @@ export function createWordSvg(word: string, date: string): string {
  */
 export async function generateShareImage(word: string, date: string): Promise<void> {
   const year = date.slice(0, 4);
-
-  // Mirror the SOURCE_DIR structure for social images
-  const sourceDir = process.env.SOURCE_DIR || '';
-  const socialDir = sourceDir
-    ? path.join(paths.images, 'social', sourceDir, year)
-    : path.join(paths.images, 'social', year);
+  const socialDir = path.join(paths.images, 'social', year);
 
   createDirectoryIfNeeded(socialDir);
 
@@ -331,8 +323,8 @@ import { getAdapter } from '~adapters/factory';
 import type { CreateWordEntryResult } from '~types/tools';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';
-import { formatDate, isValidDate } from '~utils-tools/date-utils';
-import { isValidDictionaryData } from '~utils-tools/word-data-utils';
+import { formatDate, isValidDate } from '~utils-client/date-utils';
+import { isValidDictionaryData } from '~utils-client/word-data-utils';
 export { isValidDictionaryData as isValidWordData };
 
 

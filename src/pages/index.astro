@@ -3,11 +3,10 @@ import WordDisplay from '~components/WordDisplay.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
-import { allWords, getCurrentWord } from '~utils-client/word-data-utils';
+import { getCurrentWord,getWordsFromCollection } from '~utils-client/word-data-utils';
 
-const currentWord = getCurrentWord();
-
-// Get last 5 words excluding the current one
+const allWords = await getWordsFromCollection();
+const currentWord = getCurrentWord(allWords);
 const wordsToShow = allWords
   .filter(word => word && word.word !== currentWord?.word)
   .slice(0, 5);
