@@ -11,31 +11,24 @@ import type {
 import { logger } from '~utils-client/logger';
 
 /**
- * Shared utility to get words from Content Collections with fallback for tools
- * Use this in all Astro components, pages, and Node.js contexts
+ * Get words from Astro Content Collections
+ * Use this in all Astro components and pages
  */
 export async function getWordsFromCollection(): Promise<WordData[]> {
-  try {
-    // Dynamic import to avoid issues in non-Astro contexts (like tools)
-    const { getCollection } = await import('astro:content');
-    const words = await getCollection('words');
+  const { getCollection } = await import('astro:content');
+  const words = await getCollection('words');
 
-    // Convert collection entries to WordData format and sort by date (newest first)
-    return words
-      .map(entry => {
-        const extractedDate = entry.id.includes('/') ? entry.id.split('/').pop() : entry.id;
-        return {
-          ...entry.data,
-          // Override date if extracted from filename (preserves original if already correct)
-          date: extractedDate || entry.data.date,
-        };
-      })
-      .sort((a, b) => b.date.localeCompare(a.date));
-  } catch {
-    // Fallback to tools loader when Astro collections are not available
-    const { allWords: toolsWords } = await import('~tools/utils');
-    return toolsWords;
-  }
+  // Convert collection entries to WordData format and sort by date (newest first)
+  return words
+    .map(entry => {
+      const extractedDate = entry.id.includes('/') ? entry.id.split('/').pop() : entry.id;
+      return {
+        ...entry.data,
+        // Override date if extracted from filename (preserves original if already correct)
+        date: extractedDate || entry.data.date,
+      };
+    })
+    .sort((a, b) => b.date.localeCompare(a.date));
 }
 
 /**

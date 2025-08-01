@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import type { WordData } from '~types/word';
-import { formatDate } from '~utils-client/date-utils';
+import { formatDate } from '~utils/date-utils';
 import { getAllPageMetadata } from '~utils-client/page-metadata';
 import { generateWordDataHash } from '~utils-client/word-data-utils';
 

@@ -1,10 +1,12 @@
+console.log('Add word tool starting...');
+
 import fs from 'fs';
 import path from 'path';
 
 import { paths } from '~config/paths';
 import { allWords, createWordEntry } from '~tools/utils';
 import type { WordData } from '~types/word';
-import { getTodayYYYYMMDD, isValidDate } from '~utils-client/date-utils';
+import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
 import { logger } from '~utils-client/logger';
 
 /**
@@ -71,11 +73,6 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
 
     // If no date provided, use today (local timezone)
     const targetDate = date || getTodayYYYYMMDD();
-
-    if (!targetDate) {
-      logger.error('Failed to get current date');
-      process.exit(1);
-    }
 
     // Validate that date is not in the future
     if (!isNotFutureDate(targetDate)) {

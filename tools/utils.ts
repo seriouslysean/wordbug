@@ -323,7 +323,7 @@ import { getAdapter } from '~adapters/factory';
 import type { CreateWordEntryResult } from '~types/tools';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';
-import { formatDate, isValidDate } from '~utils-client/date-utils';
+import { formatDate, isValidDate } from '~utils/date-utils';
 import { isValidDictionaryData } from '~utils-client/word-data-utils';
 export { isValidDictionaryData as isValidWordData };
 
