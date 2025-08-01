@@ -1,10 +1,9 @@
 import fs from 'fs';
 
 import { getAdapter } from '~adapters/factory';
-import { allWords } from '~tools/utils';
+import { getAllWords } from '~tools/utils';
 import type { WordData } from '~types/word';
-import { logger } from '~utils-client/logger';
-import { isValidDictionaryData } from '~utils-client/word-data-utils';
+import { isValidDictionaryData } from '~utils/word-validation';
 
 interface RegenerateOptions {
   wordField: string;
@@ -39,7 +38,7 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
     const data = response.definitions;
 
     if (!isValidDictionaryData(data)) {
-      logger.error('Invalid word data received from adapter', { word, adapter: adapter.name });
+      console.error('Invalid word data received from adapter', { word, adapter: adapter.name });
       return false;
     }
 
@@ -87,6 +86,7 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
  */
 async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
   try {
+    const allWords = getAllWords();
     console.log(`Found ${allWords.length} word files to process`);
 
     // Extract word info from all words

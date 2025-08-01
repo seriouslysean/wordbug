@@ -1,10 +1,11 @@
-import { allWords, generateShareImage } from '~tools/utils';
+import { generateShareImage,getAllWords } from '~tools/utils';
 
 /**
  * Generates social share images for all words in the collection
  * Creates PNG files from SVG templates for each word
  */
 async function generateWordImages(): Promise<void> {
+  const allWords = getAllWords();
   console.log(`Generating images for ${allWords.length} words`);
 
   for (const word of allWords) {

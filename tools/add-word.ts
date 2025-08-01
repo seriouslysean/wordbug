@@ -4,10 +4,9 @@ import fs from 'fs';
 import path from 'path';
 
 import { paths } from '~config/paths';
-import { allWords, createWordEntry } from '~tools/utils';
+import { createWordEntry, findExistingWord } from '~tools/utils';
 import type { WordData } from '~types/word';
 import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
-import { logger } from '~utils-client/logger';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found
@@ -22,7 +21,7 @@ const checkExistingWord = (date: string): WordData | null => {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
       return data as WordData;
     } catch (error) {
-      logger.error('Error reading existing word file', { filePath, error: (error as Error).message });
+      console.error('Error reading existing word file', { filePath, error: (error as Error).message });
     }
   }
   return null;
@@ -38,15 +37,6 @@ const isNotFutureDate = (date: string): boolean => {
   return today ? date <= today : false;
 };
 
-/**
- * Checks if a word already exists in any date
- * @param word - Word to check
- * @returns Existing word data if found, null otherwise
- */
-const checkExistingWordByName = (word: string): WordData | null => {
-  const lowerWord = word.toLowerCase();
-  return allWords.find(w => w.word?.toLowerCase() === lowerWord) || null;
-};
 
 
 
@@ -62,12 +52,12 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
 
     // Validate inputs
     if (!word) {
-      logger.error('Word is required', { providedInput: input });
+      console.error('Word is required', { providedInput: input });
       process.exit(1);
     }
 
     if (date && !isValidDate(date)) {
-      logger.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYYMMDD' });
+      console.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYYMMDD' });
       process.exit(1);
     }
 
@@ -76,7 +66,7 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
 
     // Validate that date is not in the future
     if (!isNotFutureDate(targetDate)) {
-      logger.error('Cannot add words for future dates', {
+      console.error('Cannot add words for future dates', {
         requestedDate: targetDate,
         currentDate: getTodayYYYYMMDD(),
       });
@@ -86,7 +76,7 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
     // Check if file already exists for the target date
     const existing = checkExistingWord(targetDate);
     if (existing && !overwrite) {
-      logger.error('Word already exists for this date', {
+      console.error('Word already exists for this date', {
         date: existing.date,
         existingWord: existing.word,
       });
@@ -94,9 +84,9 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
     }
 
     // Check if word already exists anywhere else in the system (always enforce global uniqueness)
-    const existingWordByName = checkExistingWordByName(word);
+    const existingWordByName = findExistingWord(word);
     if (existingWordByName && existingWordByName.date !== targetDate) {
-      logger.error('Word already exists for different date', {
+      console.error('Word already exists for different date', {
         word: word,
         existingDate: existingWordByName.date,
         requestedDate: targetDate,
@@ -109,9 +99,9 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
 
   } catch (error) {
     if (error.message.includes('not found in dictionary')) {
-      logger.error('Word not found in dictionary', { word, errorMessage: error.message });
+      console.error('Word not found in dictionary', { word, errorMessage: error.message });
     } else {
-      logger.error('Failed to add word', { word, errorMessage: error.message });
+      console.error('Failed to add word', { word, errorMessage: error.message });
     }
     process.exit(1);
   }
@@ -163,7 +153,7 @@ if (hasOverwrite) {
 const [word, date] = args;
 
 if (!word) {
-  logger.error('Error: Word is required');
+  console.error('Error: Word is required');
   showHelp();
   process.exit(1);
 }

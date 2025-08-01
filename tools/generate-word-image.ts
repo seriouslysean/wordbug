@@ -1,4 +1,4 @@
-import { generateShareImage, getWordByName } from '~tools/utils';
+import { findExistingWord,generateShareImage } from '~tools/utils';
 
 /**
  * Command-line script to generate a social share image for a specific word
@@ -13,7 +13,7 @@ if (!word) {
 }
 
 try {
-  const wordData = getWordByName(word);
+  const wordData = findExistingWord(word);
   if (!wordData) {
     console.error(`Word "${word}" not found in data files`);
     process.exit(1);

@@ -4,8 +4,6 @@ import path from 'path';
 import sharp from 'sharp';
 
 import { paths } from '~config/paths';
-import { processWordFiles } from '~utils/word-data-processor';
-import { logger } from '~utils-client/logger';
 
 // Colors for image generation
 const imageColors = {
@@ -43,14 +41,14 @@ interface WordFileInfo {
 
 export const getWordFiles = (): WordFileInfo[] => {
   if (!fs.existsSync(paths.words)) {
-    logger.error('Word directory does not exist', { path: paths.words });
+    console.error('Word directory does not exist', { path: paths.words });
     return [];
   }
 
   const years = fs.readdirSync(paths.words).filter(dir => /^\d{4}$/.test(dir));
 
   if (years.length === 0) {
-    logger.error('No year directories found', { path: paths.words });
+    console.error('No year directories found', { path: paths.words });
     return [];
   }
 
@@ -70,12 +68,12 @@ export const getWordFiles = (): WordFileInfo[] => {
             path: filePath,
           };
         } catch (error) {
-          logger.error('Error reading word file', { file, error: (error as Error).message });
+          console.error('Error reading word file', { file, error: (error as Error).message });
           return null;
         }
       }).filter(Boolean) as WordFileInfo[];
     } catch (error) {
-      logger.error('Error reading year directory', { year, error: (error as Error).message });
+      console.error('Error reading year directory', { year, error: (error as Error).message });
       return [];
     }
   });
@@ -84,17 +82,6 @@ export const getWordFiles = (): WordFileInfo[] => {
   return files.sort((a, b) => b.date.localeCompare(a.date));
 };
 
-/**
- * All words loaded once and cached - Node.js environment
- */
-export const allWords = processWordFiles(() => {
-  const files = getWordFiles();
-  return files.map(file => ({
-    filePath: file.path,
-    date: file.date,
-    content: fs.readFileSync(file.path, 'utf-8'),
-  }));
-});
 
 
 /**
@@ -118,7 +105,7 @@ export function updateWordFile(filePath: string, data: WordnikResponse, date: st
   }
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
-  logger.info('Updated word file', { filePath });
+  console.log('Updated word file', { filePath });
 }
 
 
@@ -133,13 +120,50 @@ export function createDirectoryIfNeeded(dir: string): void {
 }
 
 /**
- * Gets a word by its name from the data directory
- * @param word - Word to find (case-insensitive)
- * @returns Word data or null if not found
+ * Checks if a word already exists by scanning word files
+ * @param word - Word to check (case-insensitive)
+ * @returns Existing word data if found, null otherwise
  */
-export function getWordByName(word: string): WordData | null {
-  return allWords.find(w => w.word.toLowerCase() === word.toLowerCase()) || null;
+export function findExistingWord(word: string): WordData | null {
+  const lowerWord = word.toLowerCase();
+  const files = getWordFiles();
+
+  for (const file of files) {
+    try {
+      const data = JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData;
+      if (data.word?.toLowerCase() === lowerWord) {
+        return data;
+      }
+    } catch {
+      // Skip corrupted files
+      continue;
+    }
+  }
+
+  return null;
 }
+
+/**
+ * Gets all word data from files
+ * @returns Array of all word data
+ */
+export function getAllWords(): WordData[] {
+  const files = getWordFiles();
+  const words: WordData[] = [];
+
+  for (const file of files) {
+    try {
+      const data = JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData;
+      words.push(data);
+    } catch {
+      // Skip corrupted files
+      continue;
+    }
+  }
+
+  return words;
+}
+
 
 /**
  * Converts text to SVG path data with proper scaling
@@ -324,8 +348,7 @@ import type { CreateWordEntryResult } from '~types/tools';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';
 import { formatDate, isValidDate } from '~utils/date-utils';
-import { isValidDictionaryData } from '~utils-client/word-data-utils';
-export { isValidDictionaryData as isValidWordData };
+import { isValidDictionaryData } from '~utils/word-validation';
 
 
 /**
@@ -383,7 +406,7 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
 
-  logger.info('Word entry created', { word: trimmedWord, date });
+  console.log('Word entry created', { word: trimmedWord, date });
 
   return { filePath, data };
 }
