@@ -12,13 +12,10 @@ import type { PathConfig } from '~types/config';
 // regardless of where this file is executed from (source or built)
 const ROOT = process.cwd();
 
-// Shared path construction logic - now uses WORD_DATA_PATH directly
+// Shared path construction logic - uses SOURCE_DIR as single source of truth
 const getWordsPath = (): string => {
-  const wordDataPath = process.env.WORD_DATA_PATH;
-  if (!wordDataPath) {
-    throw new Error('WORD_DATA_PATH environment variable is required');
-  }
-  return path.isAbsolute(wordDataPath) ? wordDataPath : path.join(ROOT, wordDataPath);
+  const sourceDir = process.env.SOURCE_DIR || '';
+  return sourceDir ? path.join(ROOT, 'data', sourceDir, 'words') : path.join(ROOT, 'data', 'words');
 };
 
 const getImagesPath = (): string => {

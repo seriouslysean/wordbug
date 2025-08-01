@@ -42,7 +42,6 @@ const requiredEnvVars = [
   'SITE_TITLE',
   'SITE_DESCRIPTION',
   'SITE_ID',
-  'WORD_DATA_PATH',
 ];
 
 const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
@@ -97,7 +96,6 @@ export default defineConfig({
       __SITE_TITLE__: JSON.stringify(process.env.SITE_TITLE),
       __SITE_DESCRIPTION__: JSON.stringify(process.env.SITE_DESCRIPTION),
       __SITE_URL__: JSON.stringify(process.env.SITE_URL || ''),
-      __WORD_DATA_PATH__: JSON.stringify(process.env.WORD_DATA_PATH),
       __TIMESTAMP__: JSON.stringify(timestamp),
       __HUMANS_WORD_CURATOR__: JSON.stringify(process.env.HUMANS_WORD_CURATOR || ''),
       __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),
@@ -111,6 +109,16 @@ export default defineConfig({
       __GA_ENABLED__: process.env.GA_ENABLED === 'true',
       __SHOW_EMPTY_STATS__: process.env.SHOW_EMPTY_STATS === 'true',
       __SOURCE_DIR__: JSON.stringify(process.env.SOURCE_DIR || ''),
+      __WORD_DATA_PATH__: JSON.stringify(
+        process.env.SOURCE_DIR
+          ? `data/${process.env.SOURCE_DIR}/words`
+          : 'data/words',
+      ),
+      __SOCIAL_IMAGES_PATH__: JSON.stringify(
+        process.env.SOURCE_DIR
+          ? `public/${process.env.SOURCE_DIR}/images`
+          : 'public/images',
+      ),
     },
     build: {
       target: 'esnext',

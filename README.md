@@ -93,23 +93,34 @@ data/words/
 
 ## Development
 
-### Adding Words
+### Tools Usage
+
+For local development with environment variables, use the `tool:local` runner:
+
 ```bash
-# Add a word for today
-npm run tool:add-word -- myword
+# Add a word for today (requires .env for local development)
+npm run tool:local tools/add-word.ts myword
 
 # Add a word for specific date
-npm run tool:add-word -- myword --date 20250130
-```
+npm run tool:local tools/add-word.ts myword 20250130
 
-### Generating Images
-```bash
+# Add word with overwrite option
+npm run tool:local tools/add-word.ts myword --overwrite
+
 # Generate all word images
-npm run tool:generate-word-images
+npm run tool:local tools/generate-word-images.ts
 
-# Generate static page images
-npm run tool:generate-page-images
+# Generate specific word image
+npm run tool:local tools/generate-word-image.ts myword
+
+# Regenerate all word data
+npm run tool:local tools/regenerate-all-words.ts
+
+# Show help for any tool
+npm run tool:local tools/add-word.ts --help
 ```
+
+**Note**: In CI/production environments, tools can be run directly without `tool:local` since environment variables are provided by the system.
 
 ### Testing
 ```bash
