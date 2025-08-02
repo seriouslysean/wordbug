@@ -1,251 +1,378 @@
-# Technical Overview
+# Technical Documentation
 
-## Tech Stack
+## Architecture Overview
 
-- **Framework**: [Astro](https://astro.build/) - Static site generator
-- **Runtime**: Node.js 20+
-- **Package Manager**: npm
-- **Testing**: [Vitest](https://vitest.dev/)
-- **Linting**: ESLint with TypeScript support
-- **Image Processing**: Sharp with OpenType.js for SVG text rendering
+### Framework & Stack
+- **[Astro](https://astro.build/)** - Static site generator with zero-JS by default
+- **TypeScript** - Type safety throughout the codebase
+- **Node.js 20+** - Runtime environment
+- **[Vitest](https://vitest.dev/)** - Testing framework
+- **[Sharp](https://sharp.pixelplumbing.com/)** + OpenType.js - Image generation
 
-## Architecture
-
-### Static Generation
-- Site is statically generated at build time
-- Deployed to GitHub Pages
-- Updates only when code changes are pushed to main branch
-
-### Data Structure
-- Words stored as JSON files in configurable directory via `SOURCE_DIR`
-- Default uses `data/words/{YYYYMMDD}.json` (`SOURCE_DIR=""`)
-- External data source uses `wordbun/data/words/2025/{YYYYMMDD}.json` (`SOURCE_DIR="2025"`)
-- Each word file contains:
-  - `word`: lowercase word string
-  - `date`: YYYYMMDD format
-  - `adapter`: dictionary adapter used (e.g., "wordnik")
-  - `data`: Array of dictionary definition objects
-
-### Key Components
-- **Pages**: Dynamic routes for words, dates, and stats
-- **Word Management**: CLI tools for adding words and generating images
-- **API Integration**: Wordnik API for word definitions
-- **Image Generation**: Programmatic SVG/PNG creation for social sharing
-
-## Development Workflow
-
-### Adding Words
-1. Use `npm run tool:add-word` or GitHub Actions workflow
-2. Tool validates word doesn't already exist
-3. Tool validates date isn't in the future
-4. Fetches definition from Wordnik API
-5. Generates social sharing image
-6. Creates JSON file in appropriate year directory
-
-### Validation Rules
-- **Date Validation**: Cannot add words for future dates
-- **Duplicate Prevention**: Words cannot be added multiple times across any date
-- **Dictionary Validation**: Words must exist in Wordnik dictionary
-
-### Build Process
-1. Astro builds static site from word data
-2. Generates pages for each word and date
-3. Creates aggregated views (stats, yearly lists)
-4. Optimizes images and assets
-5. Deploys to GitHub Pages
-
-## Theme Configuration
-
-The theme system supports optional project-level customization:
-
-### Default Theme
-- Base theme located at `config/theme.js`
-- Includes colors, fonts, spacing, and other design tokens
-- Used for both CSS variables and image generation
-
-### Project Overrides
-- Create `theme.config.js` at project root to override defaults
-- Only override the values you want to change
-- Example:
-  ```js
-  // theme.config.js
-  export const colors = {
-    primary: '#ef4444',
-    accent: '#22c55e'
-  }
-  ```
-- File is project-specific and not committed to template
-
-## Environment Variables
-
-All configuration uses environment variables:
-
-### Required Variables
-- `WORDNIK_API_KEY`: Required for word definitions
-- `DICTIONARY_ADAPTER`: Dictionary service to use (default: "wordnik")
-
-### Site Configuration
-- `SITE_*`: Site metadata (title, description, URL, etc.)
-- `COLOR_*`: Theme color overrides (PRIMARY, PRIMARY_LIGHT, PRIMARY_DARK)
-
-### Data Configuration
-- `SOURCE_DIR` (formerly `DATA_PATH`): Source directory for word data (default: "")
-  - Empty string uses local `data/words/` directory
-  - Non-empty value like "2025" uses external path `wordbun/data/words/2025/`
-  - Words are stored at configured path with `{YYYYMMDD}.json` format
-  - Social images are generated at `public/images/social/{year}/`
-
-### Optional Features
-- `SENTRY_*`: Error tracking configuration
-- `SHOW_EMPTY_STATS`: Show stats pages even when they have no data
-
-## Testing
-
-- Unit tests with Vitest
-- Test coverage for validation logic
-- API adapter tests with mocked responses
-- Utility function tests
+### Data Architecture
+- **Static Generation**: All pages pre-rendered at build time
+- **Content Collections**: Astro's built-in content management via `src/content.config.ts`
+- **File-based Data**: Words stored as JSON files in `data/{SOURCE_DIR}/words/{year}/`
+- **Environment-Driven Configuration**: All customization via environment variables
 
 ## File Structure
 
 ```
 src/
-├── data/words/           # Word data files by year
-├── pages/               # Astro page routes
-├── components/          # Reusable Astro components
-├── utils/               # Utility functions
-├── types/               # TypeScript type definitions
-└── adapters/            # External API adapters
+├── content.config.ts        # Astro Content Collections config
+├── components/              # Reusable Astro components
+├── layouts/                 # Page layout templates
+├── pages/                   # Route definitions
+├── utils/                   # Client/Astro utilities
+└── types/                   # TypeScript definitions
 
-tools/                   # CLI tools for word management
-tests/                   # Test suites
-public/                  # Static assets including generated images
+utils/                       # Shared utilities (Node.js + Astro)
+├── date-utils.ts           # Date manipulation functions
+└── word-validation.ts      # Dictionary data validation
+
+tools/                       # CLI tools for content management
+├── help-utils.ts           # Shared help system
+├── add-word.ts             # Add new words
+├── generate-images.ts      # Generate social images
+├── regenerate-all-words.ts # Refresh word data
+└── utils.ts                # Tool-specific utilities
+
+config/
+└── paths.ts                # Path configuration
+
+types/                       # Shared type definitions
+├── adapters.ts             # Dictionary API types
+├── config.ts               # Configuration types
+├── tools.ts                # Tool-specific types
+└── word.ts                 # Word data structures
 ```
 
-## URL and Link Management
+## Environment Configuration
 
-### Consistent URL Generation
-- **All internal links** use the `SiteLink` component which has `getUrl()` built-in
-- **Import directly** from `~utils/url-utils` instead of deprecated re-export files
-- **No hardcoded URLs** - always use `SiteLink` for consistency across base path configurations
+### Required Variables
+```bash
+WORDNIK_API_KEY             # Dictionary API access (required)
+SITE_URL                    # Canonical site URL (required for builds)
+```
 
-### Component Guidelines
-- `SiteLink`: Use for all internal navigation (replaces raw `<a>` tags)
-- `WordLink`: Specialized component for word-to-word navigation with date display
-- `SectionHeading`: Page section headers with optional navigation links
+### Site Configuration
+```bash
+SITE_TITLE                  # Site name (default: "Word of the Day")
+SOURCE_DIR                  # Data source directory (default: "demo")
+DICTIONARY_ADAPTER          # Dictionary service (default: "wordnik")
+```
 
-## Stats Pages Architecture
+### Color Customization
+```bash
+COLOR_PRIMARY               # Primary brand color
+COLOR_PRIMARY_LIGHT         # Light variant
+COLOR_PRIMARY_DARK          # Dark variant
+```
 
-### Current Implementation
-- Individual `.astro` files for each stats category (alphabetical-order, double-letters, etc.)
-- Shared `StatsWordListPage` component template for consistent layout
-- Conditional page generation via `getStaticPaths()` based on `__SHOW_EMPTY_STATS__` environment variable
+### Feature Flags
+```bash
+SENTRY_ENABLED              # Error tracking (default: false)
+SHOW_EMPTY_STATS            # Show empty stats pages in dev (default: true)
+```
 
-### New Streak Pages (Added)
-- `/stats/current-streak`: Shows words from active consecutive streak
-- `/stats/longest-streak`: Shows words from historical longest streak
-- Both use milestone-style template with day-by-day breakdown
+## Word Data Management
 
-### Stats Page Generation
-```javascript
-// Pattern for conditional stats page generation
-export async function getStaticPaths() {
-  const words = getAllWords();
-  const statsData = getStatsFunction(words);
-  
-  const showEmptyPages = __SHOW_EMPTY_STATS__;
-  return (showEmptyPages || statsData.length > 0) ? [{}] : [];
+### Storage Format
+Each word is stored as a JSON file at `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}.json`:
+
+```json
+{
+  "word": "serendipity",
+  "date": "20250131",
+  "adapter": "wordnik",
+  "data": [
+    {
+      "text": "The faculty of making fortunate discoveries by accident.",
+      "partOfSpeech": "noun",
+      "sourceDictionary": "wordnik"
+    }
+  ]
 }
 ```
 
-## Code Organization Best Practices
+### Content Collections Integration
+- **Build-time Loading**: Words loaded via Astro Content Collections at build time
+- **Type Safety**: Full TypeScript support for word data structures  
+- **Caching**: Automatic caching and invalidation during development
+- **Sorting**: Consistent date-based sorting (newest first)
 
-### Import Guidelines
-- **Avoid re-export files** - Import directly from specific utility files
-- **Use dedicated utils** - `url-utils.ts`, `text-utils.ts`, `word-stats-utils.ts`, etc.
-- **No barrel exports** - Deprecated pattern that makes dependency tracking harder
+### Validation Rules
+- **Unique Words**: Each word can only be used once across all dates
+- **Date Constraints**: Words cannot be added for future dates
+- **Dictionary Validation**: Words must exist in configured dictionary service
+- **Format Validation**: Strict YYYYMMDD date format enforcement
 
-### Performance Optimizations
-- **Build-time caching** - Word data cached during static generation
-- **Shared computations** - Expensive stats calculations shared where possible
-- **Conditional generation** - Empty pages only generate in development mode
+## Tools & CLI
 
-## Homepage Logic
+### Unified Tool System
+All tools share common patterns:
+- **Consistent Help**: Shared help system with environment variable documentation
+- **Manual Environment Support**: Tools work with manually passed environment variables (for GitHub Actions)
+- **Error Handling**: Structured logging with message + data object format
+- **Node.js Only**: No Astro dependencies in tools
 
-### Word Display Strategy
-- **Current word**: Most recent word ≤ today's date
-- **Previous words**: Last 5 words excluding current (simplified from complex month-based logic)
-- **Demo data fallback**: Graceful handling when no production data exists
+### Tool Usage Patterns
 
-```javascript
-// Simplified homepage word logic
-const currentWord = getCurrentWord();
-const allWords = getAllWords();
-const wordsToShow = allWords
-  .filter(word => word && word.word !== currentWord?.word)
-  .slice(0, 5);
+**Local Development** (with `.env` file):
+```bash
+npm run tool:local tools/add-word.ts serendipity
+npm run tool:local tools/generate-images.ts --all
 ```
 
-## Recent Architectural Improvements
+**Production/CI** (with manual environment variables):
+```bash
+WORDNIK_API_KEY=xxx SOURCE_DIR=words npx tsx tools/add-word.ts serendipity
+```
 
-### Word Data Loading Architecture Audit (Completed)
-- **Dependency Injection Pattern**: Implemented `getAllWords()` function that accepts loader functions for different environments
-- **Environment Separation**: Clean separation between Astro (build-time) and tools (CLI) environments
-- **Centralized Word Access**: All code now uses `allWords` constant from `word-data-utils.ts`
-- **Eliminated Direct File Access**: Tools no longer directly read files, use centralized loading mechanism
-- **Fixed Code Duplication**: Removed duplicate word loading logic across different modules
+### Available Tools
 
-### URL Consistency (Fixed)
-- Standardized all internal links to use `SiteLink` component  
-- Eliminated mixed `getUrl()` usage patterns
-- Updated `SectionHeading` component to use `SiteLink` instead of raw `<a>` tags
-- Fixed imports from deprecated re-export files to direct utility imports
+#### `add-word.ts`
+Adds new words with full validation and image generation.
 
-### Homepage Previous Words (Fixed)
-- Simplified complex month-based filtering logic
-- Fixed issue where no previous words were showing with demo data
-- Now displays last 5 words excluding current word
+**Features:**
+- Dictionary validation via configured adapter
+- Duplicate word detection across all dates
+- Future date prevention
+- Automatic social image generation
+- Overwrite protection with `--overwrite` flag
 
-### Stats Page Infrastructure (Completed)
-- Added conditional page generation for empty stats
-- Implemented new streak stats pages with milestone-style layouts
-- Fixed page metadata for SEO consistency
+#### `generate-images.ts` 
+Consolidated image generation tool (replaces separate single/bulk tools).
 
-### Code Quality Improvements (Completed)
-- **Linting & TypeCheck**: All ESLint and TypeScript errors resolved
-- **Test Suite**: All tests passing with proper word data loading
-- **Import Cleanup**: Removed anti-pattern re-exports, using direct imports
-- **Type Safety**: Enhanced type definitions for word data structures
+**Features:**
+- Generate single word image: `generate-images.ts serendipity`
+- Generate all images: `generate-images.ts --all`
+- SVG-to-PNG conversion with Sharp
+- Year-based output directory organization
+- Gradient text rendering with custom colors
 
-## Accessibility
+#### `regenerate-all-words.ts`
+Refreshes all word data with fresh dictionary definitions.
 
-### Core Features
+**Features:**
+- Batch processing with rate limiting
+- Dry-run mode for preview
+- Flexible JSON field path extraction
+- Progress tracking and error reporting
+
+## Image Generation System
+
+### Technical Implementation
+- **SVG Templates**: Programmatically generated SVG with OpenType.js text rendering
+- **PNG Conversion**: Sharp library for high-quality rasterization
+- **Typography**: OpenSans font family with Regular and ExtraBold weights
+- **Color System**: CSS-in-JS gradients using theme colors
+
+### Output Structure
+```
+public/images/social/
+├── {year}/                 # Word images by year
+│   ├── 20250101-word.png
+│   └── 20250102-word.png
+└── pages/                  # Generic page images
+    ├── stats.png
+    └── words.png
+```
+
+### Image Specifications
+- **Dimensions**: 1200x630px (OpenGraph standard)
+- **Compression**: PNG with palette optimization
+- **Quality**: 90% with 128 color palette
+- **Typography**: Responsive text sizing with automatic scaling
+
+## URL Management & Navigation
+
+### Consistent URL Generation
+- **SiteLink Component**: All internal navigation uses centralized URL generation
+- **WordLink Component**: Specialized word-to-word navigation with date context
+- **Canonical URLs**: Proper canonical link generation for SEO
+
+### Route Structure
+```
+/                           # Homepage (current word)
+/words/                     # All words index
+/words/{word}               # Individual word pages
+/{YYYYMMDD}/                # Date-based word access
+/stats/                     # Statistics hub
+/stats/{category}           # Specific statistics pages
+```
+
+## Statistics System
+
+### Data Processing
+- **Build-time Computation**: All statistics calculated during static generation
+- **Cached Results**: Expensive calculations cached and reused
+- **Conditional Generation**: Empty stats pages only generated in development
+
+### Available Statistics
+- **Letter Analysis**: Frequency, patterns, alphabet coverage
+- **Word Patterns**: Palindromes, double letters, alphabetical sequences
+- **Reading Streaks**: Current and historical consecutive reading streaks
+- **Milestones**: Chronological milestones (1st, 25th, 50th, 100th words)
+- **Linguistic Features**: Syllable counts, vowel/consonant analysis
+
+## Testing Strategy
+
+### Test Organization
+```
+tests/
+├── adapters/               # Dictionary API adapter tests
+├── tools/                  # CLI tool tests
+├── utils/                  # Utility function tests
+└── src/utils/              # Astro-specific utility tests
+```
+
+### Test Patterns
+- **Unit Testing**: Isolated function testing with Vitest
+- **Mock Data**: Controlled test data for consistent results
+- **Type Safety**: TypeScript-first testing approach
+- **Error Handling**: Comprehensive error condition testing
+
+### Running Tests
+```bash
+npm test                    # Run all tests
+npm run test:watch          # Watch mode
+npm run typecheck           # TypeScript validation
+npm run lint                # ESLint checking
+```
+
+## Content Collections Deep Dive
+
+### Configuration (`src/content.config.ts`)
+```typescript
+import { defineCollection, glob } from 'astro:content';
+
+export const collections = {
+  words: defineCollection({
+    loader: glob({ 
+      pattern: '**/*.json', 
+      base: __WORD_DATA_PATH__ 
+    })
+  })
+};
+```
+
+### Usage Patterns
+```typescript
+// In Astro components
+import { getCollection } from 'astro:content';
+
+const words = await getCollection('words');
+const sortedWords = words
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+```
+
+### Build-time Path Injection
+- `__WORD_DATA_PATH__`: Injected at build time via `astro.config.mjs`
+- Supports different data sources via `{SOURCE_DIR}` environment variable
+- Enables flexible deployment to different environments
+
+## Performance Optimizations
+
+### Build-time Optimizations
+- **Static Pre-rendering**: All pages generated at build time
+- **Content Collections Caching**: Automatic caching during development
+- **Image Generation Batching**: Efficient bulk image processing
+- **Bundle Splitting**: Astro's automatic code splitting
+
+### Runtime Optimizations
+- **Zero JavaScript**: Most pages load with no client-side JavaScript
+- **Image Optimization**: Optimized PNG compression and sizing
+- **CSS Minimization**: Automatic CSS optimization and inlining
+- **Font Loading**: Efficient web font loading strategies
+
+## Deployment & CI/CD
+
+### GitHub Actions Integration
+Tools designed to work seamlessly with GitHub Actions:
+
+```yaml
+- name: Add word
+  run: npx tsx tools/add-word.ts ${{ github.event.inputs.word }}
+  env:
+    WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
+    SOURCE_DIR: ${{ vars.SOURCE_DIR }}
+```
+
+### Build Process
+1. **Environment Validation**: Check required environment variables
+2. **Content Loading**: Load word data via Content Collections
+3. **Page Generation**: Generate all static pages and routes
+4. **Image Processing**: Generate social sharing images
+5. **Asset Optimization**: Optimize images, CSS, and other assets
+6. **Deployment**: Deploy to GitHub Pages or other static hosts
+
+## Accessibility Implementation
+
+### Core Principles
 - **Semantic HTML**: Proper heading hierarchy and landmark elements
-- **Keyboard Navigation**: All interactive elements accessible via keyboard  
-- **Screen Reader Support**: Descriptive labels and ARIA attributes where needed
+- **Keyboard Navigation**: Full keyboard accessibility for all interactive elements
+- **Screen Reader Support**: Descriptive labels and ARIA attributes
 - **Color Contrast**: High contrast ratios for text readability
-- **Focus Management**: Visible focus indicators for all interactive elements
+- **Focus Management**: Visible focus indicators
 
 ### Implementation Details
-- **SiteLink Component**: Handles internal navigation with proper focus states
-- **WordLink Component**: Provides context for word-to-word navigation
-- **Image Alt Text**: All generated social images include descriptive alt text
-- **Language Attributes**: Proper lang attributes for word pronunciation
-- **Skip Links**: Navigation shortcuts for screen reader users
+- **Skip Links**: Hidden navigation shortcuts for screen readers
+- **Alt Text**: Descriptive alt text for all generated images
+- **Language Attributes**: Proper lang attributes for pronunciation
+- **Responsive Design**: Mobile-first approach with touch-friendly interactions
 
-### Testing Approach
-- Manual keyboard navigation testing
-- Screen reader compatibility verification
-- Color contrast validation
-- Responsive design testing across devices
+## Recent Architecture Changes
 
-## Key Constraints
+### Tool Consolidation (January 2025)
+- **Unified Image Generation**: Merged separate single/bulk tools into `generate-images.ts`
+- **Shared Help System**: Created `tools/help-utils.ts` for consistent documentation
+- **Environment Variable Support**: Tools work with manual env passing for CI/CD
+- **DRY Improvements**: Eliminated code duplication across tools
 
-- **No Real-time Updates**: Site only updates on deployment
-- **Single Word Per Date**: Each date can only have one word
+### Content Collections Migration
+- **Astro 5.0 Upgrade**: Migrated to new Content Layer API
+- **Build-time Path Injection**: Dynamic path configuration via `astro.config.mjs`
+- **Type Safety**: Full TypeScript support for content data
+- **Caching**: Improved development experience with automatic caching
+
+### Utility Reorganization
+- **Shared Utils**: Created `utils/` directory for environment-agnostic functions
+- **Environment Separation**: Clear separation between Astro and Node.js utilities
+- **Import Cleanup**: Removed anti-pattern re-exports, direct imports only
+
+## Development Workflow
+
+### Getting Started
+1. **Read Documentation**: Always start with README.md and this technical guide
+2. **Environment Setup**: Copy `.env.example` to `.env` and configure
+3. **Dependency Installation**: Run `npm install`
+4. **Development Server**: Start with `npm run dev`
+
+### Making Changes
+1. **Todo Tracking**: Use TodoWrite tool for multi-step tasks
+2. **Follow Patterns**: Check similar files for architectural patterns
+3. **Type Safety**: Ensure TypeScript compliance throughout
+4. **Testing**: Run `npm run lint` and `npm run typecheck` after changes
+5. **Build Verification**: Test with `npm run build` before committing
+
+### Code Style Guidelines
+- **Immutable Declarations**: Use `const` only, avoid `let` and `var`
+- **Fast-fail Validation**: Early returns, avoid nested conditions
+- **Modern ES6+**: Destructuring, arrow functions, template literals
+- **Error Handling**: Structured logging with message + data object format
+- **TypeScript First**: Leverage type system for code safety
+
+## Constraints & Limitations
+
+### Technical Constraints
+- **Static Generation Only**: No real-time updates, changes require rebuilds
+- **Single Word Per Date**: Each date can only have one associated word
 - **Unique Words**: Each word can only be used once across all dates
-- **Past/Present Only**: Words cannot be scheduled for future dates
-- **Kid-friendly language**: Avoid possessive language ("your"), use educational tone
-- **Low-JS approach**: All JavaScript in frontmatter for build-time pre-computation
-- **KISS & DRY principles**: Keep it simple, don't repeat yourself
-- **Performance first**: Optimize for build-time over runtime (static generation)
+- **Past/Present Only**: Future dates not supported for word scheduling
+
+### Design Constraints
+- **Family-friendly**: Educational tone, avoid possessive language
+- **Performance First**: Optimize for build-time over runtime complexity
+- **Accessibility Required**: WCAG AA compliance mandatory
+- **Mobile First**: Responsive design for all screen sizes

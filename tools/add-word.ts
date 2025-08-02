@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { paths } from '~config/paths';
+import { COMMON_ENV_DOCS,showHelp } from '~tools/help-utils';
 import { createWordEntry, findExistingWord } from '~tools/utils';
 import type { WordData } from '~types/word';
 import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
@@ -107,11 +108,11 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
   }
 }
 
-function showHelp(): void {
-  console.log(`
+const HELP_TEXT = `
 Add Word Tool
 
 Usage:
+  npm run tool:local tools/add-word.ts <word> [date] [options]
   npm run tool:add-word <word> [date] [options]
 
 Arguments:
@@ -127,18 +128,24 @@ Examples:
   npm run tool:add-word "ephemeral" "20240116"
   npm run tool:add-word "ubiquitous" --overwrite
 
+Environment Variables (for GitHub workflows):
+  DICTIONARY_ADAPTER         Dictionary API to use (required)
+  WORDNIK_API_KEY           API key for dictionary access (required)
+  SOURCE_DIR                Data source directory (default: demo)
+
 Requirements:
   - Word must exist in dictionary
   - Date must be today or in the past (YYYYMMDD format)
-  - Tool prevents duplicate words unless --overwrite is used\n`);
-}
+  - Tool prevents duplicate words unless --overwrite is used
+${COMMON_ENV_DOCS}
+`;
 
 // Get command line arguments
 const args = process.argv.slice(2);
 
 // Check for help flag
 if (args.includes('--help') || args.includes('-h') || args.length === 0) {
-  showHelp();
+  showHelp(HELP_TEXT);
   process.exit(0);
 }
 
@@ -154,7 +161,7 @@ const [word, date] = args;
 
 if (!word) {
   console.error('Error: Word is required');
-  showHelp();
+  showHelp(HELP_TEXT);
   process.exit(1);
 }
 

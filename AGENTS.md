@@ -1,53 +1,77 @@
-# AGENTS.md - Project Instructions
+# AGENTS.md - AI Agent Instructions
 
-> **For AI Agents**: This file contains MANDATORY instructions that must be followed on every interaction. Read and follow ALL guidelines below.
+> **CRITICAL**: This file contains MANDATORY instructions for AI agents. Follow ALL guidelines below on every interaction.
 
-## MANDATORY First Steps
+## 🚨 MANDATORY First Steps
 
-1. **ALWAYS read documentation first**: Start with `docs/README.md` then `docs/technical.md` - this is REQUIRED before any code changes
-2. **USE the TodoWrite tool**: Create and maintain a todo list for ANY multi-step task - this is REQUIRED for project tracking
-3. **Follow existing patterns**: Check similar files for code style and architecture patterns BEFORE writing new code
-4. **Environment-driven**: All configuration uses environment variables - NEVER hardcode values
+### 1. READ THE DOCUMENTATION FIRST
+**ALWAYS** read the documentation before making ANY changes or suggestions:
 
-## Key Commands
+1. **[README.md](README.md)** - Project overview, quick start, basic configuration
+2. **[docs/technical.md](docs/technical.md)** - Complete technical architecture, tools, environment variables, patterns
+3. **[docs/potential-features.md](docs/potential-features.md)** - Planned features and priorities
+
+**❌ DO NOT:**
+- Guess at configurations or environment variables
+- Duplicate information that's already documented
+- Make assumptions about architecture or patterns
+- Suggest changes without understanding current implementation
+
+**✅ DO:**
+- Reference specific sections from documentation when answering questions
+- Point users to relevant documentation sections
+- Ask for clarification if documentation doesn't cover the user's question
+- Update documentation when making architectural changes
+
+### 2. USE TodoWrite for Multi-Step Tasks
+Create and maintain todo lists for ANY task with multiple steps - this is REQUIRED for tracking progress.
+
+### 3. Follow Existing Patterns
+Check similar files in the codebase for architectural patterns BEFORE writing new code.
+
+## 🔧 MANDATORY Workflow
 
 ```bash
-npm run dev              # Development server
-npm run build           # Build for production
-npm run test            # Run tests
-npm run tool:add-word   # Add new word interactively
+# ALWAYS run after ANY code changes
+npm run lint         # Fix code style issues
+npm run typecheck    # Validate TypeScript
+npm run build        # Verify build succeeds
 ```
 
-## CRITICAL Requirements
+## 📋 Key Commands
 
-- **ALWAYS run `npm run lint` and `npm run typecheck`** after ANY code changes - this is MANDATORY
-- **NO hardcoded values**: Everything uses environment variables
-- **PRESERVE functionality**: Never break existing word display, navigation, or data loading
-- **TEST builds**: Always run `npm run build` to verify before suggesting changes
-- **ASK before major changes**: Get user approval for architectural changes or refactoring
+```bash
+npm run dev                                    # Development server
+npm run tool:local tools/add-word.ts --help   # Tool documentation
+npm test                                       # Run test suite
+```
 
-## MANDATORY Workflow
+## ⚠️ CRITICAL Requirements
 
-1. **Read docs/README.md and docs/technical.md FIRST**
-2. **Create TodoWrite list for multi-step tasks**
-3. **Follow existing code patterns** - check similar files before writing new code
-4. **Run lint/typecheck after changes**
-5. **Verify build succeeds**
+- **Documentation First**: Read docs before making changes
+- **No Hardcoding**: Everything uses environment variables (see docs/technical.md)
+- **Test All Changes**: Run lint/typecheck/build after ANY modifications
+- **Preserve Functionality**: Never break existing word display, navigation, or data loading
+- **Ask Before Major Changes**: Get user approval for architectural modifications
 
-## Code Style Guidelines
+## 📖 Documentation Structure
 
-- **Use `const` only**: No `let` or `var` - prefer immutable declarations
-- **Fast-fail validation**: Early returns and exits, avoid nested conditions
-- **Modern ES6+ syntax**: Use destructuring, arrow functions, template literals
-- **camelCase for object keys**: JavaScript convention, not snake_case
-- **Clean error handling**: One `console.error()` call per error with message + data object
-- **Proper sentence structure**: All descriptions and text content should end with periods for proper sentence structure
-- **Proper casing**: Use proper title case for headings and descriptions - avoid `.toLowerCase()` except for data storage. Let CSS handle display formatting
+- **README.md**: User-facing overview and quick start
+- **docs/technical.md**: Complete technical documentation
+- **docs/potential-features.md**: Future enhancements and priorities
 
----
+When users ask questions:
+1. Check if it's covered in documentation
+2. Reference specific documentation sections in your answer
+3. Only provide additional details not covered in docs
 
-For complete project context, architecture details, and implementation notes, see the documentation in the `docs/` directory:
+## 🎯 Project Context
 
-- `docs/README.md` - Project overview and technology stack
-- `docs/technical.md` - Detailed architecture, build process, and constraints
-- `docs/potential-features.md` - Future enhancement ideas organized by complexity and impact
+This is a static site generator for word-of-the-day websites that powers multiple child sites. The architecture is designed for:
+- Environment-driven configuration (no hardcoded values)
+- Static site generation with Astro
+- Content Collections for word data management
+- CLI tools for content management
+- Multi-site deployment support
+
+**For ALL technical details, architecture information, environment variables, and implementation patterns: READ THE DOCUMENTATION FIRST.**
