@@ -1,5 +1,3 @@
-console.log('Generate images tool starting...');
-
 import { showHelp } from '~tools/help-utils';
 import { findExistingWord, generateShareImage,getAllWords } from '~tools/utils';
 
@@ -115,6 +113,8 @@ const [word] = args;
 // Main execution
 (async () => {
   try {
+    console.log('Generate images tool starting...');
+
     if (word && !hasAll) {
       // Generate single word image
       const success = await generateSingleImage(word);

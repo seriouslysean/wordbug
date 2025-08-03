@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import { getAdapter } from '~adapters/factory';
+import { COMMON_ENV_DOCS,showHelp } from '~tools/help-utils';
 import { getAllWords } from '~tools/utils';
 import type { WordData } from '~types/word';
 import { isValidDictionaryData } from '~utils/word-validation';
@@ -176,13 +177,13 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
 }
 
 
-function showHelp(): void {
-  console.log(`
+const HELP_TEXT = `
 Regenerate All Words Tool
 
 Regenerates all word files with fresh dictionary data, supporting flexible JSON field extraction.
 
 Usage:
+  npm run tool:local tools/regenerate-all-words.ts [options]
   npm run tool:regenerate-all-words [options]
 
 Options:
@@ -206,19 +207,24 @@ Examples:
   npm run tool:regenerate-all-words --word-field "metadata.term" --date-field "dateCode" --force
   npm run tool:regenerate-all-words --timeout 2000 --batch-size 3 --force
 
+Environment Variables (for GitHub workflows):
+  DICTIONARY_ADAPTER         Dictionary API to use (required)
+  WORDNIK_API_KEY           API key for dictionary access (required)
+  SOURCE_DIR                Data source directory (default: demo)
+
 Note:
   All dates are normalized to YYYYMMDD format (no dashes).
   This tool will overwrite existing word files with fresh dictionary data.
   Use --dry-run first to preview changes.
-`);
-}
+${COMMON_ENV_DOCS}
+`;
 
 // Parse command line arguments
 const args = process.argv.slice(2);
 
 // Check for help flag
 if (args.includes('--help') || args.includes('-h') || args.length === 0) {
-  showHelp();
+  showHelp(HELP_TEXT);
   process.exit(0);
 }
 

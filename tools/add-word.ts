@@ -1,5 +1,3 @@
-console.log('Add word tool starting...');
-
 import fs from 'fs';
 import path from 'path';
 
@@ -96,7 +94,7 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
     }
 
     // Use shared word creation logic
-    await createWordEntry(word, targetDate, hasOverwrite);
+    await createWordEntry(word, targetDate, overwrite);
 
   } catch (error) {
     if (error.message.includes('not found in dictionary')) {
@@ -165,4 +163,5 @@ if (!word) {
   process.exit(1);
 }
 
+console.log('Add word tool starting...');
 addWord(word, date, hasOverwrite);
