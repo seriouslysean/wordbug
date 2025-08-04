@@ -3,17 +3,20 @@
 Template for family word-of-the-day sites.
 
 ```
-    o    o
-     \__/
-     /oo\
-     \()/
-     |~~|
-     |~~|
-     |~~|               /\
-     \~~\              /\/
-      \~~\____________/\/
-       \/ | | | | | | \/
-        ~~~~~~~~~~~~~~~
+                ██     ██  ██████  ██████  ██████
+                ██     ██ ██    ██ ██   ██ ██   ██
+                ██  █  ██ ██    ██ ██████  ██   ██
+                ██ ███ ██ ██    ██ ██   ██ ██   ██
+                 ███ ███   ██████  ██   ██ ██████
+
+
+ ██████  ███████     ████████ ██   ██ ███████     ██████   █████  ██    ██
+██    ██ ██             ██    ██   ██ ██          ██   ██ ██   ██  ██  ██
+██    ██ █████          ██    ███████ █████       ██   ██ ███████   ████
+██    ██ ██             ██    ██   ██ ██          ██   ██ ██   ██    ██
+ ██████  ██             ██    ██   ██ ███████     ██████  ██   ██    ██
+
+
 ```
 
 A template for creating family word-of-the-day sites. This template provides a foundation for showcasing interesting words and serving as a historical reference.

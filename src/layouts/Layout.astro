@@ -138,8 +138,8 @@ const wordSchemaData = word ? (() => {
 			<script is:inline define:vars={{ measurementId: __GA_MEASUREMENT_ID__ }}>
 				window.dataLayer = window.dataLayer || [];
 				function gtag(...args){
-dataLayer.push(args);
-}
+					dataLayer.push(args);
+				}
 				gtag('js', new Date());
 				gtag('config', measurementId, {
 					client_storage: 'none',
