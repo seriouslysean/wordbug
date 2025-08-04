@@ -1,4 +1,4 @@
-import { describe, expect,it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import {
   countSyllables,
@@ -185,6 +185,20 @@ describe('text-utils', () => {
       expect(hasAlphabeticalSequence('jumpy')).toBe(false);
       expect(hasAlphabeticalSequence('abacus')).toBe(false); // a-b but then breaks with a-c
       expect(hasAlphabeticalSequence('jumped')).toBe(false); // no consecutive sequences
+    });
+  });
+
+  describe('hasAlphabeticalSequence (~utils)', () => {
+    it('detects sequences in lowercase words', () => {
+      expect(hasAlphabeticalSequence('lmn')).toBe(true);
+    });
+
+    it('detects sequences in mixed-case words', () => {
+      expect(hasAlphabeticalSequence('aBc')).toBe(true);
+    });
+
+    it('returns false when no sequence exists', () => {
+      expect(hasAlphabeticalSequence('abd')).toBe(false);
     });
   });
 
