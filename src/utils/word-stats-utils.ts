@@ -67,12 +67,6 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
 };
 
 /**
- * Converts letter frequency data into sorted statistics.
- * @param {Record<string, number>} letterFrequency - Object mapping letters to their frequency counts
- * @returns {WordLetterStatsResult} Array of letter-frequency pairs sorted by frequency (descending)
- */
-
-/**
  * Converts letter word count data into sorted statistics, filtering to a-z only (case-insensitive).
  * @param {Record<string, number>} letterFrequency - Object mapping letters to count of words containing them
  * @returns {WordLetterStatsResult} Array of letter-wordcount pairs sorted by word count (descending), only a-z
