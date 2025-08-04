@@ -23,7 +23,7 @@
 - Ask for clarification if documentation doesn't cover the user's question
 - Update documentation when making architectural changes
 
-### 2. USE TodoWrite for Multi-Step Tasks
+### 2. Track Multi-Step Tasks
 Create and maintain todo lists for ANY task with multiple steps - this is REQUIRED for tracking progress.
 
 ### 3. Follow Existing Patterns
