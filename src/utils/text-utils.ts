@@ -23,7 +23,7 @@ export function hasTripleLetters(word: string): boolean {
  * Checks if a word contains any sequence of three consecutive alphabetical letters (e.g., 'abc', 'def').
  */
 export function hasAlphabeticalSequence(word: string): boolean {
-  const letters = word.split('');
+  const letters = word.toLowerCase().split('');
   for (let i = 0; i < letters.length - 2; i++) {
     const a = letters[i].charCodeAt(0);
     const b = letters[i + 1].charCodeAt(0);
