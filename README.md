@@ -1,6 +1,6 @@
 # occasional-wotd
 
-A modern, family-friendly word-of-the-day site generator that powers [wordbug.fyi](https://wordbug.fyi) and [wordbun.fyi](https://wordbun.fyi).
+A modern, family-friendly word-of-the-day site generator template for creating occasional vocabulary learning sites.
 
 ```
     o    o
@@ -18,12 +18,12 @@ A modern, family-friendly word-of-the-day site generator that powers [wordbug.fy
 
 ## Features
 
-- **📚 Rich Word Data**: Powered by Wordnik API with comprehensive definitions
-- **📊 Smart Statistics**: Letter patterns, word endings, reading streaks, and linguistic analysis
-- **🖼️ Social Images**: Automated generation of beautiful, shareable word graphics
-- **🚀 Lightning Fast**: Static site generation with Astro for optimal performance
-- **🎨 Customizable**: Environment-based theming and multi-source data support
-- **♿ Accessible**: WCAG compliant with keyboard navigation and screen reader support
+- **Rich Word Data**: Powered by Wordnik API with comprehensive definitions
+- **Smart Statistics**: Letter patterns, word endings, reading streaks, and linguistic analysis
+- **Social Images**: Automated generation of beautiful, shareable word graphics
+- **Lightning Fast**: Static site generation with Astro for optimal performance
+- **Customizable**: Environment-based theming and multi-source data support
+- **Accessible**: WCAG compliant with keyboard navigation and screen reader support
 
 ## Quick Start
 

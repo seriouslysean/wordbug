@@ -5,7 +5,14 @@ import {
   formatWordCount,
   getConsonantCount,
   getVowelCount,
+  getWordEndings,
+  hasAlphabeticalSequence,
+  hasDoubleLetters,
+  hasTripleLetters,
+  isAllConsonants,
+  isAllVowels,
   isPalindrome,
+  isStartEndSame,
 } from '~utils-client/text-utils';
 
 describe('text-utils', () => {
@@ -123,6 +130,98 @@ describe('text-utils', () => {
 
     it('handles edge cases', () => {
       expect(formatWordCount(-1)).toBe('-1 words');
+    });
+  });
+
+  describe('isStartEndSame', () => {
+    it('returns true for words that start and end with the same letter', () => {
+      expect(isStartEndSame('level')).toBe(true);
+      expect(isStartEndSame('radar')).toBe(true);
+      expect(isStartEndSame('bob')).toBe(true);
+    });
+    it('returns false for words that do not', () => {
+      expect(isStartEndSame('hello')).toBe(false);
+      expect(isStartEndSame('world')).toBe(false);
+      expect(isStartEndSame('a')).toBe(false);
+    });
+  });
+
+  describe('hasDoubleLetters', () => {
+    it('returns true for words with double letters', () => {
+      expect(hasDoubleLetters('letter')).toBe(true);
+      expect(hasDoubleLetters('book')).toBe(true);
+      expect(hasDoubleLetters('success')).toBe(true);
+    });
+    it('returns false for words without double letters', () => {
+      expect(hasDoubleLetters('cat')).toBe(false);
+      expect(hasDoubleLetters('dog')).toBe(false);
+    });
+  });
+
+  describe('hasTripleLetters', () => {
+    it('returns true for words with triple or more consecutive letters', () => {
+      expect(hasTripleLetters('zzz')).toBe(true); // three z's
+      expect(hasTripleLetters('aaa')).toBe(true); // three a's
+      expect(hasTripleLetters('goooood')).toBe(true); // four o's
+    });
+    it('returns false for words with only double or no consecutive letters', () => {
+      expect(hasTripleLetters('bookkeeper')).toBe(false); // only double letters
+      expect(hasTripleLetters('committee')).toBe(false); // only double letters
+      expect(hasTripleLetters('letter')).toBe(false);
+      expect(hasTripleLetters('cat')).toBe(false);
+    });
+  });
+
+  describe('hasAlphabeticalSequence', () => {
+    it('returns true for words with three consecutive alphabetical letters', () => {
+      expect(hasAlphabeticalSequence('abc')).toBe(true); // a-b-c
+      expect(hasAlphabeticalSequence('xyz')).toBe(true); // x-y-z
+      expect(hasAlphabeticalSequence('defg')).toBe(true); // d-e-f
+      expect(hasAlphabeticalSequence('definitely')).toBe(true); // d-e-f at start
+    });
+    it('returns false for words without such a sequence', () => {
+      expect(hasAlphabeticalSequence('hello')).toBe(false);
+      expect(hasAlphabeticalSequence('world')).toBe(false);
+      expect(hasAlphabeticalSequence('jumpy')).toBe(false);
+      expect(hasAlphabeticalSequence('abacus')).toBe(false); // a-b but then breaks with a-c
+      expect(hasAlphabeticalSequence('jumped')).toBe(false); // no consecutive sequences
+    });
+  });
+
+  describe('getWordEndings', () => {
+    it('returns all matching endings for a word', () => {
+      expect(getWordEndings('running')).toContain('ing');
+      expect(getWordEndings('happily')).toContain('ly');
+      expect(getWordEndings('kindness')).toContain('ness');
+      expect(getWordEndings('careful')).toContain('ful');
+      expect(getWordEndings('hopeless')).toContain('less');
+      expect(getWordEndings('walked')).toContain('ed');
+    });
+    it('returns an empty array if no endings match', () => {
+      expect(getWordEndings('cat')).toEqual([]);
+      expect(getWordEndings('dog')).toEqual([]);
+    });
+  });
+
+  describe('isAllVowels', () => {
+    it('returns true for words with only vowels', () => {
+      expect(isAllVowels('aeiou')).toBe(true);
+      expect(isAllVowels('AEIOU')).toBe(true);
+    });
+    it('returns false for words with consonants', () => {
+      expect(isAllVowels('hello')).toBe(false);
+      expect(isAllVowels('aebc')).toBe(false);
+    });
+  });
+
+  describe('isAllConsonants', () => {
+    it('returns true for words with only consonants', () => {
+      expect(isAllConsonants('bcdfg')).toBe(true);
+      expect(isAllConsonants('BCDFG')).toBe(true);
+    });
+    it('returns false for words with vowels', () => {
+      expect(isAllConsonants('hello')).toBe(false);
+      expect(isAllConsonants('bcda')).toBe(false);
     });
   });
 });

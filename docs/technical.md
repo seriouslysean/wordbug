@@ -23,28 +23,50 @@ src/
 ├── components/              # Reusable Astro components
 ├── layouts/                 # Page layout templates
 ├── pages/                   # Route definitions
-├── utils/                   # Client/Astro utilities
-└── types/                   # TypeScript definitions
+├── utils/                   # Client/Astro utilities (20+ files)
+├── config/
+│   └── site-config.ts       # Site configuration
+├── styles/                  # CSS files
+└── assets/                  # Static assets
 
 utils/                       # Shared utilities (Node.js + Astro)
 ├── date-utils.ts           # Date manipulation functions
+├── word-data-node.ts       # Node.js word data utilities
+├── word-data-processor.ts  # Word data processing
 └── word-validation.ts      # Dictionary data validation
 
 tools/                       # CLI tools for content management
 ├── help-utils.ts           # Shared help system
 ├── add-word.ts             # Add new words
-├── generate-images.ts      # Generate social images
+├── generate-images.ts      # Generate social images (consolidated)
+├── generate-generic-images.ts # Generate generic page images
+├── generate-page-image.ts  # Generate specific page image
+├── ping-search-engines.ts  # SEO ping utility
 ├── regenerate-all-words.ts # Refresh word data
 └── utils.ts                # Tool-specific utilities
 
-config/
+config/                      # Configuration files
+├── adapters.ts             # Dictionary adapter config
+├── environment.ts          # Environment variable handling
 └── paths.ts                # Path configuration
 
-types/                       # Shared type definitions
+types/                       # Shared type definitions (12 files)
 ├── adapters.ts             # Dictionary API types
 ├── config.ts               # Configuration types
 ├── tools.ts                # Tool-specific types
-└── word.ts                 # Word data structures
+├── word.ts                 # Word data structures
+├── stats.ts                # Statistics types
+├── schema.ts               # Schema types
+├── seo.ts                  # SEO types
+├── utils.ts                # Utility types
+├── vite.d.ts               # Vite definitions
+├── window.d.ts             # Window extensions
+├── wordnik.ts              # Wordnik API types
+└── opentype.js.d.ts        # OpenType.js definitions
+
+adapters/                    # Dictionary API adapters  
+├── factory.ts              # Adapter factory
+└── wordnik.ts              # Wordnik implementation
 ```
 
 ## Environment Configuration
@@ -142,14 +164,17 @@ Adds new words with full validation and image generation.
 - Overwrite protection with `--overwrite` flag
 
 #### `generate-images.ts` 
-Consolidated image generation tool (replaces separate single/bulk tools).
+Consolidated image generation tool (replaces separate single/bulk/generic tools).
 
 **Features:**
 - Generate single word image: `generate-images.ts serendipity`
-- Generate all images: `generate-images.ts --all`
+- Generate all word images: `generate-images.ts --all`
+- Generate all generic page images: `generate-images.ts --generic`
+- Generate specific page image: `generate-images.ts --page stats`
 - SVG-to-PNG conversion with Sharp
 - Year-based output directory organization
 - Gradient text rendering with custom colors
+- Force regeneration with `--force` flag
 
 #### `regenerate-all-words.ts`
 Refreshes all word data with fresh dictionary definitions.
@@ -159,6 +184,15 @@ Refreshes all word data with fresh dictionary definitions.
 - Dry-run mode for preview
 - Flexible JSON field path extraction
 - Progress tracking and error reporting
+
+#### `ping-search-engines.ts`
+Notifies search engines of sitemap updates for improved SEO.
+
+**Features:**
+- Pings Google and Bing with sitemap URL
+- Configurable search engine endpoints
+- Error handling and retry logic
+- GitHub Actions integration support
 
 ## Image Generation System
 
