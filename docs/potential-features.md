@@ -10,6 +10,7 @@ Ideas and enhancements for future development, organized by implementation compl
 - **Build & deployment fixes**: All ESLint, TypeScript, and test issues resolved
 - **Import cleanup**: Removed anti-pattern re-exports, standardized direct imports
 - **Enhanced type safety**: Improved TypeScript definitions for word data structures
+- **Site attribution system**: Configurable footer attribution with proper environment variable support
 
 ### User Experience
 - **Enhanced stats pages**: Streak tracking, milestone detection, conditional page generation
@@ -29,8 +30,14 @@ Ideas and enhancements for future development, organized by implementation compl
 
 ## User Experience Enhancements
 
+### Navigation & Discovery (High Priority)
+- **Stats category directory pages**: Landing pages for Word Facts, Letter Patterns, Word Endings, and Streaks sections
+- **Month-based navigation**: `/words/YYYY/MM/` pages for enhanced SEO and content discoverability
+- **Random word discovery**: Lightweight JSON endpoint (`/api/words.json`) with client-side random selection and JS redirect
+- **Age context display**: Optional privacy-focused age display using `CHILD_BIRTH_DATE` env (shows age in years only, not birth date)
+
 ### Client-Side Features (Light JavaScript)
-- **Word search functionality**: Client-side fuzzy search with auto-generated search index
+- **Word search functionality**: Client-side fuzzy search with auto-generated search index  
 - **Reading progress tracking**: LocalStorage-based progress tracking with visual indicators
 - **Word bookmarking**: Personal favorites system using LocalStorage
 - **Theme switching**: Dark/light mode toggle with system preference detection
