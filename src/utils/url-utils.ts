@@ -33,25 +33,18 @@ export const getUrl = (path = '/'): string => {
 /**
  * Gets a normalized full URL including site URL and path
  * For use in canonicals, social tags, and other absolute URL needs
+ * Uses getUrl() internally to ensure BASE_URL is properly handled
  */
 export const getFullUrl = (path = '/'): string => {
-  const siteUrl = import.meta.env.SITE_URL?.endsWith('/')
-    ? import.meta.env.SITE_URL.slice(0, -1)
-    : import.meta.env.SITE_URL;
+  const siteUrl = import.meta.env.SITE_URL?.replace(/\/$/, '') || '';
+  const relativePath = getUrl(path);
 
-  if (path === '/') {
-    return `${siteUrl}/`;
+  if (!siteUrl) {
+    logger.error('SITE_URL environment variable is required for getFullUrl');
+    throw new Error('SITE_URL environment variable is required');
   }
 
-  const normalizedPath = path.startsWith('/')
-    ? path
-    : `/${path}`;
-
-  if (normalizedPath.includes('.')) {
-    return `${siteUrl}${normalizedPath}`;
-  }
-
-  return `${siteUrl}${normalizedPath.replace(/\/$/, '')}`;
+  return `${siteUrl}${relativePath}`;
 };
 
 /**

@@ -11,11 +11,10 @@ interface Props {
   wordData: WordData;
   previousWord?: WordData | null;
   nextWord?: WordData | null;
-  canonicalUrl?: string;
   structuredDataType?: string;
 }
 
-const { wordData, previousWord, nextWord, canonicalUrl, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE } = Astro.props;
+const { wordData, previousWord, nextWord, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE } = Astro.props;
 
 if (!wordData) {
   return Astro.redirect('/404');
@@ -34,7 +33,6 @@ const pageDescription = getMetaDescription({
   word={wordData}
   description={pageDescription}
   structuredDataType={structuredDataType}
-  canonicalUrl={canonicalUrl}
 >
 
     <WordComponent word={wordData} />

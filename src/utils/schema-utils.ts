@@ -4,8 +4,8 @@
  */
 
 import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types/schema';
-
-import { seoConfig } from './seo-utils.ts';
+import { seoConfig } from '~utils-client/seo-utils';
+import { getFullUrl } from '~utils-client/url-utils';
 
 export const STRUCTURED_DATA_TYPE = {
   WORD_SINGLE: 'WORD_SINGLE',
@@ -23,7 +23,7 @@ export function getWebsiteSchemaData(): WebSiteSchema {
     '@type': 'WebSite',
     name: seoConfig.siteName,
     description: seoConfig.defaultDescription,
-    url: seoConfig.canonicalBase,
+    url: getFullUrl('/'),
     author: {
       '@type': 'Person',
       name: seoConfig.author,

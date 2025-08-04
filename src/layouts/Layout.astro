@@ -8,14 +8,14 @@ import StructuredData from '~components/StructuredData.astro';
 import type { WordData } from '~types/word';
 import { getBuildData } from '~utils-client/build-utils.ts';
 import { getSocialImageUrl } from '~utils-client/image-utils.js';
-import { getCanonicalUrl, getMetaDescription,seoConfig } from '~utils-client/seo-utils.ts';
+import { getMetaDescription, seoConfig } from '~utils-client/seo-utils.ts';
 import { getAsciiArt } from '~utils-client/static-file-utils.ts';
-import { getUrl } from '~utils-client/url-utils';
+import { getFullUrl,getUrl } from '~utils-client/url-utils';
 import { extractWordDefinition,getWordsFromCollection } from '~utils-client/word-data-utils';
 
-const { title, word, description, structuredDataType, noindex, nofollow, canonicalUrl } = Astro.props;
+const { title, word, description, structuredDataType, noindex, nofollow } = Astro.props;
 
-const currentUrl = canonicalUrl || getCanonicalUrl(Astro.url.pathname);
+const currentUrl = getFullUrl(Astro.url.pathname);
 const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
 const metaDescription = description || getMetaDescription();
 

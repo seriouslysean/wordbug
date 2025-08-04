@@ -7,7 +7,6 @@ export interface SeoConfig {
   defaultDescription: string;
   siteName: string;
   locale: string;
-  canonicalBase: string;
   author: string;
   authorUrl?: string;
   attributionMessage?: string;

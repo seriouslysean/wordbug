@@ -4,6 +4,7 @@
  */
 
 import type { SeoConfig, SeoMetadata,SeoMetadataOptions, SeoMetaDescriptionOptions } from '~types/seo';
+import { getFullUrl } from '~utils-client/url-utils';
 
 // SEO configuration using environment variables - no fallbacks for security
 export const seoConfig: SeoConfig = {
@@ -11,32 +12,12 @@ export const seoConfig: SeoConfig = {
   defaultDescription: import.meta.env.SITE_DESCRIPTION,
   siteName: import.meta.env.SITE_ID,
   locale: import.meta.env.SITE_LOCALE || 'en-US',
-  canonicalBase: import.meta.env.SITE_URL || import.meta.env.BASE_URL,
   author: import.meta.env.SITE_AUTHOR,
   authorUrl: import.meta.env.SITE_AUTHOR_URL,
   attributionMessage: import.meta.env.SITE_ATTRIBUTION_MESSAGE,
   keywords: (import.meta.env.SITE_KEYWORDS || '').split(',').filter(Boolean),
 };
 
-/**
- * Generate canonical URL for a page
- * Consistently enforces no trailing slash for content pages (except root) and lowercase URLs
- */
-export function getCanonicalUrl(pathname: string): string {
-  // Convert path to lowercase for consistency
-  const lowercasePath = pathname;
-
-  // Normalize path: remove trailing slash except for root path
-  const cleanPath = lowercasePath === '/' ? '/' : lowercasePath.replace(/\/$/, '') || '';
-
-  // Normalize baseUrl: ensure no trailing slash
-  const baseUrl = seoConfig.canonicalBase.endsWith('/')
-    ? seoConfig.canonicalBase.slice(0, -1)
-    : seoConfig.canonicalBase;
-
-  // Return the properly formatted canonical URL
-  return `${baseUrl}${cleanPath}`;
-}
 
 /**
  * Generate page-specific meta description
@@ -64,7 +45,7 @@ return custom;
 export function generateSeoMetadata({ title, description, pathname, keywords = [] }: SeoMetadataOptions): SeoMetadata {
   const pageTitle = title ? `${title} - ${seoConfig.siteName}` : seoConfig.defaultTitle;
   const pageDescription = description || seoConfig.defaultDescription;
-  const url = getCanonicalUrl(pathname);
+  const url = getFullUrl(pathname);
   const combinedKeywords = [...seoConfig.keywords, ...keywords].join(', ');
 
   return {

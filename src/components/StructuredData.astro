@@ -3,6 +3,7 @@
 import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types/schema';
 import { STRUCTURED_DATA_TYPE, type StructuredDataType } from '~utils-client/schema-utils.ts';
 import { seoConfig } from '~utils-client/seo-utils.ts';
+import { getFullUrl } from '~utils-client/url-utils';
 
 interface Props {
   word?: WordSchemaData;
@@ -16,7 +17,7 @@ const websiteSchema: WebSiteSchema = {
   '@type': 'WebSite',
   name: seoConfig.siteName,
   description: seoConfig.defaultDescription,
-  url: seoConfig.canonicalBase,
+  url: getFullUrl('/'),
   author: {
     '@type': 'Person',
     name: seoConfig.author,
