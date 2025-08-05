@@ -2,19 +2,13 @@
  * Word data types - Our internal data structures
  */
 
-import type { DictionaryDefinition } from '~types/adapters';
+import type { DictionaryDefinition, SourceMeta } from '~types/common';
 
 // Our processed word data after transformation
 export interface WordProcessedData {
   partOfSpeech: string;
   definition: string;
-  meta: WordMeta | null;
-}
-
-export interface WordMeta {
-  attributionText: string;
-  sourceDictionary?: string;
-  sourceUrl: string;
+  meta: SourceMeta | null;
 }
 
 // Our main word file structure (adapter-agnostic)

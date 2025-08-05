@@ -308,32 +308,27 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
 }
 
 export function getAllPageMetadata(words: WordData[] = allWords) {
-  const pages = [];
-
-  // Check for debug flag to show all pages (including empty ones)
   const showEmptyPages = (globalThis as Record<string, unknown>).__SHOW_EMPTY_STATS__ || false;
-
   const PAGE_METADATA = createPageMetadata(words);
-  // Add static pages, filtering out empty stats pages
-  for (const [path] of Object.entries(PAGE_METADATA)) {
-    if (path !== '') {
-      // Filter out stats pages with 0 results (unless debug flag is set)
-      if (path.startsWith('stats/') && path !== 'stats') {
-        const count = getCountForPath(path, words);
-        if (count === 0 && !showEmptyPages) {
-          continue; // Skip empty pages
-        }
+
+  // Get static pages (excluding root '')
+  const staticPages = Object.keys(PAGE_METADATA)
+    .filter(path => path !== '')
+    .map(path => ({ path, ...getPageMetadata(path, words) }))
+    .filter(page => {
+      // Only filter stats pages for empty results
+      if (!page.path.startsWith('stats/') || page.path === 'stats' || showEmptyPages) {
+        return true;
       }
-      pages.push({ path, ...getPageMetadata(path, words) });
-    }
-  }
+      return getCountForPath(page.path, words) > 0;
+    });
 
-  // Add dynamic year pages
-  const years = getAvailableYears(words);
-  for (const year of years) {
-    const path = `words/${year}`;
-    pages.push({ path, ...getPageMetadata(path, words) });
-  }
+  // Get dynamic year pages
+  const yearPages = getAvailableYears(words)
+    .map(year => {
+      const path = `words/${year}`;
+      return { path, ...getPageMetadata(path, words) };
+    });
 
-  return pages;
+  return [...staticPages, ...yearPages];
 }

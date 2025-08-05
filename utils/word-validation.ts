@@ -1,4 +1,4 @@
-import type { DictionaryDefinition } from '~types/adapters';
+import type { DictionaryDefinition } from '~types/common';
 
 /**
  * Validates dictionary data to ensure it contains meaningful content.

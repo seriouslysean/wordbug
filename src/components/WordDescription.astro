@@ -1,10 +1,10 @@
 ---
-import type { WordMeta } from '~types/word';
+import type { SourceMeta } from '~types/common';
 
 interface Props {
   partOfSpeech: string;
   definition: string;
-  meta?: WordMeta | null;
+  meta?: SourceMeta | null;
 }
 
 const { partOfSpeech, definition, meta = null } = Astro.props;

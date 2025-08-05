@@ -3,6 +3,8 @@
  * Focused on educational vocabulary content
  */
 
+import type { SourceMeta } from '~types/common';
+
 // Website schema - appears on every page
 export interface WebSiteSchema {
   '@context': 'https://schema.org';
@@ -55,8 +57,5 @@ export interface WordSchemaData {
   date: string;
   definition?: string;
   partOfSpeech?: string;
-  meta?: {
-    sourceUrl?: string;
-    attributionText?: string;
-  };
+  meta?: SourceMeta;
 }

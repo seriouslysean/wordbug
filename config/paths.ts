@@ -6,7 +6,7 @@
 
 import path from 'path';
 
-import type { PathConfig } from '~types/config';
+import type { PathConfig } from '~types/common';
 
 const ROOT = process.cwd();
 const getWordsPath = (): string => {

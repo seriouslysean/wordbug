@@ -11,7 +11,7 @@ import {
   getSyllableStats,
   getWordEndingStats,
   getWordStats,
-} from '../../src/utils/word-stats-utils';
+} from '~utils-client/word-stats-utils';
 
 const sampleWords = [
   { word: 'hello', date: '20240101' },
@@ -20,11 +20,16 @@ const sampleWords = [
   { word: 'programming', date: '20240104' },
   { word: 'testing', date: '20240105' },
   { word: 'occasional', date: '20240106' },
-  { word: 'deed', date: '20240107' }, // palindrome
-  { word: 'a', date: '20240108' }, // single vowel
-  { word: 'by', date: '20240109' }, // consonants only
-  { word: 'seeing', date: '20240110' }, // double letters + ending
-  { word: 'worked', date: '20240111' }, // ends with -ed
+  // palindrome
+  { word: 'deed', date: '20240107' },
+  // single vowel
+  { word: 'a', date: '20240108' },
+  // consonants only
+  { word: 'by', date: '20240109' },
+  // double letters + ending
+  { word: 'seeing', date: '20240110' },
+  // ends with -ed
+  { word: 'worked', date: '20240111' },
 ];
 
 const emptyWords = [];

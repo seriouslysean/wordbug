@@ -16,7 +16,7 @@ import { logError } from '~utils-client/sentry-client';
 
 // Fast-fail environment configuration
 const isDev = import.meta.env?.DEV ?? false;
-const sentryEnabled = (import.meta.env?.SENTRY_ENABLED || process.env.SENTRY_ENABLED) === 'true';
+const sentryEnabled = import.meta.env?.SENTRY_ENABLED === 'true';
 
 
 /**

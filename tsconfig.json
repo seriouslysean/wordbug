@@ -17,6 +17,7 @@
       "~data/*": ["./data/*"],
       "~config/*": ["./config/*"],
       "~styles/*": ["./src/styles/*"],
+      "~assets/*": ["./src/assets/*"],
       "~tools/*": ["./tools/*"],
     }
   },

@@ -1,3 +1,5 @@
+import type { TextProcessingOverrides } from '~types/common';
+
 /**
  * Checks if a word starts and ends with the same letter (length > 1).
  */
@@ -59,7 +61,6 @@ export const isAllVowels = (word: string): boolean => {
 export const isAllConsonants = (word: string): boolean => {
   return /^[^aeiou]+$/i.test(word);
 };
-import type { TextSyllableSpecialCases } from '~types/utils';
 
 /**
  * @param word - The word to analyze
@@ -114,7 +115,7 @@ export const countSyllables = (word: string): number => {
   }
 
   // Special cases for common words with irregular syllable patterns
-  const specialCases: TextSyllableSpecialCases = {
+  const specialCases: TextProcessingOverrides = {
     'ululated': 4,
     'the': 1,
     'a': 1,

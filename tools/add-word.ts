@@ -158,7 +158,7 @@ if (hasOverwrite) {
 const [word, date] = args;
 
 if (!word) {
-  console.error('Error: Word is required');
+  console.error('Word is required');
   showHelp(HELP_TEXT);
   process.exit(1);
 }

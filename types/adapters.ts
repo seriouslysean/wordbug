@@ -2,25 +2,13 @@
  * Common adapter interfaces for dictionary services
  */
 
+import type { DictionaryDefinition,FetchOptions, SourceMeta } from '~types/common';
 import type { WordData, WordProcessedData } from '~types/word';
-
-// Common interfaces that all adapters must implement
-export interface DictionaryDefinition {
-  id?: string;
-  partOfSpeech?: string;
-  text?: string;
-  attributionText?: string;
-  sourceDictionary?: string;
-  sourceUrl?: string;
-  examples?: string[];
-  synonyms?: string[];
-  antonyms?: string[];
-}
 
 export interface DictionaryResponse {
   word: string;
   definitions: DictionaryDefinition[];
-  meta: {
+  meta: SourceMeta & {
     source: string;
     attribution: string;
     url: string;
@@ -33,7 +21,7 @@ export interface DictionaryAdapter {
   /**
    * Fetch word data from the dictionary service
    */
-  fetchWordData(word: string, options?: Record<string, unknown>): Promise<DictionaryResponse>;
+  fetchWordData(word: string, options?: FetchOptions): Promise<DictionaryResponse>;
 
   /**
    * Transform raw API response to our internal WordData format

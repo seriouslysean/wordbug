@@ -344,7 +344,7 @@ export async function generateGenericShareImage(title: string, slug: string): Pr
 }
 
 import { getAdapter } from '~adapters';
-import type { CreateWordEntryResult } from '~types/tools';
+import type { CreateWordEntryResult } from '~types/common';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';
 import { formatDate, isValidDate } from '~utils/date-utils';

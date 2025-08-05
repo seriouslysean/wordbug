@@ -1,8 +1,9 @@
 import { decodeHTML } from 'entities';
 
-import type { DictionaryAdapter, DictionaryDefinition,DictionaryResponse } from '~types/adapters';
-import type { WordData,WordProcessedData } from '~types/word';
-import type { WordnikConfig,WordnikDefinition, WordnikFetchOptions } from '~types/wordnik';
+import type { DictionaryAdapter, DictionaryResponse } from '~types/adapters';
+import type { DictionaryDefinition, FetchOptions } from '~types/common';
+import type { WordData, WordProcessedData } from '~types/word';
+import type { WordnikConfig, WordnikDefinition } from '~types/wordnik';
 
 /**
  * Configuration constants for Wordnik API integration
@@ -34,7 +35,7 @@ export const wordnikAdapter: DictionaryAdapter = {
     if (!apiKey) {
       throw new Error('Wordnik API key is required');
     }
-    const limit = (options as WordnikFetchOptions).limit || WORDNIK_CONFIG.DEFAULT_LIMIT;
+    const limit = (options as FetchOptions).limit || WORDNIK_CONFIG.DEFAULT_LIMIT;
     const lowercaseWord = word.toLowerCase();
     const baseUrl = WORDNIK_CONFIG.BASE_URL;
     const url = `${baseUrl}/word.json/${encodeURIComponent(lowercaseWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;

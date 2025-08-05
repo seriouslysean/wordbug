@@ -2,6 +2,8 @@
  * Wordnik API types - External API structures
  */
 
+import type { RateLimit } from '~types/common';
+
 export interface WordnikDefinition {
   id?: string;
   partOfSpeech?: string;
@@ -31,14 +33,7 @@ export interface WordnikDefinition {
 }
 
 export interface WordnikResponse extends Array<WordnikDefinition> {
-  rateLimits?: WordnikRateLimit;
-}
-
-export interface WordnikRateLimit {
-  remainingMinute: string | null;
-  remainingHour: string | null;
-  limitMinute: string | null;
-  limitHour: string | null;
+  rateLimits?: RateLimit;
 }
 
 export interface WordnikConfig {
@@ -48,11 +43,4 @@ export interface WordnikConfig {
   RATE_LIMIT_BACKOFF: number;
 }
 
-export interface WordnikTextProcessingOptions {
-  preserveXrefs?: boolean;
-  xrefBaseUrl?: string;
-}
 
-export interface WordnikFetchOptions {
-  limit?: number;
-}
