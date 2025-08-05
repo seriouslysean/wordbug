@@ -27,8 +27,8 @@
     "tool:regenerate-all-words": "tsx tools/regenerate-all-words.ts",
     "test": "vitest run",
     "test:silent": "vitest run --silent",
-    "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "astro check"

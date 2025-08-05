@@ -35,8 +35,17 @@ Check similar files in the codebase for architectural patterns BEFORE writing ne
 # ALWAYS run after ANY code changes
 npm run lint         # Fix code style issues
 npm run typecheck    # Validate TypeScript
+npm test            # Run test suite (167 tests)
 npm run build        # Verify build succeeds
 ```
+
+### Build Output Verification
+After building, check the `dist/` directory structure:
+- **Expected pages**: index.html, words/, stats/, 404.html
+- **Static assets**: fonts/, favicon.ico, manifest.json
+- **Social images**: Properly organized by SOURCE_DIR structure
+- **Meta files**: sitemap-index.xml, robots.txt, humans.txt
+- **Suspicious files**: Report any unexpected executables or scripts
 
 ## Key Commands
 
@@ -54,6 +63,23 @@ npm test                                         # Run test suite
 - **Test All Changes**: Run lint/typecheck/build after ANY modifications
 - **Preserve Functionality**: Never break existing word display, navigation, or data loading
 - **Ask Before Major Changes**: Get user approval for architectural modifications
+
+## Code Quality Standards
+
+### Comments
+- **No Useless Comments**: Remove comments that don't add meaningful information
+- **Above-Line Comments**: Always place comments above the line they describe, never inline
+- **No Emojis**: Absolutely no emojis anywhere in the app
+- **No Prefixes**: Don't prefix log messages (log levels are sufficient)
+
+### Environment Variables
+- **Single Source of Truth**: `astro.config.mjs` handles all validation, don't duplicate
+- **Only Required**: Only 4 variables are truly required: SITE_URL, SITE_TITLE, SITE_DESCRIPTION, SITE_ID
+- **Optional Features**: Everything else has defaults or is feature-flag driven
+
+### Import Aliases
+- **Always Use Aliases**: Use `~components`, `~utils-client`, etc. instead of relative imports
+- **Never Relative**: `../` imports are not allowed, use aliases exclusively
 
 ## Documentation Structure
 

@@ -1,7 +1,6 @@
 import crypto from 'crypto';
 
-import { getAdapter } from '~adapters/factory';
-import type { DictionaryDefinition } from '~types/adapters';
+import { getAdapter } from '~adapters';
 import type {
   WordAdjacentResult,
   WordData,
@@ -18,13 +17,11 @@ export async function getWordsFromCollection(): Promise<WordData[]> {
   const { getCollection } = await import('astro:content');
   const words = await getCollection('words');
 
-  // Convert collection entries to WordData format and sort by date (newest first)
   return words
     .map(entry => {
       const extractedDate = entry.id.includes('/') ? entry.id.split('/').pop() : entry.id;
       return {
         ...entry.data,
-        // Override date if extracted from filename (preserves original if already correct)
         date: extractedDate || entry.data.date,
       };
     })
@@ -65,7 +62,6 @@ async function getAllWords(): Promise<WordData[]> {
   return _cachedWords;
 }
 
-// For synchronous access in places that need it immediately
 export const allWords = await getAllWords();
 
 
@@ -98,11 +94,8 @@ export const getCurrentWord = (words: WordData[] = allWords): WordData | null =>
   const today = new Date();
   const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
 
-  // Find the most recent word that's not in the future
-  // Since words are sorted newest first, find the first one <= today
   const found = words.find(word => word.date <= dateString);
 
-  // If no word is found (all are in the future), return the oldest word (last in array)
   return found || words[words.length - 1];
 };
 
@@ -237,22 +230,3 @@ export const getAvailableYears = (words: WordData[] = allWords): string[] => {
   return years.sort((a, b) => b.localeCompare(a));
 };
 
-/**
- * Validates if dictionary definition data contains valid word information.
- * Checks for presence of definition text or part of speech in at least one entry.
- * Generic validation that works with any adapter's data format.
- *
- * @param {DictionaryDefinition[]} data - Array of dictionary definitions to validate
- * @returns {boolean} True if the data contains at least one valid definition entry
- */
-export function isValidDictionaryData(data: DictionaryDefinition[]): boolean {
-  if (!Array.isArray(data) || data.length === 0) {
-    return false;
-  }
-
-  // Valid if at least one entry has definition text or part of speech
-  return data.some(entry =>
-    (typeof entry.text === 'string' && entry.text.trim().length > 0) ||
-    (typeof entry.partOfSpeech === 'string' && entry.partOfSpeech.trim().length > 0),
-  );
-}

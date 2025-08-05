@@ -5,7 +5,7 @@ import { logger } from '~utils-client/logger';
  * Consistently enforces lowercase URLs and no trailing slashes except for root path
  */
 export const getUrl = (path = '/'): string => {
-  const baseUrl = import.meta.env.BASE_URL || '/';
+  const baseUrl = import.meta.env.BASE_PATH || '/';
 
   if (!path || path === '') {
     return baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
@@ -33,7 +33,7 @@ export const getUrl = (path = '/'): string => {
 /**
  * Gets a normalized full URL including site URL and path
  * For use in canonicals, social tags, and other absolute URL needs
- * Uses getUrl() internally to ensure BASE_URL is properly handled
+ * Uses getUrl() internally to ensure BASE_PATH is properly handled
  */
 export const getFullUrl = (path = '/'): string => {
   const siteUrl = import.meta.env.SITE_URL?.replace(/\/$/, '') || '';

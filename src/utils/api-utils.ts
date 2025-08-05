@@ -1,4 +1,4 @@
-import { getAdapter } from '~adapters/factory';
+import { getAdapter } from '~adapters';
 import type { WordData } from '~types/word';
 import type { WordnikDefinition } from '~types/wordnik';
 import { logger } from '~utils-client/logger';
@@ -16,8 +16,6 @@ export const getWordData = async (
     const adapter = getAdapter();
     const response = await adapter.fetchWordData(word, options);
     const data = response.definitions;
-    // Data validation happens in the adapter's fetchWordData method
-    // If we get here, the data is already validated
     return data;
   } catch (error) {
     logger.error('Failed to fetch word data', { word, error: (error as Error).message });

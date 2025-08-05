@@ -8,7 +8,7 @@ export interface WordnikDefinition {
   attributionText?: string;
   sourceDictionary?: string;
   text?: string;
-  sequence?: string;
+  sequence?: string | number;
   score?: number;
   word?: string;
   attributionUrl?: string;

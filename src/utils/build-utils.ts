@@ -1,6 +1,5 @@
 import type { WordData } from '~types/word';
-
-import { generateWordDataHash } from './word-data-utils';
+import { generateWordDataHash } from '~utils-client/word-data-utils';
 
 export interface BuildData {
   version: string;

@@ -97,7 +97,7 @@ async function generateAllImages(): Promise<void> {
  * Generates images for all generic pages (stats, words index, year pages, etc.)
  */
 async function generateGenericImages(): Promise<void> {
-  const staticPages = getStaticPages();
+  const staticPages = await getStaticPages();
 
   // Get all available years from word data
   const years = getAvailableYears();
@@ -158,7 +158,7 @@ async function generateGenericImages(): Promise<void> {
  */
 async function generatePageImage(pagePath: string): Promise<boolean> {
   try {
-    const staticPages = getStaticPages();
+    const staticPages = await getStaticPages();
     const page = staticPages.find(p => p.path === pagePath);
 
     if (!page) {

@@ -78,6 +78,39 @@ COLOR_PRIMARY_LIGHT="#d97706"
 COLOR_PRIMARY_DARK="#78350f"
 ```
 
+## Deployment
+
+The site supports both root and subdirectory deployments:
+
+### Root Deployment
+```bash
+SITE_URL="https://example.com"
+BASE_PATH="/"
+```
+
+### Subdirectory Deployment
+```bash
+SITE_URL="https://example.com"    # Domain only
+BASE_PATH="/vocab"                # Subdirectory path
+```
+
+### Popular Platforms
+```bash
+# Netlify/Vercel (root)
+SITE_URL="https://mysite.netlify.app"
+BASE_PATH="/"
+
+# GitHub Pages (subdirectory) 
+SITE_URL="https://username.github.io"
+BASE_PATH="/repo-name"
+
+# Custom subdirectory
+SITE_URL="https://mysite.com"
+BASE_PATH="/words"
+```
+
+**Important**: The site's URL utilities automatically handle BASE_PATH for all internal links and absolute URLs. Never hardcode paths.
+
 ## Data Structure
 
 Words are stored as JSON files organized by year:

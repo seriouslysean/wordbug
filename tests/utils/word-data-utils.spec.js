@@ -2,6 +2,7 @@ import {
  afterEach,beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
+import { isValidDictionaryData } from '~utils/word-validation';
 import {
   getAdjacentWords,
   getAvailableYears,
@@ -11,7 +12,6 @@ import {
   getWordDetails,
   getWordsByYear,
   groupWordsByYear,
-  isValidDictionaryData,
 } from '~utils-client/word-data-utils';
 
 describe('word-data-utils', () => {

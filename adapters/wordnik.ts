@@ -52,7 +52,6 @@ export const wordnikAdapter: DictionaryAdapter = {
     if (!this.isValidResponse(data)) {
       throw new Error('No word data found');
     }
-    // Transform Wordnik-specific response to generic DictionaryResponse format
     return {
       word: word.toLowerCase(),
       definitions: data.map((def) => ({
@@ -99,7 +98,6 @@ export const wordnikAdapter: DictionaryAdapter = {
     if (!wordData || !wordData.data || wordData.data.length === 0) {
       return { partOfSpeech: '', definition: '', meta: null };
     }
-    // Find the first definition with actual text content
     for (const item of wordData.data as DictionaryDefinition[]) {
       if (item.text && item.text.trim()) {
         return {
@@ -177,7 +175,6 @@ export function processWordnikHTML(
   if (preserveXrefs) {
     result = processCrossReferences(result);
   } else {
-    // Strip <xref> tags but preserve the inner text content
     result = result.replace(/<xref[^>]*>(.*?)<\/xref>/g, '$1');
   }
 
@@ -198,7 +195,6 @@ export function transformWordData(wordData: WordData): WordProcessedData {
     return { partOfSpeech: '', definition: '', meta: null };
   }
 
-  // Find the first definition with actual text content
   for (const item of wordData.data) {
     if (item.text && item.text.trim()) {
       return {
@@ -225,7 +221,6 @@ export function isValidWordData(data: DictionaryDefinition[]): boolean {
   if (!Array.isArray(data) || data.length === 0) {
     return false;
   }
-  // Valid entry requires either definition text or part of speech
   return data.some(entry =>
     (typeof entry.text === 'string' && entry.text.trim().length > 0) ||
     (typeof entry.partOfSpeech === 'string' && entry.partOfSpeech.trim().length > 0),

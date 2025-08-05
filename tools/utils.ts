@@ -343,7 +343,7 @@ export async function generateGenericShareImage(title: string, slug: string): Pr
   }
 }
 
-import { getAdapter } from '~adapters/factory';
+import { getAdapter } from '~adapters';
 import type { CreateWordEntryResult } from '~types/tools';
 import type { WordData } from '~types/word';
 import type { WordnikResponse } from '~types/wordnik';

@@ -2,7 +2,7 @@
  * Common adapter interfaces for dictionary services
  */
 
-import type { WordData, WordProcessedData } from './word';
+import type { WordData, WordProcessedData } from '~types/word';
 
 // Common interfaces that all adapters must implement
 export interface DictionaryDefinition {
@@ -51,20 +51,6 @@ export interface DictionaryAdapter {
   isValidResponse(response: unknown): boolean;
 }
 
-export interface AdapterConfig {
-  apiKey?: string;
-  baseUrl?: string;
-  timeout?: number;
-  rateLimitDelay?: number;
-  [key: string]: unknown;
-}
-
-export type AdapterName = 'wordnik' | 'merriam-webster' | 'oxford' | 'cambridge';
-
-export interface AdapterFactory {
-  createAdapter(name: AdapterName, config: AdapterConfig): DictionaryAdapter;
-  getAvailableAdapters(): AdapterName[];
-}
 
 // TODO: Future consideration for data format abstraction
 // Currently, WordData.data contains adapter-specific response format (WordnikDefinition[])

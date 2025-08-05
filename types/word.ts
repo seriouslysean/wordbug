@@ -2,7 +2,7 @@
  * Word data types - Our internal data structures
  */
 
-import type { DictionaryDefinition } from './adapters';
+import type { DictionaryDefinition } from '~types/adapters';
 
 // Our processed word data after transformation
 export interface WordProcessedData {

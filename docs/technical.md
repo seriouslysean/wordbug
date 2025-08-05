@@ -221,10 +221,46 @@ public/images/social/
 
 ## URL Management & Navigation
 
-### Consistent URL Generation
-- **SiteLink Component**: All internal navigation uses centralized URL generation
+### URL Architecture Overview
+
+The site uses a **two-tier URL system** to support both root deployments (`example.com`) and subdirectory deployments (`example.com/blog/`):
+
+#### Environment Variables
+- **`SITE_URL`**: Full canonical domain (e.g., `https://example.com`)
+- **`BASE_PATH`**: Subdirectory path for deployment (e.g., `/blog` or `/`)
+
+#### URL Generation Functions
+- **`getUrl(path)`**: Generates relative URLs with BASE_PATH for internal navigation
+  - Example: `getUrl('/words/hello')` → `/blog/words/hello` (if BASE_PATH="/blog")
+- **`getFullUrl(path)`**: Generates absolute URLs for SEO/social sharing
+  - Example: `getFullUrl('/words/hello')` → `https://example.com/blog/words/hello`
+  - **Implementation**: Uses `getUrl()` internally to ensure BASE_PATH consistency
+
+#### Component Usage
+- **SiteLink Component**: All internal navigation uses `getUrl()` for proper BASE_PATH handling
 - **WordLink Component**: Specialized word-to-word navigation with date context
-- **Canonical URLs**: Proper canonical link generation for SEO
+- **Layout Component**: Uses `getFullUrl()` for canonical URLs, social tags, and schema.org data
+
+#### Deployment Scenarios
+```bash
+# Root deployment (example.com)
+SITE_URL="https://example.com"
+BASE_PATH="/"
+
+# Subdirectory deployment (example.com/vocab/)
+SITE_URL="https://example.com" 
+BASE_PATH="/vocab"
+
+# GitHub Pages deployment (username.github.io/repo/)
+SITE_URL="https://username.github.io"
+BASE_PATH="/repo"
+```
+
+#### Critical Design Principles
+1. **Always use `getUrl()` for internal links** - Never hardcode paths
+2. **Always use `getFullUrl()` for absolute URLs** - Never concatenate manually
+3. **Astro's sitemap integration** automatically uses `site` config for full URLs
+4. **Never bypass BASE_PATH** - It breaks subdirectory deployments
 
 ### Route Structure
 ```

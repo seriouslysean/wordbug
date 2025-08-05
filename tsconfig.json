@@ -11,6 +11,7 @@
       "~layouts/*": ["./src/layouts/*"],
       "~utils-client/*": ["./src/utils/*"],
       "~utils/*": ["./utils/*"],
+      "~adapters": ["./adapters"],
       "~adapters/*": ["./adapters/*"],
       "~types/*": ["./types/*"],
       "~data/*": ["./data/*"],

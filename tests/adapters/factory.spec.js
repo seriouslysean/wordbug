@@ -22,7 +22,7 @@ describe('adapter factory', () => {
     it('returns wordnik adapter by default', async () => {
       delete process.env.DICTIONARY_ADAPTER;
 
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter).toBeDefined();
@@ -36,7 +36,7 @@ describe('adapter factory', () => {
     it('returns wordnik adapter when explicitly configured', async () => {
       process.env.DICTIONARY_ADAPTER = 'wordnik';
 
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter.name).toBe('wordnik');
@@ -45,7 +45,7 @@ describe('adapter factory', () => {
     it('handles case insensitive adapter names', async () => {
       process.env.DICTIONARY_ADAPTER = 'WORDNIK';
 
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter.name).toBe('wordnik');
@@ -54,7 +54,7 @@ describe('adapter factory', () => {
     it('throws error for unsupported adapter', async () => {
       process.env.DICTIONARY_ADAPTER = 'unsupported-adapter';
 
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
 
       expect(() => getAdapter()).toThrow('Unsupported dictionary adapter');
     });
@@ -62,7 +62,7 @@ describe('adapter factory', () => {
     it('returns wordnik adapter for empty adapter name (falls back to default)', async () => {
       process.env.DICTIONARY_ADAPTER = '';
 
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter.name).toBe('wordnik');
@@ -82,7 +82,7 @@ describe('adapter factory', () => {
 
       process.env.DICTIONARY_ADAPTER = 'wordnik';
 
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
       getAdapter();
 
       expect(mockLogger.info).toHaveBeenCalledWith(
@@ -94,7 +94,7 @@ describe('adapter factory', () => {
 
   describe('adapter interface compliance', () => {
     it('returned adapter implements DictionaryAdapter interface', async () => {
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter).toHaveProperty('name');
@@ -112,7 +112,7 @@ describe('adapter factory', () => {
     });
 
     it('adapter methods have correct signatures', async () => {
-      const { getAdapter } = await import('~adapters/factory');
+      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter.fetchWordData.length).toBeGreaterThanOrEqual(1);

@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { getAdapter } from '~adapters/factory';
+import { getAdapter } from '~adapters';
 import { COMMON_ENV_DOCS,showHelp } from '~tools/help-utils';
 import { getAllWords } from '~tools/utils';
 import type { WordData } from '~types/word';

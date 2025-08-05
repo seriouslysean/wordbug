@@ -6,7 +6,7 @@ import type {
   WordStatsResult,
   WordStreakStatsResult,
 } from '~types/word';
-import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
+import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils-client/date-utils';
 import { logger } from '~utils-client/logger';
 import {
   countSyllables,
@@ -56,7 +56,6 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
       }
     }
 
-    // Count unique letters in this word (each letter only counted once per word)
     const uniqueLetters = new Set(word.toLowerCase());
     for (const letter of uniqueLetters) {
       stats.letterFrequency[letter] = (stats.letterFrequency[letter] || 0) + 1;
@@ -176,12 +175,8 @@ export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult 
   yesterdayDate.setDate(today.getDate() - 1);
   const yesterdayString = dateToYYYYMMDD(yesterdayDate);
 
-  // Check if streak is active (a word exists for today or yesterday)
   const mostRecentWord = sortedWords[0];
-  // Defensive check to ensure mostRecentWord exists before accessing date
   const isActive = !!mostRecentWord && (mostRecentWord.date === todayString || mostRecentWord.date === yesterdayString);
-
-  // Calculate current streak
   const calculateCurrentStreak = () => {
     if (!isActive || !mostRecentWord) {
       return 0;
@@ -204,7 +199,6 @@ export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult 
     return streakData.count;
   };
 
-  // Calculate longest streak
   const calculateLongestStreak = () => {
     if (!words.length || words.length === 1) {
       return words.length;
@@ -270,12 +264,10 @@ export const getLongestStreakWords = (words: WordData[]): WordData[] => {
     }
   }
 
-  // Check final streak
   if (currentStreak.length > longestStreak.length) {
     longestStreak = [...currentStreak];
   }
 
-  // Return in chronological order (oldest first)
   return longestStreak.reverse();
 };
 
