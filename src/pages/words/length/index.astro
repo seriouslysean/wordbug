@@ -1,43 +1,43 @@
 ---
 import Heading from '~components/Heading.astro';
-import SiteLink from '~components/SiteLink.astro';
+import SectionHeading from '~components/SectionHeading.astro';
+import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { formatWordCount } from '~utils-client/text-utils';
-import { getAvailableLengths, getWordsFromCollection, groupWordsByLength } from '~utils-client/word-data-utils';
+import { getWordsFromCollection, groupWordsByLength } from '~utils-client/word-data-utils';
 
 const allWords = await getWordsFromCollection();
-const lengths = getAvailableLengths(allWords);
 const wordsByLength = groupWordsByLength(allWords);
+const lengths = Object.keys(wordsByLength)
+  .map(Number)
+  .sort((a, b) => a - b);
 const { title, description } = getPageMetadata(Astro.url.pathname);
-const lengthLinks = lengths.map(length => ({
-  length,
-  countText: formatWordCount(wordsByLength[length].length),
-}));
 ---
 
 <Layout title={title} description={description}>
-  <main class="main__content lengths">
+  <main class="length-words">
     <Heading text={title} />
-    <ul>
-      {lengthLinks.map(({ length, countText }) => (
-        <li class="lengths__item">
-          <SiteLink href={`/words/length/${length}`}>
-            {length}-letter words ({countText})
-          </SiteLink>
-        </li>
-      ))}
-    </ul>
+    {lengths.map(length => (
+      <section class="length-words__section">
+        <SectionHeading
+          text={`${length}-letter words (${formatWordCount(wordsByLength[length].length)})`}
+          href={`/words/length/${length}`}
+        />
+        <WordList words={wordsByLength[length]} columns={2} />
+      </section>
+    ))}
   </main>
 </Layout>
 
 <style>
-  .lengths {
-    max-width: var(--content-width-small);
+  .length-words {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
   }
 
-  .lengths__item {
-    margin-bottom: var(--spacing-base);
+  .length-words__section {
+    margin-bottom: var(--spacing-large);
   }
 </style>
 

@@ -24,10 +24,22 @@ const wordCountText = formatWordCount(words.length);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <main class="main__content">
+  <main class="length-words">
     <Heading level={1} text={headingText} secondaryText={wordCountText} />
-    <WordList words={words} columns={2} />
+    <div class="length-words__content">
+      <WordList words={words} columns={2} />
+    </div>
   </main>
 </Layout>
 
+<style>
+  .length-words {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+  }
+
+  .length-words__content {
+    width: 100%;
+  }
+</style>
 

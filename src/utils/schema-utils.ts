@@ -16,6 +16,7 @@ export type StructuredDataType = typeof STRUCTURED_DATA_TYPE[keyof typeof STRUCT
 
 /**
  * Global website schema data - included on every page
+ * @returns {WebSiteSchema} Base schema.org website data
  */
 export function getWebsiteSchemaData(): WebSiteSchema {
   return {
@@ -38,6 +39,8 @@ export function getWebsiteSchemaData(): WebSiteSchema {
 
 /**
  * Generate word schema data from word details
+ * @param {WordSchemaData} wordData - Word details to serialize
+ * @returns {DefinedTermSchema | null} Schema data or null when invalid
  */
 export function getWordSchemaData(wordData: WordSchemaData): DefinedTermSchema | null {
   if (!wordData || !wordData.word) {
@@ -76,6 +79,10 @@ return null;
 
 /**
  * Generate collection schema data
+ * @param {string} name - Collection name
+ * @param {string} description - Description of collection
+ * @param {number} itemCount - Number of items in the collection
+ * @returns {CollectionPageSchema} Schema data for the collection page
  */
 export function getCollectionSchemaData(name: string, description: string, itemCount: number): CollectionPageSchema {
   return {

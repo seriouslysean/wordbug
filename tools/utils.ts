@@ -29,16 +29,16 @@ const regularFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSa
 const boldFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSans-ExtraBold.ttf'));
 
 
-/**
- * Gets all word files from the data directory
- * @returns Array of word file information objects
- */
 interface WordFileInfo {
   word: string;
   date: string;
   path: string;
 }
 
+/**
+ * Get all word files from the data directory
+ * @returns {WordFileInfo[]} Array of word file information objects
+ */
 export const getWordFiles = (): WordFileInfo[] => {
   if (!fs.existsSync(paths.words)) {
     console.error('Word directory does not exist', { path: paths.words });
@@ -89,6 +89,7 @@ export const getWordFiles = (): WordFileInfo[] => {
  * @param filePath - Path to the word file
  * @param data - Wordnik API response data
  * @param date - Date string in YYYYMMDD format
+ * @returns {void} Nothing
  */
 export function updateWordFile(filePath: string, data: WordnikResponse, date: string): void {
   if (!data.length || !data[0].word) {
@@ -112,6 +113,7 @@ export function updateWordFile(filePath: string, data: WordnikResponse, date: st
 /**
  * Creates a directory if it doesn't already exist
  * @param dir - Directory path to create
+ * @returns {void} Nothing
  */
 export function createDirectoryIfNeeded(dir: string): void {
   if (!fs.existsSync(dir)) {
@@ -256,6 +258,7 @@ export function createWordSvg(word: string, date: string): string {
  * Generates a social share image for a word
  * @param word - The word to generate an image for
  * @param date - Date string in YYYYMMDD format
+ * @returns {Promise<void>} Nothing
  */
 export async function generateShareImage(word: string, date: string): Promise<void> {
   const year = date.slice(0, 4);
@@ -320,6 +323,7 @@ export function createGenericSvg(title: string): string {
  * Generates a generic social share image for pages without a word
  * @param title - The title to use in the image
  * @param slug - The page slug/path
+ * @returns {Promise<void>} Nothing
  */
 export async function generateGenericShareImage(title: string, slug: string): Promise<void> {
   const socialDir = path.join(paths.images, 'social', 'pages');

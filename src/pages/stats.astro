@@ -7,6 +7,7 @@ import WordLink from '~components/WordLink.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { countSyllables, getConsonantCount, getVowelCount } from '~utils-client/text-utils';
+import { getAvailableLengths } from '~utils-client/word-data-utils';
 import {
   findWordDate,
   getChronologicalMilestones,
@@ -30,6 +31,7 @@ const words = wordsCollection
 const totalWords = words.length;
 const firstWord = totalWords > 0 ? words[0] : null;
 const latestWord = totalWords > 0 ? words[words.length - 1] : null;
+const lengthCount = getAvailableLengths(words).length;
 
 const wordStats = getWordStats(words);
 const letterStats = getLetterStats(wordStats.letterFrequency);
@@ -83,19 +85,23 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     <Heading text="Stats" secondaryText="For Nerds" />
 
     <section class="stats__section">
-      <dl class="stats__list">
-        <dt class="stats__fact">total words</dt>
+  <dl class="stats__list">
+    <dt class="stats__fact">total words</dt>
+    <dd class="stats__value">
+      <SiteLink href="/words" class="stats__link">{totalWords}</SiteLink>
+    </dd>
+    <dt class="stats__fact">word lengths</dt>
+    <dd class="stats__value">
+      <SiteLink href="/words/length" class="stats__link">{lengthCount}</SiteLink>
+    </dd>
+    {firstWord && (
+      <>
+        <dt class="stats__fact">first word</dt>
         <dd class="stats__value">
-          <SiteLink href="/words" class="stats__link">{totalWords}</SiteLink>
+          <WordLink word={firstWord} />
         </dd>
-        {firstWord && (
-          <>
-            <dt class="stats__fact">first word</dt>
-            <dd class="stats__value">
-              <WordLink word={firstWord} />
-            </dd>
-          </>
-        )}
+      </>
+    )}
 {latestWord && (
   <>
     <dt class="stats__fact">latest word</dt>
