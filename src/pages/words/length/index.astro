@@ -1,0 +1,43 @@
+---
+import Heading from '~components/Heading.astro';
+import SiteLink from '~components/SiteLink.astro';
+import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils-client/page-metadata.ts';
+import { formatWordCount } from '~utils-client/text-utils';
+import { getAvailableLengths, getWordsFromCollection, groupWordsByLength } from '~utils-client/word-data-utils';
+
+const allWords = await getWordsFromCollection();
+const lengths = getAvailableLengths(allWords);
+const wordsByLength = groupWordsByLength(allWords);
+const { title, description } = getPageMetadata(Astro.url.pathname);
+const lengthLinks = lengths.map(length => ({
+  length,
+  countText: formatWordCount(wordsByLength[length].length),
+}));
+---
+
+<Layout title={title} description={description}>
+  <main class="main__content lengths">
+    <Heading text={title} />
+    <ul>
+      {lengthLinks.map(({ length, countText }) => (
+        <li class="lengths__item">
+          <SiteLink href={`/words/length/${length}`}>
+            {length}-letter words ({countText})
+          </SiteLink>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  .lengths {
+    max-width: var(--content-width-small);
+  }
+
+  .lengths__item {
+    margin-bottom: var(--spacing-base);
+  }
+</style>
+

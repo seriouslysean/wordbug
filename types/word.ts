@@ -75,6 +75,10 @@ export interface WordGroupByYearResult {
   [year: string]: WordData[];
 }
 
+export interface WordGroupByLengthResult {
+  [length: number]: WordData[];
+}
+
 export interface WordFileGlobImport {
   [path: string]: WordData | WordData[];
 }
