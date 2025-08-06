@@ -108,6 +108,21 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Impact**: Minor - Current performance is already good
 **Solution**: Use Astro's static optimization features
 
+## Content Distribution
+
+### RSS Feed Generation [LOW-MEDIUM PRIORITY]
+**Opportunity**: RSS feeds for word discovery and following
+**Examples**: Latest words feed, monthly feeds, letter-specific feeds
+**Impact**: Enhanced discoverability, learning exercise with Astro RSS plugin
+**Solution**: Use `@astrojs/rss` to generate feeds at build time
+
+### URL Structure Optimization [MEDIUM PRIORITY]
+**Opportunity**: Reorganize URLs for better hierarchy and future features
+**Current**: `/words/[word]`, `/words/[year]`
+**Proposed**: Keep short word URLs, organize browsing under `/words/browse/year/`, `/words/browse/letter/`, `/words/browse/length/`
+**Impact**: Cleaner organization for new page types, better SEO hierarchy
+**Solution**: Restructure page organization while maintaining short individual word URLs
+
 ## User Experience Enhancements
 
 ### Stats Category Directory Pages [MEDIUM PRIORITY]
@@ -124,6 +139,41 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Opportunity**: Dark/light mode toggle with system preference detection
 **Impact**: Better user experience for different viewing preferences
 **Solution**: CSS custom properties with JavaScript toggle
+
+### Letter-Based Word Pages [MEDIUM PRIORITY]
+**Opportunity**: Pages for words starting with each letter (A, B, C, etc.)
+**Impact**: Alphabetical browsing and improved SEO for letter-specific searches
+**Solution**: Generate `/words/letter/[a-z]` pages with word lists and stats
+
+### Month-Based Archives [MEDIUM PRIORITY]
+**Opportunity**: Monthly archive pages complementing existing year pages
+**Impact**: More granular chronological navigation and SEO coverage
+**Solution**: Generate `/words/[year]/[month]` pages with month-specific word lists
+
+### Word Length Pages [MEDIUM PRIORITY]
+**Opportunity**: Dynamic pages for each word length that exists in the dataset
+**Impact**: Length-based browsing and discovery patterns
+**Solution**: Generate `/words/length/` index page listing available lengths, then `/words/length/[n]` pages for each length
+
+### Enhanced Programmatic Stats [MEDIUM PRIORITY]
+**Opportunity**: Chart-worthy statistics based on pure string analysis
+**Examples**: Starting letter frequency distribution, word length histogram, curated common endings
+**Impact**: Visual data storytelling and content discovery, future chart integration
+**Solution**: Extend stats with letter/length distribution counts, keep curated ending patterns
+
+### Contextual Breadcrumb Navigation [MEDIUM PRIORITY]
+**Opportunity**: Dynamic breadcrumbs showing current location in site hierarchy
+**Examples**: "Home > Words > 2024 > March 19: magnificent" or "Home > Words > Letter M > magnificent"
+**Impact**: Better user orientation and SEO hierarchy signals
+**Solution**: Context-aware breadcrumb generation based on page type and navigation path
+
+### Cross-Page Internal Linking [HIGH PRIORITY]
+**Opportunity**: Rich internal linking between related content types
+**Word page links**: "Other 11-letter words", "Other words from March 2024", "Other words starting with M"
+**Archive page links**: "7-letter words starting with A", "March words with double letters"
+**Stats page links**: "Words with this pattern", "Browse by letter/length"
+**Impact**: Significantly improved SEO through internal link density and user engagement through content discovery
+**Solution**: Generate contextual "Related" sections on all page types with 3-5 relevant links each
 
 ### Word Bookmarking [LOW PRIORITY]
 **Opportunity**: Personal favorites system using LocalStorage
