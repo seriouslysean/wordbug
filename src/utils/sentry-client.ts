@@ -4,10 +4,6 @@ import type { LogContext } from '~types/common';
 
 /**
  * Log an error to Sentry with optional context
- * @param {Error | string} error - Error object or message
- * @param {LogContext} [context={}] - Additional context for the log
- * @param {'error' | 'warning' | 'info'} [level='error'] - Severity level
- * @returns {void} Nothing
  */
 export function logError(error: Error | string, context: LogContext = {}, level: 'error' | 'warning' | 'info' = 'error'): void {
   if (import.meta.env.SENTRY_ENABLED !== 'true') {
@@ -35,11 +31,6 @@ export function logError(error: Error | string, context: LogContext = {}, level:
 
 /**
  * Log a structured error to Sentry with use case identification
- * @param {string} useCase - Identifier for where the error occurred
- * @param {LogContext} [params={}] - Additional parameters for context
- * @param {Error} [error] - Original error instance
- * @param {'error' | 'warning' | 'info'} [level='error'] - Severity level
- * @returns {void} Nothing
  */
 export function logSentryError(useCase: string, params: LogContext = {}, error?: Error, level: 'error' | 'warning' | 'info' = 'error'): void {
   const message = error instanceof Error ? error : `Error: ${useCase}`;

@@ -85,28 +85,32 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     <Heading text="Stats" secondaryText="For Nerds" />
 
     <section class="stats__section">
-  <dl class="stats__list">
-    <dt class="stats__fact">total words</dt>
-    <dd class="stats__value">
-      <SiteLink href="/words" class="stats__link">{totalWords}</SiteLink>
-    </dd>
-    <dt class="stats__fact">word lengths</dt>
-    <dd class="stats__value">
-      <SiteLink href="/words/length" class="stats__link">{lengthCount}</SiteLink>
-    </dd>
-    {firstWord && (
-      <>
-        <dt class="stats__fact">first word</dt>
+      <dl class="stats__list">
+        <dt class="stats__fact">total words</dt>
         <dd class="stats__value">
-          <WordLink word={firstWord} />
+          <SiteLink href="/words" class="stats__link">{totalWords}</SiteLink>
         </dd>
-      </>
-    )}
+        {firstWord && (
+          <>
+            <dt class="stats__fact">first word</dt>
+            <dd class="stats__value">
+              <WordLink word={firstWord} />
+            </dd>
+          </>
+        )}
 {latestWord && (
   <>
     <dt class="stats__fact">latest word</dt>
     <dd class="stats__value">
       <WordLink word={latestWord} />
+    </dd>
+  </>
+)}
+{lengthCount > 0 && (
+  <>
+    <dt class="stats__fact">word lengths</dt>
+    <dd class="stats__value">
+      <SiteLink href="/words/length" class="stats__link">{lengthCount}</SiteLink>
     </dd>
   </>
 )}

@@ -1,10 +1,8 @@
 import { logger } from '~utils-client/logger';
 
 /**
- * Construct a URL with the configured base path
+ * Constructs a URL with the base URL if configured
  * Consistently enforces lowercase URLs and no trailing slashes except for root path
- * @param path - Path to normalize
- * @returns Normalized URL path
  */
 export const getUrl = (path = '/'): string => {
   const baseUrl = import.meta.env.BASE_PATH || '/';
@@ -33,10 +31,9 @@ export const getUrl = (path = '/'): string => {
 };
 
 /**
- * Get a normalized full URL including site URL and path
+ * Gets a normalized full URL including site URL and path
+ * For use in canonicals, social tags, and other absolute URL needs
  * Uses getUrl() internally to ensure BASE_PATH is properly handled
- * @param path - Path to append to site URL
- * @returns Absolute URL
  */
 export const getFullUrl = (path = '/'): string => {
   const siteUrl = import.meta.env.SITE_URL?.replace(/\/$/, '') || '';
@@ -51,9 +48,7 @@ export const getFullUrl = (path = '/'): string => {
 };
 
 /**
- * Create a consistent, SEO-friendly internal link URL for a word
- * @param {string} word - Word to build URL for
- * @returns {string} Normalized word URL
+ * Creates a consistent, SEO-friendly internal link URL
  */
 export const getWordUrl = (word: string): string => {
   return word ? getUrl(`/words/${word}`) : '';

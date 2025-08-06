@@ -342,14 +342,6 @@ const sortedWords = words
 - Supports different data sources via `{SOURCE_DIR}` environment variable
 - Enables flexible deployment to different environments
 
-## Complex Algorithms & Architectural Decisions
-
-### Statistics Generation
-Word statistics are derived from raw word data using specialized helpers in `src/utils/word-stats-utils.ts`. Functions such as `getCurrentStreakStats` and `getChronologicalMilestones` walk the dataset to compute streaks, letter patterns and milestone words without mutating the source array. These algorithms favor readability and immutability while still handling large word lists efficiently.
-
-### Dynamic Static Path Creation
-The `generateStatsStaticPaths` utility builds Astro static paths based on available statistics. It loads all words at runtime, filters out empty stat pages when the `__SHOW_EMPTY_STATS__` flag is disabled and maps each stat definition to its route and data payload. This ensures only meaningful pages are generated and keeps the build output lean.
-
 ## Performance Optimizations
 
 ### Build-time Optimizations

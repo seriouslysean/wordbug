@@ -5,8 +5,6 @@
 
 /**
  * Displays help text with consistent formatting
- * @param {string} helpText - Raw help text to display
- * @returns {void} Nothing
  */
 export function showHelp(helpText: string): void {
   console.log(helpText.trim());

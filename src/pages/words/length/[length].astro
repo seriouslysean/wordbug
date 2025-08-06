@@ -4,28 +4,23 @@ import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
-import { formatWordCount } from '~utils-client/text-utils';
 import { getAvailableLengths, getWordsByLength, getWordsFromCollection } from '~utils-client/word-data-utils';
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();
   const lengths = getAvailableLengths(allWords);
-
   return lengths.map(length => ({
-    params: { length: length.toString() },
-    props: { length, words: getWordsByLength(length, allWords) },
+    params: { length: String(length) },
+    props: { words: getWordsByLength(length, allWords), length },
   }));
 }
 
 const { length, words } = Astro.props;
 const { title, description } = getPageMetadata(Astro.url.pathname);
-const headingText = `${length}-letter words`;
-const wordCountText = formatWordCount(words.length);
 ---
-
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="length-words">
-    <Heading level={1} text={headingText} secondaryText={wordCountText} />
+    <Heading level={1} text={String(length)} secondaryText="Letters" />
     <div class="length-words__content">
       <WordList words={words} columns={2} />
     </div>
@@ -42,4 +37,3 @@ const wordCountText = formatWordCount(words.length);
     width: 100%;
   }
 </style>
-

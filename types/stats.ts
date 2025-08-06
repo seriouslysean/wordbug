@@ -72,5 +72,3 @@ export type SuffixDefinition = StatsDefinition;
 export type LetterPatternDefinition = StatsDefinition;
 export type PatternDefinition = StatsDefinition;
 
-export type AnyStatsDefinition = DynamicStatsDefinition | SuffixDefinition | LetterPatternDefinition | PatternDefinition;
-

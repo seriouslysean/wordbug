@@ -1,36 +1,28 @@
 import type { TextProcessingOverrides } from '~types/common';
 
 /**
- * Check if a word starts and ends with the same letter
- * @param {string} word - Word to evaluate
- * @returns {boolean} True if first and last letters match and length > 1
+ * Checks if a word starts and ends with the same letter (length > 1).
  */
 export function isStartEndSame(word: string): boolean {
   return word.length > 1 && word[0] === word[word.length - 1];
 }
 
 /**
- * Determine whether a word contains double letters
- * @param {string} word - Word to inspect
- * @returns {boolean} True if the word has any repeated consecutive letters
+ * Checks if a word contains double letters (e.g., 'letter').
  */
 export function hasDoubleLetters(word: string): boolean {
   return /(.)(\1)/.test(word);
 }
 
 /**
- * Determine whether a word contains triple or more consecutive letters
- * @param {string} word - Word to inspect
- * @returns {boolean} True if the word has three or more repeated letters in a row
+ * Checks if a word contains triple (or more) consecutive letters (e.g., 'bookkeeper').
  */
 export function hasTripleLetters(word: string): boolean {
   return /(.)(\1){2,}/.test(word);
 }
 
 /**
- * Check for any sequence of three consecutive alphabetical letters
- * @param {string} word - Word to analyze
- * @returns {boolean} True if any three-letter sequence is alphabetical
+ * Checks if a word contains any sequence of three consecutive alphabetical letters (e.g., 'abc', 'def').
  */
 export function hasAlphabeticalSequence(word: string): boolean {
   const letters = word.toLowerCase().split('');
@@ -46,9 +38,7 @@ export function hasAlphabeticalSequence(word: string): boolean {
 }
 
 /**
- * Get common word endings matched by a word (e.g., "ing", "ed")
- * @param {string} word - Word to examine
- * @returns {string[]} Array of endings matched by the word
+ * Returns an array of common word endings the word matches (e.g., ['ing', 'ed']).
  */
 export function getWordEndings(word: string): string[] {
   const endings = ['ing', 'ed', 'ly', 'ness', 'ful', 'less'];

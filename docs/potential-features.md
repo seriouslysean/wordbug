@@ -62,6 +62,11 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Impact**: Medium - Risk of regressions in untested code
 **Solution**: Add comprehensive test coverage for all utilities
 
+### Import Statement Optimization [LOW-MEDIUM PRIORITY]
+**Current Issue**: Some barrel exports and re-export patterns could be more direct
+**Impact**: Low-Medium - Affects tree-shaking and bundle size
+**Solution**: Prefer direct imports where possible
+
 ### Logging Strategy Enhancement [LOW PRIORITY]
 **Current State**: Console-based logging works but could be more structured
 - No log levels beyond console methods

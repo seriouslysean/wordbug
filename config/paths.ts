@@ -19,10 +19,6 @@ const getImagesPath = (): string => {
   return sourceDir ? path.join(ROOT, 'public', sourceDir, 'images') : path.join(ROOT, 'public', 'images');
 };
 
-/**
- * Create resolved paths used across the application
- * @returns {PathConfig} Object containing absolute paths for words, pages, images and fonts
- */
 export const createPaths = (): PathConfig => ({
   words: getWordsPath(),
   pages: path.join(ROOT, 'src', 'pages'),

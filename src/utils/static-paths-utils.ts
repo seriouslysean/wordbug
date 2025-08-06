@@ -132,10 +132,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
     },
   ];
 };
-/**
- * Generate Astro static paths for statistics pages
- * @returns Array of path definitions for stats pages
- */
+
 export const generateStatsStaticPaths = async () => {
   const { getWordsFromCollection } = await import('~utils-client/word-data-utils');
   const words = await getWordsFromCollection();

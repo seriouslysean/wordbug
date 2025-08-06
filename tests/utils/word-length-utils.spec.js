@@ -15,9 +15,7 @@ describe('word length utilities', () => {
   });
 
   it('groups words by length', () => {
-    const words = global.mockWordData.map(entry => entry.data);
-    const groups = groupWordsByLength(words);
+    const groups = groupWordsByLength(global.mockWordData.map(entry => entry.data));
     expect(Object.keys(groups).map(Number).sort((a, b) => a - b)).toEqual([4, 10, 11]);
   });
 });
-

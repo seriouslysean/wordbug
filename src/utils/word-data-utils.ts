@@ -220,6 +220,18 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
 };
 
 /**
+ * Retrieves a list of all years that have word data available.
+ * Returns years in descending order (newest first) for UI display purposes.
+ *
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {string[]} Array of unique years (YYYY format) sorted in descending order
+ */
+export const getAvailableYears = (words: WordData[] = allWords): string[] => {
+  const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
+  return years.sort((a, b) => b.localeCompare(a));
+};
+
+/**
  * Groups an array of word data by length.
  * Creates an object where keys are word lengths and values are arrays of words from that length.
  *
@@ -233,18 +245,6 @@ export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult =
     acc[length].push(word);
     return acc;
   }, {});
-};
-
-/**
- * Retrieves a list of all years that have word data available.
- * Returns years in descending order (newest first) for UI display purposes.
- *
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {string[]} Array of unique years (YYYY format) sorted in descending order
- */
-export const getAvailableYears = (words: WordData[] = allWords): string[] => {
-  const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
-  return years.sort((a, b) => b.localeCompare(a));
 };
 
 /**
