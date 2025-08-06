@@ -72,7 +72,3 @@ export type SuffixDefinition = StatsDefinition;
 export type LetterPatternDefinition = StatsDefinition;
 export type PatternDefinition = StatsDefinition;
 
-/**
- * @deprecated Use StatsSlug instead
- */
-export type StatsDefinitionKey = StatsSlug;

@@ -6,7 +6,7 @@ import type {
   WordStatsResult,
   WordStreakStatsResult,
 } from '~types/word';
-import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils-client/date-utils';
+import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
 import { logger } from '~utils-client/logger';
 import {
   countSyllables,

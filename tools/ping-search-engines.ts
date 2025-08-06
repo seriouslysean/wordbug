@@ -43,7 +43,7 @@ const siteUrlArg = getArgValue('--site-url', args);
 const deployedHashArg = getArgValue('--deployed-hash', args);
 
 if (!siteUrlArg) {
-  console.error('Missing required argument: --site-url is required.');
+  console.error('Site URL required');
   process.exit(1);
 }
 

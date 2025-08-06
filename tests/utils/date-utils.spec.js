@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { formatDate, getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
+import {
+ dateToYYYYMMDD, formatDate, getTodayYYYYMMDD, isValidDate, YYYYMMDDToDate,
+} from '~utils/date-utils';
 
 describe('shared date-utils', () => {
   describe('getTodayYYYYMMDD', () => {
@@ -60,6 +62,65 @@ describe('shared date-utils', () => {
 
     it('handles leap year dates', () => {
       expect(formatDate('20240229')).toBe('Feb 29, 2024');
+    });
+  });
+
+  describe('dateToYYYYMMDD', () => {
+    it('converts Date object to YYYYMMDD format', () => {
+      // March 19, 2024 (month is 0-indexed)
+      const date = new Date(2024, 2, 19);
+      expect(dateToYYYYMMDD(date)).toBe('20240319');
+    });
+
+    it('handles different months and days', () => {
+      // January 1, 2024
+      const date1 = new Date(2024, 0, 1);
+      // December 25, 2024
+      const date2 = new Date(2024, 11, 25);
+      expect(dateToYYYYMMDD(date1)).toBe('20240101');
+      expect(dateToYYYYMMDD(date2)).toBe('20241225');
+    });
+
+    it('handles leap year dates', () => {
+      // February 29, 2024
+      const date = new Date(2024, 1, 29);
+      expect(dateToYYYYMMDD(date)).toBe('20240229');
+    });
+  });
+
+  describe('YYYYMMDDToDate', () => {
+    it('converts valid YYYYMMDD string to Date object', () => {
+      const result = YYYYMMDDToDate('20240319');
+      expect(result).toBeInstanceOf(Date);
+      expect(result?.getFullYear()).toBe(2024);
+      expect(result?.getMonth()).toBe(2); // March is month 2 (0-indexed)
+      expect(result?.getDate()).toBe(19);
+    });
+
+    it('handles different dates', () => {
+      const date1 = YYYYMMDDToDate('20240101');
+      const date2 = YYYYMMDDToDate('20241225');
+
+      expect(date1?.getFullYear()).toBe(2024);
+      expect(date1?.getMonth()).toBe(0); // January
+      expect(date1?.getDate()).toBe(1);
+
+      expect(date2?.getFullYear()).toBe(2024);
+      expect(date2?.getMonth()).toBe(11); // December
+      expect(date2?.getDate()).toBe(25);
+    });
+
+    it('returns null for invalid date strings', () => {
+      expect(YYYYMMDDToDate('20240230')).toBe(null); // Feb 30 doesn't exist
+      expect(YYYYMMDDToDate('invalid')).toBe(null);
+      expect(YYYYMMDDToDate('')).toBe(null);
+    });
+
+    it('handles leap year dates', () => {
+      const result = YYYYMMDDToDate('20240229');
+      expect(result).toBeInstanceOf(Date);
+      expect(result?.getMonth()).toBe(1); // February
+      expect(result?.getDate()).toBe(29);
     });
   });
 });

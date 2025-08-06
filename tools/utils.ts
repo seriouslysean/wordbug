@@ -68,12 +68,12 @@ export const getWordFiles = (): WordFileInfo[] => {
             path: filePath,
           };
         } catch (error) {
-          console.error('Error reading word file', { file, error: (error as Error).message });
+          console.error('Failed to read word file', { file, error: (error as Error).message });
           return null;
         }
       }).filter(Boolean) as WordFileInfo[];
     } catch (error) {
-      console.error('Error reading year directory', { year, error: (error as Error).message });
+      console.error('Failed to read year directory', { year, error: (error as Error).message });
       return [];
     }
   });

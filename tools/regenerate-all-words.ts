@@ -171,7 +171,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
     console.log(`Total processed: ${successCount + failureCount} words`);
 
   } catch (error) {
-    console.error('Error regenerating words:', (error as Error).message);
+    console.error('Failed to regenerate words', { error: (error as Error).message });
     process.exit(1);
   }
 }

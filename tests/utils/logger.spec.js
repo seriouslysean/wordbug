@@ -19,7 +19,7 @@ describe('logger', () => {
     importMock = vi.fn(() => Promise.resolve({
       logError: vi.fn(),
     }));
-    vi.doMock('./sentry-client.js', () => importMock);
+    vi.doMock('~utils-client/sentry-client', () => importMock);
   });
 
   afterEach(() => {

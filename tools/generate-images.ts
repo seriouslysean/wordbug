@@ -56,7 +56,7 @@ async function generateSingleImage(word: string): Promise<boolean> {
     console.log('Generated image for word', { word, date: wordData.date });
     return true;
   } catch (error) {
-    console.error('Error generating image for word', { word, error: (error as Error).message });
+    console.error('Failed to generate image for word', { word, error: (error as Error).message });
     return false;
   }
 }
@@ -77,7 +77,7 @@ async function generateAllImages(): Promise<void> {
       console.log('Generated image', { word: wordData.word, date: wordData.date });
       successCount++;
     } catch (error) {
-      console.error('Error generating image', {
+      console.error('Failed to generate image', {
         word: wordData.word,
         date: wordData.date,
         error: (error as Error).message,
@@ -137,7 +137,7 @@ async function generateGenericImages(): Promise<void> {
       console.log('Generated generic image', { title: page.title, path: page.path });
       successCount++;
     } catch (error) {
-      console.error('Error generating generic image', {
+      console.error('Failed to generate generic image', {
         title: page.title,
         path: page.path,
         error: (error as Error).message,
@@ -170,7 +170,7 @@ async function generatePageImage(pagePath: string): Promise<boolean> {
     console.log('Generated page image', { title: page.title, path: page.path });
     return true;
   } catch (error) {
-    console.error('Error generating page image', { pagePath, error: (error as Error).message });
+    console.error('Failed to generate page image', { pagePath, error: (error as Error).message });
     return false;
   }
 }

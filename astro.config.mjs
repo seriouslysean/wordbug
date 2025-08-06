@@ -36,7 +36,23 @@ if (!process.env.CI) {
   import('dotenv/config');
 }
 
-// Validate required environment variables
+// Environment variable defaults for development and PR builds
+const defaults = {
+  SITE_URL: 'https://localhost:4321',
+  SITE_TITLE: 'Occasional Word of the Day',
+  SITE_DESCRIPTION: 'A word-of-the-day site featuring interesting vocabulary',
+  SITE_ID: 'occasional-wotd',
+  SOURCE_DIR: 'demo',
+};
+
+// Apply defaults for missing environment variables
+Object.entries(defaults).forEach(([key, value]) => {
+  if (!process.env[key]) {
+    process.env[key] = value;
+  }
+});
+
+// Validate that we now have all required variables
 const requiredEnvVars = [
   'SITE_URL',
   'SITE_TITLE',

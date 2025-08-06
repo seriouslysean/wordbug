@@ -20,7 +20,7 @@ const checkExistingWord = (date: string): WordData | null => {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
       return data as WordData;
     } catch (error) {
-      console.error('Error reading existing word file', { filePath, error: (error as Error).message });
+      console.error('Failed to read existing word file', { filePath, error: (error as Error).message });
     }
   }
   return null;
@@ -158,7 +158,7 @@ if (hasOverwrite) {
 const [word, date] = args;
 
 if (!word) {
-  console.error('Word is required');
+  console.error('Word is required', { word });
   showHelp(HELP_TEXT);
   process.exit(1);
 }
