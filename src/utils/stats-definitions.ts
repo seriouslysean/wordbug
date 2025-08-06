@@ -164,8 +164,8 @@ export const DYNAMIC_STATS_DEFINITIONS: Record<string, DynamicStatsDefinition> =
 // Helper function to get stats definition by key
 /**
  * Retrieve a stats definition by slug key
- * @param {string} key - Stats slug
- * @returns {unknown} Stats definition or undefined if not found
+ * @param key - Stats slug
+ * @returns Stats definition or undefined if not found
  */
 export function getStatsDefinition(key: string) {
   // Check suffix definitions

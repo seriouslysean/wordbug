@@ -5,7 +5,7 @@ import { getWordsFromCollection } from '~utils-client/word-data-utils';
 
 /**
  * Handle health.txt requests
- * @returns {Promise<Response>} plain text health.txt content
+ * @returns Plain text health.txt content
  */
 export const GET: APIRoute = async () => {
   const allWords = await getWordsFromCollection();

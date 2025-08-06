@@ -4,7 +4,7 @@ import { generateRobotsTxt } from '~utils-client/static-file-utils';
 
 /**
  * Handle robots.txt requests
- * @returns {Response} plain text robots.txt content
+ * @returns Plain text robots.txt content
  */
 export const GET: APIRoute = () => {
   const siteUrl = import.meta.env.SITE_URL;

@@ -46,3 +46,22 @@ export interface SeoMetaDescriptionOptions {
   definition?: string;
   custom?: string;
 }
+
+export interface PageMetadata {
+  path: string;
+  title?: string;
+  description?: string;
+  count?: number;
+}
+
+export interface PageMetadataResult {
+  title: string;
+  description: string;
+  category?: string;
+  type?: string;
+}
+
+export interface AstroStaticPath {
+  params: Record<string, string>;
+  props?: Record<string, unknown>;
+}

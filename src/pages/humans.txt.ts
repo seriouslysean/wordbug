@@ -4,7 +4,7 @@ import { generateHumansTxt } from '~utils-client/static-file-utils';
 
 /**
  * Handle humans.txt requests
- * @returns {Response} plain text humans.txt content
+ * @returns Plain text humans.txt content
  */
 export const GET: APIRoute = () => {
   const humansTxt = generateHumansTxt();

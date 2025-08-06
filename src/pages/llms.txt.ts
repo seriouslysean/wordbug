@@ -5,7 +5,7 @@ import { getWordsFromCollection } from '~utils-client/word-data-utils';
 
 /**
  * Handle llms.txt requests
- * @returns {Promise<Response>} plain text llms.txt content
+ * @returns Plain text llms.txt content
  */
 export const GET: APIRoute = async () => {
   const allWords = await getWordsFromCollection();
