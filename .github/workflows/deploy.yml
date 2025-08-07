@@ -46,6 +46,7 @@ jobs:
         env:
           # disables dotenv in production builds
           CI: true
+          BASE_PATH: ${{ vars.BASE_PATH }}
           COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
           COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
           COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
@@ -72,8 +73,10 @@ jobs:
           SITE_TITLE: ${{ vars.SITE_TITLE }}
           # Required for Vite build-time define (__SITE_URL__)
           SITE_URL: ${{ vars.SITE_URL }}
-          TZ: America/New_York
+          SOURCE_DIR: ${{ vars.SOURCE_DIR }}
+          TZ: ${{ vars.SITE_TZ || 'America/New_York' }}
           WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
+          WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
           WORDNIK_WEBSITE_URL: ${{ vars.WORDNIK_WEBSITE_URL }}
         run: npm run build
       - name: Setup Pages
