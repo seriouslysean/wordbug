@@ -66,6 +66,24 @@ describe('page-metadata', () => {
       });
     });
 
+    it('returns metadata for length index page', () => {
+      const metadata = getPageMetadata('words/length');
+      expect(metadata).toEqual({
+        title: 'Words by Length',
+        description: 'Words organized by character length.',
+        category: 'pages',
+      });
+    });
+
+    it('returns metadata for dynamic length pages', () => {
+      const metadata = getPageMetadata('words/length/4');
+      expect(metadata).toEqual({
+        title: '4-Letter Words',
+        description: 'Words containing exactly 4 letters.',
+        category: 'pages',
+      });
+    });
+
     it('returns fallback metadata for unknown paths', () => {
       const metadata = getPageMetadata('unknown-path');
       expect(metadata).toEqual({
@@ -109,6 +127,13 @@ describe('page-metadata', () => {
         expect(page).toHaveProperty('category');
         expect(['pages', 'stats'].includes(page.category)).toBe(true);
       });
+    });
+
+    it('includes month and length pages', () => {
+      const allPages = getAllPageMetadata();
+      expect(allPages.find(page => page.path === 'words/2025/january')).toBeDefined();
+      expect(allPages.find(page => page.path === 'words/length')).toBeDefined();
+      expect(allPages.find(page => page.path === 'words/length/4')).toBeDefined();
     });
   });
 });
