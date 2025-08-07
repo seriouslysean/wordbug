@@ -103,18 +103,17 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
     {
       slug: STATS_SLUGS.CURRENT_STREAK,
       data: (() => {
-        const currentStreakWords: WordMilestoneItem[] = [];
-        if (streakStats.currentStreak > 0) {
-          const sorted = [...words].sort((a, b) => b.date.localeCompare(a.date));
-          for (let i = 0; i < streakStats.currentStreak && i < sorted.length; i++) {
-            currentStreakWords.push({
-              ...sorted[i],
-              label: `${ordinal(i + 1)} Day`,
-            });
-          }
-          currentStreakWords.reverse();
+        if (streakStats.currentStreak <= 0) {
+          return [];
         }
-        return currentStreakWords;
+        return [...words]
+          .sort((a, b) => b.date.localeCompare(a.date))
+          .slice(0, streakStats.currentStreak)
+          .map((w, i) => ({
+            ...w,
+            label: `${ordinal(i + 1)} Day`,
+          }))
+          .reverse();
       })(),
       def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK],
       template: TEMPLATE.MILESTONE,

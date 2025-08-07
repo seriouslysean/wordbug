@@ -131,17 +131,13 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
     console.log(`- Batch timeout: ${options.batchTimeout}ms between batches`);
 
     // Process words in batches to avoid rate limits
-    let currentBatch = 0;
-    let successCount = 0;
-    let failureCount = 0;
+    const outcomes: boolean[] = [];
 
-    for (let i = 0; i < wordsToRegenerate.length; i++) {
-      const item = wordsToRegenerate[i];
-
+    for (const [i, item] of wordsToRegenerate.entries()) {
       try {
         // Check if we need to take a longer break between batches
         if (i > 0 && i % options.batchSize === 0) {
-          currentBatch++;
+          const currentBatch = i / options.batchSize;
           console.log(`\nCompleted batch ${currentBatch}. Waiting ${options.batchTimeout/1000} seconds before next batch...\n`);
           await new Promise(resolve => setTimeout(resolve, options.batchTimeout));
         }
@@ -149,11 +145,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
         console.log(`Regenerating (${i + 1}/${wordsToRegenerate.length}): ${item.word}`);
 
         const success = await regenerateWordFile(item.word, item.date, item.path);
-        if (success) {
-          successCount++;
-        } else {
-          failureCount++;
-        }
+        outcomes.push(success);
 
         // Use standard delay between requests within a batch
         if (i < wordsToRegenerate.length - 1 && (i + 1) % options.batchSize !== 0) {
@@ -161,14 +153,17 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
         }
       } catch (error) {
         console.error(`Error processing ${item.word}:`, (error as Error).message);
-        failureCount++;
+        outcomes.push(false);
       }
     }
+
+    const successCount = outcomes.filter(Boolean).length;
+    const failureCount = outcomes.length - successCount;
 
     console.log('\n--- REGENERATION COMPLETE ---');
     console.log(`Successfully regenerated: ${successCount} words`);
     console.log(`Failed to regenerate: ${failureCount} words`);
-    console.log(`Total processed: ${successCount + failureCount} words`);
+    console.log(`Total processed: ${outcomes.length} words`);
 
   } catch (error) {
     console.error('Failed to regenerate words', { error: (error as Error).message });
@@ -241,21 +236,18 @@ const options: RegenerateOptions = {
 };
 
 // Parse flags
-for (let i = 0; i < args.length; i++) {
-  const arg = args[i];
+args.forEach((arg, i) => {
   const nextArg = args[i + 1];
 
   switch (arg) {
     case '--word-field':
       if (nextArg) {
         options.wordField = nextArg;
-        i++; // Skip next argument since it's the value
       }
       break;
     case '--date-field':
       if (nextArg) {
         options.dateField = nextArg;
-        i++; // Skip next argument since it's the value
       }
       break;
     case '--dry-run':
@@ -270,7 +262,6 @@ for (let i = 0; i < args.length; i++) {
         if (!isNaN(value) && value > 0) {
           options.timeout = value;
         }
-        i++;
       }
       break;
     case '--rate-limit-timeout':
@@ -279,7 +270,6 @@ for (let i = 0; i < args.length; i++) {
         if (!isNaN(value) && value > 0) {
           options.rateLimitTimeout = value;
         }
-        i++;
       }
       break;
     case '--batch-size':
@@ -288,7 +278,6 @@ for (let i = 0; i < args.length; i++) {
         if (!isNaN(value) && value > 0) {
           options.batchSize = value;
         }
-        i++;
       }
       break;
     case '--batch-timeout':
@@ -297,11 +286,10 @@ for (let i = 0; i < args.length; i++) {
         if (!isNaN(value) && value > 0) {
           options.batchTimeout = value;
         }
-        i++;
       }
       break;
   }
-}
+});
 
 // Run the regeneration and write build data
 regenerateAllWords(options);

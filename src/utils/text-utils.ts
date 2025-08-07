@@ -34,15 +34,12 @@ export function hasTripleLetters(word: string): boolean {
  */
 export function hasAlphabeticalSequence(word: string): boolean {
   const letters = word.toLowerCase().split('');
-  for (let i = 0; i < letters.length - 2; i++) {
+  return letters.slice(0, -2).some((_, i) => {
     const a = letters[i].charCodeAt(0);
     const b = letters[i + 1].charCodeAt(0);
     const c = letters[i + 2].charCodeAt(0);
-    if (b === a + 1 && c === b + 1) {
-      return true;
-    }
-  }
-  return false;
+    return b === a + 1 && c === b + 1;
+  });
 }
 
 /**
