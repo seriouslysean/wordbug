@@ -159,14 +159,26 @@ export function generateLlmsTxt(words: WordData[]): string | null {
 
   const allPages = getAllPageMetadata(words);
   const allWordsPage = allPages.find(p => p.path === 'words');
-  const yearPages = allPages.filter(p => /^words\/[0-9]{4}$/.test(p.path)).sort((a, b) => b.path.localeCompare(a.path));
+  const yearPages = allPages
+    .filter(p => /^words\/[0-9]{4}$/.test(p.path))
+    .sort((a, b) => b.path.localeCompare(a.path));
+  const monthPages = allPages
+    .filter(p => /^words\/[0-9]{4}\/[a-z]+$/.test(p.path))
+    .sort((a, b) => b.path.localeCompare(a.path));
+  const lengthIndexPage = allPages.find(p => p.path === 'words/length');
+  const lengthPages = allPages
+    .filter(p => /^words\/length\/\d+$/.test(p.path))
+    .sort((a, b) => Number(a.path.split('/')[2]) - Number(b.path.split('/')[2]));
   const staticPages = allPages.filter(p =>
-    !['', 'words', 'stats'].includes(p.path) &&
+    !['', 'words', 'stats', 'words/length'].includes(p.path) &&
     !/^words\/[0-9]{4}$/.test(p.path) &&
+    !/^words\/[0-9]{4}\/[a-z]+$/.test(p.path) &&
+    !/^words\/length\/\d+$/.test(p.path) &&
     !p.path.startsWith('stats/'),
   );
   const statsPage = allPages.find(p => p.path === 'stats');
-  const statsSubpages = allPages.filter(p => p.path.startsWith('stats/') && p.path !== 'stats')
+  const statsSubpages = allPages
+    .filter(p => p.path.startsWith('stats/') && p.path !== 'stats')
     .sort((a, b) => a.title.localeCompare(b.title));
 
   // Build Pages section
@@ -175,6 +187,15 @@ export function generateLlmsTxt(words: WordData[]): string | null {
     yearPages.length > 0 && [
       '### Year Archives',
       ...yearPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+    ],
+    monthPages.length > 0 && [
+      '### Month Archives',
+      ...monthPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+    ],
+    lengthIndexPage && `- [${lengthIndexPage.title}](${baseUrl}/words/length): ${lengthIndexPage.description}`,
+    lengthPages.length > 0 && [
+      '### Word Length Pages',
+      ...lengthPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
     ],
     staticPages.length > 0 && [
       '### Other Pages',

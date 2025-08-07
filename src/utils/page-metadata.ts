@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 
 import type { WordData } from '~types/word';
-import { monthSlugToNumber } from '~utils/date-utils';
+import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
 import { logger } from '~utils-client/logger';
 import {
   DYNAMIC_STATS_DEFINITIONS,
@@ -10,7 +10,13 @@ import {
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
 } from '~utils-client/stats-definitions';
-import { allWords, getAvailableYears, getWordsByYear } from '~utils-client/word-data-utils';
+import {
+  allWords,
+  getAvailableLengths,
+  getAvailableMonths,
+  getAvailableYears,
+  getWordsByYear,
+} from '~utils-client/word-data-utils';
 import {
   getChronologicalMilestones,
   getLetterPatternStats,
@@ -73,6 +79,12 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     type: 'static',
     title: 'All Words',
     description: 'Browse the complete alphabetical list of all featured words, organized by year.',
+    category: 'pages',
+  },
+  'words/length': {
+    type: 'static',
+    title: 'Words by Length',
+    description: 'Browse words grouped by length.',
     category: 'pages',
   },
   'stats': {
@@ -270,24 +282,43 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
 }
   const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 
-  if (path.startsWith('words/') && path !== 'words') {
-    const [year, month] = path.replace('words/', '').split('/');
-    if (year && month) {
-      const monthNumber = monthSlugToNumber(month);
-      if (monthNumber) {
-        const monthName = format(new Date(Number(year), monthNumber - 1), 'MMMM');
-        return {
-          title: `${monthName} ${year} words`,
-          description: `Words featured during ${monthName} ${year}.`,
-          category: 'pages' as const,
-        };
-      }
-    }
+  if (path === 'words/length') {
     return {
-      title: `${year} words`,
-      description: `Words featured during ${year}.`,
+      title: 'Words by Length',
+      description: 'Browse words grouped by length.',
       category: 'pages' as const,
     };
+  }
+
+  if (path.startsWith('words/length/')) {
+    const length = Number(path.split('/')[2]);
+    return {
+      title: `${length}-letter words`,
+      description: `Words that are ${length} letters long.`,
+      category: 'pages' as const,
+    };
+  }
+
+  if (path.startsWith('words/') && path !== 'words') {
+    const [year, month] = path.replace('words/', '').split('/');
+    if (year && /^\d{4}$/.test(year)) {
+      if (month) {
+        const monthNumber = monthSlugToNumber(month);
+        if (monthNumber) {
+          const monthName = format(new Date(Number(year), monthNumber - 1), 'MMMM');
+          return {
+            title: `${monthName} ${year} words`,
+            description: `Words featured during ${monthName} ${year}.`,
+            category: 'pages' as const,
+          };
+        }
+      }
+      return {
+        title: `${year} words`,
+        description: `Words featured during ${year}.`,
+        category: 'pages' as const,
+      };
+    }
   }
 
   const PAGE_METADATA = createPageMetadata(words);
@@ -348,11 +379,26 @@ export function getAllPageMetadata(words: WordData[] = allWords) {
     });
 
   // Get dynamic year pages
-  const yearPages = getAvailableYears(words)
-    .map(year => {
-      const path = `words/${year}`;
-      return { path, ...getPageMetadata(path, words) };
-    });
+  const years = getAvailableYears(words);
+  const yearPages = years.map(year => {
+    const path = `words/${year}`;
+    return { path, ...getPageMetadata(path, words) };
+  });
 
-  return [...staticPages, ...yearPages];
+  // Get dynamic month pages
+  const monthPages = years.flatMap(year =>
+    getAvailableMonths(year, words).map(month => {
+      const monthSlug = MONTH_NAMES[Number(month) - 1];
+      const path = `words/${year}/${monthSlug}`;
+      return { path, ...getPageMetadata(path, words) };
+    }),
+  );
+
+  // Get dynamic word length pages
+  const lengthPages = getAvailableLengths(words).map(length => {
+    const path = `words/length/${length}`;
+    return { path, ...getPageMetadata(path, words) };
+  });
+
+  return [...staticPages, ...yearPages, ...monthPages, ...lengthPages];
 }
