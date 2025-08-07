@@ -2,6 +2,8 @@ import type { WordData } from '~types/word';
 
 /**
  * Get social media image URL for a word or page
+ * @param params - Pathname and optional word data
+ * @returns URL to the social image
  */
 export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wordData?: WordData | null }): string {
   const basePath = import.meta.env.BASE_PATH || '/';
@@ -24,6 +26,7 @@ export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wo
 
 /**
  * Get static pages for image generation
+ * @returns Metadata for all static pages
  */
 export async function getStaticPages() {
   const { getAllPageMetadata } = await import('~utils-client/page-metadata');

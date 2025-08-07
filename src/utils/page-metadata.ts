@@ -258,7 +258,12 @@ function getCountForPath(path: string, words: WordData[] = allWords): number {
   }
 }
 
-
+/**
+ * Get metadata for a specific page path
+ * @param pathname - Path of the page
+ * @param words - Word dataset to evaluate
+ * @returns Metadata including title and description
+ */
 export function getPageMetadata(pathname?: string, words: WordData[] = allWords) {
   if (!pathname) {
 throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname from your page.');
@@ -321,6 +326,11 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
   }
 }
 
+/**
+ * Get metadata for all pages
+ * @param words - Word dataset to evaluate
+ * @returns Array of metadata objects
+ */
 export function getAllPageMetadata(words: WordData[] = allWords) {
   const showEmptyPages = (globalThis as Record<string, unknown>).__SHOW_EMPTY_STATS__ || false;
   const PAGE_METADATA = createPageMetadata(words);
