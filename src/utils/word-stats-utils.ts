@@ -247,26 +247,26 @@ export const getLongestStreakWords = (words: WordData[]): WordData[] => {
 
   const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
 
-  let longestStreak: WordData[] = [];
-  let currentStreak: WordData[] = [sortedWords[0]];
+  const { longestStreak } = sortedWords.slice(1).reduce(
+    ({ longestStreak, currentStreak, previousWord }, word) => {
+      const isConsecutive = areConsecutiveDays(word.date, previousWord.date);
+      const newCurrentStreak = isConsecutive ? [...currentStreak, word] : [word];
+      const newLongestStreak = newCurrentStreak.length > longestStreak.length
+        ? newCurrentStreak
+        : longestStreak;
 
-  for (let i = 1; i < sortedWords.length; i++) {
-    const currentWord = sortedWords[i];
-    const previousWord = sortedWords[i - 1];
-
-    if (areConsecutiveDays(currentWord.date, previousWord.date)) {
-      currentStreak.push(currentWord);
-    } else {
-      if (currentStreak.length > longestStreak.length) {
-        longestStreak = [...currentStreak];
-      }
-      currentStreak = [currentWord];
-    }
-  }
-
-  if (currentStreak.length > longestStreak.length) {
-    longestStreak = [...currentStreak];
-  }
+      return {
+        longestStreak: newLongestStreak,
+        currentStreak: newCurrentStreak,
+        previousWord: word,
+      };
+    },
+    {
+      longestStreak: [sortedWords[0]],
+      currentStreak: [sortedWords[0]],
+      previousWord: sortedWords[0],
+    },
+  );
 
   return longestStreak.reverse();
 };
@@ -390,24 +390,17 @@ export function getChronologicalMilestones(words: WordData[]): Array<{milestone:
   if (words.length === 0) {
     return [];
   }
-
-  const milestones: Array<{milestone: number, word: WordData}> = [];
-
-  // Always add 1st word if it exists
-  if (words.length >= 1) {
-    milestones.push({ milestone: 1, word: words[0] });
-  }
-
-  // Add 25th, 50th, 75th, 100th, then every 100th after
-  [25, 50, 75].forEach(m => {
-    if (words.length >= m) {
-      milestones.push({ milestone: m, word: words[m - 1] });
-    }
-  });
-
-  for (let i = 100; i <= words.length; i += 100) {
-    milestones.push({ milestone: i, word: words[i - 1] });
-  }
-
-  return milestones;
+  return [
+    { milestone: 1, word: words[0] },
+    ...[25, 50, 75]
+      .filter(m => words.length >= m)
+      .map(m => ({ milestone: m, word: words[m - 1] })),
+    ...Array.from(
+      { length: Math.floor(words.length / 100) },
+      (_, idx) => {
+        const milestone = (idx + 1) * 100;
+        return { milestone, word: words[milestone - 1] };
+      },
+    ),
+  ];
 }
