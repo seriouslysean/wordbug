@@ -270,6 +270,26 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
 }
   const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 
+  if (path.startsWith('words/length/') && path !== 'words/length') {
+    const lengthStr = path.replace('words/length/', '');
+    const length = Number(lengthStr);
+    if (!isNaN(length)) {
+      return {
+        title: `${length}-Letter Words`,
+        description: `Words containing exactly ${length} letters.`,
+        category: 'pages' as const,
+      };
+    }
+  }
+
+  if (path === 'words/length') {
+    return {
+      title: 'Words by Length',
+      description: 'Words organized by character length.',
+      category: 'pages' as const,
+    };
+  }
+
   if (path.startsWith('words/') && path !== 'words') {
     const [year, month] = path.replace('words/', '').split('/');
     if (year && month) {
@@ -278,14 +298,14 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
         const monthName = format(new Date(Number(year), monthNumber - 1), 'MMMM');
         return {
           title: `${monthName} ${year} words`,
-          description: `Words featured during ${monthName} ${year}.`,
+          description: `Words from ${monthName} ${year}.`,
           category: 'pages' as const,
         };
       }
     }
     return {
       title: `${year} words`,
-      description: `Words featured during ${year}.`,
+      description: `Words from ${year}, organized by month.`,
       category: 'pages' as const,
     };
   }

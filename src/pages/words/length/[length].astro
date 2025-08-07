@@ -1,6 +1,7 @@
 ---
+import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
-import WordList from '~components/WordList.astro';
+import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
@@ -22,5 +23,6 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <Heading level={1} text={`${length}-Letter Words`} secondaryText={formatWordCount(words.length)} />
-  <WordList words={words} columns={2} />
+  <DescriptionText text={description} />
+  <WordSection words={words} columns={2} />
 </Layout>

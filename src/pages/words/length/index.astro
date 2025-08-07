@@ -1,4 +1,5 @@
 ---
+import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
@@ -16,6 +17,7 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
+  <DescriptionText text={description} />
   {lengthGroups.map(({ length, words }) => (
     <WordSection title={`${length}-Letter Words`} href={`/words/length/${length}`} words={words} />
   ))}

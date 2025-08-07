@@ -1,4 +1,5 @@
 ---
+import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
@@ -37,5 +38,6 @@ const monthName = getMonthNameFromDate(words[0].date);
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <Heading level={1} text={monthName} secondaryText={year} />
+  <DescriptionText text={description} />
   <WordSection words={words} />
 </Layout>

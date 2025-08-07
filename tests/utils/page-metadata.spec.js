@@ -34,7 +34,7 @@ describe('page-metadata', () => {
       const metadata = getPageMetadata('words/2024');
       expect(metadata).toEqual({
         title: '2024 words',
-        description: 'Words featured during 2024.',
+        description: 'Words from 2024, organized by month.',
         category: 'pages',
       });
     });
@@ -43,7 +43,25 @@ describe('page-metadata', () => {
       const metadata = getPageMetadata('words/2024/december');
       expect(metadata).toEqual({
         title: 'December 2024 words',
-        description: 'Words featured during December 2024.',
+        description: 'Words from December 2024.',
+        category: 'pages',
+      });
+    });
+
+    it('returns metadata for length index page', () => {
+      const metadata = getPageMetadata('words/length');
+      expect(metadata).toEqual({
+        title: 'Words by Length',
+        description: 'Words organized by character length.',
+        category: 'pages',
+      });
+    });
+
+    it('returns metadata for individual length pages', () => {
+      const metadata = getPageMetadata('words/length/8');
+      expect(metadata).toEqual({
+        title: '8-Letter Words',
+        description: 'Words containing exactly 8 letters.',
         category: 'pages',
       });
     });
