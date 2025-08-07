@@ -70,7 +70,7 @@ describe('page-metadata', () => {
       const metadata = getPageMetadata('words/length');
       expect(metadata).toEqual({
         title: 'Words by Length',
-        description: 'Browse words grouped by length.',
+        description: 'Words organized by character length.',
         category: 'pages',
       });
     });
@@ -78,8 +78,8 @@ describe('page-metadata', () => {
     it('returns metadata for dynamic length pages', () => {
       const metadata = getPageMetadata('words/length/4');
       expect(metadata).toEqual({
-        title: '4-letter words',
-        description: 'Words that are 4 letters long.',
+        title: '4-Letter Words',
+        description: 'Words containing exactly 4 letters.',
         category: 'pages',
       });
     });
