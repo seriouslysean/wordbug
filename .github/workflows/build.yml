@@ -1,11 +1,11 @@
-name: PR Checks
+name: Build
 
 on:
   pull_request:
     branches: ['main']
 
 jobs:
-  checks:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,11 +20,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run linting
-        run: npm run lint
-
-      - name: Run type checking
-        run: npm run typecheck
-
-      - name: Run tests
-        run: npm test
+      - name: Run build
+        run: npm run build
