@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 import type { WordData } from '~types/word';
 import { logger } from '~utils-client/logger';
 import {
@@ -263,7 +265,15 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
   const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 
   if (path.startsWith('words/') && path !== 'words') {
-    const year = path.replace('words/', '');
+    const [year, month] = path.replace('words/', '').split('/');
+    if (year && month) {
+      const monthName = format(new Date(Number(year), Number(month) - 1), 'MMMM');
+      return {
+        title: `${monthName} ${year} words`,
+        description: `Words featured during ${monthName} ${year}.`,
+        category: 'pages' as const,
+      };
+    }
     return {
       title: `${year} words`,
       description: `Words featured during ${year}.`,

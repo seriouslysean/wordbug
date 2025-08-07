@@ -189,6 +189,44 @@ export const getWordsByYear = (year: string, words: WordData[] = allWords): Word
 };
 
 /**
+ * Retrieves all words that occurred within a specific month of a given year.
+ * Useful for generating monthly archives.
+ *
+ * @param {string} year - Year to filter by (YYYY format)
+ * @param {string} month - Month to filter by (MM format)
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {WordData[]} Array of word data entries from the specified month and year
+ */
+export const getWordsByMonth = (
+  year: string,
+  month: string,
+  words: WordData[] = allWords,
+): WordData[] => {
+  const monthStr = month.padStart(2, '0');
+  return words.filter(word => word.date.startsWith(`${year}${monthStr}`));
+};
+
+/**
+ * Retrieves a list of all months that have word data for a given year.
+ * Returns months in ascending order for UI display purposes.
+ *
+ * @param {string} year - Year to filter by (YYYY format)
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {string[]} Array of unique months (MM format) sorted in ascending order
+ */
+export const getAvailableMonths = (
+  year: string,
+  words: WordData[] = allWords,
+): string[] => {
+  const months = new Set(
+    words
+      .filter(word => word.date.startsWith(year))
+      .map(word => word.date.substring(4, 6)),
+  );
+  return [...months].sort((a, b) => a.localeCompare(b));
+};
+
+/**
  * Generates a SHA-256 hash from a list of words and their count.
  * Useful for creating cache keys or detecting changes in word datasets.
  * Words are sorted alphabetically before hashing to ensure consistent results.

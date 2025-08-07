@@ -5,11 +5,13 @@ import {
 import { isValidDictionaryData } from '~utils/word-validation';
 import {
   getAdjacentWords,
+  getAvailableMonths,
   getAvailableYears,
   getCurrentWord,
   getPastWords,
   getWordByDate,
   getWordDetails,
+  getWordsByMonth,
   getWordsByYear,
   groupWordsByYear,
 } from '~utils-client/word-data-utils';
@@ -194,6 +196,39 @@ describe('word-data-utils', () => {
 
     it('returns empty array for non-existent year', () => {
       const result = getWordsByYear('2020', mockWordData);
+      expect(result).toEqual([]);
+    });
+  });
+
+  describe('getWordsByMonth', () => {
+    it('filters words by month within a year', () => {
+      const result = getWordsByMonth('2025', '01', mockWordData);
+      expect(result).toHaveLength(3);
+      expect(result.every(w => w.date.startsWith('202501'))).toBe(true);
+
+      const result2024 = getWordsByMonth('2024', '12', mockWordData);
+      expect(result2024).toHaveLength(1);
+      expect(result2024[0].word).toBe('year2024');
+    });
+
+    it('returns empty array for non-existent month', () => {
+      const result = getWordsByMonth('2025', '02', mockWordData);
+      expect(result).toEqual([]);
+    });
+  });
+
+  describe('getAvailableMonths', () => {
+    it('returns unique months for a year in ascending order', () => {
+      const extended = [...mockWordData, { word: 'feb', date: '20250201', data: [] }];
+      const result = getAvailableMonths('2025', extended);
+      expect(result).toEqual(['01', '02']);
+
+      const result2024 = getAvailableMonths('2024', mockWordData);
+      expect(result2024).toEqual(['12']);
+    });
+
+    it('returns empty array for year with no words', () => {
+      const result = getAvailableMonths('2020', mockWordData);
       expect(result).toEqual([]);
     });
   });

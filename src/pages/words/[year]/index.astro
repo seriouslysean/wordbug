@@ -1,33 +1,51 @@
 ---
+import { format } from 'date-fns';
+
 import Heading from '~components/Heading.astro';
+import SiteLink from '~components/SiteLink.astro';
 import WordList from '~components/WordList.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
-import { getWordsFromCollection } from '~utils-client/word-data-utils';
+import {
+  getAvailableMonths,
+  getAvailableYears,
+  getWordsByYear,
+  getWordsFromCollection,
+} from '~utils-client/word-data-utils';
+
 const { title, description } = getPageMetadata(Astro.url.pathname);
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();
 
-  const years = [...new Set(allWords.map(word => word.date.substring(0, 4)))]
-    .sort((a, b) => b.localeCompare(a));
+  const years = getAvailableYears(allWords);
 
   return years
     .map(year => ({
       params: { year },
-      props: { words: allWords.filter(word => word.date.startsWith(year)) },
+      props: { words: getWordsByYear(year, allWords) },
     }))
     .filter(({ props }) => props.words.length > 0);
 }
 
 const { year } = Astro.params;
 const { words } = Astro.props;
+const months = getAvailableMonths(year, words);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="year-words">
     <Heading level={1} text={year} secondaryText="Words in" />
+    <ul class="year-words__months">
+      {months.map(month => (
+        <li>
+          <SiteLink href={`/words/${year}/${month}`}>
+            {format(new Date(Number(year), Number(month) - 1), 'MMMM')}
+          </SiteLink>
+        </li>
+      ))}
+    </ul>
     <div class="year-words__content">
       <WordList words={words} columns={2} />
     </div>
@@ -38,6 +56,19 @@ const { words } = Astro.props;
     .year-words {
         max-width: var(--content-width-medium);
         margin: 0 auto;
+    }
+
+    .year-words__months {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: var(--spacing-medium) 0;
+    }
+
+    .year-words__months li {
+        margin: 0;
     }
 
     .year-words__content {

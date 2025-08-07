@@ -1,0 +1,58 @@
+---
+import { format } from 'date-fns';
+
+import Heading from '~components/Heading.astro';
+import WordList from '~components/WordList.astro';
+import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~utils-client/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
+import {
+  getAvailableMonths,
+  getAvailableYears,
+  getWordsByMonth,
+  getWordsFromCollection,
+} from '~utils-client/word-data-utils';
+
+export async function getStaticPaths() {
+  const allWords = await getWordsFromCollection();
+  const years = getAvailableYears(allWords);
+  const paths = [];
+
+  years.forEach(year => {
+    const months = getAvailableMonths(year, allWords);
+    months.forEach(month => {
+      paths.push({
+        params: { year, month },
+        props: { words: getWordsByMonth(year, month, allWords) },
+      });
+    });
+  });
+
+  return paths;
+}
+
+const { year, month } = Astro.params;
+const { words } = Astro.props;
+const { title, description } = getPageMetadata(Astro.url.pathname);
+const monthName = format(new Date(Number(year), Number(month) - 1), 'MMMM');
+---
+
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
+  <main class="month-words">
+    <Heading level={1} text={`${monthName} ${year}`} secondaryText="Words in" />
+    <div class="month-words__content">
+      <WordList words={words} columns={2} />
+    </div>
+  </main>
+</Layout>
+
+<style>
+    .month-words {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+
+    .month-words__content {
+        width: 100%;
+    }
+</style>
