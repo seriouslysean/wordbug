@@ -8,7 +8,7 @@ import { getAvailableLengths, getWordsByLength, getWordsFromCollection } from '~
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();
-  const lengths = getAvailableLengths(allWords);
+  const lengths = getAvailableLengths(allWords).filter(length => Number.isInteger(length) && length > 0);
   return lengths.map(length => ({
     params: { length: String(length) },
     props: { words: getWordsByLength(length, allWords), length },

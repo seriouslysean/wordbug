@@ -259,11 +259,11 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
 };
 
 /**
- * Retrieves a list of all unique word lengths available.
- * Returns lengths in ascending order for UI display.
+ * Retrieves a sorted list of unique word lengths available.
+ * Deduplicates lengths before sorting them in ascending order for UI display.
  *
  * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {number[]} Array of unique word lengths sorted in ascending order
+ * @returns {number[]} Sorted array of unique word lengths in ascending order
  */
 export const getAvailableLengths = (words: WordData[] = allWords): number[] => {
   const lengths = [...new Set(words.map(word => word.word.length))];
