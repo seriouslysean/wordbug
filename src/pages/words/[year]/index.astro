@@ -2,8 +2,7 @@
 import { format } from 'date-fns';
 
 import Heading from '~components/Heading.astro';
-import SiteLink from '~components/SiteLink.astro';
-import WordList from '~components/WordList.astro';
+import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
@@ -37,18 +36,16 @@ const months = getAvailableMonths(year, words);
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="year-words">
     <Heading level={1} text={year} secondaryText="Words in" />
-    <ul class="year-words__months">
-      {months.map(month => (
-        <li>
-          <SiteLink href={`/words/${year}/${month}`}>
-            {format(new Date(Number(year), Number(month) - 1), 'MMMM')}
-          </SiteLink>
-        </li>
-      ))}
-    </ul>
-    <div class="year-words__content">
-      <WordList words={words} columns={2} />
-    </div>
+    {months.map(month => {
+      const monthWords = words.filter(word => word.date.substring(4, 6) === month);
+      return (
+        <WordSection
+          title={format(new Date(Number(year), Number(month) - 1), 'MMMM')}
+          href={`/words/${year}/${month}`}
+          words={monthWords}
+        />
+      );
+    })}
   </main>
 </Layout>
 
@@ -58,18 +55,6 @@ const months = getAvailableMonths(year, words);
         margin: 0 auto;
     }
 
-    .year-words__months {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        list-style: none;
-        padding: 0;
-        margin: var(--spacing-medium) 0;
-    }
-
-    .year-words__months li {
-        margin: 0;
-    }
 
     .year-words__content {
         width: 100%;

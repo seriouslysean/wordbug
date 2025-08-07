@@ -39,7 +39,7 @@ const monthName = format(new Date(Number(year), Number(month) - 1), 'MMMM');
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="month-words">
-    <Heading level={1} text={`${monthName} ${year}`} secondaryText="Words in" />
+    <Heading level={1} text={monthName} secondaryText={year} />
     <div class="month-words__content">
       <WordList words={words} columns={2} />
     </div>
