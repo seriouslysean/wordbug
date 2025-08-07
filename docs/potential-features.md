@@ -4,6 +4,19 @@ Quality and architectural improvements identified for future development, priori
 
 ## Architecture & Code Quality Improvements
 
+### Text Pluralization and Grammar [HIGH PRIORITY]
+**Current Issue**: Stats descriptions have grammatical errors with singular/plural agreement
+- "1 word that end" should be "1 word that ends" 
+- "1 word that mark" should be "1 word that marks"
+- "1 word that start" should be "1 word that starts"
+
+**Impact**: Poor user experience, unprofessional appearance, accessibility concerns
+**Solution**: Implement proper pluralization logic or integrate i18n library (even for monolingual site)
+```javascript
+// Current (broken): "1 word that end with..."
+// Fixed: "1 word that ends with..." / "5 words that end with..."
+```
+
 ### Page Metadata System Refactoring [HIGH PRIORITY]
 **Current Issue**: The `getCountForPath` function has a massive switch statement with 15+ cases that violates DRY principles
 ```javascript
@@ -140,15 +153,6 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Impact**: Alphabetical browsing and improved SEO for letter-specific searches
 **Solution**: Generate `/words/letter/[a-z]` pages with word lists and stats
 
-### Month-Based Archives [MEDIUM PRIORITY]
-**Opportunity**: Monthly archive pages complementing existing year pages
-**Impact**: More granular chronological navigation and SEO coverage
-**Solution**: Generate `/words/[year]/[month]` pages with month-specific word lists
-
-### Word Length Pages [MEDIUM PRIORITY]
-**Opportunity**: Dynamic pages for each word length that exists in the dataset
-**Impact**: Length-based browsing and discovery patterns
-**Solution**: Generate `/words/length/` index page listing available lengths, then `/words/length/[n]` pages for each length
 
 ### Enhanced Programmatic Stats [MEDIUM PRIORITY]
 **Opportunity**: Chart-worthy statistics based on pure string analysis

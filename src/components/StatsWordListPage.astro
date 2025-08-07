@@ -1,7 +1,7 @@
 ---
 import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
-import WordList from '~components/WordList.astro';
+import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types/word';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
@@ -23,19 +23,7 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
   description={description}
   structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
 >
-  <main class="words">
-    <Heading text={title} secondaryText={formatWordCount(words.length)} />
-    <DescriptionText text={descriptionText} />
-    <div class="words__content">
-      <WordList words={words} columns={columns} />
-    </div>
-  </main>
+  <Heading text={title} secondaryText={formatWordCount(words.length)} />
+  <DescriptionText text={descriptionText} />
+  <WordSection words={words} columns={columns} />
 </Layout>
-
-<style>
-  .words {
-    max-width: var(--content-width-medium);
-    margin: 0 auto;
-  }
-
-</style>

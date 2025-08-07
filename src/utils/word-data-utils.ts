@@ -4,6 +4,7 @@ import { getAdapter } from '~adapters';
 import type {
   WordAdjacentResult,
   WordData,
+  WordGroupByLengthResult,
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types/word';
@@ -286,5 +287,49 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
 export const getAvailableYears = (words: WordData[] = allWords): string[] => {
   const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
   return years.sort((a, b) => b.localeCompare(a));
+};
+
+/**
+ * Groups an array of word data by length.
+ * Creates an object where keys are word lengths and values are arrays of words from that length.
+ * Keys are returned in ascending numeric order.
+ *
+ * @param {WordData[]} words - Array of word data to group by length
+ * @returns {WordGroupByLengthResult} Object with lengths as keys and word arrays as values, sorted by length
+ */
+export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult => {
+  const groups = words.reduce<WordGroupByLengthResult>((acc, word) => {
+    const length = word.word.length;
+    acc[length] = acc[length] || [];
+    acc[length].push(word);
+    return acc;
+  }, {});
+
+  return Object.fromEntries(
+    Object.entries(groups).sort(([a], [b]) => Number(a) - Number(b)),
+  );
+};
+
+/**
+ * Retrieves all words that match a specific length.
+ *
+ * @param {number} length - Word length to filter by
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {WordData[]} Array of word data entries with the specified length
+ */
+export const getWordsByLength = (length: number, words: WordData[] = allWords): WordData[] => {
+  return words.filter(word => word.word.length === length);
+};
+
+/**
+ * Retrieves a sorted list of unique word lengths available.
+ * Deduplicates lengths before sorting them in ascending order for UI display.
+ *
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {number[]} Sorted array of unique word lengths in ascending order
+ */
+export const getAvailableLengths = (words: WordData[] = allWords): number[] => {
+  const lengths = [...new Set(words.map(word => word.word.length))];
+  return lengths.sort((a, b) => a - b);
 };
 

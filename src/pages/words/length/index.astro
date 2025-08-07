@@ -5,17 +5,18 @@ import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
 import { formatWordCount } from '~utils-client/text-utils';
-import { getWordsFromCollection, groupWordsByYear } from '~utils-client/word-data-utils';
+import { getWordsFromCollection, groupWordsByLength } from '~utils-client/word-data-utils';
 
 const allWords = await getWordsFromCollection();
-const wordsByYear = groupWordsByYear(allWords);
-const sortedYearEntries = Object.entries(wordsByYear).reverse();
+const lengthGroups = Object.entries(groupWordsByLength(allWords)).map(([length, words]) => ({
+  length: Number(length),
+  words,
+}));
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
-
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
-  {sortedYearEntries.map(([year, words]) => (
-    <WordSection title={year} href={`/words/${year}`} words={words} />
+  {lengthGroups.map(({ length, words }) => (
+    <WordSection title={`${length}-Letter Words`} href={`/words/length/${length}`} words={words} />
   ))}
 </Layout>

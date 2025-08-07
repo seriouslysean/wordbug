@@ -5,14 +5,17 @@ import {
 import { isValidDictionaryData } from '~utils/word-validation';
 import {
   getAdjacentWords,
+  getAvailableLengths,
   getAvailableMonths,
   getAvailableYears,
   getCurrentWord,
   getPastWords,
   getWordByDate,
   getWordDetails,
+  getWordsByLength,
   getWordsByMonth,
   getWordsByYear,
+  groupWordsByLength,
   groupWordsByMonth,
   groupWordsByYear,
 } from '~utils-client/word-data-utils';
@@ -283,6 +286,25 @@ describe('word-data-utils', () => {
     it('returns empty array for no words', () => {
       const result = getAvailableYears([]);
       expect(result).toEqual([]);
+    });
+  });
+
+  describe('length utilities', () => {
+    it('returns sorted unique lengths', () => {
+      const result = getAvailableLengths(mockWordData);
+      expect(result).toEqual([5, 7, 8, 9]);
+    });
+
+    it('filters words by specified length', () => {
+      const result = getWordsByLength(8, mockWordData);
+      expect(result).toHaveLength(2);
+      expect(result.every(w => w.word.length === 8)).toBe(true);
+    });
+
+    it('groups words by length', () => {
+      const result = groupWordsByLength(mockWordData);
+      expect(Object.keys(result).map(Number).sort((a, b) => a - b)).toEqual([5, 7, 8, 9]);
+      expect(result[8]).toHaveLength(2);
     });
   });
 });
