@@ -26,9 +26,9 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
   <main class="words">
     <Heading text={title} secondaryText={formatWordCount(words.length)} />
     <DescriptionText text={descriptionText} />
-    <section class="words__section">
+    <div class="words__content">
       <WordList words={words} columns={columns} />
-    </section>
+    </div>
   </main>
 </Layout>
 
@@ -38,7 +38,4 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     margin: 0 auto;
   }
 
-  .words__section {
-    margin-bottom: var(--spacing-large);
-  }
 </style>

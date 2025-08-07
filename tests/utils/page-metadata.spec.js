@@ -39,6 +39,15 @@ describe('page-metadata', () => {
       });
     });
 
+    it('returns metadata for dynamic month pages', () => {
+      const metadata = getPageMetadata('words/2024/december');
+      expect(metadata).toEqual({
+        title: 'December 2024 words',
+        description: 'Words featured during December 2024.',
+        category: 'pages',
+      });
+    });
+
     it('returns fallback metadata for unknown paths', () => {
       const metadata = getPageMetadata('unknown-path');
       expect(metadata).toEqual({

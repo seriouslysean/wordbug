@@ -1,7 +1,6 @@
 ---
 import Heading from '~components/Heading.astro';
-import SectionHeading from '~components/SectionHeading.astro';
-import WordList from '~components/WordList.astro';
+import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
@@ -17,10 +16,7 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
   <main class="words">
     <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
     {(Object.entries(wordsByYear) as [string, typeof allWords][]).reverse().map(([year, words]) => (
-      <section class="words__section">
-        <SectionHeading text={year} href={`/words/${year}`} />
-        <WordList words={words} columns={2} />
-      </section>
+      <WordSection title={year} href={`/words/${year}`} words={words} />
     ))}
   </main>
 </Layout>
@@ -31,7 +27,4 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
         margin: 0 auto;
     }
 
-    .words__section {
-        margin-bottom: var(--spacing-large);
-    }
 </style>

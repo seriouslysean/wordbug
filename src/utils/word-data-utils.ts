@@ -7,6 +7,7 @@ import type {
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types/word';
+import { getMonthSlugFromDate } from '~utils/date-utils';
 import { logger } from '~utils-client/logger';
 
 /**
@@ -186,6 +187,63 @@ export const getWordDetails = (word: WordData): WordProcessedData => {
  */
 export const getWordsByYear = (year: string, words: WordData[] = allWords): WordData[] => {
   return words.filter(word => word.date.startsWith(year));
+};
+
+/**
+ * Retrieves all words that occurred within a specific month of a given year.
+ * Useful for generating monthly archives.
+ *
+ * @param {string} year - Year to filter by (YYYY format)
+ * @param {string} month - Month to filter by (MM format)
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {WordData[]} Array of word data entries from the specified month and year
+ */
+export const getWordsByMonth = (
+  year: string,
+  month: string,
+  words: WordData[] = allWords,
+): WordData[] => {
+  const monthStr = month.padStart(2, '0');
+  return words.filter(word => word.date.startsWith(`${year}${monthStr}`));
+};
+
+/**
+ * Retrieves a list of all months that have word data for a given year.
+ * Returns months in ascending order for UI display purposes.
+ *
+ * @param {string} year - Year to filter by (YYYY format)
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {string[]} Array of unique months (MM format) sorted in ascending order
+ */
+export const getAvailableMonths = (
+  year: string,
+  words: WordData[] = allWords,
+): string[] => {
+  const months = new Set(
+    words
+      .filter(word => word.date.startsWith(year))
+      .map(word => word.date.substring(4, 6)),
+  );
+  return [...months].sort((a, b) => a.localeCompare(b));
+};
+
+/**
+ * Groups words by month within a specific year.
+ * Returns an object with month slugs as keys and word arrays as values.
+ *
+ * @param {string} year - Year to filter by (YYYY format)
+ * @param {WordData[]} [words=allWords] - Array of word data to group
+ * @returns {Object} Object with month slugs as keys and word arrays as values
+ */
+export const groupWordsByMonth = (year: string, words: WordData[] = allWords): { [monthSlug: string]: WordData[] } => {
+  return words
+    .filter(word => word.date.startsWith(year))
+    .reduce((acc, word) => {
+      const monthSlug = getMonthSlugFromDate(word.date);
+      acc[monthSlug] = acc[monthSlug] || [];
+      acc[monthSlug].push(word);
+      return acc;
+    }, {} as { [monthSlug: string]: WordData[] });
 };
 
 /**
