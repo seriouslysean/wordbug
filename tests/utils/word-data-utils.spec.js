@@ -13,6 +13,7 @@ import {
   getWordDetails,
   getWordsByMonth,
   getWordsByYear,
+  groupWordsByMonth,
   groupWordsByYear,
 } from '~utils-client/word-data-utils';
 
@@ -244,6 +245,32 @@ describe('word-data-utils', () => {
     it('handles empty array', () => {
       const result = groupWordsByYear([]);
       expect(result).toEqual({});
+    });
+  });
+
+  describe('groupWordsByMonth', () => {
+    it('groups words by month slug for a given year', () => {
+      const result = groupWordsByMonth('2025', mockWordData);
+      expect(Object.keys(result)).toContain('january');
+      expect(result['january']).toHaveLength(3);
+    });
+
+    it('returns empty object when no words match the year', () => {
+      const result = groupWordsByMonth('2020', mockWordData);
+      expect(result).toEqual({});
+    });
+
+    it('groups words with different months correctly', () => {
+      const extendedData = [...mockWordData, { word: 'feb', date: '20250201', data: [] }];
+      const result = groupWordsByMonth('2025', extendedData);
+      expect(Object.keys(result)).toEqual(expect.arrayContaining(['january', 'february']));
+      expect(result['january']).toHaveLength(3);
+      expect(result['february']).toHaveLength(1);
+    });
+
+    it('uses month slugs as keys', () => {
+      const result = groupWordsByMonth('2025', mockWordData);
+      expect(Object.keys(result)).toEqual(['january']); // lowercase month name
     });
   });
 

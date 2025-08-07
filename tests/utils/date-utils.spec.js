@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
- dateToYYYYMMDD, formatDate, getTodayYYYYMMDD, isValidDate, YYYYMMDDToDate,
+ dateToYYYYMMDD, formatDate, getMonthNameFromDate, getMonthSlugFromDate, getTodayYYYYMMDD, isValidDate, MONTH_NAMES, monthSlugToNumber, YYYYMMDDToDate,
 } from '~utils/date-utils';
 
 describe('shared date-utils', () => {
@@ -121,6 +121,65 @@ describe('shared date-utils', () => {
       expect(result).toBeInstanceOf(Date);
       expect(result?.getMonth()).toBe(1); // February
       expect(result?.getDate()).toBe(29);
+    });
+  });
+
+  describe('getMonthNameFromDate', () => {
+    it('extracts month name from YYYYMMDD date string', () => {
+      expect(getMonthNameFromDate('20250115')).toBe('January');
+      expect(getMonthNameFromDate('20250628')).toBe('June');
+      expect(getMonthNameFromDate('20251225')).toBe('December');
+    });
+
+    it('returns "Invalid Month" for invalid date strings', () => {
+      expect(getMonthNameFromDate('invalid')).toBe('Invalid Month');
+      expect(getMonthNameFromDate('20251301')).toBe('Invalid Month'); // Invalid month
+    });
+  });
+
+  describe('getMonthSlugFromDate', () => {
+    it('extracts lowercase month name from YYYYMMDD date string', () => {
+      expect(getMonthSlugFromDate('20250115')).toBe('january');
+      expect(getMonthSlugFromDate('20250628')).toBe('june');
+      expect(getMonthSlugFromDate('20251225')).toBe('december');
+    });
+
+    it('returns "invalid month" for invalid date strings', () => {
+      expect(getMonthSlugFromDate('invalid')).toBe('invalid month');
+      expect(getMonthSlugFromDate('20251301')).toBe('invalid month');
+    });
+  });
+
+  describe('monthSlugToNumber', () => {
+    it('converts month slug to month number', () => {
+      expect(monthSlugToNumber('january')).toBe(1);
+      expect(monthSlugToNumber('june')).toBe(6);
+      expect(monthSlugToNumber('december')).toBe(12);
+    });
+
+    it('handles case insensitive input', () => {
+      expect(monthSlugToNumber('JANUARY')).toBe(1);
+      expect(monthSlugToNumber('June')).toBe(6);
+      expect(monthSlugToNumber('DeCeMbEr')).toBe(12);
+    });
+
+    it('returns null for invalid month slugs', () => {
+      expect(monthSlugToNumber('invalid')).toBe(null);
+      expect(monthSlugToNumber('month13')).toBe(null);
+      expect(monthSlugToNumber('')).toBe(null);
+    });
+  });
+
+  describe('MONTH_NAMES', () => {
+    it('contains all 12 months in lowercase', () => {
+      expect(MONTH_NAMES).toHaveLength(12);
+      expect(MONTH_NAMES[0]).toBe('january');
+      expect(MONTH_NAMES[11]).toBe('december');
+    });
+
+    it('contains expected month names in order', () => {
+      const expected = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+      expect(MONTH_NAMES).toEqual(expected);
     });
   });
 });

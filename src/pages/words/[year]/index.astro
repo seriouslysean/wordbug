@@ -1,16 +1,16 @@
 ---
-import { format } from 'date-fns';
 
 import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
+import { getMonthNameFromDate } from '~utils/date-utils';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
 import {
-  getAvailableMonths,
   getAvailableYears,
   getWordsByYear,
   getWordsFromCollection,
+  groupWordsByMonth,
 } from '~utils-client/word-data-utils';
 
 const { title, description } = getPageMetadata(Astro.url.pathname);
@@ -30,22 +30,19 @@ export async function getStaticPaths() {
 
 const { year } = Astro.params;
 const { words } = Astro.props;
-const months = getAvailableMonths(year, words);
+const monthGroups = groupWordsByMonth(year, words);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="year-words">
     <Heading level={1} text={year} secondaryText="Words in" />
-    {months.map(month => {
-      const monthWords = words.filter(word => word.date.substring(4, 6) === month);
-      return (
-        <WordSection
-          title={format(new Date(Number(year), Number(month) - 1), 'MMMM')}
-          href={`/words/${year}/${month}`}
-          words={monthWords}
-        />
-      );
-    })}
+    {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
+      <WordSection
+        title={getMonthNameFromDate(monthWords[0].date)}
+        href={`/words/${year}/${monthSlug}`}
+        words={monthWords}
+      />
+    ))}
   </main>
 </Layout>
 

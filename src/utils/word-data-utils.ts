@@ -7,6 +7,7 @@ import type {
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types/word';
+import { getMonthSlugFromDate } from '~utils/date-utils';
 import { logger } from '~utils-client/logger';
 
 /**
@@ -224,6 +225,25 @@ export const getAvailableMonths = (
       .map(word => word.date.substring(4, 6)),
   );
   return [...months].sort((a, b) => a.localeCompare(b));
+};
+
+/**
+ * Groups words by month within a specific year.
+ * Returns an object with month slugs as keys and word arrays as values.
+ *
+ * @param {string} year - Year to filter by (YYYY format)
+ * @param {WordData[]} [words=allWords] - Array of word data to group
+ * @returns {Object} Object with month slugs as keys and word arrays as values
+ */
+export const groupWordsByMonth = (year: string, words: WordData[] = allWords): { [monthSlug: string]: WordData[] } => {
+  return words
+    .filter(word => word.date.startsWith(year))
+    .reduce((acc, word) => {
+      const monthSlug = getMonthSlugFromDate(word.date);
+      acc[monthSlug] = acc[monthSlug] || [];
+      acc[monthSlug].push(word);
+      return acc;
+    }, {} as { [monthSlug: string]: WordData[] });
 };
 
 /**
