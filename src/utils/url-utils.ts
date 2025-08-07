@@ -51,11 +51,11 @@ export const getFullUrl = (path = '/'): string => {
 };
 
 /**
- * Create a consistent, SEO-friendly internal link URL for a word
- * @param {string} word - Word to build URL for
- * @returns {string} Normalized word URL
+ * Create a consistent, SEO-friendly internal link path for a word
+ * @param {string} word - Word to build path for
+ * @returns {string} Relative word path (without BASE_PATH)
  */
 export const getWordUrl = (word: string): string => {
-  return word ? getUrl(`/words/${word}`) : '';
+  return word ? `/words/${word}` : '';
 };
 
