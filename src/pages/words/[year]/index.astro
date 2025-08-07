@@ -1,36 +1,48 @@
 ---
+
 import Heading from '~components/Heading.astro';
-import WordList from '~components/WordList.astro';
+import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
+import { getMonthNameFromDate } from '~utils/date-utils';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
-import { getWordsFromCollection } from '~utils-client/word-data-utils';
+import {
+  getAvailableYears,
+  getWordsByYear,
+  getWordsFromCollection,
+  groupWordsByMonth,
+} from '~utils-client/word-data-utils';
+
 const { title, description } = getPageMetadata(Astro.url.pathname);
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();
 
-  const years = [...new Set(allWords.map(word => word.date.substring(0, 4)))]
-    .sort((a, b) => b.localeCompare(a));
+  const years = getAvailableYears(allWords);
 
   return years
     .map(year => ({
       params: { year },
-      props: { words: allWords.filter(word => word.date.startsWith(year)) },
+      props: { words: getWordsByYear(year, allWords) },
     }))
     .filter(({ props }) => props.words.length > 0);
 }
 
 const { year } = Astro.params;
 const { words } = Astro.props;
+const monthGroups = groupWordsByMonth(year, words);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <main class="year-words">
     <Heading level={1} text={year} secondaryText="Words in" />
-    <div class="year-words__content">
-      <WordList words={words} columns={2} />
-    </div>
+    {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
+      <WordSection
+        title={getMonthNameFromDate(monthWords[0].date)}
+        href={`/words/${year}/${monthSlug}`}
+        words={monthWords}
+      />
+    ))}
   </main>
 </Layout>
 
@@ -39,6 +51,7 @@ const { words } = Astro.props;
         max-width: var(--content-width-medium);
         margin: 0 auto;
     }
+
 
     .year-words__content {
         width: 100%;
