@@ -34,26 +34,12 @@ const monthGroups = groupWordsByMonth(year, words);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <main class="year-words">
-    <Heading level={1} text={year} secondaryText="Words in" />
-    {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
-      <WordSection
-        title={getMonthNameFromDate(monthWords[0].date)}
-        href={`/words/${year}/${monthSlug}`}
-        words={monthWords}
-      />
-    ))}
-  </main>
+  <Heading level={1} text={year} secondaryText="Words in" />
+  {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
+    <WordSection
+      title={getMonthNameFromDate(monthWords[0].date)}
+      href={`/words/${year}/${monthSlug}`}
+      words={monthWords}
+    />
+  ))}
 </Layout>
-
-<style>
-    .year-words {
-        max-width: var(--content-width-medium);
-        margin: 0 auto;
-    }
-
-
-    .year-words__content {
-        width: 100%;
-    }
-</style>

@@ -23,32 +23,25 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
   description={description}
   structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
 >
-  <main class="milestones">
-    <Heading text={title} secondaryText={formatWordCount(words.length)} />
+  <Heading text={title} secondaryText={formatWordCount(words.length)} />
 
-    <DescriptionText text={descriptionText} />
+  <DescriptionText text={descriptionText} />
 
-    <section class="milestones__section">
-      <dl class="milestones__list">
-        {words.map((item) => (
-          <>
-            <dt class="milestones__fact">{item.label}</dt>
-            <dd class="milestones__value">
-              <WordLink word={item} />
-            </dd>
-          </>
-        ))}
-      </dl>
-    </section>
-  </main>
+  <section class="milestones__section">
+    <dl class="milestones__list">
+      {words.map((item) => (
+        <>
+          <dt class="milestones__fact">{item.label}</dt>
+          <dd class="milestones__value">
+            <WordLink word={item} />
+          </dd>
+        </>
+      ))}
+    </dl>
+  </section>
 </Layout>
 
 <style>
-  .milestones {
-    max-width: var(--content-width-medium);
-    margin: 0 auto;
-  }
-
   .milestones__section {
     margin-bottom: var(--spacing-large);
   }

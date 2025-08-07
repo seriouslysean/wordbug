@@ -1,37 +1,22 @@
 ---
 import Heading from '~components/Heading.astro';
-import SectionHeading from '~components/SectionHeading.astro';
-import WordList from '~components/WordList.astro';
+import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
 import { formatWordCount } from '~utils-client/text-utils';
-import { getAvailableLengths, getWordsByLength, getWordsFromCollection } from '~utils-client/word-data-utils';
+import { getWordsFromCollection, groupWordsByLength } from '~utils-client/word-data-utils';
 
 const allWords = await getWordsFromCollection();
-const lengths = getAvailableLengths(allWords);
-const lengthGroups = lengths.map(length => ({ length, words: getWordsByLength(length, allWords) }));
+const lengthGroups = Object.entries(groupWordsByLength(allWords)).map(([length, words]) => ({
+  length: Number(length),
+  words,
+}));
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <main class="lengths">
-    <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
-    {lengthGroups.map(({ length, words }) => (
-      <section class="lengths__section">
-        <SectionHeading text={String(length)} href={`/words/length/${length}`} />
-        <WordList words={words} columns={2} />
-      </section>
-    ))}
-  </main>
+  <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
+  {lengthGroups.map(({ length, words }) => (
+    <WordSection title={`${length}-Letter Words`} href={`/words/length/${length}`} words={words} />
+  ))}
 </Layout>
-
-<style>
-  .lengths {
-    max-width: var(--content-width-medium);
-    margin: 0 auto;
-  }
-
-  .lengths__section {
-    margin-bottom: var(--spacing-large);
-  }
-</style>

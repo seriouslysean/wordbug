@@ -9,22 +9,13 @@ import { getWordsFromCollection, groupWordsByYear } from '~utils-client/word-dat
 
 const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
+const sortedYearEntries = Object.entries(wordsByYear).reverse();
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <main class="words">
-    <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
-    {(Object.entries(wordsByYear) as [string, typeof allWords][]).reverse().map(([year, words]) => (
-      <WordSection title={year} href={`/words/${year}`} words={words} />
-    ))}
-  </main>
+  <Heading text={title} secondaryText={formatWordCount(allWords.length)} />
+  {sortedYearEntries.map(([year, words]) => (
+    <WordSection title={year} href={`/words/${year}`} words={words} />
+  ))}
 </Layout>
-
-<style>
-    .words {
-        max-width: var(--content-width-medium);
-        margin: 0 auto;
-    }
-
-</style>

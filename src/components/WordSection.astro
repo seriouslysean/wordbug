@@ -4,7 +4,7 @@ import WordList from '~components/WordList.astro';
 import type { WordData } from '~types/word';
 
 interface Props {
-  title: string;
+  title?: string;
   href?: string;
   words: WordData[];
   columns?: number;
@@ -14,7 +14,7 @@ const { title, href, words, columns = 2 } = Astro.props;
 ---
 
 <section class="word-section">
-  <SectionHeading text={title} href={href} />
+  {title && <SectionHeading text={title} href={href} />}
   <WordList words={words} columns={columns} />
 </section>
 

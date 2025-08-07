@@ -292,17 +292,22 @@ export const getAvailableYears = (words: WordData[] = allWords): string[] => {
 /**
  * Groups an array of word data by length.
  * Creates an object where keys are word lengths and values are arrays of words from that length.
+ * Keys are returned in ascending numeric order.
  *
  * @param {WordData[]} words - Array of word data to group by length
- * @returns {WordGroupByLengthResult} Object with lengths as keys and word arrays as values
+ * @returns {WordGroupByLengthResult} Object with lengths as keys and word arrays as values, sorted by length
  */
 export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult => {
-  return words.reduce<WordGroupByLengthResult>((acc, word) => {
+  const groups = words.reduce<WordGroupByLengthResult>((acc, word) => {
     const length = word.word.length;
     acc[length] = acc[length] || [];
     acc[length].push(word);
     return acc;
   }, {});
+
+  return Object.fromEntries(
+    Object.entries(groups).sort(([a], [b]) => Number(a) - Number(b)),
+  );
 };
 
 /**

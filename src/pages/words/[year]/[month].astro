@@ -36,15 +36,6 @@ const monthName = getMonthNameFromDate(words[0].date);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <main class="words">
-    <Heading level={1} text={monthName} secondaryText={year} />
-    <WordSection title="" words={words} />
-  </main>
+  <Heading level={1} text={monthName} secondaryText={year} />
+  <WordSection words={words} />
 </Layout>
-
-<style>
-    .words {
-        max-width: var(--content-width-medium);
-        margin: 0 auto;
-    }
-</style>
