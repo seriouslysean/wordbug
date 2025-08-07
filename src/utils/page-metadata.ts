@@ -265,29 +265,33 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
   } as const;
 }
 
+type CountMap = Record<string, (stats: PrecomputedStats) => number>;
+
+const COUNT_FUNCTIONS: CountMap = {
+  'stats/words-ending-ly': stats => stats.endings.ly.length,
+  'stats/words-ending-ing': stats => stats.endings.ing.length,
+  'stats/words-ending-ed': stats => stats.endings.ed.length,
+  'stats/words-ending-ness': stats => stats.endings.ness.length,
+  'stats/words-ending-ful': stats => stats.endings.ful.length,
+  'stats/words-ending-less': stats => stats.endings.less.length,
+  'stats/double-letters': stats => stats.letterPatterns.doubleLetters.length,
+  'stats/same-start-end': stats => stats.letterPatterns.startEndSame.length,
+  'stats/alphabetical-order': stats => stats.letterPatterns.alphabetical.length,
+  'stats/triple-letters': stats => stats.letterPatterns.tripleLetters.length,
+  'stats/most-common-letter': stats => stats.wordsWithMostCommon.length,
+  'stats/least-common-letter': stats => stats.wordsWithLeastCommon.length,
+  'stats/milestone-words': stats => stats.milestones.length,
+  'stats/all-consonants': stats => stats.patternStats.allConsonants.length,
+  'stats/all-vowels': stats => stats.patternStats.allVowels.length,
+  'stats/palindromes': stats => stats.letterPatterns.palindromes.length,
+};
+
 function getCountForPath(path: string, words: WordData[] = allWords): number {
   const stats = getStats(words);
-  const counts: Record<string, number> = {
-    'stats/words-ending-ly': stats.endings.ly.length,
-    'stats/words-ending-ing': stats.endings.ing.length,
-    'stats/words-ending-ed': stats.endings.ed.length,
-    'stats/words-ending-ness': stats.endings.ness.length,
-    'stats/words-ending-ful': stats.endings.ful.length,
-    'stats/words-ending-less': stats.endings.less.length,
-    'stats/double-letters': stats.letterPatterns.doubleLetters.length,
-    'stats/same-start-end': stats.letterPatterns.startEndSame.length,
-    'stats/alphabetical-order': stats.letterPatterns.alphabetical.length,
-    'stats/triple-letters': stats.letterPatterns.tripleLetters.length,
-    'stats/most-common-letter': stats.wordsWithMostCommon.length,
-    'stats/least-common-letter': stats.wordsWithLeastCommon.length,
-    'stats/milestone-words': stats.milestones.length,
-    'stats/all-consonants': stats.patternStats.allConsonants.length,
-    'stats/all-vowels': stats.patternStats.allVowels.length,
-    'stats/palindromes': stats.letterPatterns.palindromes.length,
-  };
+  const countFn = COUNT_FUNCTIONS[path];
 
-  if (Object.prototype.hasOwnProperty.call(counts, path)) {
-    return counts[path];
+  if (countFn) {
+    return countFn(stats);
   }
 
   if (path.startsWith('words/')) {
