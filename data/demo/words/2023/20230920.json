@@ -1,0 +1,123 @@
+{
+    "word": "level",
+    "date": "20230920",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "L5143400-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-2",
+            "partOfSpeech": "noun",
+            "text": "Relative position or rank on a scale.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [
+                "the local level of government; studying at the graduate level."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-3",
+            "partOfSpeech": "noun",
+            "text": "A relative degree, as of achievement, intensity, or concentration.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [
+                "an unsafe level of toxicity; a high level of frustration."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-4",
+            "partOfSpeech": "noun",
+            "text": "A natural or proper position, place, or stage.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [
+                "I finally found my own level in the business world."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-5",
+            "partOfSpeech": "noun",
+            "text": "Position along a vertical axis; height or depth.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [
+                "a platform at knee level."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-6",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-7",
+            "partOfSpeech": "noun",
+            "text": "A horizontal line or plane at right angles to the plumb.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-8",
+            "partOfSpeech": "noun",
+            "text": "The position or height of such a line or plane.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-9",
+            "partOfSpeech": "noun",
+            "text": "A flat, horizontal surface.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "L5143400-10",
+            "partOfSpeech": "noun",
+            "text": "A land area of uniform elevation.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/level",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

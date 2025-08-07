@@ -9,7 +9,7 @@ const allWords = await getWordsFromCollection();
 const currentWord = getCurrentWord(allWords);
 const wordsToShow = allWords
   .filter(word => word && word.word !== currentWord?.word)
-  .slice(0, 5);
+  .slice(0, 4);
 
 const sectionTitle = wordsToShow.length > 0 ? 'Previous Words' : '';
 

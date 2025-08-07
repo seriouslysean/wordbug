@@ -1,0 +1,114 @@
+{
+    "word": "anniversary",
+    "date": "20241026",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "A5332300-1",
+            "partOfSpeech": "noun",
+            "text": "The annually recurring date of a past event, as of personal or historical importance.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [
+                "a wedding anniversary; the anniversary of the founding of Rome."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5332300-2",
+            "partOfSpeech": "noun",
+            "text": "A date that follows a certain event by a specified amount of time.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [
+                "his six-month anniversary of quitting smoking."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5332300-3",
+            "partOfSpeech": "noun",
+            "text": "An event at which an anniversary is celebrated.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Returning with the revolution of the year; annual; yearly: as, an <em>anniversary</em> feast.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "In the University of Cambridge, commemoration-day, an occasion upon which degrees are conferred since the disuse of the acts. See <internalXref urlencoded=\"act\">act</internalXref>, n., 5.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The annually recurring date of some past event; more generally, a day set apart in each year for some commemorative observance; a day for the annual celebration of some notable event, public or private.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In the <em>Roman Catholic Church</em>, the yearly commemoration of the day of a person's death, by a mass offered for his soul, or such commemoration of his death daily for a year.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The act of celebrating a day on its annual recurrence; a yearly commemoration, or (rarely) something done or prepared for such commemoration.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The annual return of the day on which any notable event took place, or is wont to be celebrated.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [
+                "the <ex>anniversary</ex> of the Declaration of Independence"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The day on which Mass is said yearly for the soul of a deceased person; the commemoration of some sacred event, as the dedication of a church or the consecration of a pope.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/anniversary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

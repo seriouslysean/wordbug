@@ -1,0 +1,120 @@
+{
+    "word": "honey",
+    "date": "20241110",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "H5274300-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-2",
+            "partOfSpeech": "noun",
+            "text": "A sweet yellowish or brownish viscid fluid produced by various bees from the nectar of flowers and used as food.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-3",
+            "partOfSpeech": "noun",
+            "text": "A similar substance made by certain other insects.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-4",
+            "partOfSpeech": "noun",
+            "text": "A sweet substance, such as nectar or syrup.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-5",
+            "partOfSpeech": "noun",
+            "text": "Sweetness; pleasantness.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-6",
+            "partOfSpeech": "noun",
+            "text": "Sweetheart; dear. Used as a term of endearment.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-7",
+            "partOfSpeech": "noun",
+            "text": "Something remarkably fine.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [
+                "a honey of a car."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-8",
+            "partOfSpeech": "transitive verb",
+            "text": "To sweeten with honey; add honey to.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-9",
+            "partOfSpeech": "transitive verb",
+            "text": "To make pleasant or appealing.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [
+                "His words were honeyed as he spoke."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5274300-10",
+            "partOfSpeech": "transitive verb",
+            "text": "To give a yellow or golden color to.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/honey",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

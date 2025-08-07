@@ -1,0 +1,117 @@
+{
+    "word": "coffee",
+    "date": "20241025",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "C5477300-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5477300-2",
+            "partOfSpeech": "noun",
+            "text": "Any of various tropical African shrubs or trees of the genus <em>Coffea,</em> especially <em>C. arabica</em> or <em>C. canephora,</em> widely cultivated in the tropics for their seeds that are dried, roasted, and ground to prepare a stimulating aromatic drink.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5477300-3",
+            "partOfSpeech": "noun",
+            "text": "The beanlike seeds of this plant, two of which are found in each fruit.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5477300-4",
+            "partOfSpeech": "noun",
+            "text": "The beverage prepared from the seeds of this plant.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [
+                "likes to drink coffee with breakfast."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5477300-5",
+            "partOfSpeech": "noun",
+            "text": "A serving of such a beverage.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [
+                "ordered two coffees with sugar."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5477300-6",
+            "partOfSpeech": "noun",
+            "text": "A moderate brown to dark brown or dark grayish brown.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5477300-7",
+            "partOfSpeech": "noun",
+            "text": "An informal social gathering at which coffee and other refreshments are served.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The berry of trees belonging to the genus <em>Coffea</em>, natural order <em>Rubiaceæ.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A drink made from the seeds of the coffee-tree, by infusion or decoction.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A light meal resembling afternoon tea, at which coffee is served.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

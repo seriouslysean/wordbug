@@ -1,0 +1,108 @@
+{
+    "word": "buddy",
+    "date": "20240218",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "B5543200-1",
+            "partOfSpeech": "noun",
+            "text": "A good friend; a comrade.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5543200-2",
+            "partOfSpeech": "noun",
+            "text": "A partner, especially one of a pair or team associated under the buddy system.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5543200-3",
+            "partOfSpeech": "noun",
+            "text": "Friend or comrade; chum. Used as a form of familiar address, especially for a man or boy.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [
+                "Watch it, buddy."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5543200-4",
+            "partOfSpeech": "intransitive verb",
+            "text": "To associate as a buddy or buddies.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [
+                "buddied around with the older guys."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5543200-5",
+            "partOfSpeech": "phrasal verb",
+            "text": "To ingratiate oneself, as by presuming friendship.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [
+                "buddied up to the coach in hopes of making the team."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>friend</xref> or <xref>casual</xref> acquaintance.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>partner</xref> for a particular activity.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An <xref>informal</xref> and friendly address to a <xref>stranger</xref>; a friendly <xref>placeholder</xref> name for a person one does not know.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To assign a buddy, or <xref>partner</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/buddy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

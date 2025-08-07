@@ -1,0 +1,130 @@
+{
+    "word": "wish",
+    "date": "20231111",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "W5198000-1",
+            "partOfSpeech": "noun",
+            "text": "A feeling that one would like to have or do something or to see something happen; a desire, longing, or strong inclination for a specific thing.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-3",
+            "partOfSpeech": "noun",
+            "text": "An expression of a desire, longing, or strong inclination.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [
+                "carried out the wishes included in the will."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-4",
+            "partOfSpeech": "noun",
+            "text": "An expression of desire for the happiness or success of another.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [
+                "sent me his best wishes."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-5",
+            "partOfSpeech": "noun",
+            "text": "Something desired or longed for.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [
+                "finally got his wish to see the ocean."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-6",
+            "partOfSpeech": "intransitive verb",
+            "text": "To long for; want. <i>synonym</i>: <strong> desire</strong>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-7",
+            "partOfSpeech": "intransitive verb",
+            "text": "To feel or express a desire for.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [
+                "I wish them good luck. He wished her good night."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-8",
+            "partOfSpeech": "intransitive verb",
+            "text": "To order, entreat, or request.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [
+                "I wish you to go. I wish it to be known that I disagree."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-9",
+            "partOfSpeech": "intransitive verb",
+            "text": "To desire (something bad) to happen to someone.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [
+                "I would not wish such an illness on anyone."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5198000-10",
+            "partOfSpeech": "intransitive verb",
+            "text": "To have or feel a desire.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/wish",
+            "examples": [
+                "wish for a successful outcome."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

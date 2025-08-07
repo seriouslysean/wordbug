@@ -1,0 +1,120 @@
+{
+    "word": "first",
+    "date": "20241205",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "F5143200-1",
+            "partOfSpeech": "noun",
+            "text": "The ordinal number matching the number one in a series.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-2",
+            "partOfSpeech": "noun",
+            "text": "The one coming, occurring, or ranking before or above all others.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-3",
+            "partOfSpeech": "noun",
+            "text": "The beginning; the outset.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [
+                "from the first; at first."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-4",
+            "partOfSpeech": "noun",
+            "text": "The voice or instrument highest in pitch or carrying the principal part.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-5",
+            "partOfSpeech": "noun",
+            "text": "The transmission gear or corresponding gear ratio used to produce the range of lowest drive speeds in a motor vehicle.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-6",
+            "partOfSpeech": "noun",
+            "text": "The winning position in a contest.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [
+                "finished the season in first."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-7",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-8",
+            "partOfSpeech": "noun",
+            "text": "First base.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-9",
+            "partOfSpeech": "noun",
+            "text": "A first baseman.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5143200-10",
+            "partOfSpeech": "adjective",
+            "text": "Corresponding in order to the number one.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/first",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

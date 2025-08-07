@@ -1,0 +1,104 @@
+{
+    "word": "ludicrous",
+    "date": "20230520",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "L5300200-1",
+            "partOfSpeech": "adjective",
+            "text": "So absurd or incongruous as to be laughable. <i>synonym</i>: <strong> foolish</strong>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Serving for or exciting sport; laughable from singularity or grotesqueness; adapted to cause sportive laughter or ridicule; absurd.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "<strong>Synonyms</strong> <em>Funny, Comical, Droll, Ludicrous, Ridiculous, Laughable.</em> Either the direct action of laughter or a corresponding sentiment is included in the signification of all these terms.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "In this respect <em>laughable</em> is the generic word, but it is also one of the strongest. <em>Funny</em> is the weakest of the list, ranging from the meaning of ‘amusing’ or ‘odd’ down to its colloquial use in the sense of ‘strange.’ <em>Comical</em> still retains a faint suggestion of its origin in connection with the drama, being primarily used in connection with something done or seen, and hence something viewed by the mind: a <em>comical</em> predicament is just such as would be fit for exhibition in a comedy. <em>Droll</em> especially implies the odd or unfamiliar: as, a <em>droll</em> story, idea, fellow. <em>Ludicrous</em> is an advance in strength upon <em>comical</em>, as <em>comical</em> is an advance upon <em>funny. Ridiculous</em> is the only word in the list that throws contempt or even discredit upon the person concerned: it is allowable to tell a <em>ludicrous</em> story about one's friend, but not a story that makes him appear <em>ridiculous.</em> A thing may be <em>ludicrous</em>, etc., on account of its unreasonableness or violation of common sense; if it is <em>ridiculous</em>, it is certainly on that account. That is <em>laughable</em> which simply provokes a hearty laugh.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Adapted to excite laughter, without scorn or contempt; sportive.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Ridiculously absurd.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "<xref>Idiotic</xref> or <xref>unthinkable</xref>, often to the point of being funny.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "incongruous;inviting ridicule",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [
+                "a contribution so small as to be laughable",
+                "that's a cockeyed idea",
+                "her conceited assumption of universal interest in her rather dull children was ridiculous",
+                "a preposterous attempt to turn back the pages of history",
+                "ask a nonsensical question and get a nonsensical answer",
+                "it is ludicrous to call a cottage a mansion"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "broadly or extravagantly humorous; resembling farce",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/ludicrous",
+            "examples": [
+                "ludicrous green hair"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

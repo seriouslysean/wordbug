@@ -1,0 +1,82 @@
+{
+    "word": "diva",
+    "date": "20241120",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "D5307400-1",
+            "partOfSpeech": "noun",
+            "text": "An operatic prima donna.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/diva",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5307400-2",
+            "partOfSpeech": "noun",
+            "text": "A very successful singer of nonoperatic music.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/diva",
+            "examples": [
+                "a jazz diva."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "D5307400-3",
+            "partOfSpeech": "noun",
+            "text": "One who demands that attention be paid to his or her needs, especially without regard to anyone else's needs or feelings.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/diva",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A prima donna; a distinguished female singer.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/diva",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A prima donna.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/diva",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A person who may be considered or who considers herself (or by extension himself) much more important than others, has high expectations of others and who is extremely demanding and fussy when it comes to personal privileges.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/diva",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a distinguished female operatic singer; a female operatic star",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/diva",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

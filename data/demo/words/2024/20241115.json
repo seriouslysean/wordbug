@@ -1,0 +1,123 @@
+{
+    "word": "speed",
+    "date": "20241115",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "S5676100-1",
+            "partOfSpeech": "noun",
+            "text": "The rate or a measure of the rate of motion, especially.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-3",
+            "partOfSpeech": "noun",
+            "text": "Distance traveled divided by the time of travel.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-4",
+            "partOfSpeech": "noun",
+            "text": "The limit of this quotient as the time of travel becomes vanishingly small; the first derivative of distance with respect to time.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-5",
+            "partOfSpeech": "noun",
+            "text": "The magnitude of a velocity.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-5",
+            "partOfSpeech": "noun",
+            "text": "Swiftness of action.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [
+                "He wrote the first chapter with great speed."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-6",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-7",
+            "partOfSpeech": "noun",
+            "text": "The act of moving rapidly.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [
+                "finished the race in a burst of speed."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-8",
+            "partOfSpeech": "noun",
+            "text": "The state of being in rapid motion; rapidity.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [
+                "The river's speed made a rescue difficult."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-9",
+            "partOfSpeech": "noun",
+            "text": "A transmission gear or set of gears in a motor vehicle.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [
+                "What speed is the car in now?"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5676100-10",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

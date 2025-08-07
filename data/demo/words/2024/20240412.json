@@ -1,0 +1,17 @@
+{
+    "word": "anemones",
+    "date": "20240412",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "Plural form of <xref>anemone</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/anemones",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

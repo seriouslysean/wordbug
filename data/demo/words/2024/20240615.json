@@ -1,0 +1,68 @@
+{
+    "word": "ice cream",
+    "date": "20240615",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "I5008900-1",
+            "partOfSpeech": "noun",
+            "text": "A smooth, sweet, cold food prepared from a frozen mixture of milk products and flavorings, containing a minimum of 10 percent milk fat and eaten as a snack or dessert.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A confection made by congealing variously flavored cream or custard in a vessel surrounded with a freezing-mixture.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>dessert</xref> made from <xref>frozen</xref> <xref>sweetened</xref> <xref>cream</xref> or a similar substance, usually <xref>flavoured</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A snack consisting of ice cream on a stick or in a wafer cone.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "frozen dessert containing cream and sugar and flavoring",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "frozen dessert containing cream and sugar and flavoring",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

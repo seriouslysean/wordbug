@@ -1,0 +1,130 @@
+{
+    "word": "a",
+    "date": "20230115",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "A5000200-1",
+            "partOfSpeech": "article",
+            "text": "Used before nouns and noun phrases that denote a single but unspecified person or thing.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [
+                "a region; a person."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000200-2",
+            "partOfSpeech": "article",
+            "text": "Used before terms that denote number, amount, quantity, or degree.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [
+                "only a few of the voters; a bit more rest; a little excited."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000200-3",
+            "partOfSpeech": "article",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000200-4",
+            "partOfSpeech": "article",
+            "text": "Used before a proper name to denote a type or a member of a class.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [
+                "the wisdom of a Socrates."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000200-5",
+            "partOfSpeech": "article",
+            "text": "Used before a mass noun to indicate a single type or example.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [
+                "a dry wine."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000200-6",
+            "partOfSpeech": "article",
+            "text": "The same.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [
+                "birds of a feather."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000200-7",
+            "partOfSpeech": "article",
+            "text": "Any.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [
+                "not a drop to drink."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000400-1",
+            "partOfSpeech": "auxiliary verb",
+            "text": "Have.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [
+                "He'd a come if he could."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000100-1",
+            "partOfSpeech": "noun",
+            "text": "The first letter of the modern English alphabet.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5000100-2",
+            "partOfSpeech": "noun",
+            "text": "Any of the speech sounds represented by the letter <em>a.</em>",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/a",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
