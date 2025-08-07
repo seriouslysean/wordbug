@@ -246,20 +246,29 @@ export const getLongestStreakWords = (words: WordData[]): WordData[] => {
   }
 
   const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
-  const [longest] = sortedWords.slice(1).reduce<[
-    WordData[],
-    WordData[],
-    WordData
-  ]>(([longest, current, prev], word) => {
-    const updatedCurrent = areConsecutiveDays(word.date, prev.date)
-      ? [...current, word]
-      : [word];
-    const updatedLongest =
-      updatedCurrent.length > longest.length ? updatedCurrent : longest;
-    return [updatedLongest, updatedCurrent, word];
-  }, [[sortedWords[0]], [sortedWords[0]], sortedWords[0]]);
+  
+  const { longestStreak } = sortedWords.slice(1).reduce(
+    ({ longestStreak, currentStreak, previousWord }, word) => {
+      const isConsecutive = areConsecutiveDays(word.date, previousWord.date);
+      const newCurrentStreak = isConsecutive ? [...currentStreak, word] : [word];
+      const newLongestStreak = newCurrentStreak.length > longestStreak.length 
+        ? newCurrentStreak 
+        : longestStreak;
+      
+      return {
+        longestStreak: newLongestStreak,
+        currentStreak: newCurrentStreak,
+        previousWord: word,
+      };
+    },
+    {
+      longestStreak: [sortedWords[0]],
+      currentStreak: [sortedWords[0]],
+      previousWord: sortedWords[0],
+    }
+  );
 
-  return longest.slice().reverse();
+  return longestStreak.reverse();
 };
 
 /**
