@@ -84,7 +84,7 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
   'words/length': {
     type: 'static',
     title: 'Words by Length',
-    description: 'Browse words grouped by length.',
+    description: 'Words organized by character length.',
     category: 'pages',
   },
   'stats': {
@@ -282,43 +282,44 @@ throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname 
 }
   const path = pathname.replace(/^\//, '').replace(/\/$/, '');
 
+  if (path.startsWith('words/length/') && path !== 'words/length') {
+    const lengthStr = path.replace('words/length/', '');
+    const length = Number(lengthStr);
+    if (!isNaN(length)) {
+      return {
+        title: `${length}-Letter Words`,
+        description: `Words containing exactly ${length} letters.`,
+        category: 'pages' as const,
+      };
+    }
+  }
+
   if (path === 'words/length') {
     return {
       title: 'Words by Length',
-      description: 'Browse words grouped by length.',
-      category: 'pages' as const,
-    };
-  }
-
-  if (path.startsWith('words/length/')) {
-    const length = Number(path.split('/')[2]);
-    return {
-      title: `${length}-letter words`,
-      description: `Words that are ${length} letters long.`,
+      description: 'Words organized by character length.',
       category: 'pages' as const,
     };
   }
 
   if (path.startsWith('words/') && path !== 'words') {
     const [year, month] = path.replace('words/', '').split('/');
-    if (year && /^\d{4}$/.test(year)) {
-      if (month) {
-        const monthNumber = monthSlugToNumber(month);
-        if (monthNumber) {
-          const monthName = format(new Date(Number(year), monthNumber - 1), 'MMMM');
-          return {
-            title: `${monthName} ${year} words`,
-            description: `Words featured during ${monthName} ${year}.`,
-            category: 'pages' as const,
-          };
-        }
+    if (year && month) {
+      const monthNumber = monthSlugToNumber(month);
+      if (monthNumber) {
+        const monthName = format(new Date(Number(year), monthNumber - 1), 'MMMM');
+        return {
+          title: `${monthName} ${year} words`,
+          description: `Words from ${monthName} ${year}.`,
+          category: 'pages' as const,
+        };
       }
-      return {
-        title: `${year} words`,
-        description: `Words featured during ${year}.`,
-        category: 'pages' as const,
-      };
     }
+    return {
+      title: `${year} words`,
+      description: `Words from ${year}, organized by month.`,
+      category: 'pages' as const,
+    };
   }
 
   const PAGE_METADATA = createPageMetadata(words);

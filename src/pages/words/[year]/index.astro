@@ -1,5 +1,6 @@
 ---
 
+import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
@@ -35,6 +36,7 @@ const monthGroups = groupWordsByMonth(year, words);
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <Heading level={1} text={year} secondaryText="Words in" />
+  <DescriptionText text={description} />
   {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
     <WordSection
       title={getMonthNameFromDate(monthWords[0].date)}
