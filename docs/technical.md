@@ -350,6 +350,9 @@ Word statistics are derived from raw word data using specialized helpers in `src
 ### Dynamic Static Path Creation
 The `generateStatsStaticPaths` utility builds Astro static paths based on available statistics. It loads all words at runtime, filters out empty stat pages when the `__SHOW_EMPTY_STATS__` flag is disabled and maps each stat definition to its route and data payload. This ensures only meaningful pages are generated and keeps the build output lean.
 
+### Page Metadata Caching
+The `getPageMetadata` helper provides a single source of page titles and descriptions for both Astro pages and Node.js tools. Because Node scripts cannot read Astro frontmatter, metadata is defined in one place and cached after the initial computation. This avoids repeated statistics calculations and keeps build performance predictable.
+
 ## Performance Optimizations
 
 ### Build-time Optimizations

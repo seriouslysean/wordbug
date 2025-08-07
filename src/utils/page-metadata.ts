@@ -26,6 +26,57 @@ import {
   getWordStats,
 } from '~utils-client/word-stats-utils';
 
+type PrecomputedStats = {
+  endings: ReturnType<typeof getWordEndingStats>;
+  letterPatterns: ReturnType<typeof getLetterPatternStats>;
+  patternStats: ReturnType<typeof getPatternStats>;
+  mostCommonLetter: string;
+  leastCommonLetter: string;
+  wordsWithMostCommon: WordData[];
+  wordsWithLeastCommon: WordData[];
+  milestones: ReturnType<typeof getChronologicalMilestones>;
+};
+
+const statsCache = new WeakMap<WordData[], PrecomputedStats>();
+
+function getStats(words: WordData[]): PrecomputedStats {
+  const cached = statsCache.get(words);
+  if (cached) {
+    return cached;
+  }
+
+  const endings = getWordEndingStats(words);
+  const letterPatterns = getLetterPatternStats(words);
+  const patternStats = getPatternStats(words);
+  const wordStats = getWordStats(words);
+  const letterStats = getLetterStats(wordStats.letterFrequency);
+  const mostCommonLetter = letterStats[0]?.[0] || '';
+  const leastCommonLetter = letterStats[letterStats.length - 1]?.[0] || '';
+  const wordsWithMostCommon = mostCommonLetter
+    ? words.filter(word => word.word.includes(mostCommonLetter))
+    : [];
+  const wordsWithLeastCommon = leastCommonLetter
+    ? words.filter(word => word.word.includes(leastCommonLetter))
+    : [];
+  const milestones = getChronologicalMilestones(
+    [...words].sort((a, b) => a.date.localeCompare(b.date)),
+  );
+
+  const stats: PrecomputedStats = {
+    endings,
+    letterPatterns,
+    patternStats,
+    mostCommonLetter,
+    leastCommonLetter,
+    wordsWithMostCommon,
+    wordsWithLeastCommon,
+    milestones,
+  };
+
+  statsCache.set(words, stats);
+  return stats;
+}
+
 type StaticPageMeta = {
   type: 'static';
   title: string;
@@ -47,6 +98,8 @@ type StatsPageMeta = {
 type PageMeta = StaticPageMeta | HomepageMeta | StatsPageMeta;
 
 function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
+  const stats = getStats(words);
+
   return {
   '': {
     type: 'home',
@@ -132,23 +185,21 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
   [`stats/${STATS_SLUGS.MOST_COMMON_LETTER}`]: {
     type: 'stats',
     title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER].title,
-    description: (count: number) => {
-      const wordStats = getWordStats(words);
-      const letterStats = getLetterStats(wordStats.letterFrequency);
-      const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
-      return DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER].metaDescription(count, mostCommonLetter);
-    },
+    description: (count: number) =>
+      DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER].metaDescription(
+        count,
+        stats.mostCommonLetter,
+      ),
     category: 'stats',
   },
   [`stats/${STATS_SLUGS.LEAST_COMMON_LETTER}`]: {
     type: 'stats',
     title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER].title,
-    description: (count: number) => {
-      const wordStats = getWordStats(words);
-      const letterStats = getLetterStats(wordStats.letterFrequency);
-      const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
-      return DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER].metaDescription(count, leastCommonLetter);
-    },
+    description: (count: number) =>
+      DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER].metaDescription(
+        count,
+        stats.leastCommonLetter,
+      ),
     category: 'stats',
   },
   [`stats/${STATS_SLUGS.MILESTONE_WORDS}`]: {
@@ -215,59 +266,36 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
 }
 
 function getCountForPath(path: string, words: WordData[] = allWords): number {
-  switch (path) {
-    case 'stats/words-ending-ly':
-      return getWordEndingStats(words).ly.length;
-    case 'stats/words-ending-ing':
-      return getWordEndingStats(words).ing.length;
-    case 'stats/words-ending-ed':
-      return getWordEndingStats(words).ed.length;
-    case 'stats/words-ending-ness':
-      return getWordEndingStats(words).ness.length;
-    case 'stats/words-ending-ful':
-      return getWordEndingStats(words).ful.length;
-    case 'stats/words-ending-less':
-      return getWordEndingStats(words).less.length;
-    case 'stats/double-letters':
-      return getLetterPatternStats(words).doubleLetters.length;
-    case 'stats/same-start-end':
-      return getLetterPatternStats(words).startEndSame.length;
-    case 'stats/alphabetical-order':
-      return getLetterPatternStats(words).alphabetical.length;
-    case 'stats/triple-letters':
-      return getLetterPatternStats(words).tripleLetters.length;
-    case 'stats/most-common-letter': {
-      const wordStats = getWordStats(words);
-      const letterStats = getLetterStats(wordStats.letterFrequency);
-      const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
-      return words.filter(wordData => wordData.word.includes(mostCommonLetter)).length;
-    }
-    case 'stats/least-common-letter': {
-      const wordStats = getWordStats(words);
-      const letterStats = getLetterStats(wordStats.letterFrequency);
-      const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
-      return words.filter(wordData => wordData.word.includes(leastCommonLetter)).length;
-    }
-    case 'stats/milestone-words': {
-      const sortedWords = words.sort((a, b) => a.date.localeCompare(b.date));
-      return getChronologicalMilestones(sortedWords).length;
-    }
-    case 'stats/all-consonants': {
-      return getPatternStats(words).allConsonants.length;
-    }
-    case 'stats/all-vowels': {
-      return getPatternStats(words).allVowels.length;
-    }
-    case 'stats/palindromes': {
-      return getLetterPatternStats(words).palindromes.length;
-    }
-    default:
-      if (path.startsWith('words/')) {
-        const year = path.replace('words/', '');
-        return getWordsByYear(year, words).length;
-      }
-      return 0;
+  const stats = getStats(words);
+  const counts: Record<string, number> = {
+    'stats/words-ending-ly': stats.endings.ly.length,
+    'stats/words-ending-ing': stats.endings.ing.length,
+    'stats/words-ending-ed': stats.endings.ed.length,
+    'stats/words-ending-ness': stats.endings.ness.length,
+    'stats/words-ending-ful': stats.endings.ful.length,
+    'stats/words-ending-less': stats.endings.less.length,
+    'stats/double-letters': stats.letterPatterns.doubleLetters.length,
+    'stats/same-start-end': stats.letterPatterns.startEndSame.length,
+    'stats/alphabetical-order': stats.letterPatterns.alphabetical.length,
+    'stats/triple-letters': stats.letterPatterns.tripleLetters.length,
+    'stats/most-common-letter': stats.wordsWithMostCommon.length,
+    'stats/least-common-letter': stats.wordsWithLeastCommon.length,
+    'stats/milestone-words': stats.milestones.length,
+    'stats/all-consonants': stats.patternStats.allConsonants.length,
+    'stats/all-vowels': stats.patternStats.allVowels.length,
+    'stats/palindromes': stats.letterPatterns.palindromes.length,
+  };
+
+  if (Object.prototype.hasOwnProperty.call(counts, path)) {
+    return counts[path];
   }
+
+  if (path.startsWith('words/')) {
+    const year = path.replace('words/', '');
+    return getWordsByYear(year, words).length;
+  }
+
+  return 0;
 }
 
 /**
