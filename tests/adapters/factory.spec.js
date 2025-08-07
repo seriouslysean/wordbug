@@ -2,12 +2,13 @@ import {
  afterEach,beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
+import { getAdapter } from '~adapters';
+
 describe('adapter factory', () => {
   let originalEnv;
 
   beforeEach(() => {
     originalEnv = process.env.DICTIONARY_ADAPTER;
-    vi.resetModules();
   });
 
   afterEach(() => {
@@ -16,13 +17,13 @@ describe('adapter factory', () => {
     } else {
       delete process.env.DICTIONARY_ADAPTER;
     }
+    vi.clearAllMocks();
   });
 
   describe('getAdapter', () => {
-    it('returns wordnik adapter by default', async () => {
+    it('returns wordnik adapter by default', () => {
       delete process.env.DICTIONARY_ADAPTER;
 
-      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter).toBeDefined();
@@ -33,56 +34,50 @@ describe('adapter factory', () => {
       expect(typeof adapter.isValidResponse).toBe('function');
     });
 
-    it('returns wordnik adapter when explicitly configured', async () => {
+    it('returns wordnik adapter when explicitly configured', () => {
       process.env.DICTIONARY_ADAPTER = 'wordnik';
 
-      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter.name).toBe('wordnik');
     });
 
-    it('handles case insensitive adapter names', async () => {
+    it('handles case insensitive adapter names', () => {
       process.env.DICTIONARY_ADAPTER = 'WORDNIK';
 
-      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter.name).toBe('wordnik');
     });
 
-    it('throws error for unsupported adapter', async () => {
+    it('throws error for unsupported adapter', () => {
       process.env.DICTIONARY_ADAPTER = 'unsupported-adapter';
-
-      const { getAdapter } = await import('~adapters');
 
       expect(() => getAdapter()).toThrow('Unsupported dictionary adapter');
     });
 
-    it('returns wordnik adapter for empty adapter name (falls back to default)', async () => {
+    it('returns wordnik adapter for empty adapter name (falls back to default)', () => {
       process.env.DICTIONARY_ADAPTER = '';
 
-      const { getAdapter } = await import('~adapters');
       const adapter = getAdapter();
 
       expect(adapter.name).toBe('wordnik');
     });
 
-    it('logs adapter selection', async () => {
-      const mockLogger = {
+    it('logs adapter selection', () => {
+      const mockLogger = vi.hoisted(() => ({
         info: vi.fn(),
         error: vi.fn(),
         warn: vi.fn(),
         debug: vi.fn(),
-      };
+      }));
 
-      vi.doMock('~utils-client/logger', () => ({
+      vi.mock('~utils-client/logger', () => ({
         logger: mockLogger,
       }));
 
       process.env.DICTIONARY_ADAPTER = 'wordnik';
 
-      const { getAdapter } = await import('~adapters');
       getAdapter();
 
       expect(mockLogger.info).toHaveBeenCalledWith(
@@ -93,8 +88,7 @@ describe('adapter factory', () => {
   });
 
   describe('adapter interface compliance', () => {
-    it('returned adapter implements DictionaryAdapter interface', async () => {
-      const { getAdapter } = await import('~adapters');
+    it('returned adapter implements DictionaryAdapter interface', () => {
       const adapter = getAdapter();
 
       expect(adapter).toHaveProperty('name');
@@ -111,8 +105,7 @@ describe('adapter factory', () => {
       expect(typeof adapter.name).toBe('string');
     });
 
-    it('adapter methods have correct signatures', async () => {
-      const { getAdapter } = await import('~adapters');
+    it('adapter methods have correct signatures', () => {
       const adapter = getAdapter();
 
       expect(adapter.fetchWordData.length).toBeGreaterThanOrEqual(1);

@@ -31,7 +31,8 @@
     "test:watch": "vitest",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
-    "typecheck": "astro check"
+    "typecheck": "tsc --noEmit --incremental --skipLibCheck",
+    "typecheck:full": "astro check"
   },
   "dependencies": {
     "@types/yargs": "^17.0.33",
