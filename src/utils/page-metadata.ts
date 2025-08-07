@@ -308,7 +308,11 @@ export function getPageMetadata(pathname?: string, words: WordData[] = allWords)
   if (!pathname) {
 throw new Error('getPageMetadata: pathname is required. Pass Astro.url.pathname from your page.');
 }
-  const path = pathname.replace(/^\//, '').replace(/\/$/, '');
+    let path = pathname.replace(/^\//, '').replace(/\/$/, '');
+    const basePath = import.meta.env.BASE_PATH?.replace(/^\/|\/$/g, '') || '';
+    if (basePath && (path === basePath || path.startsWith(`${basePath}/`))) {
+      path = path.slice(basePath.length).replace(/^\//, '');
+    }
 
   if (path.startsWith('words/length/') && path !== 'words/length') {
     const lengthStr = path.replace('words/length/', '');

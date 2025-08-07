@@ -1,4 +1,10 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import {
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
 import { getAllPageMetadata, getPageMetadata } from '~utils-client/page-metadata';
 
@@ -21,6 +27,13 @@ describe('page-metadata', () => {
         description: 'Browse the complete alphabetical list of all featured words, organized by year.',
         category: 'pages',
       });
+    });
+
+    it('handles BASE_PATH in pathname', () => {
+      vi.stubEnv('BASE_PATH', '/vocab');
+      const metadata = getPageMetadata('/vocab/words');
+      expect(metadata.title).toBe('All Words');
+      vi.unstubAllEnvs();
     });
 
     it('returns dynamic metadata for stats pages with counts', () => {
