@@ -92,6 +92,18 @@ describe('page-metadata-utils', () => {
       });
     });
 
+    it('returns metadata for 404 page', () => {
+      const metadata = getPageMetadata('404', mockWords);
+      expect(metadata).toEqual({
+        title: '404',
+        description:
+          'Noun. A web page that cannot be found; an error indicating the requested content does not exist.',
+        category: 'pages',
+        secondaryText: undefined,
+        partOfSpeech: 'noun',
+      });
+    });
+
     it('returns fallback metadata for unknown paths', () => {
       const metadata = getPageMetadata('unknown-path', mockWords);
       expect(metadata).toEqual({

@@ -56,6 +56,7 @@ type StaticPageMeta = {
   description: string;
   category: string;
   secondaryText?: string | ((data?: any) => string);
+  partOfSpeech?: string;
 };
 
 type HomepageMeta = {
@@ -114,6 +115,14 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     title: 'About',
     description: 'Learn more about this Word of the Day collection.',
     category: 'pages',
+  },
+  '404': {
+    type: 'static',
+    title: '404',
+    description:
+      'Noun. A web page that cannot be found; an error indicating the requested content does not exist.',
+    category: 'pages',
+    partOfSpeech: 'noun',
   },
 
   // Stats pages with dynamic counts
@@ -307,8 +316,9 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
   const path = pathname.replace(/^\/+|\/+$/g, '');
 
   // Handle dynamic year pages
-  if (path.match(/^words\/\d{4}$/)) {
-    const year = path.replace('words/', '');
+  const yearMatch = path.match(/^words\/(\d{4})$/);
+  if (yearMatch) {
+    const [, year] = yearMatch;
     return {
       title: year,
       description: `Words from ${year}, organized by month.`,
@@ -344,15 +354,6 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
     };
   }
 
-  // Handle year pages for metadata
-  if (path.match(/^words\/\d{4}$/)) {
-    const year = path.replace('words/', '');
-    return {
-      title: `${year} Words`,
-      description: `Words from ${year}, organized by month.`,
-      category: 'pages' as const,
-    };
-  }
 
   const PAGE_METADATA = createPageMetadata(words);
   const metadata = PAGE_METADATA[path as keyof typeof PAGE_METADATA];
@@ -380,9 +381,10 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description,
         category: metadata.category,
-        secondaryText: typeof metadata.secondaryText === 'function' 
-          ? metadata.secondaryText(words.length) 
+        secondaryText: typeof metadata.secondaryText === 'function'
+          ? metadata.secondaryText(words.length)
           : metadata.secondaryText,
+        ...(metadata.partOfSpeech ? { partOfSpeech: metadata.partOfSpeech } : {}),
       };
     case 'stats':
       const count = getCountForPath(path, words);
