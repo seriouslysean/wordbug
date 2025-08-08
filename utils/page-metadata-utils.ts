@@ -80,7 +80,7 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
   const stats = getStats(words);
 
   return {
-  '': {
+  home: {
     type: 'home',
     title: 'Word of the Day',
     description: (currentWord: string): string =>
