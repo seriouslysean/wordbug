@@ -120,7 +120,7 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     type: 'static',
     title: '404',
     description:
-      'Noun. A web page that cannot be found; an error indicating the requested content does not exist.',
+      'A web page that cannot be found; an error indicating the requested content does not exist.',
     category: 'pages',
     partOfSpeech: 'noun',
   },
