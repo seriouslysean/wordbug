@@ -5,7 +5,7 @@
       "~/*": ["src/*"],
       "~components/*": ["src/components/*"],
       "~layouts/*": ["src/layouts/*"],
-      "~utils-client/*": ["src/utils/*"],
+      "~astro-utils/*": ["src/utils/*"],
       "~utils/*": ["utils/*"],
       "~data/*": ["data/*"],
       "~config/*": ["config/*"],

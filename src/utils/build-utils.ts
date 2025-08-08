@@ -1,5 +1,5 @@
 import type { WordData } from '~types/word';
-import { generateWordDataHash } from '~utils-client/word-data-utils';
+import { generateWordDataHash } from '~astro-utils/word-data-utils';
 
 export interface BuildData {
   version: string;

@@ -1,4 +1,4 @@
-import { allWords } from '~utils-client/word-data-utils';
+import { allWords } from '~astro-utils/word-data-utils';
 import { getAllPageMetadata as getAllPageMetadataBase, getPageMetadata as getPageMetadataBase } from '~utils/page-metadata-utils';
 
 /**

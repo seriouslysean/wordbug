@@ -5,12 +5,12 @@ import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import { getMonthNameFromDate } from '~utils/date-utils';
-import { getPageMetadata } from '~utils-client/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import {
   getWordsFromCollection,
   groupWordsByMonth,
-} from '~utils-client/word-data-utils';
+} from '~astro-utils/word-data-utils';
 import { getAvailableYears, getWordsByYear } from '~utils/word-data-utils';
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);

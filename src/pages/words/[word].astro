@@ -1,6 +1,6 @@
 ---
 import WordPage from '~components/WordPage.astro';
-import { getAdjacentWords, getWordsFromCollection } from '~utils-client/word-data-utils';
+import { getAdjacentWords, getWordsFromCollection } from '~astro-utils/word-data-utils';
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();

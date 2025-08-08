@@ -1,9 +1,9 @@
 ---
 import WordDisplay from '~components/WordDisplay.astro';
 import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~utils-client/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
-import { getCurrentWord,getWordsFromCollection } from '~utils-client/word-data-utils';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
+import { getCurrentWord,getWordsFromCollection } from '~astro-utils/word-data-utils';
 
 const allWords = await getWordsFromCollection();
 const currentWord = getCurrentWord(allWords);

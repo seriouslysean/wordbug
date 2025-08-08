@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-import { generateHumansTxt } from '~utils-client/static-file-utils';
+import { generateHumansTxt } from '~astro-utils/static-file-utils';
 
 /**
  * Handle humans.txt requests

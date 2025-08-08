@@ -29,6 +29,6 @@ export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wo
  * @returns Metadata for all static pages
  */
 export async function getStaticPages() {
-  const { getAllPageMetadata } = await import('~utils-client/page-metadata');
+  const { getAllPageMetadata } = await import('~astro-utils/page-metadata');
   return getAllPageMetadata();
 }

@@ -2,7 +2,7 @@ import {
  beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
-import { getFullUrl, getUrl } from '~utils-client/url-utils';
+import { getFullUrl, getUrl } from '~astro-utils/url-utils';
 
 describe('utils', () => {
   describe('getUrl', () => {

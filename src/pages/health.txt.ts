@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 
-import { generateHealthTxt } from '~utils-client/static-file-utils';
-import { getWordsFromCollection } from '~utils-client/word-data-utils';
+import { generateHealthTxt } from '~astro-utils/static-file-utils';
+import { getWordsFromCollection } from '~astro-utils/word-data-utils';
 
 /**
  * Handle health.txt requests

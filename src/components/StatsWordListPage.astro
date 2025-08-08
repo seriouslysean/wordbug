@@ -4,8 +4,8 @@ import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types/word';
-import { getPageMetadata } from '~utils-client/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import { formatWordCount } from '~utils/text-utils';
 
 interface Props {

@@ -4,8 +4,8 @@
  */
 
 import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types/schema';
-import { seoConfig } from '~utils-client/seo-utils';
-import { getFullUrl } from '~utils-client/url-utils';
+import { seoConfig } from '~astro-utils/seo-utils';
+import { getFullUrl } from '~astro-utils/url-utils';
 
 export const STRUCTURED_DATA_TYPE = {
   WORD_SINGLE: 'WORD_SINGLE',

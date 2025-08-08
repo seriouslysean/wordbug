@@ -43,7 +43,7 @@ export default defineConfig({
       '~': resolve(__dirname, './src'),
       '~components': resolve(__dirname, './src/components'),
       '~layouts': resolve(__dirname, './src/layouts'),
-      '~utils-client': resolve(__dirname, './src/utils'),
+      '~astro-utils': resolve(__dirname, './src/utils'),
       '~utils': resolve(__dirname, './utils'),
       '~adapters': resolve(__dirname, './adapters'),
       '~types': resolve(__dirname, './types'),

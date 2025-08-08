@@ -3,7 +3,7 @@ import Heading from '~components/Heading.astro';
 import WordDescription from '~components/WordDescription.astro';
 import type { WordData } from '~types/word';
 import { formatDate } from '~utils/date-utils';
-import { getWordDetails } from '~utils-client/word-data-utils';
+import { getWordDetails } from '~astro-utils/word-data-utils';
 
 interface Props {
   word: WordData | null;

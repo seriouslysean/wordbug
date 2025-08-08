@@ -5,7 +5,7 @@ import Heading from '~components/Heading.astro';
 import SiteLink from '~components/SiteLink.astro';
 import WordLink from '~components/WordLink.astro';
 import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~utils-client/page-metadata.ts';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
 import { getAvailableLengths } from '~utils/word-data-utils';
 import {
@@ -19,7 +19,7 @@ import {
   getSyllableStats,
   getWordEndingStats,
   getWordStats,
-} from '~utils-client/word-stats-utils';
+} from '~astro-utils/word-stats-utils';
 
 const wordsCollection = await getCollection('words');
 const words = wordsCollection

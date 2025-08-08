@@ -7,7 +7,7 @@ import type {
   WordStreakStatsResult,
 } from '~types/word';
 import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
-import { logger } from '~utils-client/logger';
+import { logger } from '~astro-utils/logger';
 import {
   countSyllables,
   getConsonantCount,

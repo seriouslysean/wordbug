@@ -78,7 +78,7 @@ npm test                                         # Run test suite
 - **Optional Features**: Everything else has defaults or is feature-flag driven
 
 ### Import Aliases
-- **Always Use Aliases**: Use `~components`, `~utils-client`, etc. instead of relative imports
+- **Always Use Aliases**: Use `~components`, `~astro-utils`, etc. instead of relative imports
 - **Never Relative**: `../` imports are not allowed, use aliases exclusively
 
 ## Documentation Structure

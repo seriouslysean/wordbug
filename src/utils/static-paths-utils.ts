@@ -14,7 +14,7 @@ import {
   getPatternStats,
   getWordEndingStats,
   getWordStats,
-} from '~utils-client/word-stats-utils';
+} from '~astro-utils/word-stats-utils';
 
 const ordinal = (n: number): string => {
   const suffixes = ['th', 'st', 'nd', 'rd'];
@@ -136,7 +136,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
  * @returns Array of path definitions for stats pages
  */
 export const generateStatsStaticPaths = async () => {
-  const { getWordsFromCollection } = await import('~utils-client/word-data-utils');
+  const { getWordsFromCollection } = await import('~astro-utils/word-data-utils');
   const words = await getWordsFromCollection();
 
   const showEmptyPages = __SHOW_EMPTY_STATS__;

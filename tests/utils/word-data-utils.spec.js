@@ -19,7 +19,7 @@ import {
   groupWordsByLength,
   groupWordsByMonth,
   groupWordsByYear,
-} from '~utils-client/word-data-utils';
+} from '~astro-utils/word-data-utils';
 import {
   getAvailableLengths,
   getAvailableMonths,

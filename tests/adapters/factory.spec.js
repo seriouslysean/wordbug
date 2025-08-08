@@ -72,7 +72,7 @@ describe('adapter factory', () => {
         debug: vi.fn(),
       }));
 
-      vi.mock('~utils-client/logger', () => ({
+      vi.mock('~astro-utils/logger', () => ({
         logger: mockLogger,
       }));
 

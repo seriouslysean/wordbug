@@ -92,7 +92,7 @@ export default defineConfig({
         '~': '/src',
         '~components': '/src/components',
         '~layouts': '/src/layouts',
-        '~utils-client': '/src/utils',
+        '~astro-utils': '/src/utils',
         '~data': '/data',
         '~config': '/config',
         '~styles': '/src/styles',

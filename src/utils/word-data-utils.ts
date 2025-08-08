@@ -9,7 +9,7 @@ import type {
   WordProcessedData,
 } from '~types/word';
 import { getMonthSlugFromDate } from '~utils/date-utils';
-import { logger } from '~utils-client/logger';
+import { logger } from '~astro-utils/logger';
 
 /**
  * Get words from Astro Content Collections

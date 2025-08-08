@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-import { generateRobotsTxt } from '~utils-client/static-file-utils';
+import { generateRobotsTxt } from '~astro-utils/static-file-utils';
 
 /**
  * Handle robots.txt requests

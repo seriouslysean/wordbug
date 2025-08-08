@@ -12,7 +12,7 @@
  * - Optional Sentry integration (decoupled)
  */
 
-import { logError } from '~utils-client/sentry-client';
+import { logError } from '~astro-utils/sentry-client';
 
 // Fast-fail environment configuration
 const isDev = import.meta.env?.DEV ?? false;

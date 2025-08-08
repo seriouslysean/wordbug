@@ -4,7 +4,7 @@
  */
 
 import type { SeoConfig, SeoMetadata, SeoMetadataOptions, SeoMetaDescriptionOptions } from '~types/seo';
-import { getFullUrl } from '~utils-client/url-utils';
+import { getFullUrl } from '~astro-utils/url-utils';
 
 // SEO configuration using environment variables - no fallbacks for security
 export const seoConfig: SeoConfig = {

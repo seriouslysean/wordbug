@@ -22,7 +22,7 @@ Quality and architectural improvements identified for future development, priori
 ### CRITICAL: Confusing Import Alias System [CRITICAL PRIORITY]
 **Current Problem**: Two different aliases for utilities create cognitive overhead
 ```typescript
-"~utils-client/*": ["./src/utils/*"],  // Astro utilities
+"~astro-utils/*": ["./src/utils/*"],  // Astro utilities
 "~utils/*": ["./utils/*"],             // Root utilities
 ```
 

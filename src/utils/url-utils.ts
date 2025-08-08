@@ -1,4 +1,4 @@
-import { logger } from '~utils-client/logger';
+import { logger } from '~astro-utils/logger';
 
 /**
  * Construct a URL with the configured base path
