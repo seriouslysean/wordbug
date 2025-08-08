@@ -1,5 +1,31 @@
 import { allWords } from '~astro-utils/word-data-utils';
-import { getAllPageMetadata as getAllPageMetadataBase, getPageMetadata as getPageMetadataBase } from '~utils/page-metadata-utils';
+import {
+  getAllPageMetadata as getAllPageMetadataBase,
+  getPageMetadata as getPageMetadataBase,
+} from '~utils/page-metadata-utils';
+
+/**
+ * Remove BASE_PATH prefix from an incoming pathname
+ * Handles case differences and trailing slashes
+ * @param pathname - Raw pathname that may include the base path
+ * @returns Pathname relative to the site root
+ */
+function stripBasePath(pathname: string): string {
+  const base = (import.meta.env.BASE_PATH || '').replace(/\/+$/, '');
+
+  if (!base) {
+    return pathname.replace(/^\/+|\/+$/g, '');
+  }
+
+  const baseLower = base.toLowerCase();
+  const pathLower = pathname.toLowerCase();
+
+  if (pathLower.startsWith(baseLower)) {
+    return pathname.slice(base.length).replace(/^\/+|\/+$/g, '');
+  }
+
+  return pathname.replace(/^\/+|\/+$/g, '');
+}
 
 /**
  * Client-side functions partially applied with allWords
@@ -9,7 +35,8 @@ import { getAllPageMetadata as getAllPageMetadataBase, getPageMetadata as getPag
 /**
  * Get metadata for a specific page path
  */
-export const getPageMetadata = (pathname: string) => getPageMetadataBase(pathname, allWords);
+export const getPageMetadata = (pathname: string) =>
+  getPageMetadataBase(stripBasePath(pathname), allWords);
 
 /**
  * Get metadata for all pages

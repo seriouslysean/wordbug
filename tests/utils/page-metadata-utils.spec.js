@@ -2,6 +2,7 @@ import {
   describe,
   expect,
   it,
+  vi,
 } from 'vitest';
 
 import { getAllPageMetadata, getPageMetadata } from '~utils/page-metadata-utils';
@@ -144,6 +145,37 @@ describe('page-metadata-utils', () => {
       expect(allPages.find(page => page.path === 'words/2024')).toBeDefined();
       expect(allPages.find(page => page.path === 'words/length')).toBeDefined();
       expect(allPages.find(page => page.path === 'words/length/4')).toBeDefined();
+    });
+  });
+
+  describe('getPageMetadata wrapper', () => {
+    it('handles BASE_PATH prefixes', async () => {
+      vi.stubEnv('BASE_PATH', '/vocab');
+      const { getPageMetadata: getPageMetadataWrapper } = await import(
+        '~astro-utils/page-metadata'
+      );
+      const metadata = getPageMetadataWrapper('/vocab/stats');
+      expect(metadata).toEqual({
+        title: 'Stats',
+        description: 'Explore patterns and statistics from our word collection.',
+        category: 'pages',
+        secondaryText: 'For Nerds',
+      });
+    });
+
+    it('handles BASE_PATH with different case and trailing slash', async () => {
+      vi.stubEnv('BASE_PATH', '/Vocab/');
+      vi.resetModules();
+      const { getPageMetadata: getPageMetadataWrapper } = await import(
+        '~astro-utils/page-metadata'
+      );
+      const metadata = getPageMetadataWrapper('/vocab/stats');
+      expect(metadata).toEqual({
+        title: 'Stats',
+        description: 'Explore patterns and statistics from our word collection.',
+        category: 'pages',
+        secondaryText: 'For Nerds',
+      });
     });
   });
 });
