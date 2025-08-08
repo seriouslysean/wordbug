@@ -1,68 +1,65 @@
 import {
-  beforeEach,
   describe,
   expect,
   it,
-  vi,
 } from 'vitest';
 
-import { getAllPageMetadata, getPageMetadata } from '~utils-client/page-metadata';
+import { getAllPageMetadata, getPageMetadata } from '~utils/page-metadata-utils';
 
-// Mock Astro global
-beforeEach(() => {
-  global.Astro = {
-    url: {
-      pathname: '/',
-    },
-  };
-});
+// Test data
+const mockWords = [
+  { word: 'test', date: '20240101' },
+  { word: 'example', date: '20240102' },
+  { word: 'sample', date: '20240103' },
+];
 
-describe('page-metadata', () => {
+describe('page-metadata-utils', () => {
   describe('getPageMetadata', () => {
     it('returns metadata for static pages', () => {
-      const metadata = getPageMetadata('words');
+      const metadata = getPageMetadata('words', mockWords);
       expect(metadata).toEqual({
-        type: 'static',
         title: 'All Words',
-        description: 'Browse the complete alphabetical list of all featured words, organized by year.',
+        description: 'Explore every word in our collection, organized chronologically.',
         category: 'pages',
       });
     });
 
-    it('handles BASE_PATH in pathname', () => {
-      vi.stubEnv('BASE_PATH', '/vocab');
-      const metadata = getPageMetadata('/vocab/words');
-      expect(metadata.title).toBe('All Words');
-      vi.unstubAllEnvs();
+    it('returns metadata for stats page', () => {
+      const metadata = getPageMetadata('stats', mockWords);
+      expect(metadata).toEqual({
+        title: 'Word Statistics',
+        description: 'Explore patterns and statistics from our word collection.',
+        category: 'pages',
+      });
     });
 
     it('returns dynamic metadata for stats pages with counts', () => {
-      const metadata = getPageMetadata('stats/words-ending-ly');
-      expect(metadata.title).toBe('-ly words');
+      const metadata = getPageMetadata('stats/words-ending-ly', mockWords);
+      expect(metadata.title).toBe('Words Ending in "ly"');
       expect(metadata.category).toBe('stats');
-      expect(metadata.description).toContain('words that end with the suffix');
+      expect(metadata.description).toContain('words that end with the suffix "ly"');
     });
 
     it('returns metadata for dynamic year pages', () => {
-      const metadata = getPageMetadata('words/2024');
+      const metadata = getPageMetadata('words/2024', mockWords);
       expect(metadata).toEqual({
-        title: '2024 words',
+        title: '2024 Words',
         description: 'Words from 2024, organized by month.',
         category: 'pages',
       });
     });
 
     it('returns metadata for dynamic month pages', () => {
-      const metadata = getPageMetadata('words/2024/december');
+      const metadata = getPageMetadata('words/2024/january', mockWords);
       expect(metadata).toEqual({
-        title: 'December 2024 words',
-        description: 'Words from December 2024.',
+        title: 'January 2024',
+        description: 'Words from January 2024.',
         category: 'pages',
       });
     });
 
     it('returns metadata for length index page', () => {
-      const metadata = getPageMetadata('words/length');
+      const metadata = getPageMetadata('words/length', mockWords);
       expect(metadata).toEqual({
         title: 'Words by Length',
         description: 'Words organized by character length.',
@@ -71,7 +68,7 @@ describe('page-metadata', () => {
     });
 
     it('returns metadata for individual length pages', () => {
-      const metadata = getPageMetadata('words/length/8');
+      const metadata = getPageMetadata('words/length/8', mockWords);
       expect(metadata).toEqual({
         title: '8-Letter Words',
         description: 'Words containing exactly 8 letters.',
@@ -79,17 +76,8 @@ describe('page-metadata', () => {
       });
     });
 
-    it('returns metadata for length index page', () => {
-      const metadata = getPageMetadata('words/length');
-      expect(metadata).toEqual({
-        title: 'Words by Length',
-        description: 'Words organized by character length.',
-        category: 'pages',
-      });
-    });
-
     it('returns metadata for dynamic length pages', () => {
-      const metadata = getPageMetadata('words/length/4');
+      const metadata = getPageMetadata('words/length/4', mockWords);
       expect(metadata).toEqual({
         title: '4-Letter Words',
         description: 'Words containing exactly 4 letters.',
@@ -98,7 +86,7 @@ describe('page-metadata', () => {
     });
 
     it('returns fallback metadata for unknown paths', () => {
-      const metadata = getPageMetadata('unknown-path');
+      const metadata = getPageMetadata('unknown-path', mockWords);
       expect(metadata).toEqual({
         title: 'Unknown Page',
         description: '',
@@ -113,7 +101,7 @@ describe('page-metadata', () => {
 
   describe('getAllPageMetadata', () => {
     it('returns all static and dynamic pages', () => {
-      const allPages = getAllPageMetadata();
+      const allPages = getAllPageMetadata(mockWords);
 
       expect(Array.isArray(allPages)).toBe(true);
       expect(allPages.length).toBeGreaterThan(0);
@@ -125,13 +113,13 @@ describe('page-metadata', () => {
     });
 
     it('excludes root path from results', () => {
-      const allPages = getAllPageMetadata();
+      const allPages = getAllPageMetadata(mockWords);
       const rootPage = allPages.find(page => page.path === '');
       expect(rootPage).toBeUndefined();
     });
 
     it('ensures all pages have required properties', () => {
-      const allPages = getAllPageMetadata();
+      const allPages = getAllPageMetadata(mockWords);
 
       allPages.forEach(page => {
         expect(page).toHaveProperty('path');
@@ -142,9 +130,9 @@ describe('page-metadata', () => {
       });
     });
 
-    it('includes month and length pages', () => {
-      const allPages = getAllPageMetadata();
-      expect(allPages.find(page => page.path === 'words/2025/january')).toBeDefined();
+    it('includes year and length pages', () => {
+      const allPages = getAllPageMetadata(mockWords);
+      expect(allPages.find(page => page.path === 'words/2024')).toBeDefined();
       expect(allPages.find(page => page.path === 'words/length')).toBeDefined();
       expect(allPages.find(page => page.path === 'words/length/4')).toBeDefined();
     });

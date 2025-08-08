@@ -1,21 +1,18 @@
 import { showHelp } from '~tools/help-utils';
 import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '~tools/utils';
-import { getStaticPages } from '~utils-client/image-utils';
+import { getAllPageMetadata } from '~utils/page-metadata-utils';
 
 const HELP_TEXT = `
 Generate Images Tool
 
 Usage:
-  npm run tool:local tools/generate-images.ts [word|page] [options]
-  npm run tool:generate-images [word|page] [options]
-
-Arguments:
-  word    Generate image for specific word (optional)
-  page    Generate image for specific page path (with --page flag)
+  npm run tool:local tools/generate-images.ts [options]
+  npm run tool:generate-images [options]
 
 Options:
   --words                   Generate images for all words only
   --generic                 Generate images for all generic pages only
+  --word <word>             Generate image for specific word
   --page <path>             Generate image for specific page path
   --force                   Regenerate images even if they already exist
   -h, --help                Show this help message
@@ -24,7 +21,7 @@ Examples:
   npm run tool:generate-images                    # Generate all word and page images
   npm run tool:generate-images --words            # Generate all word images
   npm run tool:generate-images --generic          # Generate all generic page images
-  npm run tool:generate-images serendipity       # Generate image for specific word
+  npm run tool:generate-images --word serendipity # Generate image for specific word
   npm run tool:generate-images --page stats       # Generate image for stats page
 
 Environment Variables (for GitHub workflows):
@@ -96,10 +93,11 @@ async function generateAllImages(): Promise<void> {
  * Generates images for all generic pages (stats, words index, year pages, etc.)
  */
 async function generateGenericImages(): Promise<void> {
-  const staticPages = await getStaticPages();
+  const words = getAllWords();
+  const allPages = getAllPageMetadata(words);
 
-  // Filter out dynamic route templates like [word]
-  const pages = staticPages.filter(page => !page.path.includes('['));
+  // Pages already filtered and ready to use
+  const pages = allPages;
 
   console.log('Starting generic image generation', { pageCount: pages.length });
 
@@ -133,11 +131,12 @@ async function generateGenericImages(): Promise<void> {
  */
 async function generatePageImage(pagePath: string): Promise<boolean> {
   try {
-    const staticPages = await getStaticPages();
-    const page = staticPages.find(p => p.path === pagePath);
+    const words = getAllWords();
+    const allPages = getAllPageMetadata(words);
+    const page = allPages.find(p => p.path === pagePath);
 
     if (!page) {
-      console.error('Page not found in static pages', { pagePath });
+      console.error('Page not found in available pages', { pagePath });
       return false;
     }
 
@@ -180,13 +179,11 @@ if (hasGeneric) {
 
 const pageIndex = args.findIndex(arg => arg === '--page');
 const hasPage = pageIndex !== -1;
-let pagePath = '';
-if (hasPage) {
-  args.splice(pageIndex, 1);
-  pagePath = args.splice(pageIndex, 1)[0] || '';
-}
+const pagePath = hasPage ? (args.splice(pageIndex, 1), args.splice(pageIndex, 1)[0] || '') : '';
 
-const [word] = args;
+const wordIndex = args.findIndex(arg => arg === '--word');
+const hasWord = wordIndex !== -1;
+const word = hasWord ? (args.splice(wordIndex, 1), args.splice(wordIndex, 1)[0] || '') : '';
 
 // Main execution
 (async () => {
@@ -198,7 +195,7 @@ const [word] = args;
       process.exit(success ? 0 : 1);
     }
 
-    if (word) {
+    if (hasWord && word) {
       // Generate single word image
       const success = await generateSingleImage(word);
       process.exit(success ? 0 : 1);

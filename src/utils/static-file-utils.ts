@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import type { WordData } from '~types/word';
 import { formatDate } from '~utils/date-utils';
-import { getAllPageMetadata } from '~utils-client/page-metadata';
+import { getAllPageMetadata } from '~utils/page-metadata-utils';
 import { generateWordDataHash } from '~utils-client/word-data-utils';
 
 /**
