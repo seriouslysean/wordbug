@@ -1,33 +1,28 @@
 ---
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import Heading from '~components/Heading.astro';
-import WordDescription from '~components/WordDescription.astro';
+import WordDisplay from '~components/WordDisplay.astro';
 import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import { getWordsFromCollection } from '~astro-utils/word-data-utils';
 
+// Get the metadata from the 404 page, using type assertion to access partOfSpeech
+const metadata = getPageMetadata('/404') as { title: string; description: string; partOfSpeech: string };
+const { title, description, partOfSpeech } = metadata;
+const allWords = await getWordsFromCollection();
+const wordsToShow = allWords.slice(0, 4);
+const sectionTitle = wordsToShow.length > 0 ? 'Recent Words' : '';
+const definition = description.replace(/^\w+\.\s*/, '');
+// Make a mock word for 404 we can pass to WordDisplay
 const notFoundWord = {
-  word: '404',
-  partOfSpeech: 'noun',
-  definition: 'A web page that cannot be found; an error indicating the requested content does not exist.',
+  word: title,
+  date: '',
+  adapter: 'static',
+  data: [{ text: definition, partOfSpeech }],
 };
-
-const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
-
 <Layout title={title} description={description}>
-  <main class="not-found">
-    <Heading level={1} text={notFoundWord.word} />
-    <WordDescription
-      partOfSpeech={notFoundWord.partOfSpeech}
-      definition={notFoundWord.definition}
-    />
-  </main>
+  <WordDisplay
+    currentWord={notFoundWord}
+    wordsToShow={wordsToShow}
+    sectionTitle={sectionTitle}
+  />
 </Layout>
-
-<style>
-    .not-found {
-        text-align: center;
-        width: 100%;
-        max-width: var(--content-width-medium);
-        margin: 0 auto;
-    }
-</style>
