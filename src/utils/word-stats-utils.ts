@@ -20,7 +20,7 @@ import {
   isAllVowels,
   isPalindrome,
   isStartEndSame,
-} from '~utils-client/text-utils';
+} from '~utils/text-utils';
 
 /**
  * Analyzes word data to extract basic statistics including longest/shortest words and word count by letter.
