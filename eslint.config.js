@@ -59,7 +59,7 @@ export default [
       'array-bracket-spacing': ['error', 'never'],
       'no-trailing-spaces': 'error',
       'import/order': ['error', {
-        groups: ['builtin', 'external', 'internal', 'type'],
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'type'],
         'newlines-between': 'always',
         alphabetize: { order: 'asc', caseInsensitive: true },
         pathGroups: [{ pattern: '~**', group: 'internal' }],
