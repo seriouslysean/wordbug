@@ -2,8 +2,7 @@
  * Common adapter interfaces for dictionary services
  */
 
-import type { DictionaryDefinition,FetchOptions, SourceMeta } from '~types/common';
-import type { WordData, WordProcessedData } from '~types/word';
+import type { DictionaryDefinition, FetchOptions, SourceMeta, WordData, WordProcessedData } from '~types';
 
 export interface DictionaryResponse {
   word: string;

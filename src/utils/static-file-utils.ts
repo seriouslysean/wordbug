@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 import { formatDate } from '~utils/date-utils';
 import { getAllPageMetadata } from '~utils/page-metadata-utils';
 import { generateWordDataHash } from '~astro-utils/word-data-utils';

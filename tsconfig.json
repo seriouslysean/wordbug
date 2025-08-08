@@ -13,6 +13,7 @@
       "~utils/*": ["./utils/*"],
       "~adapters": ["./adapters"],
       "~adapters/*": ["./adapters/*"],
+      "~types": ["./types"],
       "~types/*": ["./types/*"],
       "~data/*": ["./data/*"],
       "~config/*": ["./config/*"],

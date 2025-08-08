@@ -3,7 +3,7 @@
  * Simple JSON-LD generation with proper typing
  */
 
-import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types/schema';
+import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types';
 import { seoConfig } from '~astro-utils/seo-utils';
 import { getFullUrl } from '~astro-utils/url-utils';
 

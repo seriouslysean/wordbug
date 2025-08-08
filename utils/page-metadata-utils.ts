@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
 import { formatWordCount } from '~utils/text-utils';
 import {

@@ -1,11 +1,4 @@
-import type {
-  DynamicStatsDefinition,
-  LetterPatternDefinition,
-  PatternDefinition,
-  StatsSlug,
-  SuffixDefinition,
-  SuffixKey,
-} from '~types/stats';
+import type { StatsDefinition, StatsSlug, SuffixKey } from '~types';
 import { formatWordCount } from '~utils/text-utils';
 
 // Stats page slug constants - defined here since this is where they're used
@@ -38,7 +31,7 @@ export const STATS_SLUGS = {
 } as const satisfies Record<string, StatsSlug>;
 
 // Word ending definitions
-export const SUFFIX_DEFINITIONS: Record<SuffixKey, SuffixDefinition> = {
+export const SUFFIX_DEFINITIONS: Record<SuffixKey, StatsDefinition> = {
   ed: {
     title: '-ed words',
     pageDescription: `Words ending with the suffix '-ed', typically indicating past tense or past participle forms.`,
@@ -78,7 +71,7 @@ export const SUFFIX_DEFINITIONS: Record<SuffixKey, SuffixDefinition> = {
 } as const;
 
 // Letter pattern definitions
-export const LETTER_PATTERN_DEFINITIONS: Record<string, LetterPatternDefinition> = {
+export const LETTER_PATTERN_DEFINITIONS: Record<string, StatsDefinition> = {
   [STATS_SLUGS.ALPHABETICAL_ORDER]: {
     title: 'Alphabetical Order',
     pageDescription: 'Words with three or more consecutive letters in alphabetical order.',
@@ -112,7 +105,7 @@ export const LETTER_PATTERN_DEFINITIONS: Record<string, LetterPatternDefinition>
 } as const;
 
 // Other pattern definitions
-export const PATTERN_DEFINITIONS: Record<string, PatternDefinition> = {
+export const PATTERN_DEFINITIONS: Record<string, StatsDefinition> = {
   [STATS_SLUGS.ALL_CONSONANTS]: {
     title: 'All Consonants',
     pageDescription: `Words made up of only consonants (no vowels).`,
@@ -128,7 +121,7 @@ export const PATTERN_DEFINITIONS: Record<string, PatternDefinition> = {
 } as const;
 
 // Special stats definitions that need dynamic data
-export const DYNAMIC_STATS_DEFINITIONS: Record<string, DynamicStatsDefinition> = {
+export const DYNAMIC_STATS_DEFINITIONS: Record<string, StatsDefinition> = {
   [STATS_SLUGS.MOST_COMMON_LETTER]: {
     title: 'Most Common Letter',
     pageDescription: (letter: string) => `Words containing the letter "${letter}" (appears in multiple words).`,

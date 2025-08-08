@@ -1,29 +1,9 @@
 /**
- * Base stats definition structure
+ * Stats definition structure with optional dynamic descriptions
  */
 export interface StatsDefinition {
   title: string;
-  pageDescription: string;
-  metaDescription: (count: number) => string;
-  category: 'stats';
-}
-
-/**
- * Static stats definition with string-only meta description
- */
-export interface StaticStatsDefinition {
-  title: string;
-  pageDescription: string;
-  metaDescription: string;
-  category: 'stats';
-}
-
-/**
- * Dynamic stats definition with function-based descriptions
- */
-export interface DynamicStatsDefinition {
-  title: string;
-  pageDescription: (arg?: string | number) => string;
+  pageDescription: string | ((arg?: string | number) => string);
   metaDescription: (count: number, arg?: string) => string;
   category: 'stats';
 }
@@ -71,6 +51,4 @@ export type SuffixStatsSlug = `words-ending-${SuffixKey}`;
 export type SuffixDefinition = StatsDefinition;
 export type LetterPatternDefinition = StatsDefinition;
 export type PatternDefinition = StatsDefinition;
-
-export type AnyStatsDefinition = DynamicStatsDefinition | SuffixDefinition | LetterPatternDefinition | PatternDefinition;
 
