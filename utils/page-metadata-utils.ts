@@ -1,14 +1,14 @@
 import { format } from 'date-fns';
 
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
-import { formatWordCount } from '~utils/text-utils';
 import {
   DYNAMIC_STATS_DEFINITIONS,
   LETTER_PATTERN_DEFINITIONS,
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
 } from '~utils/stats-definitions';
+import { formatWordCount } from '~utils/text-utils';
 import {
   getAvailableLengths,
   getAvailableMonths,
@@ -56,6 +56,7 @@ type StaticPageMeta = {
   description: string;
   category: string;
   secondaryText?: string | ((data?: any) => string);
+  partOfSpeech?: string;
 };
 
 type HomepageMeta = {
@@ -79,7 +80,7 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
   const stats = getStats(words);
 
   return {
-  '': {
+  home: {
     type: 'home',
     title: 'Word of the Day',
     description: (currentWord: string): string =>
@@ -114,6 +115,14 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     title: 'About',
     description: 'Learn more about this Word of the Day collection.',
     category: 'pages',
+  },
+  '404': {
+    type: 'static',
+    title: '404',
+    description:
+      'A web page that cannot be found; an error indicating the requested content does not exist.',
+    category: 'pages',
+    partOfSpeech: 'noun',
   },
 
   // Stats pages with dynamic counts
@@ -294,12 +303,23 @@ function getCountForPath(path: string, words: WordData[]): number {
 }
 
 /**
+ * Standardized page metadata returned by getPageMetadata
+ */
+export type PageMetadataResult = {
+  title: string;
+  description: string;
+  category: string;
+  secondaryText?: string;
+  partOfSpeech?: string;
+};
+
+/**
  * Get metadata for a specific page path
  * @param pathname - The page path to get metadata for
  * @param words - Word dataset to evaluate
  * @returns Page metadata object
  */
-export function getPageMetadata(pathname?: string, words: WordData[] = []) {
+export function getPageMetadata(pathname: string, words: WordData[] = []): PageMetadataResult {
   if (!pathname) {
     throw new Error('getPageMetadata: pathname is required');
   }
@@ -307,8 +327,9 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
   const path = pathname.replace(/^\/+|\/+$/g, '');
 
   // Handle dynamic year pages
-  if (path.match(/^words\/\d{4}$/)) {
-    const year = path.replace('words/', '');
+  const yearMatch = path.match(/^words\/(\d{4})$/);
+  if (yearMatch) {
+    const [, year] = yearMatch;
     return {
       title: year,
       description: `Words from ${year}, organized by month.`,
@@ -317,7 +338,7 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
     };
   }
 
-  // Handle dynamic month pages  
+  // Handle dynamic month pages
   if (path.match(/^words\/\d{4}\/[a-z]+$/)) {
     const [, year, monthSlug] = path.split('/');
     const monthNumber = monthSlugToNumber(monthSlug);
@@ -344,15 +365,6 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
     };
   }
 
-  // Handle year pages for metadata
-  if (path.match(/^words\/\d{4}$/)) {
-    const year = path.replace('words/', '');
-    return {
-      title: `${year} Words`,
-      description: `Words from ${year}, organized by month.`,
-      category: 'pages' as const,
-    };
-  }
 
   const PAGE_METADATA = createPageMetadata(words);
   const metadata = PAGE_METADATA[path as keyof typeof PAGE_METADATA];
@@ -361,6 +373,7 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
       title: 'Unknown Page',
       description: '',
       category: 'unknown',
+      secondaryText: undefined,
     };
   }
 
@@ -371,8 +384,8 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description('example'),
         category: metadata.category,
-        secondaryText: typeof metadata.secondaryText === 'function' 
-          ? metadata.secondaryText(words.length) 
+        secondaryText: typeof metadata.secondaryText === 'function'
+          ? metadata.secondaryText(words.length)
           : metadata.secondaryText,
       };
     case 'static':
@@ -380,9 +393,10 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description,
         category: metadata.category,
-        secondaryText: typeof metadata.secondaryText === 'function' 
-          ? metadata.secondaryText(words.length) 
+        secondaryText: typeof metadata.secondaryText === 'function'
+          ? metadata.secondaryText(words.length)
           : metadata.secondaryText,
+        ...(metadata.partOfSpeech ? { partOfSpeech: metadata.partOfSpeech } : {}),
       };
     case 'stats':
       const count = getCountForPath(path, words);
@@ -390,8 +404,8 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description(count),
         category: metadata.category,
-        secondaryText: typeof metadata.secondaryText === 'function' 
-          ? metadata.secondaryText(count) 
+        secondaryText: typeof metadata.secondaryText === 'function'
+          ? metadata.secondaryText(count)
           : metadata.secondaryText,
       };
     default:

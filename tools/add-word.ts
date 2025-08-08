@@ -4,7 +4,7 @@ import path from 'path';
 import { paths } from '~config/paths';
 import { COMMON_ENV_DOCS,showHelp } from '~tools/help-utils';
 import { createWordEntry, findExistingWord } from '~tools/utils';
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
 
 /**

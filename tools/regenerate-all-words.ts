@@ -3,7 +3,7 @@ import fs from 'fs';
 import { getAdapter } from '~adapters';
 import { COMMON_ENV_DOCS,showHelp } from '~tools/help-utils';
 import { getAllWords } from '~tools/utils';
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 import { isValidDictionaryData } from '~utils/word-validation';
 
 interface RegenerateOptions {

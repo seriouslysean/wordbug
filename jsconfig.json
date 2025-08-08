@@ -9,7 +9,7 @@
       "~utils/*": ["utils/*"],
       "~data/*": ["data/*"],
       "~config/*": ["config/*"],
-      "~types/*": ["src/types/*"]
+      "~types": ["types"]
     },
     "jsx": "preserve",
     "jsxImportSource": "astro"

@@ -22,7 +22,7 @@ const ordinal = (n: number): string => {
   return n + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0]);
 };
 
-import type { WordData, WordMilestoneItem } from '~types/word';
+import type { WordData, WordMilestoneItem } from '~types';
 
 // Template constants
 const TEMPLATE = {

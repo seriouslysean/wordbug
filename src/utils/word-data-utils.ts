@@ -7,7 +7,7 @@ import type {
   WordGroupByLengthResult,
   WordGroupByYearResult,
   WordProcessedData,
-} from '~types/word';
+} from '~types';
 import { getMonthSlugFromDate } from '~utils/date-utils';
 import { logger } from '~astro-utils/logger';
 

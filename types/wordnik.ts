@@ -2,7 +2,7 @@
  * Wordnik API types - External API structures
  */
 
-import type { RateLimit } from '~types/common';
+import type { RateLimit } from '~types';
 
 export interface WordnikDefinition {
   id?: string;

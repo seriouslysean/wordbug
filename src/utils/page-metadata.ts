@@ -12,19 +12,10 @@ import {
  */
 function stripBasePath(pathname: string): string {
   const base = (import.meta.env.BASE_PATH || '').replace(/\/+$/, '');
-
-  if (!base) {
-    return pathname.replace(/^\/+|\/+$/g, '');
-  }
-
-  const baseLower = base.toLowerCase();
-  const pathLower = pathname.toLowerCase();
-
-  if (pathLower.startsWith(baseLower)) {
-    return pathname.slice(base.length).replace(/^\/+|\/+$/g, '');
-  }
-
-  return pathname.replace(/^\/+|\/+$/g, '');
+  const hasBase = base && pathname.toLowerCase().startsWith(base.toLowerCase());
+  const withoutBase = hasBase ? pathname.slice(base.length) : pathname;
+  const clean = withoutBase.replace(/^\/+|\/+$/g, '');
+  return clean || 'home';
 }
 
 /**
