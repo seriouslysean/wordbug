@@ -21,15 +21,17 @@ describe('page-metadata-utils', () => {
         title: 'All Words',
         description: 'Explore every word in our collection, organized chronologically.',
         category: 'pages',
+        secondaryText: '3 words',
       });
     });
 
     it('returns metadata for stats page', () => {
       const metadata = getPageMetadata('stats', mockWords);
       expect(metadata).toEqual({
-        title: 'Word Statistics',
+        title: 'Stats',
         description: 'Explore patterns and statistics from our word collection.',
         category: 'pages',
+        secondaryText: 'For Nerds',
       });
     });
 
@@ -43,18 +45,20 @@ describe('page-metadata-utils', () => {
     it('returns metadata for dynamic year pages', () => {
       const metadata = getPageMetadata('words/2024', mockWords);
       expect(metadata).toEqual({
-        title: '2024 Words',
+        title: '2024',
         description: 'Words from 2024, organized by month.',
         category: 'pages',
+        secondaryText: 'Words in',
       });
     });
 
     it('returns metadata for dynamic month pages', () => {
       const metadata = getPageMetadata('words/2024/january', mockWords);
       expect(metadata).toEqual({
-        title: 'January 2024',
+        title: 'January',
         description: 'Words from January 2024.',
         category: 'pages',
+        secondaryText: '2024',
       });
     });
 
@@ -64,6 +68,7 @@ describe('page-metadata-utils', () => {
         title: 'Words by Length',
         description: 'Words organized by character length.',
         category: 'pages',
+        secondaryText: '3 words',
       });
     });
 
@@ -73,6 +78,7 @@ describe('page-metadata-utils', () => {
         title: '8-Letter Words',
         description: 'Words containing exactly 8 letters.',
         category: 'pages',
+        secondaryText: '0 words',
       });
     });
 
@@ -82,6 +88,7 @@ describe('page-metadata-utils', () => {
         title: '4-Letter Words',
         description: 'Words containing exactly 4 letters.',
         category: 'pages',
+        secondaryText: '1 word',
       });
     });
 
@@ -91,6 +98,7 @@ describe('page-metadata-utils', () => {
         title: 'Unknown Page',
         description: '',
         category: 'unknown',
+        secondaryText: undefined,
       });
     });
 
@@ -126,6 +134,7 @@ describe('page-metadata-utils', () => {
         expect(page).toHaveProperty('title');
         expect(page).toHaveProperty('description');
         expect(page).toHaveProperty('category');
+        expect(page).toHaveProperty('secondaryText');
         expect(['pages', 'stats'].includes(page.category)).toBe(true);
       });
     });

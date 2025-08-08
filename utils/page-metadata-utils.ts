@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 
 import type { WordData } from '~types/word';
 import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
+import { formatWordCount } from '~utils/text-utils';
 import {
   DYNAMIC_STATS_DEFINITIONS,
   LETTER_PATTERN_DEFINITIONS,
@@ -16,8 +17,10 @@ import {
 } from '~utils/word-data-utils';
 import {
   getChronologicalMilestones,
+  getCurrentStreakWords,
   getLetterPatternStats,
   getLetterStats,
+  getLongestStreakWords,
   getPatternStats,
   getWordEndingStats,
 } from '~utils/word-stats-utils';
@@ -52,6 +55,7 @@ type StaticPageMeta = {
   title: string;
   description: string;
   category: string;
+  secondaryText?: string | ((data?: any) => string);
 };
 
 type HomepageMeta = {
@@ -59,6 +63,7 @@ type HomepageMeta = {
   title: string;
   description: (currentWord: string) => string;
   category: string;
+  secondaryText?: string | ((data?: any) => string);
 };
 
 type StatsPageMeta = {
@@ -66,6 +71,7 @@ type StatsPageMeta = {
   title: string;
   description: (count: number) => string;
   category: string;
+  secondaryText?: string | ((count: number) => string);
 };
 type PageMeta = StaticPageMeta | HomepageMeta | StatsPageMeta;
 
@@ -87,18 +93,21 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     title: 'All Words',
     description: 'Explore every word in our collection, organized chronologically.',
     category: 'pages',
+    secondaryText: formatWordCount,
   },
   'words/length': {
     type: 'static',
     title: 'Words by Length',
     description: 'Words organized by character length.',
     category: 'pages',
+    secondaryText: formatWordCount,
   },
   stats: {
     type: 'static',
-    title: 'Word Statistics',
+    title: 'Stats',
     description: 'Explore patterns and statistics from our word collection.',
     category: 'pages',
+    secondaryText: 'For Nerds',
   },
   about: {
     type: 'static',
@@ -113,96 +122,126 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     title: 'Words Ending in "ly"',
     description: (count: number) => `${count} words that end with the suffix "ly".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/words-ending-ing': {
     type: 'stats',
     title: 'Words Ending in "ing"',
     description: (count: number) => `${count} words that end with the suffix "ing".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/words-ending-ed': {
     type: 'stats',
     title: 'Words Ending in "ed"',
     description: (count: number) => `${count} words that end with the suffix "ed".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/words-ending-ness': {
     type: 'stats',
     title: 'Words Ending in "ness"',
     description: (count: number) => `${count} words that end with the suffix "ness".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/words-ending-ful': {
     type: 'stats',
     title: 'Words Ending in "ful"',
     description: (count: number) => `${count} words that end with the suffix "ful".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/words-ending-less': {
     type: 'stats',
     title: 'Words Ending in "less"',
     description: (count: number) => `${count} words that end with the suffix "less".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/double-letters': {
     type: 'stats',
     title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].title,
     description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/same-start-end': {
     type: 'stats',
     title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].title,
     description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/alphabetical-order': {
     type: 'stats',
     title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].title,
     description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/triple-letters': {
     type: 'stats',
     title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].title,
     description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/most-common-letter': {
     type: 'stats',
     title: `Words with "${stats.mostCommonLetter.toUpperCase()}" (Most Common Letter)`,
     description: (count: number) => `${count} words containing the most common letter "${stats.mostCommonLetter}".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/least-common-letter': {
     type: 'stats',
     title: `Words with "${stats.leastCommonLetter.toUpperCase()}" (Least Common Letter)`,
     description: (count: number) => `${count} words containing the least common letter "${stats.leastCommonLetter}".`,
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/milestone-words': {
     type: 'stats',
     title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].title,
     description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/palindromes': {
     type: 'stats',
     title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].title,
     description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/all-consonants': {
     type: 'stats',
     title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].title,
     description: (count: number) => PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
   },
   'stats/all-vowels': {
     type: 'stats',
     title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].title,
     description: (count: number) => PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].metaDescription(count),
     category: 'stats',
+    secondaryText: formatWordCount,
+  },
+  'stats/current-streak': {
+    type: 'stats',
+    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].title,
+    description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].metaDescription(count),
+    category: 'stats',
+    secondaryText: formatWordCount,
+  },
+  'stats/longest-streak': {
+    type: 'stats',
+    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].title,
+    description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].metaDescription(count),
+    category: 'stats',
+    secondaryText: formatWordCount,
   },
   } as const;
 }
@@ -228,12 +267,22 @@ const COUNT_FUNCTIONS: CountMap = {
   'stats/palindromes': stats => stats.letterPatterns.palindromes.length,
 };
 
+const DYNAMIC_COUNT_FUNCTIONS: Record<string, (words: WordData[]) => number> = {
+  'stats/current-streak': words => getCurrentStreakWords(words).length,
+  'stats/longest-streak': words => getLongestStreakWords(words).length,
+};
+
 function getCountForPath(path: string, words: WordData[]): number {
   const stats = getStats(words);
   const countFn = COUNT_FUNCTIONS[path];
 
   if (countFn) {
     return countFn(stats);
+  }
+
+  const dynamicCountFn = DYNAMIC_COUNT_FUNCTIONS[path];
+  if (dynamicCountFn) {
+    return dynamicCountFn(words);
   }
 
   if (path.startsWith('words/')) {
@@ -261,9 +310,10 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
   if (path.match(/^words\/\d{4}$/)) {
     const year = path.replace('words/', '');
     return {
-      title: `${year} Words`,
+      title: year,
       description: `Words from ${year}, organized by month.`,
       category: 'pages' as const,
+      secondaryText: 'Words in',
     };
   }
 
@@ -274,9 +324,10 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
     if (monthNumber) {
       const monthName = format(new Date(2000, monthNumber - 1), 'MMMM');
       return {
-        title: `${monthName} ${year}`,
+        title: monthName,
         description: `Words from ${monthName} ${year}.`,
         category: 'pages' as const,
+        secondaryText: year,
       };
     }
   }
@@ -284,10 +335,12 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
   // Handle dynamic length pages
   if (path.match(/^words\/length\/\d+$/)) {
     const length = parseInt(path.split('/')[2], 10);
+    const wordsOfLength = words.filter(word => word.word.length === length);
     return {
       title: `${length}-Letter Words`,
       description: `Words containing exactly ${length} letters.`,
       category: 'pages' as const,
+      secondaryText: formatWordCount(wordsOfLength.length),
     };
   }
 
@@ -318,12 +371,18 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description('example'),
         category: metadata.category,
+        secondaryText: typeof metadata.secondaryText === 'function' 
+          ? metadata.secondaryText(words.length) 
+          : metadata.secondaryText,
       };
     case 'static':
       return {
         title: metadata.title,
         description: metadata.description,
         category: metadata.category,
+        secondaryText: typeof metadata.secondaryText === 'function' 
+          ? metadata.secondaryText(words.length) 
+          : metadata.secondaryText,
       };
     case 'stats':
       const count = getCountForPath(path, words);
@@ -331,6 +390,9 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description(count),
         category: metadata.category,
+        secondaryText: typeof metadata.secondaryText === 'function' 
+          ? metadata.secondaryText(count) 
+          : metadata.secondaryText,
       };
     default:
       return metadata;

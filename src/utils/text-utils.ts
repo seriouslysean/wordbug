@@ -200,10 +200,3 @@ export const countSyllables = (word: string): number => {
   return Math.max(1, syllableCount);
 };
 
-/**
- * @param count - Number of words
- * @returns Formatted string with proper singular/plural form
- */
-export const formatWordCount = (count: number): string => {
-  return `${count} ${count === 1 ? 'word' : 'words'}`;
-};

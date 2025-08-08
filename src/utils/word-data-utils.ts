@@ -178,17 +178,6 @@ export const getWordDetails = (word: WordData): WordProcessedData => {
   return getProcessedWord(word);
 };
 
-/**
- * Retrieves all words that occurred within a specific year.
- * Useful for generating yearly statistics or archives.
- *
- * @param {string} year - Year to filter by (YYYY format)
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData[]} Array of word data entries from the specified year
- */
-export const getWordsByYear = (year: string, words: WordData[] = allWords): WordData[] => {
-  return words.filter(word => word.date.startsWith(year));
-};
 
 /**
  * Retrieves all words that occurred within a specific month of a given year.
@@ -208,25 +197,6 @@ export const getWordsByMonth = (
   return words.filter(word => word.date.startsWith(`${year}${monthStr}`));
 };
 
-/**
- * Retrieves a list of all months that have word data for a given year.
- * Returns months in ascending order for UI display purposes.
- *
- * @param {string} year - Year to filter by (YYYY format)
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {string[]} Array of unique months (MM format) sorted in ascending order
- */
-export const getAvailableMonths = (
-  year: string,
-  words: WordData[] = allWords,
-): string[] => {
-  const months = new Set(
-    words
-      .filter(word => word.date.startsWith(year))
-      .map(word => word.date.substring(4, 6)),
-  );
-  return [...months].sort((a, b) => a.localeCompare(b));
-};
 
 /**
  * Groups words by month within a specific year.
@@ -277,17 +247,6 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
   }, {} as WordGroupByYearResult);
 };
 
-/**
- * Retrieves a list of all years that have word data available.
- * Returns years in descending order (newest first) for UI display purposes.
- *
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {string[]} Array of unique years (YYYY format) sorted in descending order
- */
-export const getAvailableYears = (words: WordData[] = allWords): string[] => {
-  const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
-  return years.sort((a, b) => b.localeCompare(a));
-};
 
 /**
  * Groups an array of word data by length.
@@ -321,15 +280,4 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
   return words.filter(word => word.word.length === length);
 };
 
-/**
- * Retrieves a sorted list of unique word lengths available.
- * Deduplicates lengths before sorting them in ascending order for UI display.
- *
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {number[]} Sorted array of unique word lengths in ascending order
- */
-export const getAvailableLengths = (words: WordData[] = allWords): number[] => {
-  const lengths = [...new Set(words.map(word => word.word.length))];
-  return lengths.sort((a, b) => a - b);
-};
 

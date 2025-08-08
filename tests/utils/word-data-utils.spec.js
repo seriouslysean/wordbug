@@ -5,20 +5,22 @@ import {
 import { isValidDictionaryData } from '~utils/word-validation';
 import {
   getAdjacentWords,
-  getAvailableLengths,
-  getAvailableMonths,
-  getAvailableYears,
   getCurrentWord,
   getPastWords,
   getWordByDate,
   getWordDetails,
   getWordsByLength,
   getWordsByMonth,
-  getWordsByYear,
   groupWordsByLength,
   groupWordsByMonth,
   groupWordsByYear,
 } from '~utils-client/word-data-utils';
+import {
+  getAvailableLengths,
+  getAvailableMonths,
+  getAvailableYears,
+  getWordsByYear,
+} from '~utils/word-data-utils';
 
 describe('word-data-utils', () => {
   const mockWordData = [

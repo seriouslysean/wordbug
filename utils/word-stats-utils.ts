@@ -1,5 +1,5 @@
 import type { WordData } from '~types/word';
-import { YYYYMMDDToDate } from '~utils/date-utils';
+import { areConsecutiveDays, dateToYYYYMMDD } from '~utils/date-utils';
 
 // Text analysis functions needed by stats
 function isStartEndSame(word: string): boolean {
@@ -143,21 +143,6 @@ export const getLetterStats = (words: WordData[]) => {
   };
 };
 
-/**
- * Check if two dates are consecutive days
- */
-export const areConsecutiveDays = (olderDate: string, newerDate: string): boolean => {
-  const dOlder = YYYYMMDDToDate(olderDate);
-  const dNewer = YYYYMMDDToDate(newerDate);
-  
-  if (!dOlder || !dNewer) {
-    console.warn('Invalid date in areConsecutiveDays', { olderDate, newerDate });
-    return false;
-  }
-  
-  const oneDayMs = 24 * 60 * 60 * 1000;
-  return Math.abs(dNewer.getTime() - dOlder.getTime()) === oneDayMs;
-};
 
 /**
  * Calculate chronological milestone words (1st, 100th, 200th, etc.) from sorted words
@@ -180,4 +165,63 @@ export function getChronologicalMilestones(words: WordData[]): Array<{milestone:
       },
     ),
   ];
+}
+
+export function getCurrentStreakWords(words: WordData[]): WordData[] {
+  if (words.length === 0) return [];
+
+  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+  const today = new Date();
+  const todayString = dateToYYYYMMDD(today);
+  const yesterdayDate = new Date(today);
+  yesterdayDate.setDate(today.getDate() - 1);
+  const yesterdayString = dateToYYYYMMDD(yesterdayDate);
+
+  const mostRecentWord = sortedWords[0];
+  const isActive = !!mostRecentWord && (mostRecentWord.date === todayString || mostRecentWord.date === yesterdayString);
+  
+  if (!isActive || !mostRecentWord) return [];
+
+  const streakWords = [mostRecentWord];
+  let lastDate = mostRecentWord.date;
+
+  for (const word of sortedWords.slice(1)) {
+    if (areConsecutiveDays(word.date, lastDate)) {
+      streakWords.push(word);
+      lastDate = word.date;
+    } else {
+      break;
+    }
+  }
+
+  return streakWords;
+}
+
+export function getLongestStreakWords(words: WordData[]): WordData[] {
+  if (words.length <= 1) return words;
+
+  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+
+  const { longestStreak } = sortedWords.slice(1).reduce(
+    ({ longestStreak, currentStreak, previousWord }, word) => {
+      const isConsecutive = areConsecutiveDays(word.date, previousWord.date);
+      const newCurrentStreak = isConsecutive ? [...currentStreak, word] : [word];
+      const newLongestStreak = newCurrentStreak.length > longestStreak.length
+        ? newCurrentStreak
+        : longestStreak;
+
+      return {
+        longestStreak: newLongestStreak,
+        currentStreak: newCurrentStreak,
+        previousWord: word,
+      };
+    },
+    {
+      longestStreak: [sortedWords[0]],
+      currentStreak: [sortedWords[0]],
+      previousWord: sortedWords[0],
+    },
+  );
+
+  return longestStreak.reverse();
 }

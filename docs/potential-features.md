@@ -2,6 +2,61 @@
 
 Quality and architectural improvements identified for future development, prioritized by impact and complexity.
 
+## Critical Architectural Issues
+
+### SEVERE: Triple Utility Directory Anti-Pattern [CRITICAL PRIORITY]
+**Current Problem**: Three separate utility directories with massive code duplication
+- `/src/utils/` (13 files) - Astro client-side utilities
+- `/utils/` (7 files) - Root-level utilities  
+- `/tools/` (6 files) - Build tooling
+
+**Specific DRY Violations**:
+- **Text Utilities**: `/src/utils/text-utils.ts` (210 lines) vs `/utils/text-utils.ts` (8 lines) - `formatWordCount` duplicated
+- **Word Data Utilities**: `/src/utils/word-data-utils.ts` (336 lines) vs `/utils/word-data-utils.ts` (36 lines) - Core functions like `getWordsByYear` completely rewritten
+- **Word Stats Utilities**: `/src/utils/word-stats-utils.ts` (407 lines) vs `/utils/word-stats-utils.ts` (227 lines) - Pattern analysis functions duplicated
+- **Page Metadata**: `/src/utils/page-metadata.ts` (17 lines) wrapper calling `/utils/page-metadata-utils.ts` (446 lines)
+
+**Impact**: 60% code duplication, maintenance nightmare, confusion about which version to use
+**Solution**: Consolidate to single `/src/utils/` directory with proper build-time/runtime separation
+
+### CRITICAL: Confusing Import Alias System [CRITICAL PRIORITY]
+**Current Problem**: Two different aliases for utilities create cognitive overhead
+```typescript
+"~utils-client/*": ["./src/utils/*"],  // Astro utilities
+"~utils/*": ["./utils/*"],             // Root utilities
+```
+
+**Evidence**: 58 files mixing these aliases inconsistently, developers confused about which to use
+**Impact**: High cognitive load, unclear boundaries, difficult refactoring
+**Solution**: Eliminate alias confusion, use single coherent system
+
+### ARCHITECTURAL: Build-time vs Runtime Boundary Bleeding [HIGH PRIORITY]
+**Current Issues**:
+- Node.js `crypto` imports in Astro client context (breaks client-side)
+- File system access during static generation where it shouldn't occur
+- Dictionary API calls mixed into build-time tools
+
+**Impact**: Context confusion, potential runtime errors, unclear separation of concerns
+**Solution**: Clear boundaries between Node.js build tools and browser-compatible runtime code
+
+### Over-Engineering: Unnecessary Abstraction Layers [MEDIUM PRIORITY]  
+**Current Issues**:
+- Page metadata wrapper (`/src/utils/page-metadata.ts`) - 17 lines just to avoid passing one parameter
+- Complex template system for simple static pages
+- Heavy abstractions where direct implementation would be clearer
+
+**Impact**: Code complexity without benefit, harder to debug and maintain
+**Solution**: Remove pointless wrappers, simplify template generation
+
+### Static Generation Anti-Patterns [MEDIUM PRIORITY]
+**Current Issues**:
+- Computing same stats multiple times during build (inefficient)
+- Loading word collections repeatedly for static path generation
+- Dynamic patterns in static contexts
+
+**Impact**: Slower build times, redundant computation
+**Solution**: Cache expensive computations, load collections once per build
+
 ## Architecture & Code Quality Improvements
 
 ### Text Pluralization and Grammar [HIGH PRIORITY]
@@ -17,16 +72,6 @@ Quality and architectural improvements identified for future development, priori
 // Fixed: "1 word that ends with..." / "5 words that end with..."
 ```
 
-### Page Metadata System Refactoring [HIGH PRIORITY]
-**Current Issue**: The `getCountForPath` function has a massive switch statement with 15+ cases that violates DRY principles
-```javascript
-// Currently 50+ lines of switch cases
-case 'stats/words-ending-ly': return getWordEndingStats(words).ly.length;
-case 'stats/words-ending-ing': return getWordEndingStats(words).ing.length;
-// ... 13+ more cases
-```
-**Impact**: High - This is brittle, hard to maintain code that's complex to extend
-**Solution**: Create a mapping system or dynamic registry for metadata computation
 
 ### Stats Definition Architecture [HIGH PRIORITY]
 **Current Issue**: Stats definitions scattered across multiple files with complex interdependencies

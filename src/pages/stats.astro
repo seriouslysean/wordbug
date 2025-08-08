@@ -7,7 +7,7 @@ import WordLink from '~components/WordLink.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { countSyllables, getConsonantCount, getVowelCount } from '~utils-client/text-utils';
-import { getAvailableLengths } from '~utils-client/word-data-utils';
+import { getAvailableLengths } from '~utils/word-data-utils';
 import {
   findWordDate,
   getChronologicalMilestones,
@@ -78,11 +78,11 @@ const wordEndingItems = [
 const hasLetterPatterns = letterPatternItems.length > 0;
 const hasWordEndings = wordEndingItems.length > 0;
 
-const { title, description } = getPageMetadata(Astro.url.pathname);
+const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description}>
   <main class="stats">
-    <Heading text="Stats" secondaryText="For Nerds" />
+    <Heading text={title} secondaryText={secondaryText} />
 
     <section class="stats__section">
       <dl class="stats__list">

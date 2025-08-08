@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  areConsecutiveDays,
   getChronologicalMilestones,
   getLetterPatternStats,
   getLetterStats,
   getPatternStats,
   getWordEndingStats,
 } from '~utils/word-stats-utils';
+import { areConsecutiveDays } from '~utils/date-utils';
 
 const sampleWords = [
   { word: 'hello', date: '20240101' },

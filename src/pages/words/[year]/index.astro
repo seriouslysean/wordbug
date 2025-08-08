@@ -8,13 +8,12 @@ import { getMonthNameFromDate } from '~utils/date-utils';
 import { getPageMetadata } from '~utils-client/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~utils-client/schema-utils.ts';
 import {
-  getAvailableYears,
-  getWordsByYear,
   getWordsFromCollection,
   groupWordsByMonth,
 } from '~utils-client/word-data-utils';
+import { getAvailableYears, getWordsByYear } from '~utils/word-data-utils';
 
-const { title, description } = getPageMetadata(Astro.url.pathname);
+const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();
@@ -35,7 +34,7 @@ const monthGroups = groupWordsByMonth(year, words);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <Heading level={1} text={year} secondaryText="Words in" />
+  <Heading level={1} text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
   {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
     <WordSection

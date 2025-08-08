@@ -91,3 +91,16 @@ export const monthSlugToNumber = (monthSlug: string): number | null => {
   const index = MONTH_NAMES.indexOf(monthSlug.toLowerCase() as typeof MONTH_NAMES[number]);
   return index >= 0 ? index + 1 : null;
 };
+
+export const areConsecutiveDays = (olderDate: string, newerDate: string): boolean => {
+  const dOlder = YYYYMMDDToDate(olderDate);
+  const dNewer = YYYYMMDDToDate(newerDate);
+
+  if (!dOlder || !dNewer) {
+    return false;
+  }
+
+  const diffTime = dNewer.getTime() - dOlder.getTime();
+  const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays === 1;
+};

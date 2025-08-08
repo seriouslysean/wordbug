@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 
 import {
   countSyllables,
-  formatWordCount,
   getConsonantCount,
   getVowelCount,
   getWordEndings,
@@ -14,6 +13,7 @@ import {
   isPalindrome,
   isStartEndSame,
 } from '~utils-client/text-utils';
+import { formatWordCount } from '~utils/text-utils';
 
 describe('text-utils', () => {
   describe('getVowelCount', () => {
