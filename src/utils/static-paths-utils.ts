@@ -4,7 +4,7 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
-} from '~utils-client/stats-definitions';
+} from '~utils/stats-definitions';
 import {
   getChronologicalMilestones,
   getCurrentStreakStats,
