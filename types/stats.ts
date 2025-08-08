@@ -1,32 +1,31 @@
 /**
- * Base stats definition structure
+ * Shared stats definition fields
  */
-export interface StatsDefinition {
+interface BaseStatsDefinition {
   title: string;
+  category: 'stats';
+}
+
+/**
+ * Stats definition with static descriptions
+ */
+export interface StaticStatsDefinition extends BaseStatsDefinition {
   pageDescription: string;
   metaDescription: (count: number) => string;
-  category: 'stats';
 }
 
 /**
- * Static stats definition with string-only meta description
+ * Stats definition with dynamic descriptions
  */
-export interface StaticStatsDefinition {
-  title: string;
-  pageDescription: string;
-  metaDescription: string;
-  category: 'stats';
-}
-
-/**
- * Dynamic stats definition with function-based descriptions
- */
-export interface DynamicStatsDefinition {
-  title: string;
+export interface DynamicStatsDefinition extends BaseStatsDefinition {
   pageDescription: (arg?: string | number) => string;
-  metaDescription: (count: number, arg?: string) => string;
-  category: 'stats';
+  metaDescription: (count: number, arg?: string | number) => string;
 }
+
+/**
+ * Combined stats definition type
+ */
+export type StatsDefinition = StaticStatsDefinition | DynamicStatsDefinition;
 
 /**
  * Available word suffix patterns
@@ -71,6 +70,4 @@ export type SuffixStatsSlug = `words-ending-${SuffixKey}`;
 export type SuffixDefinition = StatsDefinition;
 export type LetterPatternDefinition = StatsDefinition;
 export type PatternDefinition = StatsDefinition;
-
-export type AnyStatsDefinition = DynamicStatsDefinition | SuffixDefinition | LetterPatternDefinition | PatternDefinition;
 

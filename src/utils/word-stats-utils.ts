@@ -5,7 +5,7 @@ import type {
   WordPatternStatsResult,
   WordStatsResult,
   WordStreakStatsResult,
-} from '~types/word';
+} from '~types';
 import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
 import { logger } from '~astro-utils/logger';
 import {

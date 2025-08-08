@@ -1,5 +1,5 @@
 import { wordnikAdapter } from '~adapters/wordnik';
-import type { DictionaryAdapter } from '~types/adapters';
+import type { DictionaryAdapter } from '~types';
 import { logger } from '~astro-utils/logger';
 
 /**
