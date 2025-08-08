@@ -2,42 +2,36 @@
 
 Quality and architectural improvements identified for future development, prioritized by impact and complexity.
 
+## Current Remaining Tasks (In Progress)
+
+### 🚧 IN PROGRESS: 404 Page Enhancement [ACTIVE]
+**User Request**: Improve 404 page user experience
+- **TODO**: Add "Not Found" pretext title to page metadata system
+- **TODO**: Add recent words list component (same as homepage uses)
+- **Impact**: Better user experience when hitting invalid URLs
+- **Status**: Currently implementing these enhancements
+
+### 📋 PENDING: Import Pattern Standardization [MEDIUM PRIORITY]
+**Current Issue**: Inconsistent import grouping and spacing across files
+- Some files use compressed import format, others use multi-line
+- Mixed ordering of import statements  
+- **Impact**: Code style inconsistency, harder to maintain
+- **Solution**: Standardize import patterns across all files
+
+### 📋 PENDING: Test Coverage Completion [MEDIUM PRIORITY]  
+**Current Gap**: Missing test files for complete coverage
+- Several utility files lack comprehensive test coverage
+- Need to create test files for recently consolidated functions
+- **Impact**: Risk of regressions in untested code paths
+- **Solution**: Add comprehensive test coverage for all utilities
+
+### 📋 PENDING: Node.js Usage Documentation [LOW PRIORITY]
+**Current Gap**: Document architectural decisions about Node.js usage in Astro
+- Confirm and document that Node.js imports are correct for Astro static generation
+- **Impact**: Future developers may question these patterns
+- **Solution**: Add architectural documentation explaining this design choice
+
 ## Critical Architectural Issues
-
-### SEVERE: Triple Utility Directory Anti-Pattern [CRITICAL PRIORITY]
-**Current Problem**: Three separate utility directories with massive code duplication
-- `/src/utils/` (13 files) - Astro client-side utilities
-- `/utils/` (7 files) - Root-level utilities  
-- `/tools/` (6 files) - Build tooling
-
-**Specific DRY Violations**:
-- **Text Utilities**: `/src/utils/text-utils.ts` (210 lines) vs `/utils/text-utils.ts` (8 lines) - `formatWordCount` duplicated
-- **Word Data Utilities**: `/src/utils/word-data-utils.ts` (336 lines) vs `/utils/word-data-utils.ts` (36 lines) - Core functions like `getWordsByYear` completely rewritten
-- **Word Stats Utilities**: `/src/utils/word-stats-utils.ts` (407 lines) vs `/utils/word-stats-utils.ts` (227 lines) - Pattern analysis functions duplicated
-- **Page Metadata**: `/src/utils/page-metadata.ts` (17 lines) wrapper calling `/utils/page-metadata-utils.ts` (446 lines)
-
-**Impact**: 60% code duplication, maintenance nightmare, confusion about which version to use
-**Solution**: Consolidate to single `/src/utils/` directory with proper build-time/runtime separation
-
-### CRITICAL: Confusing Import Alias System [CRITICAL PRIORITY]
-**Current Problem**: Two different aliases for utilities create cognitive overhead
-```typescript
-"~astro-utils/*": ["./src/utils/*"],  // Astro utilities
-"~utils/*": ["./utils/*"],             // Root utilities
-```
-
-**Evidence**: 58 files mixing these aliases inconsistently, developers confused about which to use
-**Impact**: High cognitive load, unclear boundaries, difficult refactoring
-**Solution**: Eliminate alias confusion, use single coherent system
-
-### ARCHITECTURAL: Build-time vs Runtime Boundary Bleeding [HIGH PRIORITY]
-**Current Issues**:
-- Node.js `crypto` imports in Astro client context (breaks client-side)
-- File system access during static generation where it shouldn't occur
-- Dictionary API calls mixed into build-time tools
-
-**Impact**: Context confusion, potential runtime errors, unclear separation of concerns
-**Solution**: Clear boundaries between Node.js build tools and browser-compatible runtime code
 
 ### Over-Engineering: Unnecessary Abstraction Layers [MEDIUM PRIORITY]  
 **Current Issues**:
