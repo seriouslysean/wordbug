@@ -3,7 +3,6 @@ import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
-import { getMonthNameFromDate } from '~utils/date-utils';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import {
@@ -30,10 +29,8 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { year } = Astro.params;
 const { words } = Astro.props;
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
-const monthName = getMonthNameFromDate(words[0].date);
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>

@@ -5,7 +5,6 @@ import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { formatWordCount } from '~utils/text-utils';
 import { getWordsFromCollection, groupWordsByLength } from '~astro-utils/word-data-utils';
 
 export async function getStaticPaths() {
@@ -18,7 +17,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { length, words } = Astro.props;
+const { words } = Astro.props;
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>

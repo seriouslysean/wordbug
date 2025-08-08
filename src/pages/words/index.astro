@@ -5,7 +5,6 @@ import { getWordsFromCollection, groupWordsByYear } from '~astro-utils/word-data
 import Heading from '~components/Heading.astro';
 import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
-import { formatWordCount } from '~utils/text-utils';
 
 const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);

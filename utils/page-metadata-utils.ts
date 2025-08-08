@@ -303,12 +303,23 @@ function getCountForPath(path: string, words: WordData[]): number {
 }
 
 /**
+ * Standardized page metadata returned by getPageMetadata
+ */
+export type PageMetadataResult = {
+  title: string;
+  description: string;
+  category: string;
+  secondaryText?: string;
+  partOfSpeech?: string;
+};
+
+/**
  * Get metadata for a specific page path
  * @param pathname - The page path to get metadata for
  * @param words - Word dataset to evaluate
  * @returns Page metadata object
  */
-export function getPageMetadata(pathname?: string, words: WordData[] = []) {
+export function getPageMetadata(pathname: string, words: WordData[] = []): PageMetadataResult {
   if (!pathname) {
     throw new Error('getPageMetadata: pathname is required');
   }
@@ -327,7 +338,7 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
     };
   }
 
-  // Handle dynamic month pages  
+  // Handle dynamic month pages
   if (path.match(/^words\/\d{4}\/[a-z]+$/)) {
     const [, year, monthSlug] = path.split('/');
     const monthNumber = monthSlugToNumber(monthSlug);
@@ -362,6 +373,7 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
       title: 'Unknown Page',
       description: '',
       category: 'unknown',
+      secondaryText: undefined,
     };
   }
 
@@ -372,8 +384,8 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description('example'),
         category: metadata.category,
-        secondaryText: typeof metadata.secondaryText === 'function' 
-          ? metadata.secondaryText(words.length) 
+        secondaryText: typeof metadata.secondaryText === 'function'
+          ? metadata.secondaryText(words.length)
           : metadata.secondaryText,
       };
     case 'static':
@@ -392,8 +404,8 @@ export function getPageMetadata(pathname?: string, words: WordData[] = []) {
         title: metadata.title,
         description: metadata.description(count),
         category: metadata.category,
-        secondaryText: typeof metadata.secondaryText === 'function' 
-          ? metadata.secondaryText(count) 
+        secondaryText: typeof metadata.secondaryText === 'function'
+          ? metadata.secondaryText(count)
           : metadata.secondaryText,
       };
     default:
