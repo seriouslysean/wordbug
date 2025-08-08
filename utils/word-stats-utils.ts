@@ -1,4 +1,4 @@
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 import { areConsecutiveDays, dateToYYYYMMDD } from '~utils/date-utils';
 
 // Text analysis functions needed by stats

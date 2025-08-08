@@ -2,7 +2,7 @@
  * Word data types - Our internal data structures
  */
 
-import type { DictionaryDefinition, SourceMeta } from '~types/common';
+import type { DictionaryDefinition, SourceMeta } from '~types';
 
 // Our processed word data after transformation
 export interface WordProcessedData {

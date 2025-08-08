@@ -1,4 +1,4 @@
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 
 /**
  * Get social media image URL for a word or page

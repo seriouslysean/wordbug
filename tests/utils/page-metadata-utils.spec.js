@@ -97,7 +97,7 @@ describe('page-metadata-utils', () => {
       expect(metadata).toEqual({
         title: '404',
         description:
-          'Noun. A web page that cannot be found; an error indicating the requested content does not exist.',
+          'A web page that cannot be found; an error indicating the requested content does not exist.',
         category: 'pages',
         secondaryText: undefined,
         partOfSpeech: 'noun',

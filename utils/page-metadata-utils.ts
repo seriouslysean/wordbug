@@ -1,14 +1,14 @@
 import { format } from 'date-fns';
 
-import type { WordData } from '~types/word';
+import type { WordData } from '~types';
 import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
-import { formatWordCount } from '~utils/text-utils';
 import {
   DYNAMIC_STATS_DEFINITIONS,
   LETTER_PATTERN_DEFINITIONS,
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
 } from '~utils/stats-definitions';
+import { formatWordCount } from '~utils/text-utils';
 import {
   getAvailableLengths,
   getAvailableMonths,

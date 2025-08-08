@@ -1,13 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 
-import Heading from '~components/Heading.astro';
-import SiteLink from '~components/SiteLink.astro';
-import WordLink from '~components/WordLink.astro';
-import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
-import { getAvailableLengths } from '~utils/word-data-utils';
 import {
   findWordDate,
   getChronologicalMilestones,
@@ -20,6 +14,12 @@ import {
   getWordEndingStats,
   getWordStats,
 } from '~astro-utils/word-stats-utils';
+import Heading from '~components/Heading.astro';
+import SiteLink from '~components/SiteLink.astro';
+import WordLink from '~components/WordLink.astro';
+import Layout from '~layouts/Layout.astro';
+import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
+import { getAvailableLengths } from '~utils/word-data-utils';
 
 const wordsCollection = await getCollection('words');
 const words = wordsCollection
