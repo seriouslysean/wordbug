@@ -1,9 +1,8 @@
 ---
+export { generateStatsStaticPaths as getStaticPaths } from '~astro-utils/static-paths-utils';
+
 import StatsMilestonePage from '~components/StatsMilestonePage.astro';
 import StatsWordListPage from '~components/StatsWordListPage.astro';
-import { generateStatsStaticPaths } from '~astro-utils/static-paths-utils';
-
-export const getStaticPaths = generateStatsStaticPaths;
 
 import type { WordData, WordMilestoneItem } from '~types/word';
 
