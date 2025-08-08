@@ -64,7 +64,7 @@ describe('adapter factory', () => {
       expect(adapter.name).toBe('wordnik');
     });
 
-    it('logs adapter selection', () => {
+    it('logs adapter selection', async () => {
       const mockLogger = vi.hoisted(() => ({
         info: vi.fn(),
         error: vi.fn(),
@@ -77,8 +77,10 @@ describe('adapter factory', () => {
       }));
 
       process.env.DICTIONARY_ADAPTER = 'wordnik';
+      vi.resetModules();
 
-      getAdapter();
+      const { getAdapter: getAdapterWithMock } = await import('~adapters');
+      getAdapterWithMock();
 
       expect(mockLogger.info).toHaveBeenCalledWith(
         'Using dictionary adapter',
