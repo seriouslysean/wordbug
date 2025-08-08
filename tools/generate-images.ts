@@ -1,31 +1,27 @@
 import { showHelp } from '~tools/help-utils';
 import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '~tools/utils';
-import { getStaticPages } from '~utils-client/image-utils';
-import { getAvailableYears } from '~utils-client/word-data-utils';
+import { getAllPageMetadata } from '~utils/page-metadata-utils';
 
 const HELP_TEXT = `
 Generate Images Tool
 
 Usage:
-  npm run tool:local tools/generate-images.ts [word|page] [options]
-  npm run tool:generate-images [word|page] [options]
-
-Arguments:
-  word    Generate image for specific word (optional - if omitted, generates all)
-  page    Generate image for specific page path (with --page flag)
+  npm run tool:local tools/generate-images.ts [options]
+  npm run tool:generate-images [options]
 
 Options:
-  --all                      Generate images for all words (default if no word specified)
-  --generic                  Generate images for all generic pages (stats, words index, etc.)
-  --page <path>              Generate image for specific page path
-  --force                    Regenerate images even if they already exist
-  -h, --help                 Show this help message
+  --words                   Generate images for all words only
+  --generic                 Generate images for all generic pages only
+  --word <word>             Generate image for specific word
+  --page <path>             Generate image for specific page path
+  --force                   Regenerate images even if they already exist
+  -h, --help                Show this help message
 
 Examples:
-  npm run tool:generate-images                    # Generate all word images
-  npm run tool:generate-images serendipity       # Generate image for specific word
-  npm run tool:generate-images --all --force     # Regenerate all word images
+  npm run tool:generate-images                    # Generate all word and page images
+  npm run tool:generate-images --words            # Generate all word images
   npm run tool:generate-images --generic          # Generate all generic page images
+  npm run tool:generate-images --word serendipity # Generate image for specific word
   npm run tool:generate-images --page stats       # Generate image for stats page
 
 Environment Variables (for GitHub workflows):
@@ -97,41 +93,18 @@ async function generateAllImages(): Promise<void> {
  * Generates images for all generic pages (stats, words index, year pages, etc.)
  */
 async function generateGenericImages(): Promise<void> {
-  const staticPages = await getStaticPages();
+  const words = getAllWords();
+  const allPages = getAllPageMetadata(words);
 
-  // Get all available years from word data
-  const years = getAvailableYears();
+  // Pages already filtered and ready to use
+  const pages = allPages;
 
-  // Add year pages and words index
-  const wordPages = [
-    { title: 'All Words', path: 'words' },
-    ...years.map(year => ({
-      title: `${year} Words`,
-      path: `words/${year}`,
-    })),
-  ];
-
-  // Filter out index, dynamic word pages, and 404 (we'll add it manually)
-  const nonWordPages = staticPages.filter(page =>
-    page.path !== '' && // exclude index
-    !page.path.includes('[') && // exclude dynamic routes
-    !page.path.includes('words/index') && // exclude words index (we add it manually)
-    page.path !== '404', // exclude 404 (we'll add it manually)
-  );
-
-  // Add special pages that don't follow the normal pattern
-  const specialPages = [
-    { title: '404', path: '404' },
-  ];
-
-  const allPages = [...nonWordPages, ...wordPages, ...specialPages];
-
-  console.log('Starting generic image generation', { pageCount: allPages.length });
+  console.log('Starting generic image generation', { pageCount: pages.length });
 
   let successCount = 0;
   let errorCount = 0;
 
-  for (const page of allPages) {
+  for (const page of pages) {
     try {
       await generateGenericShareImage(page.title, page.path);
       console.log('Generated generic image', { title: page.title, path: page.path });
@@ -147,7 +120,7 @@ async function generateGenericImages(): Promise<void> {
   }
 
   console.log('Generic image generation complete', {
-    total: allPages.length,
+    total: pages.length,
     success: successCount,
     errors: errorCount,
   });
@@ -158,11 +131,12 @@ async function generateGenericImages(): Promise<void> {
  */
 async function generatePageImage(pagePath: string): Promise<boolean> {
   try {
-    const staticPages = await getStaticPages();
-    const page = staticPages.find(p => p.path === pagePath);
+    const words = getAllWords();
+    const allPages = getAllPageMetadata(words);
+    const page = allPages.find(p => p.path === pagePath);
 
     if (!page) {
-      console.error('Page not found in static pages', { pagePath });
+      console.error('Page not found in available pages', { pagePath });
       return false;
     }
 
@@ -191,10 +165,10 @@ if (hasForce) {
   args.splice(forceIndex, 1);
 }
 
-const allIndex = args.findIndex(arg => arg === '--all');
-const hasAll = allIndex !== -1;
-if (hasAll) {
-  args.splice(allIndex, 1);
+const wordsIndex = args.findIndex(arg => arg === '--words');
+const hasWords = wordsIndex !== -1;
+if (hasWords) {
+  args.splice(wordsIndex, 1);
 }
 
 const genericIndex = args.findIndex(arg => arg === '--generic');
@@ -205,36 +179,40 @@ if (hasGeneric) {
 
 const pageIndex = args.findIndex(arg => arg === '--page');
 const hasPage = pageIndex !== -1;
-let pagePath = '';
-if (hasPage) {
-  args.splice(pageIndex, 1);
-  pagePath = args.splice(pageIndex, 1)[0] || '';
-}
+const pagePath = hasPage ? (args.splice(pageIndex, 1), args.splice(pageIndex, 1)[0] || '') : '';
 
-const [word] = args;
+const wordIndex = args.findIndex(arg => arg === '--word');
+const hasWord = wordIndex !== -1;
+const word = hasWord ? (args.splice(wordIndex, 1), args.splice(wordIndex, 1)[0] || '') : '';
 
 // Main execution
 (async () => {
   try {
     console.log('Generate images tool starting...');
-
     if (hasPage && pagePath) {
       // Generate specific page image
       const success = await generatePageImage(pagePath);
       process.exit(success ? 0 : 1);
-    } else if (hasGeneric) {
-      // Generate all generic page images
-      await generateGenericImages();
-      process.exit(0);
-    } else if (word && !hasAll) {
+    }
+
+    if (hasWord && word) {
       // Generate single word image
       const success = await generateSingleImage(word);
       process.exit(success ? 0 : 1);
-    } else {
-      // Generate all word images
-      await generateAllImages();
-      process.exit(0);
     }
+
+    const runWords = hasWords || (!hasWords && !hasGeneric);
+    const runGeneric = hasGeneric || (!hasWords && !hasGeneric);
+
+    if (runWords) {
+      await generateAllImages();
+    }
+
+    if (runGeneric) {
+      await generateGenericImages();
+    }
+
+    process.exit(0);
   } catch (error) {
     console.error('Tool execution failed', { error: (error as Error).message });
     process.exit(1);
