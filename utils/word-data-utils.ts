@@ -34,3 +34,15 @@ export const getAvailableLengths = (words: WordData[]): number[] => {
   const lengths = [...new Set(words.map(word => word.word.length))];
   return lengths.sort((a, b) => a - b);
 };
+
+/**
+ * Get all available starting letters from word data
+ */
+export const getAvailableLetters = (words: WordData[]): string[] => {
+  const letters = [...new Set(
+    words
+      .map(word => word.word.charAt(0).toLowerCase())
+      .filter(letter => letter.match(/[a-z]/))
+  )];
+  return letters.sort();
+};

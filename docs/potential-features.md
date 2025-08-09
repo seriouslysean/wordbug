@@ -2,30 +2,31 @@
 
 Quality and architectural improvements identified for future development, prioritized by impact and complexity.
 
-## Current Remaining Tasks (In Progress)
+## Current Focus: Navigation & Discoverability
 
-### 🚧 IN PROGRESS: 404 Page Enhancement [ACTIVE]
-**User Request**: Improve 404 page user experience
-- **TODO**: Add "Not Found" pretext title to page metadata system
-- **TODO**: Add recent words list component (same as homepage uses)
-- **Impact**: Better user experience when hitting invalid URLs
-- **Status**: Currently implementing these enhancements
+### IN PROGRESS: Enhanced Navigation Architecture [HIGH PRIORITY]
+**User Request**: Improve page discoverability and navigation structure
+- **ISSUE**: Footer becoming crowded with navigation links
+- **ISSUE**: All Words page incomplete - only shows years, no access to length/letter browsing
+- **ISSUE**: Poor cross-linking between related content types
+- **GOALS**: 
+  - Transform All Words page into comprehensive navigation hub
+  - Implement strategic cross-linking for SEO and user experience
+  - Reorganize footer hierarchy
+  - Add breadcrumb navigation system
+- **Impact**: Significantly improved user experience and SEO through better content discovery
+- **Status**: Planning phase - analyzing current navigation patterns
 
-### 📋 PENDING: Import Pattern Standardization [MEDIUM PRIORITY]
-**Current Issue**: Inconsistent import grouping and spacing across files
-- Some files use compressed import format, others use multi-line
-- Mixed ordering of import statements  
-- **Impact**: Code style inconsistency, harder to maintain
-- **Solution**: Standardize import patterns across all files
+## Maintenance Tasks (Background Priority)
 
-### 📋 PENDING: Test Coverage Completion [MEDIUM PRIORITY]  
+### Test Coverage Completion [MEDIUM PRIORITY]  
 **Current Gap**: Missing test files for complete coverage
 - Several utility files lack comprehensive test coverage
 - Need to create test files for recently consolidated functions
 - **Impact**: Risk of regressions in untested code paths
 - **Solution**: Add comprehensive test coverage for all utilities
 
-### 📋 PENDING: Node.js Usage Documentation [LOW PRIORITY]
+### Node.js Usage Documentation [LOW PRIORITY]
 **Current Gap**: Document architectural decisions about Node.js usage in Astro
 - Confirm and document that Node.js imports are correct for Astro static generation
 - **Impact**: Future developers may question these patterns
@@ -154,12 +155,12 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Impact**: Enhanced discoverability, learning exercise with Astro RSS plugin
 **Solution**: Use `@astrojs/rss` to generate feeds at build time
 
-### URL Structure Optimization [MEDIUM PRIORITY]
-**Opportunity**: Reorganize URLs for better hierarchy and future features
-**Current**: `/words/[word]`, `/words/[year]`
-**Proposed**: Keep short word URLs, organize browsing under `/words/browse/year/`, `/words/browse/letter/`, `/words/browse/length/`
-**Impact**: Cleaner organization for new page types, better SEO hierarchy
-**Solution**: Restructure page organization while maintaining short individual word URLs
+### URL Structure Evaluation [FUTURE CONSIDERATION]
+**Note**: Current URL structure is working well with recent letter pages implementation
+**Current**: `/words/[word]`, `/words/[year]`, `/words/letter/[letter]`, `/words/length/[length]`
+**Status**: Reassess after navigation improvements - current structure may be optimal
+**Impact**: Would need careful migration planning to avoid breaking existing SEO
+**Decision**: Defer until after navigation hub improvements are complete
 
 ## User Experience Enhancements
 
@@ -178,11 +179,6 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Impact**: Better user experience for different viewing preferences
 **Solution**: CSS custom properties with JavaScript toggle
 
-### Letter-Based Word Pages [MEDIUM PRIORITY]
-**Opportunity**: Pages for words starting with each letter (A, B, C, etc.)
-**Impact**: Alphabetical browsing and improved SEO for letter-specific searches
-**Solution**: Generate `/words/letter/[a-z]` pages with word lists and stats
-
 
 ### Enhanced Programmatic Stats [MEDIUM PRIORITY]
 **Opportunity**: Chart-worthy statistics based on pure string analysis
@@ -190,19 +186,25 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Impact**: Visual data storytelling and content discovery, future chart integration
 **Solution**: Extend stats with letter/length distribution counts, keep curated ending patterns
 
-### Contextual Breadcrumb Navigation [MEDIUM PRIORITY]
+### Contextual Breadcrumb Navigation [HIGH PRIORITY]
 **Opportunity**: Dynamic breadcrumbs showing current location in site hierarchy
 **Examples**: "Home > Words > 2024 > March 19: magnificent" or "Home > Words > Letter M > magnificent"
+**Integration**: Part of overall navigation architecture improvement
 **Impact**: Better user orientation and SEO hierarchy signals
 **Solution**: Context-aware breadcrumb generation based on page type and navigation path
 
 ### Cross-Page Internal Linking [HIGH PRIORITY]
 **Opportunity**: Rich internal linking between related content types
 **Word page links**: "Other 11-letter words", "Other words from March 2024", "Other words starting with M"
-**Archive page links**: "7-letter words starting with A", "March words with double letters"
+**Archive page links**: "7-letter words starting with A", "March words with double letters"  
 **Stats page links**: "Words with this pattern", "Browse by letter/length"
+**Navigation improvements**: Transform All Words page into comprehensive browsing hub
 **Impact**: Significantly improved SEO through internal link density and user engagement through content discovery
-**Solution**: Generate contextual "Related" sections on all page types with 3-5 relevant links each
+**Solution**: 
+1. Enhance All Words page with browsing options (Letter, Length, Chronological)
+2. Add strategic cross-links between related pages
+3. Implement breadcrumb navigation
+4. Reorganize footer navigation hierarchy
 
 ### Word Bookmarking [LOW PRIORITY]
 **Opportunity**: Personal favorites system using LocalStorage

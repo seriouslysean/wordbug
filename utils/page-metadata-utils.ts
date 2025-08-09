@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 
+import { URL_PATTERNS } from '~constants/urls';
+
 import type { WordData } from '~types';
 import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
 import {
@@ -7,9 +9,10 @@ import {
   LETTER_PATTERN_DEFINITIONS,
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
-} from '~utils/stats-definitions';
+} from '~constants/stats';
 import { formatWordCount } from '~utils/text-utils';
 import {
+  getAvailableLetters,
   getAvailableLengths,
   getAvailableMonths,
   getAvailableYears,
@@ -100,6 +103,13 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     type: 'static',
     title: 'Words by Length',
     description: 'Words organized by character length.',
+    category: 'pages',
+    secondaryText: formatWordCount,
+  },
+  'words/letter': {
+    type: 'static',
+    title: 'Words by Letter',
+    description: 'Words organized alphabetically by starting letter.',
     category: 'pages',
     secondaryText: formatWordCount,
   },
@@ -327,7 +337,7 @@ export function getPageMetadata(pathname: string, words: WordData[] = []): PageM
   const path = pathname.replace(/^\/+|\/+$/g, '');
 
   // Handle dynamic year pages
-  const yearMatch = path.match(/^words\/(\d{4})$/);
+  const yearMatch = path.match(URL_PATTERNS.YEAR_PAGE);
   if (yearMatch) {
     const [, year] = yearMatch;
     return {
@@ -339,7 +349,7 @@ export function getPageMetadata(pathname: string, words: WordData[] = []): PageM
   }
 
   // Handle dynamic month pages
-  if (path.match(/^words\/\d{4}\/[a-z]+$/)) {
+  if (path.match(URL_PATTERNS.MONTH_PAGE)) {
     const [, year, monthSlug] = path.split('/');
     const monthNumber = monthSlugToNumber(monthSlug);
     if (monthNumber) {
@@ -354,7 +364,7 @@ export function getPageMetadata(pathname: string, words: WordData[] = []): PageM
   }
 
   // Handle dynamic length pages
-  if (path.match(/^words\/length\/\d+$/)) {
+  if (path.match(URL_PATTERNS.LENGTH_PAGE)) {
     const length = parseInt(path.split('/')[2], 10);
     const wordsOfLength = words.filter(word => word.word.length === length);
     return {
@@ -362,6 +372,20 @@ export function getPageMetadata(pathname: string, words: WordData[] = []): PageM
       description: `Words containing exactly ${length} letters.`,
       category: 'pages' as const,
       secondaryText: formatWordCount(wordsOfLength.length),
+    };
+  }
+
+  // Handle dynamic letter pages
+  if (path.match(URL_PATTERNS.LETTER_PAGE)) {
+    const letter = path.split('/')[2].toUpperCase();
+    const wordsOfLetter = words.filter(word => 
+      word.word.toLowerCase().startsWith(letter.toLowerCase())
+    );
+    return {
+      title: letter,
+      description: `Words that begin with the letter ${letter}.`,
+      category: 'pages' as const,
+      secondaryText: formatWordCount(wordsOfLetter.length),
     };
   }
 
@@ -456,5 +480,11 @@ export function getAllPageMetadata(words: WordData[]) {
     return { path, ...getPageMetadata(path, words) };
   });
 
-  return [...staticPages, ...yearPages, ...monthPages, ...lengthPages];
+  // Get dynamic word letter pages  
+  const letterPages = getAvailableLetters(words).map(letter => {
+    const path = `words/letter/${letter}`;
+    return { path, ...getPageMetadata(path, words) };
+  });
+
+  return [...staticPages, ...yearPages, ...monthPages, ...lengthPages, ...letterPages];
 }

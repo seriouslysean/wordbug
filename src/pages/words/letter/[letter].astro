@@ -5,20 +5,23 @@ import WordSection from '~components/WordSection.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getLengthUrl } from '~astro-utils/url-utils';
-import { getWordsFromCollection, groupWordsByLength } from '~astro-utils/word-data-utils';
+import { getWordsFromCollection, groupWordsByLetter } from '~astro-utils/word-data-utils';
 
-const allWords = await getWordsFromCollection();
-const lengthGroups = Object.entries(groupWordsByLength(allWords)).map(([length, words]) => ({
-  length: Number(length),
-  words,
-}));
+export async function getStaticPaths() {
+  const allWords = await getWordsFromCollection();
+  const letterGroups = groupWordsByLetter(allWords);
+
+  return Object.entries(letterGroups).map(([letter, words]) => ({
+    params: { letter },
+    props: { words, letter },
+  }));
+}
+
+const { words } = Astro.props;
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <Heading text={title} secondaryText={secondaryText} />
+  <Heading level={1} text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
-  {lengthGroups.map(({ length, words }) => (
-    <WordSection title={`${length}-Letter Words`} href={getLengthUrl(length)} words={words} />
-  ))}
+  <WordSection words={words} columns={2} />
 </Layout>

@@ -73,3 +73,86 @@ export const stripBasePath = (pathname: string): string => {
   return clean || 'home';
 };
 
+import { BASE_PATHS, BROWSE_PATHS, ROUTES } from '~constants/urls';
+
+// =====================================================
+// Section URLs - Top-level navigation
+// =====================================================
+
+/**
+ * Get the words section homepage URL
+ * @returns {string} Words section URL
+ */
+export const getWordsUrl = (): string => BASE_PATHS.WORDS;
+
+/**
+ * Get the stats section homepage URL  
+ * @returns {string} Stats section URL
+ */
+export const getStatsUrl = (): string => BASE_PATHS.STATS;
+
+// =====================================================
+// Word Browsing URLs - Category pages
+// =====================================================
+
+/**
+ * Get the words by length overview URL
+ * @returns {string} Words by length URL
+ */
+export const getWordsLengthUrl = (): string => BROWSE_PATHS.WORDS_LENGTH;
+
+/**
+ * Get the words by letter overview URL
+ * @returns {string} Words by letter URL
+ */
+export const getWordsLetterUrl = (): string => BROWSE_PATHS.WORDS_LETTER;
+
+/**
+ * Get a year URL or words root if no year specified
+ * @param {string} [year] - Optional year to navigate to
+ * @returns {string} Year URL or words root
+ */
+export const getWordsYearUrl = (year?: string): string => 
+  year ? ROUTES.YEAR(year) : BASE_PATHS.WORDS;
+
+// =====================================================
+// Specific Browsing URLs - Filtered lists
+// =====================================================
+
+/**
+ * Get URL for words of a specific length
+ * @param {number} length - Word length
+ * @returns {string} Length-filtered words URL
+ */
+export const getLengthUrl = (length: number): string => 
+  ROUTES.LENGTH(length);
+
+/**
+ * Get URL for words starting with a specific letter
+ * @param {string} letter - Starting letter (normalized to lowercase)
+ * @returns {string} Letter-filtered words URL
+ */
+export const getLetterUrl = (letter: string): string => 
+  ROUTES.LETTER(letter);
+
+/**
+ * Get URL for words from a specific month/year
+ * @param {string} year - Year 
+ * @param {string} month - Month slug (normalized to lowercase)
+ * @returns {string} Month-filtered words URL
+ */
+export const getMonthUrl = (year: string, month: string): string => 
+  ROUTES.MONTH(year, month);
+
+// =====================================================
+// Stats URLs - Statistics and data pages
+// =====================================================
+
+/**
+ * Get URL for a specific stats page
+ * @param {string} stat - Stats page slug
+ * @returns {string} Stats page URL
+ */
+export const getStatUrl = (stat: string): string => 
+  ROUTES.STAT(stat);
+

@@ -19,19 +19,26 @@ import {
   groupWordsByLength,
   groupWordsByMonth,
   groupWordsByYear,
+  groupWordsByLetter,
+  getWordsByLetter,
 } from '~astro-utils/word-data-utils';
 import {
   getAvailableLengths,
   getAvailableMonths,
   getAvailableYears,
   getWordsByYear,
+  getAvailableLetters,
 } from '~utils/word-data-utils';
 
 describe('word-data-utils', () => {
+  // Mock data sorted by descending date (newest first) like real getWordsFromCollection
   const mockWordData = [
     { word: 'current', date: '20250110', data: [{ text: 'Current word', partOfSpeech: 'adjective' }] },
     { word: 'yesterday', date: '20250109', data: [{ text: 'Yesterday word', partOfSpeech: 'noun' }] },
     { word: 'older', date: '20250105', data: [{ text: 'Older word', partOfSpeech: 'adjective' }] },
+    { word: 'zebra', date: '20250103', data: [{ text: 'Zebra word', partOfSpeech: 'noun' }] },
+    { word: 'banana', date: '20250102', data: [{ text: 'Banana word', partOfSpeech: 'noun' }] },
+    { word: 'apple', date: '20250101', data: [{ text: 'Apple word', partOfSpeech: 'noun' }] },
     { word: 'year2024', date: '20241225', data: [{ text: '2024 word', partOfSpeech: 'noun' }] },
     { word: 'year2023', date: '20231201', data: [{ text: '2023 word', partOfSpeech: 'verb' }] },
   ];
@@ -114,13 +121,14 @@ describe('word-data-utils', () => {
   describe('getPastWords', () => {
     it('returns words before given date', () => {
       const result = getPastWords('20250110', mockWordData);
-      const [first, second, third, fourth] = result;
+      const [first, second, third, fourth, fifth] = result;
 
-      expect(result).toHaveLength(4);
+      expect(result).toHaveLength(5);
       expect(first.word).toBe('yesterday');
       expect(second.word).toBe('older');
-      expect(third.word).toBe('year2024');
-      expect(fourth.word).toBe('year2023');
+      expect(third.word).toBe('zebra'); // sorted order: current, yesterday, older, zebra, banana
+      expect(fourth.word).toBe('banana');
+      expect(fifth.word).toBe('apple');
     });
 
     it('limits to 5 words', () => {
@@ -146,7 +154,7 @@ describe('word-data-utils', () => {
     });
 
     it('returns null for non-existent date', () => {
-      const result = getWordByDate('20250101', mockWordData);
+      const result = getWordByDate('20250199', mockWordData); // use non-existent date
       expect(result).toBeNull();
     });
 
@@ -171,12 +179,12 @@ describe('word-data-utils', () => {
 
     it('handles word at end of array', () => {
       const result = getAdjacentWords('20231201', mockWordData);
-      expect(result.previousWord).toBeNull(); // no older word
-      expect(result.nextWord.word).toBe('year2024');
+      expect(result.previousWord).toBeNull(); // year2023 is last (oldest), no older word
+      expect(result.nextWord.word).toBe('year2024'); // next newer word
     });
 
     it('returns null for non-existent date', () => {
-      const result = getAdjacentWords('20250101', mockWordData);
+      const result = getAdjacentWords('20250199', mockWordData); // use non-existent date
       expect(result.previousWord).toBeNull();
       expect(result.nextWord).toBeNull();
     });
@@ -197,7 +205,7 @@ describe('word-data-utils', () => {
   describe('getWordsByYear', () => {
     it('filters words by year', () => {
       const result2025 = getWordsByYear('2025', mockWordData);
-      expect(result2025).toHaveLength(3);
+      expect(result2025).toHaveLength(6); // current, yesterday, older, apple, banana, zebra
       expect(result2025.every(w => w.date.startsWith('2025'))).toBe(true);
 
       const result2024 = getWordsByYear('2024', mockWordData);
@@ -214,7 +222,7 @@ describe('word-data-utils', () => {
   describe('getWordsByMonth', () => {
     it('filters words by month within a year', () => {
       const result = getWordsByMonth('2025', '01', mockWordData);
-      expect(result).toHaveLength(3);
+      expect(result).toHaveLength(6); // all 2025 words are in January
       expect(result.every(w => w.date.startsWith('202501'))).toBe(true);
 
       const result2024 = getWordsByMonth('2024', '12', mockWordData);
@@ -247,7 +255,7 @@ describe('word-data-utils', () => {
   describe('groupWordsByYear', () => {
     it('groups words by year correctly', () => {
       const result = groupWordsByYear(mockWordData);
-      expect(result['2025']).toHaveLength(3);
+      expect(result['2025']).toHaveLength(6);
       expect(result['2024']).toHaveLength(1);
       expect(result['2023']).toHaveLength(1);
     });
@@ -262,7 +270,7 @@ describe('word-data-utils', () => {
     it('groups words by month slug for a given year', () => {
       const result = groupWordsByMonth('2025', mockWordData);
       expect(Object.keys(result)).toContain('january');
-      expect(result['january']).toHaveLength(3);
+      expect(result['january']).toHaveLength(6);
     });
 
     it('returns empty object when no words match the year', () => {
@@ -274,7 +282,7 @@ describe('word-data-utils', () => {
       const extendedData = [...mockWordData, { word: 'feb', date: '20250201', data: [] }];
       const result = groupWordsByMonth('2025', extendedData);
       expect(Object.keys(result)).toEqual(expect.arrayContaining(['january', 'february']));
-      expect(result['january']).toHaveLength(3);
+      expect(result['january']).toHaveLength(6);
       expect(result['february']).toHaveLength(1);
     });
 
@@ -299,7 +307,7 @@ describe('word-data-utils', () => {
   describe('length utilities', () => {
     it('returns sorted unique lengths', () => {
       const result = getAvailableLengths(mockWordData);
-      expect(result).toEqual([5, 7, 8, 9]);
+      expect(result).toEqual([5, 6, 7, 8, 9]); // apple=5, banana/zebra=6, current=7, yesterday=8, older=5, year2024/year2023=8
     });
 
     it('filters words by specified length', () => {
@@ -310,8 +318,69 @@ describe('word-data-utils', () => {
 
     it('groups words by length', () => {
       const result = groupWordsByLength(mockWordData);
-      expect(Object.keys(result).map(Number).sort((a, b) => a - b)).toEqual([5, 7, 8, 9]);
-      expect(result[8]).toHaveLength(2);
+      expect(Object.keys(result).map(Number).sort((a, b) => a - b)).toEqual([5, 6, 7, 8, 9]);
+      expect(result[8]).toHaveLength(2); // year2024=8, year2023=8 (yesterday=9)
+    });
+  });
+
+  describe('letter utilities', () => {
+    it('returns sorted unique starting letters', () => {
+      const result = getAvailableLetters(mockWordData);
+      expect(result).toEqual(['a', 'b', 'c', 'o', 'y', 'z']);
+    });
+
+    it('filters words by starting letter', () => {
+      const resultA = getWordsByLetter('a', mockWordData);
+      expect(resultA).toHaveLength(1);
+      expect(resultA[0].word).toBe('apple');
+      
+      const resultY = getWordsByLetter('Y', mockWordData); // test case insensitive
+      expect(resultY).toHaveLength(3);
+      expect(resultY.map(w => w.word).sort()).toEqual(['year2023', 'year2024', 'yesterday']);
+    });
+
+    it('groups words by starting letter', () => {
+      const result = groupWordsByLetter(mockWordData);
+      
+      expect(result['a']).toHaveLength(1);
+      expect(result['a'][0].word).toBe('apple');
+      
+      expect(result['b']).toHaveLength(1);
+      expect(result['b'][0].word).toBe('banana');
+      
+      expect(result['y']).toHaveLength(3);
+      expect(result['y'].map(w => w.word)).toEqual(['year2023', 'year2024', 'yesterday']);
+      
+      expect(result['z']).toHaveLength(1);
+      expect(result['z'][0].word).toBe('zebra');
+    });
+
+    it('sorts words within letter groups alphabetically', () => {
+      const result = groupWordsByLetter(mockWordData);
+      const yWords = result['y'];
+      expect(yWords[0].word).toBe('year2023'); // alphabetically first
+      expect(yWords[1].word).toBe('year2024');
+      expect(yWords[2].word).toBe('yesterday');
+    });
+
+    it('ignores non-alphabetic starting characters', () => {
+      const dataWithNumbers = [...mockWordData, 
+        { word: '123number', date: '20250201', data: [] },
+        { word: '!exclamation', date: '20250202', data: [] }
+      ];
+      
+      const letters = getAvailableLetters(dataWithNumbers);
+      expect(letters).toEqual(['a', 'b', 'c', 'o', 'y', 'z']); // no numbers or symbols
+      
+      const grouped = groupWordsByLetter(dataWithNumbers);
+      expect(grouped['1']).toBeUndefined();
+      expect(grouped['!']).toBeUndefined();
+    });
+
+    it('handles empty arrays', () => {
+      expect(getAvailableLetters([])).toEqual([]);
+      expect(getWordsByLetter('a', [])).toEqual([]);
+      expect(groupWordsByLetter([])).toEqual({});
     });
   });
 });

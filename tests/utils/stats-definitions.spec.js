@@ -8,7 +8,7 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
-} from '~utils/stats-definitions';
+} from '~constants/stats';
 
 describe('stats-definitions', () => {
   describe('STATS_SLUGS', () => {

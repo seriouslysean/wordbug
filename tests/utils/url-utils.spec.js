@@ -2,7 +2,19 @@ import {
  beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
-import { getFullUrl, getUrl } from '~astro-utils/url-utils';
+import {
+  getFullUrl,
+  getUrl,
+  getWordsUrl,
+  getStatsUrl,
+  getWordsLengthUrl,
+  getWordsLetterUrl,
+  getWordsYearUrl,
+  getLengthUrl,
+  getLetterUrl,
+  getMonthUrl,
+  getStatUrl,
+} from '~astro-utils/url-utils';
 
 describe('utils', () => {
   describe('getUrl', () => {
@@ -93,6 +105,60 @@ describe('utils', () => {
     it('uses default site URL when none provided', () => {
       vi.stubEnv('SITE_URL', '');
       expect(() => getFullUrl('/')).toThrow('SITE_URL environment variable is required');
+    });
+  });
+
+  describe('URL helper functions', () => {
+    describe('Section URLs', () => {
+      it('should return correct words URL', () => {
+        expect(getWordsUrl()).toBe('/words');
+      });
+
+      it('should return correct stats URL', () => {
+        expect(getStatsUrl()).toBe('/stats');
+      });
+    });
+
+    describe('Browsing URLs', () => {
+      it('should return correct words length URL', () => {
+        expect(getWordsLengthUrl()).toBe('/words/length');
+      });
+
+      it('should return correct words letter URL', () => {
+        expect(getWordsLetterUrl()).toBe('/words/letter');
+      });
+
+      it('should return words root when no year specified', () => {
+        expect(getWordsYearUrl()).toBe('/words');
+      });
+
+      it('should return year URL when year specified', () => {
+        expect(getWordsYearUrl('2024')).toBe('/words/2024');
+      });
+    });
+
+    describe('Specific URLs', () => {
+      it('should return correct length URL', () => {
+        expect(getLengthUrl(5)).toBe('/words/length/5');
+        expect(getLengthUrl(12)).toBe('/words/length/12');
+      });
+
+      it('should return correct letter URL with normalization', () => {
+        expect(getLetterUrl('A')).toBe('/words/letter/a');
+        expect(getLetterUrl('z')).toBe('/words/letter/z');
+        expect(getLetterUrl('M')).toBe('/words/letter/m');
+      });
+
+      it('should return correct month URL with normalization', () => {
+        expect(getMonthUrl('2024', 'January')).toBe('/words/2024/january');
+        expect(getMonthUrl('2023', 'DECEMBER')).toBe('/words/2023/december');
+        expect(getMonthUrl('2025', 'march')).toBe('/words/2025/march');
+      });
+
+      it('should return correct stat URL', () => {
+        expect(getStatUrl('longest-words')).toBe('/stats/longest-words');
+        expect(getStatUrl('alphabetical-order')).toBe('/stats/alphabetical-order');
+      });
     });
   });
 });

@@ -9,6 +9,7 @@
       "~/*": ["./src/*"],
       "~components/*": ["./src/components/*"],
       "~layouts/*": ["./src/layouts/*"],
+      "~constants/*": ["./constants/*"],
       "~astro-utils/*": ["./src/utils/*"],
       "~utils/*": ["./utils/*"],
       "~adapters": ["./adapters"],

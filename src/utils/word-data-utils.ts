@@ -280,4 +280,45 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
   return words.filter(word => word.word.length === length);
 };
 
+/**
+ * Groups words by their first letter
+ *
+ * @param {WordData[]} words - Array of word data to group
+ * @returns {Record<string, WordData[]>} Object with letter keys and word arrays
+ */
+export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]> => {
+  const groups = words.reduce<Record<string, WordData[]>>((acc, word) => {
+    const firstLetter = word.word.charAt(0).toLowerCase();
+    
+    // Only group a-z letters
+    if (firstLetter.match(/[a-z]/)) {
+      acc[firstLetter] = acc[firstLetter] || [];
+      acc[firstLetter].push(word);
+    }
+    
+    return acc;
+  }, {});
+
+  // Sort letters alphabetically and sort words within each letter by word name
+  return Object.fromEntries(
+    Object.entries(groups)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([letter, words]) => [letter, words.sort((a, b) => a.word.localeCompare(b.word))])
+  );
+};
+
+/**
+ * Retrieves all words that start with a specific letter
+ *
+ * @param {string} letter - Letter to filter by (case-insensitive)
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {WordData[]} Array of word data entries starting with the specified letter
+ */
+export const getWordsByLetter = (letter: string, words: WordData[] = allWords): WordData[] => {
+  const normalizedLetter = letter.toLowerCase();
+  return words.filter(word => 
+    word.word.toLowerCase().startsWith(normalizedLetter)
+  );
+};
+
 

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import { getWordsLengthUrl } from '~astro-utils/url-utils';
 import {
   findWordDate,
   getChronologicalMilestones,
@@ -110,7 +111,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
   <>
     <dt class="stats__fact">word lengths</dt>
     <dd class="stats__value">
-      <SiteLink href="/words/length" class="stats__link">{lengthCount}</SiteLink>
+      <SiteLink href={getWordsLengthUrl()} class="stats__link">{lengthCount}</SiteLink>
     </dd>
   </>
 )}
