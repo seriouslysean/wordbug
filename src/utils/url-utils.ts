@@ -59,3 +59,17 @@ export const getWordUrl = (word: string): string => {
   return word ? `/words/${word}` : '';
 };
 
+/**
+ * Remove BASE_PATH prefix from an incoming pathname
+ * Handles case differences and trailing slashes
+ * @param pathname - Raw pathname that may include the base path
+ * @returns Pathname relative to the site root
+ */
+export const stripBasePath = (pathname: string): string => {
+  const base = (import.meta.env.BASE_PATH || '').replace(/\/+$/, '');
+  const hasBase = base && pathname.toLowerCase().startsWith(base.toLowerCase());
+  const withoutBase = hasBase ? pathname.slice(base.length) : pathname;
+  const clean = withoutBase.replace(/^\/+|\/+$/g, '');
+  return clean || 'home';
+};
+

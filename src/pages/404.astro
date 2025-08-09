@@ -5,9 +5,9 @@ import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { getWordsFromCollection } from '~astro-utils/word-data-utils';
 
 // Get the metadata from the 404 page, using type assertion to access partOfSpeech
+const allWords = await getWordsFromCollection();
 const metadata = getPageMetadata('/404') as { title: string; description: string; partOfSpeech: string };
 const { title, description, partOfSpeech } = metadata;
-const allWords = await getWordsFromCollection();
 const wordsToShow = allWords.slice(0, 4);
 const sectionTitle = wordsToShow.length > 0 ? 'Recent Words' : '';
 const definition = description.replace(/^\w+\.\s*/, '');

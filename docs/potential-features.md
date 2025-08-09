@@ -33,15 +33,6 @@ Quality and architectural improvements identified for future development, priori
 
 ## Critical Architectural Issues
 
-### Over-Engineering: Unnecessary Abstraction Layers [MEDIUM PRIORITY]  
-**Current Issues**:
-- Page metadata wrapper (`/src/utils/page-metadata.ts`) - 17 lines just to avoid passing one parameter
-- Complex template system for simple static pages
-- Heavy abstractions where direct implementation would be clearer
-
-**Impact**: Code complexity without benefit, harder to debug and maintain
-**Solution**: Remove pointless wrappers, simplify template generation
-
 ### Static Generation Anti-Patterns [MEDIUM PRIORITY]
 **Current Issues**:
 - Computing same stats multiple times during build (inefficient)
