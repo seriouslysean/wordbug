@@ -108,6 +108,12 @@ export const getWordsLengthUrl = (): string => BROWSE_PATHS.WORDS_LENGTH;
 export const getWordsLetterUrl = (): string => BROWSE_PATHS.WORDS_LETTER;
 
 /**
+ * Get the browse words URL
+ * @returns {string} Browse words URL
+ */
+export const getBrowseWordsUrl = (): string => `${BASE_PATHS.WORDS}/browse`;
+
+/**
  * Get a year URL or words root if no year specified
  * @param {string} [year] - Optional year to navigate to
  * @returns {string} Year URL or words root

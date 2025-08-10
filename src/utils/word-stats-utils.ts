@@ -40,19 +40,19 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
     const word = wordData.word;
     const length = word.length;
 
-    if (!stats.longest || length > stats.longest.length) {
-      stats.longest = { word, length };
+    if (!stats.longest || length > stats.longest.word.length) {
+      stats.longest = wordData;
     }
-    if (!stats.shortest || length < stats.shortest.length) {
-      stats.shortest = { word, length };
+    if (!stats.shortest || length < stats.shortest.word.length) {
+      stats.shortest = wordData;
     }
 
     if (isPalindrome(word)) {
-      if (!stats.longestPalindrome || length > stats.longestPalindrome.length) {
-        stats.longestPalindrome = { word, length };
+      if (!stats.longestPalindrome || length > stats.longestPalindrome.word.length) {
+        stats.longestPalindrome = wordData;
       }
-      if (!stats.shortestPalindrome || length < stats.shortestPalindrome.length) {
-        stats.shortestPalindrome = { word, length };
+      if (!stats.shortestPalindrome || length < stats.shortestPalindrome.word.length) {
+        stats.shortestPalindrome = wordData;
       }
     }
 

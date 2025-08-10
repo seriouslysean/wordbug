@@ -1,0 +1,112 @@
+---
+import SiteLink from '~components/SiteLink.astro';
+import WordLink from '~components/WordLink.astro';
+
+interface DefinitionItem {
+  label: string;
+  value: string | number | any; // Allow word objects for valueType="word"
+  href?: string;
+  ariaLabel?: string;
+}
+
+interface Props {
+  items?: DefinitionItem[];
+  valueType?: 'default' | 'word';
+}
+
+const { items = [], valueType = 'default' } = Astro.props;
+const hasSlotContent = Astro.slots.has('default');
+---
+
+<dl class="definition-list">
+  {hasSlotContent ? (
+    <slot />
+  ) : (
+    items.map(({ label, value, href, ariaLabel }) => {
+      const renderValue = () => {
+        if (valueType === 'word') {
+          return <WordLink word={value} />;
+        } else if (href) {
+          return (
+            <SiteLink href={href} class="definition-list__link" ariaLabel={ariaLabel}>
+              {value}
+            </SiteLink>
+          );
+        } else {
+          return value;
+        }
+      };
+
+      return (
+        <div class="definition-list__item">
+          <dt class="definition-list__label">
+            <slot name="key">{label}</slot>
+          </dt>
+          <dd class="definition-list__value">
+            <slot name="value">
+              {renderValue()}
+            </slot>
+          </dd>
+        </div>
+      );
+    })
+  )}
+</dl>
+
+<style>
+  .definition-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+
+  .definition-list__item {
+    display: contents;
+  }
+
+  .definition-list__label {
+    color: var(--color-text-light);
+    margin: 0;
+    padding-top: var(--spacing-small);
+  }
+
+  .definition-list__value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: right;
+    min-width: 0;
+    margin: 0;
+    padding-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-small);
+  }
+
+  .definition-list__link {
+    color: var(--color-primary-light);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  @media (min-width: 1025px) {
+    .definition-list {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 1rem;
+      row-gap: 0;
+      align-items: baseline;
+    }
+
+    .definition-list__label {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .definition-list__value {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+  }
+</style>

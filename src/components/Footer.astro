@@ -1,6 +1,7 @@
 ---
 import wordnikLogo from '~assets/wordnik-gearheart.png';
 import SiteLink from '~components/SiteLink.astro';
+import { getBrowseWordsUrl } from '~astro-utils/url-utils';
 
 const currentYear = new Date().getFullYear();
 const attributionUrl = import.meta.env.SITE_AUTHOR_URL;
@@ -16,7 +17,7 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
         <SiteLink href="/" ariaLabel="Return to today's word">Home</SiteLink>
       </li>
       <li class="footer__item">
-        <SiteLink href="/words" ariaLabel="View all words">All Words</SiteLink>
+        <SiteLink href={getBrowseWordsUrl()} ariaLabel="Browse words by different categories">Browse Words</SiteLink>
       </li>
       <li class="footer__item">
         <SiteLink href="/stats" ariaLabel="View word statistics">Stats</SiteLink>

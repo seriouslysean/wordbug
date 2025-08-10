@@ -28,10 +28,10 @@ export interface WordLengthStat {
 }
 
 export interface WordStatsResult {
-  longest: WordLengthStat | null;
-  shortest: WordLengthStat | null;
-  longestPalindrome: WordLengthStat | null;
-  shortestPalindrome: WordLengthStat | null;
+  longest: WordData | null;
+  shortest: WordData | null;
+  longestPalindrome: WordData | null;
+  shortestPalindrome: WordData | null;
   letterFrequency: Record<string, number>;
 }
 

@@ -1,0 +1,67 @@
+---
+import DefinitionList from '~components/DefinitionList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
+import Heading from '~components/Heading.astro';
+import Layout from '~layouts/Layout.astro';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
+import { getWordsLengthUrl, getWordsLetterUrl, getStatsUrl, getWordsUrl } from '~astro-utils/url-utils';
+import { 
+  getWordsFromCollection, 
+  groupWordsByYear, 
+  groupWordsByLength, 
+  groupWordsByLetter 
+} from '~astro-utils/word-data-utils';
+
+const allWords = await getWordsFromCollection();
+const wordsByYear = groupWordsByYear(allWords);
+const wordsByLength = groupWordsByLength(allWords);
+const wordsByLetter = groupWordsByLetter(allWords);
+
+const yearCount = Object.keys(wordsByYear).length;
+const lengthCount = Object.keys(wordsByLength).length;
+const letterCount = Object.keys(wordsByLetter).length;
+const totalWords = allWords.length;
+
+const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
+  <Heading text={title} secondaryText={secondaryText} />
+  <DescriptionText text={description} />
+  
+  <section class="browse">
+    <DefinitionList items={[
+      {
+        label: 'all words',
+        value: `${totalWords} words across ${yearCount} years`,
+        href: getWordsUrl(),
+        ariaLabel: 'View all words organized by year'
+      },
+      {
+        label: 'by length',
+        value: `${lengthCount} different lengths`,
+        href: getWordsLengthUrl(),
+        ariaLabel: 'Browse words by character length'
+      },
+      {
+        label: 'by letter',
+        value: `${letterCount} letters (a-z)`,
+        href: getWordsLetterUrl(),
+        ariaLabel: 'Browse words alphabetically'
+      },
+      {
+        label: 'statistics',
+        value: 'word facts & patterns',
+        href: getStatsUrl(),
+        ariaLabel: 'View word statistics and patterns'
+      }
+    ]} />
+  </section>
+</Layout>
+
+<style>
+  .browse {
+    max-width: var(--content-width-medium);
+    margin: 0 auto;
+  }
+</style>

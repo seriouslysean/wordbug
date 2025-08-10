@@ -99,6 +99,13 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
     category: 'pages',
     secondaryText: formatWordCount,
   },
+  'words/browse': {
+    type: 'static',
+    title: 'Browse Words',
+    description: 'Explore different ways to browse and discover words.',
+    category: 'pages',
+    secondaryText: 'multiple browsing options',
+  },
   'words/length': {
     type: 'static',
     title: 'Words by Length',
