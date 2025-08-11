@@ -45,6 +45,24 @@ export const formatDate = (dateStr: string): string => {
 };
 
 /**
+ * Convert YYYYMMDD string to ISO date format (YYYY-MM-DD) for HTML datetime attributes
+ * @param {string} dateStr - Date string in YYYYMMDD format
+ * @returns {string} ISO date string or original if invalid
+ */
+export const formatISODate = (dateStr: string): string => {
+  if (!dateStr) {
+    return dateStr;
+  }
+
+  const date = parse(dateStr, 'yyyyMMdd', new Date());
+  if (!isValid(date)) {
+    return dateStr;
+  }
+
+  return format(date, 'yyyy-MM-dd');
+};
+
+/**
  * Convert a Date object to a YYYYMMDD string
  * @param {Date} date - Date to convert
  * @returns {string} Converted date string

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
- dateToYYYYMMDD, formatDate, getMonthNameFromDate, getMonthSlugFromDate, getTodayYYYYMMDD, isValidDate, MONTH_NAMES, monthSlugToNumber, YYYYMMDDToDate,
+ dateToYYYYMMDD, formatDate, formatISODate, getMonthNameFromDate, getMonthSlugFromDate, getTodayYYYYMMDD, isValidDate, MONTH_NAMES, monthSlugToNumber, YYYYMMDDToDate,
 } from '~utils/date-utils';
 
 describe('shared date-utils', () => {
@@ -62,6 +62,33 @@ describe('shared date-utils', () => {
 
     it('handles leap year dates', () => {
       expect(formatDate('20240229')).toBe('Feb 29, 2024');
+    });
+  });
+
+  describe('formatISODate', () => {
+    it('converts YYYYMMDD to ISO format correctly', () => {
+      expect(formatISODate('20240319')).toBe('2024-03-19');
+      expect(formatISODate('20251225')).toBe('2025-12-25');
+    });
+
+    it('handles single digit months and days', () => {
+      expect(formatISODate('20240101')).toBe('2024-01-01');
+      expect(formatISODate('20240905')).toBe('2024-09-05');
+    });
+
+    it('returns input string when format is invalid', () => {
+      expect(formatISODate('2024')).toBe('2024');
+      expect(formatISODate('invalid')).toBe('invalid');
+      expect(formatISODate('')).toBe('');
+    });
+
+    it('handles leap year dates', () => {
+      expect(formatISODate('20240229')).toBe('2024-02-29');
+    });
+
+    it('handles edge cases', () => {
+      expect(formatISODate('20241231')).toBe('2024-12-31'); // Last day of year
+      expect(formatISODate('20240301')).toBe('2024-03-01'); // First day of March
     });
   });
 

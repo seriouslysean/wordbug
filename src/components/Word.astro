@@ -2,7 +2,7 @@
 import Heading from '~components/Heading.astro';
 import WordDescription from '~components/WordDescription.astro';
 import type { WordData } from '~types';
-import { formatDate } from '~utils/date-utils';
+import { formatDate, formatISODate } from '~utils/date-utils';
 import { getWordDetails } from '~astro-utils/word-data-utils';
 
 interface Props {
@@ -20,7 +20,7 @@ const { partOfSpeech, definition, meta } = getWordDetails(word);
 ---
 
 <article class="word">
-  <time class="word__date" datetime={word.date}>{formatDate(word.date) || '\u00A0'}</time>
+  <time class="word__date" datetime={formatISODate(word.date)} title={formatDate(word.date)}>{formatDate(word.date) || '\u00A0'}</time>
   <Heading level={1} text={word.word} id="word-title" />
   <WordDescription
     partOfSpeech={partOfSpeech}

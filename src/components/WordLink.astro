@@ -1,6 +1,6 @@
 ---
 import SiteLink from '~components/SiteLink.astro';
-import { formatDate } from '~utils/date-utils';
+import { formatDate, formatISODate } from '~utils/date-utils';
 import { getWordUrl } from '~astro-utils/url-utils';
 
 interface Props {
@@ -24,7 +24,7 @@ const href = overrideHref || getWordUrl(word.word);
   ariaLabel={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}
 >
   <span class="word-link__word">{word.word}</span>
-  {formattedDate && <time class="word-link__date">{formattedDate}</time>}
+  {formattedDate && <time class="word-link__date" datetime={formatISODate(word.date)} title={formattedDate}>{formattedDate}</time>}
 </SiteLink>
 
 <style>
