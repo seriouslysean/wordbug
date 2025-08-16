@@ -8,22 +8,18 @@ import { getMonthNameFromDate } from '~utils/date-utils';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import {
-  getWordsFromCollection,
+  availableYears,
+  getWordsForYear,
   groupWordsByMonth,
 } from '~astro-utils/word-data-utils';
-import { getAvailableYears, getWordsByYear } from '~utils/word-data-utils';
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 
 export async function getStaticPaths() {
-  const allWords = await getWordsFromCollection();
-
-  const years = getAvailableYears(allWords);
-
-  return years
+  return availableYears
     .map(year => ({
       params: { year },
-      props: { words: getWordsByYear(year, allWords) },
+      props: { words: getWordsForYear(year) },
     }))
     .filter(({ props }) => props.words.length > 0);
 }

@@ -1,47 +1,37 @@
 ---
-import { getCollection } from 'astro:content';
-
 import DefinitionList from '~components/DefinitionList.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { getWordsLengthUrl } from '~astro-utils/url-utils';
 import {
-  getChronologicalMilestones,
-  getCurrentStreakStats,
-  getLetterPatternStats,
   getLetterStats,
   getLetterTypeStats,
   getPatternStats,
   getSyllableStats,
-  getWordEndingStats,
-  getWordStats,
 } from '~astro-utils/word-stats-utils';
 import Heading from '~components/Heading.astro';
 import Layout from '~layouts/Layout.astro';
 import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
-import { getAvailableLengths } from '~utils/word-data-utils';
+import { 
+  allWords, 
+  availableLengths,
+  wordStats,
+  letterPatternStats,
+  wordEndingStats,
+  streakStats,
+  milestoneWords
+} from '~astro-utils/word-data-utils';
 import { t } from '~utils/i18n-utils';
 
-const wordsCollection = await getCollection('words');
-const words = wordsCollection
-  .map(entry => ({
-    ...entry.data,
-    date: entry.id.includes('/') ? entry.id.split('/').pop() : entry.id,
-  }))
-  .sort((a, b) => a.date.localeCompare(b.date));
-const totalWords = words.length;
-const firstWord = totalWords > 0 ? words[0] : null;
-const latestWord = totalWords > 0 ? words[words.length - 1] : null;
-const lengthCount = getAvailableLengths(words).length;
+const totalWords = allWords.length;
+const firstWord = totalWords > 0 ? allWords[0] : null;
+const latestWord = totalWords > 0 ? allWords[allWords.length - 1] : null;
+const lengthCount = availableLengths.length;
 
-const wordStats = getWordStats(words);
 const letterStats = getLetterStats(wordStats.letterFrequency);
-const letterPatterns = getLetterPatternStats(words);
-const wordEndings = getWordEndingStats(words);
-const streakStats = getCurrentStreakStats(words);
 
-const { mostSyllables, leastSyllables } = getSyllableStats(words);
-const { mostVowels, mostConsonants } = getLetterTypeStats(words);
-const { allVowels, allConsonants, palindromes } = getPatternStats(words);
+const { mostSyllables, leastSyllables } = getSyllableStats(allWords);
+const { mostVowels, mostConsonants } = getLetterTypeStats(allWords);
+const { allVowels, allConsonants, palindromes } = getPatternStats(allWords);
 
 
 const leastSyllablesCount = leastSyllables ? countSyllables(leastSyllables.word) : 0;
@@ -55,22 +45,22 @@ const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
 const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
 const palindromeCount = palindromes.length;
 const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100);
-const milestoneCount = getChronologicalMilestones(words).length;
+const milestoneCount = milestoneWords.length;
 
 const letterPatternItems = [
-  { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatterns.startEndSame.length, href: '/stats/same-start-end' },
-  { key: 'doubleLetters', label: t('stats.double_letters'), count: letterPatterns.doubleLetters.length, href: '/stats/double-letters' },
-  { key: 'tripleLetters', label: t('stats.triple_letters'), count: letterPatterns.tripleLetters.length, href: '/stats/triple-letters' },
-  { key: 'alphabetical', label: t('stats.alphabetical_order'), count: letterPatterns.alphabetical.length, href: '/stats/alphabetical-order' },
+  { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatternStats.startEndSame.length, href: '/stats/same-start-end' },
+  { key: 'doubleLetters', label: t('stats.double_letters'), count: letterPatternStats.doubleLetters.length, href: '/stats/double-letters' },
+  { key: 'tripleLetters', label: t('stats.triple_letters'), count: letterPatternStats.tripleLetters.length, href: '/stats/triple-letters' },
+  { key: 'alphabetical', label: t('stats.alphabetical_order'), count: letterPatternStats.alphabetical.length, href: '/stats/alphabetical-order' },
 ].filter(item => item.count > 0);
 
 const wordEndingItems = [
-  { key: 'ing', label: t('stats.ing_words'), count: wordEndings.ing.length, href: '/stats/words-ending-ing' },
-  { key: 'ed', label: t('stats.ed_words'), count: wordEndings.ed.length, href: '/stats/words-ending-ed' },
-  { key: 'ly', label: t('stats.ly_words'), count: wordEndings.ly.length, href: '/stats/words-ending-ly' },
-  { key: 'ness', label: t('stats.ness_words'), count: wordEndings.ness.length, href: '/stats/words-ending-ness' },
-  { key: 'ful', label: t('stats.ful_words'), count: wordEndings.ful.length, href: '/stats/words-ending-ful' },
-  { key: 'less', label: t('stats.less_words'), count: wordEndings.less.length, href: '/stats/words-ending-less' },
+  { key: 'ing', label: t('stats.ing_words'), count: wordEndingStats.ing.length, href: '/stats/words-ending-ing' },
+  { key: 'ed', label: t('stats.ed_words'), count: wordEndingStats.ed.length, href: '/stats/words-ending-ed' },
+  { key: 'ly', label: t('stats.ly_words'), count: wordEndingStats.ly.length, href: '/stats/words-ending-ly' },
+  { key: 'ness', label: t('stats.ness_words'), count: wordEndingStats.ness.length, href: '/stats/words-ending-ness' },
+  { key: 'ful', label: t('stats.ful_words'), count: wordEndingStats.ful.length, href: '/stats/words-ending-ful' },
+  { key: 'less', label: t('stats.less_words'), count: wordEndingStats.less.length, href: '/stats/words-ending-less' },
 ].filter(item => item.count > 0);
 
 const hasLetterPatterns = letterPatternItems.length > 0;

@@ -9,6 +9,20 @@ import type {
   WordProcessedData,
 } from '~types';
 import { getMonthSlugFromDate } from '~utils/date-utils';
+import { 
+  getAvailableYears, 
+  getAvailableLengths, 
+  getWordsByYear,
+  getAvailableMonths,
+  getAvailableLetters
+} from '~utils/word-data-utils';
+import {
+  getWordStats,
+  getLetterPatternStats,
+  getWordEndingStats,
+  getCurrentStreakStats,
+  getChronologicalMilestones
+} from '~astro-utils/word-stats-utils';
 import { logger } from '~astro-utils/logger';
 
 /**
@@ -66,6 +80,55 @@ async function getAllWords(): Promise<WordData[]> {
 
 export const allWords = await getAllWords();
 
+/**
+ * All available years from the loaded collection
+ */
+export const availableYears = getAvailableYears(allWords);
+
+/**
+ * All available word lengths from the loaded collection
+ */
+export const availableLengths = getAvailableLengths(allWords);
+
+/**
+ * All available starting letters from the loaded collection
+ */
+export const availableLetters = getAvailableLetters(allWords);
+
+/**
+ * Get words from a specific year using the loaded collection
+ */
+export const getWordsForYear = (year: string): WordData[] => getWordsByYear(year, allWords);
+
+/**
+ * Get available months for a specific year using the loaded collection
+ */
+export const getAvailableMonthsForYear = (year: string): string[] => getAvailableMonths(year, allWords);
+
+/**
+ * Pre-computed word statistics from the loaded collection
+ */
+export const wordStats = getWordStats(allWords);
+
+/**
+ * Pre-computed letter pattern statistics from the loaded collection
+ */
+export const letterPatternStats = getLetterPatternStats(allWords);
+
+/**
+ * Pre-computed word ending statistics from the loaded collection
+ */
+export const wordEndingStats = getWordEndingStats(allWords);
+
+/**
+ * Pre-computed streak statistics from the loaded collection
+ */
+export const streakStats = getCurrentStreakStats(allWords);
+
+/**
+ * Pre-computed milestone words from the loaded collection
+ */
+export const milestoneWords = getChronologicalMilestones(allWords);
 
 /**
  * Processes raw word data into a standardized format for display.
