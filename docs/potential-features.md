@@ -2,6 +2,68 @@
 
 Quality and architectural improvements identified for future development, prioritized by impact and complexity.
 
+## Implementation Priority Order (Best to Least Good)
+
+### TIER 1: High Impact, High Value
+
+**1. Enhanced Navigation Architecture**
+- Issue: All Words page incomplete, poor cross-linking
+- Impact: HIGH - SEO boost, user engagement
+- ROI: Major discoverability improvement
+
+**2. Cross-Page Internal Linking**
+- Issue: Missing strategic links between related content
+- Impact: HIGH - SEO density, content discovery
+- ROI: Significant SEO and UX gains
+
+### TIER 2: Medium Impact, Good Value
+
+**3. Stats Definition Architecture Cleanup**
+- Issue: Scattered definitions across multiple files
+- Impact: MEDIUM-HIGH - Developer experience, maintainability
+- ROI: Easier stats additions, cleaner codebase
+
+**4. Error Handling Consistency**
+- Issue: Mixed error patterns (throw vs null vs log)
+- Impact: MEDIUM-HIGH - Debugging, reliability
+- ROI: Better debugging, more reliable error states
+
+**5. Client-Side Search Functionality**
+- Issue: No word search capability
+- Impact: MEDIUM - User experience enhancement
+- ROI: Modern UX feature, no server dependency
+
+### TIER 3: Lower Impact, Still Valuable
+
+**6. Test Coverage Completion**
+- Issue: Missing tests for several utilities
+- Impact: MEDIUM - Regression protection
+- ROI: Development confidence, refactoring safety
+
+**7. RSS Feed Generation**
+- Issue: No content feeds for discovery
+- Impact: LOW-MEDIUM - Content distribution
+- ROI: Modern content sharing, learning exercise
+
+**8. Stats Category Directory Pages**
+- Issue: No landing pages for stats sections
+- Impact: MEDIUM - SEO, content organization
+- ROI: Better content structure
+
+### TIER 4: Nice-to-Have
+
+**9. Theme Switching (Dark/Light Mode)**
+- Impact: LOW - User preference accommodation
+- ROI: Modern UX feature
+
+**10. Type Definition Consolidation**
+- Impact: MEDIUM - Developer experience
+- ROI: Cleaner types, but potentially over-engineering
+
+**11. Enhanced Programmatic Stats**
+- Impact: MEDIUM - Visual data potential
+- ROI: Future chart integration foundation
+
 ## Current Focus: Navigation & Discoverability
 
 ### IN PROGRESS: Enhanced Navigation Architecture [HIGH PRIORITY]
@@ -32,32 +94,7 @@ Quality and architectural improvements identified for future development, priori
 - **Impact**: Future developers may question these patterns
 - **Solution**: Add architectural documentation explaining this design choice
 
-## Critical Architectural Issues
-
-### Static Generation Anti-Patterns [MEDIUM PRIORITY]
-**Current Issues**:
-- Computing same stats multiple times during build (inefficient)
-- Loading word collections repeatedly for static path generation
-- Dynamic patterns in static contexts
-
-**Impact**: Slower build times, redundant computation
-**Solution**: Cache expensive computations, load collections once per build
-
 ## Architecture & Code Quality Improvements
-
-### Text Pluralization and Grammar [HIGH PRIORITY]
-**Current Issue**: Stats descriptions have grammatical errors with singular/plural agreement
-- "1 word that end" should be "1 word that ends" 
-- "1 word that mark" should be "1 word that marks"
-- "1 word that start" should be "1 word that starts"
-
-**Impact**: Poor user experience, unprofessional appearance, accessibility concerns
-**Solution**: Implement proper pluralization logic or integrate i18n library (even for monolingual site)
-```javascript
-// Current (broken): "1 word that end with..."
-// Fixed: "1 word that ends with..." / "5 words that end with..."
-```
-
 
 ### Stats Definition Architecture [HIGH PRIORITY]
 **Current Issue**: Stats definitions scattered across multiple files with complex interdependencies

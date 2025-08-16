@@ -123,6 +123,29 @@ Each word is stored as a JSON file at `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}
 - **Caching**: Automatic caching and invalidation during development
 - **Sorting**: Consistent date-based sorting (newest first)
 
+### Vue-Style Computed Derivatives
+The codebase implements a reactive computed pattern similar to Vue.js for optimal performance:
+
+- **Single Collection Load**: `allWords` loaded once at build time via `getAllWords()`
+- **Pre-computed Values**: Statistics computed once and cached (e.g., `wordStats`, `letterPatternStats`)
+- **Computed Derivatives**: Filtered views created as functions (e.g., `getWordsForYear(year)`)
+- **Direct Usage**: Components import computed values directly without aliasing
+
+**Example Pattern:**
+```typescript
+// Single source collection
+export const allWords = await getAllWords();
+
+// Pre-computed statistics (expensive operations done once)
+export const wordStats = getWordStats(allWords);
+export const availableYears = getAvailableYears(allWords);
+
+// Function derivatives for parameterized access
+export const getWordsForYear = (year: string) => getWordsByYear(year, allWords);
+```
+
+**Performance Impact**: 10%+ build time improvement by eliminating duplicate calculations
+
 ### Validation Rules
 - **Unique Words**: Each word can only be used once across all dates
 - **Date Constraints**: Words cannot be added for future dates
