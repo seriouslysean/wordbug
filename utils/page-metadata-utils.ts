@@ -10,7 +10,7 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
 } from '~constants/stats';
-import { formatWordCount } from '~utils/i18n-utils';
+import { formatWordCount, t } from '~utils/i18n-utils';
 import {
   getAvailableLetters,
   getAvailableLengths,
@@ -85,59 +85,51 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
   return {
   home: {
     type: 'home',
-    title: 'Word of the Day',
-    description: (currentWord: string): string =>
-      `Today's word is "${currentWord}". Learn something new every day with our Word of the Day.`,
+    title: t('home.heading'),
+    description: (currentWord: string): string => t('home.description', { word: currentWord }),
     category: 'pages',
   },
 
   // Main pages
   words: {
     type: 'static',
-    title: 'All Words',
-    description: 'Explore every word in our collection, organized chronologically.',
+    title: t('words.heading'),
+    description: t('words.description'),
     category: 'pages',
     secondaryText: formatWordCount,
   },
   'words/browse': {
     type: 'static',
-    title: 'Browse Words',
-    description: 'Explore different ways to browse and discover words.',
+    title: t('browse.heading'),
+    description: t('browse.description'),
     category: 'pages',
-    secondaryText: 'multiple browsing options',
+    secondaryText: t('browse.subheading'),
   },
   'words/length': {
     type: 'static',
-    title: 'Words by Length',
-    description: 'Words organized by character length.',
+    title: t('words.by_length_heading'),
+    description: t('words.by_length_description'),
     category: 'pages',
     secondaryText: formatWordCount,
   },
   'words/letter': {
     type: 'static',
-    title: 'Words by Letter',
-    description: 'Words organized alphabetically by starting letter.',
+    title: t('words.by_letter_heading'),
+    description: t('words.by_letter_description'),
     category: 'pages',
     secondaryText: formatWordCount,
   },
   stats: {
     type: 'static',
-    title: 'Stats',
-    description: 'Explore patterns and statistics from our word collection.',
+    title: t('stats.heading'),
+    description: t('stats.description'),
     category: 'pages',
-    secondaryText: 'For Nerds',
-  },
-  about: {
-    type: 'static',
-    title: 'About',
-    description: 'Learn more about this Word of the Day collection.',
-    category: 'pages',
+    secondaryText: t('stats.subheading'),
   },
   '404': {
     type: 'static',
-    title: '404',
-    description:
-      'A web page that cannot be found; an error indicating the requested content does not exist.',
+    title: t('error.heading'),
+    description: t('error.description'),
     category: 'pages',
     partOfSpeech: 'noun',
   },

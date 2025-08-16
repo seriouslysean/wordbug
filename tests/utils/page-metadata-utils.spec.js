@@ -20,7 +20,7 @@ describe('page-metadata-utils', () => {
       const metadata = getPageMetadata('words', mockWords);
       expect(metadata).toEqual({
         title: 'All Words',
-        description: 'Explore every word in our collection, organized chronologically.',
+        description: 'Every word, organized chronologically.',
         category: 'pages',
         secondaryText: '3 Words',
       });
@@ -30,7 +30,7 @@ describe('page-metadata-utils', () => {
       const metadata = getPageMetadata('stats', mockWords);
       expect(metadata).toEqual({
         title: 'Stats',
-        description: 'Explore patterns and statistics from our word collection.',
+        description: 'Word patterns and statistics.',
         category: 'pages',
         secondaryText: 'For Nerds',
       });
@@ -67,7 +67,7 @@ describe('page-metadata-utils', () => {
       const metadata = getPageMetadata('words/length', mockWords);
       expect(metadata).toEqual({
         title: 'Words by Length',
-        description: 'Words organized by character length.',
+        description: 'Words grouped by character count.',
         category: 'pages',
         secondaryText: '3 Words',
       });
@@ -169,7 +169,7 @@ describe('page-metadata-utils', () => {
       const metadata = getPageMetadataWrapper('/vocab/stats');
       expect(metadata).toEqual({
         title: 'Stats',
-        description: 'Explore patterns and statistics from our word collection.',
+        description: 'Word patterns and statistics.',
         category: 'pages',
         secondaryText: 'For Nerds',
       });
@@ -184,7 +184,7 @@ describe('page-metadata-utils', () => {
       const metadata = getPageMetadataWrapper('/vocab/stats');
       expect(metadata).toEqual({
         title: 'Stats',
-        description: 'Explore patterns and statistics from our word collection.',
+        description: 'Word patterns and statistics.',
         category: 'pages',
         secondaryText: 'For Nerds',
       });

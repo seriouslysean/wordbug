@@ -1,5 +1,6 @@
 ---
 import DefinitionList from '~components/DefinitionList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { getWordsLengthUrl } from '~astro-utils/url-utils';
 import {
@@ -118,6 +119,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
 <Layout title={title} description={description}>
   <main class="stats">
     <Heading text={title} secondaryText={secondaryText} />
+    <DescriptionText text={description} />
 
     <section class="stats__section">
       <DefinitionList items={basicStatsItems} />

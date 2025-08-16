@@ -15,18 +15,23 @@
   },
   "home": {
     "heading": "Word of the Day",
+    "description": "Today's word is \"{{word}}\".",
     "previous_words": "Previous Words"
   },
   "words": {
     "heading": "All Words",
-    "description": "Explore every word in our collection, organized chronologically.",
+    "description": "Every word, organized chronologically.",
     "words_starting_with": "Words Starting with {{letter}}",
-    "length_words": "{{length}}-Letter Words"
+    "length_words": "{{length}}-Letter Words",
+    "by_length_heading": "Words by Length",
+    "by_length_description": "Words grouped by character count.",
+    "by_letter_heading": "Words by Letter",
+    "by_letter_description": "Words grouped by first letter."
   },
   "browse": {
     "heading": "Browse Words",
     "subheading": "Multiple Browsing Options",
-    "description": "Explore different ways to browse and discover words.",
+    "description": "Different ways to browse and discover words.",
     "all_words": "All Words",
     "by_length": "By Length", 
     "by_letter": "By Letter",
@@ -39,7 +44,7 @@
   "stats": {
     "heading": "Stats",
     "subheading": "For Nerds",
-    "description": "Explore patterns and statistics from our word collection.",
+    "description": "Word patterns and statistics.",
     "total_words": "Total Words",
     "word_lengths": "Word Lengths",
     "milestone_words": "Milestone Words", 
