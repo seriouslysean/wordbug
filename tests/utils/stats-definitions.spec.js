@@ -50,7 +50,7 @@ describe('stats-definitions', () => {
         // Test the metaDescription function
         const result = definition.metaDescription(5);
         expect(typeof result).toBe('string');
-        expect(result).toContain('5 words');
+        expect(result).toContain('5 Words');
       });
     });
   });
@@ -74,7 +74,7 @@ describe('stats-definitions', () => {
         // Test the metaDescription function
         const result = definition.metaDescription(3);
         expect(typeof result).toBe('string');
-        expect(result).toContain('3 words');
+        expect(result).toContain('3 Words');
       });
     });
   });
@@ -127,7 +127,7 @@ describe('stats-definitions', () => {
       const leastCommonDef = DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER];
       const result = leastCommonDef.metaDescription(5, 'z');
       expect(typeof result).toBe('string');
-      expect(result).toContain('5 words');
+      expect(result).toContain('5 Words');
       expect(result).toContain('z');
     });
   });

@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 
 import {
   countSyllables,
-  formatWordCount,
   getConsonantCount,
   getVowelCount,
   getWordEndings,
@@ -116,22 +115,6 @@ describe('text-utils', () => {
     });
   });
 
-  describe('formatWordCount', () => {
-    it('formats singular correctly', () => {
-      expect(formatWordCount(1)).toBe('1 word');
-      expect(formatWordCount(0)).toBe('0 words');
-    });
-
-    it('formats plural correctly', () => {
-      expect(formatWordCount(2)).toBe('2 words');
-      expect(formatWordCount(10)).toBe('10 words');
-      expect(formatWordCount(100)).toBe('100 words');
-    });
-
-    it('handles edge cases', () => {
-      expect(formatWordCount(-1)).toBe('-1 words');
-    });
-  });
 
   describe('isStartEndSame', () => {
     it('returns true for words that start and end with the same letter', () => {

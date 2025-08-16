@@ -2,6 +2,7 @@
 import wordnikLogo from '~assets/wordnik-gearheart.png';
 import SiteLink from '~components/SiteLink.astro';
 import { getBrowseWordsUrl } from '~astro-utils/url-utils';
+import { t } from '~utils/i18n-utils';
 
 const currentYear = new Date().getFullYear();
 const attributionUrl = import.meta.env.SITE_AUTHOR_URL;
@@ -11,23 +12,22 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
 ---
 
 <footer class="footer" role="contentinfo">
-  <nav class="footer__nav" aria-label="Footer navigation">
+  <nav class="footer__nav">
     <ul class="footer__links">
       <li class="footer__item">
-        <SiteLink href="/" ariaLabel="Return to today's word">Home</SiteLink>
+        <SiteLink href="/">{t('nav.home')}</SiteLink>
       </li>
       <li class="footer__item">
-        <SiteLink href={getBrowseWordsUrl()} ariaLabel="Browse words by different categories">Browse Words</SiteLink>
+        <SiteLink href={getBrowseWordsUrl()}>{t('nav.browse_words')}</SiteLink>
       </li>
       <li class="footer__item">
-        <SiteLink href="/stats" ariaLabel="View word statistics">Stats</SiteLink>
+        <SiteLink href="/stats">{t('nav.stats')}</SiteLink>
       </li>
       {showAttribution && (
         <li class="footer__item">
           <SiteLink
             href={attributionUrl}
             target="_blank"
-            ariaLabel={`View ${authorName}'s profile (opens in new tab)`}
           >
             {attributionMessage}, {currentYear}
           </SiteLink>
@@ -38,8 +38,7 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
           href="https://www.wordnik.com"
           target="_blank"
           class="footer__wordnik"
-          title="Powered by Wordnik"
-          ariaLabel="Powered by Wordnik (opens in new tab)"
+          title={t('footer.powered_by')}
         >
           <img src={wordnikLogo.src} alt="Wordnik" width="16" height="16" />
         </SiteLink>

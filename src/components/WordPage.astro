@@ -6,6 +6,7 @@ import type { WordData } from '~types';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import { getMetaDescription } from '~astro-utils/seo-utils.ts';
 import { extractWordDefinition } from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
 
 interface Props {
   wordData: WordData;
@@ -39,9 +40,8 @@ const pageDescription = getMetaDescription({
     <WordNav
       previousWord={previousWord}
       nextWord={nextWord}
-      previousLabel="Previous Word"
-      nextLabel="Next Word"
-      ariaLabel="Word navigation"
+      previousLabel={t('nav.previous_word')}
+      nextLabel={t('nav.next_word')}
     />
 
 </Layout>

@@ -12,6 +12,7 @@ import {
   groupWordsByLength, 
   groupWordsByLetter 
 } from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
@@ -32,28 +33,24 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
   <section class="browse">
     <DefinitionList items={[
       {
-        label: 'all words',
-        value: `${totalWords} words across ${yearCount} years`,
-        href: getWordsUrl(),
-        ariaLabel: 'View all words organized by year'
+        label: t('browse.all_words'),
+        value: t('browse.words_across_years', { totalWords, yearCount }),
+        href: getWordsUrl()
       },
       {
-        label: 'by length',
-        value: `${lengthCount} different lengths`,
-        href: getWordsLengthUrl(),
-        ariaLabel: 'Browse words by character length'
+        label: t('browse.by_length'),
+        value: t('browse.different_lengths', { lengthCount }),
+        href: getWordsLengthUrl()
       },
       {
-        label: 'by letter',
-        value: `${letterCount} letters (a-z)`,
-        href: getWordsLetterUrl(),
-        ariaLabel: 'Browse words alphabetically'
+        label: t('browse.by_letter'),
+        value: t('browse.letters_a_to_z', { letterCount }),
+        href: getWordsLetterUrl()
       },
       {
-        label: 'statistics',
-        value: 'word facts & patterns',
-        href: getStatsUrl(),
-        ariaLabel: 'View word statistics and patterns'
+        label: t('browse.statistics'),
+        value: t('browse.word_facts_patterns'),
+        href: getStatsUrl()
       }
     ]} />
   </section>

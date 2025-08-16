@@ -3,13 +3,14 @@ import WordDisplay from '~components/WordDisplay.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { getWordsFromCollection } from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
 
 // Get the metadata from the 404 page, using type assertion to access partOfSpeech
 const allWords = await getWordsFromCollection();
 const metadata = getPageMetadata('/404') as { title: string; description: string; partOfSpeech: string };
 const { title, description, partOfSpeech } = metadata;
 const wordsToShow = allWords.slice(0, 4);
-const sectionTitle = wordsToShow.length > 0 ? 'Recent Words' : '';
+const sectionTitle = wordsToShow.length > 0 ? t('error.recent_words') : '';
 const definition = description.replace(/^\w+\.\s*/, '');
 // Make a mock word for 404 we can pass to WordDisplay
 const notFoundWord = {

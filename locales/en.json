@@ -1,0 +1,91 @@
+{
+  "common": {
+    "words_zero": "No Words",
+    "words_one": "1 Word", 
+    "words_other": "{{count}} Words",
+    "no_words_yet": "No words... yet :)",
+    "skip_to_content": "Skip to main content"
+  },
+  "nav": {
+    "home": "Home",
+    "browse_words": "Browse Words",
+    "stats": "Stats",
+    "previous_word": "Previous Word",
+    "next_word": "Next Word"
+  },
+  "home": {
+    "heading": "Word of the Day",
+    "previous_words": "Previous Words"
+  },
+  "words": {
+    "heading": "All Words",
+    "description": "Explore every word in our collection, organized chronologically.",
+    "words_starting_with": "Words Starting with {{letter}}",
+    "length_words": "{{length}}-Letter Words"
+  },
+  "browse": {
+    "heading": "Browse Words",
+    "subheading": "Multiple Browsing Options",
+    "description": "Explore different ways to browse and discover words.",
+    "all_words": "All Words",
+    "by_length": "By Length", 
+    "by_letter": "By Letter",
+    "statistics": "Statistics",
+    "words_across_years": "{{totalWords}} Words Across {{yearCount}} Years",
+    "different_lengths": "{{lengthCount}} Different Lengths",
+    "letters_a_to_z": "{{letterCount}} Letters (A-Z)",
+    "word_facts_patterns": "Word Facts & Patterns"
+  },
+  "stats": {
+    "heading": "Stats",
+    "subheading": "For Nerds",
+    "description": "Explore patterns and statistics from our word collection.",
+    "total_words": "Total Words",
+    "word_lengths": "Word Lengths",
+    "milestone_words": "Milestone Words", 
+    "first_word": "First Word",
+    "latest_word": "Latest Word",
+    "current_streak": "Current Streak",
+    "longest_streak": "Longest Streak",
+    "shortest": "Shortest ({{length}} Letters)",
+    "longest": "Longest ({{length}} Letters)",
+    "least_syllables": "Least Syllables ({{count}} Syllables)",
+    "most_syllables": "Most Syllables ({{count}} Syllables)",
+    "most_vowels": "Most Vowels ({{count}} Vowels)",
+    "most_consonants": "Most Consonants ({{count}} Consonants)",
+    "most_common_letter": "Most Common Letter ({{count}} Words)",
+    "least_common_letter": "Least Common Letter ({{count}} Word{{plural}})",
+    "palindromes": "Palindromes",
+    "all_consonants": "All Consonants",
+    "all_vowels": "All Vowels", 
+    "same_start_end": "Same Start/End Letter",
+    "double_letters": "Double Letters",
+    "triple_letters": "Triple Letters",
+    "alphabetical_order": "Alphabetical Order",
+    "ing_words": "-ing Words",
+    "ed_words": "-ed Words",
+    "ly_words": "-ly Words",
+    "ness_words": "-ness Words",
+    "ful_words": "-ful Words",
+    "less_words": "-less Words",
+    "days": "{{count}} Days",
+    "letter_patterns_heading": "Letter Patterns",
+    "word_endings_heading": "Word Endings",
+    "word_facts_heading": "Word Facts",
+    "streaks_heading": "Streaks",
+    "streak_comparison": "Streak Comparison",
+    "current": "Current: {{count}}",
+    "best": "Best: {{count}}"
+  },
+  "error": {
+    "heading": "404",
+    "description": "A web page that cannot be found; an error indicating the requested content does not exist.",
+    "recent_words": "Recent Words"
+  },
+  "footer": {
+    "powered_by": "Powered by Wordnik"
+  },
+  "word": {
+    "source": "Source"
+  }
+}

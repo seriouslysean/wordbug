@@ -1,5 +1,6 @@
 ---
 import type { SourceMeta } from '~types';
+import { t } from '~utils/i18n-utils';
 
 interface Props {
   partOfSpeech: string;
@@ -16,13 +17,13 @@ const sourceUrl = meta?.sourceUrl;
   <section class="word-description">
     <p class="word-description__text">
       {partOfSpeech && (
-        <span class="word-description__type" aria-label={`Part of speech: ${partOfSpeech}`}>
+        <span class="word-description__type">
           {partOfSpeech}.
         </span>
       )}<span set:html={definition}></span>
       {sourceUrl && (
         <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="word-description__attribution">
-          <span>source</span>
+          <span>{t('word.source')}</span>
         </a>
       )}
     </p>

@@ -1,5 +1,6 @@
 ---
 import WordLink from '~components/WordLink.astro';
+import { t } from '~utils/i18n-utils';
 
 interface Props {
   words: Array<{ word: string; date: string }>;
@@ -31,7 +32,7 @@ const displayWords = limit ? words.slice(0, limit) : words;
 ) : (
   showEmpty && (
     <div class="word-list word-list__empty">
-      <p>No words... yet :)</p>
+      <p>{t('common.no_words_yet')}</p>
     </div>
   )
 )}

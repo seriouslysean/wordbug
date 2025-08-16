@@ -403,6 +403,77 @@ Tools designed to work seamlessly with GitHub Actions:
 - **Language Attributes**: Proper lang attributes for pronunciation
 - **Responsive Design**: Mobile-first approach with touch-friendly interactions
 
+## Utility Architecture and Import Guidelines
+
+### CLI vs Astro Separation
+
+The project maintains a purposeful architectural separation between pure Node.js utilities and Astro-specific code to enable CLI tool independence and proper environment boundaries.
+
+#### Root utils Directory - Pure Business Logic
+Purpose: Environment-agnostic functions usable by both CLI tools and Astro components
+Dependencies: Only Node.js built-ins and pure JavaScript libraries
+Usage: CLI tools, tests, and shared business logic
+Import Pattern: ~utils/text-utils (from TypeScript path mapping)
+
+Files:
+- date-utils.ts - Pure date manipulation functions
+- text-utils.ts - String analysis and formatting functions  
+- word-stats-utils.ts - Statistics calculation algorithms
+- word-data-utils.ts - Simple data filtering utilities
+- word-validation.ts - Data validation rules
+- page-metadata-utils.ts - Core metadata generation logic
+
+#### src/utils Directory - Astro-Specific Utilities
+Purpose: Web application utilities that require Astro features
+Dependencies: Astro Content Collections, framework-specific APIs, caching
+Usage: Astro components, pages, and layouts only
+Import Pattern: ~astro-utils/word-data-utils (from TypeScript path mapping)
+
+Files:
+- word-data-utils.ts - Astro Content Collection integration with caching
+- word-stats-utils.ts - Enhanced stats with Astro-specific error handling
+- page-metadata.ts - Astro wrapper for page metadata with BASE_PATH handling
+- logger.ts, sentry.ts, image-utils.ts - Web app infrastructure
+
+### Why This Separation Exists
+
+1. CLI Tool Independence: CLI tools must work without Astro build system dependencies
+2. Environment Boundaries: Different runtime environments require different utilities
+3. Build Performance: Prevents unnecessary framework dependencies in CLI operations
+4. Testing Clarity: Easier to unit test pure functions vs framework-dependent code
+
+### Import Guidelines
+
+Correct Usage:
+```typescript
+// In CLI tools (tools/*)
+import { formatDate } from '~utils/date-utils';
+
+// In Astro components (src/*)
+import { getWordsFromCollection } from '~astro-utils/word-data-utils';
+import { formatDate } from '~utils/date-utils'; // Also valid - pure functions
+```
+
+Incorrect Usage:
+```typescript
+// In CLI tools - NEVER import Astro-specific utilities
+import { getWordsFromCollection } from '~astro-utils/word-data-utils'; // ERROR
+
+// In Astro components - Avoid when Astro-specific alternative exists
+import { getAvailableYears } from '~utils/word-data-utils'; // Use ~astro-utils version instead
+```
+
+### Validation of Duplication Claims
+
+What external audits may perceive as duplication is actually legitimate architectural separation:
+
+- Different Interfaces: utils/word-data-utils.ts uses simple arrays, src/utils/word-data-utils.ts uses Astro Collections
+- Different Error Handling: Root utils use basic console logging, Astro utils use structured logging and Sentry
+- Different Performance: Root utils are synchronous, Astro utils include caching and async operations
+- Different Dependencies: Root utils avoid framework deps, Astro utils leverage framework features
+
+This separation should not be consolidated as it serves legitimate architectural purposes and follows Astro best practices.
+
 ## Recent Architecture Changes
 
 ### Tool Consolidation (January 2025)

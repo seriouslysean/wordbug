@@ -6,7 +6,6 @@ interface DefinitionItem {
   label: string;
   value: string | number | any; // Allow word objects for valueType="word"
   href?: string;
-  ariaLabel?: string;
 }
 
 interface Props {
@@ -22,13 +21,13 @@ const hasSlotContent = Astro.slots.has('default');
   {hasSlotContent ? (
     <slot />
   ) : (
-    items.map(({ label, value, href, ariaLabel }) => {
+    items.map(({ label, value, href }) => {
       const renderValue = () => {
         if (valueType === 'word') {
           return <WordLink word={value} />;
         } else if (href) {
           return (
-            <SiteLink href={href} class="definition-list__link" ariaLabel={ariaLabel}>
+            <SiteLink href={href} class="definition-list__link">
               {value}
             </SiteLink>
           );

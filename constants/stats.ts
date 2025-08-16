@@ -1,5 +1,5 @@
 import type { StatsDefinition, StatsSlug, SuffixKey } from '~types';
-import { formatWordCount } from '~utils/text-utils';
+import { formatWordCount } from '~utils/i18n-utils';
 
 // Stats page slug constants - defined here since this is where they're used
 export const STATS_SLUGS = {

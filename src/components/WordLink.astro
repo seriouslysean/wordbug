@@ -21,7 +21,6 @@ const href = overrideHref || getWordUrl(word.word);
 <SiteLink
   href={href}
   class={className}
-  ariaLabel={`View ${word.word}${formattedDate ? ` from ${formattedDate}` : ''}`}
 >
   <span class="word-link__word">{word.word}</span>
   {formattedDate && <time class="word-link__date" datetime={formatISODate(word.date)} title={formattedDate}>{formattedDate}</time>}

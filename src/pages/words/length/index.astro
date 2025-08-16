@@ -7,6 +7,7 @@ import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import { getLengthUrl } from '~astro-utils/url-utils';
 import { getWordsFromCollection, groupWordsByLength } from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const lengthGroups = Object.entries(groupWordsByLength(allWords)).map(([length, words]) => ({
@@ -19,6 +20,6 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
   <Heading text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
   {lengthGroups.map(({ length, words }) => (
-    <WordSection title={`${length}-Letter Words`} href={getLengthUrl(length)} words={words} />
+    <WordSection title={t('words.length_words', { length })} href={getLengthUrl(length)} words={words} />
   ))}
 </Layout>

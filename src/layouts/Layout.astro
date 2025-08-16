@@ -12,6 +12,7 @@ import { getMetaDescription, seoConfig } from '~astro-utils/seo-utils.ts';
 import { getAsciiArt } from '~astro-utils/static-file-utils';
 import { getFullUrl,getUrl } from '~astro-utils/url-utils';
 import { extractWordDefinition,getWordsFromCollection } from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
 
 const { title, word, description, structuredDataType, noindex, nofollow } = Astro.props;
 
@@ -153,7 +154,7 @@ const wordSchemaData = word ? (() => {
 		<style set:html={`:root { ${colorVariables} }`}></style>
   </head>
   <body class="layout">
-	<a href="#main-content" class="skip-to-content">Skip to main content</a>
+	<a href="#main-content" class="skip-to-content">{t('common.skip_to_content')}</a>
 	<Header />
 	<main class="content" id="main-content">
 	  <slot />

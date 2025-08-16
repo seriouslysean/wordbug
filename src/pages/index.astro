@@ -4,6 +4,7 @@ import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import { getCurrentWord, getWordsFromCollection } from '~astro-utils/word-data-utils';
 import WordDisplay from '~components/WordDisplay.astro';
 import Layout from '~layouts/Layout.astro';
+import { t } from '~utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const currentWord = getCurrentWord(allWords);
@@ -11,7 +12,7 @@ const wordsToShow = allWords
   .filter(word => word && word.word !== currentWord?.word)
   .slice(0, 4);
 
-const sectionTitle = wordsToShow.length > 0 ? 'Previous Words' : '';
+const sectionTitle = wordsToShow.length > 0 ? t('home.previous_words') : '';
 
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---

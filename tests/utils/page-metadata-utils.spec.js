@@ -22,7 +22,7 @@ describe('page-metadata-utils', () => {
         title: 'All Words',
         description: 'Explore every word in our collection, organized chronologically.',
         category: 'pages',
-        secondaryText: '3 words',
+        secondaryText: '3 Words',
       });
     });
 
@@ -69,7 +69,7 @@ describe('page-metadata-utils', () => {
         title: 'Words by Length',
         description: 'Words organized by character length.',
         category: 'pages',
-        secondaryText: '3 words',
+        secondaryText: '3 Words',
       });
     });
 
@@ -79,7 +79,7 @@ describe('page-metadata-utils', () => {
         title: '8-Letter Words',
         description: 'Words containing exactly 8 letters.',
         category: 'pages',
-        secondaryText: '0 words',
+        secondaryText: 'No Words',
       });
     });
 
@@ -89,7 +89,7 @@ describe('page-metadata-utils', () => {
         title: '4-Letter Words',
         description: 'Words containing exactly 4 letters.',
         category: 'pages',
-        secondaryText: '1 word',
+        secondaryText: '1 Word',
       });
     });
 

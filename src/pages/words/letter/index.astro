@@ -7,6 +7,7 @@ import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 import { getLetterUrl } from '~astro-utils/url-utils';
 import { getWordsFromCollection, groupWordsByLetter } from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const letterGroups = Object.entries(groupWordsByLetter(allWords)).map(([letter, words]) => ({
@@ -19,6 +20,6 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
   <Heading text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
   {letterGroups.map(({ letter, words }) => (
-    <WordSection title={`Words Starting with ${letter}`} href={getLetterUrl(letter)} words={words} />
+    <WordSection title={t('words.words_starting_with', { letter })} href={getLetterUrl(letter)} words={words} />
   ))}
 </Layout>

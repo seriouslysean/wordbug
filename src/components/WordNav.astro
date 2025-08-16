@@ -13,7 +13,6 @@ interface Props {
   } | null;
   previousLabel?: string;
   nextLabel?: string;
-  ariaLabel?: string;
 }
 
 const {
@@ -21,7 +20,6 @@ const {
   nextWord,
   previousLabel = 'Previous',
   nextLabel = 'Next',
-  ariaLabel = 'Word navigation',
 } = Astro.props;
 
 // Get the word that should be displayed on the homepage (today's word)
@@ -29,7 +27,7 @@ const allWords = await getWordsFromCollection();
 const homepageWord = getCurrentWord(allWords);
 ---
 
-<nav class="word-nav" aria-label={ariaLabel}>
+<nav class="word-nav">
   <div class="word-nav__container">
     <div class="word-nav__previous">
       {previousWord && (

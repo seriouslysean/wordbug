@@ -10,7 +10,7 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
 } from '~constants/stats';
-import { formatWordCount } from '~utils/text-utils';
+import { formatWordCount } from '~utils/i18n-utils';
 import {
   getAvailableLetters,
   getAvailableLengths,

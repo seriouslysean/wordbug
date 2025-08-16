@@ -4,7 +4,6 @@ import { getUrl } from '~astro-utils/url-utils';
 interface Props {
   href: string;
   class?: string;
-  ariaLabel?: string;
   title?: string;
   target?: string;
   rel?: string;
@@ -13,7 +12,6 @@ interface Props {
 const {
   href,
   class: className,
-  ariaLabel,
   title,
   target,
   rel,
@@ -38,7 +36,6 @@ const finalRel = (target === '_blank' && !rel) ? 'noopener noreferrer' : rel;
 <a
   href={finalHref}
   class={className}
-  aria-label={ariaLabel}
   title={title}
   target={target}
   rel={finalRel}
