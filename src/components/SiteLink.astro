@@ -3,19 +3,10 @@ import { getUrl } from '~astro-utils/url-utils';
 
 interface Props {
   href: string;
-  class?: string;
-  title?: string;
-  target?: string;
-  rel?: string;
+  [key: string]: any;
 }
 
-const {
-  href,
-  class: className,
-  title,
-  target,
-  rel,
-} = Astro.props;
+const { href, ...attrs } = Astro.props;
 
 const isExternal = href.startsWith('http://') || href.startsWith('https://');
 
@@ -30,15 +21,13 @@ return path;
 
 const finalHref = normalizeHref(href);
 
-const finalRel = (target === '_blank' && !rel) ? 'noopener noreferrer' : rel;
+const finalRel = (attrs.target === '_blank' && !attrs.rel) ? 'noopener noreferrer' : attrs.rel;
 ---
 
 <a
   href={finalHref}
-  class={className}
-  title={title}
-  target={target}
   rel={finalRel}
+  {...attrs}
 >
   <slot />
 </a>

@@ -13,6 +13,7 @@
   --font-size-xs: 0.75rem;
   --font-size-small: clamp(0.875rem, 2vw, 1rem);
   --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
+  --font-size-medium: 1.1rem;
   --font-size-huge: clamp(3rem, 15vw, 8rem);
 
   /* Spacing Scale */

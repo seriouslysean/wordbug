@@ -8,7 +8,7 @@ interface Props {
 const { text, className = '' } = Astro.props;
 ---
 
-<section class={`description-text ${className}`}>
+<section class:list={['description-text', className]}>
   <p class="description-text__content">
     <span set:html={text}></span>
   </p>

@@ -2,6 +2,7 @@
 import DefinitionList from '~components/DefinitionList.astro';
 import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
+import RandomWordLink from '~components/RandomWordLink.astro';
 import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
@@ -54,11 +55,17 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
       }
     ]} />
   </section>
+
+  <RandomWordLink class="browse__random-word" />
 </Layout>
 
 <style>
   .browse {
     max-width: var(--content-width-medium);
     margin: 0 auto;
+  }
+
+  :global(.browse__random-word) {
+    font-size: var(--font-size-medium);
   }
 </style>

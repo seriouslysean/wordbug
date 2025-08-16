@@ -88,3 +88,17 @@ a:hover {
 .text-center a {
     color: inherit;
 }
+
+/* Buttons */
+button {
+    border: none;
+    background: var(--color-primary-light);
+    color: var(--color-background);
+    padding: var(--spacing-small);
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+button:hover {
+    background: var(--color-primary-dark);
+}

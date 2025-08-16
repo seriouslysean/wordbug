@@ -3,16 +3,16 @@ interface Props {
   level?: number;
   text: string;
   secondaryText?: string;
-  id?: string;
+  [key: string]: any;
 }
 
-const { level = 1, text, secondaryText, id } = Astro.props;
+const { level = 1, text, secondaryText, ...attrs } = Astro.props;
 const HeadingTag = `h${level}`;
 ---
 
 <div class="heading">
   {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
-  <component is={HeadingTag} class="heading__text" id={id}>
+  <component is={HeadingTag} class="heading__text" {...attrs}>
     {text}
   </component>
 </div>
