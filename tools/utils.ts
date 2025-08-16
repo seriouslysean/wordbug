@@ -7,9 +7,9 @@ import { paths } from '~config/paths';
 
 // Colors for image generation
 const imageColors = {
-  primary: process.env.COLOR_PRIMARY || '#b45309',
-  primaryLight: process.env.COLOR_PRIMARY_LIGHT || '#d97706',
-  primaryDark: process.env.COLOR_PRIMARY_DARK || '#78350f',
+  primary: process.env.COLOR_PRIMARY || '#9a3412',
+  primaryLight: process.env.COLOR_PRIMARY_LIGHT || '#c2410c',
+  primaryDark: process.env.COLOR_PRIMARY_DARK || '#7c2d12',
   textLighter: '#8a8f98',
 };
 
