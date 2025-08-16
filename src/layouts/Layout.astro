@@ -4,6 +4,7 @@ import '~styles/theme.css';
 
 import Footer from '~components/Footer.astro';
 import Header from '~components/Header.astro';
+import SiteBreadcrumbs from '~components/SiteBreadcrumbs.astro';
 import StructuredData from '~components/StructuredData.astro';
 import type { WordData } from '~types';
 import { getBuildData } from '~astro-utils/build-utils.ts';
@@ -159,6 +160,7 @@ const wordSchemaData = word ? (() => {
 	<main class="content" id="main-content">
 	  <slot />
 	</main>
+	<SiteBreadcrumbs />
 	<Footer />
 	<script define:vars={{ buildData }} is:inline>
 	  if (typeof window !== 'undefined' && !window.app) {

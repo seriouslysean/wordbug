@@ -102,6 +102,28 @@ export function getCollectionSchemaData(name: string, description: string, itemC
 }
 
 /**
+ * Generate BreadcrumbList schema for JSON-LD
+ * @param breadcrumbs - Array of breadcrumb items with label and href
+ * @returns BreadcrumbList schema object or null if no breadcrumbs
+ */
+export function getBreadcrumbSchema(breadcrumbs: Array<{ label: string; href: string }>) {
+  if (!breadcrumbs || breadcrumbs.length === 0) {
+    return null;
+  }
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      item: getFullUrl(item.href)
+    }))
+  };
+}
+
+/**
  * Convert YYYYMMDD date to ISO format
  */
 function formatDateToISO(dateStr: string): string {

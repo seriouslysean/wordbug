@@ -1,0 +1,63 @@
+---
+import SiteLink from '~components/SiteLink.astro';
+import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
+
+const pathname = Astro.url.pathname;
+const basePath = import.meta.env.BASE_PATH;
+
+const breadcrumbs = generateBreadcrumbs(pathname, basePath);
+const showBreadcrumbs = breadcrumbs.length > 1;
+---
+
+{showBreadcrumbs && (
+  <nav class="breadcrumbs text-light" aria-label="Breadcrumb">
+    <ol class="breadcrumbs__list">
+      {breadcrumbs.map((item, index) => {
+        const isLast = index === breadcrumbs.length - 1;
+        return (
+          <li class="breadcrumbs__item">
+            {isLast ? (
+              <span aria-current="page">{item.label}</span>
+            ) : (
+              <SiteLink href={item.href}>
+                {item.label}
+              </SiteLink>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </nav>
+)}
+
+<style>
+  .breadcrumbs {
+    font-size: var(--font-size-xs);
+    max-width: var(--content-width-medium);
+    margin: var(--spacing-large) auto 0;
+    padding: var(--spacing-base);
+    text-align: center;
+  }
+
+  .breadcrumbs__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .breadcrumbs__item {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .breadcrumbs__item:not(:last-child)::after {
+    content: "›";
+    margin-left: 0.25rem;
+    opacity: 0.4;
+  }
+</style>

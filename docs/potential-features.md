@@ -256,6 +256,6 @@ if (!siteUrl) throw new Error('SITE_URL required');
 
 **Architecture Strength**: The separation of concerns (Astro/build context vs CLI tools vs shared utilities) is excellent and should be preserved.
 
-**Test Coverage**: While tests exist and pass (174/174), expanding coverage for utilities would improve confidence in refactoring.
+**Test Coverage**: While tests exist with full coverage, expanding coverage for utilities would improve confidence in refactoring.
 
 **Performance**: Already meets performance requirements - optimizations would be incremental improvements rather than necessary fixes.

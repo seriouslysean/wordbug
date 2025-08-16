@@ -35,7 +35,7 @@ Check similar files in the codebase for architectural patterns BEFORE writing ne
 # ALWAYS run after ANY code changes
 npm run lint         # Fix code style issues
 npm run typecheck    # Validate TypeScript
-npm test            # Run test suite (167 tests)
+npm test            # Run test suite
 npm run build        # Verify build succeeds
 ```
 

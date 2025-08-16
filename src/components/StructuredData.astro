@@ -1,9 +1,10 @@
 ---
 
 import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types';
-import { STRUCTURED_DATA_TYPE, type StructuredDataType } from '~astro-utils/schema-utils.ts';
+import { STRUCTURED_DATA_TYPE, type StructuredDataType, getBreadcrumbSchema } from '~astro-utils/schema-utils.ts';
 import { seoConfig } from '~astro-utils/seo-utils.ts';
 import { getFullUrl } from '~astro-utils/url-utils';
+import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
 
 interface Props {
   word?: WordSchemaData;
@@ -65,12 +66,19 @@ const generateWordListSchema = (): CollectionPageSchema => {
   };
 };
 
-const schemas: (DefinedTermSchema | CollectionPageSchema)[] = [];
+const schemas: (DefinedTermSchema | CollectionPageSchema | any)[] = [];
 
 if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
   schemas.push(generateWordSchema(word));
 } else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
   schemas.push(generateWordListSchema());
+}
+
+// Add breadcrumb schema for non-home pages
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, import.meta.env.BASE_PATH);
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs);
+if (breadcrumbSchema) {
+  schemas.push(breadcrumbSchema);
 }
 ---
 
