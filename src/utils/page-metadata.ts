@@ -28,7 +28,7 @@ import {
  * @returns Page metadata with title, description, category, etc.
  */
 export const getPageMetadata = (pathname: string) =>
-  getPageMetadataBase(stripBasePath(pathname), allWords);
+  getPageMetadataBase(stripBasePath(pathname) || 'home', allWords);
 
 /**
  * Get metadata for all pages (Astro-specific)

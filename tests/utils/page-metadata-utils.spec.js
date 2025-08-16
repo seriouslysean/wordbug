@@ -162,7 +162,7 @@ describe('page-metadata-utils', () => {
 
   describe('getPageMetadata wrapper', () => {
     it('handles BASE_PATH prefixes', async () => {
-      vi.stubEnv('BASE_PATH', '/vocab');
+      vi.stubGlobal('__BASE_URL__', '/vocab');
       const { getPageMetadata: getPageMetadataWrapper } = await import(
         '~astro-utils/page-metadata'
       );
@@ -176,12 +176,12 @@ describe('page-metadata-utils', () => {
     });
 
     it('handles BASE_PATH with different case and trailing slash', async () => {
-      vi.stubEnv('BASE_PATH', '/Vocab/');
+      vi.stubGlobal('__BASE_URL__', '/Vocab/');
       vi.resetModules();
       const { getPageMetadata: getPageMetadataWrapper } = await import(
         '~astro-utils/page-metadata'
       );
-      const metadata = getPageMetadataWrapper('/vocab/stats');
+      const metadata = getPageMetadataWrapper('/Vocab/stats');
       expect(metadata).toEqual({
         title: 'Stats',
         description: 'Word patterns and statistics.',

@@ -1,53 +1,86 @@
 import { logger } from '~astro-utils/logger';
 
 /**
+ * Get the configured base path, defaulting to '/'
+ * Single source of truth for base path access
+ * Uses Astro's calculated BASE_URL which respects trailingSlash configuration
+ * @returns Base path with format determined by Astro's trailingSlash config
+ */
+export const getBasePath = (): string => {
+  return __BASE_URL__ || '/';
+};
+
+/**
+ * Get a clean pathname without the base path
+ * Use this with Astro.url.pathname to get the logical path
+ * @param astroPathname - The pathname from Astro.url.pathname
+ * @returns Clean pathname without base path
+ */
+export const getPathname = (astroPathname: string): string => {
+  const basePath = getBasePath();
+  
+  if (basePath === '/') {
+    return astroPathname;
+  }
+  
+  // Handle base path with trailing slash
+  const cleanBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
+  
+  if (astroPathname.startsWith(cleanBasePath)) {
+    const withoutBase = astroPathname.slice(cleanBasePath.length);
+    return withoutBase || '/';
+  }
+  
+  return astroPathname;
+};
+
+/**
  * Construct a URL with the configured base path
- * Consistently enforces lowercase URLs and no trailing slashes except for root path
- * @param path - Path to normalize
- * @returns Normalized URL path
+ * Simple function that trusts Astro and URL constructor for normalization
+ * @param path - Path to append to base path
+ * @returns URL path with base path
  */
 export const getUrl = (path = '/'): string => {
-  const baseUrl = import.meta.env.BASE_PATH || '/';
-
-  if (!path || path === '') {
-    return baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+  const basePath = getBasePath();
+  
+  if (basePath === '/') {
+    return path;
   }
-
+  
   if (path === '/') {
-    return baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+    return basePath; // Return base path as-is for root
   }
-
-  if (/\/\/+/.test(path)) {
-    logger.error('Invalid path contains multiple consecutive slashes', { path });
-    throw new Error('Invalid path: contains multiple consecutive slashes');
+  
+  // Check if path already includes base path
+  if (path.startsWith(basePath)) {
+    return path;
   }
-
+  
+  // Normalize base path (remove trailing slash) and concatenate  
+  const cleanBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-
-  if (normalizedPath.includes('.')) {
-    return `${normalizedBase}${normalizedPath}`;
-  }
-
-  return `${normalizedBase}${normalizedPath.replace(/\/$/, '')}`;
+  return cleanBasePath + normalizedPath;
 };
 
 /**
  * Get a normalized full URL including site URL and path
- * Uses getUrl() internally to ensure BASE_PATH is properly handled
- * @param path - Path to append to site URL
+ * Uses the URL constructor for robust URL handling
+ * @param path - Path to append to site URL (with or without BASE_PATH)
  * @returns Absolute URL
  */
 export const getFullUrl = (path = '/'): string => {
-  const siteUrl = import.meta.env.SITE_URL?.replace(/\/$/, '') || '';
-  const relativePath = getUrl(path);
-
-  if (!siteUrl) {
-    logger.error('SITE_URL environment variable is required for getFullUrl');
-    throw new Error('SITE_URL environment variable is required');
+  if (!__SITE_URL__) {
+    throw new Error('SITE_URL environment variable is required but missing');
   }
-
-  return `${siteUrl}${relativePath}`;
+  
+  try {
+    const relativePath = getUrl(path);
+    const url = new URL(relativePath, __SITE_URL__);
+    return url.toString();
+  } catch (error) {
+    logger.error('Failed to construct URL', { path, siteUrl: __SITE_URL__, error });
+    throw new Error(`Failed to construct URL for path: ${path}`);
+  }
 };
 
 /**
@@ -61,16 +94,14 @@ export const getWordUrl = (word: string): string => {
 
 /**
  * Remove BASE_PATH prefix from an incoming pathname
- * Handles case differences and trailing slashes
  * @param pathname - Raw pathname that may include the base path
- * @returns Pathname relative to the site root
+ * @returns Pathname relative to the site root (without base path or slashes), empty string for root
  */
 export const stripBasePath = (pathname: string): string => {
-  const base = (import.meta.env.BASE_PATH || '').replace(/\/+$/, '');
-  const hasBase = base && pathname.toLowerCase().startsWith(base.toLowerCase());
-  const withoutBase = hasBase ? pathname.slice(base.length) : pathname;
-  const clean = withoutBase.replace(/^\/+|\/+$/g, '');
-  return clean || 'home';
+  const cleanPath = getPathname(pathname);
+  // Remove leading and trailing slashes for page metadata lookup
+  if (cleanPath === '/') return '';
+  return cleanPath.startsWith('/') ? cleanPath.slice(1) : cleanPath;
 };
 
 import { BASE_PATHS, BROWSE_PATHS, ROUTES } from '~constants/urls';

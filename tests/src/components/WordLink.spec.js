@@ -10,7 +10,7 @@ import { getUrl, getWordUrl } from '~astro-utils/url-utils';
 
 describe('WordLink Component Integration', () => {
   beforeEach(() => {
-    vi.stubEnv('BASE_PATH', '/');
+    vi.stubGlobal('__BASE_URL__', '/');
   });
 
   describe('getWordUrl', () => {
@@ -31,8 +31,6 @@ describe('WordLink Component Integration', () => {
 
   describe('WordLink + SiteLink integration flow', () => {
     it('should prevent double BASE_PATH with no subdirectory', () => {
-      vi.stubEnv('BASE_PATH', '/');
-
       const rawPath = getWordUrl('serendipity');
       const processedUrl = getUrl(rawPath);
 
@@ -41,7 +39,7 @@ describe('WordLink Component Integration', () => {
     });
 
     it('should prevent double BASE_PATH with subdirectory', () => {
-      vi.stubEnv('BASE_PATH', '/occasional-wotd');
+      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
 
       const rawPath = getWordUrl('serendipity');
       const processedUrl = getUrl(rawPath);
@@ -52,7 +50,7 @@ describe('WordLink Component Integration', () => {
     });
 
     it('should handle multi-word phrases correctly', () => {
-      vi.stubEnv('BASE_PATH', '/occasional-wotd');
+      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
 
       const rawPath = getWordUrl('ice cream');
       const processedUrl = getUrl(rawPath);
@@ -62,7 +60,7 @@ describe('WordLink Component Integration', () => {
     });
 
     it('should handle special characters in words', () => {
-      vi.stubEnv('BASE_PATH', '/occasional-wotd');
+      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
 
       const rawPath = getWordUrl("don't");
       const processedUrl = getUrl(rawPath);
@@ -74,7 +72,7 @@ describe('WordLink Component Integration', () => {
 
   describe('Real-world GitHub Pages scenarios', () => {
     it('should match expected GitHub Pages URLs', () => {
-      vi.stubEnv('BASE_PATH', '/occasional-wotd');
+      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
 
         const testCases = [
           { word: 'serendipity', expected: '/occasional-wotd/words/serendipity' },
@@ -91,8 +89,6 @@ describe('WordLink Component Integration', () => {
     });
 
     it('should work correctly for localhost development', () => {
-      vi.stubEnv('BASE_PATH', '/');
-
       const rawPath = getWordUrl('test');
       const processedUrl = getUrl(rawPath);
 

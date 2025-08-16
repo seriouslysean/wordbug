@@ -111,6 +111,7 @@ export default defineConfig({
       },
     },
     define: {
+      __BASE_URL__: JSON.stringify(base || '/'),
       __VERSION__: JSON.stringify(pkg.version),
       __RELEASE__: JSON.stringify(release),
       __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
