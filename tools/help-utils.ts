@@ -24,9 +24,9 @@ Common Environment Variables:
   SITE_URL                  Canonical site URL
 
 Color Customization:
-  COLOR_PRIMARY             Primary color (default: #b45309)
-  COLOR_PRIMARY_LIGHT       Light primary color (default: #d97706)
-  COLOR_PRIMARY_DARK        Dark primary color (default: #78350f)
+  COLOR_PRIMARY             Primary color (default: #9a3412)
+  COLOR_PRIMARY_LIGHT       Light primary color (default: #c2410c)
+  COLOR_PRIMARY_DARK        Dark primary color (default: #7c2d12)
 `;
 
 /**
