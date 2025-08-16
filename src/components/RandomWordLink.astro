@@ -7,36 +7,36 @@ const { class: className, ...attrs } = Astro.props;
 </button>
 
 <script>
-import { getWordUrl } from '~astro-utils/url-utils';
+import { getUrl, getWordUrl } from '~astro-utils/url-utils';
 
 const wordListCache = { data: null as string[] | null };
 
 async function getRandomWord() {
   try {
     if (!wordListCache.data) {
-      const response = await fetch('/words.json');
+      const response = await fetch(getUrl('/words.json'));
       if (!response.ok) {
         throw new Error('Failed to fetch words');
       }
       wordListCache.data = await response.json();
     }
-    
+
     if (!wordListCache.data || wordListCache.data.length === 0) {
       throw new Error('No words available');
     }
-    
+
     const randomWord = wordListCache.data[Math.floor(Math.random() * wordListCache.data.length)];
-    const wordUrl = getWordUrl(randomWord);
+    const wordUrl = getUrl(getWordUrl(randomWord));
     window.location.href = wordUrl;
-  } catch (error) {
+  } catch {
     // Fallback to words page on any error
-    window.location.href = '/words';
+    window.location.href = getUrl('/words');
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const button = document.getElementById('random-word-button');
-  
+
   if (button) {
     button.addEventListener('click', getRandomWord);
   }
