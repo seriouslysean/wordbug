@@ -1,28 +1,23 @@
 ---
-import DefinitionList from '~components/DefinitionList.astro';
 import DescriptionText from '~components/DescriptionText.astro';
 import Heading from '~components/Heading.astro';
 import Layout from '~layouts/Layout.astro';
+import SectionHeading from '~components/SectionHeading.astro';
+import WordSection from '~components/WordSection.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getWordsLengthUrl, getWordsLetterUrl, getStatsUrl, getBrowseWordsUrl } from '~astro-utils/url-utils';
+import { getWordsYearUrl } from '~astro-utils/url-utils';
 import { 
   getWordsFromCollection, 
-  groupWordsByYear, 
-  groupWordsByLength, 
-  groupWordsByLetter 
+  groupWordsByYear
 } from '~astro-utils/word-data-utils';
 import { t } from '~utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
-const wordsByLength = groupWordsByLength(allWords);
-const wordsByLetter = groupWordsByLetter(allWords);
 
-const yearCount = Object.keys(wordsByYear).length;
-const lengthCount = Object.keys(wordsByLength).length;
-const letterCount = Object.keys(wordsByLetter).length;
-const totalWords = allWords.length;
+// Sort years in reverse chronological order
+const sortedYearEntries = Object.entries(wordsByYear).reverse();
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
@@ -30,36 +25,17 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
   <Heading text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
   
-  <section class="words">
-    <DefinitionList items={[
-      {
-        label: t('browse.by_length'),
-        value: t('browse.summary_lengths', { lengthCount }),
-        href: getWordsLengthUrl()
-      },
-      {
-        label: t('browse.by_letter'),
-        value: t('browse.summary_letters', { letterCount }),
-        href: getWordsLetterUrl()
-      },
-      {
-        label: t('browse.statistics'),
-        value: t('browse.summary_facts'),
-        href: getStatsUrl()
-      },
-      {
-        label: t('nav.browse_words'),
-        value: t('browse.summary_years', { totalWords, yearCount }),
-        href: getBrowseWordsUrl()
-      }
-    ]} />
-  </section>
+  {sortedYearEntries.map(([year, words]) => (
+    <section class="words__section">
+      <SectionHeading text={year} href={getWordsYearUrl(year)} />
+      <WordSection words={words} columns={3} />
+    </section>
+  ))}
 
 </Layout>
 
 <style>
-  .words {
-    max-width: var(--content-width-medium);
-    margin: 0 auto;
+  .words__section {
+    margin-bottom: var(--spacing-large);
   }
 </style>

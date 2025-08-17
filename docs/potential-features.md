@@ -6,29 +6,89 @@ Quality and architectural improvements identified for future development, priori
 
 ### TIER 1: High Impact, High Value
 
-**1. Enhanced Navigation Architecture**
-- Issue: All Words page incomplete, poor cross-linking
-- Impact: HIGH - SEO boost, user engagement
-- ROI: Major discoverability improvement
+**1. BEM Naming Cleanup**
+- Pages using single class names (stats, word-facts, etc.)
+- Should follow consistent pattern across all pages
+- Quick fix but improves consistency
 
 **2. Cross-Page Internal Linking**
 - Issue: Missing strategic links between related content
 - Impact: HIGH - SEO density, content discovery
 - ROI: Significant SEO and UX gains
 
+**3. Accessibility Audit**
+- Keyboard navigation testing (especially new button grids)
+- Color contrast verification (WCAG AA/AAA compliance)
+- Screen reader testing
+- ARIA labels and roles review
+- Focus trap testing in navigation
+
+**4. SEO Audit & Schema Enhancement**
+- Improve JSON-LD structured data (add more specific schemas)
+- Better meta tags (Open Graph, Twitter Cards)
+- Schema.org WordDefinition markup
+- Breadcrumb structured data
+- Review canonical URLs
+
+**5. Performance Audit**
+- Lighthouse scores baseline
+- Bundle size analysis
+- Image optimization review
+- Font loading optimization
+- Critical CSS extraction
+
+**6. Architecture & Code Quality Audit**
+- Remove overly complex abstractions
+- Reduce code duplication (DRY violations)
+- Simplify over-engineered solutions (KISS)
+- Identify missing reusable components
+- Review component boundaries and responsibilities
+- Check for unnecessary indirection layers
+
+**7. CSS Architecture Audit**
+- Find and eliminate duplicate styles
+- Extract common patterns into shared utilities
+- Consolidate media queries
+- Review CSS variable usage for consistency
+- Identify styles that should be components
+- Reduce specificity wars
+
+**8. TypeScript Consolidation & Validation**
+- Consolidate 40+ interfaces across 8 type files
+- Remove unnecessary type complexity
+- Replace all `any` types with proper types
+- Add strict type checking where missing
+- Validate prop types are complete
+- Remove redundant type definitions
+
+**9. Astro Best Practices Audit**
+- Ensure using Astro's built-in features (not reinventing)
+- Review if we're fighting Astro patterns
+- Use Astro's image optimization properly
+- Leverage Astro's static optimization
+- Check for proper use of Astro.props vs props spreading
+- Validate we're using Astro's routing correctly
+- Review if component structure follows Astro conventions
+
 ### TIER 2: Medium Impact, Good Value
 
-**3. Stats Definition Architecture Cleanup**
+**10. i18n/Localization Audit**
+- Review all hardcoded strings
+- Verify all UI text uses translation keys
+- Check date/number formatting consistency
+- Ensure error messages are translated
+
+**11. Stats Definition Architecture Cleanup**
 - Issue: Scattered definitions across multiple files
 - Impact: MEDIUM-HIGH - Developer experience, maintainability
 - ROI: Easier stats additions, cleaner codebase
 
-**4. Error Handling Consistency**
+**12. Error Handling Consistency**
 - Issue: Mixed error patterns (throw vs null vs log)
 - Impact: MEDIUM-HIGH - Debugging, reliability
 - ROI: Better debugging, more reliable error states
 
-**5. Client-Side Search Functionality**
+**13. Client-Side Search Functionality**
 - Issue: No word search capability
 - Impact: MEDIUM - User experience enhancement
 - ROI: Modern UX feature, no server dependency
@@ -64,20 +124,16 @@ Quality and architectural improvements identified for future development, priori
 - Impact: MEDIUM - Visual data potential
 - ROI: Future chart integration foundation
 
-## Current Focus: Navigation & Discoverability
+## Current Focus: Cross-Linking & SEO
 
-### IN PROGRESS: Enhanced Navigation Architecture [HIGH PRIORITY]
-**User Request**: Improve page discoverability and navigation structure
-- **ISSUE**: Footer becoming crowded with navigation links
-- **ISSUE**: All Words page incomplete - only shows years, no access to length/letter browsing
-- **ISSUE**: Poor cross-linking between related content types
+### Cross-Page Internal Linking [HIGH PRIORITY]
+**User Request**: Implement strategic cross-linking between related content
+- **ISSUE**: Missing links between related content types
 - **GOALS**: 
-  - Transform All Words page into comprehensive navigation hub
-  - Implement strategic cross-linking for SEO and user experience
-  - Reorganize footer hierarchy
-  - Add breadcrumb navigation system
-- **Impact**: Significantly improved user experience and SEO through better content discovery
-- **Status**: Planning phase - analyzing current navigation patterns
+  - Add "Other X-letter words" links on word pages
+  - Add "Words from this month/year" links
+  - Implement breadcrumb navigation system
+- **Impact**: Significantly improved SEO through internal link density
 
 ## Maintenance Tasks (Background Priority)
 
