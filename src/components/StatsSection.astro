@@ -1,0 +1,36 @@
+---
+import SiteLink from '~components/SiteLink.astro';
+
+interface Props {
+  title: string;
+  href?: string;
+  class?: string;
+}
+
+const { title, href, class: className } = Astro.props;
+---
+
+<section class:list={['stats-section', className]}>
+  <h2 class="stats-section__heading">
+    {href ? (
+      <SiteLink href={href}>{title}</SiteLink>
+    ) : (
+      title
+    )}
+  </h2>
+  <slot />
+</section>
+
+<style>
+    .stats-section {
+        margin-bottom: var(--spacing-large);
+    }
+
+    .stats-section__heading {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-base);
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-text-primary);
+        padding-bottom: 0.5rem;
+    }
+</style>

@@ -1,0 +1,121 @@
+---
+interface Props {
+  currentValue: number;
+  maxValue: number;
+  currentLabel: string;
+  maxLabel: string;
+  variant?: 'positive' | 'negative' | 'comparison';
+  class?: string;
+}
+
+const { 
+  currentValue, 
+  maxValue, 
+  currentLabel, 
+  maxLabel, 
+  variant = 'positive',
+  class: className 
+} = Astro.props;
+
+const chartWidth = maxValue > 0 ? Math.min(100, (currentValue / maxValue) * 100) : 0;
+---
+
+<div class:list={['bar-chart', `bar-chart--${variant}`, className]}>
+  <div class="bar-chart__bar">
+    <div
+      class="bar-chart__current"
+      style={`--current-width: ${chartWidth}%`}
+    ></div>
+    <div
+      class="bar-chart__max"
+      style="--max-width: 100%"
+    ></div>
+  </div>
+  <div class="bar-chart__labels">
+    <span class="bar-chart__label bar-chart__label--current">{currentLabel}</span>
+    <span class="bar-chart__label bar-chart__label--max">{maxLabel}</span>
+  </div>
+</div>
+
+<style>
+  .bar-chart {
+    width: 100%;
+    display: block;
+  }
+
+  .bar-chart__bar {
+    height: 20px;
+    background: var(--color-border, #e5e7eb);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .bar-chart__current,
+  .bar-chart__max {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+  }
+
+  .bar-chart__max {
+    width: var(--max-width);
+    opacity: 0.3;
+  }
+
+  .bar-chart__current {
+    width: var(--current-width);
+    z-index: 1;
+  }
+
+  /* Positive variant (streaks) */
+  .bar-chart--positive .bar-chart__max,
+  .bar-chart--positive .bar-chart__current {
+    background: var(--color-primary-light, #4a7c7d);
+  }
+
+  .bar-chart--positive .bar-chart__label--current {
+    color: var(--color-primary-light, #4a7c7d);
+    font-weight: 500;
+  }
+
+  /* Negative variant (gaps) */
+  .bar-chart--negative .bar-chart__max,
+  .bar-chart--negative .bar-chart__current {
+    background: var(--color-text-light, #6b7280);
+  }
+
+  .bar-chart--negative .bar-chart__label--current {
+    color: var(--color-text-light, #6b7280);
+    font-weight: 500;
+  }
+
+  /* Comparison variant (streak vs gap) */
+  .bar-chart--comparison .bar-chart__current {
+    background: var(--color-primary-light, #4a7c7d);
+  }
+
+  .bar-chart--comparison .bar-chart__max {
+    background: var(--color-text-light, #6b7280);
+  }
+
+  .bar-chart--comparison .bar-chart__label--current {
+    color: var(--color-primary-light, #4a7c7d);
+    font-weight: 500;
+  }
+
+  .bar-chart--comparison .bar-chart__label--max {
+    color: var(--color-text-light, #6b7280);
+    font-weight: 500;
+  }
+
+  .bar-chart__labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-small);
+    color: var(--color-text-light);
+  }
+</style>

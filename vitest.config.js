@@ -51,6 +51,8 @@ export default defineConfig({
       '~tools': resolve(__dirname, './tools'),
       '~data': resolve(__dirname, './data'),
       '~config': resolve(__dirname, './config'),
+      '~locales': resolve(__dirname, './locales'),
+      '~tests': resolve(__dirname, './tests'),
     },
   },
   define: {

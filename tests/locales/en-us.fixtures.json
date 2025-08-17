@@ -1,0 +1,69 @@
+{
+  "common": {
+    "words_zero": "No Words",
+    "words_one": "1 Word", 
+    "words_other": "{{count}} Words",
+    "letters_zero": "No letters",
+    "letters_one": "1 letter",
+    "letters_other": "{{count}} letters",
+    "definitions_zero": "No definitions",
+    "definitions_one": "1 definition",
+    "definitions_other": "{{count}} definitions",
+    "syllables_zero": "No syllables",
+    "syllables_one": "1 syllable", 
+    "syllables_other": "{{count}} syllables"
+  },
+  "test": {
+    "vocabulary_zero": "No words in {{category}} vocabulary",
+    "vocabulary_one": "1 word in {{category}} vocabulary",
+    "vocabulary_other": "{{count}} words in {{category}} vocabulary",
+    "etymology_zero": "No {{language}} origins found",
+    "etymology_one": "1 {{language}} origin found",
+    "etymology_other": "{{count}} {{language}} origins found",
+    "learning_zero": "Difficulty: {{level}}, Progress: 0%",
+    "learning_one": "Difficulty: {{level}}, Progress: {{progress}}%",
+    "learning_other": "Difficulty: {{level}}, Progress: {{progress}}%, Words: {{count}}"
+  },
+  "nav": {
+    "home": "Home",
+    "stats": "Stats"
+  },
+  "footer": {
+    "powered_by": "Powered by Wordnik"
+  },
+  "stats": {
+    "total_words": "Total Words",
+    "word_lengths": "Word Lengths",
+    "milestone_words": "Milestone Words",
+    "days": "{{count}} Days",
+    "least_common_letter_zero": "Least Common Letter (No Words)",
+    "least_common_letter_one": "Least Common Letter (1 Word)",
+    "least_common_letter_other": "Least Common Letter ({{count}} Words)"
+  },
+  "words": {
+    "heading": "All Words",
+    "description": "Every word, organized chronologically.",
+    "by_length_heading": "Words by Length",
+    "by_length_description": "Words grouped by character count.",
+    "by_letter_heading": "Words by Letter", 
+    "by_letter_description": "Words grouped by first letter.",
+    "length_words": "{{length}}-Letter Words",
+    "words_starting_with": "Words Starting with {{letter}}"
+  },
+  "browse": {
+    "heading": "Browse Words",
+    "description": "Different ways to browse and discover words.",
+    "subheading": "Multiple Browsing Options",
+    "summary_years": "{{totalWords}} Words Across {{yearCount}} Years",
+    "summary_lengths": "{{lengthCount}} Different Lengths",
+    "summary_letters": "{{letterCount}} Letters (A-Z)"
+  },
+  "home": {
+    "heading": "Word of the Day",
+    "description": "Today's word is \"{{word}}\"."
+  },
+  "error": {
+    "heading": "Page Not Found",
+    "description": "The requested page could not be found."
+  }
+}

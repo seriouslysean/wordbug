@@ -1,83 +1,65 @@
 ---
+import DefinitionList from '~components/DefinitionList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
+import Heading from '~components/Heading.astro';
+import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getWordsFromCollection, groupWordsByYear, groupWordsByLetter, groupWordsByLength } from '~astro-utils/word-data-utils';
-import { getWordsYearUrl, getLetterUrl, getLengthUrl } from '~astro-utils/url-utils';
-import Heading from '~components/Heading.astro';
-import SectionHeading from '~components/SectionHeading.astro';
-import SiteLink from '~components/SiteLink.astro';
-import WordSection from '~components/WordSection.astro';
-import Layout from '~layouts/Layout.astro';
+import { getWordsLengthUrl, getWordsLetterUrl, getStatsUrl, getBrowseWordsUrl } from '~astro-utils/url-utils';
+import { 
+  getWordsFromCollection, 
+  groupWordsByYear, 
+  groupWordsByLength, 
+  groupWordsByLetter 
+} from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
-const wordsByLetter = groupWordsByLetter(allWords);
 const wordsByLength = groupWordsByLength(allWords);
+const wordsByLetter = groupWordsByLetter(allWords);
 
-const sortedYearEntries = Object.entries(wordsByYear).reverse();
-const sortedLetterEntries = Object.entries(wordsByLetter).sort();
-const sortedLengthEntries = Object.entries(wordsByLength).sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+const yearCount = Object.keys(wordsByYear).length;
+const lengthCount = Object.keys(wordsByLength).length;
+const letterCount = Object.keys(wordsByLetter).length;
+const totalWords = allWords.length;
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
-
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <Heading text={title} secondaryText={secondaryText} />
+  <DescriptionText text={description} />
   
-  <section class="navigation-section">
-    <SectionHeading text="Browse by Year" />
-    {sortedYearEntries.map(([year, words]) => (
-      <WordSection title={year} href={getWordsYearUrl(year)} words={words} />
-    ))}
+  <section class="words">
+    <DefinitionList items={[
+      {
+        label: t('browse.by_length'),
+        value: t('browse.summary_lengths', { lengthCount }),
+        href: getWordsLengthUrl()
+      },
+      {
+        label: t('browse.by_letter'),
+        value: t('browse.summary_letters', { letterCount }),
+        href: getWordsLetterUrl()
+      },
+      {
+        label: t('browse.statistics'),
+        value: t('browse.summary_facts'),
+        href: getStatsUrl()
+      },
+      {
+        label: t('nav.browse_words'),
+        value: t('browse.summary_years', { totalWords, yearCount }),
+        href: getBrowseWordsUrl()
+      }
+    ]} />
   </section>
 
-  <section class="navigation-section">
-    <SectionHeading text="Browse by Letter" />
-    <div class="navigation-grid">
-      {sortedLetterEntries.map(([letter, words]) => (
-        <SiteLink href={getLetterUrl(letter)} class="grid-item">
-          {letter.toUpperCase()} ({words.length})
-        </SiteLink>
-      ))}
-    </div>
-  </section>
-
-  <section class="navigation-section">
-    <SectionHeading text="Browse by Length" />
-    <div class="navigation-grid">
-      {sortedLengthEntries.map(([length, words]) => (
-        <SiteLink href={getLengthUrl(parseInt(length))} class="grid-item">
-          {length} letters ({words.length})
-        </SiteLink>
-      ))}
-    </div>
-  </section>
 </Layout>
 
 <style>
-  .navigation-section {
-    margin: 2rem auto;
+  .words {
     max-width: var(--content-width-medium);
-  }
-
-  .navigation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 0.5rem;
-    margin: 1rem auto;
-    max-width: var(--content-width-medium);
-  }
-
-  .grid-item {
-    padding: 0.5rem;
-    text-align: center;
-    border: 1px solid var(--color-border, #e5e5e5);
-    border-radius: 4px;
-  }
-
-  @media (min-width: 768px) {
-    .navigation-grid {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
+    margin: 0 auto;
   }
 </style>

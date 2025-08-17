@@ -5,6 +5,7 @@ import type {
   WordPatternStatsResult,
   WordStatsResult,
   WordStreakStatsResult,
+  WordAntiStreakStatsResult,
 } from '~types';
 import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
 import { logger } from '~astro-utils/logger';
@@ -404,3 +405,69 @@ export function getChronologicalMilestones(words: WordData[]): Array<{milestone:
     ),
   ];
 }
+
+/**
+ * Calculate the longest gap between consecutive word dates (anti-streak).
+ * @param {WordData[]} words - Array of word data objects to analyze
+ * @returns {WordAntiStreakStatsResult} Object containing longest gap details
+ */
+export const getAntiStreakStats = (words: WordData[]): WordAntiStreakStatsResult => {
+  const emptyResult: WordAntiStreakStatsResult = {
+    longestGap: 0,
+    gapStartWord: null,
+    gapEndWord: null,
+    gapStartDate: null,
+    gapEndDate: null,
+  };
+
+  if (words.length <= 1) {
+    return emptyResult;
+  }
+
+  // Sort words chronologically (oldest first)
+  const sortedWords = [...words].sort((a, b) => a.date.localeCompare(b.date));
+  
+  let longestGap = 0;
+  let gapStartWord: WordData | null = null;
+  let gapEndWord: WordData | null = null;
+  let gapStartDate: string | null = null;
+  let gapEndDate: string | null = null;
+
+  for (let i = 1; i < sortedWords.length; i++) {
+    const previousWord = sortedWords[i - 1];
+    const currentWord = sortedWords[i];
+    
+    const previousDate = YYYYMMDDToDate(previousWord.date);
+    const currentDate = YYYYMMDDToDate(currentWord.date);
+    
+    if (!previousDate || !currentDate) {
+      logger.warn('Invalid date in getAntiStreakStats', { 
+        previousDate: previousWord.date, 
+        currentDate: currentWord.date 
+      });
+      continue;
+    }
+
+    // Calculate gap in days (subtract 1 because gap is the days between words, not the time difference)
+    const diffTime = currentDate.getTime() - previousDate.getTime();
+    const rawDiffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const gapDays = rawDiffDays - 1; // Gap is the days between, not including the words themselves
+    
+    // Only consider gaps longer than 0 (non-consecutive words)
+    if (gapDays > 0 && gapDays > longestGap) {
+      longestGap = gapDays;
+      gapStartWord = previousWord;
+      gapEndWord = currentWord;
+      gapStartDate = previousWord.date;
+      gapEndDate = currentWord.date;
+    }
+  }
+
+  return {
+    longestGap,
+    gapStartWord,
+    gapEndWord,
+    gapStartDate,
+    gapEndDate,
+  };
+};

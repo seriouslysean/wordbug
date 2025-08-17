@@ -1,6 +1,8 @@
 ---
 import DefinitionList from '~components/DefinitionList.astro';
 import DescriptionText from '~components/DescriptionText.astro';
+import StatsSection from '~components/StatsSection.astro';
+import BarChart from '~components/BarChart.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { getWordsLengthUrl } from '~astro-utils/url-utils';
 import {
@@ -19,6 +21,7 @@ import {
   letterPatternStats,
   wordEndingStats,
   streakStats,
+  antiStreakStats,
   milestoneWords
 } from '~astro-utils/word-data-utils';
 import { t } from '~utils/i18n-utils';
@@ -27,6 +30,7 @@ const totalWords = allWords.length;
 const firstWord = totalWords > 0 ? allWords[0] : null;
 const latestWord = totalWords > 0 ? allWords[allWords.length - 1] : null;
 const lengthCount = availableLengths.length;
+
 
 const letterStats = getLetterStats(wordStats.letterFrequency);
 
@@ -45,7 +49,6 @@ const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
 const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
 const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
 const palindromeCount = palindromes.length;
-const streakChartWidth = Math.min(100, (streakStats.currentStreak / Math.max(streakStats.longestStreak, 1)) * 100);
 const milestoneCount = milestoneWords.length;
 
 const letterPatternItems = [
@@ -90,7 +93,11 @@ const streakItems = [
     label: t('stats.longest_streak'),
     value: t('stats.days', { count: streakStats.longestStreak }),
     ...(streakStats.longestStreak > 0 ? { href: '/stats/longest-streak' } : {})
-  }
+  },
+  ...(antiStreakStats.longestGap > 0 ? [{
+    label: t('stats.longest_gap'),
+    value: t('stats.days', { count: antiStreakStats.longestGap })
+  }] : [])
 ];
 
 // Word facts items that should render as word links
@@ -121,63 +128,53 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
     <Heading text={title} secondaryText={secondaryText} />
     <DescriptionText text={description} />
 
-    <section class="stats__section">
+    <StatsSection title={t('stats.overview_heading')}>
       <DefinitionList items={basicStatsItems} />
       <DefinitionList items={basicWordItems} valueType="word" />
-    </section>
+    </StatsSection>
 
-    <section class="stats__section">
-      <h2 class="stats__heading">{t('stats.word_facts_heading')}</h2>
+    <StatsSection title={t('stats.word_facts_heading')} href="/stats/word-facts">
       <DefinitionList items={wordFactsWordItems} valueType="word" />
       <DefinitionList items={wordFactsRegularItems} />
-    </section>
+    </StatsSection>
 
-    <section class="stats__section">
-      <h2 class="stats__heading">{t('stats.streaks_heading')}</h2>
+    <StatsSection title={t('stats.streaks_heading')} href="/stats/streaks">
       <DefinitionList items={streakItems} />
-      <dl class="stats__list">
-        <dt class="stats__fact">{t('stats.streak_comparison')}</dt>
-        <dd class="stats__value stats__streak-chart">
-          <div class="streak-chart">
-            <div class="streak-chart__bar">
-              <div
-                class="streak-chart__current"
-                style={`--current-width: ${streakChartWidth}%`}
-              ></div>
-              <div
-                class="streak-chart__longest"
-                style="--longest-width: 100%"
-              ></div>
-            </div>
-            <div class="streak-chart__labels">
-              <span class="streak-chart__label streak-chart__label--current">{t('stats.current', { count: streakStats.currentStreak })}</span>
-              <span class="streak-chart__label streak-chart__label--longest">{t('stats.best', { count: streakStats.longestStreak })}</span>
-            </div>
-          </div>
-        </dd>
-      </dl>
-    </section>
+      
+      {antiStreakStats.longestGap > 0 && (
+        <dl class="stats__list">
+          <dt class="stats__fact">{t('stats.streak_vs_gap')}</dt>
+          <dd class="stats__value stats__chart">
+            <BarChart 
+              currentValue={streakStats.longestStreak}
+              maxValue={antiStreakStats.longestGap}
+              currentLabel={t('stats.best', { count: streakStats.longestStreak })}
+              maxLabel={t('stats.worst', { count: antiStreakStats.longestGap })}
+              variant="comparison"
+            />
+          </dd>
+        </dl>
+      )}
+    </StatsSection>
 
 {hasLetterPatterns && (
-      <section class="stats__section">
-        <h2 class="stats__heading">{t('stats.letter_patterns_heading')}</h2>
+      <StatsSection title={t('stats.letter_patterns_heading')} href="/stats/letter-patterns">
         <DefinitionList items={letterPatternItems.map(item => ({
           label: item.label,
           value: item.count,
           href: item.href
         }))} />
-      </section>
+      </StatsSection>
     )}
 
 {hasWordEndings && (
-      <section class="stats__section">
-        <h2 class="stats__heading">{t('stats.word_endings_heading')}</h2>
+      <StatsSection title={t('stats.word_endings_heading')} href="/stats/word-endings">
         <DefinitionList items={wordEndingItems.map(item => ({
           label: item.label,
           value: item.count,
           href: item.href
         }))} />
-      </section>
+      </StatsSection>
     )}
   </main>
 </Layout>
@@ -195,8 +192,8 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
     .stats__heading {
         font-size: var(--font-size-base);
         margin-bottom: var(--spacing-base);
-        color: var(--color-primary-light);
-        border-bottom: 1px solid var(--color-primary-light);
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-text-primary);
         padding-bottom: 0.5rem;
     }
 
@@ -224,7 +221,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
     }
 
     .stats__link {
-        color: var(--color-primary-light);
+        color: var(--color-text-primary);
         text-decoration: none;
         transition: opacity 0.2s ease;
     }
@@ -234,60 +231,6 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
         font-size: 0.8rem;
         font-weight: normal;
         margin: 0;
-    }
-
-    /* Streak chart styles */
-    .stats__streak-chart {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-small);
-        align-items: stretch;
-    }
-
-    .streak-chart {
-        width: 100%;
-    }
-
-    .streak-chart__bar {
-        height: 20px;
-        background: var(--color-border, #e5e7eb);
-        border-radius: 4px;
-        position: relative;
-        overflow: hidden;
-        margin-bottom: var(--spacing-xs);
-    }
-
-    .streak-chart__current,
-    .streak-chart__longest {
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-radius: 4px;
-    }
-
-    .streak-chart__longest {
-        background: var(--color-primary-light, #4a7c7d);
-        width: var(--longest-width);
-        opacity: 0.3;
-    }
-
-    .streak-chart__current {
-        background: var(--color-primary-light, #4a7c7d);
-        width: var(--current-width);
-        z-index: 1;
-    }
-
-    .streak-chart__labels {
-        display: flex;
-        justify-content: space-between;
-        font-size: var(--font-size-small);
-        color: var(--color-text-light);
-    }
-
-    .streak-chart__label--current {
-        color: var(--color-primary-light, #4a7c7d);
-        font-weight: 500;
     }
 
     @media (min-width: 1025px) {
@@ -312,7 +255,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
             margin-bottom: 0;
         }
 
-        .stats__streak-chart {
+        .stats__chart {
             grid-column: 1 / -1;
             text-align: left;
         }

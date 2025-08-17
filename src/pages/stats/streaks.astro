@@ -1,0 +1,88 @@
+---
+import DefinitionList from '~components/DefinitionList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
+import BarChart from '~components/BarChart.astro';
+import StatsSection from '~components/StatsSection.astro';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import Heading from '~components/Heading.astro';
+import Layout from '~layouts/Layout.astro';
+import { 
+  streakStats,
+  antiStreakStats
+} from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
+import { formatDate } from '~utils/date-utils';
+
+
+const streakItems = [
+  {
+    label: t('stats.current_streak'),
+    value: t('stats.days', { count: streakStats.currentStreak }),
+    ...(streakStats.currentStreak > 0 ? { href: '/stats/current-streak' } : {})
+  },
+  {
+    label: t('stats.longest_streak'),
+    value: t('stats.days', { count: streakStats.longestStreak }),
+    ...(streakStats.longestStreak > 0 ? { href: '/stats/longest-streak' } : {})
+  }
+];
+
+// Anti-streak items
+const antiStreakItems = [];
+if (antiStreakStats.longestGap > 0) {
+  antiStreakItems.push({
+    label: t('stats.longest_gap'),
+    value: t('stats.days', { count: antiStreakStats.longestGap }),
+  });
+  
+  if (antiStreakStats.gapStartWord && antiStreakStats.gapEndWord) {
+    const startDate = formatDate(antiStreakStats.gapStartDate);
+    const endDate = formatDate(antiStreakStats.gapEndDate);
+    
+    antiStreakItems.push({
+      label: t('stats.gap_period'),
+      value: `${startDate} to ${endDate}`,
+    });
+  }
+}
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description}>
+  <main class="streaks">
+    <Heading text={title} />
+    <DescriptionText text={description} />
+
+    <StatsSection title={t('stats.daily_heading')}>
+      <DefinitionList items={streakItems} />
+    </StatsSection>
+
+    {antiStreakItems.length && (
+      <StatsSection title={t('stats.anti_streak_heading')}>
+        <DefinitionList items={antiStreakItems} />
+        
+        {antiStreakStats.longestGap > 0 && (
+          <dl class="stats__list">
+            <dt class="stats__fact">{t('stats.streak_vs_gap')}</dt>
+            <dd class="stats__value stats__chart">
+              <BarChart 
+                currentValue={streakStats.longestStreak}
+                maxValue={antiStreakStats.longestGap}
+                currentLabel={t('stats.best', { count: streakStats.longestStreak })}
+                maxLabel={t('stats.worst', { count: antiStreakStats.longestGap })}
+                variant="comparison"
+              />
+            </dd>
+          </dl>
+        )}
+      </StatsSection>
+    )}
+  </main>
+</Layout>
+
+<style>
+    .streaks {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+</style>

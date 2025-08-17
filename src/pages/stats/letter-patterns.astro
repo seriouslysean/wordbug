@@ -1,0 +1,57 @@
+---
+import DefinitionList from '~components/DefinitionList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import Heading from '~components/Heading.astro';
+import Layout from '~layouts/Layout.astro';
+import { 
+  letterPatternStats
+} from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
+
+const letterPatternItems = [
+  { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatternStats.startEndSame.length, href: '/stats/same-start-end' },
+  { key: 'doubleLetters', label: t('stats.double_letters'), count: letterPatternStats.doubleLetters.length, href: '/stats/double-letters' },
+  { key: 'tripleLetters', label: t('stats.triple_letters'), count: letterPatternStats.tripleLetters.length, href: '/stats/triple-letters' },
+  { key: 'alphabetical', label: t('stats.alphabetical_order'), count: letterPatternStats.alphabetical.length, href: '/stats/alphabetical-order' },
+  { key: 'palindromes', label: t('stats.palindromes'), count: letterPatternStats.palindromes.length, href: '/stats/palindromes' }
+].filter(item => item.count > 0);
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description}>
+  <main class="letter-patterns">
+    <Heading text={title} />
+    <DescriptionText text={description} />
+
+    {letterPatternItems.length && (
+      <section class="letter-patterns__section">
+        <h2 class="letter-patterns__heading">{t('stats.categories_heading')}</h2>
+        <DefinitionList items={letterPatternItems.map(item => ({
+          label: item.label,
+          value: item.count,
+          href: item.href
+        }))} />
+      </section>
+    )}
+  </main>
+</Layout>
+
+<style>
+    .letter-patterns {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+
+    .letter-patterns__section {
+        margin-bottom: var(--spacing-large);
+    }
+
+    .letter-patterns__heading {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-base);
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-text-primary);
+        padding-bottom: 0.5rem;
+    }
+</style>

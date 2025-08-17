@@ -66,6 +66,14 @@ export interface WordStreakStatsResult {
   isActive: boolean;
 }
 
+export interface WordAntiStreakStatsResult {
+  longestGap: number;
+  gapStartWord: WordData | null;
+  gapEndWord: WordData | null;
+  gapStartDate: string | null;
+  gapEndDate: string | null;
+}
+
 export interface WordAdjacentResult {
   previousWord: WordData | null;
   nextWord: WordData | null;

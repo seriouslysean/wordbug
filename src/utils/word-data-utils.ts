@@ -21,6 +21,7 @@ import {
   getLetterPatternStats,
   getWordEndingStats,
   getCurrentStreakStats,
+  getAntiStreakStats,
   getChronologicalMilestones
 } from '~astro-utils/word-stats-utils';
 import { logger } from '~astro-utils/logger';
@@ -124,6 +125,11 @@ export const wordEndingStats = getWordEndingStats(allWords);
  * Pre-computed streak statistics from the loaded collection
  */
 export const streakStats = getCurrentStreakStats(allWords);
+
+/**
+ * Pre-computed anti-streak statistics from the loaded collection
+ */
+export const antiStreakStats = getAntiStreakStats(allWords);
 
 /**
  * Pre-computed milestone words from the loaded collection

@@ -1,0 +1,142 @@
+---
+import DefinitionList from '~components/DefinitionList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
+import StatsSection from '~components/StatsSection.astro';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import { getWordsLengthUrl } from '~astro-utils/url-utils';
+import {
+  getLetterStats,
+  getLetterTypeStats,
+  getPatternStats,
+  getSyllableStats,
+} from '~astro-utils/word-stats-utils';
+import Heading from '~components/Heading.astro';
+import Layout from '~layouts/Layout.astro';
+import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
+import { 
+  allWords, 
+  availableLengths,
+  wordStats,
+  milestoneWords
+} from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
+
+const lengthCount = availableLengths.length;
+
+const letterStats = getLetterStats(wordStats.letterFrequency);
+const { mostSyllables, leastSyllables } = getSyllableStats(allWords);
+const { mostVowels, mostConsonants } = getLetterTypeStats(allWords);
+const { allVowels, allConsonants, palindromes } = getPatternStats(allWords);
+
+const leastSyllablesCount = leastSyllables ? countSyllables(leastSyllables.word) : 0;
+const mostSyllablesCount = mostSyllables ? countSyllables(mostSyllables.word) : 0;
+const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
+const mostCommonLetterCount = letterStats.length > 0 ? letterStats[0][1] : 0;
+const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
+const leastCommonLetterCount = letterStats.length > 0 ? letterStats[letterStats.length - 1][1] : 0;
+const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
+const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
+const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
+const palindromeCount = palindromes.length;
+const milestoneCount = milestoneWords.length;
+
+// Word length stats
+const lengthItems = [
+  ...(lengthCount > 0 ? [{ label: t('stats.word_lengths'), value: lengthCount, href: getWordsLengthUrl() }] : []),
+  ...(wordStats.shortest ? [{ label: t('stats.shortest', { length: wordStats.shortest.word.length }), value: wordStats.shortest, isWord: true }] : []),
+  ...(wordStats.longest ? [{ label: t('stats.longest', { length: wordStats.longest.word.length }), value: wordStats.longest, isWord: true }] : [])
+];
+
+// Syllable stats
+const syllableItems = [
+  ...(leastSyllables ? [{ label: t('stats.least_syllables', { count: leastSyllablesCount }), value: leastSyllables, isWord: true }] : []),
+  ...(mostSyllables ? [{ label: t('stats.most_syllables', { count: mostSyllablesCount }), value: mostSyllables, isWord: true }] : [])
+];
+
+// Letter composition stats
+const letterCompositionItems = [
+  ...(mostVowels ? [{ label: t('stats.most_vowels', { count: mostVowelsCount }), value: mostVowels, isWord: true }] : []),
+  ...(mostConsonants ? [{ label: t('stats.most_consonants', { count: mostConsonantsCount }), value: mostConsonants, isWord: true }] : []),
+  ...(allConsonants.length > 0 ? [{ label: t('stats.all_consonants'), value: allConsonants.length, href: '/stats/all-consonants' }] : []),
+  ...(allVowels.length > 0 ? [{ label: t('stats.all_vowels'), value: allVowels.length, href: '/stats/all-vowels' }] : [])
+];
+
+// Letter frequency stats
+const letterFrequencyItems = (letterStats.length > 0 ? [
+    { label: t('stats.most_common_letter', { count: mostCommonLetterCount }), value: mostCommonLetter, href: '/stats/most-common-letter' },
+    { label: t('stats.least_common_letter', { count: leastCommonLetterCount, plural: leastCommonLetterPlural }), value: leastCommonLetter, href: '/stats/least-common-letter' }
+  ] : []);
+
+// Special word types
+const specialWordItems = [
+  ...(palindromeCount > 0 ? [{ label: t('stats.palindromes'), value: palindromeCount, href: '/stats/palindromes' }] : []),
+  ...(milestoneCount > 0 ? [{ label: t('stats.milestone_words'), value: milestoneCount, href: '/stats/milestone-words' }] : [])
+];
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description}>
+  <main class="word-facts">
+    <Heading text={title} />
+    <DescriptionText text={description} />
+
+    {lengthItems.length && (
+      <StatsSection title={t('stats.lengths_heading')}>
+        {lengthItems.filter(item => !item.isWord).length && (
+          <DefinitionList items={lengthItems.filter(item => !item.isWord)} />
+        )}
+        {lengthItems.filter(item => item.isWord).length && (
+          <DefinitionList items={lengthItems.filter(item => item.isWord)} valueType="word" />
+        )}
+      </StatsSection>
+    )}
+
+    {syllableItems.length && (
+      <StatsSection title={t('stats.syllables_heading')}>
+        <DefinitionList items={syllableItems} valueType="word" />
+      </StatsSection>
+    )}
+
+    {letterCompositionItems.length && (
+      <StatsSection title={t('stats.composition_heading')}>
+        {letterCompositionItems.filter(item => !item.isWord).length && (
+          <DefinitionList items={letterCompositionItems.filter(item => !item.isWord)} />
+        )}
+        {letterCompositionItems.filter(item => item.isWord).length && (
+          <DefinitionList items={letterCompositionItems.filter(item => item.isWord)} valueType="word" />
+        )}
+      </StatsSection>
+    )}
+
+    {letterFrequencyItems.length && (
+      <StatsSection title={t('stats.frequency_heading')}>
+        <DefinitionList items={letterFrequencyItems} />
+      </StatsSection>
+    )}
+
+    {specialWordItems.length && (
+      <StatsSection title={t('stats.special_heading')}>
+        <DefinitionList items={specialWordItems} />
+      </StatsSection>
+    )}
+  </main>
+</Layout>
+
+<style>
+    .word-facts {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+
+    .word-facts__section {
+        margin-bottom: var(--spacing-large);
+    }
+
+    .word-facts__heading {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-base);
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-text-primary);
+        padding-bottom: 0.5rem;
+    }
+</style>

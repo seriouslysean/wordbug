@@ -1,0 +1,58 @@
+---
+import DefinitionList from '~components/DefinitionList.astro';
+import DescriptionText from '~components/DescriptionText.astro';
+import { getPageMetadata } from '~astro-utils/page-metadata.ts';
+import Heading from '~components/Heading.astro';
+import Layout from '~layouts/Layout.astro';
+import { 
+  wordEndingStats
+} from '~astro-utils/word-data-utils';
+import { t } from '~utils/i18n-utils';
+
+const wordEndingItems = [
+  { key: 'ing', label: t('stats.ing_words'), count: wordEndingStats.ing.length, href: '/stats/words-ending-ing' },
+  { key: 'ed', label: t('stats.ed_words'), count: wordEndingStats.ed.length, href: '/stats/words-ending-ed' },
+  { key: 'ly', label: t('stats.ly_words'), count: wordEndingStats.ly.length, href: '/stats/words-ending-ly' },
+  { key: 'ness', label: t('stats.ness_words'), count: wordEndingStats.ness.length, href: '/stats/words-ending-ness' },
+  { key: 'ful', label: t('stats.ful_words'), count: wordEndingStats.ful.length, href: '/stats/words-ending-ful' },
+  { key: 'less', label: t('stats.less_words'), count: wordEndingStats.less.length, href: '/stats/words-ending-less' },
+].filter(item => item.count > 0);
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description}>
+  <main class="word-endings">
+    <Heading text={title} />
+    <DescriptionText text={description} />
+
+    {wordEndingItems.length && (
+      <section class="word-endings__section">
+        <h2 class="word-endings__heading">{t('stats.suffix_heading')}</h2>
+        <DefinitionList items={wordEndingItems.map(item => ({
+          label: item.label,
+          value: item.count,
+          href: item.href
+        }))} />
+      </section>
+    )}
+  </main>
+</Layout>
+
+<style>
+    .word-endings {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+
+    .word-endings__section {
+        margin-bottom: var(--spacing-large);
+    }
+
+    .word-endings__heading {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-base);
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-text-primary);
+        padding-bottom: 0.5rem;
+    }
+</style>

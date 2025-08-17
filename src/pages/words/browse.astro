@@ -1,71 +1,119 @@
 ---
-import DefinitionList from '~components/DefinitionList.astro';
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
-import RandomWordLink from '~components/RandomWordLink.astro';
-import Layout from '~layouts/Layout.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getWordsLengthUrl, getWordsLetterUrl, getStatsUrl, getWordsUrl } from '~astro-utils/url-utils';
-import { 
-  getWordsFromCollection, 
-  groupWordsByYear, 
-  groupWordsByLength, 
-  groupWordsByLetter 
-} from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
+import { getWordsFromCollection, groupWordsByYear, groupWordsByLetter, groupWordsByLength } from '~astro-utils/word-data-utils';
+import { getWordsYearUrl, getLetterUrl, getLengthUrl, getWordsUrl, getWordsLetterUrl, getWordsLengthUrl } from '~astro-utils/url-utils';
+import Heading from '~components/Heading.astro';
+import SectionHeading from '~components/SectionHeading.astro';
+import SiteLink from '~components/SiteLink.astro';
+import WordSection from '~components/WordSection.astro';
+import RandomWordLink from '~components/RandomWordLink.astro';
+import Layout from '~layouts/Layout.astro';
+import { t, tp } from '~utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
-const wordsByLength = groupWordsByLength(allWords);
 const wordsByLetter = groupWordsByLetter(allWords);
+const wordsByLength = groupWordsByLength(allWords);
 
-const yearCount = Object.keys(wordsByYear).length;
-const lengthCount = Object.keys(wordsByLength).length;
-const letterCount = Object.keys(wordsByLetter).length;
-const totalWords = allWords.length;
+// Get recent words (last 20)
+const recentWords = allWords.slice(0, 20);
+
+const sortedYearEntries = Object.entries(wordsByYear).reverse();
+const sortedLetterEntries = Object.entries(wordsByLetter).sort();
+const sortedLengthEntries = Object.entries(wordsByLength).sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
+
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
   <Heading text={title} secondaryText={secondaryText} />
-  <DescriptionText text={description} />
   
-  <section class="browse">
-    <DefinitionList items={[
-      {
-        label: t('browse.all_words'),
-        value: t('browse.words_across_years', { totalWords, yearCount }),
-        href: getWordsUrl()
-      },
-      {
-        label: t('browse.by_length'),
-        value: t('browse.different_lengths', { lengthCount }),
-        href: getWordsLengthUrl()
-      },
-      {
-        label: t('browse.by_letter'),
-        value: t('browse.letters_a_to_z', { letterCount }),
-        href: getWordsLetterUrl()
-      },
-      {
-        label: t('browse.statistics'),
-        value: t('browse.word_facts_patterns'),
-        href: getStatsUrl()
-      }
-    ]} />
+  {recentWords.length > 0 && (
+    <section class="browse__section">
+      <SectionHeading text={t('browse.recent')} href={getWordsUrl()} />
+      <WordSection words={recentWords} columns={3} />
+    </section>
+  )}
+
+  <section class="browse__section">
+    <SectionHeading text={t('browse.by_year')} href={getWordsUrl()} />
+    <div class="browse__grid">
+      {sortedYearEntries.map(([year, words]) => (
+        <SiteLink 
+          href={getWordsYearUrl(year)} 
+          variant="primary"
+          class="browse__grid-item"
+          title={t('common.title_from_context', { count: words.length, value: year })}
+        >
+          {year}
+        </SiteLink>
+      ))}
+    </div>
   </section>
 
-  <RandomWordLink class="browse__random-word" />
+  <section class="browse__section">
+    <SectionHeading text={t('browse.by_letter')} href={getWordsLetterUrl()} />
+    <div class="browse__grid">
+      {sortedLetterEntries.map(([letter, words]) => (
+        <SiteLink 
+          href={getLetterUrl(letter)} 
+          variant="primary"
+          class="browse__grid-item"
+          title={t('common.title_starting_with', { count: words.length, value: letter.toUpperCase() })}
+        >
+          {letter.toUpperCase()}
+        </SiteLink>
+      ))}
+    </div>
+  </section>
+
+  <section class="browse__section">
+    <SectionHeading text={t('browse.by_length')} href={getWordsLengthUrl()} />
+    <div class="browse__grid">
+      {sortedLengthEntries.map(([length, words]) => (
+        <SiteLink 
+          href={getLengthUrl(length)} 
+          variant="primary"
+          class="browse__grid-item"
+          title={t('common.title_with_length', { count: words.length, value: length })}
+        >
+          {tp('common.letters', length)}
+        </SiteLink>
+      ))}
+    </div>
+  </section>
+
+  <section class="browse__section">
+    <SectionHeading text={t('browse.discovery')} />
+    <div class="browse__grid">
+      <RandomWordLink variant="secondary" class="browse__grid-item" />
+    </div>
+  </section>
 </Layout>
 
 <style>
-  .browse {
-    max-width: var(--content-width-medium);
-    margin: 0 auto;
+  .browse__section {
+    margin-bottom: var(--spacing-large);
   }
 
-  :global(.browse__random-word) {
-    font-size: var(--font-size-medium);
+  .browse__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0;
   }
+
+  .browse__grid-item {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    .browse__grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  }
+
 </style>

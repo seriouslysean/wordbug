@@ -1,0 +1,15 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'text';
+  type?: 'button' | 'submit' | 'reset';
+  [key: string]: any;
+}
+
+const { variant = 'primary', type = 'button', class: className, ...attrs } = Astro.props;
+
+const buttonClass = ['site-button', `site-button--${variant}`, className].filter(Boolean).join(' ');
+---
+
+<button type={type} class={buttonClass} {...attrs}>
+  <slot />
+</button>

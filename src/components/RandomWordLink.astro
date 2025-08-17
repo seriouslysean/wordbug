@@ -1,10 +1,13 @@
 ---
+import SiteButton from '~components/SiteButton.astro';
+import { t } from '~utils/i18n-utils';
+
 const { class: className, ...attrs } = Astro.props;
 ---
 
-<button type="button" class:list={['random-word', className]} id="random-word-button" {...attrs}>
-  random word
-</button>
+<SiteButton type="button" class={className} id="random-word-button" title={t('nav.random_word_title')} {...attrs}>
+  {t('nav.random_word')}
+</SiteButton>
 
 <script>
 import { getUrl, getWordUrl } from '~astro-utils/url-utils';
@@ -43,9 +46,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<style>
-  .random-word {
-    margin: var(--spacing-large) auto;
-    display: block;
-  }
-</style>

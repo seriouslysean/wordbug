@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { formatWordCount, t } from '~utils/i18n-utils';
+import { t, tp } from '~utils/i18n-utils';
 
 describe('i18n-utils', () => {
   describe('t', () => {
@@ -24,14 +24,14 @@ describe('i18n-utils', () => {
     });
 
     it('handles multiple variable interpolation', () => {
-      expect(t('browse.words_across_years', { totalWords: 100, yearCount: 3 })).toBe('100 Words Across 3 Years');
-      expect(t('browse.different_lengths', { lengthCount: 10 })).toBe('10 Different Lengths');
-      expect(t('browse.letters_a_to_z', { letterCount: 26 })).toBe('26 Letters (A-Z)');
+      expect(t('browse.summary_years', { totalWords: 100, yearCount: 3 })).toBe('100 Words Across 3 Years');
+      expect(t('browse.summary_lengths', { lengthCount: 10 })).toBe('10 Different Lengths');
+      expect(t('browse.summary_letters', { letterCount: 26 })).toBe('26 Letters (A-Z)');
     });
 
-    it('handles special characters in interpolation', () => {
-      expect(t('stats.least_common_letter', { count: 1, plural: '' })).toBe('Least Common Letter (1 Word)');
-      expect(t('stats.least_common_letter', { count: 2, plural: 's' })).toBe('Least Common Letter (2 Words)');
+    it('supports basic interpolation with multiple variables', () => {
+      expect(t('words.length_words', { length: 7 })).toBe('7-Letter Words');
+      expect(t('words.words_starting_with', { letter: 'A' })).toBe('Words Starting with A');
     });
 
     it('throws when translation is missing', () => {
@@ -58,30 +58,60 @@ describe('i18n-utils', () => {
     });
   });
 
-  describe('formatWordCount', () => {
+  describe('tp', () => {
     it('formats zero correctly', () => {
-      expect(formatWordCount(0)).toBe('No Words');
+      expect(tp('common.words', 0)).toBe('No Words');
     });
 
     it('formats singular correctly', () => {
-      expect(formatWordCount(1)).toBe('1 Word');
+      expect(tp('common.words', 1)).toBe('1 Word');
     });
 
     it('formats plural correctly', () => {
-      expect(formatWordCount(2)).toBe('2 Words');
-      expect(formatWordCount(10)).toBe('10 Words');
-      expect(formatWordCount(100)).toBe('100 Words');
-      expect(formatWordCount(999)).toBe('999 Words');
+      expect(tp('common.words', 2)).toBe('2 Words');
+      expect(tp('common.words', 10)).toBe('10 Words');
+      expect(tp('common.words', 100)).toBe('100 Words');
+      expect(tp('common.words', 999)).toBe('999 Words');
     });
 
-    it('handles negative numbers', () => {
-      expect(formatWordCount(-1)).toBe('-1 Words');
-      expect(formatWordCount(-10)).toBe('-10 Words');
+    it('handles string counts', () => {
+      expect(tp('common.words', '0')).toBe('No Words');
+      expect(tp('common.words', '1')).toBe('1 Word');
+      expect(tp('common.words', '2')).toBe('2 Words');
     });
 
-    it('handles large numbers', () => {
-      expect(formatWordCount(1000)).toBe('1000 Words');
-      expect(formatWordCount(1000000)).toBe('1000000 Words');
+    it('throws when count is null or undefined', () => {
+      expect(() => tp('common.words', null)).toThrow('Count is required for pluralization key: common.words');
+      expect(() => tp('common.words', undefined)).toThrow('Count is required for pluralization key: common.words');
+    });
+
+    it('throws when count is invalid', () => {
+      expect(() => tp('common.words', 'invalid')).toThrow('Invalid count for pluralization key: common.words, got: invalid');
+      expect(() => tp('common.words', 'abc')).toThrow('Invalid count for pluralization key: common.words, got: abc');
+    });
+
+    it('passes additional values through with educational context', () => {
+      expect(tp('test.vocabulary', 0, { category: 'advanced' })).toBe('No words in advanced vocabulary');
+      expect(tp('test.vocabulary', 1, { category: 'basic' })).toBe('1 word in basic vocabulary');
+      expect(tp('test.vocabulary', 15, { category: 'intermediate' })).toBe('15 words in intermediate vocabulary');
+    });
+
+    it('handles multiple variable types in educational context', () => {
+      expect(tp('test.etymology', 0, { language: 'Latin' })).toBe('No Latin origins found');
+      expect(tp('test.etymology', 1, { language: 'Greek' })).toBe('1 Greek origin found');
+      expect(tp('test.etymology', 7, { language: 'French' })).toBe('7 French origins found');
+    });
+
+    it('works with complex educational data', () => {
+      expect(tp('test.learning', 0, { level: 'beginner', progress: 0 })).toBe('Difficulty: beginner, Progress: 0%');
+      expect(tp('test.learning', 1, { level: 'intermediate', progress: 25 })).toBe('Difficulty: intermediate, Progress: 25%');
+      expect(tp('test.learning', 50, { level: 'advanced', progress: 85 })).toBe('Difficulty: advanced, Progress: 85%, Words: 50');
+    });
+
+    it('demonstrates correct pluralization for dynamic content', () => {
+      expect(tp('stats.least_common_letter', 0)).toBe('Least Common Letter (No Words)');
+      expect(tp('stats.least_common_letter', 1)).toBe('Least Common Letter (1 Word)');
+      expect(tp('stats.least_common_letter', 25)).toBe('Least Common Letter (25 Words)');
     });
   });
 });

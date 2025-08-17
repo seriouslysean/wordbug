@@ -47,17 +47,35 @@ export const t = (key: string, vars?: Record<string, string | number>): string =
   return value;
 };
 
+
 /**
- * Format word count with proper singular/plural using i18n
- * @param count - Number of words
- * @returns Formatted string like "1 word" or "5 words"
+ * Translate pluralize - handles count-based pluralization with additional interpolation values
+ * @param baseKey - The base translation key (e.g., 'common.words')
+ * @param count - The count to determine plural form
+ * @param additionalValues - Additional interpolation values to pass to t()
+ * @returns Translated string with proper pluralization
  */
-export const formatWordCount = (count: number): string => {
-  if (count === 0) {
-    return t('common.words_zero');
-  } else if (count === 1) {
-    return t('common.words_one');
-  } else {
-    return t('common.words_other', { count });
+export const tp = (
+  baseKey: string, 
+  count: number | string, 
+  additionalValues: Record<string, any> = {}
+): string => {
+  if (count == null) {
+    throw new Error(`Count is required for pluralization key: ${baseKey}`);
   }
+  const numCount = parseInt(String(count));
+  if (Number.isNaN(numCount)) {
+    throw new Error(`Invalid count for pluralization key: ${baseKey}, got: ${count}`);
+  }
+  
+  let suffix: string;
+  if (numCount === 0) {
+    suffix = 'zero';
+  } else if (numCount === 1) {
+    suffix = 'one';
+  } else {
+    suffix = 'other';
+  }
+  
+  return t(`${baseKey}_${suffix}`, { count: numCount, ...additionalValues });
 };

@@ -3,10 +3,15 @@ import { getUrl } from '~astro-utils/url-utils';
 
 interface Props {
   href: string;
+  variant?: 'text' | 'primary' | 'secondary';
   [key: string]: any;
 }
 
-const { href, ...attrs } = Astro.props;
+const { href, variant = 'text', class: className, ...attrs } = Astro.props;
+
+const linkClass = variant === 'text' 
+  ? className 
+  : ['site-button', `site-button--${variant}`, className].filter(Boolean).join(' ');
 
 const isExternal = href.startsWith('http://') || href.startsWith('https://');
 
@@ -27,6 +32,7 @@ const finalRel = (attrs.target === '_blank' && !attrs.rel) ? 'noopener noreferre
 <a
   href={finalHref}
   rel={finalRel}
+  class={linkClass}
   {...attrs}
 >
   <slot />

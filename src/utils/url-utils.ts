@@ -158,11 +158,11 @@ export const getWordsYearUrl = (year?: string): string =>
 
 /**
  * Get URL for words of a specific length
- * @param {number} length - Word length
+ * @param {number | string} length - Word length
  * @returns {string} Length-filtered words URL
  */
-export const getLengthUrl = (length: number): string => 
-  ROUTES.LENGTH(length);
+export const getLengthUrl = (length: number | string): string => 
+  ROUTES.LENGTH(Number(length));
 
 /**
  * Get URL for words starting with a specific letter
