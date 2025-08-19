@@ -103,6 +103,7 @@ export default defineConfig({
         '~data': '/data',
         '~config': '/config',
         '~styles': '/src/styles',
+        '~assets': '/src/assets',
         '~adapters': '/adapters',
         '~types': '/types',
         '~tools': '/tools',
