@@ -105,6 +105,6 @@ jobs:
       - name: Commit and push changes
         if: steps.add_word.outputs.word_added == '1'
         run: |
-          git add data/words/ public/images/social/
+          git add data/ public/
           git commit -m "Add word: ${{ steps.add_word.outputs.word }}"
           git push origin ${{ github.ref }}
