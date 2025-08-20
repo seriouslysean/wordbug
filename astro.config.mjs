@@ -33,7 +33,7 @@ function getCodeHash() {
 
 // Load .env locally, skip in CI (GitHub Actions etc)
 if (!process.env.CI) {
-  import('dotenv/config');
+  await import('dotenv/config');
 }
 
 // Environment variable defaults for development and PR builds
@@ -42,7 +42,6 @@ const defaults = {
   SITE_TITLE: 'Occasional Word of the Day',
   SITE_DESCRIPTION: 'A word-of-the-day site featuring interesting vocabulary',
   SITE_ID: 'occasional-wotd',
-  SOURCE_DIR: 'demo',
 };
 
 // Apply defaults for missing environment variables
