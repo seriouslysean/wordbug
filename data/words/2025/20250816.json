@@ -1,0 +1,17 @@
+{
+    "word": "alfredo",
+    "date": "20250816",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "Alternative spelling of <xref>Alfredo</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/alfredo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
