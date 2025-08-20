@@ -8,17 +8,15 @@ import type { WordData } from '~types';
 export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wordData?: WordData | null }): string {
   const basePath = import.meta.env.BASE_PATH || '/';
   const cleanPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
+  const sourceDir = import.meta.env.SOURCE_DIR;
+  const sourcePath = sourceDir ? `${sourceDir}/` : '';
 
   if (wordData && wordData.word) {
     // Word-specific social image
-    return `${basePath}images/social/${import.meta.env.SOURCE_DIR || 'demo'}/2025/${wordData.date}-${wordData.word}.png`;
+    const year = wordData.date.slice(0, 4);
+    return `${basePath}images/social/${sourcePath}${year}/${wordData.date}-${wordData.word}.png`;
   }
 
-  if (cleanPath.startsWith('words/')) {
-    // Word path without specific data
-    const wordPath = cleanPath.replace('words/', '');
-    return `${basePath}images/social/${import.meta.env.SOURCE_DIR || 'demo'}/2025/${wordPath}.png`;
-  }
 
   // Generic page social image
   return `${basePath}images/social/pages/${cleanPath || 'index'}.png`;
