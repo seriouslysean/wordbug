@@ -153,6 +153,17 @@ const wordSchemaData = word ? (() => {
 		)}
 
 		<style set:html={`:root { ${colorVariables} }`}></style>
+		
+		<!-- Speculation Rules for prefetching internal links on hover -->
+		<script type="speculationrules" is:inline set:html={`{
+		  "prefetch": [
+			{
+			  "source": "document",
+			  "where": { "selector_matches": "a[href^='/']" },
+			  "eagerness": "moderate"
+			}
+		  ]
+		}`}></script>
   </head>
   <body class="layout">
 	<a href="#main-content" class="skip-to-content">{t('common.skip_to_content')}</a>
