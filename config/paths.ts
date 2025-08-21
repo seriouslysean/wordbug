@@ -27,7 +27,7 @@ export const createPaths = (): PathConfig => ({
   words: getWordsPath(),
   pages: path.join(ROOT, 'src', 'pages'),
   images: getImagesPath(),
-  fonts: path.join(ROOT, 'src', 'assets', 'fonts'),
+  fonts: path.join(ROOT, 'tools', 'fonts'),
 });
 
 export const paths = createPaths();
