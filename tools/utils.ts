@@ -24,9 +24,9 @@ const DATE_SIZE = 40;
 const DESCENDER_OFFSET = Math.floor(FONT_SIZE * 0.2);  // Restore descender offset (20% of font size)
 const MAX_WIDTH = CANVAS_WIDTH - (PADDING * 2);
 
-// Load fonts
-const regularFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSans-Regular.ttf'));
-const boldFont = opentype.loadSync(path.join(paths.fonts, 'opensans', 'OpenSans-ExtraBold.ttf'));
+// Load fonts - using Liberation Sans for better web compatibility
+const regularFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Regular.ttf'));
+const boldFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Bold.ttf'));
 
 
 interface WordFileInfo {

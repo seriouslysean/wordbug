@@ -1,24 +1,7 @@
-/* OpenSans Font Declarations */
-@font-face {
-  font-family: 'OpenSans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('~assets/fonts/opensans/OpenSans-Regular.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  font-style: normal;
-  font-weight: 800;
-  src: url('~assets/fonts/opensans/OpenSans-ExtraBold.ttf') format('truetype');
-  font-display: swap;
-}
-
 /* Global Design System - Base Values */
 :root {
-  /* Typography System */
-  --font-family-base: 'OpenSans', system-ui, sans-serif;
+  /* Typography System - Using Arial to match Liberation Sans in images */
+  --font-family-base: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
