@@ -1,30 +1,66 @@
 name: 'Setup Environment Variables'
 description: 'Sets up all environment variables needed for build and deploy'
+inputs:
+  vars-json:
+    description: 'Repository variables as JSON'
+    required: true
+  secrets-json:
+    description: 'Repository secrets as JSON'
+    required: true
+  github-sha:
+    description: 'GitHub SHA for the build'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
     - name: Set environment variables
       shell: bash
+      env:
+        VARS_JSON: ${{ inputs.vars-json }}
+        SECRETS_JSON: ${{ inputs.secrets-json }}
+        VAR_NAMES: |
+          BASE_PATH
+          COLOR_PRIMARY
+          COLOR_PRIMARY_DARK
+          COLOR_PRIMARY_LIGHT
+          DICTIONARY_ADAPTER
+          HUMANS_DEVELOPER_CONTACT
+          HUMANS_DEVELOPER_NAME
+          HUMANS_DEVELOPER_SITE
+          HUMANS_WORD_CURATOR
+          SITE_ATTRIBUTION_MESSAGE
+          SITE_AUTHOR
+          SITE_AUTHOR_URL
+          SITE_DESCRIPTION
+          SITE_ID
+          SITE_KEYWORDS
+          SITE_TITLE
+          SITE_URL
+          SOURCE_DIR
+          WORDNIK_API_URL
+          WORDNIK_WEBSITE_URL
+        SECRET_NAMES: |
+          GA_ENABLED
+          GA_MEASUREMENT_ID
+          SENTRY_AUTH_TOKEN
+          SENTRY_DSN
+          SENTRY_ENABLED
+          SENTRY_ORG
+          SENTRY_PROJECT
+          WORDNIK_API_KEY
       run: |
-        echo "BASE_PATH=${{ vars.BASE_PATH }}" >> $GITHUB_ENV
-        echo "DICTIONARY_ADAPTER=${{ vars.DICTIONARY_ADAPTER }}" >> $GITHUB_ENV
-        echo "GA_ENABLED=${{ vars.GA_ENABLED }}" >> $GITHUB_ENV
-        echo "HUMANS_DEVELOPER_CONTACT=${{ vars.HUMANS_DEVELOPER_CONTACT }}" >> $GITHUB_ENV
-        echo "HUMANS_DEVELOPER_NAME=${{ vars.HUMANS_DEVELOPER_NAME }}" >> $GITHUB_ENV
-        echo "HUMANS_DEVELOPER_SITE=${{ vars.HUMANS_DEVELOPER_SITE }}" >> $GITHUB_ENV
-        echo "HUMANS_WORD_CURATOR=${{ vars.HUMANS_WORD_CURATOR }}" >> $GITHUB_ENV
-        echo "SENTRY_ENABLED=${{ vars.SENTRY_ENABLED }}" >> $GITHUB_ENV
-        echo "SITE_ATTRIBUTION_MESSAGE=${{ vars.SITE_ATTRIBUTION_MESSAGE }}" >> $GITHUB_ENV
-        echo "SITE_AUTHOR=${{ vars.SITE_AUTHOR }}" >> $GITHUB_ENV
-        echo "SITE_AUTHOR_URL=${{ vars.SITE_AUTHOR_URL }}" >> $GITHUB_ENV
-        echo "SITE_DESCRIPTION=${{ vars.SITE_DESCRIPTION }}" >> $GITHUB_ENV
-        echo "SITE_ID=${{ vars.SITE_ID }}" >> $GITHUB_ENV
-        echo "SITE_KEYWORDS=${{ vars.SITE_KEYWORDS }}" >> $GITHUB_ENV
-        echo "SITE_LOCALE=${{ vars.SITE_LOCALE }}" >> $GITHUB_ENV
-        echo "SITE_TITLE=${{ vars.SITE_TITLE }}" >> $GITHUB_ENV
-        echo "SITE_URL=${{ vars.SITE_URL }}" >> $GITHUB_ENV
-        echo "SOURCE_DIR=${{ vars.SOURCE_DIR }}" >> $GITHUB_ENV
-        echo "TZ=${{ vars.SITE_TZ || 'America/New_York' }}" >> $GITHUB_ENV
-        echo "WORDNIK_API_KEY=${{ secrets.WORDNIK_API_KEY }}" >> $GITHUB_ENV
-        echo "WORDNIK_API_URL=${{ vars.WORDNIK_API_URL }}" >> $GITHUB_ENV
-        echo "WORDNIK_WEBSITE_URL=${{ vars.WORDNIK_WEBSITE_URL }}" >> $GITHUB_ENV
+        echo "CI=true" >> $GITHUB_ENV
+        echo "SENTRY_ENVIRONMENT=production" >> $GITHUB_ENV
+        echo "TZ=$(echo "$VARS_JSON" | jq -r '.SITE_TZ // "America/New_York"')" >> $GITHUB_ENV
+        echo "GITHUB_SHA=${{ inputs.github-sha }}" >> $GITHUB_ENV
+        
+        # Set variables
+        echo "$VAR_NAMES" | while read -r var; do
+          [[ -n "$var" ]] && echo "$var=$(echo "$VARS_JSON" | jq -r ".$var // \"\"")" >> $GITHUB_ENV
+        done
+        
+        # Set secrets
+        echo "$SECRET_NAMES" | while read -r secret; do
+          [[ -n "$secret" ]] && echo "$secret=$(echo "$SECRETS_JSON" | jq -r ".$secret // \"\"")" >> $GITHUB_ENV
+        done

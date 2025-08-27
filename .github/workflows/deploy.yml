@@ -35,6 +35,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup environment variables
+        uses: ./.github/actions/setup-env
+        with:
+          vars-json: ${{ toJSON(vars) }}
+          secrets-json: ${{ toJSON(secrets) }}
+          github-sha: ${{ github.sha }}
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -43,41 +49,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        env:
-          # disables dotenv in production builds
-          CI: true
-          BASE_PATH: ${{ vars.BASE_PATH }}
-          COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
-          COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
-          COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
-          DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
-          GA_ENABLED: ${{ secrets.GA_ENABLED }}
-          GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
-          GITHUB_SHA: ${{ github.sha }}
-          HUMANS_DEVELOPER_CONTACT: ${{ vars.HUMANS_DEVELOPER_CONTACT }}
-          HUMANS_DEVELOPER_NAME: ${{ vars.HUMANS_DEVELOPER_NAME }}
-          HUMANS_DEVELOPER_SITE: ${{ vars.HUMANS_DEVELOPER_SITE }}
-          HUMANS_WORD_CURATOR: ${{ vars.HUMANS_WORD_CURATOR }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-          SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
-          SENTRY_ENVIRONMENT: production
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-          SITE_ATTRIBUTION_MESSAGE: ${{ vars.SITE_ATTRIBUTION_MESSAGE }}
-          SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}
-          SITE_AUTHOR_URL: ${{ vars.SITE_AUTHOR_URL }}
-          SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
-          SITE_ID: ${{ vars.SITE_ID }}
-          SITE_KEYWORDS: ${{ vars.SITE_KEYWORDS }}
-          SITE_TITLE: ${{ vars.SITE_TITLE }}
-          # Required for Vite build-time define (__SITE_URL__)
-          SITE_URL: ${{ vars.SITE_URL }}
-          SOURCE_DIR: ${{ vars.SOURCE_DIR }}
-          TZ: ${{ vars.SITE_TZ || 'America/New_York' }}
-          WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
-          WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
-          WORDNIK_WEBSITE_URL: ${{ vars.WORDNIK_WEBSITE_URL }}
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
