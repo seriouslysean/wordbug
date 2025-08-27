@@ -6,16 +6,16 @@
 import type { SeoConfig, SeoMetadata, SeoMetadataOptions, SeoMetaDescriptionOptions } from '~types';
 import { getFullUrl } from '~astro-utils/url-utils';
 
-// SEO configuration using environment variables - no fallbacks for security
+// SEO configuration using build-time defines
 export const seoConfig: SeoConfig = {
-  defaultTitle: import.meta.env.SITE_TITLE,
-  defaultDescription: import.meta.env.SITE_DESCRIPTION,
-  siteName: import.meta.env.SITE_ID,
-  locale: import.meta.env.SITE_LOCALE || 'en-US',
-  author: import.meta.env.SITE_AUTHOR,
-  authorUrl: import.meta.env.SITE_AUTHOR_URL,
-  attributionMessage: import.meta.env.SITE_ATTRIBUTION_MESSAGE,
-  keywords: (import.meta.env.SITE_KEYWORDS || '').split(',').filter(Boolean),
+  defaultTitle: __SITE_TITLE__,
+  defaultDescription: __SITE_DESCRIPTION__,
+  siteName: __SITE_ID__,
+  locale: __SITE_LOCALE__,
+  author: __SITE_AUTHOR__,
+  authorUrl: __SITE_AUTHOR_URL__,
+  attributionMessage: __SITE_ATTRIBUTION_MESSAGE__,
+  keywords: __SITE_KEYWORDS__.split(',').filter(Boolean),
 };
 
 
