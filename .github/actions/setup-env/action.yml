@@ -55,12 +55,12 @@ runs:
         echo "TZ=$(echo "$VARS_JSON" | jq -r '.SITE_TZ // "America/New_York"')" >> $GITHUB_ENV
         echo "GITHUB_SHA=${{ inputs.github-sha }}" >> $GITHUB_ENV
         
-        # Set variables
-        echo "$VAR_NAMES" | while read -r var; do
+        # Set variables (avoid subshell with while loop)
+        while IFS= read -r var; do
           [[ -n "$var" ]] && echo "$var=$(echo "$VARS_JSON" | jq -r ".$var // \"\"")" >> $GITHUB_ENV
-        done
+        done <<< "$VAR_NAMES"
         
-        # Set secrets
-        echo "$SECRET_NAMES" | while read -r secret; do
+        # Set secrets (avoid subshell with while loop)
+        while IFS= read -r secret; do
           [[ -n "$secret" ]] && echo "$secret=$(echo "$SECRETS_JSON" | jq -r ".$secret // \"\"")" >> $GITHUB_ENV
-        done
+        done <<< "$SECRET_NAMES"
