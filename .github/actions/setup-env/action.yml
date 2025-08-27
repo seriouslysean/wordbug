@@ -50,17 +50,32 @@ runs:
           SENTRY_PROJECT
           WORDNIK_API_KEY
       run: |
+        set -e
+        echo "Setting up environment variables..."
+        
         echo "CI=true" >> $GITHUB_ENV
         echo "SENTRY_ENVIRONMENT=production" >> $GITHUB_ENV
         echo "TZ=$(echo "$VARS_JSON" | jq -r '.SITE_TZ // "America/New_York"')" >> $GITHUB_ENV
         echo "GITHUB_SHA=${{ inputs.github-sha }}" >> $GITHUB_ENV
         
+        echo "Processing variables..."
         # Set variables (avoid subshell with while loop)
         while IFS= read -r var; do
-          [[ -n "$var" ]] && echo "$var=$(echo "$VARS_JSON" | jq -r ".$var // \"\"")" >> $GITHUB_ENV
+          if [[ -n "$var" ]]; then
+            value=$(echo "$VARS_JSON" | jq -r ".$var // \"\"")
+            echo "$var=$value" >> $GITHUB_ENV
+            echo "Set $var"
+          fi
         done <<< "$VAR_NAMES"
         
+        echo "Processing secrets..."
         # Set secrets (avoid subshell with while loop)
         while IFS= read -r secret; do
-          [[ -n "$secret" ]] && echo "$secret=$(echo "$SECRETS_JSON" | jq -r ".$secret // \"\"")" >> $GITHUB_ENV
+          if [[ -n "$secret" ]]; then
+            value=$(echo "$SECRETS_JSON" | jq -r ".$secret // \"\"")
+            echo "$secret=$value" >> $GITHUB_ENV
+            echo "Set $secret"
+          fi
         done <<< "$SECRET_NAMES"
+        
+        echo "Environment setup complete!"
