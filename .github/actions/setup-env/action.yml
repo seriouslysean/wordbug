@@ -1,0 +1,30 @@
+name: 'Setup Environment Variables'
+description: 'Sets up all environment variables needed for build and deploy'
+runs:
+  using: 'composite'
+  steps:
+    - name: Set environment variables
+      shell: bash
+      run: |
+        echo "BASE_PATH=${{ vars.BASE_PATH }}" >> $GITHUB_ENV
+        echo "DICTIONARY_ADAPTER=${{ vars.DICTIONARY_ADAPTER }}" >> $GITHUB_ENV
+        echo "GA_ENABLED=${{ vars.GA_ENABLED }}" >> $GITHUB_ENV
+        echo "HUMANS_DEVELOPER_CONTACT=${{ vars.HUMANS_DEVELOPER_CONTACT }}" >> $GITHUB_ENV
+        echo "HUMANS_DEVELOPER_NAME=${{ vars.HUMANS_DEVELOPER_NAME }}" >> $GITHUB_ENV
+        echo "HUMANS_DEVELOPER_SITE=${{ vars.HUMANS_DEVELOPER_SITE }}" >> $GITHUB_ENV
+        echo "HUMANS_WORD_CURATOR=${{ vars.HUMANS_WORD_CURATOR }}" >> $GITHUB_ENV
+        echo "SENTRY_ENABLED=${{ vars.SENTRY_ENABLED }}" >> $GITHUB_ENV
+        echo "SITE_ATTRIBUTION_MESSAGE=${{ vars.SITE_ATTRIBUTION_MESSAGE }}" >> $GITHUB_ENV
+        echo "SITE_AUTHOR=${{ vars.SITE_AUTHOR }}" >> $GITHUB_ENV
+        echo "SITE_AUTHOR_URL=${{ vars.SITE_AUTHOR_URL }}" >> $GITHUB_ENV
+        echo "SITE_DESCRIPTION=${{ vars.SITE_DESCRIPTION }}" >> $GITHUB_ENV
+        echo "SITE_ID=${{ vars.SITE_ID }}" >> $GITHUB_ENV
+        echo "SITE_KEYWORDS=${{ vars.SITE_KEYWORDS }}" >> $GITHUB_ENV
+        echo "SITE_LOCALE=${{ vars.SITE_LOCALE }}" >> $GITHUB_ENV
+        echo "SITE_TITLE=${{ vars.SITE_TITLE }}" >> $GITHUB_ENV
+        echo "SITE_URL=${{ vars.SITE_URL }}" >> $GITHUB_ENV
+        echo "SOURCE_DIR=${{ vars.SOURCE_DIR }}" >> $GITHUB_ENV
+        echo "TZ=${{ vars.SITE_TZ || 'America/New_York' }}" >> $GITHUB_ENV
+        echo "WORDNIK_API_KEY=${{ secrets.WORDNIK_API_KEY }}" >> $GITHUB_ENV
+        echo "WORDNIK_API_URL=${{ vars.WORDNIK_API_URL }}" >> $GITHUB_ENV
+        echo "WORDNIK_WEBSITE_URL=${{ vars.WORDNIK_WEBSITE_URL }}" >> $GITHUB_ENV

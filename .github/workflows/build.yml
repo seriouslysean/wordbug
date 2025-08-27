@@ -11,6 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup environment variables
+        uses: ./.github/actions/setup-env
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
