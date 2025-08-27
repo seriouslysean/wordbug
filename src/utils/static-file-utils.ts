@@ -5,6 +5,7 @@ import type { WordData } from '~types';
 import { formatDate } from '~utils/date-utils';
 import { getAllPageMetadata } from '~utils/page-metadata-utils';
 import { generateWordDataHash } from '~astro-utils/word-data-utils';
+import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS } from '~constants/urls';
 
 /**
  * List of supported static text files
@@ -152,33 +153,40 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   if (recentWords.length > 0) {
     const [todayWord, ...previousWords] = [...recentWords].reverse();
     recentWordSection = [
-      `- [${todayWord.word}](${baseUrl}/${todayWord.word}): ${formatDate(todayWord.date)}`,
-      ...previousWords.map(word => `- [${word.word}](${baseUrl}/${word.word}): ${formatDate(word.date)}`),
+      `- [${todayWord.word}](${baseUrl}/words/${todayWord.word}): ${formatDate(todayWord.date)}`,
+      ...previousWords.map(word => `- [${word.word}](${baseUrl}/words/${word.word}): ${formatDate(word.date)}`),
     ].join('\n');
   }
 
   const allPages = getAllPageMetadata(words);
-  const allWordsPage = allPages.find(p => p.path === 'words');
+  const allWordsPage = allPages.find(p => p.path === BASE_PATHS.WORDS);
   const yearPages = allPages
-    .filter(p => /^words\/[0-9]{4}$/.test(p.path))
+    .filter(p => URL_PATTERNS.YEAR_PAGE.test(p.path))
     .sort((a, b) => b.path.localeCompare(a.path));
   const monthPages = allPages
-    .filter(p => /^words\/[0-9]{4}\/[a-z]+$/.test(p.path))
+    .filter(p => URL_PATTERNS.MONTH_PAGE.test(p.path))
     .sort((a, b) => b.path.localeCompare(a.path));
-  const lengthIndexPage = allPages.find(p => p.path === 'words/length');
+  const lengthIndexPage = allPages.find(p => p.path === BROWSE_PATHS.WORDS_LENGTH);
   const lengthPages = allPages
-    .filter(p => /^words\/length\/\d+$/.test(p.path))
-    .sort((a, b) => Number(a.path.split('/')[2]) - Number(b.path.split('/')[2]));
+    .filter(p => URL_PATTERNS.LENGTH_PAGE.test(p.path))
+    .sort((a, b) => {
+      const aMatch = a.path.match(URL_PATTERNS.LENGTH_PAGE);
+      const bMatch = b.path.match(URL_PATTERNS.LENGTH_PAGE);
+      if (aMatch && bMatch) {
+        return Number(aMatch[1]) - Number(bMatch[1]);
+      }
+      return 0;
+    });
   const staticPages = allPages.filter(p =>
-    !['', 'words', 'stats', 'words/length'].includes(p.path) &&
-    !/^words\/[0-9]{4}$/.test(p.path) &&
-    !/^words\/[0-9]{4}\/[a-z]+$/.test(p.path) &&
-    !/^words\/length\/\d+$/.test(p.path) &&
-    !p.path.startsWith('stats/'),
+    ![BASE_PATHS.HOME.slice(1), BASE_PATHS.WORDS, BASE_PATHS.STATS, BROWSE_PATHS.WORDS_LENGTH].includes(p.path) &&
+    !URL_PATTERNS.YEAR_PAGE.test(p.path) &&
+    !URL_PATTERNS.MONTH_PAGE.test(p.path) &&
+    !URL_PATTERNS.LENGTH_PAGE.test(p.path) &&
+    !URL_PATTERNS.STATS_PAGE.test(p.path),
   );
-  const statsPage = allPages.find(p => p.path === 'stats');
+  const statsPage = allPages.find(p => p.path === BASE_PATHS.STATS);
   const statsSubpages = allPages
-    .filter(p => p.path.startsWith('stats/') && p.path !== 'stats')
+    .filter(p => URL_PATTERNS.STATS_PAGE.test(p.path))
     .sort((a, b) => a.title.localeCompare(b.title));
 
   // Build Pages section
@@ -186,29 +194,29 @@ export function generateLlmsTxt(words: WordData[]): string | null {
     allWordsPage && `- [${allWordsPage.title}](${baseUrl}/words): ${allWordsPage.description}`,
     yearPages.length > 0 && [
       '### Year Archives',
-      ...yearPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+      ...yearPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
     ],
     monthPages.length > 0 && [
       '### Month Archives',
-      ...monthPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+      ...monthPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
     ],
-    lengthIndexPage && `- [${lengthIndexPage.title}](${baseUrl}/words/length): ${lengthIndexPage.description}`,
+    lengthIndexPage && `- [${lengthIndexPage.title}](${baseUrl}${lengthIndexPage.path}): ${lengthIndexPage.description}`,
     lengthPages.length > 0 && [
       '### Word Length Pages',
-      ...lengthPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+      ...lengthPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
     ],
     staticPages.length > 0 && [
       '### Other Pages',
-      ...staticPages.map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`),
+      ...staticPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
     ],
-    statsPage && `- [${statsPage.title}](${baseUrl}/stats): ${statsPage.description}`,
+    statsPage && `- [${statsPage.title}](${baseUrl}${statsPage.path}): ${statsPage.description}`,
   ]
     .flat()
     .filter(Boolean)
     .join('\n');
 
   const statsLinks = statsSubpages
-    .map(page => `- [${page.title}](${baseUrl}/${page.path}): ${page.description}`)
+    .map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`)
     .join('\n');
 
   return [

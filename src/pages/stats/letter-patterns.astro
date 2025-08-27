@@ -8,13 +8,20 @@ import {
   letterPatternStats
 } from '~astro-utils/word-data-utils';
 import { t } from '~utils/i18n-utils';
+import { 
+  getSameStartEndUrl,
+  getDoubleLettersUrl,
+  getTripleLettersUrl,
+  getAlphabeticalOrderUrl,
+  getPalindromesUrl
+} from '~astro-utils/url-utils';
 
 const letterPatternItems = [
-  { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatternStats.startEndSame.length, href: '/stats/same-start-end' },
-  { key: 'doubleLetters', label: t('stats.double_letters'), count: letterPatternStats.doubleLetters.length, href: '/stats/double-letters' },
-  { key: 'tripleLetters', label: t('stats.triple_letters'), count: letterPatternStats.tripleLetters.length, href: '/stats/triple-letters' },
-  { key: 'alphabetical', label: t('stats.alphabetical_order'), count: letterPatternStats.alphabetical.length, href: '/stats/alphabetical-order' },
-  { key: 'palindromes', label: t('stats.palindromes'), count: letterPatternStats.palindromes.length, href: '/stats/palindromes' }
+  { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatternStats.startEndSame.length, href: getSameStartEndUrl() },
+  { key: 'doubleLetters', label: t('stats.double_letters'), count: letterPatternStats.doubleLetters.length, href: getDoubleLettersUrl() },
+  { key: 'tripleLetters', label: t('stats.triple_letters'), count: letterPatternStats.tripleLetters.length, href: getTripleLettersUrl() },
+  { key: 'alphabetical', label: t('stats.alphabetical_order'), count: letterPatternStats.alphabetical.length, href: getAlphabeticalOrderUrl() },
+  { key: 'palindromes', label: t('stats.palindromes'), count: letterPatternStats.palindromes.length, href: getPalindromesUrl() }
 ].filter(item => item.count > 0);
 
 const { title, description } = getPageMetadata(Astro.url.pathname);

@@ -4,7 +4,31 @@ import DescriptionText from '~components/DescriptionText.astro';
 import StatsSection from '~components/StatsSection.astro';
 import BarChart from '~components/BarChart.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { getWordsLengthUrl } from '~astro-utils/url-utils';
+import { 
+  getWordsLengthUrl,
+  getSameStartEndUrl,
+  getDoubleLettersUrl,
+  getTripleLettersUrl,
+  getAlphabeticalOrderUrl,
+  getWordsEndingIngUrl,
+  getWordsEndingEdUrl,
+  getWordsEndingLyUrl,
+  getWordsEndingNessUrl,
+  getWordsEndingFulUrl,
+  getWordsEndingLessUrl,
+  getMilestoneWordsUrl,
+  getCurrentStreakUrl,
+  getLongestStreakUrl,
+  getMostCommonLetterUrl,
+  getLeastCommonLetterUrl,
+  getPalindromesUrl,
+  getAllConsonantsUrl,
+  getAllVowelsUrl,
+  getWordFactsUrl,
+  getStreaksUrl,
+  getLetterPatternsUrl,
+  getWordEndingsUrl
+} from '~astro-utils/url-utils';
 import {
   getLetterStats,
   getLetterTypeStats,
@@ -52,19 +76,19 @@ const palindromeCount = palindromes.length;
 const milestoneCount = milestoneWords.length;
 
 const letterPatternItems = [
-  { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatternStats.startEndSame.length, href: '/stats/same-start-end' },
-  { key: 'doubleLetters', label: t('stats.double_letters'), count: letterPatternStats.doubleLetters.length, href: '/stats/double-letters' },
-  { key: 'tripleLetters', label: t('stats.triple_letters'), count: letterPatternStats.tripleLetters.length, href: '/stats/triple-letters' },
-  { key: 'alphabetical', label: t('stats.alphabetical_order'), count: letterPatternStats.alphabetical.length, href: '/stats/alphabetical-order' },
+  { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatternStats.startEndSame.length, href: getSameStartEndUrl() },
+  { key: 'doubleLetters', label: t('stats.double_letters'), count: letterPatternStats.doubleLetters.length, href: getDoubleLettersUrl() },
+  { key: 'tripleLetters', label: t('stats.triple_letters'), count: letterPatternStats.tripleLetters.length, href: getTripleLettersUrl() },
+  { key: 'alphabetical', label: t('stats.alphabetical_order'), count: letterPatternStats.alphabetical.length, href: getAlphabeticalOrderUrl() },
 ].filter(item => item.count > 0);
 
 const wordEndingItems = [
-  { key: 'ing', label: t('stats.ing_words'), count: wordEndingStats.ing.length, href: '/stats/words-ending-ing' },
-  { key: 'ed', label: t('stats.ed_words'), count: wordEndingStats.ed.length, href: '/stats/words-ending-ed' },
-  { key: 'ly', label: t('stats.ly_words'), count: wordEndingStats.ly.length, href: '/stats/words-ending-ly' },
-  { key: 'ness', label: t('stats.ness_words'), count: wordEndingStats.ness.length, href: '/stats/words-ending-ness' },
-  { key: 'ful', label: t('stats.ful_words'), count: wordEndingStats.ful.length, href: '/stats/words-ending-ful' },
-  { key: 'less', label: t('stats.less_words'), count: wordEndingStats.less.length, href: '/stats/words-ending-less' },
+  { key: 'ing', label: t('stats.ing_words'), count: wordEndingStats.ing.length, href: getWordsEndingIngUrl() },
+  { key: 'ed', label: t('stats.ed_words'), count: wordEndingStats.ed.length, href: getWordsEndingEdUrl() },
+  { key: 'ly', label: t('stats.ly_words'), count: wordEndingStats.ly.length, href: getWordsEndingLyUrl() },
+  { key: 'ness', label: t('stats.ness_words'), count: wordEndingStats.ness.length, href: getWordsEndingNessUrl() },
+  { key: 'ful', label: t('stats.ful_words'), count: wordEndingStats.ful.length, href: getWordsEndingFulUrl() },
+  { key: 'less', label: t('stats.less_words'), count: wordEndingStats.less.length, href: getWordsEndingLessUrl() },
 ].filter(item => item.count > 0);
 
 const hasLetterPatterns = letterPatternItems.length > 0;
@@ -74,7 +98,7 @@ const hasWordEndings = wordEndingItems.length > 0;
 const basicStatsItems = [
   { label: t('stats.total_words'), value: totalWords, href: '/words' },
   ...(lengthCount > 0 ? [{ label: t('stats.word_lengths'), value: lengthCount, href: getWordsLengthUrl() }] : []),
-  ...(milestoneCount > 0 ? [{ label: t('stats.milestone_words'), value: milestoneCount, href: '/stats/milestone-words' }] : [])
+  ...(milestoneCount > 0 ? [{ label: t('stats.milestone_words'), value: milestoneCount, href: getMilestoneWordsUrl() }] : [])
 ];
 
 // Basic word items that should render as word links
@@ -87,12 +111,12 @@ const streakItems = [
   {
     label: t('stats.current_streak'),
     value: t('stats.days', { count: streakStats.currentStreak }),
-    ...(streakStats.currentStreak > 0 ? { href: '/stats/current-streak' } : {})
+    ...(streakStats.currentStreak > 0 ? { href: getCurrentStreakUrl() } : {})
   },
   {
     label: t('stats.longest_streak'),
     value: t('stats.days', { count: streakStats.longestStreak }),
-    ...(streakStats.longestStreak > 0 ? { href: '/stats/longest-streak' } : {})
+    ...(streakStats.longestStreak > 0 ? { href: getLongestStreakUrl() } : {})
   },
   ...(antiStreakStats.longestGap > 0 ? [{
     label: t('stats.longest_gap'),
@@ -113,12 +137,12 @@ const wordFactsWordItems = [
 // Word facts items that should render as regular links/values
 const wordFactsRegularItems = [
   ...(letterStats.length > 0 ? [
-    { label: t('stats.most_common_letter', { count: mostCommonLetterCount }), value: mostCommonLetter, href: '/stats/most-common-letter' },
-    { label: t('stats.least_common_letter', { count: leastCommonLetterCount, plural: leastCommonLetterPlural }), value: leastCommonLetter, href: '/stats/least-common-letter' }
+    { label: t('stats.most_common_letter', { count: mostCommonLetterCount }), value: mostCommonLetter, href: getMostCommonLetterUrl() },
+    { label: t('stats.least_common_letter', { count: leastCommonLetterCount, plural: leastCommonLetterPlural }), value: leastCommonLetter, href: getLeastCommonLetterUrl() }
   ] : []),
-  ...(palindromeCount > 0 ? [{ label: t('stats.palindromes'), value: palindromeCount, href: '/stats/palindromes' }] : []),
-  ...(allConsonants.length > 0 ? [{ label: t('stats.all_consonants'), value: allConsonants.length, href: '/stats/all-consonants' }] : []),
-  ...(allVowels.length > 0 ? [{ label: t('stats.all_vowels'), value: allVowels.length, href: '/stats/all-vowels' }] : [])
+  ...(palindromeCount > 0 ? [{ label: t('stats.palindromes'), value: palindromeCount, href: getPalindromesUrl() }] : []),
+  ...(allConsonants.length > 0 ? [{ label: t('stats.all_consonants'), value: allConsonants.length, href: getAllConsonantsUrl() }] : []),
+  ...(allVowels.length > 0 ? [{ label: t('stats.all_vowels'), value: allVowels.length, href: getAllVowelsUrl() }] : [])
 ];
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
@@ -133,12 +157,12 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
       <DefinitionList items={basicWordItems} valueType="word" />
     </StatsSection>
 
-    <StatsSection title={t('stats.word_facts_heading')} href="/stats/word-facts">
+    <StatsSection title={t('stats.word_facts_heading')} href={getWordFactsUrl()}>
       <DefinitionList items={wordFactsWordItems} valueType="word" />
       <DefinitionList items={wordFactsRegularItems} />
     </StatsSection>
 
-    <StatsSection title={t('stats.streaks_heading')} href="/stats/streaks">
+    <StatsSection title={t('stats.streaks_heading')} href={getStreaksUrl()}>
       <DefinitionList items={streakItems} />
       
       {antiStreakStats.longestGap > 0 && (
@@ -158,7 +182,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
     </StatsSection>
 
 {hasLetterPatterns && (
-      <StatsSection title={t('stats.letter_patterns_heading')} href="/stats/letter-patterns">
+      <StatsSection title={t('stats.letter_patterns_heading')} href={getLetterPatternsUrl()}>
         <DefinitionList items={letterPatternItems.map(item => ({
           label: item.label,
           value: item.count,
@@ -168,7 +192,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
     )}
 
 {hasWordEndings && (
-      <StatsSection title={t('stats.word_endings_heading')} href="/stats/word-endings">
+      <StatsSection title={t('stats.word_endings_heading')} href={getWordEndingsUrl()}>
         <DefinitionList items={wordEndingItems.map(item => ({
           label: item.label,
           value: item.count,

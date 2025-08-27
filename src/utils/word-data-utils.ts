@@ -5,6 +5,7 @@ import type {
   WordAdjacentResult,
   WordData,
   WordGroupByLengthResult,
+  WordGroupByPartOfSpeechResult,
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types';
@@ -14,7 +15,9 @@ import {
   getAvailableLengths, 
   getWordsByYear,
   getAvailableMonths,
-  getAvailableLetters
+  getAvailableLetters,
+  getAvailablePartsOfSpeech,
+  normalizePartOfSpeech
 } from '~utils/word-data-utils';
 import {
   getWordStats,
@@ -95,6 +98,11 @@ export const availableLengths = getAvailableLengths(allWords);
  * All available starting letters from the loaded collection
  */
 export const availableLetters = getAvailableLetters(allWords);
+
+/**
+ * All available parts of speech from the loaded collection
+ */
+export const availablePartsOfSpeech = getAvailablePartsOfSpeech(allWords);
 
 /**
  * Get words from a specific year using the loaded collection
@@ -388,6 +396,62 @@ export const getWordsByLetter = (letter: string, words: WordData[] = allWords): 
   return words.filter(word => 
     word.word.toLowerCase().startsWith(normalizedLetter)
   );
+};
+
+/**
+ * Groups words by their part of speech
+ *
+ * @param {WordData[]} words - Array of word data to group
+ * @returns {WordGroupByPartOfSpeechResult} Object with part of speech keys and word arrays
+ */
+export const groupWordsByPartOfSpeech = (words: WordData[]): WordGroupByPartOfSpeechResult => {
+  const groups = words.reduce<Record<string, WordData[]>>((acc, word) => {
+    if (word.data && Array.isArray(word.data)) {
+      // Get all unique normalized parts of speech for this word
+      const partsOfSpeech = new Set<string>();
+      word.data.forEach(definition => {
+        if (definition.partOfSpeech) {
+          partsOfSpeech.add(normalizePartOfSpeech(definition.partOfSpeech));
+        }
+      });
+      
+      // Add word to each part of speech group
+      partsOfSpeech.forEach(partOfSpeech => {
+        acc[partOfSpeech] = acc[partOfSpeech] || [];
+        // Only add if not already present (avoid duplicates)
+        if (!acc[partOfSpeech].some(existing => existing.date === word.date)) {
+          acc[partOfSpeech].push(word);
+        }
+      });
+    }
+    
+    return acc;
+  }, {});
+
+  // Sort parts of speech alphabetically and sort words within each group by word name
+  return Object.fromEntries(
+    Object.entries(groups)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([partOfSpeech, words]) => [partOfSpeech, words.sort((a, b) => a.word.localeCompare(b.word))])
+  );
+};
+
+/**
+ * Retrieves all words that have a specific part of speech
+ *
+ * @param {string} partOfSpeech - Part of speech to filter by (will be normalized)
+ * @param {WordData[]} [words=allWords] - Array of word data to search through
+ * @returns {WordData[]} Array of word data entries with the specified part of speech
+ */
+export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[] = allWords): WordData[] => {
+  const normalizedPartOfSpeech = normalizePartOfSpeech(partOfSpeech);
+  return words.filter(word => {
+    if (!word.data || !Array.isArray(word.data)) return false;
+    
+    return word.data.some(definition => 
+      definition.partOfSpeech && normalizePartOfSpeech(definition.partOfSpeech) === normalizedPartOfSpeech
+    );
+  });
 };
 
 

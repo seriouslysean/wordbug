@@ -21,6 +21,8 @@ import {
   groupWordsByYear,
   groupWordsByLetter,
   getWordsByLetter,
+  groupWordsByPartOfSpeech,
+  getWordsByPartOfSpeech,
 } from '~astro-utils/word-data-utils';
 import {
   getAvailableLengths,
@@ -28,6 +30,8 @@ import {
   getAvailableYears,
   getWordsByYear,
   getAvailableLetters,
+  getAvailablePartsOfSpeech,
+  normalizePartOfSpeech,
 } from '~utils/word-data-utils';
 
 describe('word-data-utils', () => {
@@ -41,6 +45,19 @@ describe('word-data-utils', () => {
     { word: 'apple', date: '20250101', data: [{ text: 'Apple word', partOfSpeech: 'noun' }] },
     { word: 'year2024', date: '20241225', data: [{ text: '2024 word', partOfSpeech: 'noun' }] },
     { word: 'year2023', date: '20231201', data: [{ text: '2023 word', partOfSpeech: 'verb' }] },
+  ];
+
+  // Additional mock data for part-of-speech tests
+  const mockWordDataWithComplexPartOfSpeech = [
+    { word: 'run', date: '20250120', data: [
+      { text: 'To move swiftly', partOfSpeech: 'intransitive verb' },
+      { text: 'A distance run', partOfSpeech: 'noun' }
+    ]},
+    { word: 'beautiful', date: '20250119', data: [{ text: 'Pleasing to look at', partOfSpeech: 'adjective' }] },
+    { word: 'quickly', date: '20250118', data: [{ text: 'In a quick manner', partOfSpeech: 'adverb' }] },
+    { word: 'help', date: '20250117', data: [{ text: 'To assist', partOfSpeech: 'transitive verb' }] },
+    { word: 'the', date: '20250116', data: [{ text: 'Definite article', partOfSpeech: 'definite article' }] },
+    { word: 'have', date: '20250115', data: [{ text: 'Auxiliary verb', partOfSpeech: 'auxiliary verb' }] },
   ];
 
 
@@ -381,6 +398,91 @@ describe('word-data-utils', () => {
       expect(getAvailableLetters([])).toEqual([]);
       expect(getWordsByLetter('a', [])).toEqual([]);
       expect(groupWordsByLetter([])).toEqual({});
+    });
+  });
+
+  describe('part-of-speech utilities', () => {
+    it('normalizes basic parts of speech', () => {
+      expect(normalizePartOfSpeech('noun')).toBe('noun');
+      expect(normalizePartOfSpeech('Adjective')).toBe('adjective');
+      expect(normalizePartOfSpeech('VERB  ')).toBe('verb');
+    });
+
+    it('normalizes verb variations', () => {
+      expect(normalizePartOfSpeech('transitive verb')).toBe('verb');
+      expect(normalizePartOfSpeech('intransitive verb')).toBe('verb');
+      expect(normalizePartOfSpeech('auxiliary verb')).toBe('verb');
+    });
+
+    it('normalizes article variations', () => {
+      expect(normalizePartOfSpeech('definite article')).toBe('article');
+      expect(normalizePartOfSpeech('indefinite article')).toBe('article');
+    });
+
+    it('handles auxiliary verb correctly', () => {
+      expect(normalizePartOfSpeech('auxiliary verb')).toBe('verb');
+    });
+
+    it('returns sorted unique parts of speech', () => {
+      const result = getAvailablePartsOfSpeech(mockWordDataWithComplexPartOfSpeech);
+      expect(result).toEqual(['adjective', 'adverb', 'article', 'noun', 'verb']);
+    });
+
+    it('filters words by part of speech', () => {
+      const nouns = getWordsByPartOfSpeech('noun', mockWordDataWithComplexPartOfSpeech);
+      expect(nouns).toHaveLength(1); // 'run' has both verb and noun, so it matches
+      expect(nouns[0].word).toBe('run');
+
+      const verbs = getWordsByPartOfSpeech('verb', mockWordDataWithComplexPartOfSpeech);
+      expect(verbs).toHaveLength(3); // 'run', 'help', 'have' (normalized from various verb types)
+      expect(verbs.map(w => w.word).sort()).toEqual(['have', 'help', 'run']);
+    });
+
+    it('groups words by part of speech', () => {
+      const result = groupWordsByPartOfSpeech(mockWordDataWithComplexPartOfSpeech);
+      
+      expect(result['noun']).toHaveLength(1);
+      expect(result['noun'][0].word).toBe('run');
+      
+      expect(result['verb']).toHaveLength(3);
+      expect(result['verb'].map(w => w.word)).toEqual(['have', 'help', 'run']); // sorted alphabetically
+      
+      expect(result['adjective']).toHaveLength(1);
+      expect(result['adjective'][0].word).toBe('beautiful');
+      
+      expect(result['adverb']).toHaveLength(1);
+      expect(result['adverb'][0].word).toBe('quickly');
+      
+      expect(result['article']).toHaveLength(1);
+      expect(result['article'][0].word).toBe('the');
+    });
+
+    it('avoids duplicate words in groups when word has multiple definitions', () => {
+      const result = groupWordsByPartOfSpeech(mockWordDataWithComplexPartOfSpeech);
+      
+      // 'run' appears in both noun and verb groups but only once in each
+      expect(result['noun'].filter(w => w.word === 'run')).toHaveLength(1);
+      expect(result['verb'].filter(w => w.word === 'run')).toHaveLength(1);
+    });
+
+    it('handles words with no part of speech', () => {
+      const dataWithMissingPartOfSpeech = [
+        { word: 'test', date: '20250120', data: [{ text: 'Test definition' }] },
+        { word: 'valid', date: '20250119', data: [{ text: 'Valid definition', partOfSpeech: 'adjective' }] }
+      ];
+      
+      const result = getAvailablePartsOfSpeech(dataWithMissingPartOfSpeech);
+      expect(result).toEqual(['adjective']);
+      
+      const grouped = groupWordsByPartOfSpeech(dataWithMissingPartOfSpeech);
+      expect(grouped['adjective']).toHaveLength(1);
+      expect(grouped['adjective'][0].word).toBe('valid');
+    });
+
+    it('handles empty arrays', () => {
+      expect(getAvailablePartsOfSpeech([])).toEqual([]);
+      expect(getWordsByPartOfSpeech('noun', [])).toEqual([]);
+      expect(groupWordsByPartOfSpeech([])).toEqual({});
     });
   });
 });
