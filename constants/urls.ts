@@ -3,6 +3,8 @@
  * Used by URL helpers, page metadata, and tests to ensure consistency.
  */
 
+import { slugify } from '~astro-utils/url-utils';
+
 // =====================================================
 // Base Paths - Top-level sections
 // =====================================================
@@ -10,8 +12,10 @@
 export const BASE_PATHS = {
   HOME: '/',
   WORDS: '/words',
+  WORD: '/word',
   STATS: '/stats',
   ABOUT: '/about',
+  NOT_FOUND: '/404',
 } as const;
 
 // =====================================================
@@ -29,7 +33,7 @@ export const BROWSE_PATHS = {
 // =====================================================
 
 export const URL_PATTERNS = {
-  WORD_DETAIL: /^\/words\/([^/]+)$/,
+  WORD_DETAIL: /^\/word\/([^/]+)$/,
   YEAR_PAGE: /^\/words\/(\d{4})$/,
   MONTH_PAGE: /^\/words\/(\d{4})\/([a-z]+)$/,
   LENGTH_PAGE: /^\/words\/length\/(\d+)$/,
@@ -43,13 +47,13 @@ export const URL_PATTERNS = {
 // =====================================================
 
 export const ROUTES = {
-  WORD: (word: string) => `/words/${word}`,
-  YEAR: (year: string) => `/words/${year}`,
-  MONTH: (year: string, month: string) => `/words/${year}/${month.toLowerCase()}`,
-  LENGTH: (length: number) => `/words/length/${length}`,
-  LETTER: (letter: string) => `/words/letter/${letter.toLowerCase()}`,
-  PART_OF_SPEECH: (partOfSpeech: string) => `/words/part-of-speech/${partOfSpeech.toLowerCase()}`,
-  STAT: (stat: string) => `/stats/${stat}`,
+  WORD: (word: string) => `${BASE_PATHS.WORD}/${slugify(word)}`,
+  YEAR: (year: string) => `${BASE_PATHS.WORDS}/${year}`,
+  MONTH: (year: string, month: string) => `${BASE_PATHS.WORDS}/${year}/${slugify(month)}`,
+  LENGTH: (length: number) => `${BROWSE_PATHS.WORDS_LENGTH}/${length}`,
+  LETTER: (letter: string) => `${BROWSE_PATHS.WORDS_LETTER}/${slugify(letter)}`,
+  PART_OF_SPEECH: (partOfSpeech: string) => `${BROWSE_PATHS.WORDS_PART_OF_SPEECH}/${slugify(partOfSpeech)}`,
+  STAT: (stat: string) => `${BASE_PATHS.STATS}/${slugify(stat)}`,
 } as const;
 
 // =====================================================

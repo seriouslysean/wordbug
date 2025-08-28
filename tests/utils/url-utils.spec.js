@@ -8,6 +8,7 @@ import {
   getFullUrl,
   getUrl,
   stripBasePath,
+  slugify,
   getWordsUrl,
   getStatsUrl,
   getWordsLengthUrl,
@@ -20,6 +21,45 @@ import {
 } from '~astro-utils/url-utils';
 
 describe('utils', () => {
+  describe('slugify', () => {
+    it('converts strings to URL-safe slugs', () => {
+      expect(slugify('hello world')).toBe('hello-world');
+      expect(slugify('ice cream')).toBe('ice-cream');
+      expect(slugify('Hello World')).toBe('hello-world');
+    });
+
+    it('removes special characters', () => {
+      expect(slugify("don't")).toBe('dont');
+      expect(slugify('hello & world')).toBe('hello-world');
+      expect(slugify('test!@#$%^&*()_+={[}]|\\:";\'<>?,./`~')).toBe('test_');
+    });
+
+    it('handles multiple spaces and dashes', () => {
+      expect(slugify('hello    world')).toBe('hello-world');
+      expect(slugify('hello--world')).toBe('hello-world');
+      expect(slugify('hello - - world')).toBe('hello-world');
+    });
+
+    it('trims leading and trailing dashes', () => {
+      expect(slugify('-hello world-')).toBe('hello-world');
+      expect(slugify('--hello--')).toBe('hello');
+      expect(slugify('---')).toBe('');
+    });
+
+    it('handles empty strings and edge cases', () => {
+      expect(slugify('')).toBe('');
+      expect(slugify('   ')).toBe('');
+      expect(slugify('123')).toBe('123');
+      expect(slugify('a')).toBe('a');
+    });
+
+    it('preserves underscores and numbers', () => {
+      expect(slugify('test_123')).toBe('test_123');
+      expect(slugify('word-2024')).toBe('word-2024');
+      expect(slugify('hello_world 123')).toBe('hello_world-123');
+    });
+  });
+
   describe('getUrl', () => {
     beforeEach(() => {
       vi.stubGlobal('__BASE_URL__', '/');

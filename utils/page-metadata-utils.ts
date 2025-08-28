@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import { URL_PATTERNS } from '~constants/urls';
+import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '~constants/urls';
 
 import type { WordData } from '~types';
 import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
@@ -8,7 +8,7 @@ import {
   DYNAMIC_STATS_DEFINITIONS,
   LETTER_PATTERN_DEFINITIONS,
   PATTERN_DEFINITIONS,
-  STATS_SLUGS,
+  SUFFIX_DEFINITIONS,
 } from '~constants/stats';
 import { t, tp } from '~utils/i18n-utils';
 import {
@@ -24,7 +24,6 @@ import {
   getWordsByLetter,
   getWordsByPartOfSpeech,
 } from '~astro-utils/word-data-utils';
-import { ROUTES } from '~constants/urls';
 import {
   getLengthUrl,
   getLetterUrl,
@@ -94,247 +93,250 @@ type PageMeta = StaticPageMeta | HomepageMeta | StatsPageMeta;
 function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
   const stats = getStats(words);
 
-  return {
-  '/': {
-    type: 'home',
-    title: t('home.heading'),
-    description: (currentWord: string): string => t('home.description', { word: currentWord }),
-    category: 'pages',
-  },
+  // Create static pages using URL constants, preserving all i18n function calls
+  const staticPages: Record<string, PageMeta> = {
+    [BASE_PATHS.HOME]: {
+      type: 'home',
+      title: t('home.heading'),
+      description: (currentWord: string): string => t('home.description', { word: currentWord }),
+      category: 'pages',
+    },
+    [BASE_PATHS.WORDS]: {
+      type: 'static',
+      title: t('words.heading'),
+      description: t('words.description'),
+      category: 'pages',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [`${BASE_PATHS.WORDS}/browse`]: {
+      type: 'static',
+      title: t('browse.heading'),
+      description: t('browse.description'),
+      category: 'pages',
+      secondaryText: t('browse.subheading'),
+    },
+    [BROWSE_PATHS.WORDS_LENGTH]: {
+      type: 'static',
+      title: t('words.by_length_heading'),
+      description: t('words.by_length_description'),
+      category: 'pages',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [BROWSE_PATHS.WORDS_LETTER]: {
+      type: 'static',
+      title: t('words.by_letter_heading'),
+      description: t('words.by_letter_description'),
+      category: 'pages',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [BROWSE_PATHS.WORDS_PART_OF_SPEECH]: {
+      type: 'static',
+      title: t('words.by_part_of_speech_heading'),
+      description: t('words.by_part_of_speech_description'),
+      category: 'pages',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [BASE_PATHS.STATS]: {
+      type: 'static',
+      title: t('stats.heading'),
+      description: t('stats.description'),
+      category: 'pages',
+      secondaryText: t('stats.subheading'),
+    },
+    [ROUTES.STAT(STATS_SLUGS.WORD_FACTS)]: {
+      type: 'static',
+      title: t('stats.word_facts_heading'),
+      description: t('stats.word_facts_description'),
+      category: 'pages',
+      secondaryText: t('stats.word_facts_subheading'),
+    },
+    [ROUTES.STAT(STATS_SLUGS.STREAKS)]: {
+      type: 'static',
+      title: t('stats.streaks_index_heading'),
+      description: t('stats.streaks_index_description'),
+      category: 'pages',
+      secondaryText: t('stats.streaks_index_subheading'),
+    },
+    [ROUTES.STAT(STATS_SLUGS.LETTER_PATTERNS)]: {
+      type: 'static',
+      title: t('stats.letter_patterns_index_heading'),
+      description: t('stats.letter_patterns_index_description'),
+      category: 'pages',
+      secondaryText: t('stats.letter_patterns_index_subheading'),
+    },
+    [ROUTES.STAT(STATS_SLUGS.WORD_ENDINGS)]: {
+      type: 'static',
+      title: t('stats.word_endings_index_heading'),
+      description: t('stats.word_endings_index_description'),
+      category: 'pages',
+      secondaryText: t('stats.word_endings_index_subheading'),
+    },
+    [BASE_PATHS.NOT_FOUND]: {
+      type: 'static',
+      title: t('error.heading'),
+      description: t('error.description'),
+      category: 'pages',
+      partOfSpeech: 'noun',
+    },
+  };
 
-  // Main pages
-  '/words': {
-    type: 'static',
-    title: t('words.heading'),
-    description: t('words.description'),
-    category: 'pages',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/words/browse': {
-    type: 'static',
-    title: t('browse.heading'),
-    description: t('browse.description'),
-    category: 'pages',
-    secondaryText: t('browse.subheading'),
-  },
-  '/words/length': {
-    type: 'static',
-    title: t('words.by_length_heading'),
-    description: t('words.by_length_description'),
-    category: 'pages',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/words/letter': {
-    type: 'static',
-    title: t('words.by_letter_heading'),
-    description: t('words.by_letter_description'),
-    category: 'pages',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/words/part-of-speech': {
-    type: 'static',
-    title: t('words.by_part_of_speech_heading'),
-    description: t('words.by_part_of_speech_description'),
-    category: 'pages',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats': {
-    type: 'static',
-    title: t('stats.heading'),
-    description: t('stats.description'),
-    category: 'pages',
-    secondaryText: t('stats.subheading'),
-  },
-  '/stats/word-facts': {
-    type: 'static',
-    title: t('stats.word_facts_heading'),
-    description: t('stats.word_facts_description'),
-    category: 'pages',
-    secondaryText: t('stats.word_facts_subheading'),
-  },
-  '/stats/streaks': {
-    type: 'static',
-    title: t('stats.streaks_index_heading'),
-    description: t('stats.streaks_index_description'),
-    category: 'pages',
-    secondaryText: t('stats.streaks_index_subheading'),
-  },
-  '/stats/letter-patterns': {
-    type: 'static',
-    title: t('stats.letter_patterns_index_heading'),
-    description: t('stats.letter_patterns_index_description'),
-    category: 'pages',
-    secondaryText: t('stats.letter_patterns_index_subheading'),
-  },
-  '/stats/word-endings': {
-    type: 'static',
-    title: t('stats.word_endings_index_heading'),
-    description: t('stats.word_endings_index_description'),
-    category: 'pages',
-    secondaryText: t('stats.word_endings_index_subheading'),
-  },
-  '/404': {
-    type: 'static',
-    title: t('error.heading'),
-    description: t('error.description'),
-    category: 'pages',
-    partOfSpeech: 'noun',
-  },
+  // Stats pages with dynamic counts - using URL constants instead of hardcoded paths
+  const statsPages: Record<string, PageMeta> = {
+    [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_LY)]: {
+      type: 'stats',
+      title: SUFFIX_DEFINITIONS.ly.title,
+      description: (count: number) => SUFFIX_DEFINITIONS.ly.metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_ING)]: {
+      type: 'stats',
+      title: SUFFIX_DEFINITIONS.ing.title,
+      description: (count: number) => SUFFIX_DEFINITIONS.ing.metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_ED)]: {
+      type: 'stats',
+      title: SUFFIX_DEFINITIONS.ed.title,
+      description: (count: number) => SUFFIX_DEFINITIONS.ed.metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_NESS)]: {
+      type: 'stats',
+      title: SUFFIX_DEFINITIONS.ness.title,
+      description: (count: number) => SUFFIX_DEFINITIONS.ness.metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_FUL)]: {
+      type: 'stats',
+      title: SUFFIX_DEFINITIONS.ful.title,
+      description: (count: number) => SUFFIX_DEFINITIONS.ful.metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_LESS)]: {
+      type: 'stats',
+      title: SUFFIX_DEFINITIONS.less.title,
+      description: (count: number) => SUFFIX_DEFINITIONS.less.metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.DOUBLE_LETTERS)]: {
+      type: 'stats',
+      title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].title,
+      description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.SAME_START_END)]: {
+      type: 'stats',
+      title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].title,
+      description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.ALPHABETICAL_ORDER)]: {
+      type: 'stats',
+      title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].title,
+      description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.TRIPLE_LETTERS)]: {
+      type: 'stats',
+      title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].title,
+      description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.MOST_COMMON_LETTER)]: {
+      type: 'stats',
+      title: `Words with "${stats.mostCommonLetter.toUpperCase()}" (Most Common Letter)`,
+      description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER].metaDescription(count, stats.mostCommonLetter),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.LEAST_COMMON_LETTER)]: {
+      type: 'stats',
+      title: `Words with "${stats.leastCommonLetter.toUpperCase()}" (Least Common Letter)`,
+      description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER].metaDescription(count, stats.leastCommonLetter),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.MILESTONE_WORDS)]: {
+      type: 'stats',
+      title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].title,
+      description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.PALINDROMES)]: {
+      type: 'stats',
+      title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].title,
+      description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.ALL_CONSONANTS)]: {
+      type: 'stats',
+      title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].title,
+      description: (count: number) => PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.ALL_VOWELS)]: {
+      type: 'stats',
+      title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].title,
+      description: (count: number) => PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.CURRENT_STREAK)]: {
+      type: 'stats',
+      title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].title,
+      description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [ROUTES.STAT(STATS_SLUGS.LONGEST_STREAK)]: {
+      type: 'stats',
+      title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].title,
+      description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].metaDescription(count),
+      category: 'stats',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+  };
 
-  // Stats pages with dynamic counts
-  '/stats/words-ending-ly': {
-    type: 'stats',
-    title: 'Words Ending in "ly"',
-    description: (count: number) => `${count} words that end with the suffix "ly".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/words-ending-ing': {
-    type: 'stats',
-    title: 'Words Ending in "ing"',
-    description: (count: number) => `${count} words that end with the suffix "ing".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/words-ending-ed': {
-    type: 'stats',
-    title: 'Words Ending in "ed"',
-    description: (count: number) => `${count} words that end with the suffix "ed".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/words-ending-ness': {
-    type: 'stats',
-    title: 'Words Ending in "ness"',
-    description: (count: number) => `${count} words that end with the suffix "ness".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/words-ending-ful': {
-    type: 'stats',
-    title: 'Words Ending in "ful"',
-    description: (count: number) => `${count} words that end with the suffix "ful".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/words-ending-less': {
-    type: 'stats',
-    title: 'Words Ending in "less"',
-    description: (count: number) => `${count} words that end with the suffix "less".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/double-letters': {
-    type: 'stats',
-    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].title,
-    description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/same-start-end': {
-    type: 'stats',
-    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].title,
-    description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/alphabetical-order': {
-    type: 'stats',
-    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].title,
-    description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/triple-letters': {
-    type: 'stats',
-    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].title,
-    description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/most-common-letter': {
-    type: 'stats',
-    title: `Words with "${stats.mostCommonLetter.toUpperCase()}" (Most Common Letter)`,
-    description: (count: number) => `${count} words containing the most common letter "${stats.mostCommonLetter}".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/least-common-letter': {
-    type: 'stats',
-    title: `Words with "${stats.leastCommonLetter.toUpperCase()}" (Least Common Letter)`,
-    description: (count: number) => `${count} words containing the least common letter "${stats.leastCommonLetter}".`,
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/milestone-words': {
-    type: 'stats',
-    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].title,
-    description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/palindromes': {
-    type: 'stats',
-    title: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].title,
-    description: (count: number) => LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/all-consonants': {
-    type: 'stats',
-    title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].title,
-    description: (count: number) => PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/all-vowels': {
-    type: 'stats',
-    title: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].title,
-    description: (count: number) => PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/current-streak': {
-    type: 'stats',
-    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].title,
-    description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  '/stats/longest-streak': {
-    type: 'stats',
-    title: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].title,
-    description: (count: number) => DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK].metaDescription(count),
-    category: 'stats',
-    secondaryText: (count: number) => tp('common.words', count),
-  },
-  } as const;
+  return { ...staticPages, ...statsPages };
 }
 
 type CountMap = Record<string, (stats: PrecomputedStats) => number>;
 
 const COUNT_FUNCTIONS: CountMap = {
-  '/stats/words-ending-ly': stats => stats.endings.ly.length,
-  '/stats/words-ending-ing': stats => stats.endings.ing.length,
-  '/stats/words-ending-ed': stats => stats.endings.ed.length,
-  '/stats/words-ending-ness': stats => stats.endings.ness.length,
-  '/stats/words-ending-ful': stats => stats.endings.ful.length,
-  '/stats/words-ending-less': stats => stats.endings.less.length,
-  '/stats/double-letters': stats => stats.letterPatterns.doubleLetters.length,
-  '/stats/same-start-end': stats => stats.letterPatterns.startEndSame.length,
-  '/stats/alphabetical-order': stats => stats.letterPatterns.alphabetical.length,
-  '/stats/triple-letters': stats => stats.letterPatterns.tripleLetters.length,
-  '/stats/most-common-letter': stats => stats.wordsWithMostCommon.length,
-  '/stats/least-common-letter': stats => stats.wordsWithLeastCommon.length,
-  '/stats/milestone-words': stats => stats.milestones.length,
-  '/stats/all-consonants': stats => stats.patternStats.allConsonants.length,
-  '/stats/all-vowels': stats => stats.patternStats.allVowels.length,
-  '/stats/palindromes': stats => stats.letterPatterns.palindromes.length,
+  [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_LY)]: stats => stats.endings.ly.length,
+  [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_ING)]: stats => stats.endings.ing.length,
+  [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_ED)]: stats => stats.endings.ed.length,
+  [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_NESS)]: stats => stats.endings.ness.length,
+  [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_FUL)]: stats => stats.endings.ful.length,
+  [ROUTES.STAT(STATS_SLUGS.WORDS_ENDING_LESS)]: stats => stats.endings.less.length,
+  [ROUTES.STAT(STATS_SLUGS.DOUBLE_LETTERS)]: stats => stats.letterPatterns.doubleLetters.length,
+  [ROUTES.STAT(STATS_SLUGS.SAME_START_END)]: stats => stats.letterPatterns.startEndSame.length,
+  [ROUTES.STAT(STATS_SLUGS.ALPHABETICAL_ORDER)]: stats => stats.letterPatterns.alphabetical.length,
+  [ROUTES.STAT(STATS_SLUGS.TRIPLE_LETTERS)]: stats => stats.letterPatterns.tripleLetters.length,
+  [ROUTES.STAT(STATS_SLUGS.MOST_COMMON_LETTER)]: stats => stats.wordsWithMostCommon.length,
+  [ROUTES.STAT(STATS_SLUGS.LEAST_COMMON_LETTER)]: stats => stats.wordsWithLeastCommon.length,
+  [ROUTES.STAT(STATS_SLUGS.MILESTONE_WORDS)]: stats => stats.milestones.length,
+  [ROUTES.STAT(STATS_SLUGS.ALL_CONSONANTS)]: stats => stats.patternStats.allConsonants.length,
+  [ROUTES.STAT(STATS_SLUGS.ALL_VOWELS)]: stats => stats.patternStats.allVowels.length,
+  [ROUTES.STAT(STATS_SLUGS.PALINDROMES)]: stats => stats.letterPatterns.palindromes.length,
 };
 
 const DYNAMIC_COUNT_FUNCTIONS: Record<string, (words: WordData[]) => number> = {
-  '/stats/current-streak': words => getCurrentStreakWords(words).length,
-  '/stats/longest-streak': words => getLongestStreakWords(words).length,
+  [ROUTES.STAT(STATS_SLUGS.CURRENT_STREAK)]: words => getCurrentStreakWords(words).length,
+  [ROUTES.STAT(STATS_SLUGS.LONGEST_STREAK)]: words => getLongestStreakWords(words).length,
 };
 
 function getCountForPath(path: string, words: WordData[]): number {

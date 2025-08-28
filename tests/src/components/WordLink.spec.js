@@ -14,9 +14,10 @@ describe('WordLink Component Integration', () => {
   });
 
   describe('getWordUrl', () => {
-    it('should return relative path without BASE_PATH processing', () => {
-      expect(getWordUrl('serendipity')).toBe('/words/serendipity');
-      expect(getWordUrl('ice cream')).toBe('/words/ice cream');
+    it('should return slugified word URLs', () => {
+      expect(getWordUrl('serendipity')).toBe('/word/serendipity');
+      expect(getWordUrl('ice cream')).toBe('/word/ice-cream');
+      expect(getWordUrl("don't")).toBe('/word/dont');
     });
 
     it('should return empty string for empty word', () => {
@@ -25,7 +26,7 @@ describe('WordLink Component Integration', () => {
 
     it('should work regardless of BASE_PATH', () => {
       vi.stubEnv('BASE_PATH', '/occasional-wotd');
-      expect(getWordUrl('test')).toBe('/words/test');
+      expect(getWordUrl('test')).toBe('/word/test');
     });
   });
 
@@ -34,8 +35,8 @@ describe('WordLink Component Integration', () => {
       const rawPath = getWordUrl('serendipity');
       const processedUrl = getUrl(rawPath);
 
-      expect(rawPath).toBe('/words/serendipity');
-      expect(processedUrl).toBe('/words/serendipity');
+      expect(rawPath).toBe('/word/serendipity');
+      expect(processedUrl).toBe('/word/serendipity');
     });
 
     it('should prevent double BASE_PATH with subdirectory', () => {
@@ -44,8 +45,8 @@ describe('WordLink Component Integration', () => {
       const rawPath = getWordUrl('serendipity');
       const processedUrl = getUrl(rawPath);
 
-      expect(rawPath).toBe('/words/serendipity');
-      expect(processedUrl).toBe('/occasional-wotd/words/serendipity');
+      expect(rawPath).toBe('/word/serendipity');
+      expect(processedUrl).toBe('/occasional-wotd/word/serendipity');
       expect(processedUrl).not.toContain('/occasional-wotd/occasional-wotd/');
     });
 
@@ -55,8 +56,8 @@ describe('WordLink Component Integration', () => {
       const rawPath = getWordUrl('ice cream');
       const processedUrl = getUrl(rawPath);
 
-      expect(rawPath).toBe('/words/ice cream');
-      expect(processedUrl).toBe('/occasional-wotd/words/ice cream');
+      expect(rawPath).toBe('/word/ice-cream');
+      expect(processedUrl).toBe('/occasional-wotd/word/ice-cream');
     });
 
     it('should handle special characters in words', () => {
@@ -65,24 +66,24 @@ describe('WordLink Component Integration', () => {
       const rawPath = getWordUrl("don't");
       const processedUrl = getUrl(rawPath);
 
-      expect(rawPath).toBe("/words/don't");
-      expect(processedUrl).toBe("/occasional-wotd/words/don't");
+      expect(rawPath).toBe('/word/dont');
+      expect(processedUrl).toBe('/occasional-wotd/word/dont');
     });
   });
 
   describe('Real-world GitHub Pages scenarios', () => {
-    it('should match expected GitHub Pages URLs', () => {
+    it('should generate correct URLs with subdirectory base path', () => {
       vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
 
-        const testCases = [
-          { word: 'serendipity', expected: '/occasional-wotd/words/serendipity' },
-          { word: 'ice cream', expected: '/occasional-wotd/words/ice cream' },
-          { word: 'a', expected: '/occasional-wotd/words/a' },
-          { word: 'occasional', expected: '/occasional-wotd/words/occasional' },
-        ];
+      const testCases = [
+        { input: 'serendipity', expected: '/occasional-wotd/word/serendipity' },
+        { input: 'ice cream', expected: '/occasional-wotd/word/ice-cream' },
+        { input: 'a', expected: '/occasional-wotd/word/a' },
+        { input: 'occasional', expected: '/occasional-wotd/word/occasional' }
+      ];
 
-      for (const { word, expected } of testCases) {
-        const rawPath = getWordUrl(word);
+      for (const { input, expected } of testCases) {
+        const rawPath = getWordUrl(input);
         const processedUrl = getUrl(rawPath);
         expect(processedUrl).toBe(expected);
       }
@@ -92,8 +93,8 @@ describe('WordLink Component Integration', () => {
       const rawPath = getWordUrl('test');
       const processedUrl = getUrl(rawPath);
 
-      expect(rawPath).toBe('/words/test');
-      expect(processedUrl).toBe('/words/test');
+      expect(rawPath).toBe('/word/test');
+      expect(processedUrl).toBe('/word/test');
     });
   });
 });

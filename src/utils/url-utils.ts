@@ -1,5 +1,21 @@
 import { logger } from '~astro-utils/logger';
 
+// =====================================================
+// URL Slug Utilities
+// =====================================================
+
+/**
+ * Convert any string to a URL-safe slug
+ */
+export const slugify = (str: string): string => {
+  return str
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+};
+
 /**
  * Get the configured base path, defaulting to '/'
  * Single source of truth for base path access
@@ -89,7 +105,7 @@ export const getFullUrl = (path = '/'): string => {
  * @returns {string} Relative word path (without BASE_PATH)
  */
 export const getWordUrl = (word: string): string => {
-  return word ? `/words/${word}` : '';
+  return word ? ROUTES.WORD(word) : '';
 };
 
 /**
