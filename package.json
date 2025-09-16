@@ -35,6 +35,7 @@
     "typecheck:full": "astro check"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.12",
     "@types/yargs": "^17.0.33",
     "astro": "^5.10.1",
     "date-fns": "^4.1.0",

@@ -100,27 +100,22 @@ Quality and architectural improvements identified for future development, priori
 - Impact: MEDIUM - Regression protection
 - ROI: Development confidence, refactoring safety
 
-**7. RSS Feed Generation**
-- Issue: No content feeds for discovery
-- Impact: LOW-MEDIUM - Content distribution
-- ROI: Modern content sharing, learning exercise
-
-**8. Stats Category Directory Pages**
+**7. Stats Category Directory Pages**
 - Issue: No landing pages for stats sections
 - Impact: MEDIUM - SEO, content organization
 - ROI: Better content structure
 
 ### TIER 4: Nice-to-Have
 
-**9. Theme Switching (Dark/Light Mode)**
+**8. Theme Switching (Dark/Light Mode)**
 - Impact: LOW - User preference accommodation
 - ROI: Modern UX feature
 
-**10. Type Definition Consolidation**
+**9. Type Definition Consolidation**
 - Impact: MEDIUM - Developer experience
 - ROI: Cleaner types, but potentially over-engineering
 
-**11. Enhanced Programmatic Stats**
+**10. Enhanced Programmatic Stats**
 - Impact: MEDIUM - Visual data potential
 - ROI: Future chart integration foundation
 
@@ -241,12 +236,6 @@ if (!siteUrl) throw new Error('SITE_URL required');
 **Solution**: Use Astro's static optimization features
 
 ## Content Distribution
-
-### RSS Feed Generation [LOW-MEDIUM PRIORITY]
-**Opportunity**: RSS feeds for word discovery and following
-**Examples**: Latest words feed, monthly feeds, letter-specific feeds
-**Impact**: Enhanced discoverability, learning exercise with Astro RSS plugin
-**Solution**: Use `@astrojs/rss` to generate feeds at build time
 
 ### URL Structure Evaluation [FUTURE CONSIDERATION]
 **Note**: Current URL structure is working well with recent letter pages implementation
