@@ -1,0 +1,108 @@
+{
+    "word": "ghastly",
+    "date": "20250924",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "G5117000-1",
+            "partOfSpeech": "adjective",
+            "text": "Causing shock, revulsion, or horror; terrifying.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [
+                "a ghastly murder."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5117000-2",
+            "partOfSpeech": "adjective",
+            "text": "Resembling a ghost; pale or pallid.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5117000-3",
+            "partOfSpeech": "adjective",
+            "text": "Extremely unpleasant or bad.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "In a ghastly manner; dreadfully; hideously; with a deathlike aspect.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Dreadful or deathly in aspect or look; deathlike; haggard; shocking.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Deathly in import or suggestion; morally dreadful or shocking.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "<strong>Synonyms</strong> <em>Ghastly, Grim, Grisly, Haggard, Hideous</em>; pale, wan, cadaverous, frightful. <em>Hideous</em> may apply to sound, as a <em>hideous</em> noise; the others not. All in modern use apply primarily to sight and secondarily to mental perception, except <em>haggard</em>, which connotes sight only. <em>Ghastly</em>, as it is most commonly used, means deathly pale, deathlike, referring to the countenance, but its signification has been extended to denote anything that is suggestive of death, or even repulsive and shocking, as Milton's “mangled with <em>ghastly</em> wounds” (P. L., vi. 368), “a <em>ghastly</em> smile” (<em>Milton</em>, P. L., ii. 846), a <em>ghastly</em> jest. <em>Grim</em> characterizes a rigid cast of countenance, indicating a severe, stern, or even ruthless disposition. <em>Grisly</em> refers to the whole form or aspect, especially when dark, forbidding, or such as to inspire terror. <em>Haggard</em> adds to the idea of paleness of countenance that of being wasted by famine or protracted mental agony. <em>Hideous</em>, used of looks, applies to the whole form or scene, and means simply repulsive, extremely unpleasant to see: as, <em>hideous</em> features; a <em>hideous</em> scene. See <internalXref urlencoded=\"pale\">pale</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adverb",
+            "text": "In a ghastly manner; hideously.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Like a ghost in appearance; deathlike; pale; pallid; dismal.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Horrible; shocking; dreadful; hideous.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/ghastly",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
