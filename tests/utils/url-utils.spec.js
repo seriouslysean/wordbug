@@ -142,7 +142,7 @@ describe('utils', () => {
   describe('URL helper functions', () => {
     describe('Section URLs', () => {
       it('should return correct words URL', () => {
-        expect(getWordsUrl()).toBe('/words');
+        expect(getWordsUrl()).toBe('/word');
       });
 
       it('should return correct stats URL', () => {
@@ -152,38 +152,38 @@ describe('utils', () => {
 
     describe('Browsing URLs', () => {
       it('should return correct words length URL', () => {
-        expect(getWordsLengthUrl()).toBe('/words/length');
+        expect(getWordsLengthUrl()).toBe('/browse/length');
       });
 
       it('should return correct words letter URL', () => {
-        expect(getWordsLetterUrl()).toBe('/words/letter');
+        expect(getWordsLetterUrl()).toBe('/browse/letter');
       });
 
-      it('should return words root when no year specified', () => {
-        expect(getWordsYearUrl()).toBe('/words');
+      it('should return browse root when no year specified', () => {
+        expect(getWordsYearUrl()).toBe('/browse');
       });
 
       it('should return year URL when year specified', () => {
-        expect(getWordsYearUrl('2024')).toBe('/words/2024');
+        expect(getWordsYearUrl('2024')).toBe('/browse/2024');
       });
     });
 
     describe('Specific URLs', () => {
       it('should return correct length URL', () => {
-        expect(getLengthUrl(5)).toBe('/words/length/5');
-        expect(getLengthUrl(12)).toBe('/words/length/12');
+        expect(getLengthUrl(5)).toBe('/browse/length/5');
+        expect(getLengthUrl(12)).toBe('/browse/length/12');
       });
 
       it('should return correct letter URL with normalization', () => {
-        expect(getLetterUrl('A')).toBe('/words/letter/a');
-        expect(getLetterUrl('z')).toBe('/words/letter/z');
-        expect(getLetterUrl('M')).toBe('/words/letter/m');
+        expect(getLetterUrl('A')).toBe('/browse/letter/a');
+        expect(getLetterUrl('z')).toBe('/browse/letter/z');
+        expect(getLetterUrl('M')).toBe('/browse/letter/m');
       });
 
       it('should return correct month URL with normalization', () => {
-        expect(getMonthUrl('2024', 'January')).toBe('/words/2024/january');
-        expect(getMonthUrl('2023', 'DECEMBER')).toBe('/words/2023/december');
-        expect(getMonthUrl('2025', 'march')).toBe('/words/2025/march');
+        expect(getMonthUrl('2024', 'January')).toBe('/browse/2024/january');
+        expect(getMonthUrl('2023', 'DECEMBER')).toBe('/browse/2023/december');
+        expect(getMonthUrl('2025', 'march')).toBe('/browse/2025/march');
       });
 
       it('should return correct stat URL', () => {

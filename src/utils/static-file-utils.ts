@@ -5,6 +5,7 @@ import type { WordData } from '~types';
 import { formatDate } from '~utils/date-utils';
 import { getAllPageMetadata } from '~utils/page-metadata-utils';
 import { generateWordDataHash } from '~astro-utils/word-data-utils';
+import { getWordUrl } from '~astro-utils/url-utils';
 import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS } from '~constants/urls';
 
 /**
@@ -153,20 +154,20 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   if (recentWords.length > 0) {
     const [todayWord, ...previousWords] = [...recentWords].reverse();
     recentWordSection = [
-      `- [${todayWord.word}](${baseUrl}/words/${todayWord.word}): ${formatDate(todayWord.date)}`,
-      ...previousWords.map(word => `- [${word.word}](${baseUrl}/words/${word.word}): ${formatDate(word.date)}`),
+      `- [${todayWord.word}](${baseUrl}${getWordUrl(todayWord.word)}): ${formatDate(todayWord.date)}`,
+      ...previousWords.map(word => `- [${word.word}](${baseUrl}${getWordUrl(word.word)}): ${formatDate(word.date)}`),
     ].join('\n');
   }
 
   const allPages = getAllPageMetadata(words);
-  const allWordsPage = allPages.find(p => p.path === BASE_PATHS.WORDS);
+  const allWordsPage = allPages.find(p => p.path === BASE_PATHS.WORD);
   const yearPages = allPages
     .filter(p => URL_PATTERNS.YEAR_PAGE.test(p.path))
     .sort((a, b) => b.path.localeCompare(a.path));
   const monthPages = allPages
     .filter(p => URL_PATTERNS.MONTH_PAGE.test(p.path))
     .sort((a, b) => b.path.localeCompare(a.path));
-  const lengthIndexPage = allPages.find(p => p.path === BROWSE_PATHS.WORDS_LENGTH);
+  const lengthIndexPage = allPages.find(p => p.path === BROWSE_PATHS.LENGTH);
   const lengthPages = allPages
     .filter(p => URL_PATTERNS.LENGTH_PAGE.test(p.path))
     .sort((a, b) => {
@@ -178,7 +179,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
       return 0;
     });
   const staticPages = allPages.filter(p =>
-    ![BASE_PATHS.HOME.slice(1), BASE_PATHS.WORDS, BASE_PATHS.STATS, BROWSE_PATHS.WORDS_LENGTH].includes(p.path) &&
+    ![BASE_PATHS.HOME.slice(1), BASE_PATHS.WORD, BASE_PATHS.STATS, BROWSE_PATHS.LENGTH].includes(p.path) &&
     !URL_PATTERNS.YEAR_PAGE.test(p.path) &&
     !URL_PATTERNS.MONTH_PAGE.test(p.path) &&
     !URL_PATTERNS.LENGTH_PAGE.test(p.path) &&
@@ -191,7 +192,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
 
   // Build Pages section
   const pagesLinks = [
-    allWordsPage && `- [${allWordsPage.title}](${baseUrl}/words): ${allWordsPage.description}`,
+    allWordsPage && `- [${allWordsPage.title}](${baseUrl}${allWordsPage.path}): ${allWordsPage.description}`,
     yearPages.length > 0 && [
       '### Year Archives',
       ...yearPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),

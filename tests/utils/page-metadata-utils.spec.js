@@ -44,7 +44,7 @@ const mockWords = [
 describe('page-metadata-utils', () => {
   describe('getPageMetadata', () => {
     it('returns metadata for static pages', () => {
-      const metadata = getPageMetadata('/words', mockWords);
+      const metadata = getPageMetadata('/word', mockWords);
       expect(metadata).toEqual({
         title: 'Mock Words Heading',
         description: 'Mock words description',
@@ -73,7 +73,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for dynamic year pages', () => {
-      const metadata = getPageMetadata('/words/2024', mockWords);
+      const metadata = getPageMetadata('/browse/2024', mockWords);
       expect(metadata).toHaveProperty('title', '2024');
       expect(metadata).toHaveProperty('category', 'pages');
       expect(metadata).toHaveProperty('description');
@@ -82,7 +82,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for dynamic month pages', () => {
-      const metadata = getPageMetadata('/words/2024/january', mockWords);
+      const metadata = getPageMetadata('/browse/2024/january', mockWords);
       expect(metadata).toEqual({
         title: 'January',
         description: 'Words from January 2024.',
@@ -92,7 +92,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for length index page', () => {
-      const metadata = getPageMetadata('/words/length', mockWords);
+      const metadata = getPageMetadata('/browse/length', mockWords);
       expect(metadata).toEqual({
         title: 'Mock words.by_length_heading',
         description: 'Mock words.by_length_description',
@@ -102,7 +102,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for individual length pages', () => {
-      const metadata = getPageMetadata('/words/length/8', mockWords);
+      const metadata = getPageMetadata('/browse/length/8', mockWords);
       expect(metadata).toEqual({
         title: '8-Letter Words',
         description: 'Words containing exactly 8 letters.',
@@ -112,7 +112,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for dynamic length pages', () => {
-      const metadata = getPageMetadata('/words/length/4', mockWords);
+      const metadata = getPageMetadata('/browse/length/4', mockWords);
       expect(metadata).toEqual({
         title: '4-Letter Words',
         description: 'Words containing exactly 4 letters.',
@@ -155,7 +155,7 @@ describe('page-metadata-utils', () => {
       expect(allPages.length).toBeGreaterThan(0);
 
       // Should include static pages
-      const wordsPage = allPages.find(page => page.path === '/words');
+      const wordsPage = allPages.find(page => page.path === '/word');
       expect(wordsPage).toBeDefined();
       expect(wordsPage.title).toBe('Mock Words Heading');
     });
@@ -181,9 +181,9 @@ describe('page-metadata-utils', () => {
 
     it('includes year and length pages', () => {
       const allPages = getAllPageMetadata(mockWords);
-      expect(allPages.find(page => page.path === '/words/2024')).toBeDefined();
-      expect(allPages.find(page => page.path === '/words/length')).toBeDefined();
-      expect(allPages.find(page => page.path === '/words/length/4')).toBeDefined();
+      expect(allPages.find(page => page.path === '/browse/2024')).toBeDefined();
+      expect(allPages.find(page => page.path === '/browse/length')).toBeDefined();
+      expect(allPages.find(page => page.path === '/browse/length/4')).toBeDefined();
     });
   });
 

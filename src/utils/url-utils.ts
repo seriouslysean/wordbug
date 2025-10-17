@@ -130,10 +130,10 @@ import { BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '~constants/urls';
  * Get the words section homepage URL
  * @returns {string} Words section URL
  */
-export const getWordsUrl = (): string => BASE_PATHS.WORDS;
+export const getWordsUrl = (): string => BASE_PATHS.WORD;
 
 /**
- * Get the stats section homepage URL  
+ * Get the stats section homepage URL
  * @returns {string} Stats section URL
  */
 export const getStatsUrl = (): string => BASE_PATHS.STATS;
@@ -146,33 +146,39 @@ export const getStatsUrl = (): string => BASE_PATHS.STATS;
  * Get the words by length overview URL
  * @returns {string} Words by length URL
  */
-export const getWordsLengthUrl = (): string => BROWSE_PATHS.WORDS_LENGTH;
+export const getWordsLengthUrl = (): string => BROWSE_PATHS.LENGTH;
 
 /**
  * Get the words by letter overview URL
  * @returns {string} Words by letter URL
  */
-export const getWordsLetterUrl = (): string => BROWSE_PATHS.WORDS_LETTER;
+export const getWordsLetterUrl = (): string => BROWSE_PATHS.LETTER;
 
 /**
  * Get the words by part of speech overview URL
  * @returns {string} Words by part of speech URL
  */
-export const getWordsPartOfSpeechUrl = (): string => BROWSE_PATHS.WORDS_PART_OF_SPEECH;
+export const getWordsPartOfSpeechUrl = (): string => BROWSE_PATHS.PART_OF_SPEECH;
+
+/**
+ * Get the words by year overview URL
+ * @returns {string} Words by year URL
+ */
+export const getWordsYearIndexUrl = (): string => `${BROWSE_PATHS.BROWSE}/year`;
 
 /**
  * Get the browse words URL
  * @returns {string} Browse words URL
  */
-export const getBrowseWordsUrl = (): string => `${BASE_PATHS.WORDS}/browse`;
+export const getBrowseWordsUrl = (): string => BASE_PATHS.BROWSE;
 
 /**
- * Get a year URL or words root if no year specified
+ * Get a year URL or browse root if no year specified
  * @param {string} [year] - Optional year to navigate to
- * @returns {string} Year URL or words root
+ * @returns {string} Year URL or browse root
  */
-export const getWordsYearUrl = (year?: string): string => 
-  year ? ROUTES.YEAR(year) : BASE_PATHS.WORDS;
+export const getWordsYearUrl = (year?: string): string =>
+  year ? ROUTES.YEAR(year) : BASE_PATHS.BROWSE;
 
 // =====================================================
 // Specific Browsing URLs - Filtered lists

@@ -11,8 +11,8 @@ import { slugify } from '~astro-utils/url-utils';
 
 export const BASE_PATHS = {
   HOME: '/',
-  WORDS: '/words',
   WORD: '/word',
+  BROWSE: '/browse',
   STATS: '/stats',
   ABOUT: '/about',
   NOT_FOUND: '/404',
@@ -23,9 +23,10 @@ export const BASE_PATHS = {
 // =====================================================
 
 export const BROWSE_PATHS = {
-  WORDS_LENGTH: '/words/length',
-  WORDS_LETTER: '/words/letter',
-  WORDS_PART_OF_SPEECH: '/words/part-of-speech',
+  BROWSE: '/browse',
+  LENGTH: '/browse/length',
+  LETTER: '/browse/letter',
+  PART_OF_SPEECH: '/browse/part-of-speech',
 } as const;
 
 // =====================================================
@@ -34,11 +35,11 @@ export const BROWSE_PATHS = {
 
 export const URL_PATTERNS = {
   WORD_DETAIL: /^\/word\/([^/]+)$/,
-  YEAR_PAGE: /^\/words\/(\d{4})$/,
-  MONTH_PAGE: /^\/words\/(\d{4})\/([a-z]+)$/,
-  LENGTH_PAGE: /^\/words\/length\/(\d+)$/,
-  LETTER_PAGE: /^\/words\/letter\/([a-z])$/,
-  PART_OF_SPEECH_PAGE: /^\/words\/part-of-speech\/([a-z]+)$/,
+  YEAR_PAGE: /^\/browse\/(\d{4})$/,
+  MONTH_PAGE: /^\/browse\/(\d{4})\/([a-z]+)$/,
+  LENGTH_PAGE: /^\/browse\/length\/(\d+)$/,
+  LETTER_PAGE: /^\/browse\/letter\/([a-z])$/,
+  PART_OF_SPEECH_PAGE: /^\/browse\/part-of-speech\/([a-z]+)$/,
   STATS_PAGE: /^\/stats\/([a-z-]+)$/,
 } as const;
 
@@ -48,11 +49,11 @@ export const URL_PATTERNS = {
 
 export const ROUTES = {
   WORD: (word: string) => `${BASE_PATHS.WORD}/${slugify(word)}`,
-  YEAR: (year: string) => `${BASE_PATHS.WORDS}/${year}`,
-  MONTH: (year: string, month: string) => `${BASE_PATHS.WORDS}/${year}/${slugify(month)}`,
-  LENGTH: (length: number) => `${BROWSE_PATHS.WORDS_LENGTH}/${length}`,
-  LETTER: (letter: string) => `${BROWSE_PATHS.WORDS_LETTER}/${slugify(letter)}`,
-  PART_OF_SPEECH: (partOfSpeech: string) => `${BROWSE_PATHS.WORDS_PART_OF_SPEECH}/${slugify(partOfSpeech)}`,
+  YEAR: (year: string) => `${BASE_PATHS.BROWSE}/${year}`,
+  MONTH: (year: string, month: string) => `${BASE_PATHS.BROWSE}/${year}/${slugify(month)}`,
+  LENGTH: (length: number) => `${BROWSE_PATHS.LENGTH}/${length}`,
+  LETTER: (letter: string) => `${BROWSE_PATHS.LETTER}/${slugify(letter)}`,
+  PART_OF_SPEECH: (partOfSpeech: string) => `${BROWSE_PATHS.PART_OF_SPEECH}/${slugify(partOfSpeech)}`,
   STAT: (stat: string) => `${BASE_PATHS.STATS}/${slugify(stat)}`,
 } as const;
 

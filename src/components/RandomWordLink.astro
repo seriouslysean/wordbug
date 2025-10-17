@@ -10,7 +10,7 @@ const { class: className, ...attrs } = Astro.props;
 </SiteButton>
 
 <script>
-import { getUrl, getWordUrl } from '~astro-utils/url-utils';
+import { getUrl, getWordUrl, getWordsUrl } from '~astro-utils/url-utils';
 
 const wordListCache = { data: null as string[] | null };
 
@@ -33,7 +33,7 @@ async function getRandomWord() {
     window.location.href = wordUrl;
   } catch {
     // Fallback to words page on any error
-    window.location.href = getUrl('/words');
+    window.location.href = getUrl(getWordsUrl());
   }
 }
 

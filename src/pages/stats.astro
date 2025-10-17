@@ -4,7 +4,8 @@ import DescriptionText from '~components/DescriptionText.astro';
 import StatsSection from '~components/StatsSection.astro';
 import BarChart from '~components/BarChart.astro';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { 
+import {
+  getWordsUrl,
   getWordsLengthUrl,
   getSameStartEndUrl,
   getDoubleLettersUrl,
@@ -96,7 +97,7 @@ const hasWordEndings = wordEndingItems.length > 0;
 
 // Build data arrays for DefinitionList
 const basicStatsItems = [
-  { label: t('stats.total_words'), value: totalWords, href: '/words' },
+  { label: t('stats.total_words'), value: totalWords, href: getWordsUrl() },
   ...(lengthCount > 0 ? [{ label: t('stats.word_lengths'), value: lengthCount, href: getWordsLengthUrl() }] : []),
   ...(milestoneCount > 0 ? [{ label: t('stats.milestone_words'), value: milestoneCount, href: getMilestoneWordsUrl() }] : [])
 ];

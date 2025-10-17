@@ -101,38 +101,45 @@ function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
       description: (currentWord: string): string => t('home.description', { word: currentWord }),
       category: 'pages',
     },
-    [BASE_PATHS.WORDS]: {
+    [BASE_PATHS.WORD]: {
       type: 'static',
       title: t('words.heading'),
       description: t('words.description'),
       category: 'pages',
       secondaryText: (count: number) => tp('common.words', count),
     },
-    [`${BASE_PATHS.WORDS}/browse`]: {
+    [BASE_PATHS.BROWSE]: {
       type: 'static',
       title: t('browse.heading'),
       description: t('browse.description'),
       category: 'pages',
       secondaryText: t('browse.subheading'),
     },
-    [BROWSE_PATHS.WORDS_LENGTH]: {
+    [BROWSE_PATHS.LENGTH]: {
       type: 'static',
       title: t('words.by_length_heading'),
       description: t('words.by_length_description'),
       category: 'pages',
       secondaryText: (count: number) => tp('common.words', count),
     },
-    [BROWSE_PATHS.WORDS_LETTER]: {
+    [BROWSE_PATHS.LETTER]: {
       type: 'static',
       title: t('words.by_letter_heading'),
       description: t('words.by_letter_description'),
       category: 'pages',
       secondaryText: (count: number) => tp('common.words', count),
     },
-    [BROWSE_PATHS.WORDS_PART_OF_SPEECH]: {
+    [BROWSE_PATHS.PART_OF_SPEECH]: {
       type: 'static',
       title: t('words.by_part_of_speech_heading'),
       description: t('words.by_part_of_speech_description'),
+      category: 'pages',
+      secondaryText: (count: number) => tp('common.words', count),
+    },
+    [`${BROWSE_PATHS.BROWSE}/year`]: {
+      type: 'static',
+      title: 'Words by Year',
+      description: 'Words grouped by year.',
       category: 'pages',
       secondaryText: (count: number) => tp('common.words', count),
     },
@@ -384,7 +391,18 @@ export function getPageMetadata(path: string, words: WordData[] = []): PageMetad
     throw new Error('getPageMetadata: path is required');
   }
 
-  // Handle dynamic year pages  
+  // Handle dynamic word pages
+  const wordMatch = path.match(URL_PATTERNS.WORD_DETAIL);
+  if (wordMatch) {
+    const word = wordMatch[1];
+    return {
+      title: word,
+      description: `Definition and meaning of ${word}.`,
+      category: 'pages' as const,
+    };
+  }
+
+  // Handle dynamic year pages
   const yearMatch = path.match(URL_PATTERNS.YEAR_PAGE);
   if (yearMatch) {
     const [, year] = yearMatch;
