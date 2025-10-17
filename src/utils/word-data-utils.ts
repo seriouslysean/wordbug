@@ -43,7 +43,7 @@ export async function getWordsFromCollection(): Promise<WordData[]> {
       return {
         ...entry.data,
         date: extractedDate || entry.data.date,
-      };
+      } as WordData;
     })
     .sort((a, b) => b.date.localeCompare(a.date));
 }

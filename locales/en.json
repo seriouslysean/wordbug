@@ -142,7 +142,7 @@
   },
   "parts_of_speech": {
     "noun": "Noun",
-    "verb": "Verb", 
+    "verb": "Verb",
     "adjective": "Adjective",
     "adverb": "Adverb",
     "pronoun": "Pronoun",
@@ -152,6 +152,7 @@
     "article": "Article",
     "determiner": "Determiner",
     "auxiliary": "Auxiliary",
-    "modal": "Modal"
+    "modal": "Modal",
+    "idiom": "Idiom"
   }
 }
