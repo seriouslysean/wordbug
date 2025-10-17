@@ -116,9 +116,8 @@ const wordSchemaData = word ? (() => {
 
 		<link rel="alternate" type="application/rss+xml" title={__SITE_TITLE__} href={getUrl('/rss.xml')} />
 
-		<link rel="alternate" hreflang={seoConfig.locale} href={currentUrl} />
-		<link rel="alternate" hreflang="x-default" href={currentUrl} />
 		<link rel="alternate" hreflang="en" href={currentUrl} />
+		<link rel="alternate" hreflang="x-default" href={currentUrl} />
 		<meta property="og:locale" content={seoConfig.locale} />
 		<meta http-equiv="content-language" content={seoConfig.locale.split('-')[0]} />
 
@@ -163,6 +162,11 @@ const wordSchemaData = word ? (() => {
 			  "source": "document",
 			  "where": { "selector_matches": "a[href^='/']" },
 			  "eagerness": "moderate"
+			},
+			{
+			  "source": "list",
+			  "urls": ["/stats", "/words", "/words/browse"],
+			  "eagerness": "eager"
 			}
 		  ]
 		}`}></script>

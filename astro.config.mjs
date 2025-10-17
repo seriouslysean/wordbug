@@ -90,7 +90,8 @@ export default defineConfig({
     },
   },
   build: {
-    inlineStylesheets: 'always',
+    format: 'directory',
+    inlineStylesheets: 'auto',
   },
   vite: {
     resolve: {

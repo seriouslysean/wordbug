@@ -1,6 +1,7 @@
 ---
 import WordComponent from '~components/Word.astro';
 import WordNav from '~components/WordNav.astro';
+import WordContext from '~components/WordContext.astro';
 import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
@@ -13,9 +14,17 @@ interface Props {
   previousWord?: WordData | null;
   nextWord?: WordData | null;
   structuredDataType?: string;
+  contextData?: {
+    wordLength: number;
+    firstLetter: string;
+    partOfSpeech?: string;
+    lengthCount: number;
+    letterCount: number;
+    partOfSpeechCount?: number;
+  };
 }
 
-const { wordData, previousWord, nextWord, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE } = Astro.props;
+const { wordData, previousWord, nextWord, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE, contextData } = Astro.props;
 
 if (!wordData) {
   return Astro.redirect('/404');
@@ -37,6 +46,16 @@ const pageDescription = getMetaDescription({
 >
 
     <WordComponent word={wordData} />
+    {contextData && (
+      <WordContext
+        wordLength={contextData.wordLength}
+        firstLetter={contextData.firstLetter}
+        partOfSpeech={contextData.partOfSpeech}
+        lengthCount={contextData.lengthCount}
+        letterCount={contextData.letterCount}
+        partOfSpeechCount={contextData.partOfSpeechCount}
+      />
+    )}
     <WordNav
       previousWord={previousWord}
       nextWord={nextWord}

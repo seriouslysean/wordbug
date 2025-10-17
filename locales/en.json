@@ -135,7 +135,10 @@
     "powered_by": "Powered by Wordnik"
   },
   "word": {
-    "source": "Source"
+    "source": "Source",
+    "related_words": "Related Words",
+    "letter_words": "{{letter}} Words",
+    "length_label": "{{length}}-Letter Words"
   },
   "parts_of_speech": {
     "noun": "Noun",
