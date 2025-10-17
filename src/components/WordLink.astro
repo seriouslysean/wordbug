@@ -53,10 +53,18 @@ const href = overrideHref || getWordUrl(word.word);
             flex-direction: row;
             justify-content: space-between;
             align-items: baseline;
+            gap: 1rem;
+        }
+
+        .word-link__word {
+            flex-shrink: 1;
+            min-width: 0;
         }
 
         .word-link__date {
-            margin-left: 1rem;
+            margin-left: auto;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
     }
 </style>
