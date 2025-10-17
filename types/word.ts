@@ -87,6 +87,10 @@ export interface WordGroupByLengthResult {
   [length: number]: WordData[];
 }
 
+export interface WordGroupByPartOfSpeechResult {
+  [partOfSpeech: string]: WordData[];
+}
+
 export interface WordFileGlobImport {
   [path: string]: WordData | WordData[];
 }

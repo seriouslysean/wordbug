@@ -85,12 +85,28 @@ npm test                                         # Run test suite
 
 - **README.md**: User-facing overview and quick start
 - **docs/technical.md**: Complete technical documentation
-- **docs/potential-features.md**: Future enhancements and priorities
+- **docs/improvements-backlog.md**: Prioritized technical improvements and issues
+- **docs/current-focus.md**: Active development task tracking
 
 When users ask questions:
 1. Check if it's covered in documentation
 2. Reference specific documentation sections in your answer
 3. Only provide additional details not covered in docs
+
+## Task Tracking
+
+### Current Focus Document
+- Location: docs/current-focus.md
+- Purpose: Track active development task and progress
+- Persistence: Keep in repository, clear content after task completion
+- Usage: Update before starting work, clear when done
+
+### Workflow
+1. Select task from docs/improvements-backlog.md
+2. Update docs/current-focus.md with task details
+3. Complete implementation
+4. Clear current-focus.md for next agent
+5. Update improvements-backlog.md status
 
 ## Project Context
 

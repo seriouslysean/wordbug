@@ -51,16 +51,16 @@ npm run build
 
 ```bash
 # Add a word for today
-npm run tool:local tools/add-word.ts serendipity
+npm run tool:local -- tools/add-word.ts serendipity
 
 # Add word for specific date
-npm run tool:local tools/add-word.ts ephemeral 20250130
+npm run tool:local -- tools/add-word.ts ephemeral 20250130
 
 # Generate social images
-npm run tool:local tools/generate-images.ts
+npm run tool:local -- tools/generate-images.ts
 
 # Get help for any tool
-npm run tool:local tools/add-word.ts --help
+npm run tool:local -- tools/add-word.ts --help
 ```
 
 ## Configuration
@@ -152,7 +152,7 @@ npm run lint          # Code style checking
 ## Documentation
 
 - **[Technical Guide](technical.md)** - Architecture, tools, and implementation details
-- **[Feature Ideas](potential-features.md)** - Planned enhancements and improvements
+- **[Improvements Backlog](improvements-backlog.md)** - Technical gaps and implementation opportunities
 
 ## License
 

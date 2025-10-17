@@ -1,0 +1,77 @@
+---
+import SectionHeading from '~components/SectionHeading.astro';
+import SiteLink from '~components/SiteLink.astro';
+import { getLengthUrl, getLetterUrl, getPartOfSpeechUrl } from '~astro-utils/url-utils';
+import { t, tp } from '~utils/i18n-utils';
+
+interface Props {
+  wordLength: number;
+  firstLetter: string;
+  partOfSpeech?: string;
+  lengthCount: number;
+  letterCount: number;
+  partOfSpeechCount?: number;
+}
+
+const { wordLength, firstLetter, partOfSpeech, lengthCount, letterCount, partOfSpeechCount } = Astro.props;
+---
+
+<section class="word-context">
+  <SectionHeading text={t('word.related_words')} />
+  <div class="word-context__grid">
+    <SiteLink
+      href={getLengthUrl(wordLength)}
+      variant="primary"
+      class="word-context__item"
+      title={t('common.title_with_length', { count: lengthCount, value: wordLength })}
+    >
+      {t('word.length_label', { length: wordLength })}
+    </SiteLink>
+    <SiteLink
+      href={getLetterUrl(firstLetter)}
+      variant="primary"
+      class="word-context__item"
+      title={t('common.title_starting_with', { count: letterCount, value: firstLetter.toUpperCase() })}
+    >
+      {t('word.letter_words', { letter: firstLetter.toUpperCase() })}
+    </SiteLink>
+    {partOfSpeech && partOfSpeechCount && (
+      <SiteLink
+        href={getPartOfSpeechUrl(partOfSpeech)}
+        variant="primary"
+        class="word-context__item"
+        title={t('common.title_with_part_of_speech', { count: partOfSpeechCount, value: partOfSpeech })}
+      >
+        {t(`parts_of_speech.${partOfSpeech}`)}
+      </SiteLink>
+    )}
+  </div>
+</section>
+
+<style>
+  .word-context {
+    width: 100%;
+    max-width: var(--content-width-small);
+    margin: var(--spacing-large) auto calc(var(--spacing-large) * 2);
+    padding: 0 var(--spacing-base);
+  }
+
+  .word-context__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .word-context__item {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    .word-context__grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  }
+</style>

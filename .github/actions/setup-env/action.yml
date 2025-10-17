@@ -1,0 +1,72 @@
+name: 'Setup Environment Variables'
+description: 'Sets up all environment variables needed for build and deploy'
+inputs:
+  vars-json:
+    description: 'Repository variables as JSON'
+    required: true
+  secrets-json:
+    description: 'Repository secrets as JSON'
+    required: true
+  github-sha:
+    description: 'GitHub SHA for the build'
+    required: false
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - name: Set environment variables
+      shell: bash
+      env:
+        VARS_JSON: ${{ inputs.vars-json }}
+        SECRETS_JSON: ${{ inputs.secrets-json }}
+        VAR_NAMES: |
+          BASE_PATH
+          COLOR_PRIMARY
+          COLOR_PRIMARY_DARK
+          COLOR_PRIMARY_LIGHT
+          DICTIONARY_ADAPTER
+          HUMANS_DEVELOPER_CONTACT
+          HUMANS_DEVELOPER_NAME
+          HUMANS_DEVELOPER_SITE
+          HUMANS_WORD_CURATOR
+          SITE_ATTRIBUTION_MESSAGE
+          SITE_AUTHOR
+          SITE_AUTHOR_URL
+          SITE_DESCRIPTION
+          SITE_ID
+          SITE_KEYWORDS
+          SITE_TITLE
+          SITE_URL
+          SOURCE_DIR
+          WORDNIK_API_URL
+          WORDNIK_WEBSITE_URL
+        SECRET_NAMES: |
+          GA_ENABLED
+          GA_MEASUREMENT_ID
+          SENTRY_AUTH_TOKEN
+          SENTRY_DSN
+          SENTRY_ENABLED
+          SENTRY_ORG
+          SENTRY_PROJECT
+          WORDNIK_API_KEY
+      run: |
+        echo "CI=true" >> $GITHUB_ENV
+        echo "SENTRY_ENVIRONMENT=production" >> $GITHUB_ENV
+        echo "TZ=$(echo "$VARS_JSON" | jq -r '.SITE_TZ // "America/New_York"')" >> $GITHUB_ENV
+        echo "GITHUB_SHA=${{ inputs.github-sha }}" >> $GITHUB_ENV
+        
+        # Set variables (avoid subshell with while loop)
+        while IFS= read -r var; do
+          if [[ -n "$var" ]]; then
+            value=$(echo "$VARS_JSON" | jq -r ".$var // \"\"")
+            echo "$var=$value" >> $GITHUB_ENV
+          fi
+        done <<< "$VAR_NAMES"
+        
+        # Set secrets (avoid subshell with while loop)
+        while IFS= read -r secret; do
+          if [[ -n "$secret" ]]; then
+            value=$(echo "$SECRETS_JSON" | jq -r ".$secret // \"\"")
+            echo "$secret=$value" >> $GITHUB_ENV
+          fi
+        done <<< "$SECRET_NAMES"

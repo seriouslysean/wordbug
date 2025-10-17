@@ -10,7 +10,8 @@
     "count_with_context": "{{count}} {{context}}",
     "title_starting_with": "{{count}} words starting with {{value}}",
     "title_with_length": "{{count}} words with {{value}} letters", 
-    "title_from_context": "{{count}} words from {{value}}"
+    "title_from_context": "{{count}} words from {{value}}",
+    "title_with_part_of_speech": "{{count}} {{value}} words"
   },
   "nav": {
     "home": "Home",
@@ -27,14 +28,19 @@
     "previous_words": "Previous Words"
   },
   "words": {
-    "heading": "All Words",
-    "description": "Every word, organized chronologically.",
-    "words_starting_with": "Words Starting with {{letter}}",
-    "length_words": "{{length}}-Letter Words",
-    "by_length_heading": "Words by Length",
     "by_length_description": "Words grouped by character count.",
+    "by_length_heading": "Words by Length",
+    "by_letter_description": "Words grouped by first letter.",
     "by_letter_heading": "Words by Letter",
-    "by_letter_description": "Words grouped by first letter."
+    "by_part_of_speech_description": "Words grouped by grammatical category.",
+    "by_part_of_speech_heading": "Words by Part of Speech",
+    "description": "Every word, organized chronologically.",
+    "heading": "All Words",
+    "length_words": "{{length}}-Letter Words",
+    "length_words_description": "Words containing exactly {{length}} letters.",
+    "letter_words_description": "Words that begin with the letter {{letter}}.",
+    "part_of_speech_words_description": "Words that function as {{partOfSpeech}} in sentences.",
+    "words_starting_with": "Words Starting with {{letter}}"
   },
   "browse": {
     "heading": "Browse Words",
@@ -43,6 +49,7 @@
     "all_words": "All Words",
     "by_length": "By Length",
     "by_letter": "By Letter", 
+    "by_part_of_speech": "By Part of Speech",
     "by_year": "By Year",
     "statistics": "Statistics",
     "recent": "Recent Words",
@@ -128,6 +135,23 @@
     "powered_by": "Powered by Wordnik"
   },
   "word": {
-    "source": "Source"
+    "source": "Source",
+    "related_words": "Related Words",
+    "letter_words": "{{letter}} Words",
+    "length_label": "{{length}}-Letter Words"
+  },
+  "parts_of_speech": {
+    "noun": "Noun",
+    "verb": "Verb", 
+    "adjective": "Adjective",
+    "adverb": "Adverb",
+    "pronoun": "Pronoun",
+    "preposition": "Preposition",
+    "conjunction": "Conjunction",
+    "interjection": "Interjection",
+    "article": "Article",
+    "determiner": "Determiner",
+    "auxiliary": "Auxiliary",
+    "modal": "Modal"
   }
 }

@@ -46,3 +46,46 @@ export const getAvailableLetters = (words: WordData[]): string[] => {
   )];
   return letters.sort();
 };
+
+/**
+ * Normalize part of speech to standard categories
+ */
+export const normalizePartOfSpeech = (partOfSpeech: string): string => {
+  const normalized = partOfSpeech.toLowerCase().trim();
+  const words = normalized.split(' ');
+  
+  // Normalize verb variations - if any word is "verb", it's a verb
+  if (words.includes('verb')) {
+    return 'verb';
+  }
+  
+  // Return the first word for compound parts of speech
+  const firstWord = words[0];
+  
+  // Map of common variations
+  const mappings: Record<string, string> = {
+    'definite': 'article',
+    'indefinite': 'article',
+  };
+  
+  return mappings[firstWord] || firstWord;
+};
+
+/**
+ * Get all available parts of speech from word data
+ */
+export const getAvailablePartsOfSpeech = (words: WordData[]): string[] => {
+  const partsOfSpeech = new Set<string>();
+  
+  words.forEach(word => {
+    if (word.data && Array.isArray(word.data)) {
+      word.data.forEach(definition => {
+        if (definition.partOfSpeech) {
+          partsOfSpeech.add(normalizePartOfSpeech(definition.partOfSpeech));
+        }
+      });
+    }
+  });
+  
+  return Array.from(partsOfSpeech).sort();
+};

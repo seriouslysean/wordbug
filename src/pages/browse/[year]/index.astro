@@ -7,6 +7,7 @@ import Layout from '~layouts/Layout.astro';
 import { getMonthNameFromDate } from '~utils/date-utils';
 import { getPageMetadata } from '~astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
+import { getMonthUrl } from '~astro-utils/url-utils';
 import {
   availableYears,
   getWordsForYear,
@@ -35,7 +36,7 @@ const monthGroups = groupWordsByMonth(year, words);
   {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
     <WordSection
       title={getMonthNameFromDate(monthWords[0].date)}
-      href={`/words/${year}/${monthSlug}`}
+      href={getMonthUrl(year, monthSlug)}
       words={monthWords}
     />
   ))}

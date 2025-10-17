@@ -1,0 +1,43 @@
+---
+import { getAdjacentWords, getWordsFromCollection, getWordsByLength, getWordsByLetter, getWordsByPartOfSpeech, extractWordDefinition } from '~astro-utils/word-data-utils';
+import WordPage from '~components/WordPage.astro';
+
+export async function getStaticPaths() {
+  const allWords = await getWordsFromCollection();
+
+  const paths = allWords.map(wordData => {
+    const { previousWord, nextWord } = getAdjacentWords(wordData.date, allWords);
+
+    const wordLength = wordData.word.length;
+    const firstLetter = wordData.word.charAt(0).toLowerCase();
+    const { partOfSpeech } = extractWordDefinition(wordData);
+
+    const lengthCount = getWordsByLength(wordLength, allWords).length;
+    const letterCount = getWordsByLetter(firstLetter, allWords).length;
+    const partOfSpeechCount = partOfSpeech ? getWordsByPartOfSpeech(partOfSpeech, allWords).length : 0;
+
+    return {
+      params: { word: wordData.word },
+      props: {
+        wordData,
+        previousWord,
+        nextWord,
+        contextData: {
+          wordLength,
+          firstLetter,
+          partOfSpeech,
+          lengthCount,
+          letterCount,
+          partOfSpeechCount,
+        },
+      },
+    };
+  });
+
+  return paths;
+}
+
+const { wordData, previousWord, nextWord, contextData } = Astro.props;
+---
+
+<WordPage wordData={wordData} previousWord={previousWord} nextWord={nextWord} contextData={contextData} />

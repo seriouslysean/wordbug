@@ -7,16 +7,25 @@ import {
 
 // Mock the i18n utils to return predictable test data
 vi.mock('~utils/i18n-utils', () => ({
-  t: vi.fn((key) => {
+  t: vi.fn((key, params = {}) => {
     const mockTranslations = {
       'words.heading': 'Mock Words Heading',
       'words.description': 'Mock words description',
+      'words.length_words': `${params.length || 'X'}-Letter Words`,
+      'words.length_words_description': `Words containing exactly ${params.length || 'X'} letters.`,
+      'words.letter_words_description': `Words starting with the letter ${params.letter || 'X'}.`,
+      'words.part_of_speech_words_description': `Words that function as ${params.partOfSpeech || 'unknown'}s in sentences.`,
+      'words.by_length_heading': 'Mock words.by_length_heading',
+      'words.by_length_description': 'Mock words.by_length_description',
       'stats.heading': 'Mock Stats Heading', 
       'stats.description': 'Mock stats description',
       'stats.subheading': 'Mock Stats Subheading',
       'home.heading': 'Mock Home Heading',
       'error.heading': 'Mock Error Heading',
-      'error.description': 'Mock error description'
+      'error.description': 'Mock error description',
+      'parts_of_speech.noun': 'Noun',
+      'parts_of_speech.verb': 'Verb',
+      'parts_of_speech.adjective': 'Adjective'
     };
     return mockTranslations[key] || `Mock ${key}`;
   }),
@@ -35,7 +44,7 @@ const mockWords = [
 describe('page-metadata-utils', () => {
   describe('getPageMetadata', () => {
     it('returns metadata for static pages', () => {
-      const metadata = getPageMetadata('words', mockWords);
+      const metadata = getPageMetadata('/word', mockWords);
       expect(metadata).toEqual({
         title: 'Mock Words Heading',
         description: 'Mock words description',
@@ -45,7 +54,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for stats page', () => {
-      const metadata = getPageMetadata('stats', mockWords);
+      const metadata = getPageMetadata('/stats', mockWords);
       expect(metadata).toEqual({
         title: 'Mock Stats Heading',
         description: 'Mock stats description',
@@ -55,7 +64,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns dynamic metadata for stats pages with counts', () => {
-      const metadata = getPageMetadata('stats/words-ending-ly', mockWords);
+      const metadata = getPageMetadata('/stats/words-ending-ly', mockWords);
       expect(metadata).toHaveProperty('title');
       expect(metadata).toHaveProperty('category', 'stats');
       expect(metadata).toHaveProperty('description');
@@ -64,7 +73,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for dynamic year pages', () => {
-      const metadata = getPageMetadata('words/2024', mockWords);
+      const metadata = getPageMetadata('/browse/2024', mockWords);
       expect(metadata).toHaveProperty('title', '2024');
       expect(metadata).toHaveProperty('category', 'pages');
       expect(metadata).toHaveProperty('description');
@@ -73,7 +82,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for dynamic month pages', () => {
-      const metadata = getPageMetadata('words/2024/january', mockWords);
+      const metadata = getPageMetadata('/browse/2024/january', mockWords);
       expect(metadata).toEqual({
         title: 'January',
         description: 'Words from January 2024.',
@@ -83,7 +92,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for length index page', () => {
-      const metadata = getPageMetadata('words/length', mockWords);
+      const metadata = getPageMetadata('/browse/length', mockWords);
       expect(metadata).toEqual({
         title: 'Mock words.by_length_heading',
         description: 'Mock words.by_length_description',
@@ -93,7 +102,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for individual length pages', () => {
-      const metadata = getPageMetadata('words/length/8', mockWords);
+      const metadata = getPageMetadata('/browse/length/8', mockWords);
       expect(metadata).toEqual({
         title: '8-Letter Words',
         description: 'Words containing exactly 8 letters.',
@@ -103,7 +112,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for dynamic length pages', () => {
-      const metadata = getPageMetadata('words/length/4', mockWords);
+      const metadata = getPageMetadata('/browse/length/4', mockWords);
       expect(metadata).toEqual({
         title: '4-Letter Words',
         description: 'Words containing exactly 4 letters.',
@@ -113,7 +122,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('returns metadata for 404 page', () => {
-      const metadata = getPageMetadata('404', mockWords);
+      const metadata = getPageMetadata('/404', mockWords);
       expect(metadata).toEqual({
         title: 'Mock Error Heading',
         description: 'Mock error description',
@@ -134,7 +143,7 @@ describe('page-metadata-utils', () => {
     });
 
     it('throws error for undefined pathname', () => {
-      expect(() => getPageMetadata()).toThrow('getPageMetadata: pathname is required');
+      expect(() => getPageMetadata()).toThrow('getPageMetadata: path is required');
     });
   });
 
@@ -146,7 +155,7 @@ describe('page-metadata-utils', () => {
       expect(allPages.length).toBeGreaterThan(0);
 
       // Should include static pages
-      const wordsPage = allPages.find(page => page.path === 'words');
+      const wordsPage = allPages.find(page => page.path === '/word');
       expect(wordsPage).toBeDefined();
       expect(wordsPage.title).toBe('Mock Words Heading');
     });
@@ -172,9 +181,9 @@ describe('page-metadata-utils', () => {
 
     it('includes year and length pages', () => {
       const allPages = getAllPageMetadata(mockWords);
-      expect(allPages.find(page => page.path === 'words/2024')).toBeDefined();
-      expect(allPages.find(page => page.path === 'words/length')).toBeDefined();
-      expect(allPages.find(page => page.path === 'words/length/4')).toBeDefined();
+      expect(allPages.find(page => page.path === '/browse/2024')).toBeDefined();
+      expect(allPages.find(page => page.path === '/browse/length')).toBeDefined();
+      expect(allPages.find(page => page.path === '/browse/length/4')).toBeDefined();
     });
   });
 

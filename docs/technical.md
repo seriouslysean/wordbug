@@ -23,11 +23,10 @@ src/
 ├── components/              # Reusable Astro components
 ├── layouts/                 # Page layout templates
 ├── pages/                   # Route definitions
-├── utils/                   # Client/Astro utilities (20+ files)
-├── config/
-│   └── site-config.ts       # Site configuration
+├── utils/                   # Client/Astro utilities (13 files)
 ├── styles/                  # CSS files
-└── assets/                  # Static assets
+├── assets/                  # Static assets
+└── images/                  # Image assets
 
 utils/                       # Shared utilities (Node.js + Astro)
 ├── date-utils.ts           # Date manipulation functions
@@ -46,26 +45,30 @@ tools/                       # CLI tools for content management
 └── utils.ts                # Tool-specific utilities
 
 config/                      # Configuration files
-├── adapters.ts             # Dictionary adapter config
-├── environment.ts          # Environment variable handling
 └── paths.ts                # Path configuration
 
-types/                       # Shared type definitions (12 files)
+constants/                   # Application constants
+├── stats.ts                # Statistics definitions and slugs
+└── urls.ts                 # URL constants
+
+locales/                     # Internationalization
+└── en.json                 # English translations
+
+types/                       # Shared type definitions (10 files)
 ├── adapters.ts             # Dictionary API types
-├── config.ts               # Configuration types
-├── tools.ts                # Tool-specific types
+├── common.ts               # Common shared types
+├── index.ts                # Main types export
 ├── word.ts                 # Word data structures
 ├── stats.ts                # Statistics types
 ├── schema.ts               # Schema types
 ├── seo.ts                  # SEO types
-├── utils.ts                # Utility types
 ├── vite.d.ts               # Vite definitions
 ├── window.d.ts             # Window extensions
 ├── wordnik.ts              # Wordnik API types
 └── opentype.js.d.ts        # OpenType.js definitions
 
 adapters/                    # Dictionary API adapters  
-├── factory.ts              # Adapter factory
+├── index.ts                # Adapter factory
 └── wordnik.ts              # Wordnik implementation
 ```
 
@@ -331,7 +334,7 @@ tests/
 npm test                    # Run all tests
 npm run test:watch          # Watch mode
 npm run typecheck           # TypeScript validation
-npm run lint                # ESLint checking
+npm run lint                # oxlint checking
 ```
 
 ## Content Collections Deep Dive

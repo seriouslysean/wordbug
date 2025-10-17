@@ -24,3 +24,8 @@ declare const __SHOW_EMPTY_STATS__: boolean;
 declare const __SOURCE_DIR__: string;
 declare const __WORD_DATA_PATH__: string;
 declare const __SOCIAL_IMAGES_PATH__: string;
+declare const __SITE_KEYWORDS__: string;
+declare const __SITE_LOCALE__: string;
+declare const __SITE_AUTHOR__: string;
+declare const __SITE_AUTHOR_URL__: string;
+declare const __SITE_ATTRIBUTION_MESSAGE__: string;
