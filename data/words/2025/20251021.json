@@ -1,0 +1,110 @@
+{
+    "word": "bison",
+    "date": "20251021",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "B5288900-1",
+            "partOfSpeech": "noun",
+            "text": "A bovine mammal <em>(Bison bison)</em> of western North America, having large forequarters, a shaggy mane, and a massive head with short curved horns; a buffalo.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5288900-2",
+            "partOfSpeech": "noun",
+            "text": "A bovine mammal <em>(Bison bonasus)</em> of Europe, similar to the North American bison but with a somewhat smaller head and longer horns; a wisent.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5288900-3",
+            "partOfSpeech": "noun",
+            "text": "The flesh of the North American bison, used as food.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A name applied by Indian sportsmen to the gaur, <em>Bibos</em> (or <em>Gavæus</em>) <em>gaurus</em>, in distinction to ‘buffalo,’ which is used for <em>Bos buffelus.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The aurochs, or bonasus, a European wild ox: hence applied to several similar animals, recent and extinct.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<em>Bison</em> or <em>Bos americanus</em>, improperly called the buffalo, an animal which formerly ranged over most of the United States and much of British America in countless numbers, now reduced to probably a few thousands, and apparently soon to become extinct as a wild animal.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "[<em>capitalized</em>] [NL.] A genus or subgenus of the family <em>Bovidæ</em>, including the aurochs, <em>B. bonasus</em> (see cut under <internalXref urlencoded=\"aurochs\">aurochs</internalXref>), the American bison, <em>B. americanus</em>, and several related fossil species, as <em>B. latifrons.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The aurochs or European bison.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The American bison buffalo (<spn>Bison Americanus</spn>), a large, gregarious bovine quadruped with shaggy mane and short black horns, which formerly roamed in herds over most of the temperate portion of North America, but by 1900 was restricted to very limited districts in the region of the Rocky Mountains, and was almost hunted to extinction.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>wild</xref> <xref>ox</xref>, <xref>Bison bonasus</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/bison",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
