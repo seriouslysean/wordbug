@@ -19,12 +19,11 @@ export async function GET(context: APIContext) {
     site: context.site || getFullUrl('/'),
     items: latestWords.map(word => {
       const { definition, partOfSpeech } = extractWordDefinition(word);
-      const displayWord = word.displayWord || word.word;
       const wordUrl = getFullUrl(getWordUrl(word.word));
       const pubDate = YYYYMMDDToDate(word.date);
 
       if (!pubDate) {
-        throw new Error(`Invalid date format for word ${displayWord}: ${word.date}`);
+        throw new Error(`Invalid date format for word ${word.word}: ${word.date}`);
       }
 
       // Strip HTML tags from definition for clean RSS
@@ -34,7 +33,7 @@ export async function GET(context: APIContext) {
       const description = `(${partOfSpeech}) ${cleanDefinition}`;
 
       return {
-        title: displayWord,
+        title: word.word,
         description,
         link: wordUrl,
         pubDate,

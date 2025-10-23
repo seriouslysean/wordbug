@@ -16,6 +16,11 @@ on:
         required: false
         type: boolean
         default: false
+      preserve_case:
+        description: 'Preserve original capitalization (for proper nouns like "Japan" or "PB&J")'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -27,6 +32,7 @@ jobs:
       word: ${{ steps.set-outputs.outputs.word }}
       date: ${{ steps.set-outputs.outputs.date }}
       overwrite: ${{ steps.set-outputs.outputs.overwrite }}
+      preserve_case: ${{ steps.set-outputs.outputs.preserve_case }}
     steps:
       - name: Set outputs
         id: set-outputs
@@ -34,6 +40,7 @@ jobs:
           echo "word=${{ inputs.word }}" >> $GITHUB_OUTPUT
           echo "date=${{ inputs.date || '' }}" >> $GITHUB_OUTPUT
           echo "overwrite=${{ inputs.overwrite }}" >> $GITHUB_OUTPUT
+          echo "preserve_case=${{ inputs.preserve_case }}" >> $GITHUB_OUTPUT
 
   add-word:
     needs: [prepare-manual]
@@ -78,13 +85,17 @@ jobs:
           WORD="${{ needs.prepare-manual.outputs.word }}"
           DATE="${{ needs.prepare-manual.outputs.date }}"
           OVERWRITE="${{ needs.prepare-manual.outputs.overwrite }}"
+          PRESERVE_CASE="${{ needs.prepare-manual.outputs.preserve_case }}"
 
-          OVERWRITE_FLAG=""
+          FLAGS=""
           if [[ "$OVERWRITE" == "true" ]]; then
-            OVERWRITE_FLAG="--overwrite"
+            FLAGS="$FLAGS --overwrite"
+          fi
+          if [[ "$PRESERVE_CASE" == "true" ]]; then
+            FLAGS="$FLAGS --preserve-case"
           fi
 
-          if npm run tool:add-word -- "$WORD" "$DATE" $OVERWRITE_FLAG; then
+          if npm run tool:add-word -- "$WORD" "$DATE" $FLAGS; then
             echo "word_added=1" >> $GITHUB_OUTPUT
             echo "word=$WORD" >> $GITHUB_OUTPUT
 

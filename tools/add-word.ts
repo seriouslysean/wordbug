@@ -44,8 +44,9 @@ const isNotFutureDate = (date: string): boolean => {
  * @param input - Word to add
  * @param date - Date to add word for (defaults to today)
  * @param overwrite - Whether to overwrite existing word
+ * @param preserveCase - Whether to preserve original capitalization
  */
-async function addWord(input: string, date: string, overwrite: boolean = false): Promise<void> {
+async function addWord(input: string, date: string, overwrite: boolean = false, preserveCase: boolean = false): Promise<void> {
   try {
     const word = input?.trim();
 
@@ -94,7 +95,7 @@ async function addWord(input: string, date: string, overwrite: boolean = false):
     }
 
     // Use shared word creation logic
-    await createWordEntry(word, targetDate, overwrite);
+    await createWordEntry(word, targetDate, overwrite, preserveCase);
 
   } catch (error) {
     if (error.message.includes('not found in dictionary')) {
@@ -118,13 +119,16 @@ Arguments:
   date    Date in YYYYMMDD format (optional, defaults to today)
 
 Options:
-  -o, --overwrite    Overwrite existing word if it exists
-  -h, --help         Show this help message
+  -o, --overwrite       Overwrite existing word if it exists
+  -p, --preserve-case   Preserve original capitalization (default: converts to lowercase)
+  -h, --help            Show this help message
 
 Examples:
   npm run tool:add-word "serendipity"
   npm run tool:add-word "ephemeral" "20240116"
   npm run tool:add-word "ubiquitous" --overwrite
+  npm run tool:add-word "Japan" --preserve-case
+  npm run tool:add-word "PB&J" "20250101" --preserve-case
 
 Environment Variables (for GitHub workflows):
   DICTIONARY_ADAPTER         Dictionary API to use (required)
@@ -150,9 +154,19 @@ if (args.includes('--help') || args.includes('-h') || args.length === 0) {
 const overwriteIndex = args.findIndex(arg => arg === '--overwrite' || arg === '-o');
 const hasOverwrite = overwriteIndex !== -1;
 
-// Remove the overwrite flag from args if present
+const preserveCaseIndex = args.findIndex(arg => arg === '--preserve-case' || arg === '-p');
+const hasPreserveCase = preserveCaseIndex !== -1;
+
+// Remove flags from args
 if (hasOverwrite) {
   args.splice(overwriteIndex, 1);
+}
+if (hasPreserveCase) {
+  // Recalculate index after potential removal of overwrite flag
+  const index = args.findIndex(arg => arg === '--preserve-case' || arg === '-p');
+  if (index !== -1) {
+    args.splice(index, 1);
+  }
 }
 
 const [word, date] = args;
@@ -164,4 +178,4 @@ if (!word) {
 }
 
 console.log('Add word tool starting...');
-addWord(word, date, hasOverwrite);
+addWord(word, date, hasOverwrite, hasPreserveCase);

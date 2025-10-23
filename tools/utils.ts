@@ -358,9 +358,10 @@ import { isValidDictionaryData } from '~utils/word-validation';
  * @param word - Word to add
  * @param date - Date in YYYYMMDD format
  * @param overwrite - Whether to overwrite existing files
+ * @param preserveCase - Whether to preserve the original capitalization (default: false, converts to lowercase)
  * @returns Object with file path and word data
  */
-export async function createWordEntry(word: string, date: string, overwrite: boolean = false): Promise<CreateWordEntryResult> {
+export async function createWordEntry(word: string, date: string, overwrite: boolean = false, preserveCase: boolean = false): Promise<CreateWordEntryResult> {
   // Validate inputs
   if (!word?.trim()) {
     throw new Error('Word is required');
@@ -375,8 +376,8 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
   }
 
   const trimmedWord = word.trim();
-  const originalWord = trimmedWord; // Preserve original capitalization
-  const lowercaseWord = trimmedWord.toLowerCase();
+  const originalWord = trimmedWord;
+  const finalWord = preserveCase ? originalWord : originalWord.toLowerCase();
   const year = date.slice(0, 4);
   const dirPath = path.join(paths.words, year);
   const filePath = path.join(dirPath, `${date}.json`);
@@ -391,7 +392,7 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  // Fetch word data using the configured adapter (with original capitalization)
+  // Fetch word data using the configured adapter (with original capitalization for API call)
   const adapter = getAdapter();
   const response = await adapter.fetchWordData(originalWord);
   const data = response.definitions;
@@ -402,16 +403,11 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
   }
 
   const wordData: WordData = {
-    word: lowercaseWord,
+    word: finalWord,
     date,
     adapter: process.env.DICTIONARY_ADAPTER,
     data,
   };
-
-  // Add displayWord only if capitalization differs from lowercase
-  if (originalWord !== lowercaseWord) {
-    wordData.displayWord = originalWord;
-  }
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
 

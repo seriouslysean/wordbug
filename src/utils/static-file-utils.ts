@@ -154,8 +154,8 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   if (recentWords.length > 0) {
     const [todayWord, ...previousWords] = [...recentWords].reverse();
     recentWordSection = [
-      `- [${todayWord.displayWord || todayWord.word}](${baseUrl}${getWordUrl(todayWord.word)}): ${formatDate(todayWord.date)}`,
-      ...previousWords.map(word => `- [${word.displayWord || word.word}](${baseUrl}${getWordUrl(word.word)}): ${formatDate(word.date)}`),
+      `- [${todayWord.word}](${baseUrl}${getWordUrl(todayWord.word)}): ${formatDate(todayWord.date)}`,
+      ...previousWords.map(word => `- [${word.word}](${baseUrl}${getWordUrl(word.word)}): ${formatDate(word.date)}`),
     ].join('\n');
   }
 

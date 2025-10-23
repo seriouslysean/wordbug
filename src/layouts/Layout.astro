@@ -67,7 +67,7 @@ const wordSchemaData = word ? (() => {
   const { definition, partOfSpeech } = extractWordDefinition(word);
 
   return {
-	word: word.displayWord || word.word,
+	word: word.word,
 	date: word.date,
 	definition,
 	partOfSpeech,
