@@ -31,7 +31,7 @@ export const wordnikAdapter: DictionaryAdapter = {
 
   /**
    * Fetches word data from the Wordnik API
-   * @param word - The word to look up
+   * @param word - The word to look up (with original capitalization)
    * @param options - Optional fetch parameters (limit, etc.)
    * @returns Promise resolving to a standardized DictionaryResponse
    * @throws Error if API key missing, word not found, rate limited, or request fails
@@ -42,10 +42,20 @@ export const wordnikAdapter: DictionaryAdapter = {
       throw new Error('Wordnik API key is required');
     }
     const limit = (options as FetchOptions).limit || WORDNIK_CONFIG.DEFAULT_LIMIT;
-    const lowercaseWord = word.toLowerCase();
     const baseUrl = WORDNIK_CONFIG.BASE_URL;
-    const url = `${baseUrl}/word.json/${encodeURIComponent(lowercaseWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
-    const response = await fetch(url);
+
+    // Try original capitalization first (for proper nouns like "Japan", "PB&J")
+    let queryWord = word;
+    let url = `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+    let response = await fetch(url);
+
+    // If original case fails with 404, try lowercase as fallback
+    if (response.status === 404 && word !== word.toLowerCase()) {
+      queryWord = word.toLowerCase();
+      url = `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+      response = await fetch(url);
+    }
+
     if (!response.ok) {
       if (response.status === 404) {
         throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);

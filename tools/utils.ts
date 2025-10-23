@@ -374,7 +374,9 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
     throw new Error('DICTIONARY_ADAPTER environment variable is required');
   }
 
-  const trimmedWord = word.trim().toLowerCase();
+  const trimmedWord = word.trim();
+  const originalWord = trimmedWord; // Preserve original capitalization
+  const lowercaseWord = trimmedWord.toLowerCase();
   const year = date.slice(0, 4);
   const dirPath = path.join(paths.words, year);
   const filePath = path.join(dirPath, `${date}.json`);
@@ -389,26 +391,31 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  // Fetch word data using the configured adapter
+  // Fetch word data using the configured adapter (with original capitalization)
   const adapter = getAdapter();
-  const response = await adapter.fetchWordData(trimmedWord);
+  const response = await adapter.fetchWordData(originalWord);
   const data = response.definitions;
 
   // Validate the word data before saving
   if (!isValidDictionaryData(data)) {
-    throw new Error(`No valid definitions found for word: ${trimmedWord}`);
+    throw new Error(`No valid definitions found for word: ${originalWord}`);
   }
 
   const wordData: WordData = {
-    word: trimmedWord,
+    word: lowercaseWord,
     date,
     adapter: process.env.DICTIONARY_ADAPTER,
     data,
   };
 
+  // Add displayWord only if capitalization differs from lowercase
+  if (originalWord !== lowercaseWord) {
+    wordData.displayWord = originalWord;
+  }
+
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
 
-  console.log('Word entry created', { word: trimmedWord, date });
+  console.log('Word entry created', { word: originalWord, date });
 
   return { filePath, data };
 }

@@ -13,7 +13,8 @@ export interface WordProcessedData {
 
 // Our main word file structure (adapter-agnostic)
 export interface WordData {
-  word: string;
+  word: string; // Lowercase version for duplicate checking and compatibility
+  displayWord?: string; // Original capitalization for display (proper nouns, custom caps)
   date: string; // YYYYMMDD format
   adapter: string; // Which dictionary adapter was used
   data: DictionaryDefinition[];
