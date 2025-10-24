@@ -141,18 +141,19 @@
     "length_label": "{{length}}-Letter Words"
   },
   "parts_of_speech": {
-    "noun": "Noun",
-    "verb": "Verb",
     "adjective": "Adjective",
     "adverb": "Adverb",
-    "pronoun": "Pronoun",
-    "preposition": "Preposition",
-    "conjunction": "Conjunction",
-    "interjection": "Interjection",
     "article": "Article",
-    "determiner": "Determiner",
     "auxiliary": "Auxiliary",
+    "conjunction": "Conjunction",
+    "determiner": "Determiner",
+    "idiom": "Idiom",
+    "initialism": "Initialism",
+    "interjection": "Interjection",
     "modal": "Modal",
-    "idiom": "Idiom"
+    "noun": "Noun",
+    "preposition": "Preposition",
+    "pronoun": "Pronoun",
+    "verb": "Verb"
   }
 }
