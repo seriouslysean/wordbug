@@ -358,9 +358,10 @@ import { isValidDictionaryData } from '~utils/word-validation';
  * @param word - Word to add
  * @param date - Date in YYYYMMDD format
  * @param overwrite - Whether to overwrite existing files
+ * @param preserveCase - Whether to preserve the original capitalization (default: false, converts to lowercase)
  * @returns Object with file path and word data
  */
-export async function createWordEntry(word: string, date: string, overwrite: boolean = false): Promise<CreateWordEntryResult> {
+export async function createWordEntry(word: string, date: string, overwrite: boolean = false, preserveCase: boolean = false): Promise<CreateWordEntryResult> {
   // Validate inputs
   if (!word?.trim()) {
     throw new Error('Word is required');
@@ -374,7 +375,8 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
     throw new Error('DICTIONARY_ADAPTER environment variable is required');
   }
 
-  const trimmedWord = word.trim().toLowerCase();
+  const trimmedWord = word.trim();
+  const finalWord = preserveCase ? trimmedWord : trimmedWord.toLowerCase();
   const year = date.slice(0, 4);
   const dirPath = path.join(paths.words, year);
   const filePath = path.join(dirPath, `${date}.json`);
@@ -389,7 +391,7 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  // Fetch word data using the configured adapter
+  // Fetch word data using the configured adapter (pass original capitalization for API call)
   const adapter = getAdapter();
   const response = await adapter.fetchWordData(trimmedWord);
   const data = response.definitions;
@@ -400,7 +402,7 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
   }
 
   const wordData: WordData = {
-    word: trimmedWord,
+    word: finalWord,
     date,
     adapter: process.env.DICTIONARY_ADAPTER,
     data,
