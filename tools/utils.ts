@@ -376,8 +376,7 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
   }
 
   const trimmedWord = word.trim();
-  const originalWord = trimmedWord;
-  const finalWord = preserveCase ? originalWord : originalWord.toLowerCase();
+  const finalWord = preserveCase ? trimmedWord : trimmedWord.toLowerCase();
   const year = date.slice(0, 4);
   const dirPath = path.join(paths.words, year);
   const filePath = path.join(dirPath, `${date}.json`);
@@ -392,14 +391,14 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  // Fetch word data using the configured adapter (with original capitalization for API call)
+  // Fetch word data using the configured adapter (pass original capitalization for API call)
   const adapter = getAdapter();
-  const response = await adapter.fetchWordData(originalWord);
+  const response = await adapter.fetchWordData(trimmedWord);
   const data = response.definitions;
 
   // Validate the word data before saving
   if (!isValidDictionaryData(data)) {
-    throw new Error(`No valid definitions found for word: ${originalWord}`);
+    throw new Error(`No valid definitions found for word: ${trimmedWord}`);
   }
 
   const wordData: WordData = {
@@ -411,7 +410,7 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
 
-  console.log('Word entry created', { word: originalWord, date });
+  console.log('Word entry created', { word: trimmedWord, date });
 
   return { filePath, data };
 }

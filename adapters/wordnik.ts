@@ -44,16 +44,15 @@ export const wordnikAdapter: DictionaryAdapter = {
     const limit = (options as FetchOptions).limit || WORDNIK_CONFIG.DEFAULT_LIMIT;
     const baseUrl = WORDNIK_CONFIG.BASE_URL;
 
+    const buildUrl = (queryWord: string): string =>
+      `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
+
     // Try original capitalization first (for proper nouns like "Japan", "PB&J")
-    let queryWord = word;
-    let url = `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
-    let response = await fetch(url);
+    let response = await fetch(buildUrl(word));
 
     // If original case fails with 404, try lowercase as fallback
     if (response.status === 404 && word !== word.toLowerCase()) {
-      queryWord = word.toLowerCase();
-      url = `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
-      response = await fetch(url);
+      response = await fetch(buildUrl(word.toLowerCase()));
     }
 
     if (!response.ok) {

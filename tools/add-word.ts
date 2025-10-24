@@ -151,22 +151,17 @@ if (args.includes('--help') || args.includes('-h') || args.length === 0) {
   process.exit(0);
 }
 
+// Parse options - check and remove each flag immediately
 const overwriteIndex = args.findIndex(arg => arg === '--overwrite' || arg === '-o');
 const hasOverwrite = overwriteIndex !== -1;
-
-const preserveCaseIndex = args.findIndex(arg => arg === '--preserve-case' || arg === '-p');
-const hasPreserveCase = preserveCaseIndex !== -1;
-
-// Remove flags from args
 if (hasOverwrite) {
   args.splice(overwriteIndex, 1);
 }
+
+const preserveCaseIndex = args.findIndex(arg => arg === '--preserve-case' || arg === '-p');
+const hasPreserveCase = preserveCaseIndex !== -1;
 if (hasPreserveCase) {
-  // Recalculate index after potential removal of overwrite flag
-  const index = args.findIndex(arg => arg === '--preserve-case' || arg === '-p');
-  if (index !== -1) {
-    args.splice(index, 1);
-  }
+  args.splice(preserveCaseIndex, 1);
 }
 
 const [word, date] = args;
