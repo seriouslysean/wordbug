@@ -405,6 +405,7 @@ export async function createWordEntry(word: string, date: string, overwrite: boo
     word: finalWord,
     date,
     adapter: process.env.DICTIONARY_ADAPTER,
+    preserveCase,
     data,
   };
 

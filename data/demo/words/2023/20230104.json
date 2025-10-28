@@ -1,0 +1,126 @@
+{
+    "word": "zoom",
+    "date": "20230104",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "Z5028500-1",
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-2",
+            "partOfSpeech": "intransitive verb",
+            "text": "To make a continuous low-pitched buzzing or humming sound.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [
+                "I heard a plane zooming overhead."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-3",
+            "partOfSpeech": "intransitive verb",
+            "text": "To move while making such a sound.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [
+                "couldn't hear as the motorcycle zoomed past."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-4",
+            "partOfSpeech": "intransitive verb",
+            "text": "To move rapidly.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [
+                "comets that zoom through space."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-5",
+            "partOfSpeech": "intransitive verb",
+            "text": "To increase suddenly and dramatically.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [
+                "Stock prices zoomed in early trading."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-6",
+            "partOfSpeech": "intransitive verb",
+            "text": "To act or proceed swiftly and energetically.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [
+                "zoomed through the novel in a day."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-7",
+            "partOfSpeech": "intransitive verb",
+            "text": "To simulate movement rapidly away from or toward a subject using a zoom lens or other optical device.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-8",
+            "partOfSpeech": "intransitive verb",
+            "text": "To cause text or other graphics in a window or frame to appear larger on the screen.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-9",
+            "partOfSpeech": "intransitive verb",
+            "text": "To cause to zoom.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Z5028500-10",
+            "partOfSpeech": "noun",
+            "text": "The act or sound of zooming.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/zoom",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

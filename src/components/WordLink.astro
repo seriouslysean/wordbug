@@ -7,6 +7,7 @@ interface Props {
   word: {
     word: string;
     date: string;
+    preserveCase?: boolean;
   };
   href?: string;
   [key: string]: any;
@@ -16,6 +17,7 @@ const { word, href: overrideHref, class: className, ...attrs } = Astro.props;
 const formattedDate = formatDate(word.date);
 
 const href = overrideHref || getWordUrl(word.word);
+const wordClass = word.preserveCase ? 'word-link__word preserve-case' : 'word-link__word';
 ---
 
 <SiteLink
@@ -23,7 +25,7 @@ const href = overrideHref || getWordUrl(word.word);
   class:list={['word-link', className]}
   {...attrs}
 >
-  <span class="word-link__word">{word.word}</span>
+  <span class={wordClass}>{word.word}</span>
   {formattedDate && <time class="word-link__date" datetime={formatISODate(word.date)} title={formattedDate}>{formattedDate}</time>}
 </SiteLink>
 

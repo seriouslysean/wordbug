@@ -32,7 +32,11 @@ import {
   getAvailableLetters,
   getAvailablePartsOfSpeech,
   normalizePartOfSpeech,
+  findValidDefinition,
 } from '~utils/word-data-utils';
+import {
+  extractWordDefinition,
+} from '~astro-utils/word-data-utils';
 
 describe('word-data-utils', () => {
   // Mock data sorted by descending date (newest first) like real getWordsFromCollection
@@ -401,6 +405,82 @@ describe('word-data-utils', () => {
     });
   });
 
+  describe('findValidDefinition', () => {
+    it('finds first definition with partOfSpeech', () => {
+      const definitions = [
+        { text: 'No part of speech' },
+        { text: 'Valid definition', partOfSpeech: 'noun' },
+        { text: 'Another valid', partOfSpeech: 'verb' },
+      ];
+      const result = findValidDefinition(definitions);
+      expect(result).toEqual({ text: 'Valid definition', partOfSpeech: 'noun' });
+    });
+
+    it('handles text as array', () => {
+      const definitions = [
+        { text: ['Sea of', 'An enclosed arm...'] }, // no partOfSpeech
+        { text: 'Valid definition', partOfSpeech: 'proper noun' },
+      ];
+      const result = findValidDefinition(definitions);
+      expect(result).toEqual({ text: 'Valid definition', partOfSpeech: 'proper noun' });
+    });
+
+    it('joins array text when partOfSpeech present', () => {
+      const definitions = [
+        { text: ['Part one', 'Part two'], partOfSpeech: 'noun' },
+      ];
+      const result = findValidDefinition(definitions);
+      expect(result).toEqual({ text: 'Part one Part two', partOfSpeech: 'noun' });
+    });
+
+    it('returns null for empty array', () => {
+      expect(findValidDefinition([])).toBeNull();
+    });
+
+    it('returns null when no definitions have partOfSpeech', () => {
+      const definitions = [
+        { text: 'No part of speech' },
+        { text: 'Another without' },
+      ];
+      expect(findValidDefinition(definitions)).toBeNull();
+    });
+
+    it('skips empty text values', () => {
+      const definitions = [
+        { text: '', partOfSpeech: 'noun' },
+        { text: '   ', partOfSpeech: 'verb' },
+        { text: 'Valid', partOfSpeech: 'adjective' },
+      ];
+      const result = findValidDefinition(definitions);
+      expect(result).toEqual({ text: 'Valid', partOfSpeech: 'adjective' });
+    });
+  });
+
+  describe('extractWordDefinition', () => {
+    it('uses findValidDefinition to skip definitions without partOfSpeech', () => {
+      const wordData = {
+        word: 'test',
+        date: '20250101',
+        data: [
+          { text: 'No part of speech' },
+          { text: 'Valid definition', partOfSpeech: 'noun' },
+        ],
+      };
+      const result = extractWordDefinition(wordData);
+      expect(result).toEqual({ definition: 'Valid definition', partOfSpeech: 'noun' });
+    });
+
+    it('returns empty strings when no valid definition found', () => {
+      const wordData = {
+        word: 'test',
+        date: '20250101',
+        data: [{ text: 'No part of speech' }],
+      };
+      const result = extractWordDefinition(wordData);
+      expect(result).toEqual({ definition: '', partOfSpeech: '' });
+    });
+  });
+
   describe('part-of-speech utilities', () => {
     it('normalizes basic parts of speech', () => {
       expect(normalizePartOfSpeech('noun')).toBe('noun');
@@ -412,15 +492,34 @@ describe('word-data-utils', () => {
       expect(normalizePartOfSpeech('transitive verb')).toBe('verb');
       expect(normalizePartOfSpeech('intransitive verb')).toBe('verb');
       expect(normalizePartOfSpeech('auxiliary verb')).toBe('verb');
+      expect(normalizePartOfSpeech('phrasal verb')).toBe('verb');
+      expect(normalizePartOfSpeech('verb-transitive')).toBe('verb');
+      expect(normalizePartOfSpeech('verb-intransitive')).toBe('verb');
+      expect(normalizePartOfSpeech('past-participle')).toBe('verb');
+    });
+
+    it('normalizes noun variations', () => {
+      expect(normalizePartOfSpeech('proper noun')).toBe('noun');
+      expect(normalizePartOfSpeech('proper-noun')).toBe('noun');
+      expect(normalizePartOfSpeech('proper-noun-plural')).toBe('noun');
+      expect(normalizePartOfSpeech('noun-plural')).toBe('noun');
+      expect(normalizePartOfSpeech('noun-singular')).toBe('noun');
+      expect(normalizePartOfSpeech('family-name')).toBe('noun');
+      expect(normalizePartOfSpeech('given-name')).toBe('noun');
     });
 
     it('normalizes article variations', () => {
       expect(normalizePartOfSpeech('definite article')).toBe('article');
+      expect(normalizePartOfSpeech('definite article.')).toBe('article'); // with trailing period
+      expect(normalizePartOfSpeech('definite-article')).toBe('article');
       expect(normalizePartOfSpeech('indefinite article')).toBe('article');
+      expect(normalizePartOfSpeech('indefinite-article')).toBe('article');
     });
 
-    it('handles auxiliary verb correctly', () => {
-      expect(normalizePartOfSpeech('auxiliary verb')).toBe('verb');
+    it('removes trailing punctuation', () => {
+      expect(normalizePartOfSpeech('noun.')).toBe('noun');
+      expect(normalizePartOfSpeech('verb!')).toBe('verb');
+      expect(normalizePartOfSpeech('adjective,')).toBe('adjective');
     });
 
     it('returns sorted unique parts of speech', () => {

@@ -2,7 +2,6 @@ import { decodeHTML } from 'entities';
 
 import type {
   DictionaryAdapter,
-  DictionaryDefinition,
   DictionaryResponse,
   FetchOptions,
   WordData,
@@ -10,6 +9,7 @@ import type {
   WordnikConfig,
   WordnikDefinition,
 } from '~types';
+import { findValidDefinition } from '~utils/word-data-utils';
 
 /**
  * Configuration constants for Wordnik API integration
@@ -107,28 +107,8 @@ export const wordnikAdapter: DictionaryAdapter = {
 
   /**
    * Transforms WordData to processed format for display
-   * @param wordData - The internal word data structure
-   * @returns WordProcessedData with the first valid definition formatted for display
    */
-  transformWordData(wordData: WordData): WordProcessedData {
-    if (!wordData || !wordData.data || wordData.data.length === 0) {
-      return { partOfSpeech: '', definition: '', meta: null };
-    }
-    for (const item of wordData.data as DictionaryDefinition[]) {
-      if (item.text && item.text.trim()) {
-        return {
-          partOfSpeech: item.partOfSpeech || '',
-          definition: item.text,
-          meta: {
-            attributionText: item.attributionText || 'from Wordnik',
-            sourceDictionary: item.sourceDictionary,
-            sourceUrl: item.sourceUrl || '',
-          },
-        };
-      }
-    }
-    return { partOfSpeech: '', definition: '', meta: null };
-  },
+  transformWordData,
 
   /**
    * Validates if the API response contains usable word data
@@ -139,6 +119,36 @@ export const wordnikAdapter: DictionaryAdapter = {
     return Array.isArray(response) ? response.length > 0 : !!response;
   },
 };
+
+/**
+ * Transforms WordData to processed format for display
+ * @param wordData - The internal word data structure
+ * @returns WordProcessedData with the first valid definition formatted for display
+ */
+export function transformWordData(wordData: WordData): WordProcessedData {
+  if (!wordData || !wordData.data || wordData.data.length === 0) {
+    return { partOfSpeech: '', definition: '', meta: null };
+  }
+
+  const validDef = findValidDefinition(wordData.data);
+
+  if (!validDef) {
+    return { partOfSpeech: '', definition: '', meta: null };
+  }
+
+  // Find the full definition item to get metadata
+  const fullDef = wordData.data.find(d => d.partOfSpeech === validDef.partOfSpeech);
+
+  return {
+    partOfSpeech: validDef.partOfSpeech,
+    definition: processCrossReferences(validDef.text),
+    meta: {
+      attributionText: fullDef?.attributionText || 'from Wordnik',
+      sourceDictionary: fullDef?.sourceDictionary,
+      sourceUrl: fullDef?.sourceUrl || '',
+    },
+  };
+}
 
 /**
  * Generates a Wordnik website URL for a given word
@@ -199,46 +209,4 @@ export function processWordnikHTML(
   }
 
   return result;
-}
-
-/**
- * Transforms WordData to processed format for display (standalone function for legacy compatibility)
- * @param wordData - The internal word data structure
- * @returns WordProcessedData with the first valid definition formatted for display
- */
-export function transformWordData(wordData: WordData): WordProcessedData {
-  if (!wordData || !wordData.data || wordData.data.length === 0) {
-    return { partOfSpeech: '', definition: '', meta: null };
-  }
-
-  for (const item of wordData.data) {
-    if (item.text && item.text.trim()) {
-      return {
-        partOfSpeech: item.partOfSpeech || '',
-        definition: processCrossReferences(item.text),
-        meta: {
-          attributionText: item.attributionText || 'from Wordnik',
-          sourceDictionary: item.sourceDictionary,
-          sourceUrl: item.sourceUrl || '',
-        },
-      };
-    }
-  }
-
-  return { partOfSpeech: '', definition: '', meta: null };
-}
-
-/**
- * Validates if a DictionaryDefinition array contains valid word data
- * @param data - Array of dictionary definitions to validate
- * @returns True if the data contains at least one definition with text or part of speech
- */
-export function isValidWordData(data: DictionaryDefinition[]): boolean {
-  if (!Array.isArray(data) || data.length === 0) {
-    return false;
-  }
-  return data.some(entry =>
-    (typeof entry.text === 'string' && entry.text.trim().length > 0) ||
-    (typeof entry.partOfSpeech === 'string' && entry.partOfSpeech.trim().length > 0),
-  );
 }

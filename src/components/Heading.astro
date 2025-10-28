@@ -3,16 +3,18 @@ interface Props {
   level?: number;
   text: string;
   secondaryText?: string;
+  preserveCase?: boolean;
   [key: string]: any;
 }
 
-const { level = 1, text, secondaryText, ...attrs } = Astro.props;
+const { level = 1, text, secondaryText, preserveCase = false, ...attrs } = Astro.props;
 const HeadingTag = `h${level}`;
+const headingClass = preserveCase ? 'heading__text preserve-case' : 'heading__text';
 ---
 
 <div class="heading">
   {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
-  <component is={HeadingTag} class="heading__text" {...attrs}>
+  <component is={HeadingTag} class={headingClass} {...attrs}>
     {text}
   </component>
 </div>

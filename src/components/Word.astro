@@ -21,7 +21,7 @@ const { partOfSpeech, definition, meta } = getWordDetails(word);
 
 <article class="word">
   <time class="word__date" datetime={formatISODate(word.date)} title={formatDate(word.date)}>{formatDate(word.date) || '\u00A0'}</time>
-  <Heading level={1} text={word.word} id="word-title" />
+  <Heading level={1} text={word.word} id="word-title" preserveCase={word.preserveCase} />
   <WordDescription
     partOfSpeech={partOfSpeech}
     definition={definition}

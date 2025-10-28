@@ -1,0 +1,41 @@
+{
+    "word": "Japan",
+    "date": "20230101",
+    "adapter": "wordnik",
+    "preserveCase": true,
+    "data": [
+        {
+            "id": "J5017300-1",
+            "text": [
+                "Sea of",
+                "An enclosed arm of the western Pacific Ocean between Japan and the Asian mainland. Several straits connect it with the East China Sea, the Pacific Ocean, and the Sea of Okhotsk."
+            ],
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/Japan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "J5017200-1",
+            "text": "A country consisting of an archipelago off the eastern coast of Asia. The islands' indigenous culture was largely supplanted after c. 600 BC by settlers from the mainland, who adopted an imperial system of government modeled on China's. After a long period (12th–19th century) of domination by a series of shoguns, feudalism was abolished on the restoration of the emperor Mutsuhito (1868) and the country was opened to trade with the West. Japan's industrialization and expansionism led to a series of wars, culminating in its defeat (1945) in World War II. After the war Japan's economy was rebuilt with American assistance, developing an industrial sector centered around automobiles and electronics. Tokyo is the capital and the largest city.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/Japan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "proper noun",
+            "text": "An <xref>island</xref> <xref>nation</xref> in the <xref>Pacific Ocean</xref>, located the east of <xref>China</xref>, <xref>Korea</xref> and <xref>Russia</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/Japan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
