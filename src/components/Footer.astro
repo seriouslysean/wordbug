@@ -21,6 +21,9 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
         <SiteLink href={getBrowseWordsUrl()}>{t('nav.browse_words')}</SiteLink>
       </li>
       <li class="footer__item">
+        <SiteLink href="/word">{t('browse.all_words')}</SiteLink>
+      </li>
+      <li class="footer__item">
         <SiteLink href="/stats">{t('nav.stats')}</SiteLink>
       </li>
       {showAttribution && (
@@ -83,20 +86,6 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
         content: "•";
         margin-left: 0.75rem;
         opacity: 0.5;
-    }
-
-    .footer__item:nth-child(3n)::after {
-        content: "\00a0";
-        margin-left: 0.75rem;
-        opacity: 0;
-    }
-
-    @media (min-width: 1025px) {
-        .footer__item:nth-child(3n)::after {
-            content: "•";
-            margin-left: 0.75rem;
-            opacity: 0.5;
-        }
     }
 
     .footer__links a {
