@@ -1,0 +1,109 @@
+{
+    "word": "they",
+    "date": "20230108",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "T5177900-1",
+            "partOfSpeech": "pronoun",
+            "text": "Used to refer to the ones previously mentioned or implied.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5177900-2",
+            "partOfSpeech": "pronoun",
+            "text": "Used to refer to the one previously mentioned or implied, especially as a substitute for generic <em>he</em>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [
+                "Every person has rights under the law, but they don't always know them."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5177900-3",
+            "partOfSpeech": "pronoun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5177900-4",
+            "partOfSpeech": "pronoun",
+            "text": "Used to refer to people in general.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5177900-5",
+            "partOfSpeech": "pronoun",
+            "text": "Used to refer to people in general as seen in a position of authority.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "A Middle English variant of <internalXref urlencoded=\"though\">though</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "The plural pronoun of the third person. It stands for a plural noun or pronoun preceding, or in place of one not expressed when pointed out by the situation. It is without gender-forms.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Poss. <em>their.</em> Of or belonging to them: now always preceding the noun, with the value of an attributive adjective.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Poss. <em>theirs.</em> That which belongs to them: always used without the noun, and having the value of a nominative or an objective.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Obj. (acc.), <em>them.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/they",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,105 @@
+{
+    "word": "an",
+    "date": "20230112",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "A5284100-1",
+            "partOfSpeech": "conjunction",
+            "text": "And if; if.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5284000-1",
+            "partOfSpeech": "article",
+            "text": "The form of <em>a</em> used before words beginning with a vowel sound.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [
+                "an elephant; an hour; an umbrella."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "A prefix of Anglo-Saxon origin, a reduced form of <internalXref urlencoded=\"and-\">and-</internalXref> (which see), occurring unfelt in <em>answer.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The indefinite article.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "A suffix of Latin origin, forming adjectives which are or may be also used as nouns.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "A prefix of Anglo-Saxon origin, the same as <internalXref urlencoded=\"on-\">on-</internalXref> and <em>a</em>-, occurring unfelt in <em>anent, anon, anan, an</em><em>eal</em>, <em>an</em><em>eal</em>, etc., and with accent in <em>anvil</em> (but in this and some other words perhaps originally <internalXref urlencoded=\"and-\">and-</internalXref>: see <internalXref urlencoded=\"an\">an</internalXref>).",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "An earlier form of <internalXref urlencoded=\"on\">on</internalXref>, retained until the last century in certain phrases, as <em>an edge, an end</em>, now only <em>on edge, on end</em>; in present use only as an unfelt prefix <em>an</em>- or reduced <em>a-.</em> See <internalXref urlencoded=\"an-\">an-</internalXref><em>, a</em>-.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "A prefix of Latin origin, a reduced form of <internalXref urlencoded=\"ambi-\">ambi-</internalXref>, occurring (unfelt in English) in <em>ancile, ancipital, anfractuous</em>, etc.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Coordinate use: And; same as <internalXref urlencoded=\"and\">and</internalXref>, <strong>A.</strong>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Conditional use: If; same as <internalXref urlencoded=\"and\">and</internalXref>, B.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/an",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

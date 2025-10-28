@@ -60,6 +60,7 @@ describe('word-data-utils', () => {
     { word: 'beautiful', date: '20250119', data: [{ text: 'Pleasing to look at', partOfSpeech: 'adjective' }] },
     { word: 'quickly', date: '20250118', data: [{ text: 'In a quick manner', partOfSpeech: 'adverb' }] },
     { word: 'help', date: '20250117', data: [{ text: 'To assist', partOfSpeech: 'transitive verb' }] },
+    { word: 'indices', date: '20250114', data: [{ text: 'Plural of index', partOfSpeech: 'noun plural' }] },
     { word: 'the', date: '20250116', data: [{ text: 'Definite article', partOfSpeech: 'definite article' }] },
     { word: 'have', date: '20250115', data: [{ text: 'Auxiliary verb', partOfSpeech: 'auxiliary verb' }] },
   ];
@@ -493,27 +494,16 @@ describe('word-data-utils', () => {
       expect(normalizePartOfSpeech('intransitive verb')).toBe('verb');
       expect(normalizePartOfSpeech('auxiliary verb')).toBe('verb');
       expect(normalizePartOfSpeech('phrasal verb')).toBe('verb');
-      expect(normalizePartOfSpeech('verb-transitive')).toBe('verb');
-      expect(normalizePartOfSpeech('verb-intransitive')).toBe('verb');
-      expect(normalizePartOfSpeech('past-participle')).toBe('verb');
     });
 
     it('normalizes noun variations', () => {
       expect(normalizePartOfSpeech('proper noun')).toBe('noun');
-      expect(normalizePartOfSpeech('proper-noun')).toBe('noun');
-      expect(normalizePartOfSpeech('proper-noun-plural')).toBe('noun');
-      expect(normalizePartOfSpeech('noun-plural')).toBe('noun');
-      expect(normalizePartOfSpeech('noun-singular')).toBe('noun');
-      expect(normalizePartOfSpeech('family-name')).toBe('noun');
-      expect(normalizePartOfSpeech('given-name')).toBe('noun');
+      expect(normalizePartOfSpeech('noun plural')).toBe('noun');
     });
 
     it('normalizes article variations', () => {
       expect(normalizePartOfSpeech('definite article')).toBe('article');
       expect(normalizePartOfSpeech('definite article.')).toBe('article'); // with trailing period
-      expect(normalizePartOfSpeech('definite-article')).toBe('article');
-      expect(normalizePartOfSpeech('indefinite article')).toBe('article');
-      expect(normalizePartOfSpeech('indefinite-article')).toBe('article');
     });
 
     it('removes trailing punctuation', () => {
@@ -529,8 +519,8 @@ describe('word-data-utils', () => {
 
     it('filters words by part of speech', () => {
       const nouns = getWordsByPartOfSpeech('noun', mockWordDataWithComplexPartOfSpeech);
-      expect(nouns).toHaveLength(1); // 'run' has both verb and noun, so it matches
-      expect(nouns[0].word).toBe('run');
+      expect(nouns).toHaveLength(2); // 'run' and 'indices' normalize to noun
+      expect(nouns.map(w => w.word).sort()).toEqual(['indices', 'run']);
 
       const verbs = getWordsByPartOfSpeech('verb', mockWordDataWithComplexPartOfSpeech);
       expect(verbs).toHaveLength(3); // 'run', 'help', 'have' (normalized from various verb types)
@@ -540,8 +530,8 @@ describe('word-data-utils', () => {
     it('groups words by part of speech', () => {
       const result = groupWordsByPartOfSpeech(mockWordDataWithComplexPartOfSpeech);
       
-      expect(result['noun']).toHaveLength(1);
-      expect(result['noun'][0].word).toBe('run');
+      expect(result['noun']).toHaveLength(2);
+      expect(result['noun'].map(w => w.word)).toEqual(['indices', 'run']);
       
       expect(result['verb']).toHaveLength(3);
       expect(result['verb'].map(w => w.word)).toEqual(['have', 'help', 'run']); // sorted alphabetically

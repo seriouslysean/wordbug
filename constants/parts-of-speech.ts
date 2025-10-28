@@ -41,25 +41,13 @@ export const PART_OF_SPEECH_NORMALIZATION: Record<string, string> = {
   'intransitive verb': BASE_PARTS_OF_SPEECH.VERB,
   'transitive verb': BASE_PARTS_OF_SPEECH.VERB,
   'phrasal verb': BASE_PARTS_OF_SPEECH.VERB,
-  'verb-intransitive': BASE_PARTS_OF_SPEECH.VERB,
-  'verb-transitive': BASE_PARTS_OF_SPEECH.VERB,
-  'past-participle': BASE_PARTS_OF_SPEECH.VERB,
 
   // Noun variations
   'proper noun': BASE_PARTS_OF_SPEECH.NOUN,
-  'proper-noun': BASE_PARTS_OF_SPEECH.NOUN,
-  'proper-noun-plural': BASE_PARTS_OF_SPEECH.NOUN,
-  'noun-plural': BASE_PARTS_OF_SPEECH.NOUN,
-  'noun-singular': BASE_PARTS_OF_SPEECH.NOUN,
-  'family-name': BASE_PARTS_OF_SPEECH.NOUN,
-  'given-name': BASE_PARTS_OF_SPEECH.NOUN,
+  'noun plural': BASE_PARTS_OF_SPEECH.NOUN,
 
   // Article variations
   'definite article': BASE_PARTS_OF_SPEECH.ARTICLE,
-  'definite article.': BASE_PARTS_OF_SPEECH.ARTICLE, // Note: Wordnik sometimes includes trailing period
-  'definite-article': BASE_PARTS_OF_SPEECH.ARTICLE,
-  'indefinite article': BASE_PARTS_OF_SPEECH.ARTICLE,
-  'indefinite-article': BASE_PARTS_OF_SPEECH.ARTICLE,
 } as const;
 
 // =====================================================

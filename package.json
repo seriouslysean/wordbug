@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -23,6 +23,7 @@
     "tool:generate-all-images": "npm run tool:generate-images && npm run tool:generate-images --generic",
     "tool:generate-images": "tsx tools/generate-images.ts",
     "tool:local": "tsx -r dotenv/config",
+    "tool:migrate-preserve-case": "tsx tools/migrate-preserve-case.ts",
     "tool:ping-search-engines": "tsx tools/ping-search-engines.ts",
     "tool:regenerate-all-words": "tsx tools/regenerate-all-words.ts",
     "test": "vitest run",
