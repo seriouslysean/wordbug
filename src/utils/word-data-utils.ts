@@ -10,14 +10,15 @@ import type {
   WordProcessedData,
 } from '~types';
 import { getMonthSlugFromDate } from '~utils/date-utils';
-import { 
-  getAvailableYears, 
-  getAvailableLengths, 
+import {
+  getAvailableYears,
+  getAvailableLengths,
   getWordsByYear,
   getAvailableMonths,
   getAvailableLetters,
   getAvailablePartsOfSpeech,
-  normalizePartOfSpeech
+  normalizePartOfSpeech,
+  findValidDefinition,
 } from '~utils/word-data-utils';
 import {
   getWordStats,
@@ -53,15 +54,20 @@ export async function getWordsFromCollection(): Promise<WordData[]> {
  * Handles the array structure of word.data consistently across components
  */
 export function extractWordDefinition(wordData: WordData): { definition: string; partOfSpeech: string } {
-  if (!wordData?.data || !Array.isArray(wordData.data) || wordData.data.length === 0) {
+  if (!wordData?.data) {
     return { definition: '', partOfSpeech: '' };
   }
 
-  const firstDefinition = wordData.data[0];
-  return {
-    definition: firstDefinition.text || '',
-    partOfSpeech: firstDefinition.partOfSpeech || '',
-  };
+  const validDef = findValidDefinition(wordData.data);
+
+  if (validDef) {
+    return {
+      definition: validDef.text,
+      partOfSpeech: validDef.partOfSpeech,
+    };
+  }
+
+  return { definition: '', partOfSpeech: '' };
 }
 
 /**

@@ -1,6 +1,7 @@
 ---
 import { getAdjacentWords, getWordsFromCollection, getWordsByLength, getWordsByLetter, getWordsByPartOfSpeech, extractWordDefinition } from '~astro-utils/word-data-utils';
 import WordPage from '~components/WordPage.astro';
+import { slugify } from '~astro-utils/url-utils';
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();
@@ -17,7 +18,7 @@ export async function getStaticPaths() {
     const partOfSpeechCount = partOfSpeech ? getWordsByPartOfSpeech(partOfSpeech, allWords).length : 0;
 
     return {
-      params: { word: wordData.word },
+      params: { word: slugify(wordData.word) },
       props: {
         wordData,
         previousWord,

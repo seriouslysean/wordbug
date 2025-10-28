@@ -1,0 +1,81 @@
+{
+    "word": "yay",
+    "date": "20230103",
+    "adapter": "wordnik",
+    "data": [
+        {
+            "id": "Y5011220-1",
+            "partOfSpeech": "adverb",
+            "text": "So; by this amount.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/yay",
+            "examples": [
+                "“The fish was yay big” he said, spreading his arms three feet apart."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "Y5011200-1",
+            "partOfSpeech": "interjection",
+            "text": "Used as an exclamation of pleasure, approval, elation, or victory.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/yay",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The name of the letter for the y sound in <xref>Pitman shorthand</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/yay",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "interjection",
+            "text": "Alternative form of <xref>yea</xref> (yes).",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/yay",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "interjection",
+            "text": "An expression of happiness.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/yay",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adverb",
+            "text": "<xref>so</xref>, <xref>this</xref> (accompanied by a hand gesture)",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/yay",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a branch of the Tai languages",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/yay",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

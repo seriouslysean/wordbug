@@ -29,21 +29,17 @@ body {
 
 /* Cross-reference link styles */
 .xref-link {
-    color: var(--color-primary);
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-offset: 2px;
+    color: var(--color-text-primary);
+    text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .xref-link:hover {
     color: var(--color-primary-dark);
-    text-decoration-style: solid;
 }
 
 .xref-link:focus {
     color: var(--color-primary-dark);
-    text-decoration-style: solid;
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: 2px;
@@ -137,6 +133,10 @@ main {
 
 .text-center {
     text-align: center;
+}
+
+.preserve-case {
+    text-transform: none;
 }
 
 /* Links */

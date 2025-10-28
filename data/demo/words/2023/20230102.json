@@ -1,0 +1,18 @@
+{
+    "word": "PB&J",
+    "date": "20230102",
+    "adapter": "wordnik",
+    "preserveCase": true,
+    "data": [
+        {
+            "partOfSpeech": "initialism",
+            "text": "<xref>Peanut butter</xref> and <xref>jelly</xref>; usually, a sandwich made using these foods.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/PB%26J",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

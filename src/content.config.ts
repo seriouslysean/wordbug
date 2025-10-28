@@ -12,6 +12,7 @@ export const collections = {
       word: z.string(),
       date: z.string(),
       adapter: z.string(),
+      preserveCase: z.boolean().default(false),
       data: z.array(z.any()).transform((definitions) =>
         definitions.map(def => ({
           ...def,

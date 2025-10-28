@@ -19,6 +19,8 @@ export interface WordData {
   data: DictionaryDefinition[];
   // Optionally store the raw API response for debugging or migration
   rawData?: unknown;
+  // Flag to indicate if the word's capitalization should be preserved in display
+  preserveCase?: boolean;
 }
 
 // Word statistics types
