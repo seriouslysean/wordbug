@@ -1,0 +1,129 @@
+{
+    "word": "over",
+    "date": "20230110",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "O5192100-1",
+            "partOfSpeech": "preposition",
+            "text": "In or at a position above or higher than.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [
+                "a sign over the door; a hawk gliding over the hills."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-2",
+            "partOfSpeech": "preposition",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-3",
+            "partOfSpeech": "preposition",
+            "text": "Above and across from one end or side to the other.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [
+                "a jump over the fence."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-4",
+            "partOfSpeech": "preposition",
+            "text": "To the other side of; across.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [
+                "strolled over the bridge."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-5",
+            "partOfSpeech": "preposition",
+            "text": "Across the edge of and down.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [
+                "fell over the cliff."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-6",
+            "partOfSpeech": "preposition",
+            "text": "On the other side of.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [
+                "a village over the border."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-7",
+            "partOfSpeech": "preposition",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-8",
+            "partOfSpeech": "preposition",
+            "text": "Upon the surface of.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [
+                "put a coat of varnish over the woodwork."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-9",
+            "partOfSpeech": "preposition",
+            "text": "On top of or down upon.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [
+                "clubbed him over the head; tripped over the toys."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "O5192100-10",
+            "partOfSpeech": "preposition",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/over",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

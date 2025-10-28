@@ -23,6 +23,7 @@
     "tool:generate-all-images": "npm run tool:generate-images && npm run tool:generate-images --generic",
     "tool:generate-images": "tsx tools/generate-images.ts",
     "tool:local": "tsx -r dotenv/config",
+    "tool:migrate-preserve-case": "tsx tools/migrate-preserve-case.ts",
     "tool:ping-search-engines": "tsx tools/ping-search-engines.ts",
     "tool:regenerate-all-words": "tsx tools/regenerate-all-words.ts",
     "test": "vitest run",

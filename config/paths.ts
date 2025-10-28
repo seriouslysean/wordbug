@@ -10,13 +10,13 @@ import type { PathConfig } from '~types';
 
 const ROOT = process.cwd();
 const getWordsPath = (): string => {
-  const sourceDir = process.env.SOURCE_DIR || '';
-  return sourceDir ? path.join(ROOT, 'data', sourceDir, 'words') : path.join(ROOT, 'data', 'words');
+  const sourceDir = process.env.SOURCE_DIR || 'demo';
+  return path.join(ROOT, 'data', sourceDir, 'words');
 };
 
 const getImagesPath = (): string => {
-  const sourceDir = process.env.SOURCE_DIR || '';
-  return sourceDir ? path.join(ROOT, 'public', sourceDir, 'images') : path.join(ROOT, 'public', 'images');
+  const sourceDir = process.env.SOURCE_DIR || 'demo';
+  return path.join(ROOT, 'public', sourceDir, 'images');
 };
 
 /**

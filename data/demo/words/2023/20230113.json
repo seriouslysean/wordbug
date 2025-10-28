@@ -1,0 +1,136 @@
+{
+    "word": "some",
+    "date": "20230113",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "S5608000-1",
+            "partOfSpeech": "adjective",
+            "text": "Being an unspecified number or quantity.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "Some people came into the room. Would you like some sugar?"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-2",
+            "partOfSpeech": "adjective",
+            "text": "Being a portion or an unspecified number or quantity of a whole or group.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "He likes some modern sculpture but not all."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-3",
+            "partOfSpeech": "adjective",
+            "text": "Being a considerable number or quantity.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "She has been directing films for some years now."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-4",
+            "partOfSpeech": "adjective",
+            "text": "Unknown or unspecified by name.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "Some man called."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-5",
+            "partOfSpeech": "adjective",
+            "text": "Being part and perhaps all of a class.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-6",
+            "partOfSpeech": "adjective",
+            "text": "Remarkable.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "She is some skier."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-7",
+            "partOfSpeech": "pronoun",
+            "text": "An indefinite or unspecified number or portion.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "We took some of the books to the auction."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-8",
+            "partOfSpeech": "pronoun",
+            "text": "An indefinite additional quantity.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "did the assigned work and then some."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-9",
+            "partOfSpeech": "adverb",
+            "text": "Approximately; about.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "Some 40 people attended the rally."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5608000-10",
+            "partOfSpeech": "adverb",
+            "text": "Somewhat.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/some",
+            "examples": [
+                "some tired."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

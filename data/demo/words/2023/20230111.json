@@ -1,0 +1,118 @@
+{
+    "word": "cheese",
+    "date": "20230111",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "C5275800-1",
+            "partOfSpeech": "transitive verb",
+            "text": "To stop.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275800-2",
+            "partOfSpeech": "phrasal verb",
+            "text": "To anger or irritate.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [
+                "The footballers were cheesed off by the referee's decision that cost them the game."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275800-3",
+            "partOfSpeech": "idiom",
+            "text": "(<em>cheese it</em>)  To look out. Often used in the imperative.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275800-4",
+            "partOfSpeech": "idiom",
+            "text": "(<em>cheese it</em>)  To get away fast; get going. Often used in the imperative.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275900-1",
+            "partOfSpeech": "noun",
+            "text": "An important person.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275700-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275700-2",
+            "partOfSpeech": "noun",
+            "text": "A solid food prepared from the pressed curd of milk, often seasoned and aged.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275700-3",
+            "partOfSpeech": "noun",
+            "text": "A molded mass of this substance.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5275700-4",
+            "partOfSpeech": "noun",
+            "text": "Something resembling this substance in shape or consistency.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The thing; the correct or proper thing; the finished or perfect thing: always with the definite article.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

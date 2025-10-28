@@ -3,14 +3,27 @@ import { showHelp } from '~tools/help-utils';
 import { getWordFiles } from '~tools/utils';
 import type { WordData } from '~types';
 
+const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
+
+/**
+ * Determines whether a word should preserve its original casing.
+ * Currently we preserve words containing any uppercase characters.
+ */
+function shouldPreserveCase(word: string | undefined): boolean {
+  if (!word) {
+    return false;
+  }
+  return word !== word.toLowerCase();
+}
+
 /**
  * Migration tool to add preserveCase field to existing word files.
  * This is a one-time migration script that can be run once per downstream repo
  * and then removed.
  *
  * The preserveCase field was added to support words with special capitalization
- * like proper nouns ("Japan") or initialisms ("PB&J"). For backward compatibility,
- * all existing words default to preserveCase: false.
+ * like proper nouns ("Japan") or initialisms ("PB&J"). The migration marks
+ * any word containing uppercase characters with preserveCase: true.
  */
 
 /**
@@ -23,17 +36,18 @@ function migrateWordFile(filePath: string): boolean {
     const content = fs.readFileSync(filePath, 'utf-8');
     const wordData = JSON.parse(content) as WordData;
 
-    // Skip if preserveCase already exists
-    if ('preserveCase' in wordData) {
+    const preserveCaseValue = shouldPreserveCase(wordData.word);
+
+    // Skip if preserveCase already exists with the correct value
+    if ('preserveCase' in wordData && wordData.preserveCase === preserveCaseValue) {
       return false;
     }
 
-    // Add preserveCase: false as the default
     const updatedData: WordData = {
       word: wordData.word,
       date: wordData.date,
       adapter: wordData.adapter,
-      preserveCase: false,
+      preserveCase: preserveCaseValue,
       data: wordData.data,
       ...(wordData.rawData && { rawData: wordData.rawData }),
     };
@@ -52,6 +66,7 @@ function migrateWordFile(filePath: string): boolean {
  */
 async function migrateAllWords(): Promise<void> {
   console.log('Starting preserveCase field migration...');
+  console.log(`Source directory: ${SOURCE_DIR}`);
 
   const files = getWordFiles();
 
@@ -83,14 +98,15 @@ const HELP_TEXT = `
 PreserveCase Field Migration Tool
 
 This is a one-time migration script to add the preserveCase field to existing word files.
-All existing words will default to preserveCase: false for backward compatibility.
+Words containing uppercase characters will automatically be marked with preserveCase: true.
 
 Usage:
   npm run tool:local tools/migrate-preserve-case.ts
 
 What it does:
   - Scans all word JSON files in the data directory
-  - Adds "preserveCase": false to files that don't have this field
+  - Adds "preserveCase": true for words containing uppercase characters
+  - Adds "preserveCase": false for words without uppercase characters
   - Skips files that already have the preserveCase field
   - Preserves all other data and formatting
 
