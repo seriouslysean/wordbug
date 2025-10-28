@@ -2,6 +2,7 @@
     "word": "detritivore",
     "date": "20250901",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5174600-1",

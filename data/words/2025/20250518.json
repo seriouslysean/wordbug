@@ -2,6 +2,7 @@
     "word": "conglomerate",
     "date": "20250518",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5592300-1",

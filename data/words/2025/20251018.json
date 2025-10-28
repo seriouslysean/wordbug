@@ -2,6 +2,7 @@
     "word": "hypotenuse",
     "date": "20251018",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "H5393500-1",

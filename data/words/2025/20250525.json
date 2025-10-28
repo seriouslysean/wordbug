@@ -2,6 +2,7 @@
     "word": "trapezoidal",
     "date": "20250525",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "Having the form of a trapezoid: as, the <em>trapezoidal</em> bone or ligament (in anatomy).",

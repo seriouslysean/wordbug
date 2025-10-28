@@ -2,6 +2,7 @@
     "word": "erosion",
     "date": "20250321",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "E5205700-1",

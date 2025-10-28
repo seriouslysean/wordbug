@@ -2,6 +2,7 @@
     "word": "cool",
     "date": "20180415",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5649300-1",

@@ -2,6 +2,7 @@
     "word": "subatomic",
     "date": "20250416",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "S5904500-1",

@@ -2,6 +2,7 @@
     "word": "relic",
     "date": "20250925",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "R5151500-1",

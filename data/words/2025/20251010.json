@@ -2,6 +2,7 @@
     "word": "rotund",
     "date": "20251010",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "R5345100-1",

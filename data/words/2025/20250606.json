@@ -2,6 +2,7 @@
     "word": "revolutionary",
     "date": "20250606",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "R5228800-1",

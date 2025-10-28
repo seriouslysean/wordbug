@@ -2,6 +2,7 @@
     "word": "plunge",
     "date": "20250826",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "P5415800-1",

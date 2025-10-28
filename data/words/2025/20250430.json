@@ -2,6 +2,7 @@
     "word": "reiki",
     "date": "20250430",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

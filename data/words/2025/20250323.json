@@ -2,6 +2,7 @@
     "word": "rhododendron",
     "date": "20250323",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "R5243200-1",

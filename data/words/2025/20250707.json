@@ -2,6 +2,7 @@
     "word": "nefarious",
     "date": "20250707",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "N5055300-1",

@@ -2,6 +2,7 @@
     "word": "timpani",
     "date": "20250514",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "T5244900-1",

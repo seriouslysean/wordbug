@@ -2,6 +2,7 @@
     "word": "epilepsy",
     "date": "20250330",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "E5182700-1",

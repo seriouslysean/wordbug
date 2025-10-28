@@ -2,6 +2,7 @@
     "word": "taboo",
     "date": "20250506",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "T5005400-1",

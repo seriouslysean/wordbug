@@ -2,6 +2,7 @@
     "word": "myriapod",
     "date": "20250725",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "M5556400-1",

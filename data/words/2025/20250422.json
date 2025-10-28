@@ -2,6 +2,7 @@
     "word": "confined",
     "date": "20250422",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "Restricted to the service of one employer, as a laborer hired by him for the year; as, “a numerous body of <em>confined</em> labourers,”",

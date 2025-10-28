@@ -2,6 +2,7 @@
     "word": "flunk",
     "date": "20250706",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "F5208300-1",

@@ -2,6 +2,7 @@
     "word": "tempo",
     "date": "20250601",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "T5108700-1",

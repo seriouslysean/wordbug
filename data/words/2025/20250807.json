@@ -2,6 +2,7 @@
     "word": "warmth",
     "date": "20250807",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "W5033200-1",

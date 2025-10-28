@@ -2,6 +2,7 @@
     "word": "regurgitate",
     "date": "20250612",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "R5140000-1",

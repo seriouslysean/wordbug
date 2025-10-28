@@ -2,6 +2,7 @@
     "word": "cyclops",
     "date": "20250527",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5870050-1",

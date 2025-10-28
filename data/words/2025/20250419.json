@@ -2,6 +2,7 @@
     "word": "cuz",
     "date": "20250419",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "adverb",

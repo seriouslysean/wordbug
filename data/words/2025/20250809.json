@@ -2,6 +2,7 @@
     "word": "antidisestablishmentarianism",
     "date": "20250809",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

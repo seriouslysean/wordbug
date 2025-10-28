@@ -2,6 +2,7 @@
     "word": "mechanical",
     "date": "20250722",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "M5192500-1",

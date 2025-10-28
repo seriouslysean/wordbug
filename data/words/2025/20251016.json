@@ -2,6 +2,7 @@
     "word": "reptilian",
     "date": "20251016",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "R5180400-1",

@@ -2,6 +2,7 @@
     "word": "transparency",
     "date": "20250614",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "T5353400-1",

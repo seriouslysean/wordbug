@@ -2,6 +2,7 @@
     "word": "hyacinth",
     "date": "20250824",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "H5355500-1",

@@ -2,6 +2,7 @@
     "word": "sapiens",
     "date": "20250507",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

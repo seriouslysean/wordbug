@@ -2,6 +2,7 @@
     "word": "bureaucracy",
     "date": "20250926",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "B5571600-1",

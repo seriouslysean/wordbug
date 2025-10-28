@@ -2,6 +2,7 @@
     "word": "semiaquatic",
     "date": "20250730",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "S5266200-1",

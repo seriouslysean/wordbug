@@ -2,6 +2,7 @@
     "word": "chronological",
     "date": "20250918",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5354800-1",

@@ -2,6 +2,7 @@
     "word": "bask",
     "date": "20250910",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "B5103500-1",

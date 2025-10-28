@@ -2,6 +2,7 @@
     "word": "marsupial",
     "date": "20250410",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "M5130600-1",

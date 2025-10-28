@@ -2,6 +2,7 @@
     "word": "amp",
     "date": "20250618",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "A5273800-1",

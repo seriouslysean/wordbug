@@ -2,6 +2,7 @@
     "word": "metalloid",
     "date": "20250409",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "M5262400-1",

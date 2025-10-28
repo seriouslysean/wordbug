@@ -2,6 +2,7 @@
     "word": "chromatic",
     "date": "20250503",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5349300-1",

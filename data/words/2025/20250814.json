@@ -2,6 +2,7 @@
     "word": "valor",
     "date": "20250814",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "V5015700-1",

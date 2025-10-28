@@ -2,6 +2,7 @@
     "word": "nostalgic",
     "date": "20250911",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "Relating to, characteristic of, or affected with nostalgia; homesick.",

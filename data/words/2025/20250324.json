@@ -2,6 +2,7 @@
     "word": "albino",
     "date": "20250324",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "A5187500-1",

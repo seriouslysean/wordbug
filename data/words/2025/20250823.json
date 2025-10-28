@@ -2,6 +2,7 @@
     "word": "enthusiastic",
     "date": "20250823",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "E5164400-1",

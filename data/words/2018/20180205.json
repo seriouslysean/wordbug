@@ -2,6 +2,7 @@
     "word": "daddy",
     "date": "20180205",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5004500-1",

@@ -2,6 +2,7 @@
     "word": "delirious",
     "date": "20250524",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5113400-1",

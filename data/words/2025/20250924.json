@@ -2,6 +2,7 @@
     "word": "ghastly",
     "date": "20250924",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "G5117000-1",

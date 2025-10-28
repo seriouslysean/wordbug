@@ -2,6 +2,7 @@
     "word": "exuberance",
     "date": "20250331",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "E5315900-1",

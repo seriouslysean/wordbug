@@ -2,6 +2,7 @@
     "word": "ululated",
     "date": "20230401",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "verb",

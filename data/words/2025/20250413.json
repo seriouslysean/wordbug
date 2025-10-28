@@ -2,6 +2,7 @@
     "word": "vainglorious",
     "date": "20250413",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "V5008300-1",

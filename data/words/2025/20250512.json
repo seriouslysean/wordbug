@@ -2,6 +2,7 @@
     "word": "dilemma",
     "date": "20250512",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5228300-1",

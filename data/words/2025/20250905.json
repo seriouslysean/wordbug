@@ -2,6 +2,7 @@
     "word": "semicircular",
     "date": "20250905",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "Having the form of a half-circle.",

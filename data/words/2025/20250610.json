@@ -2,6 +2,7 @@
     "word": "discipline",
     "date": "20250610",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5261300-1",

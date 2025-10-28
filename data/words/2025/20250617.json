@@ -2,6 +2,7 @@
     "word": "secondhand",
     "date": "20250617",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "S5218400-1",

@@ -2,6 +2,7 @@
     "word": "ricocheted",
     "date": "20250716",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "verb",

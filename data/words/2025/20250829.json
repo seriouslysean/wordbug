@@ -2,6 +2,7 @@
     "word": "thingamajig",
     "date": "20250829",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "T5182300-1",

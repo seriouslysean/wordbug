@@ -2,6 +2,7 @@
     "word": "dank",
     "date": "20250909",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5023500-1",

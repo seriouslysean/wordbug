@@ -2,6 +2,7 @@
     "word": "phlebotomy",
     "date": "20250414",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "P5269900-1",

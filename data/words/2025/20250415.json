@@ -2,6 +2,7 @@
     "word": "escalator",
     "date": "20250415",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "E5212300-1",

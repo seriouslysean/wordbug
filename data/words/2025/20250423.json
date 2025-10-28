@@ -2,6 +2,7 @@
     "word": "centennial",
     "date": "20250423",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5204400-1",

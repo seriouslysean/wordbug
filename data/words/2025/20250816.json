@@ -2,6 +2,7 @@
     "word": "alfredo",
     "date": "20250816",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

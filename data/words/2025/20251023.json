@@ -2,6 +2,7 @@
     "word": "PB&J",
     "date": "20251023",
     "adapter": "wordnik",
+    "preserveCase": true,
     "data": [
         {
             "partOfSpeech": "initialism",

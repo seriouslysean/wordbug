@@ -2,6 +2,7 @@
     "word": "sentient",
     "date": "20250627",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "S5288600-1",

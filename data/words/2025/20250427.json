@@ -2,6 +2,7 @@
     "word": "feces",
     "date": "20250427",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "F5064200-1",

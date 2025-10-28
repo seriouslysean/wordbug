@@ -2,6 +2,7 @@
     "word": "darned",
     "date": "20250628",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5031600-1",

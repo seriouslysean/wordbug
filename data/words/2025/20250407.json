@@ -2,6 +2,7 @@
     "word": "onomatopoeia",
     "date": "20250407",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "O5089900-1",

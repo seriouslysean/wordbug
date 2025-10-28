@@ -2,6 +2,7 @@
     "word": "myrrh",
     "date": "20250708",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "M5557310-1",

@@ -2,6 +2,7 @@
     "word": "irrational",
     "date": "20250821",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "I5259900-1",

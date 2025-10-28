@@ -2,6 +2,7 @@
     "word": "elixir",
     "date": "20250928",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "E5091900-1",

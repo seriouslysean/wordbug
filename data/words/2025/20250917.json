@@ -2,6 +2,7 @@
     "word": "tomboyish",
     "date": "20250917",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "adjective",

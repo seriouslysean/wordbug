@@ -2,6 +2,7 @@
     "word": "tamper",
     "date": "20250510",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "To experiment rashly; busy one's self unwisely or officiously; meddle: usually followed by <em>with</em> in this and the other senses.",

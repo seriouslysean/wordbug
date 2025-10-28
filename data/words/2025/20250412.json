@@ -2,6 +2,7 @@
     "word": "anemones",
     "date": "20250412",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

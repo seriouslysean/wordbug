@@ -2,6 +2,7 @@
     "word": "triskaidekaphobia",
     "date": "20250828",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "T5404300-1",

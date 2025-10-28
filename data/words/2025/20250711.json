@@ -2,6 +2,7 @@
     "word": "peculiar",
     "date": "20250711",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "P5152800-1",

@@ -2,6 +2,7 @@
     "word": "aglet",
     "date": "20250615",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "A5150200-1",

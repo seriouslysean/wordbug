@@ -2,6 +2,7 @@
     "word": "hypocrite",
     "date": "20250820",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "H5388700-1",

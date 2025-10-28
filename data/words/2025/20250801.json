@@ -2,6 +2,7 @@
     "word": "ophthalmoscope",
     "date": "20250801",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "O5107100-1",

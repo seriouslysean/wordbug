@@ -2,6 +2,7 @@
     "word": "sphygmomanometer",
     "date": "20251012",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "S5691300-1",

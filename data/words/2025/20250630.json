@@ -2,6 +2,7 @@
     "word": "linty",
     "date": "20250630",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "Like lint or flax; soft.",

@@ -2,6 +2,7 @@
     "word": "navigation",
     "date": "20250417",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "N5040400-1",

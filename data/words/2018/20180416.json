@@ -2,6 +2,7 @@
     "word": "block",
     "date": "20180416",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "B5336200-1",

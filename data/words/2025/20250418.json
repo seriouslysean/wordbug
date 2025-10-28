@@ -2,6 +2,7 @@
     "word": "carcasses",
     "date": "20250418",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

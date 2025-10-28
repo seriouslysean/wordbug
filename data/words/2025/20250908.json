@@ -2,6 +2,7 @@
     "word": "grasp",
     "date": "20250908",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "G5242700-1",

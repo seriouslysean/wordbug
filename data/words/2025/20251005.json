@@ -2,6 +2,7 @@
     "word": "gape",
     "date": "20251005",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "G5038900-1",

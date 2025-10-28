@@ -2,6 +2,7 @@
     "word": "organism",
     "date": "20250831",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "O5129800-1",

@@ -2,6 +2,7 @@
     "word": "penicillin",
     "date": "20250710",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "P5176400-1",

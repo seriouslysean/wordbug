@@ -2,6 +2,7 @@
     "word": "xenon",
     "date": "20250811",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "X5004700-1",

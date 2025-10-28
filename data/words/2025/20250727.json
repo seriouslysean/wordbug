@@ -2,6 +2,7 @@
     "word": "simpleton",
     "date": "20250727",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "S5451800-1",

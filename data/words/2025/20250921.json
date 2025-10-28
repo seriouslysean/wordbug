@@ -2,6 +2,7 @@
     "word": "hiatus",
     "date": "20250921",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "H5192200-1",

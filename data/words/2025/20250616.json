@@ -2,6 +2,7 @@
     "word": "metropolitan",
     "date": "20250616",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "M5278900-1",

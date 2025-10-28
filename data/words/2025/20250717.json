@@ -2,6 +2,7 @@
     "word": "inflammation",
     "date": "20250717",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "I5143400-1",

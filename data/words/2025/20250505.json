@@ -2,6 +2,7 @@
     "word": "pareidolia",
     "date": "20250505",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "P5076050-1",

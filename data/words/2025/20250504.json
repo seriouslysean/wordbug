@@ -2,6 +2,7 @@
     "word": "locomotion",
     "date": "20250504",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "L5238700-1",

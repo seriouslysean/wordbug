@@ -2,6 +2,7 @@
     "word": "phantom",
     "date": "20250310",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "P5251400-1",

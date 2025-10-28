@@ -2,6 +2,7 @@
     "word": "municipal",
     "date": "20250813",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "M5524400-1",

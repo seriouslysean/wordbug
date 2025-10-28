@@ -2,6 +2,7 @@
     "word": "car",
     "date": "20180323",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5097400-1",

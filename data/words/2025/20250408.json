@@ -2,6 +2,7 @@
     "word": "flabbergasted",
     "date": "20250408",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "verb",

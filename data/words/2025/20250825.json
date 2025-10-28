@@ -2,6 +2,7 @@
     "word": "azure",
     "date": "20250825",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "A5588500-1",

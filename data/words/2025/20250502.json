@@ -2,6 +2,7 @@
     "word": "jetstream",
     "date": "20250502",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

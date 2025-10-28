@@ -2,6 +2,7 @@
     "word": "contradiction",
     "date": "20250726",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5633100-1",

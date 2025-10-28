@@ -2,6 +2,7 @@
     "word": "wallaby",
     "date": "20250805",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "W5017600-1",

@@ -2,6 +2,7 @@
     "word": "mentorship",
     "date": "20250827",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

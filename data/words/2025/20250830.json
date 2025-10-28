@@ -2,6 +2,7 @@
     "word": "taquito",
     "date": "20250830",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

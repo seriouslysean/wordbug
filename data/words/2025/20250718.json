@@ -2,6 +2,7 @@
     "word": "nanochip",
     "date": "20250718",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

@@ -2,6 +2,7 @@
     "word": "jersey",
     "date": "20250501",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "J5034300-1",

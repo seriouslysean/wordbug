@@ -2,6 +2,7 @@
     "word": "talented",
     "date": "20250320",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "Endowed with talents; having talents or talent; having or exhibiting special mental aptitudes or superior mental ability; gifted.",

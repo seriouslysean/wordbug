@@ -2,6 +2,7 @@
     "word": "zed",
     "date": "20250508",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "Z5008800-1",

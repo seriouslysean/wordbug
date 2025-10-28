@@ -2,6 +2,7 @@
     "word": "twelfth",
     "date": "20250411",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "T5476500-1",

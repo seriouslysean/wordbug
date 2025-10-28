@@ -2,6 +2,7 @@
     "word": "dew",
     "date": "20250906",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "D5185200-1",

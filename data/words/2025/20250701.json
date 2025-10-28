@@ -2,6 +2,7 @@
     "word": "carbine",
     "date": "20250701",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5101400-1",

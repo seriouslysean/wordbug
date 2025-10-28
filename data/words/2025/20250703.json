@@ -2,6 +2,7 @@
     "word": "teeming",
     "date": "20250703",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "text": "Pregnant; prolific; fruitful; abundant; overflowing.",

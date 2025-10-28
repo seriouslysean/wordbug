@@ -2,6 +2,7 @@
     "word": "sriracha",
     "date": "20250426",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

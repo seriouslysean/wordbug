@@ -2,6 +2,7 @@
     "word": "oscillated",
     "date": "20250326",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "verb",

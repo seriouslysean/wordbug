@@ -2,6 +2,7 @@
     "word": "velocity",
     "date": "20250421",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "V5051700-1",

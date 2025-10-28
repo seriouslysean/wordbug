@@ -2,6 +2,7 @@
     "word": "kiln",
     "date": "20250806",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "K5063100-1",

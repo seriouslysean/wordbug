@@ -2,6 +2,7 @@
     "word": "buckminsterfullerene",
     "date": "20250405",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "B5540400-1",

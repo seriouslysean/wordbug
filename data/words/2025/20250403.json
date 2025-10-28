@@ -2,6 +2,7 @@
     "word": "antibody",
     "date": "20250403",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "A5351900-1",

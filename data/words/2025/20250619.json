@@ -2,6 +2,7 @@
     "word": "lunatic",
     "date": "20250619",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "L5309000-1",

@@ -2,6 +2,7 @@
     "word": "ethereal",
     "date": "20250420",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "E5233100-1",

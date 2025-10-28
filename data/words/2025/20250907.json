@@ -2,6 +2,7 @@
     "word": "riffraff",
     "date": "20250907",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "R5261200-1",

@@ -2,6 +2,7 @@
     "word": "cheese",
     "date": "20180424",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5275900-1",

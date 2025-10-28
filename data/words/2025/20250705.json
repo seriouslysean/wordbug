@@ -2,6 +2,7 @@
     "word": "parenthesis",
     "date": "20250705",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "P5077000-1",

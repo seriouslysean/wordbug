@@ -2,6 +2,7 @@
     "word": "crepe",
     "date": "20250406",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "C5771300-1",

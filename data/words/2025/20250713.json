@@ -2,6 +2,7 @@
     "word": "sacré bleu",
     "date": "20250713",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "interjection",

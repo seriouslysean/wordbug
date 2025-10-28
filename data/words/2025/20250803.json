@@ -2,6 +2,7 @@
     "word": "supernova",
     "date": "20250803",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "S5957350-1",

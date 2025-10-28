@@ -2,6 +2,7 @@
     "word": "ottoman",
     "date": "20250902",
     "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "id": "O5167700-1",
