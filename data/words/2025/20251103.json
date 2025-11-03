@@ -1,0 +1,56 @@
+{
+    "word": "integumentary",
+    "date": "20251103",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "text": "Covering or investing in general, as a skin, rind, or peel.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/integumentary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Pertaining to or consisting of integument; tegumentary; integumental; cutaneous.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/integumentary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Belonging to, or composed of, integuments.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/integumentary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "of, related to, or composed of <xref>integuments</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/integumentary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "of or relating to the integument",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/integumentary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
