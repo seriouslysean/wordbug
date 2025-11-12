@@ -1,11 +1,7 @@
 ---
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
+import StatsPageTemplate from '~components/StatsPageTemplate.astro';
 import WordSection from '~components/WordSection.astro';
-import Layout from '~layouts/Layout.astro';
 import type { WordData } from '~types';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
 
 interface Props {
   words: WordData[];
@@ -14,15 +10,8 @@ interface Props {
 }
 
 const { words, descriptionText, columns = 2 } = Astro.props;
-const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
 
-<Layout
-  title={title}
-  description={description}
-  structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}
->
-  <Heading text={title} secondaryText={secondaryText} />
-  <DescriptionText text={descriptionText} />
+<StatsPageTemplate descriptionText={descriptionText}>
   <WordSection words={words} columns={columns} />
-</Layout>
+</StatsPageTemplate>
