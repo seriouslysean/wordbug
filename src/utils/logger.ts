@@ -33,9 +33,12 @@ return originalMethod;
     return (...args: unknown[]) => {
       // Console logging rules:
       // Dev: all log types, Prod: only warn and error
-      if (!isDev && prop !== 'warn' && prop !== 'error') {
-return;
-}
+      const isProductionLogLevel = (level: string) => level === 'warn' || level === 'error';
+      const shouldLog = isDev || isProductionLogLevel(prop);
+
+      if (!shouldLog) {
+        return;
+      }
 
       // Preserve original console behavior
       originalMethod.apply(target, args);

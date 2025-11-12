@@ -35,7 +35,7 @@ const TEMPLATE = {
 interface StatsConfig {
   slug: string;
   data: WordData[] | WordMilestoneItem[];
-  def: {
+  definition: {
     pageDescription: string | ((arg?: string | number) => string);
     title: string;
     metaDescription: ((count: number, arg?: string) => string) | string;
@@ -55,14 +55,14 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
 
   return [
     // Pattern stats
-    { slug: STATS_SLUGS.ALL_CONSONANTS, data: patternStats.allConsonants, def: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.ALL_CONSONANTS, data: patternStats.allConsonants, definition: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS], template: TEMPLATE.WORD_LIST },
     { slug: STATS_SLUGS.ALL_VOWELS, data: patternStats.allVowels, def: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS], template: TEMPLATE.WORD_LIST },
 
     // Suffix stats
     ...Object.keys(SUFFIX_DEFINITIONS).map(suffix => ({
       slug: STATS_SLUGS[`WORDS_ENDING_${suffix.toUpperCase()}` as keyof typeof STATS_SLUGS],
       data: endings[suffix as keyof typeof endings] || [],
-      def: SUFFIX_DEFINITIONS[suffix as keyof typeof SUFFIX_DEFINITIONS],
+      definition: SUFFIX_DEFINITIONS[suffix as keyof typeof SUFFIX_DEFINITIONS],
       template: TEMPLATE.WORD_LIST,
     })),
 
@@ -77,14 +77,14 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
     {
       slug: STATS_SLUGS.MOST_COMMON_LETTER,
       data: mostCommon ? words.filter(w => w.word.includes(mostCommon[0])) : [],
-      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER],
+      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER],
       template: TEMPLATE.WORD_LIST,
       arg: mostCommon?.[0],
     },
     {
       slug: STATS_SLUGS.LEAST_COMMON_LETTER,
       data: leastCommon ? words.filter(w => w.word.includes(leastCommon[0])) : [],
-      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER],
+      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER],
       template: TEMPLATE.WORD_LIST,
       arg: leastCommon?.[0],
     },
@@ -95,7 +95,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
       data: getChronologicalMilestones([...words].sort((a, b) => a.date.localeCompare(b.date)))
         .reverse()
         .map(w => ({ ...w.word, label: `${ordinal(w.milestone)} Word` })),
-      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS],
+      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS],
       template: TEMPLATE.MILESTONE,
     },
 
@@ -115,7 +115,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
           }))
           .reverse();
       })(),
-      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK],
+      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK],
       template: TEMPLATE.MILESTONE,
       arg: streakStats.currentStreak,
     },
@@ -125,7 +125,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
         ...w,
         label: `${ordinal(i + 1)} Day`,
       })),
-      def: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK],
+      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK],
       template: TEMPLATE.MILESTONE,
       arg: streakStats.longestStreak,
     },
@@ -149,12 +149,12 @@ export const generateStatsStaticPaths = async () => {
       props: {
         words: config.data,
         description: config.arg
-          ? (typeof config.def.pageDescription === 'function'
-              ? config.def.pageDescription(config.arg)
-              : config.def.pageDescription)
-          : (typeof config.def.pageDescription === 'function'
-              ? config.def.pageDescription()
-              : config.def.pageDescription),
+          ? (typeof config.definition.pageDescription === 'function'
+              ? config.definition.pageDescription(config.arg)
+              : config.definition.pageDescription)
+          : (typeof config.definition.pageDescription === 'function'
+              ? config.definition.pageDescription()
+              : config.definition.pageDescription),
         template: config.template,
       },
     }));
