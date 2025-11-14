@@ -3,7 +3,7 @@
  * Used by URL helpers, page metadata, and tests to ensure consistency.
  */
 
-import { slugify } from '~astro-utils/url-utils';
+import { slugify } from '~utils/text-utils';
 
 // =====================================================
 // Base Paths - Top-level sections
