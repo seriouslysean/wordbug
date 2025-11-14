@@ -17,7 +17,9 @@ import { findValidDefinition } from '~utils/word-data-utils';
 export const WORDNIK_CONFIG: WordnikConfig = {
   BASE_URL: process.env.WORDNIK_API_URL,
   DEFAULT_LIMIT: 10,
+  /** Delay between requests in milliseconds (1 second - Wordnik API best practice) */
   RATE_LIMIT_DELAY: 1000,
+  /** Backoff delay after rate limit hit (65 seconds - slightly over 1 minute per Wordnik 429 docs) */
   RATE_LIMIT_BACKOFF: 65000,
 };
 
@@ -130,22 +132,22 @@ export function transformWordData(wordData: WordData): WordProcessedData {
     return { partOfSpeech: '', definition: '', meta: null };
   }
 
-  const validDef = findValidDefinition(wordData.data);
+  const validDefinition = findValidDefinition(wordData.data);
 
-  if (!validDef) {
+  if (!validDefinition) {
     return { partOfSpeech: '', definition: '', meta: null };
   }
 
   // Find the full definition item to get metadata
-  const fullDef = wordData.data.find(d => d.partOfSpeech === validDef.partOfSpeech);
+  const fullDefinition = wordData.data.find(definition => definition.partOfSpeech === validDefinition.partOfSpeech);
 
   return {
-    partOfSpeech: validDef.partOfSpeech,
-    definition: processCrossReferences(validDef.text),
+    partOfSpeech: validDefinition.partOfSpeech,
+    definition: processCrossReferences(validDefinition.text),
     meta: {
-      attributionText: fullDef?.attributionText || 'from Wordnik',
-      sourceDictionary: fullDef?.sourceDictionary,
-      sourceUrl: fullDef?.sourceUrl || '',
+      attributionText: fullDefinition?.attributionText || 'from Wordnik',
+      sourceDictionary: fullDefinition?.sourceDictionary,
+      sourceUrl: fullDefinition?.sourceUrl || '',
     },
   };
 }
