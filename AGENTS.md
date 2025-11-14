@@ -97,11 +97,8 @@ npm test                                         # Run test suite
 ### Import Aliases
 - **Always Use Aliases**: Use `~components`, `~astro-utils`, etc. instead of relative imports
 - **Never Relative**: `../` imports are not allowed, use aliases exclusively
-- **CRITICAL - Environment Separation**: Files in `utils/` MUST NOT import from `~astro-utils/*`
-  - `~astro-utils/*` resolves to `src/utils/*` which contains Astro-specific code
-  - Importing Astro utilities in `utils/` breaks CLI tools with `astro:` protocol errors
-  - Pure Node.js files must only import from `~utils/*`, `~types/*`, `~constants/*`
-  - See docs/technical.md "Utility Architecture and Import Guidelines" for details
+- **CRITICAL**: Files in `utils/` MUST NOT import from `~astro-utils/*` (breaks CLI tools)
+  - See docs/technical.md "Utility Architecture and Import Guidelines" for full details
 
 ## Documentation Structure
 
