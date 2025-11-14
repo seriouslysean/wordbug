@@ -39,14 +39,22 @@ const isNotFutureDate = (date: string): boolean => {
 
 
 
+interface AddWordOptions {
+  date?: string;
+  overwrite?: boolean;
+  preserveCase?: boolean;
+}
+
 /**
  * Adds a new word to the collection
  * @param input - Word to add
- * @param date - Date to add word for (defaults to today)
- * @param overwrite - Whether to overwrite existing word
- * @param preserveCase - Whether to preserve original capitalization
+ * @param options - Configuration options for adding the word
+ * @param options.date - Date to add word for (defaults to today)
+ * @param options.overwrite - Whether to overwrite existing word
+ * @param options.preserveCase - Whether to preserve original capitalization
  */
-async function addWord(input: string, date: string, overwrite: boolean = false, preserveCase: boolean = false): Promise<void> {
+async function addWord(input: string, options: AddWordOptions = {}): Promise<void> {
+  const { date, overwrite = false, preserveCase = false } = options;
   try {
     const word = input?.trim();
 
@@ -95,7 +103,7 @@ async function addWord(input: string, date: string, overwrite: boolean = false, 
     }
 
     // Use shared word creation logic
-    await createWordEntry(word, targetDate, overwrite, preserveCase);
+    await createWordEntry(word, { date: targetDate, overwrite, preserveCase });
 
   } catch (error) {
     if (error.message.includes('not found in dictionary')) {
@@ -173,4 +181,8 @@ if (!word) {
 }
 
 console.log('Add word tool starting...');
-addWord(word, date, hasOverwrite, hasPreserveCase);
+addWord(word, {
+  date,
+  overwrite: hasOverwrite,
+  preserveCase: hasPreserveCase,
+});

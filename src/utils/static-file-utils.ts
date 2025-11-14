@@ -7,6 +7,7 @@ import { getAllPageMetadata } from '~utils/page-metadata-utils';
 import { generateWordDataHash } from '~astro-utils/word-data-utils';
 import { getWordUrl } from '~astro-utils/url-utils';
 import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS } from '~constants/urls';
+import { MAX_PAST_WORDS_DISPLAY } from '~constants/text-patterns';
 
 /**
  * List of supported static text files
@@ -145,7 +146,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   }
 
   const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
-  const recentWords = words.slice(-5);
+  const recentWords = words.slice(-MAX_PAST_WORDS_DISPLAY);
 
   const curatorInfo = __HUMANS_WORD_CURATOR__ ? ` Curated by ${__HUMANS_WORD_CURATOR__}.` : '';
   const lastUpdated = words.length > 0 ? formatDate(words[words.length - 1].date) : null;

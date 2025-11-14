@@ -9,6 +9,7 @@ import type {
   WordGroupByYearResult,
   WordProcessedData,
 } from '~types';
+import { MAX_PAST_WORDS_DISPLAY } from '~constants/text-patterns';
 import { getMonthSlugFromDate } from '~utils/date-utils';
 import {
   getAvailableYears,
@@ -58,12 +59,12 @@ export function extractWordDefinition(wordData: WordData): { definition: string;
     return { definition: '', partOfSpeech: '' };
   }
 
-  const validDef = findValidDefinition(wordData.data);
+  const validDefinition = findValidDefinition(wordData.data);
 
-  if (validDef) {
+  if (validDefinition) {
     return {
-      definition: validDef.text,
-      partOfSpeech: validDef.partOfSpeech,
+      definition: validDefinition.text,
+      partOfSpeech: validDefinition.partOfSpeech,
     };
   }
 
@@ -73,19 +74,19 @@ export function extractWordDefinition(wordData: WordData): { definition: string;
 /**
  * All words loaded with consistent sorting across environments
  */
-let _cachedWords: WordData[] | null = null;
+let cachedWords: WordData[] | null = null;
 
 async function getAllWords(): Promise<WordData[]> {
-  if (_cachedWords === null) {
+  if (cachedWords === null) {
     try {
-      _cachedWords = await getWordsFromCollection();
-      logger.info('Loaded words successfully', { count: _cachedWords.length });
+      cachedWords = await getWordsFromCollection();
+      logger.info('Loaded words successfully', { count: cachedWords.length });
     } catch (error) {
       logger.error('Failed to load words', { error: (error as Error).message });
-      _cachedWords = [];
+      cachedWords = [];
     }
   }
-  return _cachedWords;
+  return cachedWords;
 }
 
 export const allWords = await getAllWords();
@@ -198,7 +199,7 @@ export const getPastWords = (currentDate: string, words: WordData[] = allWords):
   }
   return words
     .filter(word => word.date < currentDate)
-    .slice(0, 5);
+    .slice(0, MAX_PAST_WORDS_DISPLAY);
 };
 
 /**

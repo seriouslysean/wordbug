@@ -1,3 +1,4 @@
+import { COMMON_WORD_ENDINGS, MIN_ALPHABETICAL_SEQUENCE_LENGTH } from '~constants/text-patterns';
 
 /**
  * Check if a word starts and ends with the same letter
@@ -33,11 +34,21 @@ export const hasTripleLetters = (word: string): boolean => {
  */
 export const hasAlphabeticalSequence = (word: string): boolean => {
   const letters = word.toLowerCase();
+  // Subtract (MIN_ALPHABETICAL_SEQUENCE_LENGTH - 1) because we check i, i+1, i+2
+  const lookbackOffset = MIN_ALPHABETICAL_SEQUENCE_LENGTH - 1;
+
   return Array.from(letters)
-    .slice(0, -2)
+    .slice(0, -lookbackOffset)
     .some((_, i) => {
-      const [a, b, c] = [letters.charCodeAt(i), letters.charCodeAt(i + 1), letters.charCodeAt(i + 2)];
-      return b === a + 1 && c === b + 1;
+      const [firstCharCode, secondCharCode, thirdCharCode] = [
+        letters.charCodeAt(i),
+        letters.charCodeAt(i + 1),
+        letters.charCodeAt(i + 2)
+      ];
+      const isSequentialAscending =
+        secondCharCode === firstCharCode + 1 &&
+        thirdCharCode === secondCharCode + 1;
+      return isSequentialAscending;
     });
 };
 
@@ -47,8 +58,7 @@ export const hasAlphabeticalSequence = (word: string): boolean => {
  * @returns Array of matched endings
  */
 export const getWordEndings = (word: string): string[] => {
-  const endings = ['ing', 'ed', 'ly', 'ness', 'ful', 'less'];
-  return endings.filter(ending => word.endsWith(ending));
+  return COMMON_WORD_ENDINGS.filter(ending => word.endsWith(ending));
 };
 
 /**

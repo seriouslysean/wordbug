@@ -183,7 +183,14 @@ interface TextPathResult {
   transform: string;
 }
 
-function getTextPath(text: string, fontSize: number, isExtraBold: boolean = false, maxWidth: number = Infinity): TextPathResult {
+interface GetTextPathOptions {
+  isExtraBold?: boolean;
+  maxWidth?: number;
+}
+
+function getTextPath(text: string, fontSize: number, options: GetTextPathOptions = {}): TextPathResult {
+  const { isExtraBold = false, maxWidth = Infinity } = options;
+
   // Use the appropriate font based on weight
   const font = isExtraBold ? boldFont : regularFont;
 
@@ -219,7 +226,7 @@ export function createWordSvg(word: string, date: string): string {
   const formattedDate = formatDate(date);
 
   // Get path data for all text elements
-  const mainWord = getTextPath(word.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
+  const mainWord = getTextPath(word.toLowerCase(), FONT_SIZE, { isExtraBold: true, maxWidth: MAX_WIDTH });
   const titleText = getTextPath(process.env.SITE_TITLE || '', TITLE_SIZE);
   const dateText = getTextPath(formattedDate, DATE_SIZE);
 
@@ -291,7 +298,7 @@ export async function generateShareImage(word: string, date: string): Promise<vo
  */
 export function createGenericSvg(title: string): string {
   // Get path data for all text elements
-  const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, true, MAX_WIDTH);
+  const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, { isExtraBold: true, maxWidth: MAX_WIDTH });
   const titleText = getTextPath(process.env.SITE_TITLE || '', TITLE_SIZE);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -353,15 +360,24 @@ import { formatDate, isValidDate } from '~utils/date-utils';
 import { isValidDictionaryData } from '~utils/word-validation';
 
 
+interface CreateWordEntryOptions {
+  date: string;
+  overwrite?: boolean;
+  preserveCase?: boolean;
+}
+
 /**
  * Creates a word data object and saves it to the appropriate file
  * @param word - Word to add
- * @param date - Date in YYYYMMDD format
- * @param overwrite - Whether to overwrite existing files
- * @param preserveCase - Whether to preserve the original capitalization (default: false, converts to lowercase)
+ * @param options - Configuration options for creating the entry
+ * @param options.date - Date in YYYYMMDD format
+ * @param options.overwrite - Whether to overwrite existing files
+ * @param options.preserveCase - Whether to preserve the original capitalization (default: false, converts to lowercase)
  * @returns Object with file path and word data
  */
-export async function createWordEntry(word: string, date: string, overwrite: boolean = false, preserveCase: boolean = false): Promise<CreateWordEntryResult> {
+export async function createWordEntry(word: string, options: CreateWordEntryOptions): Promise<CreateWordEntryResult> {
+  const { date, overwrite = false, preserveCase = false } = options;
+
   // Validate inputs
   if (!word?.trim()) {
     throw new Error('Word is required');
