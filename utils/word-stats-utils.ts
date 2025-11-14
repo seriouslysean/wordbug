@@ -10,7 +10,7 @@ import {
   isAllConsonants,
   isPalindrome,
 } from '~utils/text-utils';
-import { MILESTONE_BREAKPOINTS } from '~constants/text-patterns';
+import { MILESTONES } from '~constants/text-patterns';
 
 /**
  * Analyzes words for various letter patterns
@@ -122,14 +122,14 @@ export function getChronologicalMilestones(words: WordData[]): Array<{milestone:
   }
 
   return [
-    { milestone: MILESTONE_BREAKPOINTS.INITIAL_WORD, word: words[0] },
-    ...MILESTONE_BREAKPOINTS.EARLY_MILESTONES
+    { milestone: MILESTONES.FIRST, word: words[0] },
+    ...MILESTONES.EARLY
       .filter(m => words.length >= m)
       .map(m => ({ milestone: m, word: words[m - 1] })),
     ...Array.from(
-      { length: Math.floor(words.length / MILESTONE_BREAKPOINTS.CENTURY_INTERVAL) },
+      { length: Math.floor(words.length / MILESTONES.CENTURY) },
       (_, idx) => {
-        const milestone = (idx + 1) * MILESTONE_BREAKPOINTS.CENTURY_INTERVAL;
+        const milestone = (idx + 1) * MILESTONES.CENTURY;
         return { milestone, word: words[milestone - 1] };
       },
     ),

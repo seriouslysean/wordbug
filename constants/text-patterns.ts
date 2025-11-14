@@ -25,14 +25,14 @@ export const MAX_PAST_WORDS_DISPLAY = 5;
 export const RSS_FEED_WORD_COUNT = 14;
 
 /**
- * Milestone breakpoints for chronological word tracking.
+ * Milestone thresholds for chronological word tracking.
  * Used to mark significant word count achievements in the application.
  */
-export const MILESTONE_BREAKPOINTS = {
-  /** The very first word in the collection */
-  INITIAL_WORD: 1,
+export const MILESTONES = {
+  /** The first word in the collection */
+  FIRST: 1,
   /** Early milestone markers (25th, 50th, 75th words) */
-  EARLY_MILESTONES: [25, 50, 75] as const,
-  /** Century interval for large collections (100, 200, 300, etc.) */
-  CENTURY_INTERVAL: 100,
+  EARLY: [25, 50, 75] as const,
+  /** Century-based milestone interval (100, 200, 300, etc.) */
+  CENTURY: 100,
 } as const;
