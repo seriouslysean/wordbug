@@ -485,42 +485,21 @@ Incorrect Usage:
 // In CLI tools - NEVER import Astro-specific utilities
 import { getWordsFromCollection } from '~astro-utils/word-data-utils'; // ERROR
 
-// In utils/* files - NEVER import Astro-specific utilities
+// In utils/* - NEVER import ~astro-utils/* (breaks CLI tools)
 import { getWordsByLetter } from '~astro-utils/word-data-utils'; // ERROR
-// Will cause "astro: protocol" errors when imported by CLI tools
 
 // In Astro components - Avoid when Astro-specific alternative exists
 import { getAvailableYears } from '~utils/word-data-utils'; // Use ~astro-utils version instead
 ```
 
-### Critical Boundary Rule
+### Import Boundary Rule for utils/ Directory
 
-Files in `utils/` directory are shared between CLI tools and Astro components. They MUST remain Astro-independent:
+Files in `utils/` are shared between CLI tools and Astro. They must remain Astro-independent:
 
-DO NOT import from these paths in `utils/*.ts` files:
-- `~astro-utils/*` - Triggers astro:content loader
-- `~src/*` - May contain Astro-specific code
-- `astro:*` - Framework-specific virtual modules
+**Allowed imports:** `~utils/*`, `~types/*`, `~constants/*`, Node.js built-ins, pure npm packages
+**Forbidden imports:** `~astro-utils/*`, `~src/*`, `astro:*` (triggers astro:content loader, breaks CLI)
 
-DO use these paths in `utils/*.ts` files:
-- `~utils/*` - Pure Node.js utilities (same directory)
-- `~types/*` - Type definitions only
-- `~constants/*` - Static constants
-- Node.js built-ins - fs, path, crypto, etc.
-- Pure npm packages - date-fns, opentype.js, sharp, etc.
-
-Violation Example (Regression Fixed in 2025-11):
-```typescript
-// utils/page-metadata-utils.ts - WRONG
-import { getWordsByLetter } from '~astro-utils/word-data-utils';
-// This breaks CLI tools with: "Only URLs with a scheme in: file, data, and node
-// are supported by the default ESM loader. Received protocol 'astro:'"
-
-// utils/page-metadata-utils.ts - CORRECT
-function getWordsByLetter(letter: string, words: WordData[]): WordData[] {
-  return words.filter(word => word.word.toLowerCase().startsWith(letter.toLowerCase()));
-}
-```
+**Solution:** Implement needed functions inline instead of importing from `~astro-utils/*`
 
 ### Validation of Duplication Claims
 
