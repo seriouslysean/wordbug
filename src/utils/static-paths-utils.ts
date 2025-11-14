@@ -56,7 +56,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
   return [
     // Pattern stats
     { slug: STATS_SLUGS.ALL_CONSONANTS, data: patternStats.allConsonants, definition: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.ALL_VOWELS, data: patternStats.allVowels, def: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.ALL_VOWELS, data: patternStats.allVowels, definition: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS], template: TEMPLATE.WORD_LIST },
 
     // Suffix stats
     ...Object.keys(SUFFIX_DEFINITIONS).map(suffix => ({
@@ -67,11 +67,11 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
     })),
 
     // Letter pattern stats
-    { slug: STATS_SLUGS.ALPHABETICAL_ORDER, data: letterPatterns.alphabetical, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.DOUBLE_LETTERS, data: letterPatterns.doubleLetters, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.TRIPLE_LETTERS, data: letterPatterns.tripleLetters, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.SAME_START_END, data: letterPatterns.startEndSame, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.PALINDROMES, data: letterPatterns.palindromes, def: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.ALPHABETICAL_ORDER, data: letterPatterns.alphabetical, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.DOUBLE_LETTERS, data: letterPatterns.doubleLetters, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.TRIPLE_LETTERS, data: letterPatterns.tripleLetters, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.SAME_START_END, data: letterPatterns.startEndSame, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.PALINDROMES, data: letterPatterns.palindromes, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES], template: TEMPLATE.WORD_LIST },
 
     // Letter frequency stats
     {
