@@ -1,0 +1,109 @@
+{
+    "word": "sarcophagus",
+    "date": "20251031",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "S5094500-1",
+            "partOfSpeech": "noun",
+            "text": "A stone coffin, often inscribed or decorated with sculpture.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A species of stone used among the Greeks for making coffins. It was called by the Romans <em>lapis Assius</em>, from being found at Assos, a city of the Troad.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A stone coffin, especially one ornamented with sculptures or bearing inscriptions, etc.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A peculiar wine-cooler forming part of a dining-room sideboard about the end of the eighteenth century: it was a dark mahogany box, lined with lead.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A species of limestone used among the Greeks for making coffins, which was so called because it consumed within a few weeks the flesh of bodies deposited in it. It is otherwise called <altname>lapis Assius</altname>, or <altname>Assian stone</altname>, and is said to have been found at Assos, a city of Lycia.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A coffin or chest-shaped tomb of the kind of stone described above; hence, any stone coffin.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A stone shaped like a sarcophagus and placed by a grave as a memorial.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>stone</xref> <xref>coffin</xref>, often <xref>inscribed</xref> or <xref>decorated</xref> with <xref>sculpture</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The cement and steel <xref>structure</xref> that <xref>encases</xref> the destroyed <xref>reactor</xref> at the <xref>power station</xref> in Chernobyl, Ukraine.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a stone coffin (usually bearing sculpture or inscriptions)",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/sarcophagus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

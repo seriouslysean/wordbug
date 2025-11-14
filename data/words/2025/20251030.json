@@ -1,0 +1,49 @@
+{
+    "word": "radula",
+    "date": "20251030",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "R5021200-1",
+            "partOfSpeech": "noun",
+            "text": "A flexible tonguelike organ found in most mollusks, having rows of horny teeth on the surface and used in feeding for scraping or cutting.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/radula",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In <em>conchology</em>, the tongue or lingual ribbon of a mollusk, specifically called <internalXref urlencoded=\"odontophore\">odontophore</internalXref>, and more particularly, the rasping surface or set of teeth of the odontophore, which bites like a file.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/radula",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The chitinous ribbon bearing the teeth of mollusks; -- called also <altname>lingual ribbon</altname>, and <altname>tongue</altname>. See <xref urlencoded=\"odontophore\">odontophore</xref>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/radula",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The <xref>rasping</xref> <xref>tongue</xref> of <xref>snails</xref> and most other <xref>mollusks</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/radula",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
