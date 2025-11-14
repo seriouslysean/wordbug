@@ -501,9 +501,45 @@ Files in `utils/` are shared between CLI tools and Astro. They must remain Astro
 **Forbidden imports:** `~astro-utils/*`, `~src/*`, `astro:*` (triggers astro:content loader, breaks CLI)
 
 **Solution when needing shared functionality:**
-1. Add the pure utility function to appropriate file in `utils/` (e.g., `utils/word-data-utils.ts`, `utils/url-utils.ts`)
-2. Import from `~utils/*` in both Node.js tools AND Astro code
-3. Astro-specific versions in `src/utils/` can wrap these with caching/Collections if needed
+
+CORRECT Pattern (DRY - No Duplication):
+```typescript
+// utils/word-data-utils.ts - Pure function, single source of truth
+export const getWordsByLength = (length: number, words: WordData[]): WordData[] => {
+  return words.filter(word => word.word.length === length);
+};
+
+// src/utils/word-data-utils.ts - Thin wrapper with cached default
+import { getWordsByLength as getWordsByLengthPure } from '~utils/word-data-utils';
+export const allWords = await getAllWords(); // Cached from Astro Collections
+
+export const getWordsByLength = (length: number, words: WordData[] = allWords): WordData[] => {
+  return getWordsByLengthPure(length, words); // Delegate to pure function
+};
+
+// tools/add-word.ts - CLI tool imports pure function
+import { getWordsByLength } from '~utils/word-data-utils';
+const fiveLetterWords = getWordsByLength(5, myWords);
+
+// src/pages/stats.astro - Astro page uses cached version
+import { getWordsByLength } from '~astro-utils/word-data-utils';
+const fiveLetterWords = getWordsByLength(5); // Uses cached allWords by default
+```
+
+WRONG Pattern (Duplicates Logic):
+```typescript
+// utils/word-data-utils.ts
+export const getWordsByLength = (length, words) => {
+  return words.filter(word => word.word.length === length); // Logic here
+};
+
+// src/utils/word-data-utils.ts - WRONG: Duplicates the filtering logic!
+export const getWordsByLength = (length, words = allWords) => {
+  return words.filter(word => word.word.length === length); // DUPLICATE!
+};
+```
+
+**Enforcement:** Architecture tests in `tests/architecture/utils-boundary.spec.js` automatically detect and prevent these violations.
 
 ### Validation of Duplication Claims
 
