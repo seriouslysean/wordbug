@@ -30,9 +30,9 @@ export const RSS_FEED_WORD_COUNT = 14;
  */
 export const MILESTONE_BREAKPOINTS = {
   /** The very first word in the collection */
-  INITIAL: 1,
+  INITIAL_WORD: 1,
   /** Early milestone markers (25th, 50th, 75th words) */
-  EARLY: [25, 50, 75] as const,
+  EARLY_MILESTONES: [25, 50, 75] as const,
   /** Century interval for large collections (100, 200, 300, etc.) */
   CENTURY_INTERVAL: 100,
 } as const;

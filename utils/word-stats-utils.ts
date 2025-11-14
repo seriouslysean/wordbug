@@ -122,8 +122,8 @@ export function getChronologicalMilestones(words: WordData[]): Array<{milestone:
   }
 
   return [
-    { milestone: MILESTONE_BREAKPOINTS.INITIAL, word: words[0] },
-    ...MILESTONE_BREAKPOINTS.EARLY
+    { milestone: MILESTONE_BREAKPOINTS.INITIAL_WORD, word: words[0] },
+    ...MILESTONE_BREAKPOINTS.EARLY_MILESTONES
       .filter(m => words.length >= m)
       .map(m => ({ milestone: m, word: words[m - 1] })),
     ...Array.from(
