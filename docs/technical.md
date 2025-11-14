@@ -443,11 +443,12 @@ Import Pattern: ~utils/text-utils (from TypeScript path mapping)
 
 Files:
 - date-utils.ts - Pure date manipulation functions
-- text-utils.ts - String analysis and formatting functions  
+- text-utils.ts - String analysis and formatting functions
 - word-stats-utils.ts - Statistics calculation algorithms
-- word-data-utils.ts - Simple data filtering utilities
+- word-data-utils.ts - Word filtering and data access utilities
 - word-validation.ts - Data validation rules
 - page-metadata-utils.ts - Core metadata generation logic
+- url-utils.ts - URL generation helpers for routes
 
 #### src/utils Directory - Astro-Specific Utilities
 Purpose: Web application utilities that require Astro features
@@ -499,7 +500,10 @@ Files in `utils/` are shared between CLI tools and Astro. They must remain Astro
 **Allowed imports:** `~utils/*`, `~types/*`, `~constants/*`, Node.js built-ins, pure npm packages
 **Forbidden imports:** `~astro-utils/*`, `~src/*`, `astro:*` (triggers astro:content loader, breaks CLI)
 
-**Solution:** Implement needed functions inline instead of importing from `~astro-utils/*`
+**Solution when needing shared functionality:**
+1. Add the pure utility function to appropriate file in `utils/` (e.g., `utils/word-data-utils.ts`, `utils/url-utils.ts`)
+2. Import from `~utils/*` in both Node.js tools AND Astro code
+3. Astro-specific versions in `src/utils/` can wrap these with caching/Collections if needed
 
 ### Validation of Duplication Claims
 

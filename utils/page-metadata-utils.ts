@@ -18,7 +18,9 @@ import {
   getAvailablePartsOfSpeech,
   getAvailableYears,
   getWordsByYear,
-  normalizePartOfSpeech,
+  getWordsByLength,
+  getWordsByLetter,
+  getWordsByPartOfSpeech,
 } from '~utils/word-data-utils';
 import {
   getChronologicalMilestones,
@@ -29,58 +31,11 @@ import {
   getPatternStats,
   getWordEndingStats,
 } from '~utils/word-stats-utils';
-
-/**
- * Get words of a specific length
- */
-function getWordsByLength(length: number, words: WordData[]): WordData[] {
-  return words.filter(word => word.word.length === length);
-}
-
-/**
- * Get words starting with a specific letter
- */
-function getWordsByLetter(letter: string, words: WordData[]): WordData[] {
-  const normalizedLetter = letter.toLowerCase();
-  return words.filter(word =>
-    word.word.toLowerCase().startsWith(normalizedLetter)
-  );
-}
-
-/**
- * Get words with a specific part of speech
- */
-function getWordsByPartOfSpeech(partOfSpeech: string, words: WordData[]): WordData[] {
-  const normalizedPartOfSpeech = normalizePartOfSpeech(partOfSpeech);
-  return words.filter(word => {
-    if (!word.data || !Array.isArray(word.data)) return false;
-
-    return word.data.some(definition =>
-      definition.partOfSpeech && normalizePartOfSpeech(definition.partOfSpeech) === normalizedPartOfSpeech
-    );
-  });
-}
-
-/**
- * Get URL for words of a specific length
- */
-function getLengthUrl(length: number | string): string {
-  return ROUTES.LENGTH(Number(length));
-}
-
-/**
- * Get URL for words starting with a specific letter
- */
-function getLetterUrl(letter: string): string {
-  return ROUTES.LETTER(letter);
-}
-
-/**
- * Get URL for words with a specific part of speech
- */
-function getPartOfSpeechUrl(partOfSpeech: string): string {
-  return ROUTES.PART_OF_SPEECH(partOfSpeech);
-}
+import {
+  getLengthUrl,
+  getLetterUrl,
+  getPartOfSpeechUrl,
+} from '~utils/url-utils';
 
 type PrecomputedStats = {
   endings: ReturnType<typeof getWordEndingStats>;
