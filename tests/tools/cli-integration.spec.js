@@ -10,13 +10,13 @@
  * 2. Tools can be executed with minimal inputs
  * 3. Basic functionality works end-to-end
  *
- * NOTE: You may see "Unhandled Rejection: process.exit" warnings in test output.
- * This is expected because some tool files have top-level code that calls process.exit().
- * These warnings don't affect test results - the tests still pass/fail correctly.
- * The important thing is that astro: protocol errors are caught before process.exit.
+ * Implementation notes:
+ * - Import tests mock process.exit to prevent tools from terminating test runner
+ * - Spawn tests use actual child processes for realistic execution testing
+ * - Static analysis tests check file contents for known problematic patterns
  */
 
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
@@ -27,6 +27,12 @@ const TEST_DATA_DIR = path.join(process.cwd(), 'data', 'demo', 'words');
 describe('CLI Tools: Import & Execution', () => {
 
   it('tools can be imported without astro: protocol errors', async () => {
+    // Mock process.exit to prevent tools from exiting during import
+    // Tools have top-level code that may call process.exit()
+    const mockExit = vi.spyOn(process, 'exit').mockImplementation(() => {
+      // Don't actually exit, just record the call
+    });
+
     // This test would have caught the regression immediately
     const toolFiles = [
       'add-word.ts',
@@ -34,30 +40,35 @@ describe('CLI Tools: Import & Execution', () => {
       'utils.ts',
     ];
 
-    for (const toolFile of toolFiles) {
-      const toolPath = path.join(TOOLS_DIR, toolFile);
+    try {
+      for (const toolFile of toolFiles) {
+        const toolPath = path.join(TOOLS_DIR, toolFile);
 
-      // Try to load the module - will fail with astro: protocol error if broken
-      try {
-        // Use dynamic import to actually load the module
-        await import(toolPath);
-      } catch (error) {
-        // Check for the specific error that broke tools
-        if (error.message.includes("astro:")) {
-          throw new Error(
-            `${toolFile} has astro: protocol dependency: ${error.message}\n` +
-            `This breaks CLI tools. Check for imports from ~astro-utils/* in utils/ files.`
-          );
-        }
+        // Try to load the module - will fail with astro: protocol error if broken
+        try {
+          // Use dynamic import to actually load the module
+          await import(toolPath);
+        } catch (error) {
+          // Check for the specific error that broke tools
+          if (error.message.includes("astro:")) {
+            throw new Error(
+              `${toolFile} has astro: protocol dependency: ${error.message}\n` +
+              `This breaks CLI tools. Check for imports from ~astro-utils/* in utils/ files.`
+            );
+          }
 
-        // Allow other expected errors (e.g., missing env vars at import time)
-        // but not import resolution errors
-        if (error.code === 'ERR_MODULE_NOT_FOUND') {
-          throw error;
+          // Allow other expected errors (e.g., missing env vars at import time)
+          // but not import resolution errors
+          if (error.code === 'ERR_MODULE_NOT_FOUND') {
+            throw error;
+          }
         }
       }
+    } finally {
+      // Restore original process.exit
+      mockExit.mockRestore();
     }
-  });
+  }, 15000); // Increased timeout - tools run their main logic on import
 
   it('generate-images tool can load and show help', (done) => {
     const proc = spawn('npx', ['tsx', 'tools/generate-images.ts', '--help'], {
