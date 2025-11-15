@@ -41,14 +41,12 @@ describe('CLI Tools: Import & Execution', () => {
     ];
 
     try {
-      // Import all tools in parallel for faster execution (~60% faster)
+      // Import all tools in parallel for faster execution
       const importPromises = toolFiles.map(async (toolFile) => {
         const toolPath = path.join(TOOLS_DIR, toolFile);
 
         try {
-          // Use dynamic import to actually load the module
           await import(toolPath);
-          return { toolFile, success: true };
         } catch (error) {
           // Check for the specific error that broke tools
           if (error.message.includes("astro:")) {
@@ -63,8 +61,7 @@ describe('CLI Tools: Import & Execution', () => {
           if (error.code === 'ERR_MODULE_NOT_FOUND') {
             throw error;
           }
-
-          return { toolFile, success: true };
+          // Other errors are expected (tools exit, env validation, etc.) - ignore them
         }
       });
 

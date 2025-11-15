@@ -26,8 +26,7 @@ describe('image-utils', () => {
     });
 
     it('includes source directory in path when SOURCE_DIR is set', () => {
-      const originalSourceDir = import.meta.env.SOURCE_DIR;
-      import.meta.env.SOURCE_DIR = 'custom';
+      vi.stubEnv('SOURCE_DIR', 'custom');
 
       const wordData = {
         word: 'test',
@@ -38,7 +37,7 @@ describe('image-utils', () => {
 
       expect(url).toContain('/images/social/custom/2024/20240115-test.png');
 
-      import.meta.env.SOURCE_DIR = originalSourceDir;
+      vi.unstubAllEnvs();
     });
 
     it('returns generic page image URL when no word data is provided', () => {
@@ -60,14 +59,13 @@ describe('image-utils', () => {
     });
 
     it('handles null word data', () => {
-      const originalBasePath = import.meta.env.BASE_PATH;
-      import.meta.env.BASE_PATH = '/';
+      vi.stubEnv('BASE_PATH', '/');
 
       const url = getSocialImageUrl({ pathname: '/stats', wordData: null });
 
       expect(url).toContain('/images/social/pages/stats.png');
 
-      import.meta.env.BASE_PATH = originalBasePath;
+      vi.unstubAllEnvs();
     });
   });
 
