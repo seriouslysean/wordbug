@@ -1,0 +1,18 @@
+{
+    "word": "hyperspecific",
+    "date": "20251114",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "adjective",
+            "text": "Very highly <xref>specific</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/hyperspecific",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
