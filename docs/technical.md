@@ -318,24 +318,76 @@ BASE_PATH="/repo"
 ```
 tests/
 ├── adapters/               # Dictionary API adapter tests
-├── tools/                  # CLI tool tests
+├── architecture/           # Architectural boundary enforcement tests
+├── tools/                  # CLI tool integration tests
 ├── utils/                  # Utility function tests
 └── src/utils/              # Astro-specific utility tests
 ```
 
+### Test Layers
+
+#### 1. Unit Tests (`tests/utils/`, `tests/adapters/`)
+- **Purpose**: Verify individual function correctness
+- **Scope**: Pure functions, data transformations, API adapters
+- **Run Time**: Fast (milliseconds)
+- **Example**: Testing `slugify()` converts "Hello World" to "hello-world"
+
+#### 2. Architecture Tests (`tests/architecture/`)
+- **Purpose**: Enforce architectural boundaries and prevent DRY violations
+- **Scope**: Import dependencies, code duplication detection
+- **Run Time**: Fast (milliseconds)
+- **Prevents**:
+  - `utils/` importing from `~astro-utils/*` (breaks CLI tools)
+  - Duplicated business logic between layers
+  - Boundary violations that create circular dependencies
+
+#### 3. CLI Integration Tests (`tests/tools/`)
+- **Purpose**: Verify CLI tools work end-to-end without import errors
+- **Scope**: Tool execution, help commands, basic functionality
+- **Run Time**: Slow (seconds) - spawns actual processes
+- **Prevents**:
+  - `astro:` protocol errors in Node.js tools
+  - Import chain issues that break downstream repos
+  - Tool regressions from architectural changes
+
+**Key Feature**: These tests would have caught the word-adding regression immediately by detecting the `astro:` protocol error during import.
+
 ### Test Patterns
 - **Unit Testing**: Isolated function testing with Vitest
+- **Integration Testing**: CLI tools tested via spawn for realistic execution
+- **Architecture Testing**: Static analysis of import dependencies
 - **Mock Data**: Controlled test data for consistent results
 - **Type Safety**: TypeScript-first testing approach
 - **Error Handling**: Comprehensive error condition testing
 
 ### Running Tests
 ```bash
-npm test                    # Run all tests
-npm run test:watch          # Watch mode
-npm run typecheck           # TypeScript validation
-npm run lint                # oxlint checking
+npm test                              # Run all tests (unit + architecture + integration)
+npm test tests/architecture/          # Run only architecture tests
+npm test tests/tools/                 # Run only CLI integration tests
+npm run test:watch                    # Watch mode
+npm run typecheck                     # TypeScript validation
+npm run lint                          # oxlint checking
 ```
+
+### Regression Prevention
+
+The test suite is specifically designed to prevent the types of regressions that have occurred:
+
+**Regression: Word Adding Broke (2025-11)**
+- **Cause**: `utils/page-metadata-utils.ts` imported from `~astro-utils/*`
+- **Error**: `astro:` protocol not supported in Node.js CLI tools
+- **Prevention**:
+  - `tests/architecture/utils-boundary.spec.js` detects astro imports in utils/
+  - `tests/tools/cli-integration.spec.js` catches import errors during tool execution
+  - Both tests fail immediately if regression is reintroduced
+
+**How to Add Regression Tests:**
+1. Identify the root cause (e.g., incorrect import, duplication)
+2. Add a test in appropriate layer (unit/architecture/integration)
+3. Verify test fails with the bug present
+4. Verify test passes with the fix applied
+5. Document the regression in test comments
 
 ## Content Collections Deep Dive
 
@@ -443,11 +495,12 @@ Import Pattern: ~utils/text-utils (from TypeScript path mapping)
 
 Files:
 - date-utils.ts - Pure date manipulation functions
-- text-utils.ts - String analysis and formatting functions  
+- text-utils.ts - String analysis and formatting functions
 - word-stats-utils.ts - Statistics calculation algorithms
-- word-data-utils.ts - Simple data filtering utilities
+- word-data-utils.ts - Word filtering and data access utilities
 - word-validation.ts - Data validation rules
 - page-metadata-utils.ts - Core metadata generation logic
+- url-utils.ts - URL generation helpers for routes
 
 #### src/utils Directory - Astro-Specific Utilities
 Purpose: Web application utilities that require Astro features
@@ -485,9 +538,60 @@ Incorrect Usage:
 // In CLI tools - NEVER import Astro-specific utilities
 import { getWordsFromCollection } from '~astro-utils/word-data-utils'; // ERROR
 
+// In utils/* - NEVER import ~astro-utils/* (breaks CLI tools)
+import { getWordsByLetter } from '~astro-utils/word-data-utils'; // ERROR
+
 // In Astro components - Avoid when Astro-specific alternative exists
 import { getAvailableYears } from '~utils/word-data-utils'; // Use ~astro-utils version instead
 ```
+
+### Import Boundary Rule for utils/ Directory
+
+Files in `utils/` are shared between CLI tools and Astro. They must remain Astro-independent:
+
+**Allowed imports:** `~utils/*`, `~types/*`, `~constants/*`, Node.js built-ins, pure npm packages
+**Forbidden imports:** `~astro-utils/*`, `~src/*`, `astro:*` (triggers astro:content loader, breaks CLI)
+
+**Solution when needing shared functionality:**
+
+CORRECT Pattern (DRY - No Duplication):
+```typescript
+// utils/word-data-utils.ts - Pure function, single source of truth
+export const getWordsByLength = (length: number, words: WordData[]): WordData[] => {
+  return words.filter(word => word.word.length === length);
+};
+
+// src/utils/word-data-utils.ts - Thin wrapper with cached default
+import { getWordsByLength as getWordsByLengthPure } from '~utils/word-data-utils';
+export const allWords = await getAllWords(); // Cached from Astro Collections
+
+export const getWordsByLength = (length: number, words: WordData[] = allWords): WordData[] => {
+  return getWordsByLengthPure(length, words); // Delegate to pure function
+};
+
+// tools/add-word.ts - CLI tool imports pure function
+import { getWordsByLength } from '~utils/word-data-utils';
+const fiveLetterWords = getWordsByLength(5, myWords);
+
+// src/pages/stats.astro - Astro page uses cached version
+import { getWordsByLength } from '~astro-utils/word-data-utils';
+const fiveLetterWords = getWordsByLength(5); // Uses cached allWords by default
+```
+
+WRONG Pattern (Duplicates Logic):
+```typescript
+// utils/word-data-utils.ts
+export const getWordsByLength = (length, words) => {
+  return words.filter(word => word.word.length === length); // Logic here
+};
+
+// src/utils/word-data-utils.ts - WRONG: Duplicates the filtering logic!
+export const getWordsByLength = (length, words = allWords) => {
+  return words.filter(word => word.word.length === length); // DUPLICATE!
+};
+```
+
+**Enforcement:** Architecture tests in `tests/architecture/utils-boundary.spec.js` automatically detect and prevent these violations.
 
 ### Validation of Duplication Claims
 

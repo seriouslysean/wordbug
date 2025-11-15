@@ -1,6 +1,20 @@
 import { COMMON_WORD_ENDINGS, MIN_ALPHABETICAL_SEQUENCE_LENGTH } from '~constants/text-patterns';
 
 /**
+ * Convert any string to a URL-safe slug
+ * @param str - String to convert to slug format
+ * @returns URL-safe slug (lowercase, hyphenated, alphanumeric)
+ */
+export const slugify = (str: string): string => {
+  return str
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+};
+
+/**
  * Check if a word starts and ends with the same letter
  * @param word - Word to evaluate
  * @returns True if first and last letters match and length > 1
