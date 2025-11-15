@@ -20,6 +20,9 @@ import {
   getAvailablePartsOfSpeech,
   normalizePartOfSpeech,
   findValidDefinition,
+  getWordsByLength as getWordsByLengthPure,
+  getWordsByLetter as getWordsByLetterPure,
+  getWordsByPartOfSpeech as getWordsByPartOfSpeechPure,
 } from '~utils/word-data-utils';
 import {
   getWordStats,
@@ -361,7 +364,7 @@ export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult =
  * @returns {WordData[]} Array of word data entries with the specified length
  */
 export const getWordsByLength = (length: number, words: WordData[] = allWords): WordData[] => {
-  return words.filter(word => word.word.length === length);
+  return getWordsByLengthPure(length, words);
 };
 
 /**
@@ -399,10 +402,7 @@ export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]
  * @returns {WordData[]} Array of word data entries starting with the specified letter
  */
 export const getWordsByLetter = (letter: string, words: WordData[] = allWords): WordData[] => {
-  const normalizedLetter = letter.toLowerCase();
-  return words.filter(word => 
-    word.word.toLowerCase().startsWith(normalizedLetter)
-  );
+  return getWordsByLetterPure(letter, words);
 };
 
 /**
@@ -451,14 +451,7 @@ export const groupWordsByPartOfSpeech = (words: WordData[]): WordGroupByPartOfSp
  * @returns {WordData[]} Array of word data entries with the specified part of speech
  */
 export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[] = allWords): WordData[] => {
-  const normalizedPartOfSpeech = normalizePartOfSpeech(partOfSpeech);
-  return words.filter(word => {
-    if (!word.data || !Array.isArray(word.data)) return false;
-    
-    return word.data.some(definition => 
-      definition.partOfSpeech && normalizePartOfSpeech(definition.partOfSpeech) === normalizedPartOfSpeech
-    );
-  });
+  return getWordsByPartOfSpeechPure(partOfSpeech, words);
 };
 
 

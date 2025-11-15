@@ -4,17 +4,8 @@ import { logger } from '~astro-utils/logger';
 // URL Slug Utilities
 // =====================================================
 
-/**
- * Convert any string to a URL-safe slug
- */
-export const slugify = (str: string): string => {
-  return str
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-};
+// Re-export slugify from shared utils (single source of truth)
+export { slugify } from '~utils/text-utils';
 
 /**
  * Get the configured base path, defaulting to '/'

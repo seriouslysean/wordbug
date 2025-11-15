@@ -106,7 +106,7 @@ export const normalizePartOfSpeech = (partOfSpeech: string): string => {
  */
 export const getAvailablePartsOfSpeech = (words: WordData[]): string[] => {
   const partsOfSpeech = new Set<string>();
-  
+
   words.forEach(word => {
     if (word.data && Array.isArray(word.data)) {
       word.data.forEach(definition => {
@@ -116,6 +116,37 @@ export const getAvailablePartsOfSpeech = (words: WordData[]): string[] => {
       });
     }
   });
-  
+
   return Array.from(partsOfSpeech).sort();
+};
+
+/**
+ * Get words of a specific length
+ */
+export const getWordsByLength = (length: number, words: WordData[]): WordData[] => {
+  return words.filter(word => word.word.length === length);
+};
+
+/**
+ * Get words starting with a specific letter
+ */
+export const getWordsByLetter = (letter: string, words: WordData[]): WordData[] => {
+  const normalizedLetter = letter.toLowerCase();
+  return words.filter(word =>
+    word.word.toLowerCase().startsWith(normalizedLetter)
+  );
+};
+
+/**
+ * Get words with a specific part of speech
+ */
+export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[]): WordData[] => {
+  const normalizedPartOfSpeech = normalizePartOfSpeech(partOfSpeech);
+  return words.filter(word => {
+    if (!word.data || !Array.isArray(word.data)) return false;
+
+    return word.data.some(definition =>
+      definition.partOfSpeech && normalizePartOfSpeech(definition.partOfSpeech) === normalizedPartOfSpeech
+    );
+  });
 };

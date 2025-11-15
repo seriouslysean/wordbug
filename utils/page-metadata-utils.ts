@@ -18,17 +18,10 @@ import {
   getAvailablePartsOfSpeech,
   getAvailableYears,
   getWordsByYear,
-} from '~utils/word-data-utils';
-import {
   getWordsByLength,
   getWordsByLetter,
   getWordsByPartOfSpeech,
-} from '~astro-utils/word-data-utils';
-import {
-  getLengthUrl,
-  getLetterUrl,
-  getPartOfSpeechUrl,
-} from '~astro-utils/url-utils';
+} from '~utils/word-data-utils';
 import {
   getChronologicalMilestones,
   getCurrentStreakWords,
@@ -38,6 +31,11 @@ import {
   getPatternStats,
   getWordEndingStats,
 } from '~utils/word-stats-utils';
+import {
+  getLengthUrl,
+  getLetterUrl,
+  getPartOfSpeechUrl,
+} from '~utils/url-utils';
 
 type PrecomputedStats = {
   endings: ReturnType<typeof getWordEndingStats>;
