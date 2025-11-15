@@ -135,10 +135,42 @@ Each word file contains the word, date, and rich definition data from your chose
 ## Testing
 
 ```bash
-npm test              # Run all tests
-npm run typecheck     # TypeScript validation
-npm run lint          # Code style checking
+# Run all tests (unit + architecture + integration)
+npm test
+
+# Run specific test suites (faster iteration)
+npm run test:unit          # Fast unit tests only (~5s)
+npm run test:integration   # Slow CLI integration tests (~6s)
+npm run test:arch          # Architecture boundary tests (<1s)
+
+# Coverage and validation
+npm run test:coverage        # Generate coverage report
+npm run test:coverage-check  # Enforce 80% threshold (fails CI if below)
+
+# Code quality
+npm run lint          # Code style checking (oxlint)
+npm run typecheck     # TypeScript validation (tsc)
+npx astro check       # Astro-specific type checking
 ```
+
+### Testing Quick Start
+
+**Before committing code:**
+```bash
+npm run lint && npm test && npx astro check
+```
+
+**When modifying CLI tools:**
+```bash
+npm run test:integration  # Verify tools load without errors
+```
+
+**When changing architecture:**
+```bash
+npm run test:arch  # Verify import boundaries
+```
+
+See [Technical Guide - Testing Strategy](technical.md#testing-strategy) for details.
 
 ## Technology
 
