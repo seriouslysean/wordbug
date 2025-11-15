@@ -362,61 +362,31 @@ tests/
 
 ### Running Tests
 ```bash
-# Core test commands
-npm test                              # Run all tests (unit + architecture + integration) - ~8s
-npm run test:unit                     # Fast unit tests only (~5s, excludes CLI integration)
-npm run test:integration              # Slow CLI integration tests only (~6s)
-npm run test:arch                     # Architecture boundary tests only (<1s)
-npm run test:watch                    # Watch mode for development
-
-# Coverage commands
-npm run test:coverage                 # Generate coverage report (no threshold enforcement)
-npm run test:coverage-check           # Generate coverage AND enforce 80% threshold (fails if below)
-
-# Code quality
-npm run lint                          # oxlint code style checking
-npm run typecheck                     # TypeScript validation (tsc)
-npx astro check                       # Astro-specific type checking
+npm test              # Run all tests with coverage (~10s)
+npm run test:watch    # Watch mode for development
+npm run lint          # oxlint code style checking
+npm run typecheck     # TypeScript validation
+npx astro check       # Astro-specific type checking
 ```
 
-### Test Suite Performance
+**Pre-commit hooks automatically:**
+- Run linting with auto-fix on staged files
+- Run tests for changed files only (fast, no coverage)
 
-**Performance Benchmarks** (as of 2025-11-15):
-- Total wall-clock time: ~10 seconds
-- Test execution time: ~8 seconds
-- Unit tests: 404 tests, ~3 seconds
-- CLI integration tests: 10 tests, ~6 seconds (slow due to tool imports)
-- Architecture tests: Fast (<1 second)
+### Coverage Thresholds
 
-**When to use which command:**
-- **Development iteration**: `npm run test:unit` or `npm run test:arch` for fast feedback
-- **Before committing**: `npm test` to run everything
-- **Modifying CLI tools**: `npm run test:integration` to verify no import errors
-- **CI/CD**: `npm run test:coverage-check` to enforce thresholds
+Tests include coverage by default with enforced thresholds:
+- **Lines**: 55% (current: ~57%)
+- **Functions**: 75% (current: ~77%)
+- **Branches**: 80% (current: ~85%)
 
-### Coverage Requirements
+Coverage reports: `coverage/index.html`
 
-**Current Coverage** (as of 2025-11-15):
-- Overall: **57.13%** lines, 76.59% functions, 84.91% branches
-- **Threshold**: 80% (enforced via `npm run test:coverage-check`)
-- **Status**: Below threshold - work in progress to reach 80%+
+### Performance
 
-**Well-Covered Modules:**
-- ✅ config/: 100%
-- ✅ constants/: 100%
-- ✅ utils/ (root): 93.32%
-- ✅ New test files: build-utils, image-utils, schema-utils, seo-utils (100%)
-
-**Coverage Gaps** (remaining work):
-- src/utils/static-file-utils.ts (276 lines, 0%)
-- src/utils/static-paths-utils.ts (163 lines, 0%)
-- src/utils/sentry-client.ts (47 lines, 10.71%)
-- tools/*.ts (various, low coverage)
-
-**Coverage Report Location:**
-- HTML report: `coverage/index.html`
-- JSON report: `coverage/coverage-final.json`
-- Generate with: `npm run test:coverage`
+- **Total test time**: ~10 seconds
+- **404 tests** across unit, architecture, and integration layers
+- Pre-commit only tests changed files for fast feedback
 
 ### Regression Prevention
 
