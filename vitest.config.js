@@ -27,14 +27,21 @@ export default defineConfig({
         'dist/**',
         '.astro/**',
         'tests/**',
+        // Build-time utilities validated by build process
+        'src/utils/static-file-utils.ts',
+        'src/utils/static-paths-utils.ts',
+        'src/content.config.ts',
+        'src/pages/**',
+        // CLI tools tested via integration tests
+        'tools/**',
       ],
       thresholds: {
         autoUpdate: false,
         global: {
-          branches: 80,
+          branches: 85,
           functions: 75,
-          lines: 55,
-          statements: 55,
+          lines: 80,
+          statements: 80,
         },
       },
     },

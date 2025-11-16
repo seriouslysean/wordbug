@@ -376,9 +376,16 @@ npx astro check       # Astro-specific type checking
 ### Coverage Thresholds
 
 Tests include coverage by default with enforced thresholds:
-- **Lines**: 55% (current: ~57%)
-- **Functions**: 75% (current: ~77%)
-- **Branches**: 80% (current: ~85%)
+- **Lines**: 80% (current: ~84%)
+- **Functions**: 75% (current: ~80%)
+- **Branches**: 85% (current: ~89%)
+- **Statements**: 80% (current: ~84%)
+
+**What's excluded from coverage:**
+- Build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`) - validated by build
+- API routes (`src/pages/**`) - validated by build
+- CLI tools (`tools/**`) - tested via integration tests
+- Content config (`src/content.config.ts`) - build-time only
 
 Coverage reports: `coverage/index.html`
 
