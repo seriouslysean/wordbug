@@ -21,6 +21,5 @@ Simplified and hardened testing workflow:
 npm test              # Tests with coverage
 npm run lint          # Linting
 npm run typecheck     # Type checking
-npx astro check       # Astro validation
 npm run build         # Build verification
 ```

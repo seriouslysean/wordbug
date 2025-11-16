@@ -31,8 +31,5 @@ jobs:
       - name: Test with coverage
         run: npm test
 
-      - name: Astro check
-        run: npx astro check
-
       - name: Build
         run: npm run build

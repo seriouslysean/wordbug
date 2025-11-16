@@ -30,8 +30,7 @@
     "test:watch": "vitest",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
-    "typecheck": "tsc --noEmit --incremental --skipLibCheck",
-    "typecheck:full": "astro check",
+    "typecheck": "astro check",
     "prepare": "husky"
   },
   "lint-staged": {

@@ -365,8 +365,7 @@ tests/
 npm test              # Run all tests with coverage (~10s)
 npm run test:watch    # Watch mode for development
 npm run lint          # oxlint code style checking
-npm run typecheck     # TypeScript validation
-npx astro check       # Astro-specific type checking
+npm run typecheck     # Type checking (uses Astro check)
 ```
 
 **Pre-commit hooks automatically:**
