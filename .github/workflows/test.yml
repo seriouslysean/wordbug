@@ -31,5 +31,12 @@ jobs:
       - name: Test with coverage
         run: npm test
 
+      - name: Setup environment variables
+        uses: ./.github/actions/setup-env
+        with:
+          vars-json: ${{ toJSON(vars) }}
+          secrets-json: ${{ toJSON(secrets) }}
+          github-sha: ${{ github.sha }}
+
       - name: Build
         run: npm run build
