@@ -120,6 +120,8 @@ export const getConsonantCount = (word: string): number => {
  * Check if word starts with a vowel
  * @param word - Word to check
  * @returns True if word starts with a vowel (case-insensitive)
+ * @param word - Word to check
+ * @returns True if word starts with a vowel (case-insensitive)
  */
 export const startsWithVowel = (word: string): boolean => {
   return TEXT_PATTERNS.STARTS_WITH_VOWEL.test(word);
