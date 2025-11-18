@@ -131,6 +131,8 @@ export const startsWithVowel = (word: string): boolean => {
  * Check if word ends with a vowel
  * @param word - Word to check
  * @returns True if word ends with a vowel (case-insensitive)
+ * @param word - Word to check
+ * @returns True if word ends with a vowel (case-insensitive)
  */
 export const endsWithVowel = (word: string): boolean => {
   return TEXT_PATTERNS.ENDS_WITH_VOWEL.test(word);
