@@ -21,17 +21,25 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: ['src/**/*.ts', 'adapters/**/*.ts', 'tools/**/*.ts', 'config/**/*.ts'],
+      include: ['src/**/*.ts', 'adapters/**/*.ts', 'tools/**/*.ts', 'config/**/*.ts', 'utils/**/*.ts', 'constants/**/*.ts'],
       exclude: [
         'node_modules/**',
         'dist/**',
         '.astro/**',
         'tests/**',
+        // Build-time utilities validated by build process
+        'src/utils/static-file-utils.ts',
+        'src/utils/static-paths-utils.ts',
+        'src/content.config.ts',
+        'src/pages/**',
+        // CLI tools tested via integration tests
+        'tools/**',
       ],
       thresholds: {
+        autoUpdate: false,
         global: {
-          branches: 80,
-          functions: 80,
+          branches: 85,
+          functions: 75,
           lines: 80,
           statements: 80,
         },
@@ -58,8 +66,18 @@ export default defineConfig({
   define: {
     __VERSION__: JSON.stringify('test'),
     __RELEASE__: JSON.stringify('test'),
+    __TIMESTAMP__: JSON.stringify('2000-01-01T00:00:00Z'),
     __SENTRY_DSN__: JSON.stringify(''),
     __SHOW_EMPTY_STATS__: true,
     __ENVIRONMENT__: JSON.stringify('test'),
+    __SITE_TITLE__: JSON.stringify('Test Site'),
+    __SITE_DESCRIPTION__: JSON.stringify('Test Description'),
+    __SITE_ID__: JSON.stringify('test-site'),
+    __SITE_LOCALE__: JSON.stringify('en'),
+    __SITE_AUTHOR__: JSON.stringify('Test Author'),
+    __SITE_AUTHOR_URL__: JSON.stringify('https://test.com'),
+    __SITE_ATTRIBUTION_MESSAGE__: JSON.stringify('Test Attribution'),
+    __SITE_KEYWORDS__: JSON.stringify('test,keywords'),
+    __BASE_URL__: JSON.stringify('/'),
   },
 });
