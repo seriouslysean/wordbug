@@ -1,0 +1,70 @@
+{
+    "word": "isosceles",
+    "date": "20251202",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "I5280300-1",
+            "partOfSpeech": "adjective",
+            "text": "Having at least two equal sides.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/isosceles",
+            "examples": [
+                "an isosceles triangle."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Having two legs or sides equal: as, an <em>isosceles</em> triangle.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/isosceles",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A genus of cerambycid longicorn beetles.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/isosceles",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Having two legs or sides that are equal; -- said of a triangle.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/isosceles",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Having two sides of equal length, used especially of an <xref>isosceles triangle</xref> or <xref>isosceles trapezoid</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/isosceles",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "(of a triangle) having two sides of equal length",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/isosceles",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
