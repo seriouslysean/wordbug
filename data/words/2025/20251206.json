@@ -1,0 +1,121 @@
+{
+    "word": "sympathetic",
+    "date": "20251206",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "S5988900-1",
+            "partOfSpeech": "adjective",
+            "text": "Of, expressing, feeling, or resulting from sympathy.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [
+                "a sympathetic glance."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5988900-2",
+            "partOfSpeech": "adjective",
+            "text": "Favorably inclined.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [
+                "not at all sympathetic to her proposal."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5988900-3",
+            "partOfSpeech": "adjective",
+            "text": "Agreeably suited to one's disposition or mood; congenial.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [
+                "sympathetic surroundings."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5988900-4",
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or acting on the sympathetic nervous system.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [
+                "a sympathetic neuron; sympathetic stimulation."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5988900-5",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5988900-6",
+            "partOfSpeech": "adjective",
+            "text": "Relating to or being vibrations, especially musical tones, produced in one body by energy from a nearby vibrating body and having the same frequency as the vibration of the nearby body.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "S5988900-7",
+            "partOfSpeech": "adjective",
+            "text": "Emitting such vibrations.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [
+                "sympathetic strings."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Pertaining to, expressive of, proceeding from, or exhibiting sympathy, in any sense; attended with sympathy.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Having sympathy or common feeling with another; susceptible of being affected by feelings like those of another, or of altruistic feelings which arise as a consequence of what another feels.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Harmonious; concordant; congenial.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
