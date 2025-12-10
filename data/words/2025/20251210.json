@@ -1,0 +1,18 @@
+{
+    "word": "eau",
+    "date": "20251210",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "Water: a word designating various spirituous waters, particularly perfumes and cordials; it also enters into several French heraldic phrases.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/eau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
