@@ -1,9 +1,6 @@
 ---
-
-import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types';
-import { STRUCTURED_DATA_TYPE, type StructuredDataType, getBreadcrumbSchema } from '~astro-utils/schema-utils.ts';
-import { seoConfig } from '~astro-utils/seo-utils.ts';
-import { getFullUrl } from '~astro-utils/url-utils';
+import type { WordSchemaData } from '~types';
+import { STRUCTURED_DATA_TYPE, type StructuredDataType, getBreadcrumbSchema, getWebsiteSchemaData, getWordSchemaData } from '~astro-utils/schema-utils.ts';
 import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
 
 interface Props {
@@ -13,65 +10,34 @@ interface Props {
 
 const { word, structuredDataType } = Astro.props;
 
-const websiteSchema: WebSiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: seoConfig.siteName,
-  description: seoConfig.defaultDescription,
-  url: getFullUrl('/'),
-  author: {
-    '@type': 'Person',
-    name: seoConfig.author,
-  },
-  audience: {
-    '@type': 'EducationalAudience',
-    educationalRole: 'student',
-  },
-};
+// Use utility function for website schema
+const websiteSchema = getWebsiteSchemaData();
 
-const generateWordSchema = (word: WordSchemaData): DefinedTermSchema => {
-  const wordSchema: DefinedTermSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'DefinedTerm',
-    name: word.word,
-    description: word.definition || `Definition of ${word.word}`,
-    inDefinedTermSet: {
-      '@type': 'DefinedTermSet',
-      name: seoConfig.siteName,
-    },
-  };
+const schemas: any[] = [];
 
-  if (word.meta?.sourceUrl) {
-    wordSchema.url = word.meta.sourceUrl;
+// Generate word schema if applicable
+if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
+  const wordSchema = getWordSchemaData(word);
+  if (wordSchema) {
+    schemas.push(wordSchema);
   }
-
-  return wordSchema;
-};
-
-const generateWordListSchema = (): CollectionPageSchema => {
-  return {
+} else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
+  // Collection schema for word list pages
+  // Note: itemCount could be enhanced by passing actual count from page
+  schemas.push({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Word Collection',
     description: 'Educational vocabulary collection',
     mainEntity: {
       '@type': 'ItemList',
-      // Can be enhanced to get actual count
       numberOfItems: 0,
     },
     audience: {
       '@type': 'EducationalAudience',
       educationalRole: 'student',
     },
-  };
-};
-
-const schemas: (DefinedTermSchema | CollectionPageSchema | any)[] = [];
-
-if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
-  schemas.push(generateWordSchema(word));
-} else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
-  schemas.push(generateWordListSchema());
+  });
 }
 
 // Add breadcrumb schema for non-home pages
