@@ -1,0 +1,69 @@
+{
+    "word": "silicon",
+    "date": "20251219",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "S5438200-1",
+            "partOfSpeech": "noun",
+            "text": "A nonmetallic element occurring extensively in the earth's crust in silica and silicates, having both a brown amorphous and a gray lustrous crystalline allotrope, and used doped or in combination with other materials in glass, semiconducting devices, concrete, brick, refractories, pottery, and silicones. Atomic number 14; atomic weight 28.086; melting point 1,414°C; boiling point 3,265°C; specific gravity 2.33 (25°C); valence 2, 4. <i>cross-reference</i>: <strong> Periodic Table</strong>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/silicon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Chemical symbol, Si; atomic weight, 28. 19. A non-metallic element which is obtained in three allotropic forms—namely, amorphous, as a dull-brown powder soluble in alkali, which burns when ignited; graphitic, in crystalline leaves having a strong metallic luster and lead-gray color, insoluble in alkali and non-combustible; and crystalline, in octahedral needles having a red luster, and hardness a little less than that of the diamond.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/silicon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Elementary silicon can now be prepared in large quantity by electrolysis, and in a fused condition. Like its oxid, in cooling from a state of fusion it passes through a plastic stage in which it can be molded into special forms or drawn into threads.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/silicon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A nonmetalic element analogous to carbon. It always occurs combined in nature, and is artificially obtained in the free state, usually as a dark brown amorphous powder, or as a dark crystalline substance with a meetallic luster. Its oxide is silica, or common quartz, and in this form, or as silicates, it is, next to oxygen, the most abundant element of the earth's crust. Silicon is characteristically the element of the mineral kingdom, as carbon is of the organic world. Symbol Si. Atomic weight 28. Called also <altname>silicium</altname>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/silicon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>nonmetallic</xref> <xref>element</xref> (symbol Si) with an <xref>atomic number</xref> of 14 and <xref>atomic weight</xref> of 28.0855.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/silicon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a tetravalent nonmetallic element; next to oxygen it is the most abundant element in the earth's crust; occurs in clay and feldspar and granite and quartz and sand; used as a semiconductor in transistors",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/silicon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
