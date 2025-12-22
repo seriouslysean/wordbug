@@ -1,6 +1,14 @@
 ---
 import type { WordSchemaData } from '~types';
-import { STRUCTURED_DATA_TYPE, type StructuredDataType, getBreadcrumbSchema, getWebsiteSchemaData, getWordSchemaData } from '~astro-utils/schema-utils.ts';
+import type { CollectionPageSchema, DefinedTermSchema } from '~types/schema';
+import {
+  STRUCTURED_DATA_TYPE,
+  type StructuredDataType,
+  getBreadcrumbSchema,
+  getCollectionSchemaData,
+  getWebsiteSchemaData,
+  getWordSchemaData
+} from '~astro-utils/schema-utils.ts';
 import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
 
 interface Props {
@@ -10,34 +18,29 @@ interface Props {
 
 const { word, structuredDataType } = Astro.props;
 
-// Use utility function for website schema
+// Use utility function for website schema (appears on every page)
 const websiteSchema = getWebsiteSchemaData();
 
-const schemas: any[] = [];
+// Type-safe array for additional schemas (word, collection, breadcrumb)
+type SchemaType = DefinedTermSchema | CollectionPageSchema | ReturnType<typeof getBreadcrumbSchema>;
+const schemas: SchemaType[] = [];
 
-// Generate word schema if applicable
+// Generate word schema for individual word pages
 if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
   const wordSchema = getWordSchemaData(word);
   if (wordSchema) {
     schemas.push(wordSchema);
   }
 } else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
-  // Collection schema for word list pages
-  // Note: itemCount could be enhanced by passing actual count from page
-  schemas.push({
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Word Collection',
-    description: 'Educational vocabulary collection',
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: 0,
-    },
-    audience: {
-      '@type': 'EducationalAudience',
-      educationalRole: 'student',
-    },
-  });
+  // Collection schema for word list pages using utility function
+  // Note: itemCount is 0 as we don't have access to the actual count in this component
+  // This could be enhanced by passing itemCount as a prop from parent components
+  const collectionSchema = getCollectionSchemaData(
+    'Word Collection',
+    'Educational vocabulary collection',
+    0
+  );
+  schemas.push(collectionSchema);
 }
 
 // Add breadcrumb schema for non-home pages
