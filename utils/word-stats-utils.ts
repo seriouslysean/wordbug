@@ -1,5 +1,6 @@
 import type { WordData } from '~types';
 import { areConsecutiveDays, dateToYYYYMMDD } from '~utils/date-utils';
+import { TEXT_PATTERNS, MILESTONES } from '~constants/text-patterns';
 import {
   isStartEndSame,
   hasDoubleLetters,
@@ -9,8 +10,7 @@ import {
   isAllVowels,
   isAllConsonants,
   isPalindrome,
-} from '~utils/text-utils';
-import { MILESTONES } from '~constants/text-patterns';
+} from '~utils/text-pattern-utils';
 
 /**
  * Analyzes words for various letter patterns
@@ -26,7 +26,7 @@ export const getLetterPatternStats = (words: WordData[]) => {
 
   for (const wordObj of words) {
     const word = wordObj.word;
-    
+
     if (isPalindrome(word)) {
       patterns.palindromes.push(wordObj);
     }
@@ -92,14 +92,14 @@ export const getLetterStats = (words: WordData[]) => {
   for (const wordObj of words) {
     const word = wordObj.word.toLowerCase();
     for (const letter of word) {
-      if (/^[a-z]$/i.test(letter)) {
+      if (TEXT_PATTERNS.LETTER_ONLY.test(letter)) {
         letterFrequency[letter] = (letterFrequency[letter] || 0) + 1;
       }
     }
   }
 
   const sortedLetters = Object.entries(letterFrequency)
-    .filter(([letter]) => /^[a-z]$/i.test(letter))
+    .filter(([letter]) => TEXT_PATTERNS.LETTER_ONLY.test(letter))
     .sort(([, a], [, b]) => b - a);
 
   const [mostCommonEntry] = sortedLetters;
@@ -114,7 +114,7 @@ export const getLetterStats = (words: WordData[]) => {
 
 
 /**
- * Calculate chronological milestone words (1st, 25th, 50th, 75th, 100th, 200th, etc.) from sorted words
+ * Calculate chronological milestone words (1st, 100th, 200th, etc.) from sorted words
  */
 export function getChronologicalMilestones(words: WordData[]): Array<{milestone: number, word: WordData}> {
   if (words.length === 0) {
@@ -148,7 +148,7 @@ export function getCurrentStreakWords(words: WordData[]): WordData[] {
 
   const mostRecentWord = sortedWords[0];
   const isActive = !!mostRecentWord && (mostRecentWord.date === todayString || mostRecentWord.date === yesterdayString);
-  
+
   if (!isActive || !mostRecentWord) return [];
 
   const streakWords = [mostRecentWord];

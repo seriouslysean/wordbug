@@ -36,3 +36,32 @@ export const MILESTONES = {
   /** Century-based milestone interval (100, 200, 300, etc.) */
   CENTURY: 100,
 } as const;
+
+/**
+ * Centralized regex patterns for consistent text analysis
+ */
+export const TEXT_PATTERNS = {
+  // Letter patterns
+  VOWELS: /[aeiou]/gi,
+  CONSONANTS: /[bcdfghjklmnpqrstvwxyz]/gi,
+  ALL_VOWELS: /^[aeiou]+$/i,
+  ALL_CONSONANTS: /^[^aeiou]+$/i,
+  LETTER_ONLY: /^[a-z]$/i,
+
+  // Repetition patterns
+  DOUBLE_LETTERS: /(.)\1/,
+  TRIPLE_LETTERS: /(.)\1{2,}/,
+
+  // Word structure
+  STARTS_WITH_VOWEL: /^[aeiou]/i,
+  ENDS_WITH_VOWEL: /[aeiou]$/i,
+} as const;
+
+export type TextPattern = keyof typeof TEXT_PATTERNS;
+
+/**
+ * Test a word against a specific pattern
+ */
+export const matchesPattern = (word: string, pattern: TextPattern): boolean => {
+  return TEXT_PATTERNS[pattern].test(word);
+};

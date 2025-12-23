@@ -1,80 +1,43 @@
 ---
-
-import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types';
-import { STRUCTURED_DATA_TYPE, type StructuredDataType, getBreadcrumbSchema } from '~astro-utils/schema-utils.ts';
+import type { CollectionPageSchema, DefinedTermSchema, WordSchemaData } from '~types';
+import {
+  STRUCTURED_DATA_TYPE,
+  type StructuredDataType,
+  getBreadcrumbSchema,
+  getCollectionSchemaData,
+  getWebsiteSchemaData,
+  getWordSchemaData
+} from '~astro-utils/schema-utils.ts';
 import { seoConfig } from '~astro-utils/seo-utils.ts';
-import { getFullUrl } from '~astro-utils/url-utils';
 import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
 
 interface Props {
   word?: WordSchemaData;
   structuredDataType?: StructuredDataType;
+  itemCount?: number;
 }
 
-const { word, structuredDataType } = Astro.props;
+const { word, structuredDataType, itemCount } = Astro.props;
 
-const websiteSchema: WebSiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: seoConfig.siteName,
-  description: seoConfig.defaultDescription,
-  url: getFullUrl('/'),
-  author: {
-    '@type': 'Person',
-    name: seoConfig.author,
-  },
-  audience: {
-    '@type': 'EducationalAudience',
-    educationalRole: 'student',
-  },
-};
+const websiteSchema = getWebsiteSchemaData();
 
-const generateWordSchema = (word: WordSchemaData): DefinedTermSchema => {
-  const wordSchema: DefinedTermSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'DefinedTerm',
-    name: word.word,
-    description: word.definition || `Definition of ${word.word}`,
-    inDefinedTermSet: {
-      '@type': 'DefinedTermSet',
-      name: seoConfig.siteName,
-    },
-  };
-
-  if (word.meta?.sourceUrl) {
-    wordSchema.url = word.meta.sourceUrl;
-  }
-
-  return wordSchema;
-};
-
-const generateWordListSchema = (): CollectionPageSchema => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Word Collection',
-    description: 'Educational vocabulary collection',
-    mainEntity: {
-      '@type': 'ItemList',
-      // Can be enhanced to get actual count
-      numberOfItems: 0,
-    },
-    audience: {
-      '@type': 'EducationalAudience',
-      educationalRole: 'student',
-    },
-  };
-};
-
-const schemas: (DefinedTermSchema | CollectionPageSchema | any)[] = [];
+type SchemaType = DefinedTermSchema | CollectionPageSchema | ReturnType<typeof getBreadcrumbSchema>;
+const schemas: SchemaType[] = [];
 
 if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
-  schemas.push(generateWordSchema(word));
+  const wordSchema = getWordSchemaData(word);
+  if (wordSchema) {
+    schemas.push(wordSchema);
+  }
 } else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
-  schemas.push(generateWordListSchema());
+  const collectionSchema = getCollectionSchemaData(
+    seoConfig.siteName,
+    seoConfig.defaultDescription,
+    itemCount ?? 0
+  );
+  schemas.push(collectionSchema);
 }
 
-// Add breadcrumb schema for non-home pages
 const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, import.meta.env.BASE_PATH);
 const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs);
 if (breadcrumbSchema) {

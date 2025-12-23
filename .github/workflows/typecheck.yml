@@ -21,4 +21,4 @@ jobs:
         run: npm install
 
       - name: Run type checking
-        run: npm run typecheck:full
+        run: npm run typecheck

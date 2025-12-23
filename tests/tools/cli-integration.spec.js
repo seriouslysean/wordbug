@@ -41,12 +41,11 @@ describe('CLI Tools: Import & Execution', () => {
     ];
 
     try {
-      for (const toolFile of toolFiles) {
+      // Import all tools in parallel for faster execution
+      const importPromises = toolFiles.map(async (toolFile) => {
         const toolPath = path.join(TOOLS_DIR, toolFile);
 
-        // Try to load the module - will fail with astro: protocol error if broken
         try {
-          // Use dynamic import to actually load the module
           await import(toolPath);
         } catch (error) {
           // Check for the specific error that broke tools
@@ -62,8 +61,12 @@ describe('CLI Tools: Import & Execution', () => {
           if (error.code === 'ERR_MODULE_NOT_FOUND') {
             throw error;
           }
+          // Other errors are expected (tools exit, env validation, etc.) - ignore them
         }
-      }
+      });
+
+      // Wait for all imports to complete
+      await Promise.all(importPromises);
     } finally {
       // Restore original process.exit
       mockExit.mockRestore();

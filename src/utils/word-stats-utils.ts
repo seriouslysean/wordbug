@@ -7,7 +7,8 @@ import type {
   WordStreakStatsResult,
   WordAntiStreakStatsResult,
 } from '~types';
-import { dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
+import { areConsecutiveDays, dateToYYYYMMDD, YYYYMMDDToDate } from '~utils/date-utils';
+import { TEXT_PATTERNS } from '~constants/text-patterns';
 import { logger } from '~astro-utils/logger';
 import {
   countSyllables,
@@ -78,7 +79,7 @@ export const getLetterStats = (letterFrequency: Record<string, number>): WordLet
     return [];
   }
   return Object.entries(letterFrequency)
-    .filter(([letter]) => /^[a-z]$/i.test(letter))
+    .filter(([letter]) => TEXT_PATTERNS.LETTER_ONLY.test(letter))
     .sort(([, a], [, b]) => b - a);
 };
 
@@ -272,26 +273,8 @@ export const getLongestStreakWords = (words: WordData[]): WordData[] => {
   return longestStreak.reverse();
 };
 
-/**
- * Check if two dates are consecutive days.
- * @param {string} olderDate - Earlier date in YYYYMMDD format
- * @param {string} newerDate - Later date in YYYYMMDD format
- * @returns {boolean} True if the dates are exactly one day apart
- */
-const areConsecutiveDays = (olderDate: string, newerDate: string): boolean => {
-  const dOlder = YYYYMMDDToDate(olderDate);
-  const dNewer = YYYYMMDDToDate(newerDate);
-
-  if (!dOlder || !dNewer) {
-    logger.warn('Invalid date in areConsecutiveDays', { olderDate, newerDate });
-    return false;
-  }
-
-  const diffTime = dNewer.getTime() - dOlder.getTime();
-  const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
-
-  return diffDays === 1;
-};
+// Note: areConsecutiveDays is now imported from ~utils/date-utils
+// The logging version was removed to avoid duplication
 
 /**
  * Finds words with the most and least syllables.

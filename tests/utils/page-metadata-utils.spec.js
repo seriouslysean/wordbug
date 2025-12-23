@@ -1,4 +1,5 @@
 import {
+  afterAll,
   describe,
   expect,
   it,
@@ -17,7 +18,7 @@ vi.mock('~utils/i18n-utils', () => ({
       'words.part_of_speech_words_description': `Words that function as ${params.partOfSpeech || 'unknown'}s in sentences.`,
       'words.by_length_heading': 'Mock words.by_length_heading',
       'words.by_length_description': 'Mock words.by_length_description',
-      'stats.heading': 'Mock Stats Heading', 
+      'stats.heading': 'Mock Stats Heading',
       'stats.description': 'Mock stats description',
       'stats.subheading': 'Mock Stats Subheading',
       'home.heading': 'Mock Home Heading',
@@ -33,6 +34,12 @@ vi.mock('~utils/i18n-utils', () => ({
 }));
 
 import { getAllPageMetadata, getPageMetadata } from '~utils/page-metadata-utils';
+
+// Clean up mock after this test file to prevent leakage to other tests
+afterAll(() => {
+  vi.doUnmock('~utils/i18n-utils');
+  vi.resetModules();
+});
 
 // Test data
 const mockWords = [

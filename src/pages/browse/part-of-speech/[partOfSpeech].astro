@@ -1,10 +1,5 @@
 ---
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
-import WordSection from '~components/WordSection.astro';
-import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
+import BrowsePageTemplate from '~components/BrowsePageTemplate.astro';
 import { getWordsFromCollection, groupWordsByPartOfSpeech } from '~astro-utils/word-data-utils';
 
 export async function getStaticPaths() {
@@ -18,10 +13,5 @@ export async function getStaticPaths() {
 }
 
 const { words } = Astro.props;
-const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
-<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
-  <Heading level={1} text={title} secondaryText={secondaryText} />
-  <DescriptionText text={description} />
-  <WordSection words={words} columns={2} />
-</Layout>
+<BrowsePageTemplate words={words} columns={2} />

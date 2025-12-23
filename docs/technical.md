@@ -362,13 +362,37 @@ tests/
 
 ### Running Tests
 ```bash
-npm test                              # Run all tests (unit + architecture + integration)
-npm test tests/architecture/          # Run only architecture tests
-npm test tests/tools/                 # Run only CLI integration tests
-npm run test:watch                    # Watch mode
-npm run typecheck                     # TypeScript validation
-npm run lint                          # oxlint checking
+npm test              # Run all tests with coverage (~10s)
+npm run test:watch    # Watch mode for development
+npm run lint          # oxlint code style checking
+npm run typecheck     # Type checking (uses Astro check)
 ```
+
+**Pre-commit hooks automatically:**
+- Run linting with auto-fix on staged files
+- Run tests for changed files only (fast, no coverage)
+
+### Coverage Thresholds
+
+Tests include coverage by default with enforced thresholds:
+- **Lines**: 80% (current: ~84%)
+- **Functions**: 75% (current: ~80%)
+- **Branches**: 85% (current: ~89%)
+- **Statements**: 80% (current: ~84%)
+
+**What's excluded from coverage:**
+- Build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`) - validated by build
+- API routes (`src/pages/**`) - validated by build
+- CLI tools (`tools/**`) - tested via integration tests
+- Content config (`src/content.config.ts`) - build-time only
+
+Coverage reports: `coverage/index.html`
+
+### Performance
+
+- **Total test time**: ~10 seconds
+- **404 tests** across unit, architecture, and integration layers
+- Pre-commit only tests changed files for fast feedback
 
 ### Regression Prevention
 
