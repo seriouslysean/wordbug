@@ -44,8 +44,8 @@ export function getWebsiteSchemaData(): WebSiteSchema {
  */
 export function getWordSchemaData(wordData: WordSchemaData): DefinedTermSchema | null {
   if (!wordData || !wordData.word) {
-return null;
-}
+    return null;
+  }
 
   const schemaData: DefinedTermSchema = {
     '@context': 'https://schema.org',
@@ -58,23 +58,11 @@ return null;
     },
   };
 
-  // Add optional fields if available
-  // Note: These are not standard DefinedTerm properties, but we're including them
-  // in the generated JSON-LD output for educational context
   if (wordData.meta?.sourceUrl) {
     schemaData.url = wordData.meta.sourceUrl;
   }
 
-  // Add non-standard properties directly to the output object
-  // This won't affect the TypeScript interface but will be in the JSON-LD output
-  const outputSchema = {
-    ...schemaData,
-    ...(wordData.date && { datePublished: formatDateToISO(wordData.date) }),
-    learningResourceType: 'vocabulary definition',
-    educationalUse: 'vocabulary building',
-  };
-
-  return outputSchema as DefinedTermSchema;
+  return schemaData;
 }
 
 /**
@@ -121,19 +109,4 @@ export function getBreadcrumbSchema(breadcrumbs: Array<{ label: string; href: st
       item: getFullUrl(item.href)
     }))
   };
-}
-
-/**
- * Convert YYYYMMDD date to ISO format
- */
-function formatDateToISO(dateStr: string): string {
-  if (!dateStr || dateStr.length !== 8) {
-    return new Date().toISOString().split('T')[0];
-  }
-
-  const year = dateStr.substring(0, 4);
-  const month = dateStr.substring(4, 6);
-  const day = dateStr.substring(6, 8);
-
-  return `${year}-${month}-${day}`;
 }

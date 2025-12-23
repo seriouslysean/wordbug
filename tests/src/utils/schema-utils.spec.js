@@ -110,62 +110,10 @@ describe('schema-utils', () => {
       expect(schema.url).toBe('https://example.com/word/test');
     });
 
-    it('includes date published when date provided', () => {
-      const wordData = {
-        word: 'test',
-        definition: 'Test definition',
-        date: '20240115',
-      };
-
-      const schema = getWordSchemaData(wordData);
-
-      expect(schema.datePublished).toBe('2024-01-15');
-    });
-
-    it('includes educational properties', () => {
-      const wordData = {
-        word: 'test',
-        definition: 'Test definition',
-      };
-
-      const schema = getWordSchemaData(wordData);
-
-      expect(schema.learningResourceType).toBe('vocabulary definition');
-      expect(schema.educationalUse).toBe('vocabulary building');
-    });
-
     it('returns null for invalid word data', () => {
       expect(getWordSchemaData(null)).toBeNull();
       expect(getWordSchemaData({})).toBeNull();
       expect(getWordSchemaData({ definition: 'No word' })).toBeNull();
-    });
-
-    it('handles date with invalid format gracefully', () => {
-      const wordData = {
-        word: 'test',
-        definition: 'Test definition',
-        date: 'invalid',
-      };
-
-      const schema = getWordSchemaData(wordData);
-
-      expect(schema.datePublished).toBeDefined();
-      expect(schema.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-    });
-
-    it('handles empty date string with fallback', () => {
-      const wordData = {
-        word: 'test',
-        definition: 'Test definition',
-        date: '',
-      };
-
-      const schema = getWordSchemaData(wordData);
-
-      // Empty date should still generate a fallback date
-      if (schema.datePublished) {
-        expect(schema.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      }
     });
   });
 

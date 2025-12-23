@@ -9,6 +9,7 @@ import {
   getWebsiteSchemaData,
   getWordSchemaData
 } from '~astro-utils/schema-utils.ts';
+import { seoConfig } from '~astro-utils/seo-utils.ts';
 import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
 
 interface Props {
@@ -31,8 +32,8 @@ if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
   }
 } else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
   const collectionSchema = getCollectionSchemaData(
-    'Word Collection',
-    'Educational vocabulary collection',
+    seoConfig.siteName,
+    seoConfig.defaultDescription,
     itemCount ?? 0
   );
   schemas.push(collectionSchema);
