@@ -15,7 +15,7 @@ import { getFullUrl,getUrl } from '~astro-utils/url-utils';
 import { extractWordDefinition,getWordsFromCollection } from '~astro-utils/word-data-utils';
 import { t } from '~utils/i18n-utils';
 
-const { title, word, description, structuredDataType, noindex, nofollow } = Astro.props;
+const { title, word, description, structuredDataType, noindex, nofollow, itemCount } = Astro.props;
 
 const currentUrl = getFullUrl(Astro.url.pathname);
 const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
@@ -134,7 +134,7 @@ const wordSchemaData = word ? (() => {
 		<meta name="twitter:description" content={metaDescription} />
 		<meta name="twitter:image" content={socialImageUrl} />
 
-		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} />
+		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} />
 
 		{__GA_ENABLED__ && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}`}></script>}
 		{__GA_ENABLED__ && (
@@ -146,7 +146,6 @@ const wordSchemaData = word ? (() => {
 				gtag('js', new Date());
 				gtag('config', measurementId, {
 					client_storage: 'none',
-					anonymize_ip: true,
 					allow_google_signals: false,
 					allow_ad_personalization_signals: false,
 });
