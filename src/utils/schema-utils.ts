@@ -51,7 +51,7 @@ return null;
     '@context': 'https://schema.org',
     '@type': 'DefinedTerm',
     name: wordData.word,
-    description: wordData.definition || 'Vocabulary word definition',
+    description: wordData.definition || `Definition of ${wordData.word}`,
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       name: seoConfig.siteName,

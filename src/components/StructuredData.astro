@@ -14,36 +14,30 @@ import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
 interface Props {
   word?: WordSchemaData;
   structuredDataType?: StructuredDataType;
+  itemCount?: number;
 }
 
-const { word, structuredDataType } = Astro.props;
+const { word, structuredDataType, itemCount } = Astro.props;
 
-// Use utility function for website schema (appears on every page)
 const websiteSchema = getWebsiteSchemaData();
 
-// Type-safe array for additional schemas (word, collection, breadcrumb)
 type SchemaType = DefinedTermSchema | CollectionPageSchema | ReturnType<typeof getBreadcrumbSchema>;
 const schemas: SchemaType[] = [];
 
-// Generate word schema for individual word pages
 if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
   const wordSchema = getWordSchemaData(word);
   if (wordSchema) {
     schemas.push(wordSchema);
   }
 } else if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_LIST) {
-  // Collection schema for word list pages using utility function
-  // Note: itemCount is 0 as we don't have access to the actual count in this component
-  // This could be enhanced by passing itemCount as a prop from parent components
   const collectionSchema = getCollectionSchemaData(
     'Word Collection',
     'Educational vocabulary collection',
-    0
+    itemCount ?? 0
   );
   schemas.push(collectionSchema);
 }
 
-// Add breadcrumb schema for non-home pages
 const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, import.meta.env.BASE_PATH);
 const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs);
 if (breadcrumbSchema) {

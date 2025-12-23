@@ -93,7 +93,7 @@ describe('schema-utils', () => {
 
       const schema = getWordSchemaData(wordData);
 
-      expect(schema.description).toBe('Vocabulary word definition');
+      expect(schema.description).toBe('Definition of test');
     });
 
     it('includes source URL when provided in meta', () => {
