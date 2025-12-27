@@ -1,0 +1,82 @@
+{
+    "word": "pedantic",
+    "date": "20251227",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5154700-1",
+            "partOfSpeech": "adjective",
+            "text": "Characterized by a narrow, often ostentatious concern for academic knowledge and formal rules.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pedantic",
+            "examples": [
+                "a pedantic attention to details."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Of, pertaining to, or characteristic of a pedant or pedantry; overrating the importance of mere learning; also, making an undue or inappropriate display of learning; of language, style, etc., exhibiting pedantry; absurdly learned: as, a <em>pedantic</em> air.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pedantic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Of or pertaining to a pedant; characteristic of, or resembling, a pedant; ostentatious of learning",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/pedantic",
+            "examples": [
+                "a <ex>pedantic</ex> writer; a <ex>pedantic</ex> description; a <ex>pedantical</ex> affectation."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Like a <xref>pedant</xref>, overly concerned with <xref>formal</xref> rules and <xref>trivial</xref> points of learning.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/pedantic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Being <xref>showy</xref> of one’s <xref>knowledge</xref>, often in a <xref>boring</xref> manner.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/pedantic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Being <xref>finicky</xref> or <xref>fastidious</xref>, especially with <xref>language</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/pedantic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "marked by a narrow focus on or display of learning especially its trivial aspects",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/pedantic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
