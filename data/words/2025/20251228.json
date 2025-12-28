@@ -1,0 +1,78 @@
+{
+    "word": "petrification",
+    "date": "20251228",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "Same as <internalXref urlencoded=\"petrifaction\">petrifaction</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/petrification",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Obduracy; callousness.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/petrification",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "See <xref urlencoded=\"petrifaction\">petrifaction</xref>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/petrification",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Fig.: Obduracy; callousness.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/petrification",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "the process of replacing the <xref>organic</xref> <xref>residues</xref> of <xref>plants</xref> (and <xref>animals</xref>) with <xref>insoluble</xref> <xref>salts</xref>, the original shape and <xref>topography</xref> being retained",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/petrification",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>obduracy</xref>; <xref>callousness</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/petrification",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "the process of turning some plant material into stone by infiltration with water carrying mineral particles without changing the original shape",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/petrification",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
