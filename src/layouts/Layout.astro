@@ -137,22 +137,21 @@ const wordSchemaData = word ? (() => {
 		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} />
 
 		{__GA_ENABLED__ && (
-			<script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}`}></script>
-		)}
-		{__GA_ENABLED__ && (
-			<script is:inline define:vars={{ measurementId: __GA_MEASUREMENT_ID__ }}>
-				window.dataLayer = window.dataLayer || [];
-				window.gtag = function(...args){
-					dataLayer.push(args);
-				}
-				window.gtag('js', new Date());
-				window.gtag('config', measurementId, {
-					send_page_view: true,
-					cookie_flags: 'SameSite=None;Secure',
-					allow_google_signals: false,
-					allow_ad_personalization_signals: false,
-				});
-</script>
+			<Fragment set:html={`
+				<!-- Google tag (gtag.js) -->
+				<script async src="https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}"></script>
+				<script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', '${__GA_MEASUREMENT_ID__}', {
+						send_page_view: true,
+						cookie_flags: 'SameSite=None;Secure',
+						allow_google_signals: false,
+						allow_ad_personalization_signals: false
+					});
+				</script>
+			`} />
 		)}
 
 		<style set:html={`:root { ${colorVariables} }`}></style>
