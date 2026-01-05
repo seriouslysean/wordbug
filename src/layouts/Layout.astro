@@ -137,7 +137,7 @@ const wordSchemaData = word ? (() => {
 		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} />
 
 		{__GA_ENABLED__ && (
-			<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}`}></script>
+			<script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}`}></script>
 		)}
 		{__GA_ENABLED__ && (
 			<script is:inline define:vars={{ measurementId: __GA_MEASUREMENT_ID__ }}>
