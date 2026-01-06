@@ -48,8 +48,8 @@ async function generateSingleImage(word: string): Promise<boolean> {
       return false;
     }
 
-    await generateShareImage(word, wordData.date);
-    console.log('Generated image for word', { word, date: wordData.date });
+    await generateShareImage(wordData.word, wordData.date);
+    console.log('Generated image for word', { word: wordData.word, date: wordData.date });
     return true;
   } catch (error) {
     console.error('Failed to generate image for word', { word, error: (error as Error).message });
