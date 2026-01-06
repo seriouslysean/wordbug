@@ -118,6 +118,12 @@ When users ask questions:
 2. Reference specific documentation sections in your answer
 3. Only provide additional details not covered in docs
 
+### What NOT to Commit
+- **Planning Documents**: Analysis documents, RFC-style planning files, investigation notes
+- **Temporary Work Products**: Files created during exploration that aren't part of the codebase
+- **Use Rule**: Planning documents are useful while working, but DELETE them before committing
+- **Commit Only**: Code changes, tests, permanent documentation updates
+
 ## Task Tracking
 
 ### Current Focus Document

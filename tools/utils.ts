@@ -226,7 +226,7 @@ export function createWordSvg(word: string, date: string): string {
   const formattedDate = formatDate(date);
 
   // Get path data for all text elements
-  const mainWord = getTextPath(word.toLowerCase(), FONT_SIZE, { isExtraBold: true, maxWidth: MAX_WIDTH });
+  const mainWord = getTextPath(word, FONT_SIZE, { isExtraBold: true, maxWidth: MAX_WIDTH });
   const titleText = getTextPath(process.env.SITE_TITLE || '', TITLE_SIZE);
   const dateText = getTextPath(formattedDate, DATE_SIZE);
 
