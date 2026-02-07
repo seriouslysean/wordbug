@@ -130,7 +130,7 @@ async function fetchDeployedHash(): Promise<string | null> {
 });
       res.on('end', () => {
         const match = data.match(/^words_hash:\s*(\w+)/m);
-        if (match) {
+        if (match && match[1]) {
           resolve(match[1]);
         } else {
           console.warn('Could not find words_hash in health.txt');

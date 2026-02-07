@@ -149,15 +149,20 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   const recentWords = words.slice(-MAX_PAST_WORDS_DISPLAY);
 
   const curatorInfo = __HUMANS_WORD_CURATOR__ ? ` Curated by ${__HUMANS_WORD_CURATOR__}.` : '';
-  const lastUpdated = words.length > 0 ? formatDate(words[words.length - 1].date) : null;
+  const lastWord = words.length > 0 ? words[words.length - 1] : undefined;
+  const lastUpdated = lastWord ? formatDate(lastWord.date) : null;
 
   let recentWordSection = '';
   if (recentWords.length > 0) {
-    const [todayWord, ...previousWords] = [...recentWords].reverse();
-    recentWordSection = [
-      `- [${todayWord.word}](${baseUrl}${getWordUrl(todayWord.word)}): ${formatDate(todayWord.date)}`,
-      ...previousWords.map(word => `- [${word.word}](${baseUrl}${getWordUrl(word.word)}): ${formatDate(word.date)}`),
-    ].join('\n');
+    const reversed = [...recentWords].reverse();
+    const todayWord = reversed[0];
+    const previousWords = reversed.slice(1);
+    if (todayWord) {
+      recentWordSection = [
+        `- [${todayWord.word}](${baseUrl}${getWordUrl(todayWord.word)}): ${formatDate(todayWord.date)}`,
+        ...previousWords.map(word => `- [${word.word}](${baseUrl}${getWordUrl(word.word)}): ${formatDate(word.date)}`),
+      ].join('\n');
+    }
   }
 
   const allPages = getAllPageMetadata(words);

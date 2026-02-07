@@ -29,10 +29,11 @@ async function getRandomWord() {
     }
 
     const randomWord = wordListCache.data[Math.floor(Math.random() * wordListCache.data.length)];
-    const wordUrl = getUrl(getWordUrl(randomWord));
-    window.location.href = wordUrl;
+    // Fallback to words page if no word selected
+    window.location.href = randomWord
+      ? getUrl(getWordUrl(randomWord))
+      : getUrl(getWordsUrl());
   } catch {
-    // Fallback to words page on any error
     window.location.href = getUrl(getWordsUrl());
   }
 }

@@ -92,11 +92,12 @@ export const getWordFiles = (): WordFileInfo[] => {
  * @returns {void} Nothing
  */
 export function updateWordFile(filePath: string, data: WordnikResponse, date: string): void {
-  if (!data.length || !data[0].word) {
+  const firstResult = data[0];
+  if (!data.length || !firstResult?.word) {
     throw new Error('No word found in response data');
   }
 
-  const word = data[0].word.toLowerCase();
+  const word = firstResult.word.toLowerCase();
   const adapter = process.env.DICTIONARY_ADAPTER || 'wordnik';
   const wordData = { word, date, adapter, data };
 

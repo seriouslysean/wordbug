@@ -28,17 +28,17 @@ const streakItems = [
 ];
 
 // Anti-streak items
-const antiStreakItems = [];
+const antiStreakItems: Array<{ label: string; value: string }> = [];
 if (antiStreakStats.longestGap > 0) {
   antiStreakItems.push({
     label: t('stats.longest_gap'),
     value: t('stats.days', { count: antiStreakStats.longestGap }),
   });
   
-  if (antiStreakStats.gapStartWord && antiStreakStats.gapEndWord) {
+  if (antiStreakStats.gapStartWord && antiStreakStats.gapEndWord && antiStreakStats.gapStartDate && antiStreakStats.gapEndDate) {
     const startDate = formatDate(antiStreakStats.gapStartDate);
     const endDate = formatDate(antiStreakStats.gapEndDate);
-    
+
     antiStreakItems.push({
       label: t('stats.gap_period'),
       value: `${startDate} to ${endDate}`,

@@ -44,12 +44,8 @@ function migrateWordFile(filePath: string): boolean {
     }
 
     const updatedData: WordData = {
-      word: wordData.word,
-      date: wordData.date,
-      adapter: wordData.adapter,
+      ...wordData,
       preserveCase: preserveCaseValue,
-      data: wordData.data,
-      ...(wordData.rawData && { rawData: wordData.rawData }),
     };
 
     // Write back with same formatting (4-space indent)

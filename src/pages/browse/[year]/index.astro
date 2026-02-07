@@ -35,7 +35,7 @@ const monthGroups = groupWordsByMonth(year, words);
   <DescriptionText text={description} />
   {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
     <WordSection
-      title={getMonthNameFromDate(monthWords[0].date)}
+      title={monthWords[0] ? getMonthNameFromDate(monthWords[0].date) : monthSlug}
       href={getMonthUrl(year, monthSlug)}
       words={monthWords}
     />

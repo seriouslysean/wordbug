@@ -127,22 +127,36 @@ export const getLetterStats = (words: WordData[]) => {
  * Calculate chronological milestone words (1st, 100th, 200th, etc.) from sorted words
  */
 export function getChronologicalMilestones(words: WordData[]): Array<{milestone: number, word: WordData}> {
-  if (words.length === 0) {
+  const firstWord = words[0];
+  if (!firstWord) {
     return [];
   }
 
+  const earlyMilestones = MILESTONES.EARLY
+    .filter(m => words.length >= m)
+    .reduce<Array<{milestone: number, word: WordData}>>((acc, m) => {
+      const word = words[m - 1];
+      if (word) {
+        acc.push({ milestone: m, word });
+      }
+      return acc;
+    }, []);
+
+  const centuryMilestones = Array.from(
+    { length: Math.floor(words.length / MILESTONES.CENTURY) },
+    (_, idx) => (idx + 1) * MILESTONES.CENTURY,
+  ).reduce<Array<{milestone: number, word: WordData}>>((acc, milestone) => {
+    const word = words[milestone - 1];
+    if (word) {
+      acc.push({ milestone, word });
+    }
+    return acc;
+  }, []);
+
   return [
-    { milestone: MILESTONES.FIRST, word: words[0] },
-    ...MILESTONES.EARLY
-      .filter(m => words.length >= m)
-      .map(m => ({ milestone: m, word: words[m - 1] })),
-    ...Array.from(
-      { length: Math.floor(words.length / MILESTONES.CENTURY) },
-      (_, idx) => {
-        const milestone = (idx + 1) * MILESTONES.CENTURY;
-        return { milestone, word: words[milestone - 1] };
-      },
-    ),
+    { milestone: MILESTONES.FIRST, word: firstWord },
+    ...earlyMilestones,
+    ...centuryMilestones,
   ];
 }
 
@@ -180,6 +194,8 @@ export function getLongestStreakWords(words: WordData[]): WordData[] {
   if (words.length <= 1) return words;
 
   const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+  const firstWord = sortedWords[0];
+  if (!firstWord) return [];
 
   const { longestStreak } = sortedWords.slice(1).reduce(
     ({ longestStreak, currentStreak, previousWord }, word) => {
@@ -196,9 +212,9 @@ export function getLongestStreakWords(words: WordData[]): WordData[] {
       };
     },
     {
-      longestStreak: [sortedWords[0]],
-      currentStreak: [sortedWords[0]],
-      previousWord: sortedWords[0],
+      longestStreak: [firstWord],
+      currentStreak: [firstWord],
+      previousWord: firstWord,
     },
   );
 
@@ -257,7 +273,7 @@ export const getSyllableStats = (words: WordData[]): { mostSyllables: WordData |
     };
   }
 
-  return words.reduce((acc, word) => {
+  return words.reduce<{ mostSyllables: WordData | null; leastSyllables: WordData | null }>((acc, word) => {
     const syllables = countSyllables(word.word);
 
     if (!acc.mostSyllables || syllables > countSyllables(acc.mostSyllables.word)) {
@@ -270,8 +286,8 @@ export const getSyllableStats = (words: WordData[]): { mostSyllables: WordData |
 
     return acc;
   }, {
-    mostSyllables: words[0],
-    leastSyllables: words[0],
+    mostSyllables: null,
+    leastSyllables: null,
   });
 };
 
@@ -286,7 +302,7 @@ export const getLetterTypeStats = (words: WordData[]): { mostVowels: WordData | 
     };
   }
 
-  return words.reduce((acc, word) => {
+  return words.reduce<{ mostVowels: WordData | null; mostConsonants: WordData | null }>((acc, word) => {
     const vowelCount = getVowelCount(word.word);
     const consonantCount = getConsonantCount(word.word);
 
@@ -300,8 +316,8 @@ export const getLetterTypeStats = (words: WordData[]): { mostVowels: WordData | 
 
     return acc;
   }, {
-    mostVowels: words[0],
-    mostConsonants: words[0],
+    mostVowels: null,
+    mostConsonants: null,
   });
 };
 
@@ -385,7 +401,8 @@ export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult 
         continue;
       }
 
-      if (areConsecutiveDays(word.date, sortedWords[index - 1].date)) {
+      const previousWord = sortedWords[index - 1];
+      if (previousWord && areConsecutiveDays(word.date, previousWord.date)) {
         streakData.current++;
       } else {
         streakData.longest = Math.max(streakData.longest, streakData.current);
@@ -432,11 +449,15 @@ export const getAntiStreakStats = (words: WordData[]): WordAntiStreakStatsResult
   let gapEndDate: string | null = null;
 
   for (let i = 1; i < sortedWords.length; i++) {
-    const previousWord = sortedWords[i - 1];
-    const currentWord = sortedWords[i];
+    const prevWord = sortedWords[i - 1];
+    const currWord = sortedWords[i];
 
-    const previousDate = YYYYMMDDToDate(previousWord.date);
-    const currentDate = YYYYMMDDToDate(currentWord.date);
+    if (!prevWord || !currWord) {
+      continue;
+    }
+
+    const previousDate = YYYYMMDDToDate(prevWord.date);
+    const currentDate = YYYYMMDDToDate(currWord.date);
 
     if (!previousDate || !currentDate) {
       continue;
@@ -448,10 +469,10 @@ export const getAntiStreakStats = (words: WordData[]): WordAntiStreakStatsResult
 
     if (gapDays > 0 && gapDays > longestGap) {
       longestGap = gapDays;
-      gapStartWord = previousWord;
-      gapEndWord = currentWord;
-      gapStartDate = previousWord.date;
-      gapEndDate = currentWord.date;
+      gapStartWord = prevWord;
+      gapEndWord = currWord;
+      gapStartDate = prevWord.date;
+      gapEndDate = currWord.date;
     }
   }
 

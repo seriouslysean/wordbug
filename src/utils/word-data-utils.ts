@@ -185,7 +185,7 @@ export const getCurrentWord = (words: WordData[] = allWords): WordData | null =>
 
   const found = words.find(word => word.date <= dateString);
 
-  return found || words[words.length - 1];
+  return found ?? words[words.length - 1] ?? null;
 };
 
 /**

@@ -92,13 +92,7 @@ export const normalizePartOfSpeech = (partOfSpeech: string): string => {
   // Remove trailing punctuation and normalize case
   const normalized = partOfSpeech.toLowerCase().trim().replace(/[.,;!?]+$/, '');
 
-  // Check if this exact variant exists in our normalization map
-  if (normalized in PART_OF_SPEECH_NORMALIZATION) {
-    return PART_OF_SPEECH_NORMALIZATION[normalized];
-  }
-
-  // Return as-is if it's already a base type or an unknown type
-  return normalized;
+  return PART_OF_SPEECH_NORMALIZATION[normalized] ?? normalized;
 };
 
 /**
