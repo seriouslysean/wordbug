@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "2.9.5",
+  "version": "3.0.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
-    "astro": "^5.14.5",
+    "astro": "^5.17.1",
     "date-fns": "^4.1.0",
     "entities": "^6.0.1"
   },
