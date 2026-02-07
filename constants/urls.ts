@@ -3,7 +3,7 @@
  * Used by URL helpers, page metadata, and tests to ensure consistency.
  */
 
-import { slugify } from '~utils/text-utils';
+import { slugify } from '#utils/text-utils';
 
 // =====================================================
 // Base Paths - Top-level sections
@@ -57,41 +57,8 @@ export const ROUTES = {
   STAT: (stat: string) => `${BASE_PATHS.STATS}/${slugify(stat)}`,
 } as const;
 
-// =====================================================
-// Stats Page Slugs - Single source of truth
-// =====================================================
-
-export const STATS_SLUGS = {
-  // Letter patterns
-  SAME_START_END: 'same-start-end',
-  DOUBLE_LETTERS: 'double-letters', 
-  TRIPLE_LETTERS: 'triple-letters',
-  ALPHABETICAL_ORDER: 'alphabetical-order',
-  PALINDROMES: 'palindromes',
-  
-  // Word endings
-  WORDS_ENDING_ING: 'words-ending-ing',
-  WORDS_ENDING_ED: 'words-ending-ed',
-  WORDS_ENDING_LY: 'words-ending-ly',
-  WORDS_ENDING_NESS: 'words-ending-ness',
-  WORDS_ENDING_FUL: 'words-ending-ful',
-  WORDS_ENDING_LESS: 'words-ending-less',
-  
-  // Stats sections
-  WORD_FACTS: 'word-facts',
-  STREAKS: 'streaks', 
-  LETTER_PATTERNS: 'letter-patterns',
-  WORD_ENDINGS: 'word-endings',
-  
-  // Other stats
-  MILESTONE_WORDS: 'milestone-words',
-  CURRENT_STREAK: 'current-streak',
-  LONGEST_STREAK: 'longest-streak',
-  MOST_COMMON_LETTER: 'most-common-letter',
-  LEAST_COMMON_LETTER: 'least-common-letter',
-  ALL_CONSONANTS: 'all-consonants',
-  ALL_VOWELS: 'all-vowels',
-} as const;
+// Re-export STATS_SLUGS from the single source of truth
+export { STATS_SLUGS } from '#constants/stats';
 
 // =====================================================
 // Type exports for TypeScript safety

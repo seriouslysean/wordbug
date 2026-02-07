@@ -1,5 +1,5 @@
-import type { StatsDefinition, StatsSlug, SuffixKey } from '~types';
-import { tp } from '~utils/i18n-utils';
+import type { StatsDefinition, StatsSlug, SuffixKey } from '#types';
+import { tp } from '#utils/i18n-utils';
 
 // Stats page slug constants - defined here since this is where they're used
 export const STATS_SLUGS = {
@@ -28,6 +28,12 @@ export const STATS_SLUGS = {
   WORDS_ENDING_NESS: 'words-ending-ness',
   WORDS_ENDING_FUL: 'words-ending-ful',
   WORDS_ENDING_LESS: 'words-ending-less',
+
+  // Stats sections
+  WORD_FACTS: 'word-facts',
+  STREAKS: 'streaks',
+  LETTER_PATTERNS: 'letter-patterns',
+  WORD_ENDINGS: 'word-endings',
 } as const satisfies Record<string, StatsSlug>;
 
 // Word ending definitions

@@ -1,16 +1,16 @@
 import { format } from 'date-fns';
 
-import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '~constants/urls';
+import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
 
-import type { WordData } from '~types';
-import { MONTH_NAMES, monthSlugToNumber } from '~utils/date-utils';
+import type { WordData } from '#types';
+import { MONTH_NAMES, monthSlugToNumber } from '#utils/date-utils';
 import {
   DYNAMIC_STATS_DEFINITIONS,
   LETTER_PATTERN_DEFINITIONS,
   PATTERN_DEFINITIONS,
   SUFFIX_DEFINITIONS,
-} from '~constants/stats';
-import { t, tp } from '~utils/i18n-utils';
+} from '#constants/stats';
+import { t, tp } from '#utils/i18n-utils';
 import {
   getAvailableLetters,
   getAvailableLengths,
@@ -21,7 +21,7 @@ import {
   getWordsByLength,
   getWordsByLetter,
   getWordsByPartOfSpeech,
-} from '~utils/word-data-utils';
+} from '#utils/word-data-utils';
 import {
   getChronologicalMilestones,
   getCurrentStreakWords,
@@ -30,12 +30,12 @@ import {
   getLongestStreakWords,
   getPatternStats,
   getWordEndingStats,
-} from '~utils/word-stats-utils';
+} from '#utils/word-stats-utils';
 import {
   getLengthUrl,
   getLetterUrl,
   getPartOfSpeechUrl,
-} from '~utils/url-utils';
+} from '#utils/url-utils';
 
 type PrecomputedStats = {
   endings: ReturnType<typeof getWordEndingStats>;
@@ -377,6 +377,96 @@ export type PageMetadataResult = {
   secondaryText?: string;
   partOfSpeech?: string;
 };
+
+// Lazily-initialized title map for lightweight breadcrumb lookups (no stats computation)
+let cachedStaticTitles: Record<string, string> | null = null;
+
+function getStaticTitles(): Record<string, string> {
+  if (cachedStaticTitles) return cachedStaticTitles;
+
+  cachedStaticTitles = {
+    [BASE_PATHS.HOME]: t('home.heading'),
+    [BASE_PATHS.WORD]: t('words.heading'),
+    [BASE_PATHS.BROWSE]: t('browse.heading'),
+    [BROWSE_PATHS.LENGTH]: t('words.by_length_heading'),
+    [BROWSE_PATHS.LETTER]: t('words.by_letter_heading'),
+    [BROWSE_PATHS.PART_OF_SPEECH]: t('words.by_part_of_speech_heading'),
+    [`${BROWSE_PATHS.BROWSE}/year`]: 'Words by Year',
+    [BASE_PATHS.STATS]: t('stats.heading'),
+    [ROUTES.STAT(STATS_SLUGS.WORD_FACTS)]: t('stats.word_facts_heading'),
+    [ROUTES.STAT(STATS_SLUGS.STREAKS)]: t('stats.streaks_index_heading'),
+    [ROUTES.STAT(STATS_SLUGS.LETTER_PATTERNS)]: t('stats.letter_patterns_index_heading'),
+    [ROUTES.STAT(STATS_SLUGS.WORD_ENDINGS)]: t('stats.word_endings_index_heading'),
+    [BASE_PATHS.NOT_FOUND]: t('error.heading'),
+  };
+
+  // Build stats titles from definition objects
+  for (const [slug, def] of Object.entries(LETTER_PATTERN_DEFINITIONS)) {
+    cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
+  }
+  for (const [slug, def] of Object.entries(PATTERN_DEFINITIONS)) {
+    cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
+  }
+  const suffixSlugMap: Record<string, string> = {
+    ed: STATS_SLUGS.WORDS_ENDING_ED,
+    ing: STATS_SLUGS.WORDS_ENDING_ING,
+    ly: STATS_SLUGS.WORDS_ENDING_LY,
+    ness: STATS_SLUGS.WORDS_ENDING_NESS,
+    ful: STATS_SLUGS.WORDS_ENDING_FUL,
+    less: STATS_SLUGS.WORDS_ENDING_LESS,
+  };
+  for (const [suffix, def] of Object.entries(SUFFIX_DEFINITIONS)) {
+    const slug = suffixSlugMap[suffix];
+    if (slug) {
+      cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
+    }
+  }
+  for (const [slug, def] of Object.entries(DYNAMIC_STATS_DEFINITIONS)) {
+    cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
+  }
+
+  return cachedStaticTitles;
+}
+
+/**
+ * Get just the title for a page path without computing stats.
+ * Use this for breadcrumbs and other contexts where only the title is needed.
+ * @param path - The page path
+ * @returns Page title string
+ */
+export function getPageTitle(path: string): string {
+  if (!path) return 'Unknown Page';
+
+  // Check static title map first
+  const staticTitle = getStaticTitles()[path];
+  if (staticTitle) return staticTitle;
+
+  // Handle dynamic patterns
+  const wordMatch = path.match(URL_PATTERNS.WORD_DETAIL);
+  if (wordMatch) return wordMatch[1];
+
+  const yearMatch = path.match(URL_PATTERNS.YEAR_PAGE);
+  if (yearMatch) return yearMatch[1];
+
+  const monthMatch = path.match(URL_PATTERNS.MONTH_PAGE);
+  if (monthMatch) {
+    const monthNumber = monthSlugToNumber(monthMatch[2]);
+    if (monthNumber) {
+      return format(new Date(2000, monthNumber - 1), 'MMMM');
+    }
+  }
+
+  const lengthMatch = path.match(URL_PATTERNS.LENGTH_PAGE);
+  if (lengthMatch) return t('words.length_words', { length: parseInt(lengthMatch[1], 10) });
+
+  const letterMatch = path.match(URL_PATTERNS.LETTER_PAGE);
+  if (letterMatch) return letterMatch[1].toUpperCase();
+
+  const partOfSpeechMatch = path.match(URL_PATTERNS.PART_OF_SPEECH_PAGE);
+  if (partOfSpeechMatch) return t(`parts_of_speech.${partOfSpeechMatch[1]}`);
+
+  return 'Unknown Page';
+}
 
 /**
  * Get metadata for a specific page path
