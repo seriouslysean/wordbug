@@ -1,5 +1,5 @@
 ---
-import type { CollectionPageSchema, DefinedTermSchema, WordSchemaData } from '~types';
+import type { CollectionPageSchema, DefinedTermSchema, WordSchemaData } from '#types';
 import {
   STRUCTURED_DATA_TYPE,
   type StructuredDataType,
@@ -7,9 +7,9 @@ import {
   getCollectionSchemaData,
   getWebsiteSchemaData,
   getWordSchemaData
-} from '~astro-utils/schema-utils.ts';
-import { seoConfig } from '~astro-utils/seo-utils.ts';
-import { generateBreadcrumbs } from '~utils/breadcrumb-utils';
+} from '#astro-utils/schema-utils.ts';
+import { seoConfig } from '#astro-utils/seo-utils.ts';
+import { generateBreadcrumbs } from '#utils/breadcrumb-utils';
 
 interface Props {
   word?: WordSchemaData;

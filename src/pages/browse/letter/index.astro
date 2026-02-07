@@ -1,13 +1,13 @@
 ---
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
-import WordSection from '~components/WordSection.astro';
-import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getLetterUrl } from '~astro-utils/url-utils';
-import { getWordsFromCollection, groupWordsByLetter } from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
+import DescriptionText from '#components/DescriptionText.astro';
+import Heading from '#components/Heading.astro';
+import WordSection from '#components/WordSection.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
+import { getLetterUrl } from '#astro-utils/url-utils';
+import { getWordsFromCollection, groupWordsByLetter } from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const letterGroups = Object.entries(groupWordsByLetter(allWords)).map(([letter, words]) => ({

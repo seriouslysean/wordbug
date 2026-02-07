@@ -3,9 +3,9 @@
  * Simple JSON-LD generation with proper typing
  */
 
-import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '~types';
-import { seoConfig } from '~astro-utils/seo-utils';
-import { getFullUrl } from '~astro-utils/url-utils';
+import type { CollectionPageSchema, DefinedTermSchema, WebSiteSchema, WordSchemaData } from '#types';
+import { seoConfig } from '#astro-utils/seo-utils';
+import { getFullUrl } from '#astro-utils/url-utils';
 
 export const STRUCTURED_DATA_TYPE = {
   WORD_SINGLE: 'WORD_SINGLE',

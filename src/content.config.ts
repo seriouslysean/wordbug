@@ -1,6 +1,6 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
-import { normalizePartOfSpeech } from '~utils/word-data-utils';
+import { normalizePartOfSpeech } from '#utils/word-data-utils';
 
 export const collections = {
   words: defineCollection({

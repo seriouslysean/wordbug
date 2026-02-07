@@ -4,7 +4,7 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
-} from '~constants/stats';
+} from '#constants/stats';
 import {
   getChronologicalMilestones,
   getCurrentStreakStats,
@@ -14,15 +14,16 @@ import {
   getPatternStats,
   getWordEndingStats,
   getWordStats,
-} from '~astro-utils/word-stats-utils';
+} from '#astro-utils/word-stats-utils';
 
 const ordinal = (n: number): string => {
   const suffixes = ['th', 'st', 'nd', 'rd'];
   const remainder = n % 100;
-  return n + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0]);
+  const suffix = suffixes[(remainder - 20) % 10] ?? suffixes[remainder] ?? 'th';
+  return n + suffix;
 };
 
-import type { WordData, WordMilestoneItem } from '~types';
+import type { WordData, WordMilestoneItem } from '#types';
 
 // Template constants
 const TEMPLATE = {
@@ -44,6 +45,15 @@ interface StatsConfig {
   arg?: string | number;
 }
 
+// Retrieve a definition by key, throwing on missing keys (programmer error, not runtime data)
+function getDefinition<T>(definitions: Record<string, T>, key: string): T {
+  const def = definitions[key];
+  if (!def) {
+    throw new Error(`Missing definition for key: ${key}`);
+  }
+  return def;
+}
+
 const createStatsConfig = (words: WordData[]): StatsConfig[] => {
   const letterPatterns = getLetterPatternStats(words);
   const patternStats = getPatternStats(words);
@@ -55,36 +65,36 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
 
   return [
     // Pattern stats
-    { slug: STATS_SLUGS.ALL_CONSONANTS, data: patternStats.allConsonants, definition: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.ALL_VOWELS, data: patternStats.allVowels, definition: PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.ALL_CONSONANTS, data: patternStats.allConsonants, definition: getDefinition(PATTERN_DEFINITIONS, STATS_SLUGS.ALL_CONSONANTS), template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.ALL_VOWELS, data: patternStats.allVowels, definition: getDefinition(PATTERN_DEFINITIONS, STATS_SLUGS.ALL_VOWELS), template: TEMPLATE.WORD_LIST },
 
     // Suffix stats
     ...Object.keys(SUFFIX_DEFINITIONS).map(suffix => ({
       slug: STATS_SLUGS[`WORDS_ENDING_${suffix.toUpperCase()}` as keyof typeof STATS_SLUGS],
       data: endings[suffix as keyof typeof endings] || [],
-      definition: SUFFIX_DEFINITIONS[suffix as keyof typeof SUFFIX_DEFINITIONS],
+      definition: getDefinition(SUFFIX_DEFINITIONS, suffix),
       template: TEMPLATE.WORD_LIST,
     })),
 
     // Letter pattern stats
-    { slug: STATS_SLUGS.ALPHABETICAL_ORDER, data: letterPatterns.alphabetical, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.ALPHABETICAL_ORDER], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.DOUBLE_LETTERS, data: letterPatterns.doubleLetters, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.TRIPLE_LETTERS, data: letterPatterns.tripleLetters, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.TRIPLE_LETTERS], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.SAME_START_END, data: letterPatterns.startEndSame, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.SAME_START_END], template: TEMPLATE.WORD_LIST },
-    { slug: STATS_SLUGS.PALINDROMES, data: letterPatterns.palindromes, definition: LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES], template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.ALPHABETICAL_ORDER, data: letterPatterns.alphabetical, definition: getDefinition(LETTER_PATTERN_DEFINITIONS, STATS_SLUGS.ALPHABETICAL_ORDER), template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.DOUBLE_LETTERS, data: letterPatterns.doubleLetters, definition: getDefinition(LETTER_PATTERN_DEFINITIONS, STATS_SLUGS.DOUBLE_LETTERS), template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.TRIPLE_LETTERS, data: letterPatterns.tripleLetters, definition: getDefinition(LETTER_PATTERN_DEFINITIONS, STATS_SLUGS.TRIPLE_LETTERS), template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.SAME_START_END, data: letterPatterns.startEndSame, definition: getDefinition(LETTER_PATTERN_DEFINITIONS, STATS_SLUGS.SAME_START_END), template: TEMPLATE.WORD_LIST },
+    { slug: STATS_SLUGS.PALINDROMES, data: letterPatterns.palindromes, definition: getDefinition(LETTER_PATTERN_DEFINITIONS, STATS_SLUGS.PALINDROMES), template: TEMPLATE.WORD_LIST },
 
     // Letter frequency stats
     {
       slug: STATS_SLUGS.MOST_COMMON_LETTER,
       data: mostCommon ? words.filter(w => w.word.includes(mostCommon[0])) : [],
-      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER],
+      definition: getDefinition(DYNAMIC_STATS_DEFINITIONS, STATS_SLUGS.MOST_COMMON_LETTER),
       template: TEMPLATE.WORD_LIST,
       arg: mostCommon?.[0],
     },
     {
       slug: STATS_SLUGS.LEAST_COMMON_LETTER,
       data: leastCommon ? words.filter(w => w.word.includes(leastCommon[0])) : [],
-      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LEAST_COMMON_LETTER],
+      definition: getDefinition(DYNAMIC_STATS_DEFINITIONS, STATS_SLUGS.LEAST_COMMON_LETTER),
       template: TEMPLATE.WORD_LIST,
       arg: leastCommon?.[0],
     },
@@ -95,7 +105,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
       data: getChronologicalMilestones([...words].sort((a, b) => a.date.localeCompare(b.date)))
         .reverse()
         .map(w => ({ ...w.word, label: `${ordinal(w.milestone)} Word` })),
-      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS],
+      definition: getDefinition(DYNAMIC_STATS_DEFINITIONS, STATS_SLUGS.MILESTONE_WORDS),
       template: TEMPLATE.MILESTONE,
     },
 
@@ -115,7 +125,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
           }))
           .reverse();
       })(),
-      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.CURRENT_STREAK],
+      definition: getDefinition(DYNAMIC_STATS_DEFINITIONS, STATS_SLUGS.CURRENT_STREAK),
       template: TEMPLATE.MILESTONE,
       arg: streakStats.currentStreak,
     },
@@ -125,7 +135,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
         ...w,
         label: `${ordinal(i + 1)} Day`,
       })),
-      definition: DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.LONGEST_STREAK],
+      definition: getDefinition(DYNAMIC_STATS_DEFINITIONS, STATS_SLUGS.LONGEST_STREAK),
       template: TEMPLATE.MILESTONE,
       arg: streakStats.longestStreak,
     },
@@ -136,7 +146,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
  * @returns Array of path definitions for stats pages
  */
 export const generateStatsStaticPaths = async () => {
-  const { getWordsFromCollection } = await import('~astro-utils/word-data-utils');
+  const { getWordsFromCollection } = await import('#astro-utils/word-data-utils');
   const words = await getWordsFromCollection();
 
   const showEmptyPages = __SHOW_EMPTY_STATS__;

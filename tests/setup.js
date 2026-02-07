@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import mockTranslations from '~tests/locales/en-us.fixtures.json';
+import mockTranslations from '#tests/locales/en-us.fixtures.json';
 
 // Mock fixture data for testing
 const mockWordData = [
@@ -61,7 +61,7 @@ vi.mock('astro:content', () => ({
 }));
 
 // Mock translations with educational/word-focused fixtures
-vi.mock('~locales/en.json', () => ({ default: mockTranslations }));
+vi.mock('#locales/en.json', () => ({ default: mockTranslations }));
 
 // Expose mock data for tests that need it
 global.mockWordData = mockWordData;

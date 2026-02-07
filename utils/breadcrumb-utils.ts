@@ -3,7 +3,7 @@
  * Generates breadcrumb navigation data from URL pathnames
  */
 
-import { getPageMetadata } from './page-metadata-utils';
+import { getPageTitle } from './page-metadata-utils';
 
 export interface BreadcrumbItem {
   label: string;
@@ -43,10 +43,10 @@ export function generateBreadcrumbs(pathname: string, basePath?: string): Breadc
   
   segments.reduce((path, segment) => {
     const nextPath = `${path}/${segment}`;
-    const metadata = getPageMetadata(nextPath);
-    
+    const title = getPageTitle(nextPath);
+
     breadcrumbs.push({
-      label: metadata?.title?.toLowerCase() || segment,
+      label: title?.toLowerCase() || segment,
       href: nextPath
     });
     

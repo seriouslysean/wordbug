@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { showHelp } from '~tools/help-utils';
-import { getWordFiles } from '~tools/utils';
-import type { WordData } from '~types';
+import { showHelp } from '#tools/help-utils';
+import { getWordFiles } from '#tools/utils';
+import type { WordData } from '#types';
 
 const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
 
@@ -44,12 +44,8 @@ function migrateWordFile(filePath: string): boolean {
     }
 
     const updatedData: WordData = {
-      word: wordData.word,
-      date: wordData.date,
-      adapter: wordData.adapter,
+      ...wordData,
       preserveCase: preserveCaseValue,
-      data: wordData.data,
-      ...(wordData.rawData && { rawData: wordData.rawData }),
     };
 
     // Write back with same formatting (4-space indent)

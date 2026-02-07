@@ -6,7 +6,7 @@
  * that broke tools after the code readability merge.
  *
  * Tests run against the actual tool files to ensure:
- * 1. No import errors (astro:, ~astro-utils dependencies)
+ * 1. No import errors (astro:, #astro-utils dependencies)
  * 2. Tools can be executed with minimal inputs
  * 3. Basic functionality works end-to-end
  *
@@ -52,7 +52,7 @@ describe('CLI Tools: Import & Execution', () => {
           if (error.message.includes("astro:")) {
             throw new Error(
               `${toolFile} has astro: protocol dependency: ${error.message}\n` +
-              `This breaks CLI tools. Check for imports from ~astro-utils/* in utils/ files.`
+              `This breaks CLI tools. Check for imports from #astro-utils/* in utils/ files.`
             );
           }
 
@@ -135,7 +135,7 @@ describe('CLI Tools: Import & Execution', () => {
       if (error.message.includes('astro:')) {
         throw new Error(
           'tools/utils.ts has astro: dependency - this broke CLI tools.\n' +
-          'Check for imports from utils/page-metadata-utils or other files that import ~astro-utils'
+          'Check for imports from utils/page-metadata-utils or other files that import #astro-utils'
         );
       }
       throw error;
@@ -164,7 +164,7 @@ describe('CLI Tools: Import & Execution', () => {
           throw new Error(
             `${utilPath} has astro: dependency which breaks CLI tools.\n` +
             `Error: ${error.message}\n` +
-            `utils/ files must not import from ~astro-utils/* or astro: modules.`
+            `utils/ files must not import from #astro-utils/* or astro: modules.`
           );
         }
 
@@ -267,12 +267,12 @@ describe('CLI Tools: Regression Detection', () => {
     const content = fs.readFileSync(filePath, 'utf-8');
 
     // Check for the exact regression that happened
-    const astroImports = content.match(/from ['"]~astro-utils\//g);
+    const astroImports = content.match(/from ['"]#astro-utils\//g);
 
     expect(astroImports,
-      'utils/page-metadata-utils.ts imports from ~astro-utils/* which breaks CLI tools. ' +
+      'utils/page-metadata-utils.ts imports from #astro-utils/* which breaks CLI tools. ' +
       'This is the exact regression that broke word adding. ' +
-      'Import from ~utils/* instead and add functions to utils/word-data-utils.ts'
+      'Import from #utils/* instead and add functions to utils/word-data-utils.ts'
     ).toBeNull();
   });
 
@@ -280,11 +280,11 @@ describe('CLI Tools: Regression Detection', () => {
     const filePath = path.join(process.cwd(), 'constants', 'urls.ts');
     const content = fs.readFileSync(filePath, 'utf-8');
 
-    const astroImports = content.match(/from ['"]~astro-utils\//g);
+    const astroImports = content.match(/from ['"]#astro-utils\//g);
 
     expect(astroImports,
-      'constants/urls.ts imports from ~astro-utils/* which breaks CLI tools. ' +
-      'slugify should be imported from ~utils/text-utils, not ~astro-utils/url-utils'
+      'constants/urls.ts imports from #astro-utils/* which breaks CLI tools. ' +
+      'slugify should be imported from #utils/text-utils, not #astro-utils/url-utils'
     ).toBeNull();
   });
 
@@ -293,7 +293,7 @@ describe('CLI Tools: Regression Detection', () => {
     const content = fs.readFileSync(filePath, 'utf-8');
 
     // Check if it imports files that might have astro dependencies
-    const problematicImports = content.match(/from ['"]~utils\/page-metadata-utils['"]/g);
+    const problematicImports = content.match(/from ['"]#utils\/page-metadata-utils['"]/g);
 
     // This is OK now that we fixed page-metadata-utils, but keeping as guard
     // If page-metadata-utils gets astro imports again, this will catch it

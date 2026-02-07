@@ -1,4 +1,4 @@
-import { ROUTES } from '~constants/urls';
+import { ROUTES } from '#constants/urls';
 
 /**
  * Get URL for words of a specific length

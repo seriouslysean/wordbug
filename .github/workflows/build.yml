@@ -4,12 +4,25 @@ on:
   pull_request:
     branches: ['main']
 
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'npm'
 
       - name: Setup environment variables
         uses: ./.github/actions/setup-env
@@ -18,14 +31,8 @@ jobs:
           secrets-json: ${{ toJSON(secrets) }}
           github-sha: ${{ github.sha }}
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run build
         run: npm run build

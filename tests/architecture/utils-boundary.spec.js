@@ -14,7 +14,7 @@ const UTILS_DIR = path.join(process.cwd(), 'utils');
 const SRC_UTILS_DIR = path.join(process.cwd(), 'src', 'utils');
 
 describe('Architecture: utils/ boundary enforcement', () => {
-  it('utils/ files must not import from ~astro-utils/*', () => {
+  it('utils/ files must not import from #astro-utils/*', () => {
     const utilsFiles = fs.readdirSync(UTILS_DIR).filter(f => f.endsWith('.ts'));
 
     for (const file of utilsFiles) {
@@ -22,11 +22,11 @@ describe('Architecture: utils/ boundary enforcement', () => {
       const content = fs.readFileSync(filePath, 'utf-8');
 
       // Check for forbidden imports
-      const astroImports = content.match(/from ['"]~astro-utils\//g);
-      const srcImports = content.match(/from ['"]~src\//g);
+      const astroImports = content.match(/from ['"]#astro-utils\//g);
+      const srcImports = content.match(/from ['"]#src\//g);
       const astroProtocol = content.match(/from ['"]astro:/g);
 
-      expect(astroImports, `${file} imports from ~astro-utils/* (breaks CLI tools)`).toBeNull();
+      expect(astroImports, `${file} imports from #astro-utils/* (breaks CLI tools)`).toBeNull();
       expect(srcImports, `${file} imports from ~src/* (breaks CLI tools)`).toBeNull();
       expect(astroProtocol, `${file} imports from astro:* (breaks CLI tools)`).toBeNull();
     }
@@ -48,9 +48,9 @@ describe('Architecture: utils/ boundary enforcement', () => {
     ];
 
     for (const fnName of requiredImports) {
-      const importPattern = new RegExp(`import.*${fnName}.*from ['"]~utils/word-data-utils['"]`, 's');
+      const importPattern = new RegExp(`import.*${fnName}.*from ['"]#utils/word-data-utils['"]`, 's');
       expect(content).toMatch(importPattern,
-        `${fnName} should be imported from ~utils/word-data-utils, not duplicated`);
+        `${fnName} should be imported from #utils/word-data-utils, not duplicated`);
     }
   });
 
@@ -87,14 +87,14 @@ describe('Architecture: utils/ boundary enforcement', () => {
 
   it('utils/ files can only import from allowed paths', () => {
     const utilsFiles = fs.readdirSync(UTILS_DIR).filter(f => f.endsWith('.ts'));
-    const allowedPrefixes = ['~utils', '~types', '~constants', '~config', '~locales'];
+    const allowedPrefixes = ['#utils', '#types', '#constants', '#config', '#locales'];
 
     for (const file of utilsFiles) {
       const filePath = path.join(UTILS_DIR, file);
       const content = fs.readFileSync(filePath, 'utf-8');
 
-      // Find all imports from ~alias paths
-      const imports = content.match(/from ['"]~[^'"]+['"]/g) || [];
+      // Find all imports from #alias paths
+      const imports = content.match(/from ['"]#[^'"]+['"]/g) || [];
 
       for (const importStatement of imports) {
         const hasAllowedPrefix = allowedPrefixes.some(allowed =>

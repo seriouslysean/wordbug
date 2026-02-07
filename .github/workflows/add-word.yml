@@ -17,7 +17,7 @@ on:
         type: boolean
         default: false
       preserve_case:
-        description: 'Preserve original capitalization (for proper nouns like "Japan" or "PB&J")'
+        description: 'Keep original capitalization (for proper nouns, acronyms, or brands like "Japan", "NASA", "iPhone")'
         required: false
         type: boolean
         default: false
@@ -25,25 +25,12 @@ on:
 permissions:
   contents: write
 
-jobs:
-  prepare-manual:
-    runs-on: ubuntu-latest
-    outputs:
-      word: ${{ steps.set-outputs.outputs.word }}
-      date: ${{ steps.set-outputs.outputs.date }}
-      overwrite: ${{ steps.set-outputs.outputs.overwrite }}
-      preserve_case: ${{ steps.set-outputs.outputs.preserve_case }}
-    steps:
-      - name: Set outputs
-        id: set-outputs
-        run: |
-          echo "word=${{ inputs.word }}" >> $GITHUB_OUTPUT
-          echo "date=${{ inputs.date || '' }}" >> $GITHUB_OUTPUT
-          echo "overwrite=${{ inputs.overwrite }}" >> $GITHUB_OUTPUT
-          echo "preserve_case=${{ inputs.preserve_case }}" >> $GITHUB_OUTPUT
+concurrency:
+  group: add-word
+  cancel-in-progress: false
 
+jobs:
   add-word:
-    needs: [prepare-manual]
     runs-on: ubuntu-latest
     env:
       COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
@@ -59,18 +46,6 @@ jobs:
       WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
       WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Validate API key
         run: |
           if [ -z "$WORDNIK_API_KEY" ]; then
@@ -78,31 +53,52 @@ jobs:
             exit 1
           fi
 
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Add word
         id: add_word
         run: |
-          # Get outputs from the prepare job
-          WORD="${{ needs.prepare-manual.outputs.word }}"
-          DATE="${{ needs.prepare-manual.outputs.date }}"
-          OVERWRITE="${{ needs.prepare-manual.outputs.overwrite }}"
-          PRESERVE_CASE="${{ needs.prepare-manual.outputs.preserve_case }}"
+          # Sanitize and trim inputs
+          WORD="${{ inputs.word }}"
+          WORD=$(echo "$WORD" | xargs)
 
-          FLAGS=""
-          if [[ "$OVERWRITE" == "true" ]]; then
-            FLAGS="$FLAGS --overwrite"
-          fi
-          if [[ "$PRESERVE_CASE" == "true" ]]; then
-            FLAGS="$FLAGS --preserve-case"
+          DATE="${{ inputs.date }}"
+          DATE=$(echo "$DATE" | xargs)
+
+          # Validate word is not empty after trimming
+          if [ -z "$WORD" ]; then
+            echo "::error::Word cannot be empty or whitespace only"
+            exit 1
           fi
 
-          if npm run tool:add-word -- "$WORD" "$DATE" $FLAGS; then
+          # Build flags array to avoid quoting issues
+          FLAGS=()
+          if [[ "${{ inputs.overwrite }}" == "true" ]]; then
+            FLAGS+=(--overwrite)
+          fi
+          if [[ "${{ inputs.preserve_case }}" == "true" ]]; then
+            FLAGS+=(--preserve-case)
+          fi
+
+          # Run the add-word tool
+          if npm run tool:add-word -- "$WORD" "$DATE" "${FLAGS[@]}"; then
             echo "word_added=1" >> $GITHUB_OUTPUT
             echo "word=$WORD" >> $GITHUB_OUTPUT
 
             # Generate social image for the new word
             npm run tool:generate-images -- --word "$WORD"
           else
-            echo "Failed to add word"
+            echo "::error::Failed to add word: $WORD"
             echo "word_added=0" >> $GITHUB_OUTPUT
             exit 1
           fi

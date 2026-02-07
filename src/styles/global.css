@@ -1,5 +1,5 @@
 /* Import CSS modules in order of specificity */
-@import '~styles/reset.css';
+@import './reset.css';
 /* Theme variables are now generated dynamically in Layout.astro */
 
 /* Body text transformation - moved from reset */

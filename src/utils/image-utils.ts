@@ -1,4 +1,4 @@
-import type { WordData } from '~types';
+import type { WordData } from '#types';
 
 /**
  * Get social media image URL for a word or page
@@ -27,6 +27,6 @@ export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wo
  * @returns Metadata for all static pages
  */
 export async function getStaticPages() {
-  const { getAllPageMetadata } = await import('~astro-utils/page-metadata');
+  const { getAllPageMetadata } = await import('#astro-utils/page-metadata');
   return getAllPageMetadata();
 }

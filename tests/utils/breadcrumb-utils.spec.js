@@ -3,19 +3,19 @@ import { generateBreadcrumbs } from '../../utils/breadcrumb-utils';
 
 // Mock the page metadata utility
 vi.mock('../../utils/page-metadata-utils', () => ({
-  getPageMetadata: vi.fn((path) => {
-    const metadataMap = {
-      '/words': { title: 'All Words' },
-      '/stats': { title: 'Statistics' },
-      '/words/2024': { title: '2024' },
-      '/words/hello': { title: 'hello' },
-      '/words/letter': { title: 'Browse by Letter' },
-      '/words/letter/a': { title: 'Words starting with A' },
-      '/words/length': { title: 'Browse by Length' },
-      '/words/length/5': { title: '5-letter words' },
-      '/stats/palindromes': { title: 'Palindromes' }
+  getPageTitle: vi.fn((path) => {
+    const titleMap = {
+      '/words': 'All Words',
+      '/stats': 'Statistics',
+      '/words/2024': '2024',
+      '/words/hello': 'hello',
+      '/words/letter': 'Browse by Letter',
+      '/words/letter/a': 'Words starting with A',
+      '/words/length': 'Browse by Length',
+      '/words/length/5': '5-letter words',
+      '/stats/palindromes': 'Palindromes',
     };
-    return metadataMap[path] || null;
+    return titleMap[path] || null;
   })
 }));
 

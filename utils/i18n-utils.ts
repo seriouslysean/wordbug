@@ -24,7 +24,7 @@ export const t = (key: string, vars?: Record<string, string | number>): string =
   // Interpolate variables if provided
   if (vars) {
     // First check if all required variables are provided
-    const requiredVars = [...value.matchAll(/\{\{(\w+)\}\}/g)].map(match => match[1]);
+    const requiredVars = [...value.matchAll(/\{\{(\w+)\}\}/g)].map(match => match[1]).filter((v): v is string => v !== undefined);
     for (const varName of requiredVars) {
       if (!(varName in vars)) {
         throw new Error(`Missing required variable '${varName}' for translation key: ${key}`);

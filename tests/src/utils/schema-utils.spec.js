@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('~astro-utils/seo-utils', () => ({
+vi.mock('#astro-utils/seo-utils', () => ({
   seoConfig: {
     siteName: 'Test Site',
     defaultDescription: 'Test description',
@@ -8,7 +8,7 @@ vi.mock('~astro-utils/seo-utils', () => ({
   },
 }));
 
-vi.mock('~astro-utils/url-utils', () => ({
+vi.mock('#astro-utils/url-utils', () => ({
   getFullUrl: vi.fn((path) => `https://test.com${path}`),
 }));
 
@@ -18,7 +18,7 @@ import {
   getWordSchemaData,
   getCollectionSchemaData,
   getBreadcrumbSchema,
-} from '~astro-utils/schema-utils';
+} from '#astro-utils/schema-utils';
 
 describe('schema-utils', () => {
   describe('STRUCTURED_DATA_TYPE', () => {

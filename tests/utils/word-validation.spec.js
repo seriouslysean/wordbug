@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isValidDictionaryData } from '~utils/word-validation';
+import { isValidDictionaryData } from '#utils/word-validation';
 
 describe('word-validation', () => {
   describe('isValidDictionaryData', () => {

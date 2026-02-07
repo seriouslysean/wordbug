@@ -5,7 +5,7 @@
 ### Framework & Stack
 - **[Astro](https://astro.build/)** - Static site generator with zero-JS by default
 - **TypeScript** - Type safety throughout the codebase
-- **Node.js 20+** - Runtime environment
+- **Node.js 22+** - Runtime environment (requires >=22.6.0)
 - **[Vitest](https://vitest.dev/)** - Testing framework
 - **[Sharp](https://sharp.pixelplumbing.com/)** + OpenType.js - Image generation
 
@@ -174,7 +174,7 @@ npm run tool:local tools/generate-images.ts --all
 
 **Production/CI** (with manual environment variables):
 ```bash
-WORDNIK_API_KEY=xxx SOURCE_DIR=words npx tsx tools/add-word.ts serendipity
+WORDNIK_API_KEY=xxx SOURCE_DIR=words npm run tool:add-word serendipity
 ```
 
 ### Available Tools
@@ -337,7 +337,7 @@ tests/
 - **Scope**: Import dependencies, code duplication detection
 - **Run Time**: Fast (milliseconds)
 - **Prevents**:
-  - `utils/` importing from `~astro-utils/*` (breaks CLI tools)
+  - `utils/` importing from `#astro-utils/*` (breaks CLI tools)
   - Duplicated business logic between layers
   - Boundary violations that create circular dependencies
 
@@ -391,7 +391,7 @@ Coverage reports: `coverage/index.html`
 ### Performance
 
 - **Total test time**: ~10 seconds
-- **404 tests** across unit, architecture, and integration layers
+- **400 tests** across unit, architecture, and integration layers
 - Pre-commit only tests changed files for fast feedback
 
 ### Regression Prevention
@@ -399,7 +399,7 @@ Coverage reports: `coverage/index.html`
 The test suite is specifically designed to prevent the types of regressions that have occurred:
 
 **Regression: Word Adding Broke (2025-11)**
-- **Cause**: `utils/page-metadata-utils.ts` imported from `~astro-utils/*`
+- **Cause**: `utils/page-metadata-utils.ts` imported from `#astro-utils/*`
 - **Error**: `astro:` protocol not supported in Node.js CLI tools
 - **Prevention**:
   - `tests/architecture/utils-boundary.spec.js` detects astro imports in utils/
@@ -440,7 +440,7 @@ const sortedWords = words
 ```
 
 ### Build-time Path Injection
-- `__WORD_DATA_PATH__`: Injected at build time via `astro.config.mjs`
+- `__WORD_DATA_PATH__`: Injected at build time via `astro.config.ts`
 - Supports different data sources via `{SOURCE_DIR}` environment variable
 - Enables flexible deployment to different environments
 
@@ -476,7 +476,7 @@ Tools designed to work seamlessly with GitHub Actions:
 
 ```yaml
 - name: Add word
-  run: npx tsx tools/add-word.ts ${{ github.event.inputs.word }}
+  run: npm run tool:add-word ${{ github.event.inputs.word }}
   env:
     WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
     SOURCE_DIR: ${{ vars.SOURCE_DIR }}
@@ -515,7 +515,7 @@ The project maintains a purposeful architectural separation between pure Node.js
 Purpose: Environment-agnostic functions usable by both CLI tools and Astro components
 Dependencies: Only Node.js built-ins and pure JavaScript libraries
 Usage: CLI tools, tests, and shared business logic
-Import Pattern: ~utils/text-utils (from TypeScript path mapping)
+Import Pattern: #utils/text-utils (via package.json subpath imports)
 
 Files:
 - date-utils.ts - Pure date manipulation functions
@@ -530,7 +530,7 @@ Files:
 Purpose: Web application utilities that require Astro features
 Dependencies: Astro Content Collections, framework-specific APIs, caching
 Usage: Astro components, pages, and layouts only
-Import Pattern: ~astro-utils/word-data-utils (from TypeScript path mapping)
+Import Pattern: #astro-utils/word-data-utils (via package.json subpath imports)
 
 Files:
 - word-data-utils.ts - Astro Content Collection integration with caching
@@ -550,31 +550,31 @@ Files:
 Correct Usage:
 ```typescript
 // In CLI tools (tools/*)
-import { formatDate } from '~utils/date-utils';
+import { formatDate } from '#utils/date-utils';
 
 // In Astro components (src/*)
-import { getWordsFromCollection } from '~astro-utils/word-data-utils';
-import { formatDate } from '~utils/date-utils'; // Also valid - pure functions
+import { getWordsFromCollection } from '#astro-utils/word-data-utils';
+import { formatDate } from '#utils/date-utils'; // Also valid - pure functions
 ```
 
 Incorrect Usage:
 ```typescript
 // In CLI tools - NEVER import Astro-specific utilities
-import { getWordsFromCollection } from '~astro-utils/word-data-utils'; // ERROR
+import { getWordsFromCollection } from '#astro-utils/word-data-utils'; // ERROR
 
-// In utils/* - NEVER import ~astro-utils/* (breaks CLI tools)
-import { getWordsByLetter } from '~astro-utils/word-data-utils'; // ERROR
+// In utils/* - NEVER import #astro-utils/* (breaks CLI tools)
+import { getWordsByLetter } from '#astro-utils/word-data-utils'; // ERROR
 
 // In Astro components - Avoid when Astro-specific alternative exists
-import { getAvailableYears } from '~utils/word-data-utils'; // Use ~astro-utils version instead
+import { getAvailableYears } from '#utils/word-data-utils'; // Use ~astro-utils version instead
 ```
 
 ### Import Boundary Rule for utils/ Directory
 
 Files in `utils/` are shared between CLI tools and Astro. They must remain Astro-independent:
 
-**Allowed imports:** `~utils/*`, `~types/*`, `~constants/*`, Node.js built-ins, pure npm packages
-**Forbidden imports:** `~astro-utils/*`, `~src/*`, `astro:*` (triggers astro:content loader, breaks CLI)
+**Allowed imports:** `#utils/*`, `#types`, `#types/*`, `#constants/*`, `#config/*`, Node.js built-ins, pure npm packages
+**Forbidden imports:** `#astro-utils/*`, `astro:*` (triggers astro:content loader, breaks CLI)
 
 **Solution when needing shared functionality:**
 
@@ -586,7 +586,7 @@ export const getWordsByLength = (length: number, words: WordData[]): WordData[] 
 };
 
 // src/utils/word-data-utils.ts - Thin wrapper with cached default
-import { getWordsByLength as getWordsByLengthPure } from '~utils/word-data-utils';
+import { getWordsByLength as getWordsByLengthPure } from '#utils/word-data-utils';
 export const allWords = await getAllWords(); // Cached from Astro Collections
 
 export const getWordsByLength = (length: number, words: WordData[] = allWords): WordData[] => {
@@ -594,11 +594,11 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
 };
 
 // tools/add-word.ts - CLI tool imports pure function
-import { getWordsByLength } from '~utils/word-data-utils';
+import { getWordsByLength } from '#utils/word-data-utils';
 const fiveLetterWords = getWordsByLength(5, myWords);
 
 // src/pages/stats.astro - Astro page uses cached version
-import { getWordsByLength } from '~astro-utils/word-data-utils';
+import { getWordsByLength } from '#astro-utils/word-data-utils';
 const fiveLetterWords = getWordsByLength(5); // Uses cached allWords by default
 ```
 
@@ -630,22 +630,26 @@ This separation should not be consolidated as it serves legitimate architectural
 
 ## Recent Architecture Changes
 
+### Codebase Audit & Upgrade (February 2026)
+- **Import Alias Migration**: `~` (Vite resolve.alias) to `#` (Node.js subpath imports) - single source of truth in `package.json` `imports` field
+- **Config TypeScript Conversion**: `astro.config.mjs` to `astro.config.ts`, `vitest.config.js` to `vitest.config.ts`
+- **TypeScript Strictness**: Enabled `strictNullChecks` and `noUncheckedIndexedAccess`
+- **DRY Consolidation**: Eliminated stats function duplication between pure and Astro layers
+- **ES6+ Modernization**: `Object.groupBy()`, `Array.findLast()`, `util.parseArgs()`
+- **Dependency Cleanup**: Removed unused `yargs`/`@types/yargs`
+- **Node 22 Requirement**: Engine field `>=22.6.0`, CI workflows updated to Node 22
+- **Breadcrumb Performance**: Lightweight title lookup avoids full stats computation
+
 ### Tool Consolidation (January 2025)
 - **Unified Image Generation**: Merged separate single/bulk tools into `generate-images.ts`
 - **Shared Help System**: Created `tools/help-utils.ts` for consistent documentation
 - **Environment Variable Support**: Tools work with manual env passing for CI/CD
-- **DRY Improvements**: Eliminated code duplication across tools
 
 ### Content Collections Migration
-- **Astro 5.0 Upgrade**: Migrated to new Content Layer API
-- **Build-time Path Injection**: Dynamic path configuration via `astro.config.mjs`
+- **Astro 5.0 Upgrade**: Migrated to Content Layer API
+- **Build-time Path Injection**: Dynamic path configuration via `astro.config.ts`
 - **Type Safety**: Full TypeScript support for content data
 - **Caching**: Improved development experience with automatic caching
-
-### Utility Reorganization
-- **Shared Utils**: Created `utils/` directory for environment-agnostic functions
-- **Environment Separation**: Clear separation between Astro and Node.js utilities
-- **Import Cleanup**: Removed anti-pattern re-exports, direct imports only
 
 ## Development Workflow
 

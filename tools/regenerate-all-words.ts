@@ -1,10 +1,10 @@
 import fs from 'fs';
 
-import { getAdapter } from '~adapters';
-import { COMMON_ENV_DOCS,showHelp } from '~tools/help-utils';
-import { getAllWords } from '~tools/utils';
-import type { WordData } from '~types';
-import { isValidDictionaryData } from '~utils/word-validation';
+import { getAdapter } from '#adapters';
+import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
+import { getAllWords } from '#tools/utils';
+import type { WordData } from '#types';
+import { isValidDictionaryData } from '#utils/word-validation';
 
 interface RegenerateOptions {
   wordField: string;
@@ -215,81 +215,48 @@ ${COMMON_ENV_DOCS}
 `;
 
 // Parse command line arguments
-const args = process.argv.slice(2);
+import { parseArgs } from 'node:util';
 
-// Check for help flag
-if (args.includes('--help') || args.includes('-h') || args.length === 0) {
-  showHelp(HELP_TEXT);
-  process.exit(0);
-}
-
-// Default options
-const options: RegenerateOptions = {
+const DEFAULTS = {
   wordField: 'word',
   dateField: 'date',
-  dryRun: false,
-  force: false,
   timeout: 4000,
   rateLimitTimeout: 3600000,
   batchSize: 10,
   batchTimeout: 60000,
-};
+} as const;
 
-// Parse flags
-args.forEach((arg, i) => {
-  const nextArg = args[i + 1];
-
-  switch (arg) {
-    case '--word-field':
-      if (nextArg) {
-        options.wordField = nextArg;
-      }
-      break;
-    case '--date-field':
-      if (nextArg) {
-        options.dateField = nextArg;
-      }
-      break;
-    case '--dry-run':
-      options.dryRun = true;
-      break;
-    case '--force':
-      options.force = true;
-      break;
-    case '--timeout':
-      if (nextArg) {
-        const value = parseInt(nextArg, 10);
-        if (!isNaN(value) && value > 0) {
-          options.timeout = value;
-        }
-      }
-      break;
-    case '--rate-limit-timeout':
-      if (nextArg) {
-        const value = parseInt(nextArg, 10);
-        if (!isNaN(value) && value > 0) {
-          options.rateLimitTimeout = value;
-        }
-      }
-      break;
-    case '--batch-size':
-      if (nextArg) {
-        const value = parseInt(nextArg, 10);
-        if (!isNaN(value) && value > 0) {
-          options.batchSize = value;
-        }
-      }
-      break;
-    case '--batch-timeout':
-      if (nextArg) {
-        const value = parseInt(nextArg, 10);
-        if (!isNaN(value) && value > 0) {
-          options.batchTimeout = value;
-        }
-      }
-      break;
-  }
+const { values } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    help: { type: 'boolean', short: 'h', default: false },
+    'word-field': { type: 'string', default: DEFAULTS.wordField },
+    'date-field': { type: 'string', default: DEFAULTS.dateField },
+    'dry-run': { type: 'boolean', default: false },
+    force: { type: 'boolean', default: false },
+    timeout: { type: 'string', default: String(DEFAULTS.timeout) },
+    'rate-limit-timeout': { type: 'string', default: String(DEFAULTS.rateLimitTimeout) },
+    'batch-size': { type: 'string', default: String(DEFAULTS.batchSize) },
+    'batch-timeout': { type: 'string', default: String(DEFAULTS.batchTimeout) },
+  },
+  strict: true,
 });
+
+if (values.help || process.argv.length <= 2) {
+  showHelp(HELP_TEXT);
+  process.exit(0);
+}
+
+const options: RegenerateOptions = {
+  wordField: values['word-field'] ?? DEFAULTS.wordField,
+  dateField: values['date-field'] ?? DEFAULTS.dateField,
+  dryRun: !!values['dry-run'],
+  force: !!values.force,
+  timeout: parseInt(values.timeout ?? String(DEFAULTS.timeout), 10),
+  rateLimitTimeout: parseInt(values['rate-limit-timeout'] ?? String(DEFAULTS.rateLimitTimeout), 10),
+  batchSize: parseInt(values['batch-size'] ?? String(DEFAULTS.batchSize), 10),
+  batchTimeout: parseInt(values['batch-timeout'] ?? String(DEFAULTS.batchTimeout), 10),
+};
 
 // Run the regeneration and write build data
 regenerateAllWords(options);

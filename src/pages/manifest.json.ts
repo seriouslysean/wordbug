@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 
-import { seoConfig } from '~astro-utils/seo-utils';
-import { getUrl } from '~astro-utils/url-utils';
+import { seoConfig } from '#astro-utils/seo-utils';
+import { getUrl } from '#astro-utils/url-utils';
 
 export const GET: APIRoute = async () => {
   const manifest = {

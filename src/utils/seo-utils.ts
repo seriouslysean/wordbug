@@ -3,8 +3,8 @@
  * Centralized SEO config following Astro best practices
  */
 
-import type { SeoConfig, SeoMetadata, SeoMetadataOptions, SeoMetaDescriptionOptions } from '~types';
-import { getFullUrl } from '~astro-utils/url-utils';
+import type { SeoConfig, SeoMetadata, SeoMetadataOptions, SeoMetaDescriptionOptions } from '#types';
+import { getFullUrl } from '#astro-utils/url-utils';
 
 // SEO configuration using build-time defines
 export const seoConfig: SeoConfig = {

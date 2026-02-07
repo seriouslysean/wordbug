@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('~astro-utils/word-data-utils', () => ({
+vi.mock('#astro-utils/word-data-utils', () => ({
   generateWordDataHash: vi.fn((words) => `hash-of-${words.length}-words`),
 }));
 
-import { getBuildData } from '~astro-utils/build-utils';
+import { getBuildData } from '#astro-utils/build-utils';
 
 describe('build-utils', () => {
   describe('getBuildData', () => {

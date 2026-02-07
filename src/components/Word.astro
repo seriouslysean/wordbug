@@ -1,9 +1,9 @@
 ---
-import Heading from '~components/Heading.astro';
-import WordDescription from '~components/WordDescription.astro';
-import type { WordData } from '~types';
-import { formatDate, formatISODate } from '~utils/date-utils';
-import { getWordDetails } from '~astro-utils/word-data-utils';
+import Heading from '#components/Heading.astro';
+import WordDescription from '#components/WordDescription.astro';
+import type { WordData } from '#types';
+import { formatDate, formatISODate } from '#utils/date-utils';
+import { getWordDetails } from '#astro-utils/word-data-utils';
 
 interface Props {
   word: WordData | null;

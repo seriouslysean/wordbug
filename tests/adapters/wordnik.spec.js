@@ -13,7 +13,7 @@ describe('wordnik adapter', () => {
     process.env.WORDNIK_WEBSITE_URL = 'https://www.wordnik.com';
     process.env.WORDNIK_API_URL = 'https://api.wordnik.com/v4';
 
-    wordnikAdapter = await import('~adapters/wordnik');
+    wordnikAdapter = await import('#adapters/wordnik');
   });
 
   describe('processCrossReferences', () => {

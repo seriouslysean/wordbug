@@ -1,20 +1,20 @@
 ---
-import DefinitionList from '~components/DefinitionList.astro';
-import DescriptionText from '~components/DescriptionText.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import Heading from '~components/Heading.astro';
-import Layout from '~layouts/Layout.astro';
+import DefinitionList from '#components/DefinitionList.astro';
+import DescriptionText from '#components/DescriptionText.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import Heading from '#components/Heading.astro';
+import Layout from '#layouts/Layout.astro';
 import { 
   letterPatternStats
-} from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
+} from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
 import { 
   getSameStartEndUrl,
   getDoubleLettersUrl,
   getTripleLettersUrl,
   getAlphabeticalOrderUrl,
   getPalindromesUrl
-} from '~astro-utils/url-utils';
+} from '#astro-utils/url-utils';
 
 const letterPatternItems = [
   { key: 'startEndSame', label: t('stats.same_start_end'), count: letterPatternStats.startEndSame.length, href: getSameStartEndUrl() },

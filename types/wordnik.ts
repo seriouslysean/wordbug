@@ -2,7 +2,7 @@
  * Wordnik API types - External API structures
  */
 
-import type { RateLimit } from '~types';
+import type { RateLimit } from '#types';
 
 export interface WordnikDefinition {
   id?: string;
@@ -37,7 +37,7 @@ export interface WordnikResponse extends Array<WordnikDefinition> {
 }
 
 export interface WordnikConfig {
-  BASE_URL: string;
+  BASE_URL: string | undefined;
   DEFAULT_LIMIT: number;
   RATE_LIMIT_DELAY: number;
   RATE_LIMIT_BACKOFF: number;

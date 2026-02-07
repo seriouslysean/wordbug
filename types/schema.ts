@@ -3,7 +3,7 @@
  * Focused on educational vocabulary content
  */
 
-import type { SourceMeta } from '~types';
+import type { SourceMeta } from '#types';
 
 // Website schema - appears on every page
 export interface WebSiteSchema {

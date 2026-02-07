@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import { getAdapter } from '~adapters';
+import { getAdapter } from '#adapters';
 import type {
   WordAdjacentResult,
   WordData,
@@ -8,9 +8,9 @@ import type {
   WordGroupByPartOfSpeechResult,
   WordGroupByYearResult,
   WordProcessedData,
-} from '~types';
-import { MAX_PAST_WORDS_DISPLAY } from '~constants/text-patterns';
-import { getMonthSlugFromDate } from '~utils/date-utils';
+} from '#types';
+import { MAX_PAST_WORDS_DISPLAY } from '#constants/text-patterns';
+import { getMonthSlugFromDate } from '#utils/date-utils';
 import {
   getAvailableYears,
   getAvailableLengths,
@@ -23,7 +23,7 @@ import {
   getWordsByLength as getWordsByLengthPure,
   getWordsByLetter as getWordsByLetterPure,
   getWordsByPartOfSpeech as getWordsByPartOfSpeechPure,
-} from '~utils/word-data-utils';
+} from '#utils/word-data-utils';
 import {
   getWordStats,
   getLetterPatternStats,
@@ -31,8 +31,8 @@ import {
   getCurrentStreakStats,
   getAntiStreakStats,
   getChronologicalMilestones
-} from '~astro-utils/word-stats-utils';
-import { logger } from '~astro-utils/logger';
+} from '#astro-utils/word-stats-utils';
+import { logger } from '#astro-utils/logger';
 
 /**
  * Get words from Astro Content Collections
@@ -185,7 +185,7 @@ export const getCurrentWord = (words: WordData[] = allWords): WordData | null =>
 
   const found = words.find(word => word.date <= dateString);
 
-  return found || words[words.length - 1];
+  return found ?? words[words.length - 1] ?? null;
 };
 
 /**
@@ -294,14 +294,10 @@ export const getWordsByMonth = (
  * @returns {Object} Object with month slugs as keys and word arrays as values
  */
 export const groupWordsByMonth = (year: string, words: WordData[] = allWords): { [monthSlug: string]: WordData[] } => {
-  return words
-    .filter(word => word.date.startsWith(year))
-    .reduce((acc, word) => {
-      const monthSlug = getMonthSlugFromDate(word.date);
-      acc[monthSlug] = acc[monthSlug] || [];
-      acc[monthSlug].push(word);
-      return acc;
-    }, {} as { [monthSlug: string]: WordData[] });
+  return Object.groupBy(
+    words.filter(word => word.date.startsWith(year)),
+    word => getMonthSlugFromDate(word.date),
+  ) as { [monthSlug: string]: WordData[] };
 };
 
 /**
@@ -326,12 +322,7 @@ export const generateWordDataHash = (words: string[]): string => {
  * @returns {WordGroupByYearResult} Object with years as keys and word arrays as values
  */
 export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
-  return words.reduce((acc, word) => {
-    const year = word.date.substring(0, 4);
-    acc[year] = acc[year] || [];
-    acc[year].push(word);
-    return acc;
-  }, {} as WordGroupByYearResult);
+  return Object.groupBy(words, word => word.date.substring(0, 4)) as WordGroupByYearResult;
 };
 
 
@@ -344,12 +335,7 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
  * @returns {WordGroupByLengthResult} Object with lengths as keys and word arrays as values, sorted by length
  */
 export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult => {
-  const groups = words.reduce<WordGroupByLengthResult>((acc, word) => {
-    const length = word.word.length;
-    acc[length] = acc[length] || [];
-    acc[length].push(word);
-    return acc;
-  }, {});
+  const groups = Object.groupBy(words, word => word.word.length) as WordGroupByLengthResult;
 
   return Object.fromEntries(
     Object.entries(groups).sort(([a], [b]) => Number(a) - Number(b)),

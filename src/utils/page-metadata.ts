@@ -1,9 +1,9 @@
-import { allWords } from '~astro-utils/word-data-utils';
-import { stripBasePath } from '~astro-utils/url-utils';
+import { allWords } from '#astro-utils/word-data-utils';
+import { stripBasePath } from '#astro-utils/url-utils';
 import {
   getAllPageMetadata as getAllPageMetadataBase,
   getPageMetadata as getPageMetadataBase,
-} from '~utils/page-metadata-utils';
+} from '#utils/page-metadata-utils';
 
 /**
  * Astro-specific page metadata functions with environment handling

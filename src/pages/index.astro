@@ -1,10 +1,10 @@
 ---
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getCurrentWord, getWordsFromCollection } from '~astro-utils/word-data-utils';
-import WordDisplay from '~components/WordDisplay.astro';
-import Layout from '~layouts/Layout.astro';
-import { t } from '~utils/i18n-utils';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
+import { getCurrentWord, getWordsFromCollection } from '#astro-utils/word-data-utils';
+import WordDisplay from '#components/WordDisplay.astro';
+import Layout from '#layouts/Layout.astro';
+import { t } from '#utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const currentWord = getCurrentWord(allWords);

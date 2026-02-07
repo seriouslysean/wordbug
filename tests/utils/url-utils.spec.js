@@ -18,7 +18,7 @@ import {
   getLetterUrl,
   getMonthUrl,
   getStatUrl,
-} from '~astro-utils/url-utils';
+} from '#astro-utils/url-utils';
 
 describe('utils', () => {
   describe('slugify', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { t, tp } from '~utils/i18n-utils';
+import { t, tp } from '#utils/i18n-utils';
 
 describe('i18n-utils', () => {
   describe('t', () => {
