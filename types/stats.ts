@@ -57,7 +57,12 @@ export type StatsSlug =
   | 'words-ending-ly'
   | 'words-ending-ness'
   | 'words-ending-ful'
-  | 'words-ending-less';
+  | 'words-ending-less'
+  // Stats sections
+  | 'word-facts'
+  | 'streaks'
+  | 'letter-patterns'
+  | 'word-endings';
 
 /**
  * Template type for suffix-based stats slugs

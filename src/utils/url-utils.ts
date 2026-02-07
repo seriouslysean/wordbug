@@ -1,11 +1,11 @@
-import { logger } from '~astro-utils/logger';
+import { logger } from '#astro-utils/logger';
 
 // =====================================================
 // URL Slug Utilities
 // =====================================================
 
 // Re-export slugify from shared utils (single source of truth)
-export { slugify } from '~utils/text-utils';
+export { slugify } from '#utils/text-utils';
 
 /**
  * Get the configured base path, defaulting to '/'
@@ -111,7 +111,7 @@ export const stripBasePath = (pathname: string): string => {
   return cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
 };
 
-import { BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '~constants/urls';
+import { BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
 
 // =====================================================
 // Section URLs - Top-level navigation

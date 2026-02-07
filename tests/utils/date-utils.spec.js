@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
  dateToYYYYMMDD, formatDate, formatISODate, getMonthNameFromDate, getMonthSlugFromDate, getTodayYYYYMMDD, isValidDate, MONTH_NAMES, monthSlugToNumber, YYYYMMDDToDate,
-} from '~utils/date-utils';
+} from '#utils/date-utils';
 
 describe('shared date-utils', () => {
   describe('getTodayYYYYMMDD', () => {

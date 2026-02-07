@@ -1,15 +1,15 @@
 ---
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getWordsFromCollection, groupWordsByYear, groupWordsByLetter, groupWordsByLength, groupWordsByPartOfSpeech } from '~astro-utils/word-data-utils';
-import { getWordsYearUrl, getLetterUrl, getLengthUrl, getPartOfSpeechUrl, getWordsUrl, getWordsLetterUrl, getWordsLengthUrl, getWordsPartOfSpeechUrl, getWordsYearIndexUrl } from '~astro-utils/url-utils';
-import Heading from '~components/Heading.astro';
-import SectionHeading from '~components/SectionHeading.astro';
-import SiteLink from '~components/SiteLink.astro';
-import WordSection from '~components/WordSection.astro';
-import RandomWordLink from '~components/RandomWordLink.astro';
-import Layout from '~layouts/Layout.astro';
-import { t, tp } from '~utils/i18n-utils';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
+import { getWordsFromCollection, groupWordsByYear, groupWordsByLetter, groupWordsByLength, groupWordsByPartOfSpeech } from '#astro-utils/word-data-utils';
+import { getWordsYearUrl, getLetterUrl, getLengthUrl, getPartOfSpeechUrl, getWordsUrl, getWordsLetterUrl, getWordsLengthUrl, getWordsPartOfSpeechUrl, getWordsYearIndexUrl } from '#astro-utils/url-utils';
+import Heading from '#components/Heading.astro';
+import SectionHeading from '#components/SectionHeading.astro';
+import SiteLink from '#components/SiteLink.astro';
+import WordSection from '#components/WordSection.astro';
+import RandomWordLink from '#components/RandomWordLink.astro';
+import Layout from '#layouts/Layout.astro';
+import { t, tp } from '#utils/i18n-utils';
 
 const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);

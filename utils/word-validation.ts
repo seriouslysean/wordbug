@@ -1,4 +1,4 @@
-import type { DictionaryDefinition } from '~types';
+import type { DictionaryDefinition } from '#types';
 
 /**
  * Validates dictionary data to ensure it contains meaningful content.

@@ -1,6 +1,6 @@
 import { captureException, captureMessage, withScope } from '@sentry/astro';
 
-import type { LogContext } from '~types';
+import type { LogContext } from '#types';
 
 /**
  * Log an error to Sentry with optional context

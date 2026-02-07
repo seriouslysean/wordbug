@@ -1,10 +1,10 @@
 ---
-import WordDisplay from '~components/WordDisplay.astro';
-import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { getWordsFromCollection } from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
-import { BASE_PATHS } from '~constants/urls';
+import WordDisplay from '#components/WordDisplay.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { getWordsFromCollection } from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
+import { BASE_PATHS } from '#constants/urls';
 
 // Get the metadata from the 404 page, using type assertion to access partOfSpeech
 const allWords = await getWordsFromCollection();

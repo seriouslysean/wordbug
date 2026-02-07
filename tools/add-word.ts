@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
-import { paths } from '~config/paths';
-import { COMMON_ENV_DOCS,showHelp } from '~tools/help-utils';
-import { createWordEntry, findExistingWord } from '~tools/utils';
-import type { WordData } from '~types';
-import { getTodayYYYYMMDD, isValidDate } from '~utils/date-utils';
+import { paths } from '#config/paths';
+import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
+import { createWordEntry, findExistingWord } from '#tools/utils';
+import type { WordData } from '#types';
+import { getTodayYYYYMMDD, isValidDate } from '#utils/date-utils';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found
@@ -150,29 +150,26 @@ Requirements:
 ${COMMON_ENV_DOCS}
 `;
 
-// Get command line arguments
-const args = process.argv.slice(2);
+// Parse command line arguments
+import { parseArgs } from 'node:util';
 
-// Check for help flag
-if (args.includes('--help') || args.includes('-h') || args.length === 0) {
+const { values, positionals } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    help: { type: 'boolean', short: 'h', default: false },
+    overwrite: { type: 'boolean', short: 'o', default: false },
+    'preserve-case': { type: 'boolean', short: 'p', default: false },
+  },
+  allowPositionals: true,
+  strict: true,
+});
+
+if (values.help || positionals.length === 0) {
   showHelp(HELP_TEXT);
   process.exit(0);
 }
 
-// Parse options - check and remove each flag immediately
-const overwriteIndex = args.findIndex(arg => arg === '--overwrite' || arg === '-o');
-const hasOverwrite = overwriteIndex !== -1;
-if (hasOverwrite) {
-  args.splice(overwriteIndex, 1);
-}
-
-const preserveCaseIndex = args.findIndex(arg => arg === '--preserve-case' || arg === '-p');
-const hasPreserveCase = preserveCaseIndex !== -1;
-if (hasPreserveCase) {
-  args.splice(preserveCaseIndex, 1);
-}
-
-const [word, date] = args;
+const [word, date] = positionals;
 
 if (!word) {
   console.error('Word is required', { word });
@@ -183,6 +180,6 @@ if (!word) {
 console.log('Add word tool starting...');
 addWord(word, {
   date,
-  overwrite: hasOverwrite,
-  preserveCase: hasPreserveCase,
+  overwrite: values.overwrite,
+  preserveCase: values['preserve-case'],
 });

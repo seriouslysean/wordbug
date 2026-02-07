@@ -12,7 +12,7 @@ import {
   isAllVowels,
   isPalindrome,
   isStartEndSame,
-} from '~utils/text-utils';
+} from '#utils/text-utils';
 
 describe('text-utils', () => {
   describe('getVowelCount', () => {

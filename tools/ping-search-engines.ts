@@ -20,27 +20,24 @@ import https from 'https';
 import { URL } from 'url';
 
 
-/**
- * Gets the value for a CLI flag from an argument array
- * @param flag - The flag to search for (e.g., '--site-url')
- * @param argsArr - Array of command line arguments
- * @returns The value following the flag, or undefined if not found
- */
-function getArgValue(flag: string, argsArr: string[]): string | undefined {
-  const idx = argsArr.findIndex(arg => arg === flag);
-  if (idx !== -1 && argsArr[idx + 1] && !argsArr[idx + 1].startsWith('--')) {
-    return argsArr[idx + 1];
-  }
-  return undefined;
-}
+import { parseArgs } from 'node:util';
 
 // Parse command line arguments
-const args = process.argv.slice(2);
-const isDryRun = args.includes('--dry-run');
-const isForce = args.includes('--force');
+const { values: cliValues } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    'site-url': { type: 'string' },
+    'deployed-hash': { type: 'string' },
+    'dry-run': { type: 'boolean', default: false },
+    force: { type: 'boolean', default: false },
+  },
+  strict: true,
+});
 
-const siteUrlArg = getArgValue('--site-url', args);
-const deployedHashArg = getArgValue('--deployed-hash', args);
+const isDryRun = !!cliValues['dry-run'];
+const isForce = !!cliValues.force;
+const siteUrlArg = cliValues['site-url'];
+const deployedHashArg = cliValues['deployed-hash'];
 
 if (!siteUrlArg) {
   console.error('Site URL required');
@@ -133,7 +130,7 @@ async function fetchDeployedHash(): Promise<string | null> {
 });
       res.on('end', () => {
         const match = data.match(/^words_hash:\s*(\w+)/m);
-        if (match) {
+        if (match && match[1]) {
           resolve(match[1]);
         } else {
           console.warn('Could not find words_hash in health.txt');

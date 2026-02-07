@@ -94,23 +94,6 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
   vite: {
-    resolve: {
-      alias: {
-        '~': '/src',
-        '~components': '/src/components',
-        '~layouts': '/src/layouts',
-        '~astro-utils': '/src/utils',
-        '~data': '/data',
-        '~config': '/config',
-        '~styles': '/src/styles',
-        '~assets': '/src/assets',
-        '~adapters': '/adapters',
-        '~types': '/types',
-        '~tools': '/tools',
-        '~utils-tools': '/tools',
-        '~utils': '/utils',
-      },
-    },
     define: {
       __BASE_URL__: JSON.stringify(base || '/'),
       __VERSION__: JSON.stringify(pkg.version),

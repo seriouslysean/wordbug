@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "2.9.5",
+  "version": "3.0.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -13,6 +13,9 @@
   ],
   "author": "Sean Kennedy <sean@codeserious.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.6.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -41,11 +44,9 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
-    "@types/yargs": "^17.0.33",
-    "astro": "^5.14.5",
+    "astro": "^5.17.1",
     "date-fns": "^4.1.0",
-    "entities": "^6.0.1",
-    "yargs": "^17.7.2"
+    "entities": "^6.0.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -61,5 +62,23 @@
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
+  },
+  "imports": {
+    "#components/*": "./src/components/*",
+    "#layouts/*": "./src/layouts/*",
+    "#astro-utils/*": "./src/utils/*",
+    "#utils/*": "./utils/*",
+    "#types": "./types/index.ts",
+    "#types/*": "./types/*",
+    "#constants/*": "./constants/*",
+    "#config/*": "./config/*",
+    "#adapters": "./adapters/index.ts",
+    "#adapters/*": "./adapters/*",
+    "#data/*": "./data/*",
+    "#styles/*": "./src/styles/*",
+    "#assets/*": "./src/assets/*",
+    "#tools/*": "./tools/*",
+    "#locales/*": "./locales/*",
+    "#tests/*": "./tests/*"
   }
 }

@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 
-import { generateLlmsTxt } from '~astro-utils/static-file-utils';
-import { getWordsFromCollection } from '~astro-utils/word-data-utils';
+import { generateLlmsTxt } from '#astro-utils/static-file-utils';
+import { getWordsFromCollection } from '#astro-utils/word-data-utils';
 
 /**
  * Handle llms.txt requests

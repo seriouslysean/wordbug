@@ -2,7 +2,7 @@ import {
  afterEach,beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
-import { getAdapter } from '~adapters';
+import { getAdapter } from '#adapters';
 
 describe('adapter factory', () => {
   let originalEnv;
@@ -72,14 +72,14 @@ describe('adapter factory', () => {
         debug: vi.fn(),
       }));
 
-      vi.mock('~astro-utils/logger', () => ({
+      vi.mock('#astro-utils/logger', () => ({
         logger: mockLogger,
       }));
 
       process.env.DICTIONARY_ADAPTER = 'wordnik';
       vi.resetModules();
 
-      const { getAdapter: getAdapterWithMock } = await import('~adapters');
+      const { getAdapter: getAdapterWithMock } = await import('#adapters');
       getAdapterWithMock();
 
       expect(mockLogger.info).toHaveBeenCalledWith(

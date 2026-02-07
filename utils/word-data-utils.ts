@@ -1,5 +1,5 @@
-import type { WordData } from '~types';
-import { PART_OF_SPEECH_NORMALIZATION } from '~constants/parts-of-speech';
+import type { WordData } from '#types';
+import { PART_OF_SPEECH_NORMALIZATION } from '#constants/parts-of-speech';
 
 /**
  * Finds the first valid definition with a part of speech from word data.
@@ -92,13 +92,7 @@ export const normalizePartOfSpeech = (partOfSpeech: string): string => {
   // Remove trailing punctuation and normalize case
   const normalized = partOfSpeech.toLowerCase().trim().replace(/[.,;!?]+$/, '');
 
-  // Check if this exact variant exists in our normalization map
-  if (normalized in PART_OF_SPEECH_NORMALIZATION) {
-    return PART_OF_SPEECH_NORMALIZATION[normalized];
-  }
-
-  // Return as-is if it's already a base type or an unknown type
-  return normalized;
+  return PART_OF_SPEECH_NORMALIZATION[normalized] ?? normalized;
 };
 
 /**

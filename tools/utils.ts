@@ -3,7 +3,7 @@ import opentype from 'opentype.js';
 import path from 'path';
 import sharp from 'sharp';
 
-import { paths } from '~config/paths';
+import { paths } from '#config/paths';
 
 // Colors for image generation
 const imageColors = {
@@ -92,11 +92,12 @@ export const getWordFiles = (): WordFileInfo[] => {
  * @returns {void} Nothing
  */
 export function updateWordFile(filePath: string, data: WordnikResponse, date: string): void {
-  if (!data.length || !data[0].word) {
+  const firstResult = data[0];
+  if (!data.length || !firstResult?.word) {
     throw new Error('No word found in response data');
   }
 
-  const word = data[0].word.toLowerCase();
+  const word = firstResult.word.toLowerCase();
   const adapter = process.env.DICTIONARY_ADAPTER || 'wordnik';
   const wordData = { word, date, adapter, data };
 
@@ -354,10 +355,10 @@ export async function generateGenericShareImage(title: string, slug: string): Pr
   }
 }
 
-import { getAdapter } from '~adapters';
-import type { CreateWordEntryResult, WordData, WordnikResponse } from '~types';
-import { formatDate, isValidDate } from '~utils/date-utils';
-import { isValidDictionaryData } from '~utils/word-validation';
+import { getAdapter } from '#adapters';
+import type { CreateWordEntryResult, WordData, WordnikResponse } from '#types';
+import { formatDate, isValidDate } from '#utils/date-utils';
+import { isValidDictionaryData } from '#utils/word-validation';
 
 
 interface CreateWordEntryOptions {

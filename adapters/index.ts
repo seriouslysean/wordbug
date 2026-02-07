@@ -1,6 +1,6 @@
-import { wordnikAdapter } from '~adapters/wordnik';
-import type { DictionaryAdapter } from '~types';
-import { logger } from '~astro-utils/logger';
+import { wordnikAdapter } from '#adapters/wordnik';
+import type { DictionaryAdapter } from '#types';
+import { logger } from '#astro-utils/logger';
 
 /**
  * Gets the configured dictionary adapter based on DICTIONARY_ADAPTER environment variable

@@ -7,7 +7,7 @@ import {
 } from 'vitest';
 
 // Mock the i18n utils to return predictable test data
-vi.mock('~utils/i18n-utils', () => ({
+vi.mock('#utils/i18n-utils', () => ({
   t: vi.fn((key, params = {}) => {
     const mockTranslations = {
       'words.heading': 'Mock Words Heading',
@@ -33,11 +33,11 @@ vi.mock('~utils/i18n-utils', () => ({
   tp: vi.fn((baseKey, count) => `${count} Mock Items`)
 }));
 
-import { getAllPageMetadata, getPageMetadata } from '~utils/page-metadata-utils';
+import { getAllPageMetadata, getPageMetadata } from '#utils/page-metadata-utils';
 
 // Clean up mock after this test file to prevent leakage to other tests
 afterAll(() => {
-  vi.doUnmock('~utils/i18n-utils');
+  vi.doUnmock('#utils/i18n-utils');
   vi.resetModules();
 });
 
@@ -198,7 +198,7 @@ describe('page-metadata-utils', () => {
     it('handles BASE_PATH prefixes', async () => {
       vi.stubGlobal('__BASE_URL__', '/vocab');
       const { getPageMetadata: getPageMetadataWrapper } = await import(
-        '~astro-utils/page-metadata'
+        '#astro-utils/page-metadata'
       );
       const metadata = getPageMetadataWrapper('/vocab/stats');
       expect(metadata).toEqual({
@@ -213,7 +213,7 @@ describe('page-metadata-utils', () => {
       vi.stubGlobal('__BASE_URL__', '/Vocab/');
       vi.resetModules();
       const { getPageMetadata: getPageMetadataWrapper } = await import(
-        '~astro-utils/page-metadata'
+        '#astro-utils/page-metadata'
       );
       const metadata = getPageMetadataWrapper('/Vocab/stats');
       expect(metadata).toEqual({

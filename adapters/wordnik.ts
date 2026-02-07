@@ -8,8 +8,8 @@ import type {
   WordProcessedData,
   WordnikConfig,
   WordnikDefinition,
-} from '~types';
-import { findValidDefinition } from '~utils/word-data-utils';
+} from '#types';
+import { findValidDefinition } from '#utils/word-data-utils';
 
 /**
  * Configuration constants for Wordnik API integration
@@ -45,6 +45,9 @@ export const wordnikAdapter: DictionaryAdapter = {
     }
     const limit = (options as FetchOptions).limit || WORDNIK_CONFIG.DEFAULT_LIMIT;
     const baseUrl = WORDNIK_CONFIG.BASE_URL;
+    if (!baseUrl) {
+      throw new Error('WORDNIK_API_URL environment variable is required');
+    }
 
     const buildUrl = (queryWord: string): string =>
       `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;

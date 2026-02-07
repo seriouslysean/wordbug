@@ -1,12 +1,12 @@
 ---
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
-import WordSection from '~components/WordSection.astro';
-import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import { getWordsYearUrl } from '~astro-utils/url-utils';
-import { getWordsFromCollection, groupWordsByYear } from '~astro-utils/word-data-utils';
+import DescriptionText from '#components/DescriptionText.astro';
+import Heading from '#components/Heading.astro';
+import WordSection from '#components/WordSection.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
+import { getWordsYearUrl } from '#astro-utils/url-utils';
+import { getWordsFromCollection, groupWordsByYear } from '#astro-utils/word-data-utils';
 
 const allWords = await getWordsFromCollection();
 const yearGroups = Object.entries(groupWordsByYear(allWords))

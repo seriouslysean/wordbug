@@ -1,25 +1,25 @@
 ---
-import DefinitionList from '~components/DefinitionList.astro';
-import DescriptionText from '~components/DescriptionText.astro';
-import StatsSection from '~components/StatsSection.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { getWordsLengthUrl } from '~astro-utils/url-utils';
+import DefinitionList from '#components/DefinitionList.astro';
+import DescriptionText from '#components/DescriptionText.astro';
+import StatsSection from '#components/StatsSection.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { getWordsLengthUrl } from '#astro-utils/url-utils';
 import {
   getLetterStats,
   getLetterTypeStats,
   getPatternStats,
   getSyllableStats,
-} from '~astro-utils/word-stats-utils';
-import Heading from '~components/Heading.astro';
-import Layout from '~layouts/Layout.astro';
-import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
+} from '#astro-utils/word-stats-utils';
+import Heading from '#components/Heading.astro';
+import Layout from '#layouts/Layout.astro';
+import { countSyllables, getConsonantCount, getVowelCount } from '#utils/text-utils';
 import { 
   allWords, 
   availableLengths,
   wordStats,
   milestoneWords
-} from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
+} from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
 
 const lengthCount = availableLengths.length;
 
@@ -30,10 +30,12 @@ const { allVowels, allConsonants, palindromes } = getPatternStats(allWords);
 
 const leastSyllablesCount = leastSyllables ? countSyllables(leastSyllables.word) : 0;
 const mostSyllablesCount = mostSyllables ? countSyllables(mostSyllables.word) : 0;
-const mostCommonLetter = letterStats.length > 0 ? letterStats[0][0] : '';
-const mostCommonLetterCount = letterStats.length > 0 ? letterStats[0][1] : 0;
-const leastCommonLetter = letterStats.length > 0 ? letterStats[letterStats.length - 1][0] : '';
-const leastCommonLetterCount = letterStats.length > 0 ? letterStats[letterStats.length - 1][1] : 0;
+const firstLetterStat = letterStats[0];
+const lastLetterStat = letterStats[letterStats.length - 1];
+const mostCommonLetter = firstLetterStat?.[0] ?? '';
+const mostCommonLetterCount = firstLetterStat?.[1] ?? 0;
+const leastCommonLetter = lastLetterStat?.[0] ?? '';
+const leastCommonLetterCount = lastLetterStat?.[1] ?? 0;
 const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
 const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
 const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;

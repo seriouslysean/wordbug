@@ -1,6 +1,6 @@
-import { showHelp } from '~tools/help-utils';
-import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '~tools/utils';
-import { getAllPageMetadata } from '~utils/page-metadata-utils';
+import { showHelp } from '#tools/help-utils';
+import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '#tools/utils';
+import { getAllPageMetadata } from '#utils/page-metadata-utils';
 
 const HELP_TEXT = `
 Generate Images Tool
@@ -150,52 +150,42 @@ async function generatePageImage(pagePath: string): Promise<boolean> {
 }
 
 // Parse command line arguments
-const args = process.argv.slice(2);
+import { parseArgs } from 'node:util';
 
-// Check for help flag
-if (args.includes('--help') || args.includes('-h')) {
+const { values: cliValues } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    help: { type: 'boolean', short: 'h', default: false },
+    force: { type: 'boolean', default: false },
+    words: { type: 'boolean', default: false },
+    generic: { type: 'boolean', default: false },
+    page: { type: 'string' },
+    word: { type: 'string' },
+  },
+  strict: true,
+});
+
+if (cliValues.help) {
   showHelp(HELP_TEXT);
   process.exit(0);
 }
 
-// Parse options
-const forceIndex = args.findIndex(arg => arg === '--force');
-const hasForce = forceIndex !== -1;
-if (hasForce) {
-  args.splice(forceIndex, 1);
-}
-
-const wordsIndex = args.findIndex(arg => arg === '--words');
-const hasWords = wordsIndex !== -1;
-if (hasWords) {
-  args.splice(wordsIndex, 1);
-}
-
-const genericIndex = args.findIndex(arg => arg === '--generic');
-const hasGeneric = genericIndex !== -1;
-if (hasGeneric) {
-  args.splice(genericIndex, 1);
-}
-
-const pageIndex = args.findIndex(arg => arg === '--page');
-const hasPage = pageIndex !== -1;
-const pagePath = hasPage ? (args.splice(pageIndex, 1), args.splice(pageIndex, 1)[0] || '') : '';
-
-const wordIndex = args.findIndex(arg => arg === '--word');
-const hasWord = wordIndex !== -1;
-const word = hasWord ? (args.splice(wordIndex, 1), args.splice(wordIndex, 1)[0] || '') : '';
+const hasWords = !!cliValues.words;
+const hasGeneric = !!cliValues.generic;
+const pagePath = cliValues.page ?? '';
+const word = cliValues.word ?? '';
 
 // Main execution
 (async () => {
   try {
     console.log('Generate images tool starting...');
-    if (hasPage && pagePath) {
+    if (pagePath) {
       // Generate specific page image
       const success = await generatePageImage(pagePath);
       process.exit(success ? 0 : 1);
     }
 
-    if (hasWord && word) {
+    if (word) {
       // Generate single word image
       const success = await generateSingleImage(word);
       process.exit(success ? 0 : 1);
