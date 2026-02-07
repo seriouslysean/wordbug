@@ -4,7 +4,7 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
-} from '~constants/stats';
+} from '#constants/stats';
 import {
   getChronologicalMilestones,
   getCurrentStreakStats,
@@ -14,7 +14,7 @@ import {
   getPatternStats,
   getWordEndingStats,
   getWordStats,
-} from '~astro-utils/word-stats-utils';
+} from '#astro-utils/word-stats-utils';
 
 const ordinal = (n: number): string => {
   const suffixes = ['th', 'st', 'nd', 'rd'];
@@ -22,7 +22,7 @@ const ordinal = (n: number): string => {
   return n + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0]);
 };
 
-import type { WordData, WordMilestoneItem } from '~types';
+import type { WordData, WordMilestoneItem } from '#types';
 
 // Template constants
 const TEMPLATE = {
@@ -136,7 +136,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
  * @returns Array of path definitions for stats pages
  */
 export const generateStatsStaticPaths = async () => {
-  const { getWordsFromCollection } = await import('~astro-utils/word-data-utils');
+  const { getWordsFromCollection } = await import('#astro-utils/word-data-utils');
   const words = await getWordsFromCollection();
 
   const showEmptyPages = __SHOW_EMPTY_STATS__;

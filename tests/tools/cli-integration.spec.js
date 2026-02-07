@@ -52,7 +52,7 @@ describe('CLI Tools: Import & Execution', () => {
           if (error.message.includes("astro:")) {
             throw new Error(
               `${toolFile} has astro: protocol dependency: ${error.message}\n` +
-              `This breaks CLI tools. Check for imports from ~astro-utils/* in utils/ files.`
+              `This breaks CLI tools. Check for imports from #astro-utils/* in utils/ files.`
             );
           }
 
@@ -164,7 +164,7 @@ describe('CLI Tools: Import & Execution', () => {
           throw new Error(
             `${utilPath} has astro: dependency which breaks CLI tools.\n` +
             `Error: ${error.message}\n` +
-            `utils/ files must not import from ~astro-utils/* or astro: modules.`
+            `utils/ files must not import from #astro-utils/* or astro: modules.`
           );
         }
 
@@ -270,9 +270,9 @@ describe('CLI Tools: Regression Detection', () => {
     const astroImports = content.match(/from ['"]~astro-utils\//g);
 
     expect(astroImports,
-      'utils/page-metadata-utils.ts imports from ~astro-utils/* which breaks CLI tools. ' +
+      'utils/page-metadata-utils.ts imports from #astro-utils/* which breaks CLI tools. ' +
       'This is the exact regression that broke word adding. ' +
-      'Import from ~utils/* instead and add functions to utils/word-data-utils.ts'
+      'Import from #utils/* instead and add functions to utils/word-data-utils.ts'
     ).toBeNull();
   });
 
@@ -283,8 +283,8 @@ describe('CLI Tools: Regression Detection', () => {
     const astroImports = content.match(/from ['"]~astro-utils\//g);
 
     expect(astroImports,
-      'constants/urls.ts imports from ~astro-utils/* which breaks CLI tools. ' +
-      'slugify should be imported from ~utils/text-utils, not ~astro-utils/url-utils'
+      'constants/urls.ts imports from #astro-utils/* which breaks CLI tools. ' +
+      'slugify should be imported from #utils/text-utils, not #astro-utils/url-utils'
     ).toBeNull();
   });
 

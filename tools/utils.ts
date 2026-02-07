@@ -3,7 +3,7 @@ import opentype from 'opentype.js';
 import path from 'path';
 import sharp from 'sharp';
 
-import { paths } from '~config/paths';
+import { paths } from '#config/paths';
 
 // Colors for image generation
 const imageColors = {
@@ -354,10 +354,10 @@ export async function generateGenericShareImage(title: string, slug: string): Pr
   }
 }
 
-import { getAdapter } from '~adapters';
-import type { CreateWordEntryResult, WordData, WordnikResponse } from '~types';
-import { formatDate, isValidDate } from '~utils/date-utils';
-import { isValidDictionaryData } from '~utils/word-validation';
+import { getAdapter } from '#adapters';
+import type { CreateWordEntryResult, WordData, WordnikResponse } from '#types';
+import { formatDate, isValidDate } from '#utils/date-utils';
+import { isValidDictionaryData } from '#utils/word-validation';
 
 
 interface CreateWordEntryOptions {

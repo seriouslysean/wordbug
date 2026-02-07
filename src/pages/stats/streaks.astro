@@ -1,17 +1,17 @@
 ---
-import DefinitionList from '~components/DefinitionList.astro';
-import DescriptionText from '~components/DescriptionText.astro';
-import BarChart from '~components/BarChart.astro';
-import StatsSection from '~components/StatsSection.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import Heading from '~components/Heading.astro';
-import Layout from '~layouts/Layout.astro';
+import DefinitionList from '#components/DefinitionList.astro';
+import DescriptionText from '#components/DescriptionText.astro';
+import BarChart from '#components/BarChart.astro';
+import StatsSection from '#components/StatsSection.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import Heading from '#components/Heading.astro';
+import Layout from '#layouts/Layout.astro';
 import { 
   streakStats,
   antiStreakStats
-} from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
-import { formatDate } from '~utils/date-utils';
+} from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
+import { formatDate } from '#utils/date-utils';
 
 
 const streakItems = [

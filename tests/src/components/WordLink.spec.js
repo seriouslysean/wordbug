@@ -6,7 +6,7 @@ import {
   vi,
 } from 'vitest';
 
-import { getUrl, getWordUrl } from '~astro-utils/url-utils';
+import { getUrl, getWordUrl } from '#astro-utils/url-utils';
 
 describe('WordLink Component Integration', () => {
   beforeEach(() => {

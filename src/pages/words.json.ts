@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getWordsFromCollection } from '~astro-utils/word-data-utils';
+import { getWordsFromCollection } from '#astro-utils/word-data-utils';
 
 export const GET: APIRoute = async () => {
   const allWords = await getWordsFromCollection();

@@ -1,6 +1,6 @@
 ---
-import SiteButton from '~components/SiteButton.astro';
-import { t } from '~utils/i18n-utils';
+import SiteButton from '#components/SiteButton.astro';
+import { t } from '#utils/i18n-utils';
 
 const { class: className, ...attrs } = Astro.props;
 ---
@@ -10,7 +10,7 @@ const { class: className, ...attrs } = Astro.props;
 </SiteButton>
 
 <script>
-import { getUrl, getWordUrl, getWordsUrl } from '~astro-utils/url-utils';
+import { getUrl, getWordUrl, getWordsUrl } from '#astro-utils/url-utils';
 
 const wordListCache = { data: null as string[] | null };
 

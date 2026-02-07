@@ -1,10 +1,10 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
-import { getWordsFromCollection } from '~astro-utils/word-data-utils';
-import { extractWordDefinition } from '~astro-utils/word-data-utils';
-import { getFullUrl, getWordUrl } from '~astro-utils/url-utils';
-import { YYYYMMDDToDate } from '~utils/date-utils';
-import { RSS_FEED_WORD_COUNT } from '~constants/text-patterns';
+import { getWordsFromCollection } from '#astro-utils/word-data-utils';
+import { extractWordDefinition } from '#astro-utils/word-data-utils';
+import { getFullUrl, getWordUrl } from '#astro-utils/url-utils';
+import { YYYYMMDDToDate } from '#utils/date-utils';
+import { RSS_FEED_WORD_COUNT } from '#constants/text-patterns';
 
 export async function GET(context: APIContext) {
   const allWords = await getWordsFromCollection();

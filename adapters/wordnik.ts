@@ -8,8 +8,8 @@ import type {
   WordProcessedData,
   WordnikConfig,
   WordnikDefinition,
-} from '~types';
-import { findValidDefinition } from '~utils/word-data-utils';
+} from '#types';
+import { findValidDefinition } from '#utils/word-data-utils';
 
 /**
  * Configuration constants for Wordnik API integration

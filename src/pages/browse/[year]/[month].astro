@@ -1,15 +1,15 @@
 ---
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
-import WordSection from '~components/WordSection.astro';
-import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
+import DescriptionText from '#components/DescriptionText.astro';
+import Heading from '#components/Heading.astro';
+import WordSection from '#components/WordSection.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
 import {
   allWords,
   availableYears,
   groupWordsByMonth,
-} from '~astro-utils/word-data-utils';
+} from '#astro-utils/word-data-utils';
 
 export async function getStaticPaths() {
   const paths = [];

@@ -1,13 +1,13 @@
 ---
-import DefinitionList from '~components/DefinitionList.astro';
-import DescriptionText from '~components/DescriptionText.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import Heading from '~components/Heading.astro';
-import Layout from '~layouts/Layout.astro';
+import DefinitionList from '#components/DefinitionList.astro';
+import DescriptionText from '#components/DescriptionText.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import Heading from '#components/Heading.astro';
+import Layout from '#layouts/Layout.astro';
 import { 
   wordEndingStats
-} from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
+} from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
 
 const wordEndingItems = [
   { key: 'ing', label: t('stats.ing_words'), count: wordEndingStats.ing.length, href: '/stats/words-ending-ing' },

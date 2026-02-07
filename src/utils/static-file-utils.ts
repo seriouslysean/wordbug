@@ -1,13 +1,13 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import type { WordData } from '~types';
-import { formatDate } from '~utils/date-utils';
-import { getAllPageMetadata } from '~utils/page-metadata-utils';
-import { generateWordDataHash } from '~astro-utils/word-data-utils';
-import { getWordUrl } from '~astro-utils/url-utils';
-import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS } from '~constants/urls';
-import { MAX_PAST_WORDS_DISPLAY } from '~constants/text-patterns';
+import type { WordData } from '#types';
+import { formatDate } from '#utils/date-utils';
+import { getAllPageMetadata } from '#utils/page-metadata-utils';
+import { generateWordDataHash } from '#astro-utils/word-data-utils';
+import { getWordUrl } from '#astro-utils/url-utils';
+import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS } from '#constants/urls';
+import { MAX_PAST_WORDS_DISPLAY } from '#constants/text-patterns';
 
 /**
  * List of supported static text files

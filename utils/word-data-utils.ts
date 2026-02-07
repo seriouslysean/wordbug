@@ -1,5 +1,5 @@
-import type { WordData } from '~types';
-import { PART_OF_SPEECH_NORMALIZATION } from '~constants/parts-of-speech';
+import type { WordData } from '#types';
+import { PART_OF_SPEECH_NORMALIZATION } from '#constants/parts-of-speech';
 
 /**
  * Finds the first valid definition with a part of speech from word data.

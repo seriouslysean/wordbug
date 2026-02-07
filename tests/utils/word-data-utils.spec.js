@@ -7,7 +7,7 @@ import {
   vi,
 } from 'vitest';
 
-import { isValidDictionaryData } from '~utils/word-validation';
+import { isValidDictionaryData } from '#utils/word-validation';
 import {
   getAdjacentWords,
   getCurrentWord,
@@ -23,7 +23,7 @@ import {
   getWordsByLetter,
   groupWordsByPartOfSpeech,
   getWordsByPartOfSpeech,
-} from '~astro-utils/word-data-utils';
+} from '#astro-utils/word-data-utils';
 import {
   getAvailableLengths,
   getAvailableMonths,
@@ -33,10 +33,10 @@ import {
   getAvailablePartsOfSpeech,
   normalizePartOfSpeech,
   findValidDefinition,
-} from '~utils/word-data-utils';
+} from '#utils/word-data-utils';
 import {
   extractWordDefinition,
-} from '~astro-utils/word-data-utils';
+} from '#astro-utils/word-data-utils';
 
 describe('word-data-utils', () => {
   // Mock data sorted by descending date (newest first) like real getWordsFromCollection

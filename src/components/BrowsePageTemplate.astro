@@ -6,13 +6,13 @@
  * This template consolidates common patterns from browse pages
  * (letter, length, part-of-speech, etc.) to reduce boilerplate code.
  */
-import DescriptionText from '~components/DescriptionText.astro';
-import Heading from '~components/Heading.astro';
-import WordSection from '~components/WordSection.astro';
-import Layout from '~layouts/Layout.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '~astro-utils/schema-utils.ts';
-import type { WordData } from '~types';
+import DescriptionText from '#components/DescriptionText.astro';
+import Heading from '#components/Heading.astro';
+import WordSection from '#components/WordSection.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
+import type { WordData } from '#types';
 
 interface Props {
   words: WordData[];

@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { showHelp } from '~tools/help-utils';
-import { getWordFiles } from '~tools/utils';
-import type { WordData } from '~types';
+import { showHelp } from '#tools/help-utils';
+import { getWordFiles } from '#tools/utils';
+import type { WordData } from '#types';
 
 const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
 

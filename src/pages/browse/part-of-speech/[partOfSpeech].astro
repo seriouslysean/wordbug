@@ -1,6 +1,6 @@
 ---
-import BrowsePageTemplate from '~components/BrowsePageTemplate.astro';
-import { getWordsFromCollection, groupWordsByPartOfSpeech } from '~astro-utils/word-data-utils';
+import BrowsePageTemplate from '#components/BrowsePageTemplate.astro';
+import { getWordsFromCollection, groupWordsByPartOfSpeech } from '#astro-utils/word-data-utils';
 
 export async function getStaticPaths() {
   const allWords = await getWordsFromCollection();

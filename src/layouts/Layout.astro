@@ -1,19 +1,19 @@
 ---
-import '~styles/global.css';
-import '~styles/theme.css';
+import '#styles/global.css';
+import '#styles/theme.css';
 
-import Footer from '~components/Footer.astro';
-import Header from '~components/Header.astro';
-import SiteBreadcrumbs from '~components/SiteBreadcrumbs.astro';
-import StructuredData from '~components/StructuredData.astro';
-import type { WordData } from '~types';
-import { getBuildData } from '~astro-utils/build-utils.ts';
-import { getSocialImageUrl } from '~astro-utils/image-utils';
-import { getMetaDescription, seoConfig } from '~astro-utils/seo-utils.ts';
-import { getAsciiArt } from '~astro-utils/static-file-utils';
-import { getFullUrl,getUrl } from '~astro-utils/url-utils';
-import { extractWordDefinition,getWordsFromCollection } from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
+import Footer from '#components/Footer.astro';
+import Header from '#components/Header.astro';
+import SiteBreadcrumbs from '#components/SiteBreadcrumbs.astro';
+import StructuredData from '#components/StructuredData.astro';
+import type { WordData } from '#types';
+import { getBuildData } from '#astro-utils/build-utils.ts';
+import { getSocialImageUrl } from '#astro-utils/image-utils';
+import { getMetaDescription, seoConfig } from '#astro-utils/seo-utils.ts';
+import { getAsciiArt } from '#astro-utils/static-file-utils';
+import { getFullUrl,getUrl } from '#astro-utils/url-utils';
+import { extractWordDefinition,getWordsFromCollection } from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
 
 const { title, word, description, structuredDataType, noindex, nofollow, itemCount } = Astro.props;
 

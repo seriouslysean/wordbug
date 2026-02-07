@@ -2,7 +2,7 @@ import {
  afterEach,beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
-import { config,logger } from '~/utils/logger';
+import { config,logger } from '#astro-utils/logger';
 
 describe('logger', () => {
   let consoleSpy;
@@ -19,7 +19,7 @@ describe('logger', () => {
     importMock = vi.fn(() => Promise.resolve({
       logError: vi.fn(),
     }));
-    vi.doMock('~astro-utils/sentry-client', () => importMock);
+    vi.doMock('#astro-utils/sentry-client', () => importMock);
   });
 
   afterEach(() => {

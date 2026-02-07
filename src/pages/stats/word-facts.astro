@@ -1,25 +1,25 @@
 ---
-import DefinitionList from '~components/DefinitionList.astro';
-import DescriptionText from '~components/DescriptionText.astro';
-import StatsSection from '~components/StatsSection.astro';
-import { getPageMetadata } from '~astro-utils/page-metadata.ts';
-import { getWordsLengthUrl } from '~astro-utils/url-utils';
+import DefinitionList from '#components/DefinitionList.astro';
+import DescriptionText from '#components/DescriptionText.astro';
+import StatsSection from '#components/StatsSection.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { getWordsLengthUrl } from '#astro-utils/url-utils';
 import {
   getLetterStats,
   getLetterTypeStats,
   getPatternStats,
   getSyllableStats,
-} from '~astro-utils/word-stats-utils';
-import Heading from '~components/Heading.astro';
-import Layout from '~layouts/Layout.astro';
-import { countSyllables, getConsonantCount, getVowelCount } from '~utils/text-utils';
+} from '#astro-utils/word-stats-utils';
+import Heading from '#components/Heading.astro';
+import Layout from '#layouts/Layout.astro';
+import { countSyllables, getConsonantCount, getVowelCount } from '#utils/text-utils';
 import { 
   allWords, 
   availableLengths,
   wordStats,
   milestoneWords
-} from '~astro-utils/word-data-utils';
-import { t } from '~utils/i18n-utils';
+} from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
 
 const lengthCount = availableLengths.length;
 

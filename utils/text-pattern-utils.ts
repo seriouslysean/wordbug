@@ -6,7 +6,7 @@
  * These functions are framework-agnostic and can be used by CLI tools.
  */
 
-import { TEXT_PATTERNS, COMMON_WORD_ENDINGS, MIN_ALPHABETICAL_SEQUENCE_LENGTH } from '~constants/text-patterns';
+import { TEXT_PATTERNS, COMMON_WORD_ENDINGS, MIN_ALPHABETICAL_SEQUENCE_LENGTH } from '#constants/text-patterns';
 
 /**
  * Check if a word starts and ends with the same letter
