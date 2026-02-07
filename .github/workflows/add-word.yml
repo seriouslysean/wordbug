@@ -17,7 +17,7 @@ on:
         type: boolean
         default: false
       preserve_case:
-        description: 'Preserve original capitalization (for proper nouns like "Japan" or "PB&J")'
+        description: 'Keep original capitalization (for proper nouns, acronyms, or brands like "Japan", "NASA", "iPhone")'
         required: false
         type: boolean
         default: false
@@ -68,27 +68,37 @@ jobs:
       - name: Add word
         id: add_word
         run: |
+          # Sanitize and trim inputs
           WORD="${{ inputs.word }}"
+          WORD=$(echo "$WORD" | xargs)
+
           DATE="${{ inputs.date }}"
-          OVERWRITE="${{ inputs.overwrite }}"
-          PRESERVE_CASE="${{ inputs.preserve_case }}"
+          DATE=$(echo "$DATE" | xargs)
 
-          FLAGS=""
-          if [[ "$OVERWRITE" == "true" ]]; then
-            FLAGS="$FLAGS --overwrite"
-          fi
-          if [[ "$PRESERVE_CASE" == "true" ]]; then
-            FLAGS="$FLAGS --preserve-case"
+          # Validate word is not empty after trimming
+          if [ -z "$WORD" ]; then
+            echo "::error::Word cannot be empty or whitespace only"
+            exit 1
           fi
 
-          if npm run tool:add-word -- "$WORD" "$DATE" $FLAGS; then
+          # Build flags array to avoid quoting issues
+          FLAGS=()
+          if [[ "${{ inputs.overwrite }}" == "true" ]]; then
+            FLAGS+=(--overwrite)
+          fi
+          if [[ "${{ inputs.preserve_case }}" == "true" ]]; then
+            FLAGS+=(--preserve-case)
+          fi
+
+          # Run the add-word tool
+          if npm run tool:add-word -- "$WORD" "$DATE" "${FLAGS[@]}"; then
             echo "word_added=1" >> $GITHUB_OUTPUT
             echo "word=$WORD" >> $GITHUB_OUTPUT
 
             # Generate social image for the new word
             npm run tool:generate-images -- --word "$WORD"
           else
-            echo "Failed to add word"
+            echo "::error::Failed to add word: $WORD"
             echo "word_added=0" >> $GITHUB_OUTPUT
             exit 1
           fi
