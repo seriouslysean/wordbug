@@ -39,29 +39,32 @@ The project enforces a strict separation between pure Node.js utilities and Astr
 - **`src/utils/`** — Astro-specific wrappers. Uses Content Collections, caching, Sentry. Only for use in `src/` (pages, components, layouts).
 
 **Import alias mapping:**
-- `~utils/*` → `utils/` (pure, Node.js-safe)
-- `~astro-utils/*` → `src/utils/` (Astro-only)
+- `#utils/*` → `utils/` (pure, Node.js-safe)
+- `#astro-utils/*` → `src/utils/` (Astro-only)
 
-**The boundary rule:** Files in `utils/` must NEVER import from `~astro-utils/*` or `astro:*`. This breaks CLI tools. Architecture tests in `tests/architecture/` enforce this automatically.
+**The boundary rule:** Files in `utils/` must NEVER import from `#astro-utils/*` or `astro:*`. This breaks CLI tools. Architecture tests in `tests/architecture/` enforce this automatically.
 
 **Correct pattern** for shared logic: put pure function in `utils/`, create thin Astro wrapper in `src/utils/` that delegates to the pure function (not duplicates it).
 
 ### Import Aliases
 
-Always use aliases, never relative paths (`../`):
+Uses Node.js subpath imports (`#` prefix) defined in `package.json` `imports` field. This is the single source of truth for all alias resolution (TypeScript, Vite, Vitest). Always use aliases, never relative paths (`../`):
 
 | Alias | Path |
 |-------|------|
-| `~components/*` | `src/components/*` |
-| `~layouts/*` | `src/layouts/*` |
-| `~astro-utils/*` | `src/utils/*` |
-| `~utils/*` | `utils/*` |
-| `~types/*` | `types/*` |
-| `~constants/*` | `constants/*` |
-| `~config/*` | `config/*` |
-| `~adapters/*` | `adapters/*` |
-| `~data/*` | `data/*` |
-| `~tools/*` | `tools/*` |
+| `#components/*` | `src/components/*` |
+| `#layouts/*` | `src/layouts/*` |
+| `#astro-utils/*` | `src/utils/*` |
+| `#utils/*` | `utils/*` |
+| `#types` | `types/index.ts` |
+| `#types/*` | `types/*` |
+| `#constants/*` | `constants/*` |
+| `#config/*` | `config/*` |
+| `#adapters/*` | `adapters/*` |
+| `#data/*` | `data/*` |
+| `#styles/*` | `src/styles/*` |
+| `#assets/*` | `src/assets/*` |
+| `#tools/*` | `tools/*` |
 
 ### Data Flow
 
@@ -72,9 +75,9 @@ Always use aliases, never relative paths (`../`):
 
 ### Environment Configuration
 
-All config via environment variables (validated in `astro.config.mjs` which is the single source of truth — don't duplicate validation). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Copy `.env.example` to `.env` for local dev. In CI, env vars are passed directly.
+All config via environment variables (validated in `astro.config.ts` which is the single source of truth — don't duplicate validation). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Copy `.env.example` to `.env` for local dev. In CI, env vars are passed directly.
 
-Build-time globals (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`) are injected via Vite `define` in `astro.config.mjs`.
+Build-time globals (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`) are injected via Vite `define` in `astro.config.ts`.
 
 ### URL System
 
@@ -84,7 +87,7 @@ Build-time globals (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`) are i
 
 ### Test Structure
 
-Tests are in `tests/` using Vitest (config: `vitest.config.js`). Three layers:
+Tests are in `tests/` using Vitest (config: `vitest.config.ts`). Three layers:
 - **Unit** (`tests/utils/`, `tests/adapters/`) — pure function correctness
 - **Architecture** (`tests/architecture/`) — import boundary enforcement, DRY violations
 - **CLI Integration** (`tests/tools/`) — spawns real processes, catches `astro:` protocol errors
@@ -116,7 +119,7 @@ Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 ## Quality Gates
 
 All must pass before committing:
-- 0 ESLint errors/warnings (`npm run lint`)
+- 0 oxlint errors/warnings (`npm run lint`)
 - 0 TypeScript errors (`npm run typecheck`)
 - 0 Astro warnings/hints
 - All tests passing (`npm test`)

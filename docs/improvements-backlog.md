@@ -24,9 +24,8 @@
 - No breadcrumb implementation for deep navigation
 
 **Build Performance**
-- Multiple getStaticPaths functions independently load word collections
-- No shared data caching between route generation
-- Stats calculations without pre-computation
+- ~~Multiple getStaticPaths functions independently load word collections~~ - DONE: Shared `allWords` collection with computed derivatives
+- ~~Stats calculations without pre-computation~~ - DONE: Pre-computed once from `allWords`
 
 **Test Coverage** (Updated 2025-11-15 - Significant Progress!)
 - ✅ COMPLETED: tests/src/utils/build-utils.spec.js (100% coverage)
@@ -38,8 +37,8 @@
 - ⚠️ REMAINING: src/utils/static-file-utils.ts (276 lines, 0%)
 - ⚠️ REMAINING: src/utils/static-paths-utils.ts (163 lines, 0%)
 - ⚠️ REMAINING: src/utils/sentry-client.ts (47 lines, 10.71%)
-- **Coverage improved from 31.67% → 57.13% (+25.5%)**
-- **Tests increased from 350 → 404 (+54 tests)**
+- **Coverage improved from 31.67% → 82% overall**
+- **Tests: 400 across unit, architecture, and integration layers**
 
 **Error Handling**
 - 117 instances of mixed patterns (throw/return null/console.log)
@@ -81,7 +80,7 @@
 ## Migration Opportunities
 
 **Astro 5 Features Available**
-- Content Layer API not utilized (5x faster builds)
+- ~~Content Layer API not utilized~~ - DONE: Content Layer API is in use via `src/content.config.ts`
 - Responsive image component not used
 - Type-safe environment variables not implemented
 
