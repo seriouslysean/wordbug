@@ -6,13 +6,7 @@ export default defineConfig({
     environment: 'node',
     include: ['tests/**/*.spec.js'],
     setupFiles: ['tests/setup.js'],
-    pool: 'threads',
-    poolOptions: {
-      threads: {
-        singleThread: false,
-        isolate: false,
-      },
-    },
+    isolate: false,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

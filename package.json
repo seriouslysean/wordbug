@@ -43,16 +43,16 @@
     ]
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.12",
-    "astro": "^5.17.1",
+    "@astrojs/rss": "^4.0.15",
+    "astro": "^5.17.3",
     "date-fns": "^4.1.0",
-    "entities": "^6.0.1"
+    "entities": "^7.0.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/sitemap": "^3.7.0",
     "@sentry/astro": "^9.32.0",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.18",
     "dotenv": "^17.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
@@ -61,7 +61,7 @@
     "sharp": "^0.34.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.18"
   },
   "imports": {
     "#components/*": "./src/components/*",
