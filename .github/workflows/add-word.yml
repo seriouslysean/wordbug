@@ -90,11 +90,6 @@ jobs:
             FLAGS+=(--preserve-case)
           fi
 
-          # Normalize casing to match what the tool stores (lowercase by default)
-          if [[ "${{ inputs.preserve_case }}" != "true" ]]; then
-            WORD=$(echo "$WORD" | tr '[:upper:]' '[:lower:]')
-          fi
-
           # Run the add-word tool
           if npm run tool:add-word -- "$WORD" "$DATE" "${FLAGS[@]}"; then
             echo "word_added=1" >> $GITHUB_OUTPUT

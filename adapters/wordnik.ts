@@ -25,6 +25,36 @@ export const WORDNIK_CONFIG: WordnikConfig = {
 
 
 /**
+ * Fetches definitions from Wordnik, falling back to lowercase on 404 or empty results.
+ * Returns null for "not found" cases, throws on non-retriable errors (429, 5xx).
+ */
+async function tryFetch(buildUrl: (w: string) => string, queryWord: string): Promise<WordnikDefinition[] | null> {
+  const response = await fetch(buildUrl(queryWord));
+  if (response.status === 429) {
+    throw new Error('Rate limit exceeded. Please try again later.');
+  }
+  if (!response.ok) {
+    if (response.status === 404) return null;
+    throw new Error(`Failed to fetch word data: ${response.statusText}`);
+  }
+  const data: WordnikDefinition[] = await response.json();
+  return data.length > 0 ? data : null;
+}
+
+async function fetchDefinitions(word: string, buildUrl: (w: string) => string): Promise<WordnikDefinition[]> {
+  const data = await tryFetch(buildUrl, word);
+  if (data) return data;
+
+  // Fallback to lowercase when original casing returned no results
+  if (word !== word.toLowerCase()) {
+    const fallback = await tryFetch(buildUrl, word.toLowerCase());
+    if (fallback) return fallback;
+  }
+
+  throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+}
+
+/**
  * Wordnik adapter implementing the generic DictionaryAdapter interface.
  * Provides methods to fetch, transform, and validate word data from the Wordnik API.
  */
@@ -52,36 +82,7 @@ export const wordnikAdapter: DictionaryAdapter = {
     const buildUrl = (queryWord: string): string =>
       `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
 
-    let response = await fetch(buildUrl(word));
-    let data: WordnikDefinition[] = [];
-
-    if (response.ok) {
-      data = await response.json();
-    }
-
-    // Fallback to lowercase when original casing returned no results.
-    // Wordnik may return 404 or 200 with an empty array for casing mismatches.
-    const noResults = response.status === 404 || (response.ok && data.length === 0);
-    if (noResults && word !== word.toLowerCase()) {
-      const fallbackResponse = await fetch(buildUrl(word.toLowerCase()));
-      if (fallbackResponse.ok) {
-        const fallbackData: WordnikDefinition[] = await fallbackResponse.json();
-        if (fallbackData.length > 0) {
-          response = fallbackResponse;
-          data = fallbackData;
-        }
-      }
-    }
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
-      }
-      if (response.status === 429) {
-        throw new Error('Rate limit exceeded. Please try again later.');
-      }
-      throw new Error(`Failed to fetch word data: ${response.statusText}`);
-    }
+    const data = await fetchDefinitions(word, buildUrl);
     if (!this.isValidResponse(data)) {
       throw new Error('No word data found');
     }
