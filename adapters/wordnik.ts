@@ -214,17 +214,9 @@ export function processWordnikHTML(
   }
 
   const { preserveXrefs = true } = options;
-  let result = htmlString;
+  const xrefProcessed = preserveXrefs
+    ? processCrossReferences(htmlString)
+    : htmlString.replace(/<xref[^>]*>(.*?)<\/xref>/g, '$1');
 
-  if (preserveXrefs) {
-    result = processCrossReferences(result);
-  } else {
-    result = result.replace(/<xref[^>]*>(.*?)<\/xref>/g, '$1');
-  }
-
-  if (result.includes('&')) {
-    result = decodeHTML(result);
-  }
-
-  return result;
+  return xrefProcessed.includes('&') ? decodeHTML(xrefProcessed) : xrefProcessed;
 }
