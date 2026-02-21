@@ -79,7 +79,6 @@ if (!process.env.SENTRY_RELEASE) {
 export default defineConfig({
   site,
   base,
-  output: 'static',
   trailingSlash: 'never',
   devToolbar: { enabled: false },
   i18n: {
@@ -88,10 +87,6 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false,
     },
-  },
-  build: {
-    format: 'directory',
-    inlineStylesheets: 'auto',
   },
   vite: {
     define: {
@@ -136,7 +131,6 @@ export default defineConfig({
     build: {
       target: 'esnext',
       modulePreload: { polyfill: false },
-      minify: 'esbuild',
       reportCompressedSize: false,
       rollupOptions: {
         output: {
