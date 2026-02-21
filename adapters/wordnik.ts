@@ -52,12 +52,25 @@ export const wordnikAdapter: DictionaryAdapter = {
     const buildUrl = (queryWord: string): string =>
       `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
 
-    // Try original capitalization first (for proper nouns like "Japan", "PB&J")
     let response = await fetch(buildUrl(word));
+    let data: WordnikDefinition[] = [];
 
-    // If original case fails with 404, try lowercase as fallback
-    if (response.status === 404 && word !== word.toLowerCase()) {
-      response = await fetch(buildUrl(word.toLowerCase()));
+    if (response.ok) {
+      data = await response.json();
+    }
+
+    // Fallback to lowercase when original casing returned no results.
+    // Wordnik may return 404 or 200 with an empty array for casing mismatches.
+    const noResults = response.status === 404 || (response.ok && data.length === 0);
+    if (noResults && word !== word.toLowerCase()) {
+      const fallbackResponse = await fetch(buildUrl(word.toLowerCase()));
+      if (fallbackResponse.ok) {
+        const fallbackData: WordnikDefinition[] = await fallbackResponse.json();
+        if (fallbackData.length > 0) {
+          response = fallbackResponse;
+          data = fallbackData;
+        }
+      }
     }
 
     if (!response.ok) {
@@ -69,7 +82,6 @@ export const wordnikAdapter: DictionaryAdapter = {
       }
       throw new Error(`Failed to fetch word data: ${response.statusText}`);
     }
-    const data: WordnikDefinition[] = await response.json();
     if (!this.isValidResponse(data)) {
       throw new Error('No word data found');
     }

@@ -408,14 +408,15 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  // Fetch word data using the configured adapter (pass original capitalization for API call)
+  // Fetch word data using finalWord (lowercased by default) so common words match
+  // Wordnik entries. When preserveCase is true, original capitalization is retained.
   const adapter = getAdapter();
-  const response = await adapter.fetchWordData(trimmedWord);
+  const response = await adapter.fetchWordData(finalWord);
   const data = response.definitions;
 
   // Validate the word data before saving
   if (!isValidDictionaryData(data)) {
-    throw new Error(`No valid definitions found for word: ${trimmedWord}`);
+    throw new Error(`No valid definitions found for word: ${finalWord}`);
   }
 
   const wordData: WordData = {
@@ -428,7 +429,7 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
 
-  console.log('Word entry created', { word: trimmedWord, date });
+  console.log('Word entry created', { word: finalWord, date });
 
   return { filePath, data };
 }
