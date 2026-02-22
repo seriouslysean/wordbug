@@ -116,7 +116,7 @@ Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 ## Code Style
 
 - `const` only — no `let` or `var`
-- Curly braces required on all control flow — no braceless `if`/`else`/`for`/`while` (enforced by oxlint `curly` rule)
+- Curly braces required on all control flow — no braceless `if`/`else`/`for`/`while`
 - Comments above the line they describe, never inline
 - No emojis anywhere in the codebase
 - No log message prefixes (log levels are sufficient)
