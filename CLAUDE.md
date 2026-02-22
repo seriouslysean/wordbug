@@ -73,6 +73,12 @@ Uses Node.js subpath imports (`#` prefix) defined in `package.json` `imports` fi
 3. `src/utils/word-data-utils.ts` provides cached `allWords` collection with computed derivatives
 4. Statistics pre-computed once from `allWords`, not recalculated per page
 
+### Wordnik API Adapter
+
+The Wordnik API (`adapters/wordnik.ts`) is case-sensitive — looking up "Serendipity" can return different (or no) results compared to "serendipity". The adapter intentionally does **not** handle case normalization; it looks up exactly the word it receives. Callers are responsible for casing decisions. The CLI tool (`tools/add-word.ts`) lowercases input by default; `--preserve-case` opts out of this.
+
+Do not add fallback/retry logic in the adapter for case variations. That hides bugs and contradicts `--preserve-case` intent.
+
 ### Environment Configuration
 
 All config via environment variables (validated in `astro.config.ts` which is the single source of truth — don't duplicate validation). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Copy `.env.example` to `.env` for local dev. In CI, env vars are passed directly.
@@ -110,11 +116,16 @@ Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 ## Code Style
 
 - `const` only — no `let` or `var`
+- Curly braces required on all control flow — no braceless `if`/`else`/`for`/`while` (enforced by oxlint `curly` rule)
 - Comments above the line they describe, never inline
 - No emojis anywhere in the codebase
 - No log message prefixes (log levels are sufficient)
 - Structured logging: message + data object format
 - Fast-fail with early returns; avoid deep nesting
+
+### Lint Auto-Fix
+
+When adding or enabling new lint rules, always run `npm run lint:fix` to auto-apply fixable violations across the codebase. Do not manually edit files for issues that the linter can fix automatically.
 
 ## Quality Gates
 
