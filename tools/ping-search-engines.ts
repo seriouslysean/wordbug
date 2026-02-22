@@ -17,10 +17,10 @@
 
 import http from 'http';
 import https from 'https';
+import { parseArgs } from 'node:util';
 import { URL } from 'url';
 
-
-import { parseArgs } from 'node:util';
+import { exit, logger } from '#utils/logger';
 
 // Parse command line arguments
 const { values: cliValues } = parseArgs({
@@ -40,7 +40,7 @@ const siteUrlArg = cliValues['site-url'];
 const deployedHashArg = cliValues['deployed-hash'];
 
 if (!siteUrlArg) {
-  console.error('Site URL required');
+  logger.error('Site URL required');
   process.exit(1);
 }
 
@@ -81,7 +81,7 @@ interface PingResult {
 function pingSearchEngine(engineObj: SearchEngineConfig): Promise<PingResult> {
   const engine = engineObj.engine;
   return new Promise((resolve, reject) => {
-    console.log(`Pinging ${engine.name}...`);
+    logger.info('Pinging search engine', { engine: engine.name });
     const url = new URL(engine.url);
     const options = {
       hostname: url.hostname,
@@ -133,12 +133,12 @@ async function fetchDeployedHash(): Promise<string | null> {
         if (match && match[1]) {
           resolve(match[1]);
         } else {
-          console.warn('Could not find words_hash in health.txt');
+          logger.warn('Could not find words_hash in health.txt');
           resolve(null);
         }
       });
     }).on('error', (err) => {
-      console.error(`Error fetching health.txt: ${err.message}`);
+      logger.error('Failed to fetch health.txt', { error: err.message });
       resolve(null);
     });
   });
@@ -149,29 +149,28 @@ async function fetchDeployedHash(): Promise<string | null> {
  * Includes change detection to avoid unnecessary pings
  */
 async function pingAll(): Promise<void> {
-  console.log(`Checking sitemap: ${sitemapUrl}`);
-  console.log(`Site URL: ${siteUrl}`);
+  logger.info('Checking sitemap', { sitemapUrl, siteUrl });
   if (deployedHashArg && !isForce) {
     const remoteHash = await fetchDeployedHash();
     if (remoteHash === deployedHashArg) {
-      console.log('No new content detected (hash matches deployed). Skipping ping.');
+      logger.info('No new content detected (hash matches deployed). Skipping ping.');
       return;
     }
     if (!remoteHash) {
-      console.warn('Could not fetch or parse deployed hash. Will ping as fallback.');
+      logger.warn('Could not fetch or parse deployed hash. Will ping as fallback.');
     } else {
-      console.log(`Hash changed: deployed=${deployedHashArg}, live=${remoteHash}. Will ping search engines.`);
+      logger.info('Hash changed, will ping search engines', { deployed: deployedHashArg, live: remoteHash });
     }
   }
   if (isDryRun) {
-    console.log('DRY RUN MODE: Would ping the following services:');
+    logger.info('DRY RUN MODE: Would ping the following services:');
     engineList.forEach(engineObj =>
-      console.log(`- ${engineObj.engine.name}: ${engineObj.engine.url}`),
+      logger.info('Service to ping', { engine: engineObj.engine.name, url: engineObj.engine.url }),
     );
     return;
   }
   engineList.forEach(engineObj =>
-    console.log(`Pinging: ${engineObj.engine.name} - ${engineObj.engine.url}`),
+    logger.info('Pinging service', { engine: engineObj.engine.name, url: engineObj.engine.url }),
   );
   const results = await Promise.all(
     engineList.map(engineObj => pingSearchEngine(engineObj).catch(error => error)),
@@ -179,15 +178,15 @@ async function pingAll(): Promise<void> {
 
   results.forEach(result => {
     if (result.error) {
-      console.error('Failed to ping search engine', { engine: result.engine, error: result.error });
+      logger.error('Failed to ping search engine', { engine: result.engine, error: result.error });
       return;
     }
-    console.log('Successfully pinged search engine', { engine: result.engine, status: result.status });
+    logger.info('Successfully pinged search engine', { engine: result.engine, status: result.status });
   });
-  console.log('Finished pinging search engines');
+  logger.info('Finished pinging search engines');
 }
 
-pingAll().catch(error => {
-  console.error('Failed to complete ping service', { error: error.message });
-  process.exit(0); // Exit with success to not fail workflows
+pingAll().catch(async (error) => {
+  logger.error('Failed to complete ping service', { error: error.message });
+  await exit(0); // Exit with success to not fail workflows
 });

@@ -7,6 +7,9 @@ export default defineConfig({
     include: ['tests/**/*.spec.js'],
     setupFiles: ['tests/setup.js'],
     isolate: false,
+    env: {
+      SOURCE_DIR: 'demo',
+    },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -39,6 +42,7 @@ export default defineConfig({
     __VERSION__: JSON.stringify('test'),
     __RELEASE__: JSON.stringify('test'),
     __TIMESTAMP__: JSON.stringify('2000-01-01T00:00:00Z'),
+    __SENTRY_ENABLED__: false,
     __SENTRY_DSN__: JSON.stringify(''),
     __SHOW_EMPTY_STATS__: true,
     __ENVIRONMENT__: JSON.stringify('test'),

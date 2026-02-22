@@ -186,7 +186,7 @@ if (!siteUrl) throw new Error('SITE_URL required');
 
 ### Test Coverage Enhancement [MEDIUM PRIORITY]
 **Current State**: Missing tests for several utilities
-- `src/utils/build-utils.ts`, `image-utils.ts`, `schema-utils.ts`, `sentry-client.ts`
+- `src/utils/build-utils.ts`, `image-utils.ts`, `schema-utils.ts`, `sentry.ts`
 - `src/utils/static-file-utils.ts`, `static-paths-utils.ts`, `stats-definitions.ts`
 - `utils/word-validation.ts`
 - Most `tools/` files lack comprehensive tests

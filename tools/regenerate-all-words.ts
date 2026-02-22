@@ -4,6 +4,7 @@ import { getAdapter } from '#adapters';
 import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
 import { getAllWords } from '#tools/utils';
 import type { WordData } from '#types';
+import { exit, logger } from '#utils/logger';
 import { isValidDictionaryData } from '#utils/word-validation';
 
 interface RegenerateOptions {
@@ -39,7 +40,7 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
     const data = response.definitions;
 
     if (!isValidDictionaryData(data)) {
-      console.error('Invalid word data received from adapter', { word, adapter: adapter.name });
+      logger.error('Invalid word data received from adapter', { word, adapter: adapter.name });
       return false;
     }
 
@@ -64,19 +65,22 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
     if (isRateLimit && retryCount < maxRetries) {
       // Exponential backoff: 2^retryCount * 30 seconds
       const backoffDelay = Math.pow(2, retryCount) * 30000;
-      console.log(`Rate limit for ${word}, retrying in ${backoffDelay/1000} seconds (attempt ${retryCount + 1}/${maxRetries})`);
+      logger.info('Rate limited, retrying with backoff', {
+        word,
+        delaySec: backoffDelay / 1000,
+        attempt: retryCount + 1,
+        maxRetries,
+      });
       await new Promise(resolve => setTimeout(resolve, backoffDelay));
       return regenerateWordFile(word, date, originalPath, retryCount + 1);
     }
 
-    // Log the error with retry info
-    console.error('Failed to regenerate word file', {
+    logger.error('Failed to regenerate word file', {
       word,
       date,
       originalPath: originalPath,
       error: errorMessage,
     });
-
     return false;
   }
 }
@@ -88,7 +92,7 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
 async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
   try {
     const allWords = getAllWords();
-    console.log(`Found ${allWords.length} word files to process`);
+    logger.info('Found word files to process', { count: allWords.length });
 
     const wordsToRegenerate = allWords.map(wordData => ({
       word: wordData.word,
@@ -96,33 +100,32 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
       path: `data/words/${wordData.date.slice(0, 4)}/${wordData.date}.json`,
     }));
 
-    console.log(`Successfully extracted ${wordsToRegenerate.length} words to regenerate`);
+    logger.info('Extracted words to regenerate', { count: wordsToRegenerate.length });
 
     if (options.dryRun) {
-      console.log('\n--- DRY RUN MODE ---');
-      console.log('Words that would be regenerated:');
+      logger.info('DRY RUN MODE - Words that would be regenerated:');
       wordsToRegenerate.forEach((item, index) => {
-        console.log(`${index + 1}. ${item.word} (${item.date}) - ${item.path}`);
+        logger.info('Word entry', { index: index + 1, word: item.word, date: item.date, path: item.path });
       });
-      console.log('\nUse --force to actually regenerate these words');
+      logger.info('Use --force to actually regenerate these words');
       return;
     }
 
     if (!options.force) {
-      console.log('\n--- CONFIRMATION REQUIRED ---');
-      console.log(`About to regenerate ${wordsToRegenerate.length} words with fresh dictionary data.`);
-      console.log('This will overwrite existing word files.');
-      console.log('Add --force flag to proceed without confirmation, or --dry-run to preview.');
+      logger.info('CONFIRMATION REQUIRED', { wordCount: wordsToRegenerate.length });
+      logger.info('This will overwrite existing word files.');
+      logger.info('Add --force flag to proceed without confirmation, or --dry-run to preview.');
       process.exit(0);
     }
 
-    console.log('\nConfiguration:');
-    console.log(`- Word field: ${options.wordField}`);
-    console.log(`- Date field: ${options.dateField}`);
-    console.log(`- Standard timeout: ${options.timeout}ms between API calls`);
-    console.log(`- Rate limit timeout: ${options.rateLimitTimeout}ms when rate limit is hit`);
-    console.log(`- Batch size: ${options.batchSize} words`);
-    console.log(`- Batch timeout: ${options.batchTimeout}ms between batches`);
+    logger.info('Configuration', {
+      wordField: options.wordField,
+      dateField: options.dateField,
+      timeoutMs: options.timeout,
+      rateLimitTimeoutMs: options.rateLimitTimeout,
+      batchSize: options.batchSize,
+      batchTimeoutMs: options.batchTimeout,
+    });
 
     // Process words in batches to avoid rate limits
     const outcomes: boolean[] = [];
@@ -132,11 +135,11 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
         // Check if we need to take a longer break between batches
         if (i > 0 && i % options.batchSize === 0) {
           const currentBatch = i / options.batchSize;
-          console.log(`\nCompleted batch ${currentBatch}. Waiting ${options.batchTimeout/1000} seconds before next batch...\n`);
+          logger.info('Completed batch, pausing', { batch: currentBatch, delaySec: options.batchTimeout / 1000 });
           await new Promise(resolve => setTimeout(resolve, options.batchTimeout));
         }
 
-        console.log(`Regenerating (${i + 1}/${wordsToRegenerate.length}): ${item.word}`);
+        logger.info('Regenerating word', { index: i + 1, total: wordsToRegenerate.length, word: item.word });
 
         const success = await regenerateWordFile(item.word, item.date, item.path);
         outcomes.push(success);
@@ -146,7 +149,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
           await new Promise(resolve => setTimeout(resolve, options.timeout));
         }
       } catch (error) {
-        console.error(`Error processing ${item.word}:`, (error as Error).message);
+        logger.error('Failed to process word', { word: item.word, error: (error as Error).message });
         outcomes.push(false);
       }
     }
@@ -154,14 +157,15 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
     const successCount = outcomes.filter(Boolean).length;
     const failureCount = outcomes.length - successCount;
 
-    console.log('\n--- REGENERATION COMPLETE ---');
-    console.log(`Successfully regenerated: ${successCount} words`);
-    console.log(`Failed to regenerate: ${failureCount} words`);
-    console.log(`Total processed: ${outcomes.length} words`);
+    logger.info('Regeneration complete', {
+      success: successCount,
+      failed: failureCount,
+      total: outcomes.length,
+    });
 
   } catch (error) {
-    console.error('Failed to regenerate words', { error: (error as Error).message });
-    process.exit(1);
+    logger.error('Failed to regenerate words', { error: (error as Error).message });
+    await exit(1);
   }
 }
 

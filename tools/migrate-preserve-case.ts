@@ -2,6 +2,7 @@ import fs from 'fs';
 import { showHelp } from '#tools/help-utils';
 import { getWordFiles } from '#tools/utils';
 import type { WordData } from '#types';
+import { logger } from '#utils/logger';
 
 const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
 
@@ -49,7 +50,7 @@ function migrateWordFile(filePath: string): boolean {
     fs.writeFileSync(filePath, JSON.stringify(updatedData, null, 4));
     return true;
   } catch (error) {
-    console.error('Failed to migrate file', { filePath, error: (error as Error).message });
+    logger.error('Failed to migrate file', { filePath, error: (error as Error).message });
     return false;
   }
 }
@@ -58,29 +59,29 @@ function migrateWordFile(filePath: string): boolean {
  * Main migration function
  */
 async function migrateAllWords(): Promise<void> {
-  console.log('Starting preserveCase field migration...');
-  console.log(`Source directory: ${SOURCE_DIR}`);
+  logger.info('Starting preserveCase field migration', { sourceDir: SOURCE_DIR });
 
   const files = getWordFiles();
 
   if (files.length === 0) {
-    console.log('No word files found to migrate');
+    logger.info('No word files found to migrate');
     return;
   }
 
   const results = files.map(file => {
     const wasUpdated = migrateWordFile(file.path);
     if (wasUpdated) {
-      console.log(`Migrated: ${file.word} (${file.date})`);
+      logger.info('Migrated word file', { word: file.word, date: file.date });
     }
     return wasUpdated;
   });
 
   const updatedCount = results.filter(Boolean).length;
-  console.log('\nMigration complete!');
-  console.log(`  Updated: ${updatedCount} files`);
-  console.log(`  Skipped: ${files.length - updatedCount} files (already had preserveCase field)`);
-  console.log(`  Total:   ${files.length} files`);
+  logger.info('Migration complete', {
+    updated: updatedCount,
+    skipped: files.length - updatedCount,
+    total: files.length,
+  });
 }
 
 const HELP_TEXT = `
@@ -113,6 +114,5 @@ if (args.includes('--help') || args.includes('-h')) {
   process.exit(0);
 }
 
-console.log('PreserveCase Migration Tool');
-console.log('============================\n');
+logger.info('PreserveCase Migration Tool');
 migrateAllWords();

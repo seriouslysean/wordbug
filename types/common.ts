@@ -22,6 +22,13 @@ export interface LogContext {
   [key: string]: unknown;
 }
 
+/**
+ * Type guard for LogContext. Returns false for primitives, arrays, and Error
+ * instances so the logger can safely iterate context entries.
+ */
+export const isLogContext = (value: unknown): value is LogContext =>
+  typeof value === 'object' && value !== null && !Array.isArray(value) && !(value instanceof Error);
+
 // === PATH AND CONFIGURATION ===
 
 /**

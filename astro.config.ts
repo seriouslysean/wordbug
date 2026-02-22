@@ -42,6 +42,8 @@ const defaults = {
   SITE_TITLE: 'Occasional Word of the Day',
   SITE_DESCRIPTION: 'A word-of-the-day site featuring interesting vocabulary',
   SITE_ID: 'occasional-wotd',
+  SOURCE_DIR: 'demo',
+  WORDNIK_WEBSITE_URL: 'https://www.wordnik.com',
 };
 
 // Apply defaults for missing environment variables
@@ -66,6 +68,11 @@ if (missingEnvVars.length > 0) {
 
 const site = process.env.SITE_URL;
 const base = process.env.BASE_PATH;
+// Sentry requires DSN to function — match the CLI logger's guard pattern
+const sentryEnabled = process.env.SENTRY_ENABLED === 'true' && !!process.env.SENTRY_DSN;
+if (process.env.SENTRY_ENABLED === 'true' && !process.env.SENTRY_DSN) {
+  console.warn('SENTRY_ENABLED is true but SENTRY_DSN is not set — Sentry integration disabled');
+}
 const sentryEnvironment = process.env.SENTRY_ENVIRONMENT || 'development';
 const codeHash = getCodeHash();
 const version = pkg.version;
@@ -93,6 +100,7 @@ export default defineConfig({
       __BASE_URL__: JSON.stringify(base || '/'),
       __VERSION__: JSON.stringify(pkg.version),
       __RELEASE__: JSON.stringify(release),
+      __SENTRY_ENABLED__: sentryEnabled,
       __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
       __SENTRY_ENVIRONMENT__: JSON.stringify(sentryEnvironment),
       __SITE_ID__: JSON.stringify(process.env.SITE_ID),
@@ -141,7 +149,7 @@ export default defineConfig({
     },
   },
   integrations: [
-    ...(process.env.SENTRY_ENABLED === 'true' ? [sentry({
+    ...(sentryEnabled ? [sentry({
       sourceMapsUploadOptions: {
         project: process.env.SENTRY_PROJECT,
         org: process.env.SENTRY_ORG,
