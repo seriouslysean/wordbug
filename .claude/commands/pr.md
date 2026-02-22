@@ -1,23 +1,39 @@
-Create a pull request for the current branch. Argument: $ARGUMENTS (optional: base branch, defaults to main).
+---
+description: Create a pull request for the current branch with quality gate verification
+disable-model-invocation: true
+allowed-tools: Bash(npm run lint:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npm run build:*), Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(gh pr create:*)
+argument-hint: [optional: base branch, defaults to main]
+---
+
+Create a pull request for the current branch.
+
+## Current state
+
+- Branch: !`git branch --show-current`
+- Git status: !`git status`
+- Commits on this branch: !`git log --oneline main..HEAD 2>/dev/null || echo "Could not diff against main"`
 
 ## Steps
 
-1. Run all quality gates first:
+1. Verify working tree is clean. If there are uncommitted changes, commit them first (use /project:commit).
+
+2. Run all quality gates:
    ```sh
    npm run lint && npm run typecheck && npm test && npm run build
    ```
 
-2. Check the current state:
-   - `git status` — ensure working tree is clean (commit or stash changes first)
-   - `git log --oneline main..HEAD` — review all commits that will be in the PR
-   - `git diff main...HEAD --stat` — see the full scope of changes
+3. Review the full scope of changes:
+   ```sh
+   git log --oneline main..HEAD
+   git diff main...HEAD --stat
+   ```
 
-3. Push the branch if not already pushed:
+4. Push the branch if not already pushed:
    ```sh
    git push -u origin <branch-name>
    ```
 
-4. Create the PR with `gh pr create`. Use this format:
+5. Create the PR using `gh pr create`:
    ```sh
    gh pr create --title "Short descriptive title" --body "$(cat <<'EOF'
    ## Summary
@@ -35,11 +51,11 @@ Create a pull request for the current branch. Argument: $ARGUMENTS (optional: ba
 
 ## PR guidelines
 
-- **Title**: Under 72 characters, describes the change (not the implementation)
-- **Summary**: Explain the motivation, not just the mechanics
-- **Scope**: One concern per PR. If you're fixing a bug AND refactoring, split them
-- **Tests**: New behavior needs new tests. Bug fixes need regression tests
-- **Documentation**: Update `docs/technical.md` for architectural changes
+- **Title**: Under 72 characters, describes the change not the implementation
+- **Summary**: Explain motivation, not just mechanics
+- **Scope**: One concern per PR. Bug fix + refactor = two PRs
+- **Tests**: New behavior needs tests. Bug fixes need regression tests
+- **Docs**: Update `docs/technical.md` for architectural changes
 
 ## After creating
 

@@ -1,6 +1,6 @@
 # Copilot Instructions
 
-Self-contained coding guidelines for GitHub Copilot. The full philosophy and architecture details live in `AGENTS.md` and `docs/technical.md` at the repo root.
+Coding guidelines for GitHub Copilot. For the full philosophy and architecture, see [AGENTS.md](../AGENTS.md) and [docs/technical.md](../docs/technical.md).
 
 ## Project
 

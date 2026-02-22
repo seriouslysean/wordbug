@@ -1,8 +1,20 @@
+---
+description: Commit changes following project conventions (quality gates, explicit staging, why-not-what messages)
+disable-model-invocation: true
+allowed-tools: Bash(npm run lint:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npm run build:*), Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*)
+argument-hint: [optional commit message hint]
+---
+
 Commit the current changes following this project's conventions.
+
+## Current state
+
+- Git status: !`git status`
+- Recent commits (for message style): !`git log --oneline -5`
 
 ## Steps
 
-1. Run quality gates in order. Stop if any fail:
+1. Run quality gates in order. Stop and fix if any fail:
    ```sh
    npm run lint
    npm run typecheck
@@ -10,9 +22,8 @@ Commit the current changes following this project's conventions.
    npm run build
    ```
 
-2. Check what changed:
-   - Run `git status` to see all modified, staged, and untracked files
-   - Run `git diff` to review changes
+2. Review the changes:
+   - Check `git diff` for staged and unstaged changes
    - Identify files that should NOT be committed: `.env`, credentials, planning docs, investigation notes, temporary files
 
 3. Stage files explicitly by name. Never use `git add -A` or `git add .`:
@@ -20,20 +31,17 @@ Commit the current changes following this project's conventions.
    git add <file1> <file2> ...
    ```
 
-4. Write a commit message that explains the WHY, not the what. Format:
+4. Write a commit message that explains the WHY, not the what:
    - First line: concise summary (imperative mood, under 72 chars)
-   - Blank line
-   - Body: explain motivation and context if the change isn't obvious
-   - Keep it honest about what actually changed
+   - Blank line, then body with motivation and context if not obvious
+   - Match the style of recent commits in this repo
+   - If the user provided a hint via $ARGUMENTS, incorporate it
 
-5. Commit:
+5. Commit and verify:
    ```sh
-   git commit -m "Summary of why this change was made
-
-   Additional context if needed."
+   git commit -m "message"
+   git status
    ```
-
-6. Verify with `git status` that the working tree is clean (or only has intentionally unstaged files).
 
 ## What NOT to commit
 
@@ -44,8 +52,8 @@ Commit the current changes following this project's conventions.
 
 ## Quality gate failures
 
-If a gate fails, fix the issue first. Don't skip gates or use `--no-verify`. The gates exist because each catches a different class of bug:
-- Lint: syntax and style problems
-- Typecheck: type safety violations
+Fix the issue first. Don't skip gates or use `--no-verify`. Each gate catches a different class of bug:
+- Lint: syntax and style
+- Typecheck: type safety
 - Tests: behavioral regressions
 - Build: runtime integration errors
