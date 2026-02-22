@@ -10,10 +10,11 @@
  * 2. Tools can be executed with minimal inputs
  * 3. Basic functionality works end-to-end
  *
+ * Static analysis of import boundaries is handled by tests/architecture/utils-boundary.spec.js.
+ *
  * Implementation notes:
  * - Import tests mock process.exit to prevent tools from terminating test runner
  * - Spawn tests use done() callback pattern (required for child_process in Vitest threads)
- * - Static analysis tests check file contents for known problematic patterns
  */
 
 import { describe, it, expect, vi } from 'vitest';
@@ -229,55 +230,3 @@ describe('CLI Tools: Basic Functionality', () => {
   });
 });
 
-describe('CLI Tools: Regression Detection', () => {
-
-  it('detects if utils/page-metadata-utils imports from astro layer', async () => {
-    const filePath = path.join(process.cwd(), 'utils', 'page-metadata-utils.ts');
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    // Check for the exact regression that happened
-    const astroImports = content.match(/from ['"]#astro-utils\//g);
-
-    expect(astroImports,
-      'utils/page-metadata-utils.ts imports from #astro-utils/* which breaks CLI tools. ' +
-      'This is the exact regression that broke word adding. ' +
-      'Import from #utils/* instead and add functions to utils/word-data-utils.ts'
-    ).toBeNull();
-  });
-
-  it('detects if constants/urls imports from astro layer', async () => {
-    const filePath = path.join(process.cwd(), 'constants', 'urls.ts');
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    const astroImports = content.match(/from ['"]#astro-utils\//g);
-
-    expect(astroImports,
-      'constants/urls.ts imports from #astro-utils/* which breaks CLI tools. ' +
-      'slugify should be imported from #utils/text-utils, not #astro-utils/url-utils'
-    ).toBeNull();
-  });
-
-  it('tools/utils.ts does not import problematic files', async () => {
-    const filePath = path.join(TOOLS_DIR, 'utils.ts');
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    // Check if it imports files that might have astro dependencies
-    const problematicImports = content.match(/from ['"]#utils\/page-metadata-utils['"]/g);
-
-    // This is OK now that we fixed page-metadata-utils, but keeping as guard
-    // If page-metadata-utils gets astro imports again, this will catch it
-    if (problematicImports) {
-      // Try to import it to verify it's safe
-      try {
-        await import(filePath);
-      } catch (error) {
-        if (error.message.includes('astro:')) {
-          throw new Error(
-            'tools/utils.ts imports utils/page-metadata-utils which has astro: dependencies. ' +
-            'This breaks CLI tools.'
-          );
-        }
-      }
-    }
-  });
-});

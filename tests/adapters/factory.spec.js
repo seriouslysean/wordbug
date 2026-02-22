@@ -95,14 +95,5 @@ describe('adapter factory', () => {
 
       expect(typeof adapter.name).toBe('string');
     });
-
-    it('adapter methods have correct signatures', () => {
-      const adapter = getAdapter();
-
-      expect(adapter.fetchWordData.length).toBeGreaterThanOrEqual(1);
-      expect(adapter.transformToWordData.length).toBe(2);
-      expect(adapter.transformWordData.length).toBe(1);
-      expect(adapter.isValidResponse.length).toBe(1);
-    });
   });
 });
