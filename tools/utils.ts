@@ -114,7 +114,7 @@ export function findExistingWord(word: string): WordData | null {
         return data;
       }
     } catch {
-      continue;
+      // File unreadable, skip
     }
   }
 

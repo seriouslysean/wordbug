@@ -60,17 +60,15 @@ async function bulkGenerate<T extends BulkItem>(
     }),
   );
 
-  const errorCount = results.filter(r => r.status === 'rejected').length;
-  for (const result of results) {
-    if (result.status === 'rejected') {
-      console.error(`Failed to generate ${category} image`, { error: result.reason?.message });
-    }
-  }
+  const failures = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
+  failures.forEach(r => {
+    console.error(`Failed to generate ${category} image`, { error: r.reason?.message });
+  });
 
   console.log(`${category} generation complete`, {
     total: items.length,
-    success: items.length - errorCount,
-    errors: errorCount,
+    success: items.length - failures.length,
+    errors: failures.length,
   });
 }
 

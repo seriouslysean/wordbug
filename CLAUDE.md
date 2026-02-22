@@ -73,12 +73,6 @@ Uses Node.js subpath imports (`#` prefix) defined in `package.json` `imports` fi
 3. `src/utils/word-data-utils.ts` provides cached `allWords` collection with computed derivatives
 4. Statistics pre-computed once from `allWords`, not recalculated per page
 
-### Wordnik API Adapter
-
-The Wordnik API (`adapters/wordnik.ts`) is case-sensitive — looking up "Serendipity" can return different (or no) results compared to "serendipity". The adapter intentionally does **not** handle case normalization; it looks up exactly the word it receives. Callers are responsible for casing decisions. The CLI tool (`tools/add-word.ts`) lowercases input by default; `--preserve-case` opts out of this.
-
-Do not add fallback/retry logic in the adapter for case variations. That hides bugs and contradicts `--preserve-case` intent.
-
 ### Environment Configuration
 
 All config via environment variables (validated in `astro.config.ts` which is the single source of truth — don't duplicate validation). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Copy `.env.example` to `.env` for local dev. In CI, env vars are passed directly.
@@ -113,6 +107,28 @@ Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 | `constants/` | Application constants (stats slugs, URLs) |
 | `config/` | Path configuration |
 
+## Guiding Principles
+
+### Let tools enforce what tools can enforce
+
+Formatting rules (`.editorconfig`), lint rules (`.oxlintrc.json`), and type checking (`tsconfig.json`) exist so humans and AI don't have to remember them. Before manually fixing a code pattern across the codebase, check whether a tool can do it. Run `npm run lint:fix` after adding new lint rules. If a rule should be enforced, add it to the tooling so it can't regress.
+
+### Adapters are transparent
+
+External API adapters (`adapters/`) are pass-throughs. They look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller makes a decision (like `--preserve-case`), the adapter should respect it without second-guessing. Check `tools/add-word.ts` and `adapters/wordnik.ts` for the existing pattern.
+
+### Prefer declarative over imperative
+
+Use `.map()`, `.filter()`, `.find()`, `.flatMap()` when transforming or searching data. Reserve `for` loops for cases that genuinely need them: stateful accumulation across iterations, early exit with `return`, or `try/catch` per iteration. If a loop body is just `.push()` into an array, it should be `.map()`.
+
+### Tests should be self-contained
+
+Use `vi.stubEnv()` for environment variables — it auto-restores, preventing cross-test contamination. Use `vi.resetModules()` when testing modules that read env vars at import time, then `await import(...)` to get a fresh evaluation. Avoid manual save/restore boilerplate.
+
+### Question complexity that doesn't serve the user
+
+This is a static site with zero client-side JS by default. Before adding build optimizations (manual chunk splitting, tree-shaking config, caching headers), verify they affect what actually gets served to browsers. Astro and Vite handle most optimizations automatically.
+
 ## Code Style
 
 - `const` only — no `let` or `var`
@@ -122,10 +138,6 @@ Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 - No log message prefixes (log levels are sufficient)
 - Structured logging: message + data object format
 - Fast-fail with early returns; avoid deep nesting
-
-### Lint Auto-Fix
-
-When adding or enabling new lint rules, always run `npm run lint:fix` to auto-apply fixable violations across the codebase. Do not manually edit files for issues that the linter can fix automatically.
 
 ## Quality Gates
 

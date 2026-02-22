@@ -40,7 +40,6 @@ export function getAsciiArt(): string | null {
       return readFileSync(filePath, 'utf-8').trimEnd();
     } catch {
       // File doesn't exist, try next one
-      continue;
     }
   }
 
@@ -57,7 +56,7 @@ export function generateRobotsTxt(siteUrl: string): string {
   // Use injected __SITE_URL__ if available, else fallback to param, else fallback to localhost
   const envUrl = typeof __SITE_URL__ !== 'undefined' ? __SITE_URL__ : '';
   const url = envUrl || siteUrl;
-  const baseUrl = !url ? 'http://localhost:4321' : url.endsWith('/') ? url.slice(0, -1) : url;
+  const baseUrl = (url || 'http://localhost:4321').replace(/\/$/, '');
   return `User-agent: *
 Allow: /
 Sitemap: ${baseUrl}/sitemap-index.xml

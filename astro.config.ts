@@ -140,14 +140,6 @@ export default defineConfig({
       reportCompressedSize: false,
       rollupOptions: {
         output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('@sentry')) {
-                return 'sentry';
-              }
-              return 'vendor';
-            }
-          },
           chunkFileNames: '_astro/[name]-[hash].js',
           entryFileNames: '_astro/[name]-[hash].js',
         },

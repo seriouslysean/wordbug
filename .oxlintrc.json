@@ -1,6 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/nicolo-ribaudo/oxc-project.github.io/refs/heads/main/.oxlintrc.json",
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
   "rules": {
-    "curly": "error"
+    "curly": "error",
+    "no-nested-ternary": "error"
   }
 }

@@ -4,10 +4,11 @@ import {
 
 globalThis.fetch = vi.fn();
 
+const STATUS_TEXT = { 404: 'Not Found', 429: 'Too Many Requests' };
 const mockResponse = (status, data = []) => ({
   ok: status >= 200 && status < 300,
   status,
-  statusText: status === 404 ? 'Not Found' : status === 429 ? 'Too Many Requests' : 'OK',
+  statusText: STATUS_TEXT[status] || 'OK',
   json: () => Promise.resolve(data),
 });
 
@@ -16,145 +17,155 @@ const VALID_DEFINITIONS = [
 ];
 
 describe('wordnik adapter', () => {
-  const mod = {};
-
-  beforeEach(async () => {
+  beforeEach(() => {
+    vi.resetModules();
     vi.clearAllMocks();
-
-    process.env.WORDNIK_WEBSITE_URL = 'https://www.wordnik.com';
-    process.env.WORDNIK_API_URL = 'https://api.wordnik.com/v4';
-
-    Object.assign(mod, await import('#adapters/wordnik'));
+    vi.stubEnv('WORDNIK_WEBSITE_URL', 'https://www.wordnik.com');
+    vi.stubEnv('WORDNIK_API_URL', 'https://api.wordnik.com/v4');
   });
 
   describe('processCrossReferences', () => {
-    it('converts xref tags to wordnik links', () => {
+    it('converts xref tags to wordnik links', async () => {
+      const { processCrossReferences } = await import('#adapters/wordnik');
       const input = 'This is an <xref>example</xref> of usage.';
       const expected = 'This is an <a href="https://www.wordnik.com/words/example" target="_blank" rel="noopener noreferrer" class="xref-link">example</a> of usage.';
 
-      expect(mod.processCrossReferences(input)).toBe(expected);
+      expect(processCrossReferences(input)).toBe(expected);
     });
 
-    it('handles multiple xref tags', () => {
+    it('handles multiple xref tags', async () => {
+      const { processCrossReferences } = await import('#adapters/wordnik');
       const input = 'See <xref>example</xref> and <xref>test</xref> words.';
       const expected = 'See <a href="https://www.wordnik.com/words/example" target="_blank" rel="noopener noreferrer" class="xref-link">example</a> and <a href="https://www.wordnik.com/words/test" target="_blank" rel="noopener noreferrer" class="xref-link">test</a> words.';
 
-      expect(mod.processCrossReferences(input)).toBe(expected);
+      expect(processCrossReferences(input)).toBe(expected);
     });
 
-    it('handles text without xref tags', () => {
+    it('handles text without xref tags', async () => {
+      const { processCrossReferences } = await import('#adapters/wordnik');
       const input = 'Plain text without references.';
-      expect(mod.processCrossReferences(input)).toBe(input);
+      expect(processCrossReferences(input)).toBe(input);
     });
 
-    it('handles empty or null input', () => {
-      expect(mod.processCrossReferences('')).toBe('');
-      expect(mod.processCrossReferences(null)).toBe(null);
-      expect(mod.processCrossReferences(undefined)).toBe(undefined);
+    it('handles empty or null input', async () => {
+      const { processCrossReferences } = await import('#adapters/wordnik');
+      expect(processCrossReferences('')).toBe('');
+      expect(processCrossReferences(null)).toBe(null);
+      expect(processCrossReferences(undefined)).toBe(undefined);
     });
   });
 
   describe('transformWordData', () => {
-    it('handles valid word data', () => {
-      const result = mod.transformWordData({
+    it('handles valid word data', async () => {
+      const { transformWordData } = await import('#adapters/wordnik');
+      const result = transformWordData({
         data: [{ text: 'A test definition', partOfSpeech: 'noun' }],
       });
       expect(result.definition).toContain('A test definition');
       expect(result.partOfSpeech).toBe('noun');
     });
 
-    it('handles missing word data', () => {
-      expect(() => mod.transformWordData(null)).not.toThrow();
-      expect(() => mod.transformWordData(undefined)).not.toThrow();
+    it('handles missing word data', async () => {
+      const { transformWordData } = await import('#adapters/wordnik');
+      expect(() => transformWordData(null)).not.toThrow();
+      expect(() => transformWordData(undefined)).not.toThrow();
     });
 
-    it('handles missing data gracefully', () => {
-      expect(mod.transformWordData(null)).toEqual({ partOfSpeech: '', definition: '', meta: null });
+    it('handles missing data gracefully', async () => {
+      const { transformWordData } = await import('#adapters/wordnik');
+      expect(transformWordData(null)).toEqual({ partOfSpeech: '', definition: '', meta: null });
     });
 
-    it('handles empty data arrays', () => {
-      expect(mod.transformWordData({ data: [] })).toEqual({ partOfSpeech: '', definition: '', meta: null });
+    it('handles empty data arrays', async () => {
+      const { transformWordData } = await import('#adapters/wordnik');
+      expect(transformWordData({ data: [] })).toEqual({ partOfSpeech: '', definition: '', meta: null });
     });
   });
 
   describe('processWordnikHTML', () => {
-    it('handles basic HTML sanitization', () => {
-      const result = mod.processWordnikHTML('<p>This is <strong>bold</strong> text.</p>');
+    it('handles basic HTML sanitization', async () => {
+      const { processWordnikHTML } = await import('#adapters/wordnik');
+      const result = processWordnikHTML('<p>This is <strong>bold</strong> text.</p>');
       expect(result).toContain('bold');
       expect(typeof result).toBe('string');
     });
 
-    it('handles cross-references when preserveXrefs is true', () => {
-      const result = mod.processWordnikHTML('See <xref>example</xref> for details.', { preserveXrefs: true });
+    it('handles cross-references when preserveXrefs is true', async () => {
+      const { processWordnikHTML } = await import('#adapters/wordnik');
+      const result = processWordnikHTML('See <xref>example</xref> for details.', { preserveXrefs: true });
       expect(result).toContain('href="https://www.wordnik.com/words/example"');
       expect(result).toContain('class="xref-link"');
     });
 
-    it('removes xrefs when preserveXrefs is false', () => {
-      const result = mod.processWordnikHTML('See <xref>example</xref> for details.', { preserveXrefs: false });
+    it('removes xrefs when preserveXrefs is false', async () => {
+      const { processWordnikHTML } = await import('#adapters/wordnik');
+      const result = processWordnikHTML('See <xref>example</xref> for details.', { preserveXrefs: false });
       expect(result).not.toContain('<xref>');
       expect(result).not.toContain('</xref>');
       expect(result).toContain('example');
     });
 
-    it('handles empty input', () => {
-      expect(mod.processWordnikHTML('')).toBe('');
-      expect(mod.processWordnikHTML(null)).toBe(null);
-      expect(mod.processWordnikHTML(undefined)).toBe(undefined);
+    it('handles empty input', async () => {
+      const { processWordnikHTML } = await import('#adapters/wordnik');
+      expect(processWordnikHTML('')).toBe('');
+      expect(processWordnikHTML(null)).toBe(null);
+      expect(processWordnikHTML(undefined)).toBe(undefined);
     });
   });
 
   describe('WORDNIK_CONFIG', () => {
-    it('exports configuration constants', () => {
-      expect(mod.WORDNIK_CONFIG).toHaveProperty('BASE_URL');
-      expect(mod.WORDNIK_CONFIG).toHaveProperty('DEFAULT_LIMIT');
-      expect(mod.WORDNIK_CONFIG.DEFAULT_LIMIT).toBe(10);
+    it('exports configuration constants', async () => {
+      const { WORDNIK_CONFIG } = await import('#adapters/wordnik');
+      expect(WORDNIK_CONFIG).toHaveProperty('BASE_URL');
+      expect(WORDNIK_CONFIG).toHaveProperty('DEFAULT_LIMIT');
+      expect(WORDNIK_CONFIG.DEFAULT_LIMIT).toBe(10);
     });
   });
 
   describe('fetchWordData', () => {
     beforeEach(() => {
-      process.env.WORDNIK_API_KEY = 'test-key';
-      // WORDNIK_CONFIG.BASE_URL is captured at module load time, so it may be
-      // undefined in CI where no .env file exists. Sync it from the env var
-      // that the parent beforeEach already set.
-      mod.WORDNIK_CONFIG.BASE_URL = process.env.WORDNIK_API_URL;
+      vi.stubEnv('WORDNIK_API_KEY', 'test-key');
     });
 
     it('returns definitions for a valid word', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
       globalThis.fetch.mockResolvedValueOnce(mockResponse(200, VALID_DEFINITIONS));
 
-      const result = await mod.wordnikAdapter.fetchWordData('serendipity');
+      const result = await wordnikAdapter.fetchWordData('serendipity');
       expect(result.word).toBe('serendipity');
       expect(result.definitions).toHaveLength(1);
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
     it('makes exactly one request per lookup', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
       globalThis.fetch.mockResolvedValueOnce(mockResponse(200, VALID_DEFINITIONS));
 
-      await mod.wordnikAdapter.fetchWordData('Serendipity');
+      await wordnikAdapter.fetchWordData('Serendipity');
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
     it('throws when word returns empty results', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
       globalThis.fetch.mockResolvedValueOnce(mockResponse(200, []));
 
-      await expect(mod.wordnikAdapter.fetchWordData('serendipity')).rejects.toThrow('not found in dictionary');
+      await expect(wordnikAdapter.fetchWordData('serendipity')).rejects.toThrow('not found in dictionary');
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
     it('throws when word returns 404', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
       globalThis.fetch.mockResolvedValueOnce(mockResponse(404));
 
-      await expect(mod.wordnikAdapter.fetchWordData('nonexistent')).rejects.toThrow('not found in dictionary');
+      await expect(wordnikAdapter.fetchWordData('nonexistent')).rejects.toThrow('not found in dictionary');
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
     it('throws on rate limit (429)', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
       globalThis.fetch.mockResolvedValueOnce(mockResponse(429));
 
-      await expect(mod.wordnikAdapter.fetchWordData('test')).rejects.toThrow('Rate limit exceeded');
+      await expect(wordnikAdapter.fetchWordData('test')).rejects.toThrow('Rate limit exceeded');
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
   });
