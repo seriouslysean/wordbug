@@ -13,6 +13,10 @@ Create a pull request for the current branch.
 - Git status: !`git status`
 - Commits on this branch: !`git log --oneline main..HEAD 2>/dev/null || echo "Could not diff against main"`
 
+## PR template
+
+The PR body format is defined in [pull_request_template.md](../../../.github/pull_request_template.md). Fill in its sections with concrete details from the branch's changes. GitHub also uses this template when PRs are created through the web UI.
+
 ## Steps
 
 1. **Clean working tree.** If there are uncommitted changes, commit them first (use `/project:commit`).
@@ -30,20 +34,9 @@ Create a pull request for the current branch.
    git push -u origin <branch-name>
    ```
 
-5. **Create PR** using `gh pr create`:
+5. **Create PR** using `gh pr create`. Fill in the template sections — replace comments with real content, check off completed items:
    ```sh
-   gh pr create --title "Short descriptive title" --body "$(cat <<'EOF'
-   ## Summary
-
-   - What changed and why (1-3 bullet points)
-
-   ## Test plan
-
-   - [ ] Quality gates pass (lint, typecheck, test, build)
-   - [ ] Relevant tests added or updated
-   - [ ] Manual verification steps if applicable
-   EOF
-   )"
+   gh pr create --title "Short descriptive title" --fill-first
    ```
 
 ## Guidelines
