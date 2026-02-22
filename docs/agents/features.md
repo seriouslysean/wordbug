@@ -73,7 +73,7 @@ Scattered definitions across multiple files with complex interdependencies. A un
 
 ### Error Handling Consistency
 
-Standardize error patterns (throw vs null vs log) with proper error types. See [improvements-backlog.md](improvements-backlog.md).
+Standardize error patterns (throw vs null vs log) with proper error types. See [backlog.md](backlog.md).
 
 ### Client-Side Search
 

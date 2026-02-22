@@ -224,9 +224,9 @@ Run all quality gates before committing. Stage specific files by name — avoid 
 | `.agents/skills/` | Agent skills (validate, commit, pr) — tool-agnostic canonical location |
 | `.claude/skills` | Symlink to `.agents/skills/` (Claude Code reads this) |
 | `docs/technical.md` | Architecture reference, file structure, environment details |
-| `docs/cli-for-agents.md` | CLI tool patterns for token-efficient agent workflows |
-| `docs/improvements-backlog.md` | Known gaps and technical debt |
-| `docs/potential-features.md` | Feature ideas, prioritized |
+| `docs/agents/cli-patterns.md` | CLI tool patterns for token-efficient agent workflows |
+| `docs/agents/backlog.md` | Known gaps and technical debt |
+| `docs/agents/features.md` | Feature ideas, prioritized |
 | `README.md` / `docs/README.md` | User-facing overview and quick start |
 
 Update relevant docs when making architectural changes.

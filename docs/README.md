@@ -161,8 +161,8 @@ See [Technical Guide - Testing](technical.md#testing) for details.
 
 - **[AGENTS.md](../AGENTS.md)** - Philosophy, principles, and working guidance
 - **[Technical Guide](technical.md)** - Architecture, tools, and implementation details
-- **[Improvements Backlog](improvements-backlog.md)** - Technical gaps and debt
-- **[Potential Features](potential-features.md)** - Feature ideas, prioritized
+- **[Improvements Backlog](agents/backlog.md)** - Technical gaps and debt
+- **[Potential Features](agents/features.md)** - Feature ideas, prioritized
 
 ## License
 
