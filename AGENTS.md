@@ -218,7 +218,9 @@ Run all quality gates before committing. Stage specific files by name — avoid 
 |----------|---------|
 | `AGENTS.md` | Philosophy, principles, working guidance (this file) |
 | `CLAUDE.md` | Symlink to `AGENTS.md` (Claude Code reads this) |
-| `.github/copilot-instructions.md` | Self-contained instructions for GitHub Copilot |
+| `.github/copilot-instructions.md` | Distilled guidelines for GitHub Copilot |
+| `.agents/skills/` | Agent skills (validate, commit, pr) — tool-agnostic canonical location |
+| `.claude/skills` | Symlink to `.agents/skills/` (Claude Code reads this) |
 | `docs/technical.md` | Architecture reference, file structure, environment details |
 | `docs/improvements-backlog.md` | Known gaps and technical debt |
 | `docs/potential-features.md` | Feature ideas, prioritized |

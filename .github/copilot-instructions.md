@@ -1,6 +1,6 @@
 # Copilot Instructions
 
-Coding guidelines for GitHub Copilot. For the full philosophy and architecture, see [AGENTS.md](../AGENTS.md) and [docs/technical.md](../docs/technical.md).
+Coding guidelines for GitHub Copilot. For the full philosophy and architecture, see [AGENTS.md](../AGENTS.md) and [docs/technical.md](../docs/technical.md). Agent skills live in [.agents/skills/](../.agents/skills/).
 
 ## Project
 
