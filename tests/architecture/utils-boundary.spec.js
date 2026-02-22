@@ -70,7 +70,9 @@ describe('Architecture: utils/ boundary enforcement', () => {
 
     // Check that src/utils versions are thin wrappers, not duplicates
     for (const [fnName, utilsImpl] of Object.entries(utilsFunctions)) {
-      if (!utilsImpl) continue;
+      if (!utilsImpl) {
+        continue;
+      }
 
       // Extract the filtering logic from utils/ implementation
       const filterLogic = utilsImpl.match(/words\.filter\([\s\S]*?\)/)?.[0];

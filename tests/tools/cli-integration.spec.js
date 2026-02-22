@@ -155,7 +155,9 @@ describe('CLI Tools: Import & Execution', () => {
     for (const utilPath of sharedUtils) {
       const fullPath = path.join(process.cwd(), utilPath);
 
-      if (!fs.existsSync(fullPath)) continue;
+      if (!fs.existsSync(fullPath)) {
+        continue;
+      }
 
       try {
         await import(fullPath);

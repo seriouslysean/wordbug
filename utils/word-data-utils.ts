@@ -137,7 +137,9 @@ export const getWordsByLetter = (letter: string, words: WordData[]): WordData[] 
 export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[]): WordData[] => {
   const normalizedPartOfSpeech = normalizePartOfSpeech(partOfSpeech);
   return words.filter(word => {
-    if (!word.data || !Array.isArray(word.data)) return false;
+    if (!word.data || !Array.isArray(word.data)) {
+      return false;
+    }
 
     return word.data.some(definition =>
       definition.partOfSpeech && normalizePartOfSpeech(definition.partOfSpeech) === normalizedPartOfSpeech

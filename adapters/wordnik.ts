@@ -25,33 +25,26 @@ export const WORDNIK_CONFIG: WordnikConfig = {
 
 
 /**
- * Fetches definitions from Wordnik, falling back to lowercase on 404 or empty results.
- * Returns null for "not found" cases, throws on non-retriable errors (429, 5xx).
+ * Fetches definitions from Wordnik for a single word.
+ * Throws on rate-limit (429), server errors, 404, or empty results.
  */
-async function tryFetch(buildUrl: (w: string) => string, queryWord: string): Promise<WordnikDefinition[] | null> {
-  const response = await fetch(buildUrl(queryWord));
+async function fetchDefinitions(word: string, buildUrl: (w: string) => string): Promise<WordnikDefinition[]> {
+  const response = await fetch(buildUrl(word));
   if (response.status === 429) {
     throw new Error('Rate limit exceeded. Please try again later.');
   }
   if (!response.ok) {
-    if (response.status === 404) return null;
-    throw new Error(`Failed to fetch word data: ${response.statusText}`);
+    throw new Error(
+      response.status === 404
+        ? `Word "${word}" not found in dictionary. Please check the spelling.`
+        : `Failed to fetch word data: ${response.statusText}`,
+    );
   }
   const data: WordnikDefinition[] = await response.json();
-  return data.length > 0 ? data : null;
-}
-
-async function fetchDefinitions(word: string, buildUrl: (w: string) => string): Promise<WordnikDefinition[]> {
-  const data = await tryFetch(buildUrl, word);
-  if (data) return data;
-
-  // Fallback to lowercase when original casing returned no results
-  if (word !== word.toLowerCase()) {
-    const fallback = await tryFetch(buildUrl, word.toLowerCase());
-    if (fallback) return fallback;
+  if (data.length === 0) {
+    throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
   }
-
-  throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+  return data;
 }
 
 /**
@@ -218,5 +211,5 @@ export function processWordnikHTML(
     ? processCrossReferences(htmlString)
     : htmlString.replace(/<xref[^>]*>(.*?)<\/xref>/g, '$1');
 
-  return xrefProcessed.includes('&') ? decodeHTML(xrefProcessed) : xrefProcessed;
+  return decodeHTML(xrefProcessed);
 }

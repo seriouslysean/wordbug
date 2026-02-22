@@ -161,7 +161,9 @@ export function getChronologicalMilestones(words: WordData[]): Array<{milestone:
 }
 
 export function getCurrentStreakWords(words: WordData[]): WordData[] {
-  if (words.length === 0) return [];
+  if (words.length === 0) {
+    return [];
+  }
 
   const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
   const today = new Date();
@@ -173,7 +175,9 @@ export function getCurrentStreakWords(words: WordData[]): WordData[] {
   const mostRecentWord = sortedWords[0];
   const isActive = !!mostRecentWord && (mostRecentWord.date === todayString || mostRecentWord.date === yesterdayString);
 
-  if (!isActive || !mostRecentWord) return [];
+  if (!isActive || !mostRecentWord) {
+    return [];
+  }
 
   const streakWords = [mostRecentWord];
   let lastDate = mostRecentWord.date;
@@ -191,11 +195,15 @@ export function getCurrentStreakWords(words: WordData[]): WordData[] {
 }
 
 export function getLongestStreakWords(words: WordData[]): WordData[] {
-  if (words.length <= 1) return words;
+  if (words.length <= 1) {
+    return words;
+  }
 
   const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
   const firstWord = sortedWords[0];
-  if (!firstWord) return [];
+  if (!firstWord) {
+    return [];
+  }
 
   const { longestStreak } = sortedWords.slice(1).reduce(
     ({ longestStreak, currentStreak, previousWord }, word) => {

@@ -112,7 +112,7 @@ describe('wordnik adapter', () => {
     });
   });
 
-  describe('fetchWordData lowercase fallback', () => {
+  describe('fetchWordData', () => {
     beforeEach(() => {
       process.env.WORDNIK_API_KEY = 'test-key';
       // WORDNIK_CONFIG.BASE_URL is captured at module load time, so it may be
@@ -121,7 +121,7 @@ describe('wordnik adapter', () => {
       mod.WORDNIK_CONFIG.BASE_URL = process.env.WORDNIK_API_URL;
     });
 
-    it('returns results when lowercase word succeeds directly', async () => {
+    it('returns definitions for a valid word', async () => {
       globalThis.fetch.mockResolvedValueOnce(mockResponse(200, VALID_DEFINITIONS));
 
       const result = await mod.wordnikAdapter.fetchWordData('serendipity');
@@ -130,48 +130,31 @@ describe('wordnik adapter', () => {
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
-    it('falls back to lowercase when capitalized word returns empty array', async () => {
-      globalThis.fetch
-        .mockResolvedValueOnce(mockResponse(200, []))
-        .mockResolvedValueOnce(mockResponse(200, VALID_DEFINITIONS));
+    it('makes exactly one request per lookup', async () => {
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, VALID_DEFINITIONS));
 
-      const result = await mod.wordnikAdapter.fetchWordData('Serendipity');
-      expect(result.word).toBe('serendipity');
-      expect(result.definitions).toHaveLength(1);
-      expect(globalThis.fetch).toHaveBeenCalledTimes(2);
+      await mod.wordnikAdapter.fetchWordData('Serendipity');
+      expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
-    it('falls back to lowercase when capitalized word returns 404', async () => {
-      globalThis.fetch
-        .mockResolvedValueOnce(mockResponse(404))
-        .mockResolvedValueOnce(mockResponse(200, VALID_DEFINITIONS));
-
-      const result = await mod.wordnikAdapter.fetchWordData('Serendipity');
-      expect(result.word).toBe('serendipity');
-      expect(result.definitions).toHaveLength(1);
-      expect(globalThis.fetch).toHaveBeenCalledTimes(2);
-    });
-
-    it('does not fallback when word is already lowercase', async () => {
+    it('throws when word returns empty results', async () => {
       globalThis.fetch.mockResolvedValueOnce(mockResponse(200, []));
 
       await expect(mod.wordnikAdapter.fetchWordData('serendipity')).rejects.toThrow('not found in dictionary');
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
-    it('throws 404 error when both original and lowercase fail', async () => {
-      globalThis.fetch
-        .mockResolvedValueOnce(mockResponse(404))
-        .mockResolvedValueOnce(mockResponse(404));
+    it('throws when word returns 404', async () => {
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(404));
 
-      await expect(mod.wordnikAdapter.fetchWordData('Nonexistent')).rejects.toThrow('not found in dictionary');
-      expect(globalThis.fetch).toHaveBeenCalledTimes(2);
+      await expect(mod.wordnikAdapter.fetchWordData('nonexistent')).rejects.toThrow('not found in dictionary');
+      expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
 
-    it('does not fallback on rate limit (429)', async () => {
+    it('throws on rate limit (429)', async () => {
       globalThis.fetch.mockResolvedValueOnce(mockResponse(429));
 
-      await expect(mod.wordnikAdapter.fetchWordData('Test')).rejects.toThrow('Rate limit exceeded');
+      await expect(mod.wordnikAdapter.fetchWordData('test')).rejects.toThrow('Rate limit exceeded');
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     });
   });

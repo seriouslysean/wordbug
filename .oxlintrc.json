@@ -1,0 +1,6 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicolo-ribaudo/oxc-project.github.io/refs/heads/main/.oxlintrc.json",
+  "rules": {
+    "curly": "error"
+  }
+}
