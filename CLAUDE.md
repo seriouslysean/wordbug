@@ -6,6 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static site generator (Astro) for word-of-the-day websites. Powers multiple child sites via environment-driven configuration. All pages are pre-rendered at build time with zero client-side JavaScript by default.
 
+## Local Setup
+
+Requires Node.js 24+ (active LTS). An `.nvmrc` is provided for version managers:
+
+```sh
+nvm use                            # or fnm use
+cp .env.example .env               # required — build needs SOURCE_DIR to find word data
+```
+
+Without `.env`, the build fails because `SOURCE_DIR` is unset and the content loader looks for `data/words/` instead of `data/demo/words/`.
+
 ## Commands
 
 ```sh
