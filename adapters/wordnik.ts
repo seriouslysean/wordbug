@@ -25,6 +25,29 @@ export const WORDNIK_CONFIG: WordnikConfig = {
 
 
 /**
+ * Fetches definitions from Wordnik for a single word.
+ * Throws on rate-limit (429), server errors, 404, or empty results.
+ */
+async function fetchDefinitions(word: string, buildUrl: (w: string) => string): Promise<WordnikDefinition[]> {
+  const response = await fetch(buildUrl(word));
+  if (response.status === 429) {
+    throw new Error('Rate limit exceeded. Please try again later.');
+  }
+  if (!response.ok) {
+    throw new Error(
+      response.status === 404
+        ? `Word "${word}" not found in dictionary. Please check the spelling.`
+        : `Failed to fetch word data: ${response.statusText}`,
+    );
+  }
+  const data: WordnikDefinition[] = await response.json();
+  if (data.length === 0) {
+    throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+  }
+  return data;
+}
+
+/**
  * Wordnik adapter implementing the generic DictionaryAdapter interface.
  * Provides methods to fetch, transform, and validate word data from the Wordnik API.
  */
@@ -52,24 +75,7 @@ export const wordnikAdapter: DictionaryAdapter = {
     const buildUrl = (queryWord: string): string =>
       `${baseUrl}/word.json/${encodeURIComponent(queryWord)}/definitions?limit=${limit}&includeRelated=false&useCanonical=false&includeTags=false&api_key=${apiKey}`;
 
-    // Try original capitalization first (for proper nouns like "Japan", "PB&J")
-    let response = await fetch(buildUrl(word));
-
-    // If original case fails with 404, try lowercase as fallback
-    if (response.status === 404 && word !== word.toLowerCase()) {
-      response = await fetch(buildUrl(word.toLowerCase()));
-    }
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
-      }
-      if (response.status === 429) {
-        throw new Error('Rate limit exceeded. Please try again later.');
-      }
-      throw new Error(`Failed to fetch word data: ${response.statusText}`);
-    }
-    const data: WordnikDefinition[] = await response.json();
+    const data = await fetchDefinitions(word, buildUrl);
     if (!this.isValidResponse(data)) {
       throw new Error('No word data found');
     }
@@ -201,17 +207,9 @@ export function processWordnikHTML(
   }
 
   const { preserveXrefs = true } = options;
-  let result = htmlString;
+  const xrefProcessed = preserveXrefs
+    ? processCrossReferences(htmlString)
+    : htmlString.replace(/<xref[^>]*>(.*?)<\/xref>/g, '$1');
 
-  if (preserveXrefs) {
-    result = processCrossReferences(result);
-  } else {
-    result = result.replace(/<xref[^>]*>(.*?)<\/xref>/g, '$1');
-  }
-
-  if (result.includes('&')) {
-    result = decodeHTML(result);
-  }
-
-  return result;
+  return decodeHTML(xrefProcessed);
 }

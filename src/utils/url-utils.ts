@@ -107,7 +107,9 @@ export const getWordUrl = (word: string): string => {
 export const stripBasePath = (pathname: string): string => {
   const cleanPath = getPathname(pathname);
   // Return web standard paths with leading slashes
-  if (cleanPath === '/') return '/';
+  if (cleanPath === '/') {
+    return '/';
+  }
   return cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
 };
 

@@ -4,19 +4,20 @@ import {
 
 import { config,logger } from '#astro-utils/logger';
 
+const createConsoleSpy = () => ({
+  debug: vi.spyOn(console, 'debug').mockImplementation(() => {}),
+  info: vi.spyOn(console, 'info').mockImplementation(() => {}),
+  warn: vi.spyOn(console, 'warn').mockImplementation(() => {}),
+  error: vi.spyOn(console, 'error').mockImplementation(() => {}),
+});
+
 describe('logger', () => {
-  let consoleSpy;
-  let importMock;
+  const ctx = { consoleSpy: /** @type {ReturnType<typeof createConsoleSpy>} */ ({}) };
 
   beforeEach(() => {
-    consoleSpy = {
-      debug: vi.spyOn(console, 'debug').mockImplementation(() => {}),
-      info: vi.spyOn(console, 'info').mockImplementation(() => {}),
-      warn: vi.spyOn(console, 'warn').mockImplementation(() => {}),
-      error: vi.spyOn(console, 'error').mockImplementation(() => {}),
-    };
+    ctx.consoleSpy = createConsoleSpy();
 
-    importMock = vi.fn(() => Promise.resolve({
+    const importMock = vi.fn(() => Promise.resolve({
       logError: vi.fn(),
     }));
     vi.doMock('#astro-utils/sentry-client', () => importMock);
@@ -40,7 +41,7 @@ describe('logger', () => {
       logger.debug('test message', { context: 'data' });
 
       if (config.isDev) {
-        expect(consoleSpy.debug).toHaveBeenCalledWith('test message', { context: 'data' });
+        expect(ctx.consoleSpy.debug).toHaveBeenCalledWith('test message', { context: 'data' });
       }
     });
 
@@ -48,7 +49,7 @@ describe('logger', () => {
       logger.info('test message', { context: 'data' });
 
       if (config.isDev) {
-        expect(consoleSpy.info).toHaveBeenCalledWith('test message', { context: 'data' });
+        expect(ctx.consoleSpy.info).toHaveBeenCalledWith('test message', { context: 'data' });
       }
     });
 
@@ -56,13 +57,13 @@ describe('logger', () => {
       logger.warn('test warning', { context: 'data' });
 
       if (config.isDev) {
-        expect(consoleSpy.warn).toHaveBeenCalledWith('test warning', { context: 'data' });
+        expect(ctx.consoleSpy.warn).toHaveBeenCalledWith('test warning', { context: 'data' });
       }
     });
 
     it('always logs errors to console', () => {
       logger.error('test error', { context: 'data' });
-      expect(consoleSpy.error).toHaveBeenCalledWith('test error', { context: 'data' });
+      expect(ctx.consoleSpy.error).toHaveBeenCalledWith('test error', { context: 'data' });
     });
   });
 
@@ -74,10 +75,10 @@ describe('logger', () => {
         logger.warn('warn message');
         logger.error('error message');
 
-        expect(consoleSpy.debug).toHaveBeenCalled();
-        expect(consoleSpy.info).toHaveBeenCalled();
-        expect(consoleSpy.warn).toHaveBeenCalled();
-        expect(consoleSpy.error).toHaveBeenCalled();
+        expect(ctx.consoleSpy.debug).toHaveBeenCalled();
+        expect(ctx.consoleSpy.info).toHaveBeenCalled();
+        expect(ctx.consoleSpy.warn).toHaveBeenCalled();
+        expect(ctx.consoleSpy.error).toHaveBeenCalled();
       }
     });
   });

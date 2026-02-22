@@ -77,19 +77,19 @@ export function extractWordDefinition(wordData: WordData): { definition: string;
 /**
  * All words loaded with consistent sorting across environments
  */
-let cachedWords: WordData[] | null = null;
+const wordCache: { value: WordData[] | null } = { value: null };
 
 async function getAllWords(): Promise<WordData[]> {
-  if (cachedWords === null) {
+  if (wordCache.value === null) {
     try {
-      cachedWords = await getWordsFromCollection();
-      logger.info('Loaded words successfully', { count: cachedWords.length });
+      wordCache.value = await getWordsFromCollection();
+      logger.info('Loaded words successfully', { count: wordCache.value.length });
     } catch (error) {
       logger.error('Failed to load words', { error: (error as Error).message });
-      cachedWords = [];
+      wordCache.value = [];
     }
   }
-  return cachedWords;
+  return wordCache.value;
 }
 
 export const allWords = await getAllWords();

@@ -1,3 +1,5 @@
+import { parseArgs } from 'node:util';
+
 import { showHelp } from '#tools/help-utils';
 import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '#tools/utils';
 import { getAllPageMetadata } from '#utils/page-metadata-utils';
@@ -37,17 +39,50 @@ Requirements:
   - Output directory will be created if it doesn't exist
 `;
 
+interface BulkItem {
+  label: string;
+}
+
+/**
+ * Processes items in bulk with consistent logging and error tracking
+ */
+async function bulkGenerate<T extends BulkItem>(
+  items: T[],
+  generate: (item: T) => Promise<void>,
+  category: string,
+): Promise<void> {
+  console.log(`Starting ${category} generation`, { count: items.length });
+
+  const results = await Promise.allSettled(
+    items.map(async (item) => {
+      await generate(item);
+      console.log(`Generated ${category} image`, { label: item.label });
+    }),
+  );
+
+  const failures = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
+  failures.forEach(r => {
+    console.error(`Failed to generate ${category} image`, { error: r.reason?.message });
+  });
+
+  console.log(`${category} generation complete`, {
+    total: items.length,
+    success: items.length - failures.length,
+    errors: failures.length,
+  });
+}
+
 /**
  * Generates image for a specific word
  */
 async function generateSingleImage(word: string): Promise<boolean> {
-  try {
-    const wordData = findExistingWord(word);
-    if (!wordData) {
-      console.error('Word not found in data files', { word });
-      return false;
-    }
+  const wordData = findExistingWord(word);
+  if (!wordData) {
+    console.error('Word not found in data files', { word });
+    return false;
+  }
 
+  try {
     await generateShareImage(wordData.word, wordData.date);
     console.log('Generated image for word', { word: wordData.word, date: wordData.date });
     return true;
@@ -58,88 +93,18 @@ async function generateSingleImage(word: string): Promise<boolean> {
 }
 
 /**
- * Generates images for all words
- */
-async function generateAllImages(): Promise<void> {
-  const allWords = getAllWords();
-  console.log('Starting bulk image generation', { wordCount: allWords.length });
-
-  let successCount = 0;
-  let errorCount = 0;
-
-  for (const wordData of allWords) {
-    try {
-      await generateShareImage(wordData.word, wordData.date);
-      console.log('Generated image', { word: wordData.word, date: wordData.date });
-      successCount++;
-    } catch (error) {
-      console.error('Failed to generate image', {
-        word: wordData.word,
-        date: wordData.date,
-        error: (error as Error).message,
-      });
-      errorCount++;
-    }
-  }
-
-  console.log('Bulk image generation complete', {
-    total: allWords.length,
-    success: successCount,
-    errors: errorCount,
-  });
-}
-
-/**
- * Generates images for all generic pages (stats, words index, year pages, etc.)
- */
-async function generateGenericImages(): Promise<void> {
-  const words = getAllWords();
-  const allPages = getAllPageMetadata(words);
-
-  // Pages already filtered and ready to use
-  const pages = allPages;
-
-  console.log('Starting generic image generation', { pageCount: pages.length });
-
-  let successCount = 0;
-  let errorCount = 0;
-
-  for (const page of pages) {
-    try {
-      await generateGenericShareImage(page.title, page.path);
-      console.log('Generated generic image', { title: page.title, path: page.path });
-      successCount++;
-    } catch (error) {
-      console.error('Failed to generate generic image', {
-        title: page.title,
-        path: page.path,
-        error: (error as Error).message,
-      });
-      errorCount++;
-    }
-  }
-
-  console.log('Generic image generation complete', {
-    total: pages.length,
-    success: successCount,
-    errors: errorCount,
-  });
-}
-
-/**
  * Generates image for a specific page path
  */
 async function generatePageImage(pagePath: string): Promise<boolean> {
+  const allPages = getAllPageMetadata(getAllWords());
+  const page = allPages.find(p => p.path === pagePath);
+
+  if (!page) {
+    console.error('Page not found in available pages', { pagePath });
+    return false;
+  }
+
   try {
-    const words = getAllWords();
-    const allPages = getAllPageMetadata(words);
-    const page = allPages.find(p => p.path === pagePath);
-
-    if (!page) {
-      console.error('Page not found in available pages', { pagePath });
-      return false;
-    }
-
     await generateGenericShareImage(page.title, page.path);
     console.log('Generated page image', { title: page.title, path: page.path });
     return true;
@@ -150,8 +115,6 @@ async function generatePageImage(pagePath: string): Promise<boolean> {
 }
 
 // Parse command line arguments
-import { parseArgs } from 'node:util';
-
 const { values: cliValues } = parseArgs({
   args: process.argv.slice(2),
   options: {
@@ -170,36 +133,37 @@ if (cliValues.help) {
   process.exit(0);
 }
 
-const hasWords = !!cliValues.words;
-const hasGeneric = !!cliValues.generic;
-const pagePath = cliValues.page ?? '';
-const word = cliValues.word ?? '';
-
 // Main execution
 (async () => {
   try {
     console.log('Generate images tool starting...');
-    if (pagePath) {
-      // Generate specific page image
-      const success = await generatePageImage(pagePath);
-      process.exit(success ? 0 : 1);
+
+    if (cliValues.page) {
+      process.exit(await generatePageImage(cliValues.page) ? 0 : 1);
     }
 
-    if (word) {
-      // Generate single word image
-      const success = await generateSingleImage(word);
-      process.exit(success ? 0 : 1);
+    if (cliValues.word) {
+      process.exit(await generateSingleImage(cliValues.word) ? 0 : 1);
     }
 
-    const runWords = hasWords || (!hasWords && !hasGeneric);
-    const runGeneric = hasGeneric || (!hasWords && !hasGeneric);
+    const runBoth = !cliValues.words && !cliValues.generic;
 
-    if (runWords) {
-      await generateAllImages();
+    if (cliValues.words || runBoth) {
+      const allWords = getAllWords();
+      await bulkGenerate(
+        allWords.map(w => ({ label: `${w.word} (${w.date})`, word: w.word, date: w.date })),
+        (item) => generateShareImage(item.word, item.date),
+        'word',
+      );
     }
 
-    if (runGeneric) {
-      await generateGenericImages();
+    if (cliValues.generic || runBoth) {
+      const pages = getAllPageMetadata(getAllWords());
+      await bulkGenerate(
+        pages.map(p => ({ label: `${p.title} (${p.path})`, title: p.title, path: p.path })),
+        (item) => generateGenericShareImage(item.title, item.path),
+        'generic',
+      );
     }
 
     process.exit(0);

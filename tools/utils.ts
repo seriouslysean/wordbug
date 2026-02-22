@@ -3,9 +3,16 @@ import opentype from 'opentype.js';
 import path from 'path';
 import sharp from 'sharp';
 
+import { getAdapter } from '#adapters';
 import { paths } from '#config/paths';
+import type { CreateWordEntryResult, WordData } from '#types';
+import { formatDate, isValidDate } from '#utils/date-utils';
+import { isValidDictionaryData } from '#utils/word-validation';
 
-// Colors for image generation
+// ---------------------------------------------------------------------------
+// Image generation constants
+// ---------------------------------------------------------------------------
+
 const imageColors = {
   primary: process.env.COLOR_PRIMARY || '#9a3412',
   primaryLight: process.env.COLOR_PRIMARY_LIGHT || '#c2410c',
@@ -13,21 +20,31 @@ const imageColors = {
   textLighter: '#8a8f98',
 };
 
-
-// Constants for image generation
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGHT = 630;
-const PADDING = Math.floor(Math.min(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.05);  // 5% of shortest dimension
+// 5% of shortest dimension
+const PADDING = Math.floor(Math.min(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.05);
 const FONT_SIZE = 160;
 const TITLE_SIZE = 48;
 const DATE_SIZE = 40;
-const DESCENDER_OFFSET = Math.floor(FONT_SIZE * 0.2);  // Restore descender offset (20% of font size)
+// 20% of font size
+const DESCENDER_OFFSET = Math.floor(FONT_SIZE * 0.2);
 const MAX_WIDTH = CANVAS_WIDTH - (PADDING * 2);
+
+const PNG_OPTIONS = {
+  compressionLevel: 9,
+  palette: true,
+  quality: 90,
+  colors: 128,
+} as const;
 
 // Load fonts - using Liberation Sans for better web compatibility
 const regularFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Regular.ttf'));
 const boldFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Bold.ttf'));
 
+// ---------------------------------------------------------------------------
+// Word file I/O
+// ---------------------------------------------------------------------------
 
 interface WordFileInfo {
   word: string;
@@ -37,7 +54,6 @@ interface WordFileInfo {
 
 /**
  * Get all word files from the data directory
- * @returns {WordFileInfo[]} Array of word file information objects
  */
 export const getWordFiles = (): WordFileInfo[] => {
   if (!fs.existsSync(paths.words)) {
@@ -82,46 +98,6 @@ export const getWordFiles = (): WordFileInfo[] => {
   return files.sort((a, b) => b.date.localeCompare(a.date));
 };
 
-
-
-/**
- * Updates a word file with new dictionary data
- * @param filePath - Path to the word file
- * @param data - Wordnik API response data
- * @param date - Date string in YYYYMMDD format
- * @returns {void} Nothing
- */
-export function updateWordFile(filePath: string, data: WordnikResponse, date: string): void {
-  const firstResult = data[0];
-  if (!data.length || !firstResult?.word) {
-    throw new Error('No word found in response data');
-  }
-
-  const word = firstResult.word.toLowerCase();
-  const adapter = process.env.DICTIONARY_ADAPTER || 'wordnik';
-  const wordData = { word, date, adapter, data };
-
-  const dir = path.dirname(filePath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-
-  fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
-  console.log('Updated word file', { filePath });
-}
-
-
-/**
- * Creates a directory if it doesn't already exist
- * @param dir - Directory path to create
- * @returns {void} Nothing
- */
-export function createDirectoryIfNeeded(dir: string): void {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-}
-
 /**
  * Checks if a word already exists by scanning word files
  * @param word - Word to check (case-insensitive)
@@ -138,8 +114,7 @@ export function findExistingWord(word: string): WordData | null {
         return data;
       }
     } catch {
-      // Skip corrupted files
-      continue;
+      // File unreadable, skip
     }
   }
 
@@ -148,34 +123,21 @@ export function findExistingWord(word: string): WordData | null {
 
 /**
  * Gets all word data from files
- * @returns Array of all word data
  */
 export function getAllWords(): WordData[] {
-  const files = getWordFiles();
-  const words: WordData[] = [];
-
-  for (const file of files) {
+  return getWordFiles().flatMap(file => {
     try {
-      const data = JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData;
-      words.push(data);
+      return [JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData];
     } catch {
-      // Skip corrupted files
-      continue;
+      return [];
     }
-  }
-
-  return words;
+  });
 }
 
+// ---------------------------------------------------------------------------
+// SVG / image generation
+// ---------------------------------------------------------------------------
 
-/**
- * Converts text to SVG path data with proper scaling
- * @param text - Text to convert
- * @param fontSize - Font size for the text
- * @param isExtraBold - Whether to use ExtraBold weight
- * @param maxWidth - Maximum width allowed for the text
- * @returns Path data and dimensions object
- */
 interface TextPathResult {
   pathData: string;
   width: number;
@@ -191,25 +153,15 @@ interface GetTextPathOptions {
 
 function getTextPath(text: string, fontSize: number, options: GetTextPathOptions = {}): TextPathResult {
   const { isExtraBold = false, maxWidth = Infinity } = options;
-
-  // Use the appropriate font based on weight
   const font = isExtraBold ? boldFont : regularFont;
-
-  // Create the path at the original size
-  const path = font.getPath(text, 0, 0, fontSize);
-
-  // Get the bounding box
-  const bbox = path.getBoundingBox();
+  const fontPath = font.getPath(text, 0, 0, fontSize);
+  const bbox = fontPath.getBoundingBox();
   const width = bbox.x2 - bbox.x1;
-
-  // Calculate scale if needed
   const scale = width > maxWidth ? maxWidth / width : 1;
-
-  // If we need to scale, apply it via transform attribute
   const transform = scale < 1 ? ` transform="scale(${scale})"` : '';
 
   return {
-    pathData: path.toPathData(),
+    pathData: fontPath.toPathData(),
     width: width * scale,
     height: (bbox.y2 - bbox.y1) * scale,
     scale,
@@ -218,18 +170,12 @@ function getTextPath(text: string, fontSize: number, options: GetTextPathOptions
 }
 
 /**
- * Creates an SVG template for a word with its date
- * @param word - The word to create an image for
- * @param date - Date string in YYYYMMDD format
- * @returns SVG content as a string
+ * Creates an SVG social image. When date is provided, it renders below the site title.
  */
-export function createWordSvg(word: string, date: string): string {
-  const formattedDate = formatDate(date);
-
-  // Get path data for all text elements
-  const mainWord = getTextPath(word, FONT_SIZE, { isExtraBold: true, maxWidth: MAX_WIDTH });
+export function createSvg(text: string, date?: string): string {
+  const mainWord = getTextPath(text, FONT_SIZE, { isExtraBold: true, maxWidth: MAX_WIDTH });
   const titleText = getTextPath(process.env.SITE_TITLE || '', TITLE_SIZE);
-  const dateText = getTextPath(formattedDate, DATE_SIZE);
+  const dateText = date ? getTextPath(formatDate(date), DATE_SIZE) : null;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" viewBox="0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -248,12 +194,12 @@ export function createWordSvg(word: string, date: string): string {
     <g transform="translate(${PADDING}, ${PADDING + TITLE_SIZE})">
         <path d="${titleText.pathData}" fill="${imageColors.textLighter}"${titleText.transform}/>
     </g>
-
+${dateText ? `
     <!-- Date -->
     <g transform="translate(${PADDING}, ${PADDING + TITLE_SIZE + DATE_SIZE + 16})">
         <path d="${dateText.pathData}" fill="${imageColors.textLighter}"${dateText.transform}/>
     </g>
-
+` : ''}
     <!-- Main word -->
     <g transform="translate(${PADDING}, ${CANVAS_HEIGHT - PADDING - DESCENDER_OFFSET})">
         <path d="${mainWord.pathData}" fill="url(#wordGradient)"${mainWord.transform}/>
@@ -261,105 +207,35 @@ export function createWordSvg(word: string, date: string): string {
 </svg>`;
 }
 
+/**
+ * Renders SVG content to a PNG file
+ */
+async function renderSvgToPng(svgContent: string, outputPath: string): Promise<void> {
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  await sharp(Buffer.from(svgContent)).png(PNG_OPTIONS).toFile(outputPath);
+}
 
 /**
  * Generates a social share image for a word
- * @param word - The word to generate an image for
- * @param date - Date string in YYYYMMDD format
- * @returns {Promise<void>} Nothing
  */
 export async function generateShareImage(word: string, date: string): Promise<void> {
   const year = date.slice(0, 4);
-  const socialDir = path.join(paths.images, 'social', year);
-
-  createDirectoryIfNeeded(socialDir);
-
-  const svgContent = createWordSvg(word, date);
-  const fileName = `${date}-${word.toLowerCase()}.png`;
-  const outputPath = path.join(socialDir, fileName);
-
-  try {
-    await sharp(Buffer.from(svgContent))
-      .png({
-        compressionLevel: 9,
-        palette: true,
-        quality: 90,
-        colors: 128,
-      })
-      .toFile(outputPath);
-  } catch (error) {
-    throw new Error(`Error generating image for "${word}": ${error.message}`);
-  }
-}
-
-/**
- * Creates a generic SVG template for pages without a word
- * @param title - The title to display
- * @returns SVG content as a string
- */
-export function createGenericSvg(title: string): string {
-  // Get path data for all text elements
-  const mainWord = getTextPath(title.toLowerCase(), FONT_SIZE, { isExtraBold: true, maxWidth: MAX_WIDTH });
-  const titleText = getTextPath(process.env.SITE_TITLE || '', TITLE_SIZE);
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" viewBox="0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <!-- White background -->
-    <rect width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" fill="#ffffff"/>
-
-    <defs>
-        <linearGradient id="wordGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="${imageColors.primaryLight}"/>
-            <stop offset="60%" stop-color="${imageColors.primary}"/>
-            <stop offset="100%" stop-color="${imageColors.primaryDark}"/>
-        </linearGradient>
-    </defs>
-
-    <!-- Site title -->
-    <g transform="translate(${PADDING}, ${PADDING + TITLE_SIZE})">
-        <path d="${titleText.pathData}" fill="${imageColors.textLighter}"${titleText.transform}/>
-    </g>
-
-    <!-- Main word -->
-    <g transform="translate(${PADDING}, ${CANVAS_HEIGHT - PADDING - DESCENDER_OFFSET})">
-        <path d="${mainWord.pathData}" fill="url(#wordGradient)"${mainWord.transform}/>
-    </g>
-</svg>`;
+  const outputPath = path.join(paths.images, 'social', year, `${date}-${word.toLowerCase()}.png`);
+  await renderSvgToPng(createSvg(word, date), outputPath);
 }
 
 /**
  * Generates a generic social share image for pages without a word
- * @param title - The title to use in the image
- * @param slug - The page slug/path
- * @returns {Promise<void>} Nothing
  */
 export async function generateGenericShareImage(title: string, slug: string): Promise<void> {
-  const socialDir = path.join(paths.images, 'social', 'pages');
-  createDirectoryIfNeeded(socialDir);
-
-  const svgContent = createGenericSvg(title);
   const safeSlug = slug.replace(/\//g, '-');
-  const outputPath = path.join(socialDir, `${safeSlug}.png`);
-
-  try {
-    await sharp(Buffer.from(svgContent))
-      .png({
-        compressionLevel: 9,
-        palette: true,
-        quality: 90,
-        colors: 128,
-      })
-      .toFile(outputPath);
-  } catch (error) {
-    throw new Error(`Error generating generic image for "${title}": ${error.message}`);
-  }
+  const outputPath = path.join(paths.images, 'social', 'pages', `${safeSlug}.png`);
+  await renderSvgToPng(createSvg(title.toLowerCase()), outputPath);
 }
 
-import { getAdapter } from '#adapters';
-import type { CreateWordEntryResult, WordData, WordnikResponse } from '#types';
-import { formatDate, isValidDate } from '#utils/date-utils';
-import { isValidDictionaryData } from '#utils/word-validation';
-
+// ---------------------------------------------------------------------------
+// Word entry creation
+// ---------------------------------------------------------------------------
 
 interface CreateWordEntryOptions {
   date: string;
@@ -369,17 +245,10 @@ interface CreateWordEntryOptions {
 
 /**
  * Creates a word data object and saves it to the appropriate file
- * @param word - Word to add
- * @param options - Configuration options for creating the entry
- * @param options.date - Date in YYYYMMDD format
- * @param options.overwrite - Whether to overwrite existing files
- * @param options.preserveCase - Whether to preserve the original capitalization (default: false, converts to lowercase)
- * @returns Object with file path and word data
  */
 export async function createWordEntry(word: string, options: CreateWordEntryOptions): Promise<CreateWordEntryResult> {
   const { date, overwrite = false, preserveCase = false } = options;
 
-  // Validate inputs
   if (!word?.trim()) {
     throw new Error('Word is required');
   }
@@ -398,24 +267,20 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
   const dirPath = path.join(paths.words, year);
   const filePath = path.join(dirPath, `${date}.json`);
 
-  // Check if file already exists
   if (fs.existsSync(filePath) && !overwrite) {
     throw new Error(`Word already exists for date ${date}`);
   }
 
-  // Create year directory if it doesn't exist
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
+  fs.mkdirSync(dirPath, { recursive: true });
 
-  // Fetch word data using the configured adapter (pass original capitalization for API call)
+  // Fetch word data using finalWord (lowercased by default) so common words match
+  // Wordnik entries. When preserveCase is true, original capitalization is retained.
   const adapter = getAdapter();
-  const response = await adapter.fetchWordData(trimmedWord);
+  const response = await adapter.fetchWordData(finalWord);
   const data = response.definitions;
 
-  // Validate the word data before saving
   if (!isValidDictionaryData(data)) {
-    throw new Error(`No valid definitions found for word: ${trimmedWord}`);
+    throw new Error(`No valid definitions found for word: ${finalWord}`);
   }
 
   const wordData: WordData = {
@@ -428,8 +293,7 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
 
-  console.log('Word entry created', { word: trimmedWord, date });
+  console.log('Word entry created', { word: finalWord, date });
 
   return { filePath, data };
 }
-

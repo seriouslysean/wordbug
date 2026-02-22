@@ -42,13 +42,19 @@ export {
  * @returns Estimated syllable count (minimum 1 for non-empty words)
  */
 export const countSyllables = (word: string): number => {
-  if (!word) return 0;
+  if (!word) {
+    return 0;
+  }
 
   const clean = word.toLowerCase().replace(/[^a-z]/g, '');
-  if (!clean) return 0;
+  if (!clean) {
+    return 0;
+  }
 
   // Single letter = 1 syllable
-  if (clean.length === 1) return 1;
+  if (clean.length === 1) {
+    return 1;
+  }
 
   // Count vowel groups - consecutive vowels = 1 syllable
   const vowelGroups = clean.match(/[aeiouy]+/g) || [];

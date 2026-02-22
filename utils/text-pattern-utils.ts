@@ -95,7 +95,9 @@ export const isAllConsonants = (word: string): boolean => {
  * @returns True if word is a palindrome (case-insensitive)
  */
 export const isPalindrome = (word: string): boolean => {
-  if (!word) return false;
+  if (!word) {
+    return false;
+  }
   const normalized = word.toLowerCase();
   return normalized === normalized.split('').reverse().join('');
 };

@@ -1,22 +1,11 @@
 import {
- afterEach,beforeEach, describe, expect, it, vi,
+ beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
 import { getAdapter } from '#adapters';
 
 describe('adapter factory', () => {
-  let originalEnv;
-
   beforeEach(() => {
-    originalEnv = process.env.DICTIONARY_ADAPTER;
-  });
-
-  afterEach(() => {
-    if (originalEnv !== undefined) {
-      process.env.DICTIONARY_ADAPTER = originalEnv;
-    } else {
-      delete process.env.DICTIONARY_ADAPTER;
-    }
     vi.clearAllMocks();
   });
 
@@ -35,7 +24,7 @@ describe('adapter factory', () => {
     });
 
     it('returns wordnik adapter when explicitly configured', () => {
-      process.env.DICTIONARY_ADAPTER = 'wordnik';
+      vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
 
       const adapter = getAdapter();
 
@@ -43,7 +32,7 @@ describe('adapter factory', () => {
     });
 
     it('handles case insensitive adapter names', () => {
-      process.env.DICTIONARY_ADAPTER = 'WORDNIK';
+      vi.stubEnv('DICTIONARY_ADAPTER', 'WORDNIK');
 
       const adapter = getAdapter();
 
@@ -51,13 +40,13 @@ describe('adapter factory', () => {
     });
 
     it('throws error for unsupported adapter', () => {
-      process.env.DICTIONARY_ADAPTER = 'unsupported-adapter';
+      vi.stubEnv('DICTIONARY_ADAPTER', 'unsupported-adapter');
 
       expect(() => getAdapter()).toThrow('Unsupported dictionary adapter');
     });
 
     it('returns wordnik adapter for empty adapter name (falls back to default)', () => {
-      process.env.DICTIONARY_ADAPTER = '';
+      vi.stubEnv('DICTIONARY_ADAPTER', '');
 
       const adapter = getAdapter();
 
@@ -76,7 +65,7 @@ describe('adapter factory', () => {
         logger: mockLogger,
       }));
 
-      process.env.DICTIONARY_ADAPTER = 'wordnik';
+      vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
       vi.resetModules();
 
       const { getAdapter: getAdapterWithMock } = await import('#adapters');

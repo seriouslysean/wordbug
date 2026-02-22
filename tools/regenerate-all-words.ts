@@ -90,17 +90,11 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
     const allWords = getAllWords();
     console.log(`Found ${allWords.length} word files to process`);
 
-    // Extract word info from all words
-    const wordsToRegenerate: Array<{ word: string; date: string; path: string }> = [];
-
-    for (const wordData of allWords) {
-      const wordInfo = {
-        word: wordData.word,
-        date: wordData.date,
-        path: `data/words/${wordData.date.slice(0, 4)}/${wordData.date}.json`,
-      };
-      wordsToRegenerate.push(wordInfo);
-    }
+    const wordsToRegenerate = allWords.map(wordData => ({
+      word: wordData.word,
+      date: wordData.date,
+      path: `data/words/${wordData.date.slice(0, 4)}/${wordData.date}.json`,
+    }));
 
     console.log(`Successfully extracted ${wordsToRegenerate.length} words to regenerate`);
 

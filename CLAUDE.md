@@ -76,6 +76,7 @@ Uses Node.js subpath imports (`#` prefix) defined in `package.json` `imports` fi
 | `#styles/*` | `src/styles/*` |
 | `#assets/*` | `src/assets/*` |
 | `#tools/*` | `tools/*` |
+| `#tests/*` | `tests/*` |
 
 ### Data Flow
 
@@ -98,10 +99,13 @@ Build-time globals (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`) are i
 
 ### Test Structure
 
-Tests are in `tests/` using Vitest (config: `vitest.config.ts`). Three layers:
+Tests are in `tests/` using Vitest (config: `vitest.config.ts`). Four layers:
 - **Unit** (`tests/utils/`, `tests/adapters/`) — pure function correctness
+- **Component** (`tests/src/`) — Astro-specific wrappers, SEO, schema generation
 - **Architecture** (`tests/architecture/`) — import boundary enforcement, DRY violations
 - **CLI Integration** (`tests/tools/`) — spawns real processes, catches `astro:` protocol errors
+
+Test helpers live in `tests/helpers/` (e.g., `spawn.js` for CLI process capture). Mock fixtures and global setup live in `tests/setup.js`.
 
 Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 
@@ -118,9 +122,44 @@ Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 | `constants/` | Application constants (stats slugs, URLs) |
 | `config/` | Path configuration |
 
+## Guiding Principles
+
+### Let tools enforce what tools can enforce
+
+Formatting rules (`.editorconfig`), lint rules (`.oxlintrc.json`), and type checking (`tsconfig.json`) exist so humans and AI don't have to remember them. Before manually fixing a code pattern across the codebase, check whether a tool can do it. Run `npm run lint:fix` after adding new lint rules. If a rule should be enforced, add it to the tooling so it can't regress.
+
+### Adapters are transparent
+
+External API adapters (`adapters/`) are pass-throughs. They look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller makes a decision (like `--preserve-case`), the adapter should respect it without second-guessing. Check `tools/add-word.ts` and `adapters/wordnik.ts` for the existing pattern.
+
+### Prefer declarative over imperative
+
+Use `.map()`, `.filter()`, `.find()`, `.flatMap()` when transforming or searching data. Reserve `for` loops for cases that genuinely need them: stateful accumulation across iterations, early exit with `return`, or `try/catch` per iteration. If a loop body is just `.push()` into an array, it should be `.map()`.
+
+### Tests should be self-contained
+
+Each test must own its setup and leave no trace. Vitest provides purpose-built APIs — use them instead of manual boilerplate:
+
+- **Environment variables:** `vi.stubEnv()` auto-restores after each test. Never manually save/restore `process.env`.
+- **Build-time globals:** `vi.stubGlobal('__BASE_URL__', '/blog')` auto-restores. Never assign to `globalThis` directly.
+- **Module re-evaluation:** `vi.resetModules()` + `await import(...)` when testing modules that read env vars at import time.
+- **Fake timers:** `vi.useFakeTimers()` / `vi.setSystemTime()` in `beforeEach`, `vi.useRealTimers()` in `afterEach`.
+- **Hoisted mocks:** `vi.hoisted()` for values that need to exist before `vi.mock()` runs.
+
+**Avoid `let` in tests.** When `beforeEach` needs to set up state, use a `const` container object (e.g., `const ctx = { spy: {} }`) and mutate properties. This keeps bindings immutable while allowing per-test setup. The only acceptable `let` is stateful stream accumulation in callbacks where no container pattern applies.
+
+**Shared helpers go in `tests/helpers/`.** When the same pattern appears in 3+ test files, extract it. Helpers use the `#tests/*` alias. Keep them focused — a helper should do one thing (e.g., `spawnTool` captures process output, nothing more).
+
+**Test data lives close to where it's used.** Global mock fixtures in `tests/setup.js`, per-file test data as `const` at describe-block scope, fixture files in `tests/locales/` or alongside the test file. Never mutate shared test data.
+
+### Question complexity that doesn't serve the user
+
+This is a static site with zero client-side JS by default. Before adding build optimizations (manual chunk splitting, tree-shaking config, caching headers), verify they affect what actually gets served to browsers. Astro and Vite handle most optimizations automatically.
+
 ## Code Style
 
-- `const` only — no `let` or `var`
+- `const` only — no `let` or `var`. For mutable state, use a `const` container (e.g., `const cache = { value: null }`). `let` is acceptable only for stateful accumulation inside `for` loops or stream callbacks where no container pattern applies.
+- Curly braces required on all control flow — no braceless `if`/`else`/`for`/`while`
 - Comments above the line they describe, never inline
 - No emojis anywhere in the codebase
 - No log message prefixes (log levels are sufficient)

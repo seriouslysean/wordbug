@@ -158,13 +158,9 @@ export const generateStatsStaticPaths = async () => {
       params: { stat: config.slug },
       props: {
         words: config.data,
-        description: config.arg
-          ? (typeof config.definition.pageDescription === 'function'
-              ? config.definition.pageDescription(config.arg)
-              : config.definition.pageDescription)
-          : (typeof config.definition.pageDescription === 'function'
-              ? config.definition.pageDescription()
-              : config.definition.pageDescription),
+        description: typeof config.definition.pageDescription === 'function'
+          ? config.definition.pageDescription(config.arg)
+          : config.definition.pageDescription,
         template: config.template,
       },
     }));

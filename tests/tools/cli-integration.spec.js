@@ -12,17 +12,18 @@
  *
  * Implementation notes:
  * - Import tests mock process.exit to prevent tools from terminating test runner
- * - Spawn tests use actual child processes for realistic execution testing
+ * - Spawn tests use done() callback pattern (required for child_process in Vitest threads)
  * - Static analysis tests check file contents for known problematic patterns
  */
 
 import { describe, it, expect, vi } from 'vitest';
-import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { spawnTool } from '#tests/helpers/spawn';
 
 const TOOLS_DIR = path.join(process.cwd(), 'tools');
 const TEST_DATA_DIR = path.join(process.cwd(), 'data', 'demo', 'words');
+const DEMO_ENV = { SOURCE_DIR: 'demo' };
 
 describe('CLI Tools: Import & Execution', () => {
 
@@ -74,19 +75,7 @@ describe('CLI Tools: Import & Execution', () => {
   }, 15000); // Increased timeout - tools run their main logic on import
 
   it('generate-images tool can load and show help', (done) => {
-    const proc = spawn('npx', ['tsx', 'tools/generate-images.ts', '--help'], {
-      env: { ...process.env, SOURCE_DIR: 'demo' },
-      timeout: 10000,
-    });
-
-    let stdout = '';
-    let stderr = '';
-
-    proc.stdout.on('data', (data) => stdout += data.toString());
-    proc.stderr.on('data', (data) => stderr += data.toString());
-
-    proc.on('close', (code) => {
-      // Help should exit with 0 and show usage
+    spawnTool(['tools/generate-images.ts', '--help'], { env: DEMO_ENV }, ({ stdout, stderr, code }) => {
       expect(code).toBe(0);
       expect(stdout).toContain('Generate Images Tool');
       expect(stdout).toContain('Usage:');
@@ -96,18 +85,7 @@ describe('CLI Tools: Import & Execution', () => {
   }, 15000);
 
   it('add-word tool can load and show help', (done) => {
-    const proc = spawn('npx', ['tsx', 'tools/add-word.ts', '--help'], {
-      env: { ...process.env, SOURCE_DIR: 'demo' },
-      timeout: 10000,
-    });
-
-    let stdout = '';
-    let stderr = '';
-
-    proc.stdout.on('data', (data) => stdout += data.toString());
-    proc.stderr.on('data', (data) => stderr += data.toString());
-
-    proc.on('close', (code) => {
+    spawnTool(['tools/add-word.ts', '--help'], { env: DEMO_ENV }, ({ stdout, stderr, code }) => {
       expect(code).toBe(0);
       expect(stdout).toContain('Add Word Tool');
       expect(stdout).toContain('Usage:');
@@ -155,7 +133,9 @@ describe('CLI Tools: Import & Execution', () => {
     for (const utilPath of sharedUtils) {
       const fullPath = path.join(process.cwd(), utilPath);
 
-      if (!fs.existsSync(fullPath)) continue;
+      if (!fs.existsSync(fullPath)) {
+        continue;
+      }
 
       try {
         await import(fullPath);
@@ -207,29 +187,18 @@ describe('CLI Tools: Basic Functionality', () => {
     const wordData = JSON.parse(fs.readFileSync(firstWordFile, 'utf-8'));
     const testWord = wordData.word;
 
-    const proc = spawn('npx', ['tsx', 'tools/generate-images.ts', '--word', testWord], {
-      env: { ...process.env, SOURCE_DIR: 'demo' },
-      timeout: 30000,
-    });
-
-    let stdout = '';
-    let stderr = '';
-
-    proc.stdout.on('data', (data) => stdout += data.toString());
-    proc.stderr.on('data', (data) => stderr += data.toString());
-
-    proc.on('close', (code) => {
-      // Should succeed
-      expect(code).toBe(0);
-      expect(stdout).toContain('Generate images tool starting');
-      expect(stdout).toContain(`Generated image for word`);
-
-      // Should not have astro: errors
-      expect(stderr).not.toContain('astro:');
-      expect(stderr).not.toContain('Only URLs with a scheme in: file, data, and node');
-
-      done();
-    });
+    spawnTool(
+      ['tools/generate-images.ts', '--word', testWord],
+      { env: DEMO_ENV, timeout: 30000 },
+      ({ stdout, stderr, code }) => {
+        expect(code).toBe(0);
+        expect(stdout).toContain('Generate images tool starting');
+        expect(stdout).toContain(`Generated image for word`);
+        expect(stderr).not.toContain('astro:');
+        expect(stderr).not.toContain('Only URLs with a scheme in: file, data, and node');
+        done();
+      },
+    );
   }, 35000);
 
   it('tools can access constants without circular dependencies', async () => {

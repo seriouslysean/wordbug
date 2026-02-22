@@ -393,7 +393,9 @@ export type PageMetadataResult = {
 let cachedStaticTitles: Record<string, string> | null = null;
 
 function getStaticTitles(): Record<string, string> {
-  if (cachedStaticTitles) return cachedStaticTitles;
+  if (cachedStaticTitles) {
+    return cachedStaticTitles;
+  }
 
   cachedStaticTitles = {
     [BASE_PATHS.HOME]: t('home.heading'),
@@ -446,18 +448,26 @@ function getStaticTitles(): Record<string, string> {
  * @returns Page title string
  */
 export function getPageTitle(path: string): string {
-  if (!path) return 'Unknown Page';
+  if (!path) {
+    return 'Unknown Page';
+  }
 
   // Check static title map first
   const staticTitle = getStaticTitles()[path];
-  if (staticTitle) return staticTitle;
+  if (staticTitle) {
+    return staticTitle;
+  }
 
   // Handle dynamic patterns
   const wordMatch = path.match(URL_PATTERNS.WORD_DETAIL);
-  if (wordMatch && wordMatch[1]) return wordMatch[1];
+  if (wordMatch && wordMatch[1]) {
+    return wordMatch[1];
+  }
 
   const yearMatch = path.match(URL_PATTERNS.YEAR_PAGE);
-  if (yearMatch && yearMatch[1]) return yearMatch[1];
+  if (yearMatch && yearMatch[1]) {
+    return yearMatch[1];
+  }
 
   const monthMatch = path.match(URL_PATTERNS.MONTH_PAGE);
   if (monthMatch && monthMatch[2]) {
@@ -468,13 +478,19 @@ export function getPageTitle(path: string): string {
   }
 
   const lengthMatch = path.match(URL_PATTERNS.LENGTH_PAGE);
-  if (lengthMatch && lengthMatch[1]) return t('words.length_words', { length: parseInt(lengthMatch[1], 10) });
+  if (lengthMatch && lengthMatch[1]) {
+    return t('words.length_words', { length: parseInt(lengthMatch[1], 10) });
+  }
 
   const letterMatch = path.match(URL_PATTERNS.LETTER_PAGE);
-  if (letterMatch && letterMatch[1]) return letterMatch[1].toUpperCase();
+  if (letterMatch && letterMatch[1]) {
+    return letterMatch[1].toUpperCase();
+  }
 
   const partOfSpeechMatch = path.match(URL_PATTERNS.PART_OF_SPEECH_PAGE);
-  if (partOfSpeechMatch && partOfSpeechMatch[1]) return t(`parts_of_speech.${partOfSpeechMatch[1]}`);
+  if (partOfSpeechMatch && partOfSpeechMatch[1]) {
+    return t(`parts_of_speech.${partOfSpeechMatch[1]}`);
+  }
 
   return 'Unknown Page';
 }
@@ -649,7 +665,9 @@ export function getAllPageMetadata(words: WordData[]) {
   const monthPages = years.flatMap(year =>
     getAvailableMonths(year, words).flatMap(month => {
       const monthSlug = MONTH_NAMES[Number(month) - 1];
-      if (!monthSlug) return [];
+      if (!monthSlug) {
+        return [];
+      }
       const path = ROUTES.MONTH(year, monthSlug);
       return [{ path, ...getPageMetadata(path, words) }];
     }),
