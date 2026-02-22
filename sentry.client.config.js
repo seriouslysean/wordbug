@@ -1,35 +1,51 @@
-import { browserTracingIntegration, init, replayIntegration } from '@sentry/astro';
+import {
+  browserTracingIntegration,
+  init,
+  replayIntegration,
+} from '@sentry/astro';
 
 init({
   dsn: __SENTRY_DSN__,
   environment: __SENTRY_ENVIRONMENT__,
-
-  tracesSampleRate: 1.0,
-
-  // Adds request headers and IP for users, for more info visit:
-  // https://docs.sentry.io/platforms/javascript/configuration/options/#sendDefaultPii
-  sendDefaultPii: true,
-
-  // Alternatively, use `process.env.npm_package_version` for a dynamic release version
-  // if your build tool supports it.
   release: __RELEASE__,
-
-  // This sets the sample rate to be 10%. You may want this to be 100% while
-  // in development and sample at a lower rate in production
-  replaysSessionSampleRate: 0.1,
-
-  // If the entire session is not sampled, use the below sample rate to sample
-  // sessions when an error occurs.
-  replaysOnErrorSampleRate: 1.0,
-
   integrations: [
     browserTracingIntegration(),
-    replayIntegration(),
+    replayIntegration({
+      // Site content is public -- unmasked replays are far more useful for debugging
+      maskAllText: false,
+      blockAllMedia: false,
+      maskAllInputs: false,
+    }),
   ],
-
+  // Free tier: 5M spans/month, low-traffic site won't approach this
+  tracesSampleRate: 1.0,
+  // Free tier: 50 replays/month -- spend the budget on error replays only
+  replaysSessionSampleRate: 0,
+  replaysOnErrorSampleRate: 1.0,
+  maxBreadcrumbs: 30,
   initialScope: {
     tags: {
       site: __SITE_ID__,
     },
   },
+  // Filter browser noise from extensions and cross-browser quirks.
+  // Even with zero client JS, extensions inject scripts into every page.
+  ignoreErrors: [
+    /ResizeObserver loop/,
+    /Failed to fetch|NetworkError when attempting to fetch resource|Load failed/,
+    /Extension context invalidated/,
+    /Non-Error (exception|promise rejection) captured/,
+    'AbortError',
+    /Failed to execute '\w+' on 'Node'/,
+    "can't access dead object",
+  ],
+  // Ignore errors originating from browser extension source files
+  denyUrls: [
+    /^chrome-extension:\/\//i,
+    /^chrome:\/\//i,
+    /^moz-extension:\/\//i,
+    /^safari-extension:\/\//i,
+    /^safari-web-extension:\/\//i,
+    /^webkit-masked-url:\/\//i,
+  ],
 });

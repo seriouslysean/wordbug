@@ -52,6 +52,7 @@
     "@astrojs/check": "^0.9.6",
     "@astrojs/sitemap": "^3.7.0",
     "@sentry/astro": "^9.32.0",
+    "@sentry/node": "^9.32.0",
     "@vitest/coverage-v8": "^4.0.18",
     "dotenv": "^17.0.0",
     "husky": "^9.1.7",

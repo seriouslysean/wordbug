@@ -9,14 +9,16 @@ import path from 'path';
 import type { PathConfig } from '#types';
 
 const ROOT = process.cwd();
+const SOURCE_DIR_DEFAULT = 'demo';
+
 const getWordsPath = (): string => {
-  const sourceDir = process.env.SOURCE_DIR || '';
-  return sourceDir ? path.join(ROOT, 'data', sourceDir, 'words') : path.join(ROOT, 'data', 'words');
+  const sourceDir = process.env.SOURCE_DIR || SOURCE_DIR_DEFAULT;
+  return path.join(ROOT, 'data', sourceDir, 'words');
 };
 
 const getImagesPath = (): string => {
-  const sourceDir = process.env.SOURCE_DIR || '';
-  return sourceDir ? path.join(ROOT, 'public', sourceDir, 'images') : path.join(ROOT, 'public', 'images');
+  const sourceDir = process.env.SOURCE_DIR || SOURCE_DIR_DEFAULT;
+  return path.join(ROOT, 'public', sourceDir, 'images');
 };
 
 /**

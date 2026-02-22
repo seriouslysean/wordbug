@@ -42,6 +42,8 @@ const defaults = {
   SITE_TITLE: 'Occasional Word of the Day',
   SITE_DESCRIPTION: 'A word-of-the-day site featuring interesting vocabulary',
   SITE_ID: 'occasional-wotd',
+  SOURCE_DIR: 'demo',
+  WORDNIK_WEBSITE_URL: 'https://www.wordnik.com',
 };
 
 // Apply defaults for missing environment variables

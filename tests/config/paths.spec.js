@@ -9,23 +9,16 @@ describe('config/paths', () => {
   });
 
   describe('when SOURCE_DIR is not set', () => {
-    it('should use base data/words path', async () => {
+    it('should default to demo data path', async () => {
       delete process.env.SOURCE_DIR;
       const { paths } = await import('#config/paths');
-      expect(paths.words).toBe(path.join(ROOT, 'data', 'words'));
+      expect(paths.words).toBe(path.join(ROOT, 'data', 'demo', 'words'));
     });
 
-    it('should use base public/images path', async () => {
+    it('should default to demo images path', async () => {
       delete process.env.SOURCE_DIR;
       const { paths } = await import('#config/paths');
-      expect(paths.images).toBe(path.join(ROOT, 'public', 'images'));
-    });
-
-    it('should not include demo in the path', async () => {
-      delete process.env.SOURCE_DIR;
-      const { paths } = await import('#config/paths');
-      expect(paths.words).not.toContain('demo');
-      expect(paths.images).not.toContain('demo');
+      expect(paths.images).toBe(path.join(ROOT, 'public', 'demo', 'images'));
     });
   });
 
@@ -72,16 +65,16 @@ describe('config/paths', () => {
   });
 
   describe('when SOURCE_DIR is empty string', () => {
-    it('should use base data/words path', async () => {
+    it('should default to demo data path', async () => {
       vi.stubEnv('SOURCE_DIR', '');
       const { paths } = await import('#config/paths');
-      expect(paths.words).toBe(path.join(ROOT, 'data', 'words'));
+      expect(paths.words).toBe(path.join(ROOT, 'data', 'demo', 'words'));
     });
 
-    it('should use base public/images path', async () => {
+    it('should default to demo images path', async () => {
       vi.stubEnv('SOURCE_DIR', '');
       const { paths } = await import('#config/paths');
-      expect(paths.images).toBe(path.join(ROOT, 'public', 'images'));
+      expect(paths.images).toBe(path.join(ROOT, 'public', 'demo', 'images'));
     });
   });
 

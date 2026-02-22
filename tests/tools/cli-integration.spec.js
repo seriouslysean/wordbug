@@ -188,7 +188,7 @@ describe('CLI Tools: Basic Functionality', () => {
     const testWord = wordData.word;
 
     spawnTool(
-      ['tools/generate-images.ts', '--word', testWord],
+      ['tools/generate-images.ts', '--word', testWord, '--force'],
       { env: DEMO_ENV, timeout: 30000 },
       ({ stdout, stderr, code }) => {
         expect(code).toBe(0);

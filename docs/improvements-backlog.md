@@ -36,7 +36,7 @@
 - ✅ COMPLETED: Added test:unit, test:integration, test:arch scripts
 - ⚠️ REMAINING: src/utils/static-file-utils.ts (276 lines, 0%)
 - ⚠️ REMAINING: src/utils/static-paths-utils.ts (163 lines, 0%)
-- ⚠️ REMAINING: src/utils/sentry-client.ts (47 lines, 10.71%)
+- ⚠️ REMAINING: src/utils/sentry.ts (29 lines, 100%)
 - **Coverage improved from 31.67% → 82% overall**
 - **Tests: 400 across unit, architecture, and integration layers**
 

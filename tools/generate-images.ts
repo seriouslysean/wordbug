@@ -3,6 +3,7 @@ import { parseArgs } from 'node:util';
 import { showHelp } from '#tools/help-utils';
 import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '#tools/utils';
 import { getAllPageMetadata } from '#utils/page-metadata-utils';
+import { exit, logger } from '#utils/logger';
 
 const HELP_TEXT = `
 Generate Images Tool
@@ -48,26 +49,36 @@ interface BulkItem {
  */
 async function bulkGenerate<T extends BulkItem>(
   items: T[],
-  generate: (item: T) => Promise<void>,
+  generate: (item: T) => Promise<boolean>,
   category: string,
 ): Promise<void> {
-  console.log(`Starting ${category} generation`, { count: items.length });
+  logger.info(`Starting ${category} generation`, { count: items.length });
 
   const results = await Promise.allSettled(
     items.map(async (item) => {
-      await generate(item);
-      console.log(`Generated ${category} image`, { label: item.label });
+      const generated = await generate(item);
+      if (generated) {
+        logger.info(`Generated ${category} image`, { label: item.label });
+      } else {
+        logger.info(`Skipped ${category} image (unchanged)`, { label: item.label });
+      }
+      return generated;
     }),
   );
 
   const failures = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
   failures.forEach(r => {
-    console.error(`Failed to generate ${category} image`, { error: r.reason?.message });
+    logger.error(`Failed to generate ${category} image`, { error: r.reason?.message });
   });
 
-  console.log(`${category} generation complete`, {
+  const fulfilled = results.filter((r): r is PromiseFulfilledResult<boolean> => r.status === 'fulfilled');
+  const generatedCount = fulfilled.filter(r => r.value).length;
+  const skippedCount = fulfilled.filter(r => !r.value).length;
+
+  logger.info(`${category} generation complete`, {
     total: items.length,
-    success: items.length - failures.length,
+    generated: generatedCount,
+    skipped: skippedCount,
     errors: failures.length,
   });
 }
@@ -75,19 +86,23 @@ async function bulkGenerate<T extends BulkItem>(
 /**
  * Generates image for a specific word
  */
-async function generateSingleImage(word: string): Promise<boolean> {
+async function generateSingleImage(word: string, force: boolean): Promise<boolean> {
   const wordData = findExistingWord(word);
   if (!wordData) {
-    console.error('Word not found in data files', { word });
+    logger.error('Word not found in data files', { word });
     return false;
   }
 
   try {
-    await generateShareImage(wordData.word, wordData.date);
-    console.log('Generated image for word', { word: wordData.word, date: wordData.date });
+    const generated = await generateShareImage(wordData.word, wordData.date, { force });
+    if (generated) {
+      logger.info('Generated image for word', { word: wordData.word, date: wordData.date });
+    } else {
+      logger.info('Skipped image for word (unchanged)', { word: wordData.word, date: wordData.date });
+    }
     return true;
   } catch (error) {
-    console.error('Failed to generate image for word', { word, error: (error as Error).message });
+    logger.error('Failed to generate image for word', { word, error: (error as Error).message });
     return false;
   }
 }
@@ -95,21 +110,25 @@ async function generateSingleImage(word: string): Promise<boolean> {
 /**
  * Generates image for a specific page path
  */
-async function generatePageImage(pagePath: string): Promise<boolean> {
+async function generatePageImage(pagePath: string, force: boolean): Promise<boolean> {
   const allPages = getAllPageMetadata(getAllWords());
   const page = allPages.find(p => p.path === pagePath);
 
   if (!page) {
-    console.error('Page not found in available pages', { pagePath });
+    logger.error('Page not found in available pages', { pagePath });
     return false;
   }
 
   try {
-    await generateGenericShareImage(page.title, page.path);
-    console.log('Generated page image', { title: page.title, path: page.path });
+    const generated = await generateGenericShareImage(page.title, page.path, { force });
+    if (generated) {
+      logger.info('Generated page image', { title: page.title, path: page.path });
+    } else {
+      logger.info('Skipped page image (unchanged)', { title: page.title, path: page.path });
+    }
     return true;
   } catch (error) {
-    console.error('Failed to generate page image', { pagePath, error: (error as Error).message });
+    logger.error('Failed to generate page image', { pagePath, error: (error as Error).message });
     return false;
   }
 }
@@ -133,42 +152,46 @@ if (cliValues.help) {
   process.exit(0);
 }
 
+const isForce = !!cliValues.force;
+
 // Main execution
-(async () => {
-  try {
-    console.log('Generate images tool starting...');
+async function main(): Promise<void> {
+  logger.info('Generate images tool starting...');
 
-    if (cliValues.page) {
-      process.exit(await generatePageImage(cliValues.page) ? 0 : 1);
-    }
-
-    if (cliValues.word) {
-      process.exit(await generateSingleImage(cliValues.word) ? 0 : 1);
-    }
-
-    const runBoth = !cliValues.words && !cliValues.generic;
-
-    if (cliValues.words || runBoth) {
-      const allWords = getAllWords();
-      await bulkGenerate(
-        allWords.map(w => ({ label: `${w.word} (${w.date})`, word: w.word, date: w.date })),
-        (item) => generateShareImage(item.word, item.date),
-        'word',
-      );
-    }
-
-    if (cliValues.generic || runBoth) {
-      const pages = getAllPageMetadata(getAllWords());
-      await bulkGenerate(
-        pages.map(p => ({ label: `${p.title} (${p.path})`, title: p.title, path: p.path })),
-        (item) => generateGenericShareImage(item.title, item.path),
-        'generic',
-      );
-    }
-
-    process.exit(0);
-  } catch (error) {
-    console.error('Tool execution failed', { error: (error as Error).message });
-    process.exit(1);
+  if (cliValues.page) {
+    const success = await generatePageImage(cliValues.page, isForce);
+    await exit(success ? 0 : 1);
   }
-})();
+
+  if (cliValues.word) {
+    const success = await generateSingleImage(cliValues.word, isForce);
+    await exit(success ? 0 : 1);
+  }
+
+  const runBoth = !cliValues.words && !cliValues.generic;
+
+  if (cliValues.words || runBoth) {
+    const allWords = getAllWords();
+    await bulkGenerate(
+      allWords.map(w => ({ label: `${w.word} (${w.date})`, word: w.word, date: w.date })),
+      (item) => generateShareImage(item.word, item.date, { force: isForce }),
+      'word',
+    );
+  }
+
+  if (cliValues.generic || runBoth) {
+    const pages = getAllPageMetadata(getAllWords());
+    await bulkGenerate(
+      pages.map(p => ({ label: `${p.title} (${p.path})`, title: p.title, path: p.path })),
+      (item) => generateGenericShareImage(item.title, item.path, { force: isForce }),
+      'generic',
+    );
+  }
+
+  await exit(0);
+}
+
+main().catch(async (error) => {
+  logger.error('Tool execution failed', { error: (error as Error).message });
+  await exit(1);
+});

@@ -1,8 +1,22 @@
 import {
- afterEach,beforeEach, describe, expect, it, vi,
+  afterEach, beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
-import { config,logger } from '#astro-utils/logger';
+// Mock @sentry/astro before importing the logger
+vi.mock('@sentry/astro', () => ({
+  captureException: vi.fn(),
+  captureMessage: vi.fn(),
+  withScope: vi.fn((callback) => {
+    const scope = {
+      setLevel: vi.fn(),
+      setExtra: vi.fn(),
+    };
+    callback(scope);
+    return scope;
+  }),
+}));
+
+import { config, logger } from '#astro-utils/logger';
 
 const createConsoleSpy = () => ({
   debug: vi.spyOn(console, 'debug').mockImplementation(() => {}),
@@ -84,11 +98,8 @@ describe('logger', () => {
   });
 
   describe('sentry integration', () => {
-    it('handles missing sentry client gracefully', async () => {
-      const failingImport = vi.fn(() => Promise.reject(new Error('Module not found')));
-      vi.doMock('./sentry-client.js', () => failingImport);
-
-      // Should not throw
+    it('handles Sentry errors gracefully', () => {
+      // Should not throw even if Sentry internals fail
       expect(() => {
         logger.warn('test warning');
         logger.error('test error');
@@ -101,24 +112,20 @@ describe('logger', () => {
 
       // Sentry integration should only be called if enabled
       if (config.sentryEnabled) {
-        // Dynamic import should be attempted
-        expect(true).toBe(true); // Sentry integration attempted
+        expect(true).toBe(true);
       } else {
-        // No sentry integration
-        expect(true).toBe(true); // No sentry integration
+        expect(true).toBe(true);
       }
     });
   });
 
   describe('fast-fail behavior', () => {
     it('implements fast-fail logic correctly', () => {
-      // Test that methods exist and are callable
       expect(typeof logger.debug).toBe('function');
       expect(typeof logger.info).toBe('function');
       expect(typeof logger.warn).toBe('function');
       expect(typeof logger.error).toBe('function');
 
-      // Should not throw on any method call
       expect(() => logger.debug('test')).not.toThrow();
       expect(() => logger.info('test')).not.toThrow();
       expect(() => logger.warn('test')).not.toThrow();
@@ -128,7 +135,6 @@ describe('logger', () => {
 
   describe('proxy behavior', () => {
     it('maintains console API compatibility', () => {
-      // Logger should have same interface as console for these methods
       expect(logger.debug.length).toBe(console.debug.length);
       expect(logger.info.length).toBe(console.info.length);
       expect(logger.warn.length).toBe(console.warn.length);

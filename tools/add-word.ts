@@ -6,6 +6,7 @@ import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
 import { createWordEntry, findExistingWord } from '#tools/utils';
 import type { WordData } from '#types';
 import { getTodayYYYYMMDD, isValidDate } from '#utils/date-utils';
+import { exit, logger } from '#utils/logger';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found
@@ -20,7 +21,7 @@ const checkExistingWord = (date: string): WordData | null => {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
       return data as WordData;
     } catch (error) {
-      console.error('Failed to read existing word file', { filePath, error: (error as Error).message });
+      logger.error('Failed to read existing word file', { filePath, error: (error as Error).message });
     }
   }
   return null;
@@ -60,12 +61,12 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
 
     // Validate inputs
     if (!word) {
-      console.error('Word is required', { providedInput: input });
+      logger.error('Word is required', { providedInput: input });
       process.exit(1);
     }
 
     if (date && !isValidDate(date)) {
-      console.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYYMMDD' });
+      logger.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYYMMDD' });
       process.exit(1);
     }
 
@@ -74,7 +75,7 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
 
     // Validate that date is not in the future
     if (!isNotFutureDate(targetDate)) {
-      console.error('Cannot add words for future dates', {
+      logger.error('Cannot add words for future dates', {
         requestedDate: targetDate,
         currentDate: getTodayYYYYMMDD(),
       });
@@ -84,7 +85,7 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
     // Check if file already exists for the target date
     const existing = checkExistingWord(targetDate);
     if (existing && !overwrite) {
-      console.error('Word already exists for this date', {
+      logger.error('Word already exists for this date', {
         date: existing.date,
         existingWord: existing.word,
       });
@@ -94,7 +95,7 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
     // Check if word already exists anywhere else in the system (always enforce global uniqueness)
     const existingWordByName = findExistingWord(word);
     if (existingWordByName && existingWordByName.date !== targetDate) {
-      console.error('Word already exists for different date', {
+      logger.error('Word already exists for different date', {
         word: word,
         existingDate: existingWordByName.date,
         requestedDate: targetDate,
@@ -106,12 +107,13 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
     await createWordEntry(word, { date: targetDate, overwrite, preserveCase });
 
   } catch (error) {
-    if (error.message.includes('not found in dictionary')) {
-      console.error('Word not found in dictionary', { word, errorMessage: error.message });
+    const err = error as Error;
+    if (err.message.includes('not found in dictionary')) {
+      logger.error('Word not found in dictionary', { word, errorMessage: err.message });
     } else {
-      console.error('Failed to add word', { word, errorMessage: error.message });
+      logger.error('Failed to add word', { word, errorMessage: err.message });
     }
-    process.exit(1);
+    await exit(1);
   }
 }
 
@@ -172,12 +174,12 @@ if (values.help || positionals.length === 0) {
 const [word, date] = positionals;
 
 if (!word) {
-  console.error('Word is required', { word });
+  logger.error('Word is required', { word });
   showHelp(HELP_TEXT);
   process.exit(1);
 }
 
-console.log('Add word tool starting...');
+logger.info('Add word tool starting...');
 addWord(word, {
   date,
   overwrite: values.overwrite,

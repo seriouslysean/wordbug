@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import fs from 'fs';
 import opentype from 'opentype.js';
 import path from 'path';
@@ -7,6 +8,8 @@ import { getAdapter } from '#adapters';
 import { paths } from '#config/paths';
 import type { CreateWordEntryResult, WordData } from '#types';
 import { formatDate, isValidDate } from '#utils/date-utils';
+import { logger } from '#utils/logger';
+import { slugify } from '#utils/text-utils';
 import { isValidDictionaryData } from '#utils/word-validation';
 
 // ---------------------------------------------------------------------------
@@ -42,6 +45,37 @@ const PNG_OPTIONS = {
 const regularFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Regular.ttf'));
 const boldFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Bold.ttf'));
 
+const SOCIAL_BASE_DIR = path.join(paths.images, 'social');
+const SETTINGS_HASH_FILENAME = '.image-settings-hash';
+
+/**
+ * Computes a hash of the global image generation settings.
+ * If this hash changes, all images need regenerating.
+ */
+const computeSettingsHash = (): string =>
+  createHash('md5').update(JSON.stringify({
+    siteTitle: process.env.SITE_TITLE || '',
+    colorPrimary: imageColors.primary,
+    colorPrimaryLight: imageColors.primaryLight,
+    colorPrimaryDark: imageColors.primaryDark,
+  })).digest('hex').slice(0, 12);
+
+const readSettingsHash = (): string | null => {
+  const hashPath = path.join(SOCIAL_BASE_DIR, SETTINGS_HASH_FILENAME);
+  if (!fs.existsSync(hashPath)) {
+    return null;
+  }
+  try {
+    return fs.readFileSync(hashPath, 'utf-8').trim();
+  } catch {
+    return null;
+  }
+};
+
+const writeSettingsHash = (hash: string): void => {
+  fs.writeFileSync(path.join(SOCIAL_BASE_DIR, SETTINGS_HASH_FILENAME), hash + '\n');
+};
+
 // ---------------------------------------------------------------------------
 // Word file I/O
 // ---------------------------------------------------------------------------
@@ -57,14 +91,14 @@ interface WordFileInfo {
  */
 export const getWordFiles = (): WordFileInfo[] => {
   if (!fs.existsSync(paths.words)) {
-    console.error('Word directory does not exist', { path: paths.words });
+    logger.error('Word directory does not exist', { path: paths.words });
     return [];
   }
 
   const years = fs.readdirSync(paths.words).filter(dir => /^\d{4}$/.test(dir));
 
   if (years.length === 0) {
-    console.error('No year directories found', { path: paths.words });
+    logger.error('No year directories found', { path: paths.words });
     return [];
   }
 
@@ -84,12 +118,12 @@ export const getWordFiles = (): WordFileInfo[] => {
             path: filePath,
           };
         } catch (error) {
-          console.error('Failed to read word file', { file, error: (error as Error).message });
+          logger.error('Failed to read word file', { file, error: (error as Error).message });
           return null;
         }
       }).filter(Boolean) as WordFileInfo[];
     } catch (error) {
-      console.error('Failed to read year directory', { year, error: (error as Error).message });
+      logger.error('Failed to read year directory', { year, error: (error as Error).message });
       return [];
     }
   });
@@ -100,8 +134,6 @@ export const getWordFiles = (): WordFileInfo[] => {
 
 /**
  * Checks if a word already exists by scanning word files
- * @param word - Word to check (case-insensitive)
- * @returns Existing word data if found, null otherwise
  */
 export function findExistingWord(word: string): WordData | null {
   const lowerWord = word.toLowerCase();
@@ -208,29 +240,49 @@ ${dateText ? `
 }
 
 /**
- * Renders SVG content to a PNG file
+ * Renders SVG content to a PNG file with hash-based skip detection.
+ * Returns true if generated, false if skipped (settings unchanged).
  */
-async function renderSvgToPng(svgContent: string, outputPath: string): Promise<void> {
+async function renderSvgToPng(svgContent: string, outputPath: string, force: boolean): Promise<boolean> {
+  const settingsHash = computeSettingsHash();
+
+  if (!force && fs.existsSync(outputPath)) {
+    if (readSettingsHash() === settingsHash) {
+      return false;
+    }
+  }
+
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   await sharp(Buffer.from(svgContent)).png(PNG_OPTIONS).toFile(outputPath);
+  writeSettingsHash(settingsHash);
+  return true;
 }
 
 /**
- * Generates a social share image for a word
+ * Generates a social share image for a word.
+ * Skips regeneration when the image exists and settings are unchanged.
  */
-export async function generateShareImage(word: string, date: string): Promise<void> {
+export async function generateShareImage(
+  word: string,
+  date: string,
+  options: { force?: boolean } = {},
+): Promise<boolean> {
   const year = date.slice(0, 4);
-  const outputPath = path.join(paths.images, 'social', year, `${date}-${word.toLowerCase()}.png`);
-  await renderSvgToPng(createSvg(word, date), outputPath);
+  const outputPath = path.join(SOCIAL_BASE_DIR, year, `${date}-${word.toLowerCase()}.png`);
+  return renderSvgToPng(createSvg(word, date), outputPath, !!options.force);
 }
 
 /**
- * Generates a generic social share image for pages without a word
+ * Generates a generic social share image for pages without a word.
+ * Skips regeneration when the image exists and settings are unchanged.
  */
-export async function generateGenericShareImage(title: string, slug: string): Promise<void> {
-  const safeSlug = slug.replace(/\//g, '-');
-  const outputPath = path.join(paths.images, 'social', 'pages', `${safeSlug}.png`);
-  await renderSvgToPng(createSvg(title.toLowerCase()), outputPath);
+export async function generateGenericShareImage(
+  title: string,
+  slug: string,
+  options: { force?: boolean } = {},
+): Promise<boolean> {
+  const outputPath = path.join(SOCIAL_BASE_DIR, 'pages', `${slugify(slug.replace(/\//g, ' '))}.png`);
+  return renderSvgToPng(createSvg(title.toLowerCase()), outputPath, !!options.force);
 }
 
 // ---------------------------------------------------------------------------
@@ -293,7 +345,7 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));
 
-  console.log('Word entry created', { word: finalWord, date });
+  logger.info('Word entry created', { word: finalWord, date });
 
   return { filePath, data };
 }

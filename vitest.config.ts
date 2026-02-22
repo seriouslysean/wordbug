@@ -7,6 +7,9 @@ export default defineConfig({
     include: ['tests/**/*.spec.js'],
     setupFiles: ['tests/setup.js'],
     isolate: false,
+    env: {
+      SOURCE_DIR: 'demo',
+    },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

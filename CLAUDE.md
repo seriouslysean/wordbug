@@ -12,10 +12,10 @@ Requires Node.js 24+ (active LTS). An `.nvmrc` is provided for version managers:
 
 ```sh
 nvm use                            # or fnm use
-cp .env.example .env               # required — build needs SOURCE_DIR to find word data
+cp .env.example .env               # optional — defaults work for local dev with demo data
 ```
 
-Without `.env`, the build fails because `SOURCE_DIR` is unset and the content loader looks for `data/words/` instead of `data/demo/words/`.
+Without `.env`, builds and CLI tools default to `SOURCE_DIR=demo` and use sensible defaults for all required variables (`astro.config.ts` and `config/paths.ts`). Copy `.env.example` to customize.
 
 ## Commands
 
@@ -97,6 +97,20 @@ Build-time globals (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`) are i
 - `getFullUrl(path)` — absolute URL for SEO/social sharing
 - Never hardcode paths; always use these helpers
 
+### Sentry Integration
+
+Three-layer Sentry setup with separate configs per runtime:
+
+- **`sentry.client.config.js`** — Browser SDK (`@sentry/astro`). Full tracing, error-only replays. Filters browser extension noise via `ignoreErrors` and `denyUrls`.
+- **`sentry.server.config.js`** — SSR SDK (`@sentry/astro`). Tracing disabled (static site).
+- **`utils/logger.ts`** — CLI SDK (`@sentry/node`). Lazy init on first `logger.error()` call. Flushed before exit via `exit()` helper.
+
+**CLI logger pattern:** The logger is a `Proxy` over `console` that intercepts `error` calls to forward to Sentry. Sentry is initialized lazily (only when the first error occurs) to avoid unnecessary setup in tools that succeed. The `exit(code)` helper flushes pending Sentry events before calling `process.exit()` — always use `await exit(code)` in error handlers instead of bare `process.exit()`, because `process.exit()` does NOT fire `beforeExit` and pending Sentry events will be lost.
+
+**Astro logger pattern:** Same Proxy approach using `@sentry/astro` imports. In production, suppresses non-error console output. No `exit()` needed — Astro manages the process lifecycle.
+
+**Type safety:** Both loggers use the `isLogContext` type guard from `#types` to validate the context argument before iterating. Never use `as LogContext` casts — the type guard prevents `Object.entries()` from iterating string characters or Error properties.
+
 ### Test Structure
 
 Tests are in `tests/` using Vitest (config: `vitest.config.ts`). Four layers:
@@ -106,6 +120,8 @@ Tests are in `tests/` using Vitest (config: `vitest.config.ts`). Four layers:
 - **CLI Integration** (`tests/tools/`) — spawns real processes, catches `astro:` protocol errors
 
 Test helpers live in `tests/helpers/` (e.g., `spawn.js` for CLI process capture). Mock fixtures and global setup live in `tests/setup.js`.
+
+`vitest.config.ts` sets `SOURCE_DIR: 'demo'` in `test.env` so all tests (including in-process imports of CLI tool modules) resolve paths to `data/demo/words/`. Spawned process tests also pass `SOURCE_DIR: 'demo'` explicitly.
 
 Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
 
@@ -168,12 +184,20 @@ This is a static site with zero client-side JS by default. Before adding build o
 
 ## Quality Gates
 
+Run in this order (each catches different classes of issues):
+
+```sh
+npm run lint                       # 1. Fast syntax/style check (oxlint)
+npm run typecheck                  # 2. Type correctness (tsc + astro check)
+npm test                           # 3. Unit + integration tests with coverage
+npm run build                      # 4. Full static build (catches runtime errors)
+```
+
 All must pass before committing:
-- 0 oxlint errors/warnings (`npm run lint`)
-- 0 TypeScript errors (`npm run typecheck`)
-- 0 Astro warnings/hints
-- All tests passing (`npm test`)
-- Build succeeds (`npm run build`)
+- 0 oxlint errors/warnings
+- 0 TypeScript errors, 0 Astro warnings/hints
+- All tests passing with coverage thresholds met
+- Build succeeds (works without `.env` using defaults)
 
 ## Documentation
 
