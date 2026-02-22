@@ -1,208 +1,212 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code and AI agents working in this repository.
 
 ## Project Overview
 
-Static site generator (Astro) for word-of-the-day websites. Powers multiple child sites via environment-driven configuration. All pages are pre-rendered at build time with zero client-side JavaScript by default.
+Static site generator (Astro) for word-of-the-day websites. Powers multiple child sites via environment-driven configuration. All pages pre-rendered at build time with zero client-side JavaScript by default.
 
-## Local Setup
+## Setup & Commands
 
-Requires Node.js 24+ (active LTS). An `.nvmrc` is provided for version managers:
-
-```sh
-nvm use                            # or fnm use
-cp .env.example .env               # optional — defaults work for local dev with demo data
-```
-
-Without `.env`, builds and CLI tools default to `SOURCE_DIR=demo` and use sensible defaults for all required variables (`astro.config.ts` and `config/paths.ts`). Copy `.env.example` to customize.
-
-## Commands
+Node.js 24+ required (`.nvmrc` provided). No `.env` needed — defaults use `SOURCE_DIR=demo`.
 
 ```sh
-npm run dev                        # Development server
+nvm use && npm install             # Setup
+npm run dev                        # Dev server
 npm run build                      # Production build
-npm run typecheck                  # TypeScript + Astro check (uses `astro check`)
-npm test                           # Full test suite with coverage
-npm test -- -t "test name"         # Single test by name
-npm run test:watch                 # Watch mode
+npm run typecheck                  # TypeScript + Astro check
+npm test                           # Tests with coverage
 npm run lint                       # oxlint check
 npm run lint:fix                   # oxlint auto-fix
 
-# Before committing or creating a PR:
-npm run lint && npm run typecheck && npm test && npm run build
-
-# CLI tools (local dev with .env):
+# CLI tools:
 npm run tool:local tools/add-word.ts serendipity
 npm run tool:local tools/generate-images.ts --all
-npm run tool:local tools/generate-images.ts --generic
 ```
 
-Pre-commit hooks (husky + lint-staged) auto-run `oxlint --fix` and related tests on staged `.js/.ts/.astro` files.
+Pre-commit hooks (husky + lint-staged) run `oxlint --fix` and related tests on staged files.
 
-## Architecture
+## Philosophy
 
-### Two-Layer Utility System (Critical)
+These are the principles behind every decision in this codebase. Understand the why and the what follows naturally.
 
-The project enforces a strict separation between pure Node.js utilities and Astro-specific code:
+### Simplicity is the feature
 
-- **`utils/`** (root) — Pure business logic. Used by CLI tools, tests, and Astro components. No Astro/framework dependencies allowed.
-- **`src/utils/`** — Astro-specific wrappers. Uses Content Collections, caching, Sentry. Only for use in `src/` (pages, components, layouts).
+This is a static site. Before adding build optimizations, caching layers, or abstraction frameworks, ask: does this change what the user actually sees? Astro and Vite handle most optimizations automatically. The right amount of complexity is the minimum needed for the current task. Three similar lines of code is better than a premature abstraction.
 
-**Import alias mapping:**
-- `#utils/*` → `utils/` (pure, Node.js-safe)
-- `#astro-utils/*` → `src/utils/` (Astro-only)
+Don't add features, refactoring, or "improvements" beyond what was asked. A bug fix doesn't need surrounding code cleaned up. Don't add error handling for scenarios that can't happen. Don't create abstractions for one-time operations. Don't design for hypothetical future requirements.
 
-**The boundary rule:** Files in `utils/` must NEVER import from `#astro-utils/*` or `astro:*`. This breaks CLI tools. Architecture tests in `tests/architecture/` enforce this automatically.
+### One source of truth
 
-**Correct pattern** for shared logic: put pure function in `utils/`, create thin Astro wrapper in `src/utils/` that delegates to the pure function (not duplicates it).
+Every piece of knowledge lives in exactly one place:
 
-### Import Aliases
+- **Import aliases** — `package.json` `imports` field (TypeScript and Vite follow it)
+- **Environment validation** — `astro.config.ts` (don't duplicate elsewhere)
+- **Business logic** — `utils/` pure functions (Astro wrappers in `src/utils/` delegate, never duplicate)
+- **Stats definitions** — `constants/stats.ts`
+- **URL patterns** — `constants/urls.ts`
 
-Uses Node.js subpath imports (`#` prefix) defined in `package.json` `imports` field. This is the single source of truth for all alias resolution (TypeScript, Vite, Vitest). Always use aliases, never relative paths (`../`):
+When you need shared logic, put the pure function in `utils/` and create a thin wrapper in `src/utils/` that delegates to it. The wrapper adds framework context (caching, default collections). It never re-implements the logic.
 
-| Alias | Path |
-|-------|------|
-| `#components/*` | `src/components/*` |
-| `#layouts/*` | `src/layouts/*` |
-| `#astro-utils/*` | `src/utils/*` |
-| `#utils/*` | `utils/*` |
-| `#types` | `types/index.ts` |
-| `#types/*` | `types/*` |
-| `#constants/*` | `constants/*` |
-| `#config/*` | `config/*` |
-| `#adapters/*` | `adapters/*` |
-| `#data/*` | `data/*` |
-| `#styles/*` | `src/styles/*` |
-| `#assets/*` | `src/assets/*` |
-| `#tools/*` | `tools/*` |
-| `#tests/*` | `tests/*` |
+### Automate the rules
 
-### Data Flow
+`.editorconfig` handles formatting. `.oxlintrc.json` handles lint rules. `tsconfig.json` handles type safety. Architecture tests in `tests/architecture/` enforce import boundaries. If a pattern should be consistent, encode it in tooling — don't rely on memory. Run `npm run lint:fix` after adding new lint rules.
 
-1. Words stored as JSON: `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}.json`
+### Adapters are pass-throughs
+
+External API adapters (`adapters/`) look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller decides `--preserve-case`, the adapter respects it without second-guessing. See `tools/add-word.ts` and `adapters/wordnik.ts` for the pattern.
+
+## The Boundary
+
+This is the one architectural rule that cannot be broken. Breaking it silently destroys CLI tools.
+
+**`utils/`** (root) contains pure Node.js business logic. CLI tools, tests, and Astro components all use it.
+**`src/utils/`** contains Astro-specific wrappers that use Content Collections, framework APIs, and Sentry.
+
+**The rule**: Files in `utils/` must never import from `#astro-utils/*` or `astro:*`.
+
+Why? CLI tools run as plain Node.js. They import from `utils/`. If `utils/` pulls in `astro:content`, Node.js throws "Cannot find module" because the `astro:` protocol only exists inside Astro's build system. The failure cascades silently through the import chain.
+
+**The pattern**:
+```typescript
+// utils/word-data-utils.ts — Pure function, works everywhere
+export const getWordsByLength = (length: number, words: WordData[]): WordData[] =>
+  words.filter(word => word.word.length === length);
+
+// src/utils/word-data-utils.ts — Thin Astro wrapper, adds cached collection
+import { getWordsByLength as pure } from '#utils/word-data-utils';
+export const allWords = await getAllWords();
+export const getWordsByLength = (length: number, words = allWords) => pure(length, words);
+```
+
+Architecture tests in `tests/architecture/` catch boundary violations automatically.
+
+## Code Ethos
+
+### JavaScript: modern, functional, immutable
+
+**`const` by default.** No `let` or `var`. For mutable state, use a container: `const cache = { value: null }`. The only acceptable `let` is accumulation inside `for` loops or stream callbacks where no container pattern applies.
+
+**Declarative transforms.** `.map()`, `.filter()`, `.find()`, `.flatMap()`, `.reduce()` for data transformation. Reserve `for` loops for cases that genuinely need them: stateful accumulation, early exit with `return`, or `try/catch` per iteration. If a loop body is just `.push()`, it should be `.map()`.
+
+**Modern platform APIs.** `Object.groupBy()`, `Array.findLast()`, `util.parseArgs()`, optional chaining, nullish coalescing, destructuring. Use what the runtime provides before reaching for libraries.
+
+**Fast-fail, flat code.** Validate at the top, return early, keep the happy path unindented. Deep nesting signals a function trying to do too much.
+
+### TypeScript: strict, pragmatic, no lies
+
+Strict null checks and `noUncheckedIndexedAccess` are on. They catch real bugs. Work with the type system, not around it.
+
+**Type guards over assertions.** Never `as SomeType` to silence the compiler. If you need to narrow, write or use a type guard. `isLogContext` from `#types` is the canonical example — it prevents `Object.entries()` from iterating string characters or Error properties.
+
+```typescript
+// Type guard narrows safely
+if (isLogContext(rawContext)) {
+  for (const [key, value] of Object.entries(rawContext)) { ... }
+}
+
+// Assertion lies to the compiler — rawContext might be an Error or string
+const ctx = rawContext as LogContext;
+```
+
+**Discriminated unions for variant types.** Use a literal `type` field to distinguish shapes. This enables exhaustive `switch` and makes impossible states unrepresentable.
+
+**`unknown` over `any`.** External data or uncertain types start as `unknown` and get narrowed through validation. `any` disables the type system — avoid it.
+
+**Interfaces for structure, type aliases for unions.** `interface` for object shapes (they're extendable and produce clearer error messages). `type` for unions, intersections, and aliases.
+
+### Errors: structured, honest, complete
+
+**Structured logging.** `logger.error('message', { key: value })` — message first, context object second. No log prefixes (log levels handle that). No string concatenation for context.
+
+**`await exit(code)` in CLI tools.** Never bare `process.exit()` in error handlers. The `exit()` helper from `#utils/logger` flushes pending Sentry events first. `process.exit()` kills in-flight async work immediately.
+
+**Throw at boundaries, catch at the top.** Pure functions throw when they can't do their job. CLI entry points catch and log with context. Don't scatter try/catch through business logic.
+
+### Tests: self-contained, layered, precise
+
+Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs — use them:
+
+- `vi.stubEnv()` — environment variables (auto-restores)
+- `vi.stubGlobal()` — build-time globals (auto-restores)
+- `vi.resetModules()` + dynamic `import()` — module re-evaluation
+- `vi.useFakeTimers()` / `vi.useRealTimers()` — time control
+- `vi.hoisted()` — values needed before `vi.mock()` runs
+
+**`const` in tests too.** Container objects (`const ctx = { spy: null }`) with property mutation in `beforeEach`. The binding stays immutable.
+
+**Four layers, each catches different problems:**
+1. **Unit** (`tests/utils/`, `tests/adapters/`) — pure function correctness
+2. **Component** (`tests/src/`) — Astro wrappers, SEO, schemas
+3. **Architecture** (`tests/architecture/`) — import boundary enforcement
+4. **CLI Integration** (`tests/tools/`) — real process spawning, catches `astro:` protocol errors
+
+Test data lives close to use: global fixtures in `tests/setup.js`, per-file data at describe-block scope, shared helpers (used in 3+ files) in `tests/helpers/` via `#tests/*`.
+
+## Import Aliases
+
+Node.js subpath imports (`#` prefix) in `package.json` — the single source of truth for TypeScript, Vite, and Vitest. Always use aliases, never relative paths.
+
+| Alias | Path | Context |
+|-------|------|---------|
+| `#utils/*` | `utils/*` | Pure Node.js, safe everywhere |
+| `#astro-utils/*` | `src/utils/*` | Astro only, never from `utils/` or `tools/` |
+| `#components/*` | `src/components/*` | |
+| `#layouts/*` | `src/layouts/*` | |
+| `#types`, `#types/*` | `types/` | |
+| `#constants/*` | `constants/*` | |
+| `#config/*` | `config/*` | |
+| `#adapters/*` | `adapters/*` | |
+| `#tools/*` | `tools/*` | |
+| `#tests/*` | `tests/*` | |
+
+## Data Flow
+
+1. Words stored as JSON in `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}.json`
 2. Loaded via Astro Content Collections (`src/content.config.ts`) at build time
-3. `src/utils/word-data-utils.ts` provides cached `allWords` collection with computed derivatives
-4. Statistics pre-computed once from `allWords`, not recalculated per page
+3. `src/utils/word-data-utils.ts` provides cached `allWords` with computed derivatives
+4. Statistics pre-computed once, not recalculated per page
 
-### Environment Configuration
+## Environment
 
-All config via environment variables (validated in `astro.config.ts` which is the single source of truth — don't duplicate validation). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Copy `.env.example` to `.env` for local dev. In CI, env vars are passed directly.
+All config via environment variables validated in `astro.config.ts` (single source of truth). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Build-time globals (`__SITE_TITLE__`, `__BASE_URL__`, etc.) injected via Vite `define`. See `.env.example` for the full list.
 
-Build-time globals (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`) are injected via Vite `define` in `astro.config.ts`.
-
-### URL System
+## URL System
 
 - `getUrl(path)` — relative URL with `BASE_PATH` for internal navigation
 - `getFullUrl(path)` — absolute URL for SEO/social sharing
 - Never hardcode paths; always use these helpers
 
-### Sentry Integration
+## Quality Gates
 
-Three-layer Sentry setup with separate configs per runtime:
+Run in order before committing (each catches different issues):
 
-- **`sentry.client.config.js`** — Browser SDK (`@sentry/astro`). Full tracing, error-only replays. Filters browser extension noise via `ignoreErrors` and `denyUrls`.
-- **`sentry.server.config.js`** — SSR SDK (`@sentry/astro`). Tracing disabled (static site).
-- **`utils/logger.ts`** — CLI SDK (`@sentry/node`). Lazy init on first `logger.error()` call. Flushed before exit via `exit()` helper.
+```sh
+npm run lint                       # 1. Syntax/style (oxlint)
+npm run typecheck                  # 2. Type correctness (tsc + astro check)
+npm test                           # 3. Tests with coverage thresholds
+npm run build                      # 4. Full build (catches runtime errors)
+```
 
-**CLI logger pattern:** The logger is a `Proxy` over `console` that intercepts `error` calls to forward to Sentry. Sentry is initialized lazily (only when the first error occurs) to avoid unnecessary setup in tools that succeed. The `exit(code)` helper flushes pending Sentry events before calling `process.exit()` — always use `await exit(code)` in error handlers instead of bare `process.exit()`, because `process.exit()` does NOT fire `beforeExit` and pending Sentry events will be lost.
+All must pass: 0 lint errors, 0 TypeScript errors, 0 Astro warnings, all tests green with coverage met (lines 80%, functions 75%, branches 85%), build succeeds without `.env`.
 
-**Astro logger pattern:** Same Proxy approach using `@sentry/astro` imports. In production, suppresses non-error console output. No `exit()` needed — Astro manages the process lifecycle.
+## Conventions
 
-**Type safety:** Both loggers use the `isLogContext` type guard from `#types` to validate the context argument before iterating. Never use `as LogContext` casts — the type guard prevents `Object.entries()` from iterating string characters or Error properties.
+These aren't enforced by tools, but the codebase follows them consistently:
 
-### Test Structure
-
-Tests are in `tests/` using Vitest (config: `vitest.config.ts`). Four layers:
-- **Unit** (`tests/utils/`, `tests/adapters/`) — pure function correctness
-- **Component** (`tests/src/`) — Astro-specific wrappers, SEO, schema generation
-- **Architecture** (`tests/architecture/`) — import boundary enforcement, DRY violations
-- **CLI Integration** (`tests/tools/`) — spawns real processes, catches `astro:` protocol errors
-
-Test helpers live in `tests/helpers/` (e.g., `spawn.js` for CLI process capture). Mock fixtures and global setup live in `tests/setup.js`.
-
-`vitest.config.ts` sets `SOURCE_DIR: 'demo'` in `test.env` so all tests (including in-process imports of CLI tool modules) resolve paths to `data/demo/words/`. Spawned process tests also pass `SOURCE_DIR: 'demo'` explicitly.
-
-Coverage thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
-
-### Key Directories
-
-| Directory | Purpose |
-|-----------|---------|
-| `src/pages/` | Astro route definitions |
-| `src/components/` | Reusable Astro components |
-| `src/layouts/` | Page layout templates |
-| `tools/` | CLI tools (Node.js only, no Astro deps) |
-| `adapters/` | Dictionary API adapters (e.g., Wordnik) |
-| `types/` | Shared TypeScript type definitions |
-| `constants/` | Application constants (stats slugs, URLs) |
-| `config/` | Path configuration |
-
-## Guiding Principles
-
-### Let tools enforce what tools can enforce
-
-Formatting rules (`.editorconfig`), lint rules (`.oxlintrc.json`), and type checking (`tsconfig.json`) exist so humans and AI don't have to remember them. Before manually fixing a code pattern across the codebase, check whether a tool can do it. Run `npm run lint:fix` after adding new lint rules. If a rule should be enforced, add it to the tooling so it can't regress.
-
-### Adapters are transparent
-
-External API adapters (`adapters/`) are pass-throughs. They look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller makes a decision (like `--preserve-case`), the adapter should respect it without second-guessing. Check `tools/add-word.ts` and `adapters/wordnik.ts` for the existing pattern.
-
-### Prefer declarative over imperative
-
-Use `.map()`, `.filter()`, `.find()`, `.flatMap()` when transforming or searching data. Reserve `for` loops for cases that genuinely need them: stateful accumulation across iterations, early exit with `return`, or `try/catch` per iteration. If a loop body is just `.push()` into an array, it should be `.map()`.
-
-### Tests should be self-contained
-
-Each test must own its setup and leave no trace. Vitest provides purpose-built APIs — use them instead of manual boilerplate:
-
-- **Environment variables:** `vi.stubEnv()` auto-restores after each test. Never manually save/restore `process.env`.
-- **Build-time globals:** `vi.stubGlobal('__BASE_URL__', '/blog')` auto-restores. Never assign to `globalThis` directly.
-- **Module re-evaluation:** `vi.resetModules()` + `await import(...)` when testing modules that read env vars at import time.
-- **Fake timers:** `vi.useFakeTimers()` / `vi.setSystemTime()` in `beforeEach`, `vi.useRealTimers()` in `afterEach`.
-- **Hoisted mocks:** `vi.hoisted()` for values that need to exist before `vi.mock()` runs.
-
-**Avoid `let` in tests.** When `beforeEach` needs to set up state, use a `const` container object (e.g., `const ctx = { spy: {} }`) and mutate properties. This keeps bindings immutable while allowing per-test setup. The only acceptable `let` is stateful stream accumulation in callbacks where no container pattern applies.
-
-**Shared helpers go in `tests/helpers/`.** When the same pattern appears in 3+ test files, extract it. Helpers use the `#tests/*` alias. Keep them focused — a helper should do one thing (e.g., `spawnTool` captures process output, nothing more).
-
-**Test data lives close to where it's used.** Global mock fixtures in `tests/setup.js`, per-file test data as `const` at describe-block scope, fixture files in `tests/locales/` or alongside the test file. Never mutate shared test data.
-
-### Question complexity that doesn't serve the user
-
-This is a static site with zero client-side JS by default. Before adding build optimizations (manual chunk splitting, tree-shaking config, caching headers), verify they affect what actually gets served to browsers. Astro and Vite handle most optimizations automatically.
-
-## Code Style
-
-- `const` only — no `let` or `var`. For mutable state, use a `const` container (e.g., `const cache = { value: null }`). `let` is acceptable only for stateful accumulation inside `for` loops or stream callbacks where no container pattern applies.
-- Curly braces required on all control flow — no braceless `if`/`else`/`for`/`while`
 - Comments above the line they describe, never inline
 - No emojis anywhere in the codebase
 - No log message prefixes (log levels are sufficient)
-- Structured logging: message + data object format
-- Fast-fail with early returns; avoid deep nesting
-
-## Quality Gates
-
-Run in this order (each catches different classes of issues):
-
-```sh
-npm run lint                       # 1. Fast syntax/style check (oxlint)
-npm run typecheck                  # 2. Type correctness (tsc + astro check)
-npm test                           # 3. Unit + integration tests with coverage
-npm run build                      # 4. Full static build (catches runtime errors)
-```
-
-All must pass before committing:
-- 0 oxlint errors/warnings
-- 0 TypeScript errors, 0 Astro warnings/hints
-- All tests passing with coverage thresholds met
-- Build succeeds (works without `.env` using defaults)
+- Don't commit planning docs, investigation notes, or temporary files
 
 ## Documentation
 
-- `docs/technical.md` — Complete technical architecture reference
-- `docs/improvements-backlog.md` — Prioritized technical improvements
-- `docs/current-focus.md` — Active development task tracking (update before starting work, clear when done)
+| Document | Purpose |
+|----------|---------|
+| `CLAUDE.md` | Philosophy, principles, working guidance (this file) |
+| `docs/technical.md` | Architecture reference, file structure, environment details |
+| `docs/improvements-backlog.md` | Known gaps and technical debt |
+| `docs/potential-features.md` | Feature ideas, prioritized |
+| `README.md` / `docs/README.md` | User-facing overview and quick start |
 
-When making architectural changes, update the relevant documentation.
+Update relevant docs when making architectural changes.

@@ -146,7 +146,7 @@ npm run build         # Verify build succeeds
 - Linting (with auto-fix)
 - Tests for changed files only
 
-See [Technical Guide - Testing Strategy](technical.md#testing-strategy) for details.
+See [Technical Guide - Testing](technical.md#testing) for details.
 
 ## Technology
 
@@ -159,8 +159,10 @@ See [Technical Guide - Testing Strategy](technical.md#testing-strategy) for deta
 
 ## Documentation
 
+- **[CLAUDE.md](../CLAUDE.md)** - Philosophy, principles, and working guidance
 - **[Technical Guide](technical.md)** - Architecture, tools, and implementation details
-- **[Improvements Backlog](improvements-backlog.md)** - Technical gaps and implementation opportunities
+- **[Improvements Backlog](improvements-backlog.md)** - Technical gaps and debt
+- **[Potential Features](potential-features.md)** - Feature ideas, prioritized
 
 ## License
 
