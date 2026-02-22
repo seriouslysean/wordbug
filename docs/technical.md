@@ -1,109 +1,148 @@
 # Technical Documentation
 
-## Architecture Overview
+Architecture reference for the occasional-wotd project. For philosophy, principles, and code standards, see [AGENTS.md](../AGENTS.md) (also available via the `CLAUDE.md` symlink).
 
-### Framework & Stack
-- **[Astro](https://astro.build/)** - Static site generator with zero-JS by default
-- **TypeScript** - Type safety throughout the codebase
-- **Node.js 22+** - Runtime environment (requires >=22.6.0)
+## Framework & Stack
+
+- **[Astro](https://astro.build/)** - Static site generator, zero client-side JS by default
+- **TypeScript** - Strict mode (`strictNullChecks`, `noUncheckedIndexedAccess`)
+- **Node.js 24+** - Runtime (`.nvmrc` provided)
 - **[Vitest](https://vitest.dev/)** - Testing framework
-- **[Sharp](https://sharp.pixelplumbing.com/)** + OpenType.js - Image generation
-
-### Data Architecture
-- **Static Generation**: All pages pre-rendered at build time
-- **Content Collections**: Astro's built-in content management via `src/content.config.ts`
-- **File-based Data**: Words stored as JSON files in `data/{SOURCE_DIR}/words/{year}/`
-- **Environment-Driven Configuration**: All customization via environment variables
+- **[Sharp](https://sharp.pixelplumbing.com/)** + [OpenType.js](https://opentype.js.org/) - Social image generation
+- **[oxlint](https://oxc.rs/)** - Linting
 
 ## File Structure
 
 ```
 src/
-├── content.config.ts        # Astro Content Collections config
-├── components/              # Reusable Astro components
-├── layouts/                 # Page layout templates
-├── pages/                   # Route definitions
-├── utils/                   # Client/Astro utilities (13 files)
-├── styles/                  # CSS files
-├── assets/                  # Static assets
-└── images/                  # Image assets
+  content.config.ts              # Astro Content Collections config
+  components/                    # Reusable Astro components
+  layouts/                       # Page layout templates
+  pages/                         # Route definitions
+  utils/                         # Astro-specific utilities (11 files)
+  styles/                        # CSS files
+  assets/                        # Static assets
 
-utils/                       # Shared utilities (Node.js + Astro)
-├── date-utils.ts           # Date manipulation functions
-├── word-data-node.ts       # Node.js word data utilities
-├── word-data-processor.ts  # Word data processing
-└── word-validation.ts      # Dictionary data validation
+utils/                           # Pure Node.js utilities (11 files)
+  breadcrumb-utils.ts            # Breadcrumb navigation logic
+  date-utils.ts                  # Date manipulation (YYYYMMDD format)
+  i18n-utils.ts                  # Translation helpers (t(), tp())
+  logger.ts                      # CLI logger with Sentry (@sentry/node)
+  page-metadata-utils.ts         # Page title/description generation
+  text-pattern-utils.ts          # Pattern detection (palindromes, double letters, etc.)
+  text-utils.ts                  # slugify(), syllable counting, re-exports
+  url-utils.ts                   # URL generation for routes
+  word-data-utils.ts             # Word filtering (by year, length, letter, etc.)
+  word-stats-utils.ts            # Statistics calculation algorithms
+  word-validation.ts             # Dictionary data validation
 
-tools/                       # CLI tools for content management
-├── help-utils.ts           # Shared help system
-├── add-word.ts             # Add new words
-├── generate-images.ts      # Generate social images (consolidated)
-├── generate-generic-images.ts # Generate generic page images
-├── generate-page-image.ts  # Generate specific page image
-├── ping-search-engines.ts  # SEO ping utility
-├── regenerate-all-words.ts # Refresh word data
-└── utils.ts                # Tool-specific utilities
+tools/                           # CLI tools (Node.js only, no Astro deps)
+  add-word.ts                    # Add new words with validation
+  generate-images.ts             # Social image generation (consolidated)
+  help-utils.ts                  # Shared help system
+  migrate-preserve-case.ts       # Case preservation migration
+  ping-search-engines.ts         # SEO sitemap ping
+  regenerate-all-words.ts        # Batch word data refresh
+  utils.ts                       # Shared tool utilities
 
-config/                      # Configuration files
-└── paths.ts                # Path configuration
+adapters/                        # Dictionary API adapters
+  index.ts                       # Adapter factory
+  wordnik.ts                     # Wordnik API implementation
 
-constants/                   # Application constants
-├── stats.ts                # Statistics definitions and slugs
-└── urls.ts                 # URL constants
+config/
+  paths.ts                       # Path configuration (SOURCE_DIR-based)
 
-locales/                     # Internationalization
-└── en.json                 # English translations
+constants/
+  parts-of-speech.ts             # Part of speech normalization mappings
+  stats.ts                       # Statistics definitions and slugs
+  text-patterns.ts               # Regex patterns, milestones, word endings
+  urls.ts                        # URL constants, route builders
 
-types/                       # Shared type definitions (10 files)
-├── adapters.ts             # Dictionary API types
-├── common.ts               # Common shared types
-├── index.ts                # Main types export
-├── word.ts                 # Word data structures
-├── stats.ts                # Statistics types
-├── schema.ts               # Schema types
-├── seo.ts                  # SEO types
-├── vite.d.ts               # Vite definitions
-├── window.d.ts             # Window extensions
-├── wordnik.ts              # Wordnik API types
-└── opentype.js.d.ts        # OpenType.js definitions
+types/                           # Shared TypeScript definitions
+  index.ts                       # Barrel export
+  adapters.ts                    # DictionaryAdapter, DictionaryResponse
+  common.ts                      # LogContext, PathConfig, FetchOptions, SourceMeta
+  word.ts                        # WordData, WordProcessedData, stats result types
+  stats.ts                       # StatsDefinition, StatsSlug, SuffixKey
+  schema.ts                      # JSON-LD schema types
+  seo.ts                         # SEO metadata types
+  wordnik.ts                     # Wordnik API response types
+  vite.d.ts                      # Build-time global declarations
+  window.d.ts                    # Browser window extensions
+  opentype.js.d.ts               # OpenType.js type shim
 
-adapters/                    # Dictionary API adapters  
-├── index.ts                # Adapter factory
-└── wordnik.ts              # Wordnik implementation
+locales/
+  en.json                        # English translations
+
+tests/
+  setup.js                       # Global mocks (astro:content, translations)
+  helpers/spawn.js               # CLI tool process spawner
+  adapters/                      # Adapter tests
+  architecture/                  # Import boundary enforcement
+  config/                        # Config tests
+  constants/                     # Constants tests
+  src/                           # Astro component/utility tests
+  tools/                         # CLI integration tests
+  utils/                         # Pure utility tests
 ```
 
 ## Environment Configuration
 
-### Required Variables
-```bash
-WORDNIK_API_KEY             # Dictionary API access (required)
-SITE_URL                    # Canonical site URL (required for builds)
-```
+All environment variables are validated in `astro.config.ts` (single source of truth). See `.env.example` for the complete list with defaults.
 
-### Site Configuration
-```bash
-SITE_TITLE                  # Site name (default: "Word of the Day")
-SOURCE_DIR                  # Data source directory (default: "demo")
-DICTIONARY_ADAPTER          # Dictionary service (default: "wordnik")
-```
+### Required
 
-### Color Customization
-```bash
-COLOR_PRIMARY               # Primary brand color
-COLOR_PRIMARY_LIGHT         # Light variant
-COLOR_PRIMARY_DARK          # Dark variant
-```
+| Variable | Purpose |
+|----------|---------|
+| `SITE_URL` | Canonical URL (e.g., `https://example.com`) |
+| `SITE_TITLE` | Site name |
+| `SITE_DESCRIPTION` | Site description for SEO |
+| `SITE_ID` | Unique site identifier |
+
+### Data & Dictionary
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `SOURCE_DIR` | `demo` | Data source directory |
+| `DICTIONARY_ADAPTER` | `wordnik` | Dictionary API to use |
+| `WORDNIK_API_KEY` | — | Wordnik API key |
+| `WORDNIK_API_URL` | `https://api.wordnik.com/v4` | Wordnik API endpoint |
+| `WORDNIK_WEBSITE_URL` | `https://www.wordnik.com` | Wordnik website (for cross-ref links) |
+
+### Deployment
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `BASE_PATH` | `/` | Subdirectory for deployment |
+| `SITE_LOCALE` | `en-US` | Locale for i18n |
 
 ### Feature Flags
-```bash
-SENTRY_ENABLED              # Error tracking (default: false)
-SHOW_EMPTY_STATS            # Show empty stats pages in dev (default: true)
-```
 
-## Word Data Management
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `SENTRY_ENABLED` | `false` | Error tracking |
+| `SENTRY_DSN` | — | Sentry data source name |
+| `GA_ENABLED` | `false` | Google Analytics |
+| `GA_MEASUREMENT_ID` | — | GA measurement ID |
+| `SHOW_EMPTY_STATS` | `true` | Generate empty stats pages (dev convenience) |
+
+### Theming
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `COLOR_PRIMARY` | `#9a3412` | Primary brand color |
+| `COLOR_PRIMARY_LIGHT` | `#c2410c` | Light variant |
+| `COLOR_PRIMARY_DARK` | `#7c2d12` | Dark variant |
+
+### Build-Time Globals
+
+`astro.config.ts` injects 30+ globals via Vite `define`. These are compile-time constants (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`, `__RELEASE__`, `__COLOR_PRIMARY__`). They are declared in `types/vite.d.ts` for TypeScript.
+
+## Word Data
 
 ### Storage Format
-Each word is stored as a JSON file at `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}.json`:
+
+Each word is a JSON file at `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}.json`:
 
 ```json
 {
@@ -116,363 +155,240 @@ Each word is stored as a JSON file at `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}
       "partOfSpeech": "noun",
       "sourceDictionary": "wordnik"
     }
-  ]
+  ],
+  "preserveCase": false
 }
 ```
 
-### Content Collections Integration
-- **Build-time Loading**: Words loaded via Astro Content Collections at build time
-- **Type Safety**: Full TypeScript support for word data structures  
-- **Caching**: Automatic caching and invalidation during development
-- **Sorting**: Consistent date-based sorting (newest first)
+### Content Collections
 
-### Vue-Style Computed Derivatives
-The codebase implements a reactive computed pattern similar to Vue.js for optimal performance:
+Words load via Astro Content Collections at build time. `src/content.config.ts` uses `glob()` with `__WORD_DATA_PATH__` (injected by `astro.config.ts`) to find JSON files.
 
-- **Single Collection Load**: `allWords` loaded once at build time via `getAllWords()`
-- **Pre-computed Values**: Statistics computed once and cached (e.g., `wordStats`, `letterPatternStats`)
-- **Computed Derivatives**: Filtered views created as functions (e.g., `getWordsForYear(year)`)
-- **Direct Usage**: Components import computed values directly without aliasing
-
-**Example Pattern:**
 ```typescript
-// Single source collection
-export const allWords = await getAllWords();
-
-// Pre-computed statistics (expensive operations done once)
-export const wordStats = getWordStats(allWords);
-export const availableYears = getAvailableYears(allWords);
-
-// Function derivatives for parameterized access
-export const getWordsForYear = (year: string) => getWordsByYear(year, allWords);
-```
-
-**Performance Impact**: 10%+ build time improvement by eliminating duplicate calculations
-
-### Validation Rules
-- **Unique Words**: Each word can only be used once across all dates
-- **Date Constraints**: Words cannot be added for future dates
-- **Dictionary Validation**: Words must exist in configured dictionary service
-- **Format Validation**: Strict YYYYMMDD date format enforcement
-
-## Tools & CLI
-
-### Unified Tool System
-All tools share common patterns:
-- **Consistent Help**: Shared help system with environment variable documentation
-- **Manual Environment Support**: Tools work with manually passed environment variables (for GitHub Actions)
-- **Error Handling**: Structured logging with message + data object format
-- **Node.js Only**: No Astro dependencies in tools
-
-### Tool Usage Patterns
-
-**Local Development** (with `.env` file):
-```bash
-npm run tool:local tools/add-word.ts serendipity
-npm run tool:local tools/generate-images.ts --all
-```
-
-**Production/CI** (with manual environment variables):
-```bash
-WORDNIK_API_KEY=xxx SOURCE_DIR=words npm run tool:add-word serendipity
-```
-
-### Available Tools
-
-#### `add-word.ts`
-Adds new words with full validation and image generation.
-
-**Features:**
-- Dictionary validation via configured adapter
-- Duplicate word detection across all dates
-- Future date prevention
-- Automatic social image generation
-- Overwrite protection with `--overwrite` flag
-
-#### `generate-images.ts` 
-Consolidated image generation tool (replaces separate single/bulk/generic tools).
-
-**Features:**
-- Generate single word image: `generate-images.ts serendipity`
-- Generate all word images: `generate-images.ts --all`
-- Generate all generic page images: `generate-images.ts --generic`
-- Generate specific page image: `generate-images.ts --page stats`
-- SVG-to-PNG conversion with Sharp
-- Year-based output directory organization
-- Gradient text rendering with custom colors
-- Force regeneration with `--force` flag
-
-#### `regenerate-all-words.ts`
-Refreshes all word data with fresh dictionary definitions.
-
-**Features:**
-- Batch processing with rate limiting
-- Dry-run mode for preview
-- Flexible JSON field path extraction
-- Progress tracking and error reporting
-
-#### `ping-search-engines.ts`
-Notifies search engines of sitemap updates for improved SEO.
-
-**Features:**
-- Pings Google and Bing with sitemap URL
-- Configurable search engine endpoints
-- Error handling and retry logic
-- GitHub Actions integration support
-
-## Image Generation System
-
-### Technical Implementation
-- **SVG Templates**: Programmatically generated SVG with OpenType.js text rendering
-- **PNG Conversion**: Sharp library for high-quality rasterization
-- **Typography**: OpenSans font family with Regular and ExtraBold weights
-- **Color System**: CSS-in-JS gradients using theme colors
-
-### Output Structure
-```
-public/images/social/
-├── {year}/                 # Word images by year
-│   ├── 20250101-word.png
-│   └── 20250102-word.png
-└── pages/                  # Generic page images
-    ├── stats.png
-    └── words.png
-```
-
-### Image Specifications
-- **Dimensions**: 1200x630px (OpenGraph standard)
-- **Compression**: PNG with palette optimization
-- **Quality**: 90% with 128 color palette
-- **Typography**: Responsive text sizing with automatic scaling
-
-## URL Management & Navigation
-
-### URL Architecture Overview
-
-The site uses a **two-tier URL system** to support both root deployments (`example.com`) and subdirectory deployments (`example.com/blog/`):
-
-#### Environment Variables
-- **`SITE_URL`**: Full canonical domain (e.g., `https://example.com`)
-- **`BASE_PATH`**: Subdirectory path for deployment (e.g., `/blog` or `/`)
-
-#### URL Generation Functions
-- **`getUrl(path)`**: Generates relative URLs with BASE_PATH for internal navigation
-  - Example: `getUrl('/words/hello')` → `/blog/words/hello` (if BASE_PATH="/blog")
-- **`getFullUrl(path)`**: Generates absolute URLs for SEO/social sharing
-  - Example: `getFullUrl('/words/hello')` → `https://example.com/blog/words/hello`
-  - **Implementation**: Uses `getUrl()` internally to ensure BASE_PATH consistency
-
-#### Component Usage
-- **SiteLink Component**: All internal navigation uses `getUrl()` for proper BASE_PATH handling
-- **WordLink Component**: Specialized word-to-word navigation with date context
-- **Layout Component**: Uses `getFullUrl()` for canonical URLs, social tags, and schema.org data
-
-#### Deployment Scenarios
-```bash
-# Root deployment (example.com)
-SITE_URL="https://example.com"
-BASE_PATH="/"
-
-# Subdirectory deployment (example.com/vocab/)
-SITE_URL="https://example.com" 
-BASE_PATH="/vocab"
-
-# GitHub Pages deployment (username.github.io/repo/)
-SITE_URL="https://username.github.io"
-BASE_PATH="/repo"
-```
-
-#### Critical Design Principles
-1. **Always use `getUrl()` for internal links** - Never hardcode paths
-2. **Always use `getFullUrl()` for absolute URLs** - Never concatenate manually
-3. **Astro's sitemap integration** automatically uses `site` config for full URLs
-4. **Never bypass BASE_PATH** - It breaks subdirectory deployments
-
-### Route Structure
-```
-/                           # Homepage (current word)
-/words/                     # All words index
-/words/{word}               # Individual word pages
-/{YYYYMMDD}/                # Date-based word access
-/stats/                     # Statistics hub
-/stats/{category}           # Specific statistics pages
-```
-
-## Statistics System
-
-### Data Processing
-- **Build-time Computation**: All statistics calculated during static generation
-- **Cached Results**: Expensive calculations cached and reused
-- **Conditional Generation**: Empty stats pages only generated in development
-
-### Available Statistics
-- **Letter Analysis**: Frequency, patterns, alphabet coverage
-- **Word Patterns**: Palindromes, double letters, alphabetical sequences
-- **Reading Streaks**: Current and historical consecutive reading streaks
-- **Milestones**: Chronological milestones (1st, 25th, 50th, 100th words)
-- **Linguistic Features**: Syllable counts, vowel/consonant analysis
-
-## Testing Strategy
-
-### Test Organization
-```
-tests/
-├── adapters/               # Dictionary API adapter tests
-├── architecture/           # Architectural boundary enforcement tests
-├── tools/                  # CLI tool integration tests
-├── utils/                  # Utility function tests
-└── src/utils/              # Astro-specific utility tests
-```
-
-### Test Layers
-
-#### 1. Unit Tests (`tests/utils/`, `tests/adapters/`)
-- **Purpose**: Verify individual function correctness
-- **Scope**: Pure functions, data transformations, API adapters
-- **Run Time**: Fast (milliseconds)
-- **Example**: Testing `slugify()` converts "Hello World" to "hello-world"
-
-#### 2. Architecture Tests (`tests/architecture/`)
-- **Purpose**: Enforce architectural boundaries and prevent DRY violations
-- **Scope**: Import dependencies, code duplication detection
-- **Run Time**: Fast (milliseconds)
-- **Prevents**:
-  - `utils/` importing from `#astro-utils/*` (breaks CLI tools)
-  - Duplicated business logic between layers
-  - Boundary violations that create circular dependencies
-
-#### 3. CLI Integration Tests (`tests/tools/`)
-- **Purpose**: Verify CLI tools work end-to-end without import errors
-- **Scope**: Tool execution, help commands, basic functionality
-- **Run Time**: Slow (seconds) - spawns actual processes
-- **Prevents**:
-  - `astro:` protocol errors in Node.js tools
-  - Import chain issues that break downstream repos
-  - Tool regressions from architectural changes
-
-**Key Feature**: These tests would have caught the word-adding regression immediately by detecting the `astro:` protocol error during import.
-
-### Test Patterns
-- **Unit Testing**: Isolated function testing with Vitest
-- **Integration Testing**: CLI tools tested via spawn for realistic execution
-- **Architecture Testing**: Static analysis of import dependencies
-- **Mock Data**: Controlled test data for consistent results
-- **Type Safety**: TypeScript-first testing approach
-- **Error Handling**: Comprehensive error condition testing
-
-### Running Tests
-```bash
-npm test              # Run all tests with coverage (~10s)
-npm run test:watch    # Watch mode for development
-npm run lint          # oxlint code style checking
-npm run typecheck     # Type checking (uses Astro check)
-```
-
-**Pre-commit hooks automatically:**
-- Run linting with auto-fix on staged files
-- Run tests for changed files only (fast, no coverage)
-
-### Coverage Thresholds
-
-Tests include coverage by default with enforced thresholds:
-- **Lines**: 80% (current: ~84%)
-- **Functions**: 75% (current: ~80%)
-- **Branches**: 85% (current: ~89%)
-- **Statements**: 80% (current: ~84%)
-
-**What's excluded from coverage:**
-- Build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`) - validated by build
-- API routes (`src/pages/**`) - validated by build
-- CLI tools (`tools/**`) - tested via integration tests
-- Content config (`src/content.config.ts`) - build-time only
-
-Coverage reports: `coverage/index.html`
-
-### Performance
-
-- **Total test time**: ~10 seconds
-- **400 tests** across unit, architecture, and integration layers
-- Pre-commit only tests changed files for fast feedback
-
-### Regression Prevention
-
-The test suite is specifically designed to prevent the types of regressions that have occurred:
-
-**Regression: Word Adding Broke (2025-11)**
-- **Cause**: `utils/page-metadata-utils.ts` imported from `#astro-utils/*`
-- **Error**: `astro:` protocol not supported in Node.js CLI tools
-- **Prevention**:
-  - `tests/architecture/utils-boundary.spec.js` detects astro imports in utils/
-  - `tests/tools/cli-integration.spec.js` catches import errors during tool execution
-  - Both tests fail immediately if regression is reintroduced
-
-**How to Add Regression Tests:**
-1. Identify the root cause (e.g., incorrect import, duplication)
-2. Add a test in appropriate layer (unit/architecture/integration)
-3. Verify test fails with the bug present
-4. Verify test passes with the fix applied
-5. Document the regression in test comments
-
-## Content Collections Deep Dive
-
-### Configuration (`src/content.config.ts`)
-```typescript
-import { defineCollection, glob } from 'astro:content';
-
 export const collections = {
   words: defineCollection({
-    loader: glob({ 
-      pattern: '**/*.json', 
-      base: __WORD_DATA_PATH__ 
-    })
+    loader: glob({ pattern: '**/*.json', base: __WORD_DATA_PATH__ })
   })
 };
 ```
 
-### Usage Patterns
-```typescript
-// In Astro components
-import { getCollection } from 'astro:content';
+### Computed Derivatives
 
-const words = await getCollection('words');
-const sortedWords = words
-  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+`src/utils/word-data-utils.ts` loads `allWords` once and derives everything from it:
+
+```typescript
+export const allWords = await getAllWords();
+export const wordStats = getWordStats(allWords);
+export const availableYears = getAvailableYears(allWords);
+export const getWordsForYear = (year: string) => getWordsByYear(year, allWords);
 ```
 
-### Build-time Path Injection
-- `__WORD_DATA_PATH__`: Injected at build time via `astro.config.ts`
-- Supports different data sources via `{SOURCE_DIR}` environment variable
-- Enables flexible deployment to different environments
+Statistics are computed once at build time, not recalculated per page.
 
-## Complex Algorithms & Architectural Decisions
+### Validation Rules
 
-### Statistics Generation
-Word statistics are derived from raw word data using specialized helpers in `src/utils/word-stats-utils.ts`. Functions such as `getCurrentStreakStats` and `getChronologicalMilestones` walk the dataset to compute streaks, letter patterns and milestone words without mutating the source array. These algorithms favor readability and immutability while still handling large word lists efficiently.
+- Each word can only be used once across all dates (global uniqueness)
+- No future dates
+- Word must exist in the configured dictionary
+- Strict YYYYMMDD format
 
-### Dynamic Static Path Creation
-The `generateStatsStaticPaths` utility builds Astro static paths based on available statistics. It loads all words at runtime, filters out empty stat pages when the `__SHOW_EMPTY_STATS__` flag is disabled and maps each stat definition to its route and data payload. This ensures only meaningful pages are generated and keeps the build output lean.
+## CLI Tools
 
-### Page Metadata Caching
-The `getPageMetadata` helper provides a single source of page titles and descriptions for both Astro pages and Node.js tools. Because Node scripts cannot read Astro frontmatter, metadata is defined in one place and cached after the initial computation. This avoids repeated statistics calculations and keeps build performance predictable.
+All tools are pure Node.js (no Astro deps) and use `util.parseArgs()` for argument parsing.
 
-## Performance Optimizations
+### `add-word.ts`
 
-### Build-time Optimizations
-- **Static Pre-rendering**: All pages generated at build time
-- **Content Collections Caching**: Automatic caching during development
-- **Image Generation Batching**: Efficient bulk image processing
-- **Bundle Splitting**: Astro's automatic code splitting
+Adds a word with dictionary validation, duplicate detection, and automatic image generation.
 
-### Runtime Optimizations
-- **Zero JavaScript**: Most pages load with no client-side JavaScript
-- **Image Optimization**: Optimized PNG compression and sizing
-- **CSS Minimization**: Automatic CSS optimization and inlining
-- **Font Loading**: Efficient web font loading strategies
+```sh
+npm run tool:local tools/add-word.ts serendipity
+npm run tool:local tools/add-word.ts ephemeral 20250130
+npm run tool:local tools/add-word.ts Japan --preserve-case
+npm run tool:local tools/add-word.ts serendipity --overwrite
+```
 
-## Deployment & CI/CD
+### `generate-images.ts`
 
-### GitHub Actions Integration
-Tools designed to work seamlessly with GitHub Actions:
+Consolidated image generation (SVG templates, Sharp PNG conversion, 1200x630px OpenGraph).
+
+```sh
+npm run tool:local tools/generate-images.ts serendipity    # Single word
+npm run tool:local tools/generate-images.ts --all          # All words
+npm run tool:local tools/generate-images.ts --generic      # Generic page images
+npm run tool:local tools/generate-images.ts --page stats   # Specific page
+```
+
+### `regenerate-all-words.ts`
+
+Batch refresh of word data from the dictionary API. Supports dry-run mode and rate limiting.
+
+### `ping-search-engines.ts`
+
+Notifies Google and Bing of sitemap updates. Designed for GitHub Actions integration.
+
+## URL System
+
+Two-tier system supporting root and subdirectory deployments:
+
+| Function | Purpose | Example (`BASE_PATH="/blog"`) |
+|----------|---------|-------------------------------|
+| `getUrl(path)` | Relative URL with BASE_PATH | `getUrl('/words/hello')` -> `/blog/words/hello` |
+| `getFullUrl(path)` | Absolute URL for SEO | `getFullUrl('/words/hello')` -> `https://example.com/blog/words/hello` |
+
+`getFullUrl()` uses `getUrl()` internally to ensure BASE_PATH consistency.
+
+### Route Structure
+
+```
+/                           # Homepage (current word)
+/words/{word}               # Individual word pages
+/{YYYYMMDD}/                # Date-based word access
+/browse/                    # Browse hub
+/browse/year/{year}         # Words by year
+/browse/letter/{letter}     # Words by starting letter
+/browse/length/{n}          # Words by length
+/browse/part-of-speech/{p}  # Words by part of speech
+/stats/                     # Statistics hub
+/stats/{category}           # Individual stat pages
+```
+
+## Sentry Integration
+
+Three-layer setup with separate configs per runtime:
+
+### Browser (`sentry.client.config.js`)
+
+`@sentry/astro` SDK with full tracing and error-only session replays. Filters browser extension noise via `ignoreErrors` and `denyUrls`.
+
+### Server (`sentry.server.config.js`)
+
+`@sentry/astro` SDK with tracing disabled (static site, no server-side requests to trace).
+
+### CLI (`utils/logger.ts`)
+
+`@sentry/node` SDK with lazy initialization. Sentry only initializes on the first `logger.error()` call, avoiding overhead for tools that succeed without errors.
+
+The logger is a `Proxy` over `console` that intercepts all method calls. Non-error calls pass through normally. Error calls forward to Sentry with structured context:
+
+```typescript
+export const logger = new Proxy(console, {
+  get(target, prop: string) {
+    // ... intercepts error calls, forwards to Sentry with scope context
+  },
+});
+```
+
+The `isLogContext` type guard from `#types` validates the context argument before `Object.entries()` iteration. This prevents iterating over string characters or Error instance properties.
+
+**The `exit()` helper**: Always use `await exit(code)` instead of `process.exit()` in error handlers. `process.exit()` kills in-flight async work immediately, losing pending Sentry events. `exit()` flushes first.
+
+### Astro Logger (`src/utils/logger.ts`)
+
+Same Proxy pattern using `@sentry/astro`. In production, suppresses non-error console output. No `exit()` needed because Astro manages the process lifecycle.
+
+## Statistics System
+
+All statistics computed at build time from `allWords`:
+
+- **Letter patterns**: Palindromes, double/triple letters, alphabetical sequences, same start/end
+- **Word endings**: Common suffixes (-ed, -ing, -ly, -ness, -ful, -less)
+- **Letter analysis**: Most/least common letters, vowel/consonant ratios
+- **Streaks**: Current and longest consecutive word streaks
+- **Milestones**: 1st, 25th, 50th, 100th words, etc.
+
+Definitions live in `constants/stats.ts`. Computation functions in `utils/word-stats-utils.ts` (pure) and `src/utils/word-stats-utils.ts` (Astro wrapper). Empty stat pages are only generated when `__SHOW_EMPTY_STATS__` is enabled.
+
+## Image Generation
+
+- **Templates**: Programmatic SVG with OpenType.js text measurement
+- **Conversion**: Sharp PNG rasterization (1200x630px, 90% quality, 128-color palette)
+- **Typography**: OpenSans Regular + ExtraBold, gradient text with theme colors
+- **Output**: `public/images/social/{SOURCE_DIR}/2024/20240105-giggle.png` (word) and `public/images/social/pages/{page}.png` (static). `SOURCE_DIR` segment is omitted when unset.
+
+## Testing
+
+### Layers
+
+| Layer | Location | Speed | Purpose |
+|-------|----------|-------|---------|
+| Unit | `tests/utils/`, `tests/adapters/` | Fast | Pure function correctness |
+| Component | `tests/src/` | Fast | Astro wrappers, SEO, schemas |
+| Architecture | `tests/architecture/` | Fast | Import boundary enforcement |
+| CLI Integration | `tests/tools/` | Slow | Process spawning, protocol errors |
+
+### Coverage
+
+Thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
+
+Excluded: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
+
+### Key Regression Test
+
+The 2025-11 regression (CLI tools broke because `utils/` imported `#astro-utils/*`) is now permanently prevented by:
+- `tests/architecture/utils-boundary.spec.js` — detects forbidden imports in `utils/`
+- `tests/tools/cli-integration.spec.js` — catches `astro:` protocol errors in real processes
+
+## Utility Architecture
+
+### Two-Layer Separation
+
+See [AGENTS.md - The Boundary](../AGENTS.md#the-boundary) for the principle and rationale.
+
+**`utils/`** (pure Node.js):
+
+| File | Purpose |
+|------|---------|
+| `breadcrumb-utils.ts` | Breadcrumb navigation generation |
+| `date-utils.ts` | YYYYMMDD parsing, formatting, validation |
+| `i18n-utils.ts` | `t()` translation, `tp()` pluralization |
+| `logger.ts` | CLI Proxy logger with @sentry/node |
+| `page-metadata-utils.ts` | Page titles and descriptions (cached) |
+| `text-pattern-utils.ts` | Palindrome, double/triple letter detection |
+| `text-utils.ts` | `slugify()`, syllable counting |
+| `url-utils.ts` | Route URL builders |
+| `word-data-utils.ts` | Word filtering by year/length/letter/pos |
+| `word-stats-utils.ts` | Statistics computation |
+| `word-validation.ts` | Dictionary data validation |
+
+**`src/utils/`** (Astro-specific):
+
+| File | Purpose |
+|------|---------|
+| `build-utils.ts` | Build metadata (version, hash, timestamp) |
+| `image-utils.ts` | Social image URL generation |
+| `logger.ts` | Astro Proxy logger with @sentry/astro |
+| `page-metadata.ts` | Page metadata with BASE_PATH |
+| `schema-utils.ts` | JSON-LD schema generation |
+| `seo-utils.ts` | SEO config and meta descriptions |
+| `static-file-utils.ts` | Static file generation (build-time) |
+| `static-paths-utils.ts` | Dynamic static path generation |
+| `url-utils.ts` | `getUrl()`, `getFullUrl()` |
+| `word-data-utils.ts` | Content Collections wrapper, cached allWords |
+| `word-stats-utils.ts` | Stats with Astro error handling |
+
+### Import Boundary
+
+| Context | Can import from | Cannot import from |
+|---------|----------------|-------------------|
+| `utils/` | `#utils/*`, `#types`, `#constants/*`, `#config/*`, Node built-ins | `#astro-utils/*`, `astro:*` |
+| `src/utils/` | Everything above + `#astro-utils/*`, `astro:*` | — |
+| `tools/` | Same as `utils/` | `#astro-utils/*`, `astro:*` |
+| `src/pages/`, `src/components/` | Everything | — |
+
+The thin-wrapper delegation pattern avoids logic duplication. See AGENTS.md for the canonical example.
+
+## Accessibility
+
+- Semantic HTML with proper heading hierarchy and landmarks
+- Skip-to-content link for keyboard users
+- Descriptive alt text on generated images
+- ARIA attributes for interactive elements
+- Color contrast meeting WCAG AA
+- Mobile-first responsive design
+
+## Deployment
+
+### GitHub Actions
 
 ```yaml
 - name: Add word
@@ -482,207 +398,54 @@ Tools designed to work seamlessly with GitHub Actions:
     SOURCE_DIR: ${{ vars.SOURCE_DIR }}
 ```
 
-### Build Process
-1. **Environment Validation**: Check required environment variables
-2. **Content Loading**: Load word data via Content Collections
-3. **Page Generation**: Generate all static pages and routes
-4. **Image Processing**: Generate social sharing images
-5. **Asset Optimization**: Optimize images, CSS, and other assets
-6. **Deployment**: Deploy to GitHub Pages or other static hosts
+### Build Pipeline
 
-## Accessibility Implementation
+1. Environment validation (required vars)
+2. Content Collections load word data
+3. Static page generation
+4. Social image generation
+5. Asset optimization (CSS, images)
+6. Deploy to GitHub Pages or other static host
 
-### Core Principles
-- **Semantic HTML**: Proper heading hierarchy and landmark elements
-- **Keyboard Navigation**: Full keyboard accessibility for all interactive elements
-- **Screen Reader Support**: Descriptive labels and ARIA attributes
-- **Color Contrast**: High contrast ratios for text readability
-- **Focus Management**: Visible focus indicators
+### Deployment Scenarios
 
-### Implementation Details
-- **Skip Links**: Hidden navigation shortcuts for screen readers
-- **Alt Text**: Descriptive alt text for all generated images
-- **Language Attributes**: Proper lang attributes for pronunciation
-- **Responsive Design**: Mobile-first approach with touch-friendly interactions
+```sh
+# Root (example.com)
+SITE_URL="https://example.com" BASE_PATH="/"
 
-## Utility Architecture and Import Guidelines
+# Subdirectory (example.com/vocab/)
+SITE_URL="https://example.com" BASE_PATH="/vocab"
 
-### CLI vs Astro Separation
-
-The project maintains a purposeful architectural separation between pure Node.js utilities and Astro-specific code to enable CLI tool independence and proper environment boundaries.
-
-#### Root utils Directory - Pure Business Logic
-Purpose: Environment-agnostic functions usable by both CLI tools and Astro components
-Dependencies: Only Node.js built-ins and pure JavaScript libraries
-Usage: CLI tools, tests, and shared business logic
-Import Pattern: #utils/text-utils (via package.json subpath imports)
-
-Files:
-- date-utils.ts - Pure date manipulation functions
-- text-utils.ts - String analysis and formatting functions
-- word-stats-utils.ts - Statistics calculation algorithms
-- word-data-utils.ts - Word filtering and data access utilities
-- word-validation.ts - Data validation rules
-- page-metadata-utils.ts - Core metadata generation logic
-- url-utils.ts - URL generation helpers for routes
-
-#### src/utils Directory - Astro-Specific Utilities
-Purpose: Web application utilities that require Astro features
-Dependencies: Astro Content Collections, framework-specific APIs, caching
-Usage: Astro components, pages, and layouts only
-Import Pattern: #astro-utils/word-data-utils (via package.json subpath imports)
-
-Files:
-- word-data-utils.ts - Astro Content Collection integration with caching
-- word-stats-utils.ts - Enhanced stats with Astro-specific error handling
-- page-metadata.ts - Astro wrapper for page metadata with BASE_PATH handling
-- logger.ts, sentry.ts, image-utils.ts - Web app infrastructure
-
-### Why This Separation Exists
-
-1. CLI Tool Independence: CLI tools must work without Astro build system dependencies
-2. Environment Boundaries: Different runtime environments require different utilities
-3. Build Performance: Prevents unnecessary framework dependencies in CLI operations
-4. Testing Clarity: Easier to unit test pure functions vs framework-dependent code
-
-### Import Guidelines
-
-Correct Usage:
-```typescript
-// In CLI tools (tools/*)
-import { formatDate } from '#utils/date-utils';
-
-// In Astro components (src/*)
-import { getWordsFromCollection } from '#astro-utils/word-data-utils';
-import { formatDate } from '#utils/date-utils'; // Also valid - pure functions
+# GitHub Pages (username.github.io/repo/)
+SITE_URL="https://username.github.io" BASE_PATH="/repo"
 ```
 
-Incorrect Usage:
-```typescript
-// In CLI tools - NEVER import Astro-specific utilities
-import { getWordsFromCollection } from '#astro-utils/word-data-utils'; // ERROR
+## Constraints
 
-// In utils/* - NEVER import #astro-utils/* (breaks CLI tools)
-import { getWordsByLetter } from '#astro-utils/word-data-utils'; // ERROR
+- **Static only**: All pages pre-rendered; changes require rebuild
+- **One word per date**: Each YYYYMMDD maps to exactly one word
+- **Global uniqueness**: Each word used once across all dates
+- **No future dates**: Words can only be added for today or past
+- **Family-friendly**: Educational tone throughout
+- **WCAG AA**: Accessibility compliance required
 
-// In Astro components - Avoid when Astro-specific alternative exists
-import { getAvailableYears } from '#utils/word-data-utils'; // Use ~astro-utils version instead
-```
+## Architecture History
 
-### Import Boundary Rule for utils/ Directory
+### February 2026 - Codebase Audit
 
-Files in `utils/` are shared between CLI tools and Astro. They must remain Astro-independent:
+- Import alias migration: `~` (Vite resolve.alias) to `#` (Node.js subpath imports)
+- Config conversion: `.mjs` to `.ts` (`astro.config.ts`, `vitest.config.ts`)
+- TypeScript strictness: `strictNullChecks`, `noUncheckedIndexedAccess`
+- DRY consolidation: stats function duplication eliminated
+- ES6+ modernization: `Object.groupBy()`, `Array.findLast()`, `util.parseArgs()`
+- Node.js 24 requirement (upgraded from 22)
 
-**Allowed imports:** `#utils/*`, `#types`, `#types/*`, `#constants/*`, `#config/*`, Node.js built-ins, pure npm packages
-**Forbidden imports:** `#astro-utils/*`, `astro:*` (triggers astro:content loader, breaks CLI)
+### January 2025 - Tool Consolidation
 
-**Solution when needing shared functionality:**
-
-CORRECT Pattern (DRY - No Duplication):
-```typescript
-// utils/word-data-utils.ts - Pure function, single source of truth
-export const getWordsByLength = (length: number, words: WordData[]): WordData[] => {
-  return words.filter(word => word.word.length === length);
-};
-
-// src/utils/word-data-utils.ts - Thin wrapper with cached default
-import { getWordsByLength as getWordsByLengthPure } from '#utils/word-data-utils';
-export const allWords = await getAllWords(); // Cached from Astro Collections
-
-export const getWordsByLength = (length: number, words: WordData[] = allWords): WordData[] => {
-  return getWordsByLengthPure(length, words); // Delegate to pure function
-};
-
-// tools/add-word.ts - CLI tool imports pure function
-import { getWordsByLength } from '#utils/word-data-utils';
-const fiveLetterWords = getWordsByLength(5, myWords);
-
-// src/pages/stats.astro - Astro page uses cached version
-import { getWordsByLength } from '#astro-utils/word-data-utils';
-const fiveLetterWords = getWordsByLength(5); // Uses cached allWords by default
-```
-
-WRONG Pattern (Duplicates Logic):
-```typescript
-// utils/word-data-utils.ts
-export const getWordsByLength = (length, words) => {
-  return words.filter(word => word.word.length === length); // Logic here
-};
-
-// src/utils/word-data-utils.ts - WRONG: Duplicates the filtering logic!
-export const getWordsByLength = (length, words = allWords) => {
-  return words.filter(word => word.word.length === length); // DUPLICATE!
-};
-```
-
-**Enforcement:** Architecture tests in `tests/architecture/utils-boundary.spec.js` automatically detect and prevent these violations.
-
-### Validation of Duplication Claims
-
-What external audits may perceive as duplication is actually legitimate architectural separation:
-
-- Different Interfaces: utils/word-data-utils.ts uses simple arrays, src/utils/word-data-utils.ts uses Astro Collections
-- Different Error Handling: Root utils use basic console logging, Astro utils use structured logging and Sentry
-- Different Performance: Root utils are synchronous, Astro utils include caching and async operations
-- Different Dependencies: Root utils avoid framework deps, Astro utils leverage framework features
-
-This separation should not be consolidated as it serves legitimate architectural purposes and follows Astro best practices.
-
-## Recent Architecture Changes
-
-### Codebase Audit & Upgrade (February 2026)
-- **Import Alias Migration**: `~` (Vite resolve.alias) to `#` (Node.js subpath imports) - single source of truth in `package.json` `imports` field
-- **Config TypeScript Conversion**: `astro.config.mjs` to `astro.config.ts`, `vitest.config.js` to `vitest.config.ts`
-- **TypeScript Strictness**: Enabled `strictNullChecks` and `noUncheckedIndexedAccess`
-- **DRY Consolidation**: Eliminated stats function duplication between pure and Astro layers
-- **ES6+ Modernization**: `Object.groupBy()`, `Array.findLast()`, `util.parseArgs()`
-- **Dependency Cleanup**: Removed unused `yargs`/`@types/yargs`
-- **Node 22 Requirement**: Engine field `>=22.6.0`, CI workflows updated to Node 22
-- **Breadcrumb Performance**: Lightweight title lookup avoids full stats computation
-
-### Tool Consolidation (January 2025)
-- **Unified Image Generation**: Merged separate single/bulk tools into `generate-images.ts`
-- **Shared Help System**: Created `tools/help-utils.ts` for consistent documentation
-- **Environment Variable Support**: Tools work with manual env passing for CI/CD
+- Unified image generation: merged separate tools into `generate-images.ts`
+- Shared help system: `tools/help-utils.ts`
 
 ### Content Collections Migration
-- **Astro 5.0 Upgrade**: Migrated to Content Layer API
-- **Build-time Path Injection**: Dynamic path configuration via `astro.config.ts`
-- **Type Safety**: Full TypeScript support for content data
-- **Caching**: Improved development experience with automatic caching
 
-## Development Workflow
-
-### Getting Started
-1. **Read Documentation**: Always start with README.md and this technical guide
-2. **Environment Setup**: Copy `.env.example` to `.env` and configure
-3. **Dependency Installation**: Run `npm install`
-4. **Development Server**: Start with `npm run dev`
-
-### Making Changes
-1. **Todo Tracking**: Use TodoWrite tool for multi-step tasks
-2. **Follow Patterns**: Check similar files for architectural patterns
-3. **Type Safety**: Ensure TypeScript compliance throughout
-4. **Testing**: Run `npm run lint` and `npm run typecheck` after changes
-5. **Build Verification**: Test with `npm run build` before committing
-
-### Code Style Guidelines
-- **Immutable Declarations**: Use `const` only, avoid `let` and `var`
-- **Fast-fail Validation**: Early returns, avoid nested conditions
-- **Modern ES6+**: Destructuring, arrow functions, template literals
-- **Error Handling**: Structured logging with message + data object format
-- **TypeScript First**: Leverage type system for code safety
-
-## Constraints & Limitations
-
-### Technical Constraints
-- **Static Generation Only**: No real-time updates, changes require rebuilds
-- **Single Word Per Date**: Each date can only have one associated word
-- **Unique Words**: Each word can only be used once across all dates
-- **Past/Present Only**: Future dates not supported for word scheduling
-
-### Design Constraints
-- **Family-friendly**: Educational tone, avoid possessive language
-- **Performance First**: Optimize for build-time over runtime complexity
-- **Accessibility Required**: WCAG AA compliance mandatory
-- **Mobile First**: Responsive design for all screen sizes
+- Astro 5 Content Layer API
+- Build-time path injection via `__WORD_DATA_PATH__`
