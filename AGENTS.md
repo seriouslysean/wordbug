@@ -15,7 +15,8 @@ nvm use && npm install             # Setup
 npm run dev                        # Dev server
 npm run build                      # Production build
 npm run typecheck                  # TypeScript + Astro check
-npm test                           # Tests with coverage
+npm test                           # Unit/component tests with coverage
+npm run test:e2e                   # E2E tests (requires build first)
 npm run lint                       # oxlint check
 npm run lint:fix                   # oxlint auto-fix
 
@@ -135,11 +136,14 @@ Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs
 
 **`const` in tests too.** Container objects (`const ctx = { spy: null }`) with property mutation in `beforeEach`. The binding stays immutable.
 
-**Four layers, each catches different problems:**
+**Five layers, each catches different problems:**
 1. **Unit** (`tests/utils/`, `tests/adapters/`) — pure function correctness
 2. **Component** (`tests/src/`) — Astro wrappers, SEO, schemas
 3. **Architecture** (`tests/architecture/`) — import boundary enforcement
 4. **CLI Integration** (`tests/tools/`) — real process spawning, catches `astro:` protocol errors
+5. **E2E** (`tests/e2e/`) — Playwright tests against the built site (navigation, SEO, accessibility)
+
+**No overlapping tests.** Each function is tested at exactly one layer. Unit tests validate logic. E2E tests validate the built output (rendered HTML, route resolution, meta tags). Don't duplicate unit-level assertions in E2E tests or vice versa.
 
 Test data lives close to use: global fixtures in `tests/setup.js`, per-file data at describe-block scope, shared helpers (used in 3+ files) in `tests/helpers/` via `#tests/*`.
 
@@ -184,11 +188,12 @@ Run in order before committing (each catches different issues):
 ```sh
 npm run lint                       # 1. Syntax/style (oxlint)
 npm run typecheck                  # 2. Type correctness (tsc + astro check)
-npm test                           # 3. Tests with coverage thresholds
+npm test                           # 3. Unit/component tests with coverage
 npm run build                      # 4. Full build (catches runtime errors)
+npm run test:e2e                   # 5. E2E tests against built site
 ```
 
-All must pass: 0 lint errors, 0 TypeScript errors, 0 Astro warnings, all tests green with coverage met (lines 80%, functions 75%, branches 85%), build succeeds without `.env`.
+All must pass: 0 lint errors, 0 TypeScript errors, 0 Astro warnings, all tests green with coverage met (80% across lines/functions/statements, 85% branches), build succeeds without `.env`, E2E tests pass.
 
 ## Conventions
 

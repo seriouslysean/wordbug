@@ -7,7 +7,8 @@ Architecture reference for the occasional-wotd project. For philosophy, principl
 - **[Astro](https://astro.build/)** - Static site generator, zero client-side JS by default
 - **TypeScript** - Strict mode (`strictNullChecks`, `noUncheckedIndexedAccess`)
 - **Node.js 24+** - Runtime (`.nvmrc` provided)
-- **[Vitest](https://vitest.dev/)** - Testing framework
+- **[Vitest](https://vitest.dev/)** - Unit, component, and integration testing
+- **[Playwright](https://playwright.dev/)** - E2E testing against the built static site
 - **[Sharp](https://sharp.pixelplumbing.com/)** + [OpenType.js](https://opentype.js.org/) - Social image generation
 - **[oxlint](https://oxc.rs/)** - Linting
 
@@ -77,13 +78,14 @@ locales/
 tests/
   setup.js                       # Global mocks (astro:content, translations)
   helpers/spawn.js               # CLI tool process spawner
-  adapters/                      # Adapter tests
-  architecture/                  # Import boundary enforcement
-  config/                        # Config tests
-  constants/                     # Constants tests
-  src/                           # Astro component/utility tests
-  tools/                         # CLI integration tests
-  utils/                         # Pure utility tests
+  adapters/                      # Adapter tests (Vitest)
+  architecture/                  # Import boundary enforcement (Vitest)
+  config/                        # Config tests (Vitest)
+  constants/                     # Constants tests (Vitest)
+  e2e/                           # E2E tests against built site (Playwright)
+  src/                           # Astro component/utility tests (Vitest)
+  tools/                         # CLI integration tests (Vitest)
+  utils/                         # Pure utility tests (Vitest)
 ```
 
 ## Environment Configuration
@@ -307,20 +309,27 @@ Definitions live in `constants/stats.ts`. Computation functions in `utils/word-s
 
 ## Testing
 
+### Strategy
+
+Tests are organized by what they validate, with no overlap between layers. Each function is tested at exactly one layer. Unit tests validate logic. E2E tests validate the built output. This avoids duplication while ensuring comprehensive coverage.
+
 ### Layers
 
-| Layer | Location | Speed | Purpose |
-|-------|----------|-------|---------|
-| Unit | `tests/utils/`, `tests/adapters/` | Fast | Pure function correctness |
-| Component | `tests/src/` | Fast | Astro wrappers, SEO, schemas |
-| Architecture | `tests/architecture/` | Fast | Import boundary enforcement |
-| CLI Integration | `tests/tools/` | Slow | Process spawning, protocol errors |
+| Layer | Location | Tool | Speed | Purpose |
+|-------|----------|------|-------|---------|
+| Unit | `tests/utils/`, `tests/adapters/` | Vitest | Fast | Pure function correctness |
+| Component | `tests/src/` | Vitest | Fast | Astro wrappers, SEO, schemas |
+| Architecture | `tests/architecture/` | Vitest | Fast | Import boundary enforcement |
+| CLI Integration | `tests/tools/` | Vitest | Slow | Process spawning, protocol errors |
+| E2E | `tests/e2e/` | Playwright | Slow | Built site navigation, SEO, accessibility |
 
 ### Coverage
 
-Thresholds: lines 80%, functions 75%, branches 85%, statements 80%.
+Vitest thresholds: lines 80%, functions 80%, branches 85%, statements 80%.
 
-Excluded: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
+Excluded from Vitest coverage: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
+
+E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). They validate rendered HTML output, route resolution, meta tags, and accessibility structure.
 
 ### Key Regression Test
 

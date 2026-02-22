@@ -65,11 +65,12 @@ Always use `#` aliases from `package.json` imports field. Never use relative pat
 
 ## Testing
 
-Vitest with four layers: unit (`tests/utils/`), component (`tests/src/`), architecture (`tests/architecture/`), CLI integration (`tests/tools/`).
+Vitest with four layers: unit (`tests/utils/`), component (`tests/src/`), architecture (`tests/architecture/`), CLI integration (`tests/tools/`). Playwright for E2E (`tests/e2e/`).
 
 - Use `vi.stubEnv()` for env vars, `vi.stubGlobal()` for build-time globals.
 - `const` containers in tests: `const ctx = { spy: null }` with mutation in `beforeEach`.
-- Coverage thresholds: lines 80%, functions 75%, branches 85%.
+- Coverage thresholds: 80% across lines/functions/statements, 85% branches.
+- No overlapping tests. Each function tested at exactly one layer.
 
 ## Environment
 
@@ -84,6 +85,7 @@ npm run lint        # 0 errors/warnings
 npm run typecheck   # 0 TS errors, 0 Astro warnings
 npm test            # All tests green, coverage met
 npm run build       # Build succeeds without .env
+npm run test:e2e    # E2E tests pass against built site
 ```
 
 ## Pull Requests
