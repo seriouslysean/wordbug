@@ -3,6 +3,7 @@
 declare const __BASE_URL__: string;
 declare const __VERSION__: string;
 declare const __RELEASE__: string;
+declare const __SENTRY_ENABLED__: boolean;
 declare const __SENTRY_DSN__: string;
 declare const __SENTRY_ENVIRONMENT__: string;
 declare const __SITE_ID__: string;

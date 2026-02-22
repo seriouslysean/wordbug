@@ -30,6 +30,7 @@ export default [
         __HUMANS_WORD_CURATOR__: 'readonly',
         __RELEASE__: 'readonly',
         __SENTRY_DSN__: 'readonly',
+        __SENTRY_ENABLED__: 'readonly',
         __SENTRY_ENVIRONMENT__: 'readonly',
         __SITE_ID__: 'readonly',
         __TIMESTAMP__: 'readonly',

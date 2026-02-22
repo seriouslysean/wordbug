@@ -3,7 +3,7 @@ import { captureException, captureMessage, withScope } from '@sentry/astro';
 import { isLogContext } from '#types';
 
 const isDev = import.meta.env?.DEV ?? false;
-const sentryEnabled = import.meta.env?.SENTRY_ENABLED === 'true';
+const sentryEnabled = !!__SENTRY_ENABLED__;
 
 /**
  * Universal logger that proxies console and forwards errors to Sentry.
