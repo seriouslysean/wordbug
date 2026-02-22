@@ -10,10 +10,7 @@ const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
  * Currently we preserve words containing any uppercase characters.
  */
 function shouldPreserveCase(word: string | undefined): boolean {
-  if (!word) {
-    return false;
-  }
-  return word !== word.toLowerCase();
+  return !!word && word !== word.toLowerCase();
 }
 
 /**
@@ -71,22 +68,18 @@ async function migrateAllWords(): Promise<void> {
     return;
   }
 
-  let updatedCount = 0;
-  let skippedCount = 0;
-
-  for (const file of files) {
+  const results = files.map(file => {
     const wasUpdated = migrateWordFile(file.path);
     if (wasUpdated) {
-      updatedCount++;
       console.log(`Migrated: ${file.word} (${file.date})`);
-    } else {
-      skippedCount++;
     }
-  }
+    return wasUpdated;
+  });
 
+  const updatedCount = results.filter(Boolean).length;
   console.log('\nMigration complete!');
   console.log(`  Updated: ${updatedCount} files`);
-  console.log(`  Skipped: ${skippedCount} files (already had preserveCase field)`);
+  console.log(`  Skipped: ${files.length - updatedCount} files (already had preserveCase field)`);
   console.log(`  Total:   ${files.length} files`);
 }
 
