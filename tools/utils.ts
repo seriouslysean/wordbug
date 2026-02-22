@@ -54,6 +54,7 @@ const SETTINGS_HASH_FILENAME = '.image-settings-hash';
  */
 const computeSettingsHash = (): string =>
   createHash('md5').update(JSON.stringify({
+    siteId: process.env.SITE_ID || '',
     siteTitle: process.env.SITE_TITLE || '',
     colorPrimary: imageColors.primary,
     colorPrimaryLight: imageColors.primaryLight,
