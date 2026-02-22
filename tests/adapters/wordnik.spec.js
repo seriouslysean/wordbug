@@ -115,6 +115,10 @@ describe('wordnik adapter', () => {
   describe('fetchWordData lowercase fallback', () => {
     beforeEach(() => {
       process.env.WORDNIK_API_KEY = 'test-key';
+      // WORDNIK_CONFIG.BASE_URL is captured at module load time, so it may be
+      // undefined in CI where no .env file exists. Sync it from the env var
+      // that the parent beforeEach already set.
+      mod.WORDNIK_CONFIG.BASE_URL = process.env.WORDNIK_API_URL;
     });
 
     it('returns results when lowercase word succeeds directly', async () => {
