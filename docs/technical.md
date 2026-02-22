@@ -1,6 +1,6 @@
 # Technical Documentation
 
-Architecture reference for the occasional-wotd project. For philosophy, principles, and code standards, see [CLAUDE.md](../CLAUDE.md).
+Architecture reference for the occasional-wotd project. For philosophy, principles, and code standards, see [AGENTS.md](../AGENTS.md) (also available via the `CLAUDE.md` symlink).
 
 ## Framework & Stack
 
@@ -332,7 +332,7 @@ The 2025-11 regression (CLI tools broke because `utils/` imported `#astro-utils/
 
 ### Two-Layer Separation
 
-See [CLAUDE.md - The Boundary](../CLAUDE.md#the-boundary) for the principle and rationale.
+See [AGENTS.md - The Boundary](../AGENTS.md#the-boundary) for the principle and rationale.
 
 **`utils/`** (pure Node.js):
 
@@ -375,7 +375,7 @@ See [CLAUDE.md - The Boundary](../CLAUDE.md#the-boundary) for the principle and 
 | `tools/` | Same as `utils/` | `#astro-utils/*`, `astro:*` |
 | `src/pages/`, `src/components/` | Everything | — |
 
-The thin-wrapper delegation pattern avoids logic duplication. See CLAUDE.md for the canonical example.
+The thin-wrapper delegation pattern avoids logic duplication. See AGENTS.md for the canonical example.
 
 ## Accessibility
 
