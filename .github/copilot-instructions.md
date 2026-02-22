@@ -8,7 +8,7 @@ Astro static site generator for word-of-the-day websites. Zero client-side JavaS
 
 ## Code Style
 
-- `const` only. No `let` or `var`. For mutable state use a container: `const cache = { value: null }`.
+- `const` by default. `let` is valid when reassignment genuinely simplifies the logic (loops, streams, accumulation) — but it should feel like a deliberate choice. Never `var`.
 - Declarative transforms: `.map()`, `.filter()`, `.find()`, `.flatMap()`, `.reduce()`. Use `for` loops only for stateful accumulation, early exit, or per-iteration try/catch.
 - Modern APIs: `Object.groupBy()`, `Array.findLast()`, `util.parseArgs()`, optional chaining (`?.`), nullish coalescing (`??`), destructuring.
 - Fast-fail: validate at the top, return early, keep happy path flat.

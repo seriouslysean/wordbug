@@ -303,7 +303,7 @@ Definitions live in `constants/stats.ts`. Computation functions in `utils/word-s
 - **Templates**: Programmatic SVG with OpenType.js text measurement
 - **Conversion**: Sharp PNG rasterization (1200x630px, 90% quality, 128-color palette)
 - **Typography**: OpenSans Regular + ExtraBold, gradient text with theme colors
-- **Output**: `public/images/social/{year}/{YYYYMMDD}-{word}.png` and `public/images/social/pages/{page}.png`
+- **Output**: `public/images/social/{SOURCE_DIR}/2024/20240105-giggle.png` (word) and `public/images/social/pages/{page}.png` (static). `SOURCE_DIR` segment is omitted when unset.
 
 ## Testing
 

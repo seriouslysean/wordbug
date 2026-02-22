@@ -85,7 +85,7 @@ Architecture tests in `tests/architecture/` catch boundary violations automatica
 
 ### JavaScript: modern, functional, immutable
 
-**`const` by default.** No `let` or `var`. For mutable state, use a container: `const cache = { value: null }`. The only acceptable `let` is accumulation inside `for` loops or stream callbacks where no container pattern applies.
+**`const` by default.** Prefer `const` — reaching for `let` should feel like a deliberate decision, not a default. Valid uses: accumulation in `for` loops, stream callbacks, or cases where reassignment genuinely simplifies the logic. If `let` is the clearest solution, use it. If a container (`const cache = { value: null }`) or a declarative transform would be equally clear, prefer those. Never `var`.
 
 **Declarative transforms.** `.map()`, `.filter()`, `.find()`, `.flatMap()`, `.reduce()` for data transformation. Reserve `for` loops for cases that genuinely need them: stateful accumulation, early exit with `return`, or `try/catch` per iteration. If a loop body is just `.push()`, it should be `.map()`.
 
@@ -219,9 +219,12 @@ Run all quality gates before committing. Stage specific files by name — avoid 
 | `AGENTS.md` | Philosophy, principles, working guidance (this file) |
 | `CLAUDE.md` | Symlink to `AGENTS.md` (Claude Code reads this) |
 | `.github/copilot-instructions.md` | Distilled guidelines for GitHub Copilot |
+| `.github/instructions/` | Scoped Copilot instructions (code review focus/exclusions) |
+| `.github/pull_request_template.md` | PR body template (used by GitHub UI and PR skill) |
 | `.agents/skills/` | Agent skills (validate, commit, pr) — tool-agnostic canonical location |
 | `.claude/skills` | Symlink to `.agents/skills/` (Claude Code reads this) |
 | `docs/technical.md` | Architecture reference, file structure, environment details |
+| `docs/cli-for-agents.md` | CLI tool patterns for token-efficient agent workflows |
 | `docs/improvements-backlog.md` | Known gaps and technical debt |
 | `docs/potential-features.md` | Feature ideas, prioritized |
 | `README.md` / `docs/README.md` | User-facing overview and quick start |
