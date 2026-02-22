@@ -10,13 +10,8 @@ export const defaultLang = 'en';
  */
 export const t = (key: string, vars?: Record<string, string | number>): string => {
   // Navigate to nested key (e.g., 'nav.home')
-  const keys = key.split('.');
-  let value: any = translations;
-  
-  for (const k of keys) {
-    value = value?.[k];
-  }
-  
+  const value: unknown = key.split('.').reduce((obj: any, k) => obj?.[k], translations);
+
   if (typeof value !== 'string') {
     throw new Error(`Translation missing for key: ${key}`);
   }
@@ -68,14 +63,8 @@ export const tp = (
     throw new Error(`Invalid count for pluralization key: ${baseKey}, got: ${count}`);
   }
   
-  let suffix: string;
-  if (numCount === 0) {
-    suffix = 'zero';
-  } else if (numCount === 1) {
-    suffix = 'one';
-  } else {
-    suffix = 'other';
-  }
-  
+  const PLURAL_SUFFIXES: Record<number, string> = { 0: 'zero', 1: 'one' };
+  const suffix = PLURAL_SUFFIXES[numCount] ?? 'other';
+
   return t(`${baseKey}_${suffix}`, { count: numCount, ...additionalValues });
 };

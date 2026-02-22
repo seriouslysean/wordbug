@@ -178,10 +178,9 @@ describe('add-word tool validation logic', () => {
   });
 
   describe('Word duplication validation', () => {
-    let testWordsDir;
+    const testWordsDir = path.join(__dirname, 'test-words');
 
     beforeEach(() => {
-      testWordsDir = path.join(__dirname, 'test-words');
       const year2025Dir = path.join(testWordsDir, '2025');
       fs.mkdirSync(year2025Dir, { recursive: true });
       const testWord1 = {
