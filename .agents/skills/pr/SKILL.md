@@ -23,11 +23,13 @@ The PR body format is defined in [pull_request_template.md](../../../.github/pul
 
 2. **Validate.** Run the full quality gate pipeline (`/project:validate`). All gates must pass.
 
-3. **Review scope.** Look at all commits and changes that will be in the PR:
+3. **Review full session scope.** The PR covers ALL commits on this branch, not just the latest one. Review every commit and the cumulative diff:
    ```sh
    git log --oneline main..HEAD
    git diff main...HEAD --stat
+   git diff main...HEAD
    ```
+   Read through the full diff. The summary must reflect the entire body of work.
 
 4. **Push** if not already pushed:
    ```sh
@@ -36,13 +38,14 @@ The PR body format is defined in [pull_request_template.md](../../../.github/pul
 
 5. **Create PR** using `gh pr create`. Fill in the template sections — replace comments with real content, check off completed items:
    ```sh
-   gh pr create --title "Short descriptive title" --fill-first
+   gh pr create --title "type: short descriptive title" --fill-first
    ```
 
 ## Guidelines
 
-- **Title**: Under 72 chars, describes the change not the implementation
-- **Scope**: One concern per PR. Bug fix + refactor = two PRs
+- **Title**: Conventional commit format (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`), under 72 chars, imperative mood
+- **Summary**: Cover all changes on the branch, not just the last commit. Group related changes into coherent bullet points
+- **Scope**: One theme per PR. The theme can span multiple commits as long as they serve the same goal
 - **Tests**: New behavior needs tests. Bug fixes need regression tests
 - **Docs**: Update `docs/technical.md` for architectural changes
 

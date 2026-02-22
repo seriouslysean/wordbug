@@ -24,10 +24,11 @@ Commit the current changes following this project's conventions.
    git add <file1> <file2> ...
    ```
 
-4. **Write the message.** Explain the WHY, not the what:
-   - First line: concise summary, imperative mood, under 72 chars
-   - Blank line, then body with motivation and context if not obvious
-   - Match the style of recent commits in this repo
+4. **Write the message.** Use [Conventional Commits](https://www.conventionalcommits.org/) with imperative mood:
+   - Format: `type: imperative summary` (under 72 chars)
+   - Types: `feat` (new feature), `fix` (bug fix), `chore` (maintenance, deps, config), `refactor` (no behavior change), `docs` (documentation only), `test` (test-only changes)
+   - Imperative mood: "add support for X", not "added support for X"
+   - Optional body after blank line with motivation and context
    - If the user provided a hint via $ARGUMENTS, incorporate it
 
 5. **Commit and verify:**

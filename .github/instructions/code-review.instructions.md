@@ -1,10 +1,20 @@
 ---
-description: "Code review focus areas and exclusions for Copilot code review"
+description: "Code review focus areas, severity labels, and exclusions for Copilot code review"
 applyTo: "**"
 excludeAgent: ["coding-agent"]
 ---
 
 # Code Review Instructions
+
+## Severity Labels
+
+Prefix every review comment with a severity label. This follows [Google's engineering practices for code review](https://google.github.io/eng-practices/review/reviewer/standard.html):
+
+- **nit**: Minor style or preference issue. Non-blocking. Reviewer would not object if ignored.
+- **optional**: Suggestion the author may want to consider. Non-blocking.
+- **suggestion**: Recommended improvement. The reviewer believes this would make the code better but it is not critical.
+- **issue**: A real problem that should be fixed before merging. Blocking.
+- **blocker**: A critical problem (correctness, security, boundary violation) that must be fixed. Blocking.
 
 ## Review Focus
 
