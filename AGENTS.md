@@ -61,14 +61,14 @@ External API adapters (`adapters/`) look up exactly what they're given and repor
 
 This is the one architectural rule that cannot be broken. Breaking it silently destroys CLI tools.
 
-**`utils/`** (root) contains pure Node.js business logic. CLI tools, tests, and Astro components all use it.
-**`src/utils/`** contains Astro-specific wrappers that use Content Collections, framework APIs, and Sentry.
+Everything outside `src/` runs as plain Node.js: `utils/`, `adapters/`, `tools/`, `constants/`, `config/`, `types/`. Everything inside `src/` runs in Astro's build system with access to Vite globals, `import.meta.env`, Content Collections, and `astro:*` modules.
 
-**The rule**: Files in `utils/` must never import from `#astro-utils/*` or `astro:*`.
+**The rule**: Code outside `src/` must never import from `#astro-utils/*`, `astro:*`, or `@sentry/astro`. This includes `adapters/` — even though they feel like "app code", CLI tools import them.
 
-Why? CLI tools run as plain Node.js. They import from `utils/`. If `utils/` pulls in `astro:content`, Node.js throws "Cannot find module" because the `astro:` protocol only exists inside Astro's build system. The failure cascades silently through the import chain.
+Why? CLI tools run as plain Node.js. If any file in their import chain pulls in an Astro-only dependency (`astro:content`, `@sentry/astro`, Vite build-time globals like `__SENTRY_ENABLED__`), Node.js crashes with unresolvable modules or undefined references. The failure cascades silently.
 
-**The pattern**:
+**The pattern**: Pure logic in `utils/`, thin Astro wrapper in `src/utils/`:
+
 ```typescript
 // utils/word-data-utils.ts — Pure function, works everywhere
 export const getWordsByLength = (length: number, words: WordData[]): WordData[] =>
@@ -79,6 +79,8 @@ import { getWordsByLength as pure } from '#utils/word-data-utils';
 export const allWords = await getAllWords();
 export const getWordsByLength = (length: number, words = allWords) => pure(length, words);
 ```
+
+**Logger follows the same pattern**: `utils/logger-core.ts` owns the proxy-over-console + Sentry forwarding factory. `utils/logger.ts` (CLI) and `src/utils/logger.ts` (Astro) each provide their own Sentry bridge (`@sentry/node` vs `@sentry/astro`) and output filter. The core never imports a Sentry SDK.
 
 Architecture tests in `tests/architecture/` catch boundary violations automatically.
 

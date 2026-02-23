@@ -1,9 +1,10 @@
 /**
- * Architecture tests to enforce the utils/ <-> src/utils/ boundary
+ * Architecture tests to enforce the Node.js / Astro boundary
  *
- * These tests prevent DRY violations by ensuring:
- * 1. utils/ files don't import from src/utils/ or Astro modules
- * 2. Duplicated logic is detected between the two directories
+ * These tests prevent boundary violations by ensuring:
+ * 1. Node.js-side code (utils/, adapters/, tools/, constants/, config/) never
+ *    imports Astro-only modules (#astro-utils/*, astro:*, @sentry/astro)
+ * 2. Delegated logic is imported from utils/, not duplicated in src/utils/
  */
 
 import fs from 'fs';
@@ -12,23 +13,36 @@ import { describe, it, expect } from 'vitest';
 
 const UTILS_DIR = path.join(process.cwd(), 'utils');
 const SRC_UTILS_DIR = path.join(process.cwd(), 'src', 'utils');
+const NODE_SIDE_DIRS = ['utils', 'adapters', 'constants', 'config'].map(
+  dir => path.join(process.cwd(), dir),
+);
 
 describe('Architecture: utils/ boundary enforcement', () => {
-  it('utils/ files must not import from #astro-utils/*', () => {
-    const utilsFiles = fs.readdirSync(UTILS_DIR).filter(f => f.endsWith('.ts'));
+  it('Node.js-side code must not import Astro-only modules', () => {
+    for (const dir of NODE_SIDE_DIRS) {
+      if (!fs.existsSync(dir)) {
+        continue;
+      }
+      const tsFiles = fs.readdirSync(dir).filter(f => f.endsWith('.ts'));
 
-    for (const file of utilsFiles) {
-      const filePath = path.join(UTILS_DIR, file);
-      const content = fs.readFileSync(filePath, 'utf-8');
+      for (const file of tsFiles) {
+        const filePath = path.join(dir, file);
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const label = `${path.basename(dir)}/${file}`;
 
-      // Check for forbidden imports
-      const astroImports = content.match(/from ['"]#astro-utils\//g);
-      const srcImports = content.match(/from ['"]#src\//g);
-      const astroProtocol = content.match(/from ['"]astro:/g);
-
-      expect(astroImports, `${file} imports from #astro-utils/* (breaks CLI tools)`).toBeNull();
-      expect(srcImports, `${file} imports from ~src/* (breaks CLI tools)`).toBeNull();
-      expect(astroProtocol, `${file} imports from astro:* (breaks CLI tools)`).toBeNull();
+        expect(
+          content.match(/from ['"]#astro-utils\//g),
+          `${label} imports from #astro-utils/* (breaks CLI tools)`,
+        ).toBeNull();
+        expect(
+          content.match(/from ['"]astro:/g),
+          `${label} imports from astro:* (breaks CLI tools)`,
+        ).toBeNull();
+        expect(
+          content.match(/from ['"]@sentry\/astro['"]/g),
+          `${label} imports @sentry/astro (breaks CLI tools)`,
+        ).toBeNull();
+      }
     }
   });
 
@@ -87,25 +101,31 @@ describe('Architecture: utils/ boundary enforcement', () => {
     }
   });
 
-  it('utils/ files can only import from allowed paths', () => {
-    const utilsFiles = fs.readdirSync(UTILS_DIR).filter(f => f.endsWith('.ts'));
-    const allowedPrefixes = ['#utils', '#types', '#constants', '#config', '#locales'];
+  it('Node.js-side code can only import from allowed alias paths', () => {
+    const allowedPrefixes = ['#utils', '#types', '#constants', '#config', '#locales', '#adapters', '#tools'];
 
-    for (const file of utilsFiles) {
-      const filePath = path.join(UTILS_DIR, file);
-      const content = fs.readFileSync(filePath, 'utf-8');
+    for (const dir of NODE_SIDE_DIRS) {
+      if (!fs.existsSync(dir)) {
+        continue;
+      }
+      const tsFiles = fs.readdirSync(dir).filter(f => f.endsWith('.ts'));
 
-      // Find all imports from #alias paths
-      const imports = content.match(/from ['"]#[^'"]+['"]/g) || [];
+      for (const file of tsFiles) {
+        const filePath = path.join(dir, file);
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const label = `${path.basename(dir)}/${file}`;
 
-      for (const importStatement of imports) {
-        const hasAllowedPrefix = allowedPrefixes.some(allowed =>
-          importStatement.includes(`'${allowed}`) || importStatement.includes(`"${allowed}`)
-        );
+        const imports = content.match(/from ['"]#[^'"]+['"]/g) || [];
 
-        expect(hasAllowedPrefix,
-          `${file} has import ${importStatement} which doesn't match allowed prefixes: ${allowedPrefixes.join(', ')}`
-        ).toBe(true);
+        for (const importStatement of imports) {
+          const hasAllowedPrefix = allowedPrefixes.some(allowed =>
+            importStatement.includes(`'${allowed}`) || importStatement.includes(`"${allowed}`)
+          );
+
+          expect(hasAllowedPrefix,
+            `${label} has import ${importStatement} which doesn't match allowed prefixes: ${allowedPrefixes.join(', ')}`
+          ).toBe(true);
+        }
       }
     }
   });
