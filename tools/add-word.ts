@@ -6,7 +6,7 @@ import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
 import { createWordEntry, findExistingWord } from '#tools/utils';
 import type { WordData } from '#types';
 import { getTodayYYYYMMDD, isValidDate } from '#utils/date-utils';
-import { exit, logger } from '#utils/logger';
+import { exit, getErrorMessage, logger } from '#utils/logger';
 
 /**
  * Checks if a file exists for the given date and returns the existing word if found
@@ -19,9 +19,10 @@ const checkExistingWord = (date: string): WordData | null => {
   if (fs.existsSync(filePath)) {
     try {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-      return data as WordData;
+      const wordData: WordData = data;
+      return wordData;
     } catch (error) {
-      logger.error('Failed to read existing word file', { filePath, error: (error as Error).message });
+      logger.error('Failed to read existing word file', { filePath, error: getErrorMessage(error) });
     }
   }
   return null;
@@ -107,11 +108,11 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
     await createWordEntry(word, { date: targetDate, overwrite, preserveCase });
 
   } catch (error) {
-    const err = error as Error;
-    if (err.message.includes('not found in dictionary')) {
-      logger.error('Word not found in dictionary', { word, errorMessage: err.message });
+    const errorMessage = getErrorMessage(error);
+    if (errorMessage.includes('not found in dictionary')) {
+      logger.error('Word not found in dictionary', { word, errorMessage });
     } else {
-      logger.error('Failed to add word', { word, errorMessage: err.message });
+      logger.error('Failed to add word', { word, errorMessage });
     }
     await exit(1);
   }
@@ -185,6 +186,6 @@ addWord(word, {
   overwrite: values.overwrite,
   preserveCase: values['preserve-case'],
 }).catch(async (error: unknown) => {
-  logger.error('Add word tool failed', { error: error instanceof Error ? error.message : String(error) });
+  logger.error('Add word tool failed', { error: getErrorMessage(error) });
   await exit(1);
 });

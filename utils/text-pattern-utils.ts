@@ -6,6 +6,7 @@
  * These functions are framework-agnostic and can be used by CLI tools.
  */
 
+import type { SuffixKey } from '#types';
 import { TEXT_PATTERNS, COMMON_WORD_ENDINGS, MIN_ALPHABETICAL_SEQUENCE_LENGTH } from '#constants/text-patterns';
 
 /**
@@ -67,7 +68,7 @@ export const hasAlphabeticalSequence = (word: string): boolean => {
  * @param word - Word to examine
  * @returns Array of matched endings
  */
-export const getWordEndings = (word: string): string[] => {
+export const getWordEndings = (word: string): SuffixKey[] => {
   return COMMON_WORD_ENDINGS.filter(ending => word.endsWith(ending));
 };
 

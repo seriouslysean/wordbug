@@ -153,6 +153,8 @@ Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs
 
 **Validate E2E assertions against built HTML.** Before pushing E2E changes, build the site (`npm run build`) and verify selectors match the actual `dist/` output. Check element classes, href patterns, and page structure. A passing typecheck does not catch selector mismatches — only the built HTML reveals the truth.
 
+**Real data over feature flags.** When a test or page needs data to exercise a code path, add demo words that produce it — don't add flags to skip the empty case. Every page the site can build should always be built. If stats pages render with zero results, that's a signal to expand the demo dataset, not to hide the page behind a flag. Feature flags for test convenience create parallel code paths that diverge from production and obscure coverage gaps.
+
 Test data lives close to use: global fixtures in `tests/setup.js`, per-file data at describe-block scope, shared helpers (used in 3+ files) in `tests/helpers/` via `#tests/*`.
 
 ## Import Aliases

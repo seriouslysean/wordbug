@@ -2,7 +2,7 @@ import fs from 'fs';
 import { showHelp } from '#tools/help-utils';
 import { getWordFiles } from '#tools/utils';
 import type { WordData } from '#types';
-import { exit, logger } from '#utils/logger';
+import { exit, getErrorMessage, logger } from '#utils/logger';
 
 const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
 
@@ -32,7 +32,7 @@ function shouldPreserveCase(word: string | undefined): boolean {
 function migrateWordFile(filePath: string): boolean {
   try {
     const content = fs.readFileSync(filePath, 'utf-8');
-    const wordData = JSON.parse(content) as WordData;
+    const wordData: WordData = JSON.parse(content);
 
     const preserveCaseValue = shouldPreserveCase(wordData.word);
 
@@ -50,7 +50,7 @@ function migrateWordFile(filePath: string): boolean {
     fs.writeFileSync(filePath, JSON.stringify(updatedData, null, 4));
     return true;
   } catch (error) {
-    logger.error('Failed to migrate file', { filePath, error: (error as Error).message });
+    logger.error('Failed to migrate file', { filePath, error: getErrorMessage(error) });
     return false;
   }
 }
@@ -116,6 +116,6 @@ if (args.includes('--help') || args.includes('-h')) {
 
 logger.info('PreserveCase Migration Tool');
 migrateAllWords().catch(async (error: unknown) => {
-  logger.error('Migration tool failed', { error: error instanceof Error ? error.message : String(error) });
+  logger.error('Migration tool failed', { error: getErrorMessage(error) });
   await exit(1);
 });

@@ -45,7 +45,6 @@ export default defineConfig({
     __TIMESTAMP__: JSON.stringify('2000-01-01T00:00:00Z'),
     __SENTRY_ENABLED__: false,
     __SENTRY_DSN__: JSON.stringify(''),
-    __SHOW_EMPTY_STATS__: true,
     __ENVIRONMENT__: JSON.stringify('test'),
     __SITE_TITLE__: JSON.stringify('Test Site'),
     __SITE_DESCRIPTION__: JSON.stringify('Test Description'),

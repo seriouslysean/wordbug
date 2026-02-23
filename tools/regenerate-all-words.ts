@@ -4,7 +4,7 @@ import { getAdapter } from '#adapters';
 import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
 import { getAllWords } from '#tools/utils';
 import type { WordData } from '#types';
-import { exit, logger } from '#utils/logger';
+import { exit, getErrorMessage, logger } from '#utils/logger';
 import { isValidDictionaryData } from '#utils/word-validation';
 
 interface RegenerateOptions {
@@ -54,13 +54,13 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
     fs.writeFileSync(originalPath, JSON.stringify(wordData, null, 4));
     return true;
   } catch (error) {
-    const errorMessage = (error as Error).message;
+    const errorMessage = getErrorMessage(error);
 
     // Check if this is a rate limit error
     const isRateLimit = errorMessage.includes('Rate limit') ||
                        errorMessage.includes('rate limit') ||
                        errorMessage.includes('429') ||
-                       ('status' in error && error.status === 429);
+                       (error instanceof Object && 'status' in error && error.status === 429);
 
     if (isRateLimit && retryCount < maxRetries) {
       // Exponential backoff: 2^retryCount * 30 seconds
@@ -149,7 +149,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
           await new Promise(resolve => setTimeout(resolve, options.timeout));
         }
       } catch (error) {
-        logger.error('Failed to process word', { word: item.word, error: (error as Error).message });
+        logger.error('Failed to process word', { word: item.word, error: getErrorMessage(error) });
         outcomes.push(false);
       }
     }
@@ -164,7 +164,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
     });
 
   } catch (error) {
-    logger.error('Failed to regenerate words', { error: (error as Error).message });
+    logger.error('Failed to regenerate words', { error: getErrorMessage(error) });
     await exit(1);
   }
 }
@@ -258,6 +258,6 @@ const options: RegenerateOptions = {
 
 // Run the regeneration and write build data
 regenerateAllWords(options).catch(async (error: unknown) => {
-  logger.error('Regeneration tool failed', { error: error instanceof Error ? error.message : String(error) });
+  logger.error('Regeneration tool failed', { error: getErrorMessage(error) });
   await exit(1);
 });

@@ -4,6 +4,7 @@ import {
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
   SUFFIX_DEFINITIONS,
+  SUFFIX_ENTRIES,
 } from '#constants/stats';
 import {
   getChronologicalMilestones,
@@ -62,9 +63,9 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
     { slug: STATS_SLUGS.ALL_VOWELS, data: patternStats.allVowels, definition: getDefinition(PATTERN_DEFINITIONS, STATS_SLUGS.ALL_VOWELS), template: TEMPLATE.WORD_LIST },
 
     // Suffix stats
-    ...Object.keys(SUFFIX_DEFINITIONS).map(suffix => ({
-      slug: STATS_SLUGS[`WORDS_ENDING_${suffix.toUpperCase()}` as keyof typeof STATS_SLUGS],
-      data: endings[suffix as keyof typeof endings] || [],
+    ...SUFFIX_ENTRIES.map(([suffix, slug]) => ({
+      slug,
+      data: endings[suffix],
       definition: getDefinition(SUFFIX_DEFINITIONS, suffix),
       template: TEMPLATE.WORD_LIST,
     })),
@@ -142,11 +143,9 @@ export const generateStatsStaticPaths = async () => {
   const { getWordsFromCollection } = await import('#astro-utils/word-data-utils');
   const words = await getWordsFromCollection();
 
-  const showEmptyPages = __SHOW_EMPTY_STATS__;
   const statsConfig = createStatsConfig(words);
 
   const stats = statsConfig
-    .filter(config => showEmptyPages || (config.data?.length > 0))
     .map(config => ({
       params: { stat: config.slug },
       props: {

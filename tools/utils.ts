@@ -8,7 +8,7 @@ import { getAdapter } from '#adapters';
 import { paths } from '#config/paths';
 import type { CreateWordEntryResult, WordData } from '#types';
 import { formatDate, isValidDate } from '#utils/date-utils';
-import { logger } from '#utils/logger';
+import { getErrorMessage, logger } from '#utils/logger';
 import { slugify } from '#utils/text-utils';
 import { isValidDictionaryData } from '#utils/word-validation';
 
@@ -109,22 +109,18 @@ export const getWordFiles = (): WordFileInfo[] => {
       const jsonFiles = fs.readdirSync(yearDir)
         .filter(file => file.endsWith('.json'));
 
-      return jsonFiles.map(file => {
+      return jsonFiles.flatMap(file => {
         try {
           const filePath = path.join(yearDir, file);
           const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-          return {
-            word: data.word,
-            date: file.replace('.json', ''),
-            path: filePath,
-          };
+          return [{ word: data.word, date: file.replace('.json', ''), path: filePath }];
         } catch (error) {
-          logger.error('Failed to read word file', { file, error: (error as Error).message });
-          return null;
+          logger.error('Failed to read word file', { file, error: getErrorMessage(error) });
+          return [];
         }
-      }).filter(Boolean) as WordFileInfo[];
+      });
     } catch (error) {
-      logger.error('Failed to read year directory', { year, error: (error as Error).message });
+      logger.error('Failed to read year directory', { year, error: getErrorMessage(error) });
       return [];
     }
   });
@@ -142,12 +138,12 @@ export function findExistingWord(word: string): WordData | null {
 
   for (const file of files) {
     try {
-      const data = JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData;
+      const data: WordData = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
       if (data.word?.toLowerCase() === lowerWord) {
         return data;
       }
     } catch (error) {
-      logger.warn('Failed to read word file', { path: file.path, error: error instanceof Error ? error.message : String(error) });
+      logger.warn('Failed to read word file', { path: file.path, error: getErrorMessage(error) });
     }
   }
 
@@ -160,9 +156,10 @@ export function findExistingWord(word: string): WordData | null {
 export function getAllWords(): WordData[] {
   return getWordFiles().flatMap(file => {
     try {
-      return [JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData];
+      const data: WordData = JSON.parse(fs.readFileSync(file.path, 'utf-8'));
+      return [data];
     } catch (error) {
-      logger.warn('Failed to parse word file', { path: file.path, error: error instanceof Error ? error.message : String(error) });
+      logger.warn('Failed to parse word file', { path: file.path, error: getErrorMessage(error) });
       return [];
     }
   });

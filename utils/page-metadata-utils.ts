@@ -587,7 +587,7 @@ export function getPageMetadata(path: string, words: WordData[] = []): PageMetad
 
 
   const PAGE_METADATA = createPageMetadata(words);
-  const metadata = PAGE_METADATA[path as keyof typeof PAGE_METADATA];
+  const metadata = PAGE_METADATA[path];
   if (!metadata) {
     return {
       title: 'Unknown Page',
@@ -639,20 +639,12 @@ export function getPageMetadata(path: string, words: WordData[] = []): PageMetad
  * @returns Array of metadata objects
  */
 export function getAllPageMetadata(words: WordData[]) {
-  const showEmptyPages = (globalThis as Record<string, unknown>).__SHOW_EMPTY_STATS__ || false;
   const PAGE_METADATA = createPageMetadata(words);
 
   // Get static pages (excluding root '/')
   const staticPages = Object.keys(PAGE_METADATA)
     .filter(path => path !== '/')
-    .map(path => ({ path, ...getPageMetadata(path, words) }))
-    .filter(page => {
-      // Only filter stats pages for empty results
-      if (!page.path.startsWith('/stats/') || page.path === '/stats' || showEmptyPages) {
-        return true;
-      }
-      return getCountForPath(page.path, words) > 0;
-    });
+    .map(path => ({ path, ...getPageMetadata(path, words) }));
 
   // Get dynamic year pages
   const years = getAvailableYears(words);

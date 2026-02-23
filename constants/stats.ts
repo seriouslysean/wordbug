@@ -42,39 +42,49 @@ export const SUFFIX_DEFINITIONS: Record<SuffixKey, StatsDefinition> = {
     title: '-ed words',
     pageDescription: `Words ending with the suffix '-ed', typically indicating past tense or past participle forms.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that end with the suffix '-ed'.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   ing: {
     title: '-ing words',
     pageDescription: `Words ending with the suffix '-ing', typically indicating present participle or gerund forms.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that end with the suffix '-ing'.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   ly: {
     title: '-ly words',
     pageDescription: `Words ending with the suffix '-ly', typically forming adverbs.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that end with the suffix '-ly'.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   ness: {
     title: '-ness words',
     pageDescription: `Words ending with the suffix '-ness', typically forming abstract nouns expressing a state or quality.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that end with the suffix '-ness'.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   ful: {
     title: '-ful words',
     pageDescription: `Words ending with the suffix '-ful', meaning 'full of' or 'characterized by' a particular quality.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that end with the suffix '-ful'.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   less: {
     title: '-less words',
     pageDescription: `Words ending with the suffix '-less', meaning 'without' or 'lacking' a particular quality.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that end with the suffix '-less'.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
 } as const;
+
+// Typed suffix-to-slug pairs for iteration without dynamic key construction
+export const SUFFIX_ENTRIES: ReadonlyArray<[SuffixKey, StatsSlug]> = [
+  ['ed', STATS_SLUGS.WORDS_ENDING_ED],
+  ['ing', STATS_SLUGS.WORDS_ENDING_ING],
+  ['ly', STATS_SLUGS.WORDS_ENDING_LY],
+  ['ness', STATS_SLUGS.WORDS_ENDING_NESS],
+  ['ful', STATS_SLUGS.WORDS_ENDING_FUL],
+  ['less', STATS_SLUGS.WORDS_ENDING_LESS],
+];
 
 // Letter pattern definitions
 export const LETTER_PATTERN_DEFINITIONS: Record<string, StatsDefinition> = {
@@ -82,31 +92,31 @@ export const LETTER_PATTERN_DEFINITIONS: Record<string, StatsDefinition> = {
     title: 'Alphabetical Order',
     pageDescription: 'Words with three or more consecutive letters in alphabetical order.',
     metaDescription: (count: number) => `${tp('common.words', count)} with consecutive letters in alphabetical order.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.DOUBLE_LETTERS]: {
     title: 'Double Letters',
     pageDescription: 'Words containing double letters (the same letter appearing twice in a row).',
     metaDescription: (count: number) => `${tp('common.words', count)} with repeated letters.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.TRIPLE_LETTERS]: {
     title: 'Triple Letters',
     pageDescription: 'Words containing triple letters (the same letter appearing three or more times in a row).',
     metaDescription: (count: number) => `${tp('common.words', count)} with three or more consecutive identical letters.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.SAME_START_END]: {
     title: 'Same Start/End Letter',
     pageDescription: 'Words that begin and end with the same letter.',
     metaDescription: (count: number) => `${tp('common.words', count)} that start and end with the same letter.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.PALINDROMES]: {
     title: 'palindrome words',
     pageDescription: `Total number of palindromes (words that read the same forwards and backwards) in our collection.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that are palindromes (words that read the same forwards and backwards).`,
-    category: 'stats' as const,
+    category: 'stats',
   },
 } as const;
 
@@ -116,13 +126,13 @@ export const PATTERN_DEFINITIONS: Record<string, StatsDefinition> = {
     title: 'All Consonants',
     pageDescription: `Words made up of only consonants (no vowels).`,
     metaDescription: (count: number) => `${tp('common.words', count)} made up of only consonants (no vowels).`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.ALL_VOWELS]: {
     title: 'All Vowels',
     pageDescription: `Words made up of only vowels (no consonants).`,
     metaDescription: (count: number) => `${tp('common.words', count)} made up of only vowels (no consonants).`,
-    category: 'stats' as const,
+    category: 'stats',
   },
 } as const;
 
@@ -132,31 +142,31 @@ export const DYNAMIC_STATS_DEFINITIONS: Record<string, StatsDefinition> = {
     title: 'Most Common Letter',
     pageDescription: (letter: string) => `Words containing the letter "${letter}" (appears in multiple words).`,
     metaDescription: (count: number, letter: string) => `The most common letter is "${letter}" and has ${tp('common.words', count)}.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.LEAST_COMMON_LETTER]: {
     title: 'Least Common Letter',
     pageDescription: (letter: string) => `Words containing the letter "${letter}" (appears in multiple words).`,
     metaDescription: (count: number, letter: string) => `The least common letter is "${letter}" and has ${tp('common.words', count)}.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.MILESTONE_WORDS]: {
     title: 'Milestone Words',
     pageDescription: () => `Important word milestones from our collection's chronological journey.`,
     metaDescription: (count: number) => `${tp('common.words', count)} that mark major milestones in the collection.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.CURRENT_STREAK]: {
     title: 'Current Streak',
     pageDescription: (streakLength: number) => `Words from the current ${streakLength}-word streak.`,
     metaDescription: (count: number) => `${tp('common.words', count)} from the current word streak.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
   [STATS_SLUGS.LONGEST_STREAK]: {
     title: 'Longest Streak',
     pageDescription: (streakLength: number) => `Words from the longest ${streakLength}-word streak.`,
     metaDescription: (count: number) => `${tp('common.words', count)} from the longest word streak.`,
-    category: 'stats' as const,
+    category: 'stats',
   },
 } as const;
 
@@ -167,10 +177,9 @@ export const DYNAMIC_STATS_DEFINITIONS: Record<string, StatsDefinition> = {
  */
 export function getStatsDefinition(key: string) {
   // Check suffix definitions
-  for (const [suffix, def] of Object.entries(SUFFIX_DEFINITIONS)) {
-    if (key === STATS_SLUGS[`WORDS_ENDING_${suffix.toUpperCase()}` as keyof typeof STATS_SLUGS]) {
-      return def;
-    }
+  const suffixMatch = SUFFIX_ENTRIES.find(([, slug]) => slug === key);
+  if (suffixMatch) {
+    return SUFFIX_DEFINITIONS[suffixMatch[0]];
   }
 
   // Check letter pattern definitions
