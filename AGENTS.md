@@ -25,7 +25,7 @@ npm run tool:local tools/add-word.ts serendipity
 npm run tool:local tools/generate-images.ts --all
 ```
 
-Pre-commit hooks (husky + lint-staged) run `oxlint --fix` and related tests on staged files.
+Pre-commit hooks (lefthook) run `oxlint --fix` and related tests on staged files.
 
 ## Philosophy
 
