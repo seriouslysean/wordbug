@@ -120,7 +120,9 @@ const ctx = rawContext as LogContext;
 
 **Structured logging.** `logger.error('message', { key: value })` — message first, context object second. No log prefixes (log levels handle that). No string concatenation for context.
 
-**`await exit(code)` in CLI tools.** Never bare `process.exit()` in error handlers. The `exit()` helper from `#utils/logger` flushes pending Sentry events first. `process.exit()` kills in-flight async work immediately.
+**`await exit(code)` in CLI tools.** Never bare `process.exit()` in async error handlers. The `exit()` helper from `#utils/logger` flushes pending Sentry events first. `process.exit()` kills in-flight async work immediately. Exception: `process.exit(0)` for `--help` output and module-level validation guards (before any async work starts) are acceptable since there's nothing to flush and TypeScript needs the `never` return for type narrowing.
+
+**Main functions must have error handlers.** Every async main function call in a CLI tool must either be `await`ed inside a try/catch or have a `.catch()` handler that calls `await exit(1)`. Unhandled rejections die silently.
 
 **Throw at boundaries, catch at the top.** Pure functions throw when they can't do their job. CLI entry points catch and log with context. Don't scatter try/catch through business logic.
 

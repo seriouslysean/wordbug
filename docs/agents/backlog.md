@@ -18,9 +18,9 @@ Known gaps and technical debt, organized by area.
 
 ### Error Handling Consistency
 
-- Mixed patterns across codebase (throw, return null, log and continue)
-- No standardized error types
-- Structured logging is in place but error strategies vary
+- CLI tools now use consistent exit patterns (`await exit()` in async handlers, `.catch()` on main calls)
+- Silent catch blocks in tools/utils.ts now log warnings
+- Remaining: no standardized error types, mixed strategies in non-CLI code (throw, return null, log and continue)
 
 ### HTML/SEO
 
