@@ -17,7 +17,7 @@ export function showHelp(helpText: string): void {
  */
 export const COMMON_ENV_DOCS = `
 Common Environment Variables:
-  SOURCE_DIR                 Data source directory (default: demo)
+  SOURCE_DIR                 Data source subdirectory (unset = root paths)
   DICTIONARY_ADAPTER         Dictionary API to use (default: wordnik)
   WORDNIK_API_KEY           API key for Wordnik dictionary
   SITE_TITLE                Site title for generated content

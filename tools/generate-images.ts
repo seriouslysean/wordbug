@@ -28,7 +28,7 @@ Examples:
   npm run tool:generate-images --page stats       # Generate image for stats page
 
 Environment Variables (for GitHub workflows):
-  SOURCE_DIR                 Data source directory (default: demo)
+  SOURCE_DIR                 Data source subdirectory (unset = root paths)
   SITE_TITLE                 Site title for images
   COLOR_PRIMARY             Primary color for gradients
   COLOR_PRIMARY_LIGHT       Light primary color

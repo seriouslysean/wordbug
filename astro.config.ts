@@ -42,7 +42,7 @@ const defaults = {
   SITE_TITLE: 'Occasional Word of the Day',
   SITE_DESCRIPTION: 'A word-of-the-day site featuring interesting vocabulary',
   SITE_ID: 'occasional-wotd',
-  SOURCE_DIR: 'demo',
+  SOURCE_DIR: '',
   WORDNIK_WEBSITE_URL: 'https://www.wordnik.com',
 };
 

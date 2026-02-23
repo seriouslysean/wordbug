@@ -106,7 +106,7 @@ All environment variables are validated in `astro.config.ts` (single source of t
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `SOURCE_DIR` | `demo` | Data source directory |
+| `SOURCE_DIR` | `''` | Data source subdirectory (unset = root paths) |
 | `DICTIONARY_ADAPTER` | `wordnik` | Dictionary API to use |
 | `WORDNIK_API_KEY` | — | Wordnik API key |
 | `WORDNIK_API_URL` | `https://api.wordnik.com/v4` | Wordnik API endpoint |
@@ -144,7 +144,7 @@ All environment variables are validated in `astro.config.ts` (single source of t
 
 ### Storage Format
 
-Each word is a JSON file at `data/{SOURCE_DIR}/words/{year}/{YYYYMMDD}.json`:
+Each word is a JSON file at `data/[{SOURCE_DIR}/]words/{year}/{YYYYMMDD}.json` (the `SOURCE_DIR` segment is included only when set):
 
 ```json
 {
@@ -369,7 +369,7 @@ E2E tests run against the built site via `npm run test:e2e` (requires `npm run b
 - **`seo.spec.ts`** — Build output wiring: meta tags present (description, canonical, OpenGraph, Twitter), JSON-LD parseable, RSS and sitemap discoverable
 - **`accessibility.spec.ts`** — Structural a11y: skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text
 
-E2E always runs in demo mode — no `BASE_PATH`, `SOURCE_DIR=demo`. The CI workflow intentionally skips `setup-env` so production env vars don't break test selectors. All test URLs omit trailing slashes (`trailingSlash: 'never'`).
+E2E always runs in demo mode — the CI workflow skips `setup-env` and explicitly sets `SOURCE_DIR=demo` (no `BASE_PATH`) so production env vars don't break test selectors. All test URLs omit trailing slashes (`trailingSlash: 'never'`).
 
 ### CI Workflows
 
