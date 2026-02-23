@@ -68,7 +68,7 @@ test.describe('accessibility', () => {
   });
 
   test('links are distinguishable and have accessible text', async ({ page }) => {
-    await page.goto('/browse/');
+    await page.goto('/browse');
 
     // Navigation links should have visible text content
     const links = page.locator('main a');

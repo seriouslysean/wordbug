@@ -8,7 +8,7 @@ test.describe('site navigation', () => {
   test('homepage loads and displays current word', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page).toHaveTitle(/Occasional Word of the Day/);
+    await expect(page).toHaveTitle(/Word of the Day/);
 
     // Main content area exists
     const main = page.locator('#main-content');
@@ -30,7 +30,7 @@ test.describe('site navigation', () => {
   });
 
   test('browse page loads and lists navigation options', async ({ page }) => {
-    await page.goto('/browse/');
+    await page.goto('/browse');
 
     await expect(page).toHaveTitle(/Browse/i);
 
@@ -41,14 +41,14 @@ test.describe('site navigation', () => {
   });
 
   test('browse by year page lists available years', async ({ page }) => {
-    await page.goto('/browse/year/');
+    await page.goto('/browse/year');
 
     // Should contain links to individual year pages
     await expect(page.locator('a[href*="/browse/2025"]').first()).toBeVisible();
   });
 
   test('year page lists words for that year', async ({ page }) => {
-    await page.goto('/browse/2025/');
+    await page.goto('/browse/2025');
 
     // Should contain word links
     const wordLinks = page.locator('a[href*="/word/"]');
@@ -57,7 +57,7 @@ test.describe('site navigation', () => {
   });
 
   test('browse by letter page lists available letters', async ({ page }) => {
-    await page.goto('/browse/letter/');
+    await page.goto('/browse/letter');
 
     // Should contain letter links
     const letterLinks = page.locator('a[href*="/browse/letter/"]');
@@ -92,7 +92,7 @@ test.describe('site navigation', () => {
   });
 
   test('clicking a word link navigates to word page', async ({ page }) => {
-    await page.goto('/browse/2025/');
+    await page.goto('/browse/2025');
 
     // Click the first word link
     const firstWordLink = page.locator('a[href*="/word/"]').first();
