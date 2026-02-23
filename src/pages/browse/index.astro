@@ -26,6 +26,41 @@ const sortedLengthEntries = Object.entries(wordsByLength).sort((a, b) => parseIn
 const sortedPartOfSpeechEntries = Object.entries(wordsByPartOfSpeech).sort();
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
+
+const gridSections = [
+  {
+    heading: t('browse.by_year'),
+    href: getWordsYearIndexUrl(),
+    entries: sortedYearEntries,
+    getItemUrl: (key: string) => getWordsYearUrl(key),
+    getItemTitle: (key: string, count: number) => t('common.title_from_context', { count, value: key }),
+    getItemLabel: (key: string) => key,
+  },
+  {
+    heading: t('browse.by_letter'),
+    href: getWordsLetterUrl(),
+    entries: sortedLetterEntries,
+    getItemUrl: (key: string) => getLetterUrl(key),
+    getItemTitle: (key: string, count: number) => t('common.title_starting_with', { count, value: key.toUpperCase() }),
+    getItemLabel: (key: string) => key.toUpperCase(),
+  },
+  {
+    heading: t('browse.by_length'),
+    href: getWordsLengthUrl(),
+    entries: sortedLengthEntries,
+    getItemUrl: (key: string) => getLengthUrl(key),
+    getItemTitle: (key: string, count: number) => t('common.title_with_length', { count, value: key }),
+    getItemLabel: (key: string) => tp('common.letters', key),
+  },
+  {
+    heading: t('browse.by_part_of_speech'),
+    href: getWordsPartOfSpeechUrl(),
+    entries: sortedPartOfSpeechEntries,
+    getItemUrl: (key: string) => getPartOfSpeechUrl(key),
+    getItemTitle: (key: string, count: number) => t('common.title_with_part_of_speech', { count, value: key }),
+    getItemLabel: (key: string) => t(`parts_of_speech.${key}`),
+  },
+];
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
@@ -38,69 +73,23 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
     </section>
   )}
 
-  <section class="browse__section">
-    <SectionHeading text={t('browse.by_year')} href={getWordsYearIndexUrl()} />
-    <div class="browse__grid">
-      {sortedYearEntries.map(([year, words]) => (
-        <SiteLink
-          href={getWordsYearUrl(year)}
-          variant="primary"
-          class="browse__grid-item"
-          title={t('common.title_from_context', { count: words.length, value: year })}
-        >
-          {year}
-        </SiteLink>
-      ))}
-    </div>
-  </section>
-
-  <section class="browse__section">
-    <SectionHeading text={t('browse.by_letter')} href={getWordsLetterUrl()} />
-    <div class="browse__grid">
-      {sortedLetterEntries.map(([letter, words]) => (
-        <SiteLink 
-          href={getLetterUrl(letter)} 
-          variant="primary"
-          class="browse__grid-item"
-          title={t('common.title_starting_with', { count: words.length, value: letter.toUpperCase() })}
-        >
-          {letter.toUpperCase()}
-        </SiteLink>
-      ))}
-    </div>
-  </section>
-
-  <section class="browse__section">
-    <SectionHeading text={t('browse.by_length')} href={getWordsLengthUrl()} />
-    <div class="browse__grid">
-      {sortedLengthEntries.map(([length, words]) => (
-        <SiteLink 
-          href={getLengthUrl(length)} 
-          variant="primary"
-          class="browse__grid-item"
-          title={t('common.title_with_length', { count: words.length, value: length })}
-        >
-          {tp('common.letters', length)}
-        </SiteLink>
-      ))}
-    </div>
-  </section>
-
-  <section class="browse__section">
-    <SectionHeading text={t('browse.by_part_of_speech')} href={getWordsPartOfSpeechUrl()} />
-    <div class="browse__grid">
-      {sortedPartOfSpeechEntries.map(([partOfSpeech, words]) => (
-        <SiteLink 
-          href={getPartOfSpeechUrl(partOfSpeech)} 
-          variant="primary"
-          class="browse__grid-item"
-          title={t('common.title_with_part_of_speech', { count: words.length, value: partOfSpeech })}
-        >
-          {t(`parts_of_speech.${partOfSpeech}`)}
-        </SiteLink>
-      ))}
-    </div>
-  </section>
+  {gridSections.map(({ heading, href, entries, getItemUrl, getItemTitle, getItemLabel }) => (
+    <section class="browse__section">
+      <SectionHeading text={heading} href={href} />
+      <div class="browse__grid">
+        {entries.map(([key, words]) => (
+          <SiteLink
+            href={getItemUrl(key)}
+            variant="primary"
+            class="browse__grid-item"
+            title={getItemTitle(key, words.length)}
+          >
+            {getItemLabel(key)}
+          </SiteLink>
+        ))}
+      </div>
+    </section>
+  ))}
 
   <section class="browse__section">
     <SectionHeading text={t('browse.discovery')} />
