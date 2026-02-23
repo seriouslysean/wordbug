@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint-typecheck-test-build-e2e:
-    name: Lint, Type Check, Test, Build, E2E
+  checks:
+    name: All Checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
