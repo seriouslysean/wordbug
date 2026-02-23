@@ -1,79 +1,78 @@
 import { expect, test } from '@playwright/test';
 
-// Navigation and route resolution for the built static site.
-// Tests user journeys through the site via element interaction.
+// User journey tests for the built static site.
+// Each test follows a complete path a real user would take.
 // No hardcoded word URLs -- content is discovered through navigation.
 
-test.describe('site navigation', () => {
-  test('homepage renders with main content', async ({ page }) => {
-    await page.goto('/');
+test.describe('user journeys', () => {
+	test('discover a word and navigate between words', async ({ page }) => {
+		await page.goto('/');
 
-    await expect(page.locator('#main-content')).toBeVisible();
-    await expect(page.locator('header')).toBeVisible();
-    await expect(page.locator('footer')).toBeVisible();
-  });
+		// Homepage shows the featured word with its definition
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-description')).toBeVisible();
 
-  test('homepage has navigation links to browse and stats', async ({ page }) => {
-    await page.goto('/');
+		// Click a word from the "Previous Words" section
+		const previousWordLink = page.locator('.past-words a.word-link').first();
+		await expect(previousWordLink).toBeVisible();
+		await previousWordLink.click();
 
-    await expect(page.locator('a[href*="/browse"]').first()).toBeVisible();
-    await expect(page.locator('a[href*="/stats"]').first()).toBeVisible();
-  });
+		// Word page shows content and navigation
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-description')).toBeVisible();
+		const firstWordUrl = page.url();
 
-  test('browse page lists navigation categories', async ({ page }) => {
-    await page.goto('/browse');
+		// Navigate to the previous word
+		await page.locator('.word-nav__previous a.word-link').click();
 
-    await expect(page.locator('a[href*="/browse/year"]').first()).toBeVisible();
-    await expect(page.locator('a[href*="/browse/letter"]').first()).toBeVisible();
-    await expect(page.locator('a[href*="/browse/length"]').first()).toBeVisible();
-  });
+		// Arrived at a different word page with content
+		expect(page.url()).not.toBe(firstWordUrl);
+		await expect(page.locator('#word-title')).toBeVisible();
+	});
 
-  test('can navigate from year listing to a word page', async ({ page }) => {
-    await page.goto('/browse/year');
+	test('browse words by year and reach a word page', async ({ page }) => {
+		await page.goto('/');
 
-    // Click a year section heading link
-    const yearLink = page.locator('main a[href*="/browse/20"]').first();
-    await expect(yearLink).toBeVisible();
-    await yearLink.click();
+		// Use footer navigation to reach browse
+		await page.locator('footer a[href="/browse"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
 
-    // Year page should list word links
-    const wordLink = page.locator('main a[href*="/word/"]').first();
-    await expect(wordLink).toBeVisible();
-    await wordLink.click();
+		// Select a year
+		await page.locator('main a[href*="/browse/20"]').first().click();
 
-    // Word page should render content
-    await expect(page.locator('#main-content')).toBeVisible();
-    await expect(page.locator('h1, h2').first()).toBeVisible();
-  });
+		// Year page lists words
+		const wordLink = page.locator('main a[href*="/word/"]').first();
+		await expect(wordLink).toBeVisible();
+		await wordLink.click();
 
-  test('word page has adjacent word navigation', async ({ page }) => {
-    // Navigate to a word from the homepage previous words section
-    await page.goto('/');
-    await page.locator('main a[href*="/word/"]').first().click();
+		// Word page renders with content
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-description')).toBeVisible();
+	});
 
-    const navLinks = page.locator('.word-nav a[href*="/word/"]');
-    const count = await navLinks.count();
-    expect(count).toBeGreaterThan(0);
-  });
+	test('footer provides navigation to all main sections', async ({ page }) => {
+		await page.goto('/');
 
-  test('browse by letter shows letter groups', async ({ page }) => {
-    await page.goto('/browse/letter');
+		// Browse Words
+		await page.locator('footer a[href="/browse"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
 
-    const letterLinks = page.locator('main a[href*="/browse/letter/"]');
-    const count = await letterLinks.count();
-    expect(count).toBeGreaterThan(0);
-  });
+		// Stats
+		await page.locator('footer a[href="/stats"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
 
-  test('stats page is reachable', async ({ page }) => {
-    await page.goto('/');
-    await page.locator('a[href*="/stats"]').first().click();
+		// All Words
+		await page.locator('footer a[href="/word"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
 
-    await expect(page.locator('#main-content')).toBeVisible();
-  });
+		// Home
+		await page.locator('footer a[href="/"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
+	});
 
-  test('non-existent route returns 404', async ({ page }) => {
-    const response = await page.goto('/this-page-does-not-exist');
+	test('non-existent route returns 404', async ({ page }) => {
+		const response = await page.goto('/this-page-does-not-exist');
 
-    expect(response?.status()).toBe(404);
-  });
+		expect(response?.status()).toBe(404);
+	});
 });

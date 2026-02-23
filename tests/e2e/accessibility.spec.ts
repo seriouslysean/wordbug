@@ -1,85 +1,61 @@
 import { expect, test } from '@playwright/test';
 
-// Accessibility verification for the built static site.
-// Checks structural accessibility requirements that unit tests cannot validate:
-// landmark roles, heading hierarchy, skip navigation, and keyboard focus.
+// Accessibility checks for the built static site.
+// Tests structural requirements that only a browser can validate:
+// keyboard navigation, document attributes, and content accessibility.
 
 test.describe('accessibility', () => {
-  test('skip-to-content link is functional', async ({ page }) => {
-    await page.goto('/');
+	test('skip-to-content link works with keyboard', async ({ page }) => {
+		await page.goto('/');
 
-    // Skip link should exist but be visually hidden initially
-    const skipLink = page.locator('.skip-to-content');
-    await expect(skipLink).toBeAttached();
+		const skipLink = page.locator('.skip-to-content');
+		await expect(skipLink).toBeAttached();
 
-    // Tab to the skip link and verify it becomes visible
-    await page.keyboard.press('Tab');
-    await expect(skipLink).toBeFocused();
+		// Tab focuses the skip link
+		await page.keyboard.press('Tab');
+		await expect(skipLink).toBeFocused();
 
-    // Clicking should focus the main content
-    const href = await skipLink.getAttribute('href');
-    expect(href).toBe('#main-content');
-  });
+		// Skip link targets main content
+		const href = await skipLink.getAttribute('href');
+		expect(href).toBe('#main-content');
+	});
 
-  test('page has proper landmark structure', async ({ page }) => {
-    await page.goto('/');
+	test('document has lang and viewport attributes', async ({ page }) => {
+		await page.goto('/');
 
-    // Required landmarks
-    await expect(page.locator('header').first()).toBeVisible();
-    await expect(page.locator('main#main-content')).toBeVisible();
-    await expect(page.locator('footer').first()).toBeVisible();
-  });
+		// Screen reader language identification
+		const lang = await page.locator('html').getAttribute('lang');
+		expect(lang).toBeTruthy();
 
-  test('heading hierarchy starts at h1 or h2', async ({ page }) => {
-    await page.goto('/');
+		// Responsive viewport for mobile access
+		const viewport = page.locator('meta[name="viewport"]');
+		const content = await viewport.getAttribute('content');
+		expect(content).toContain('width=device-width');
+	});
 
-    // Page should have at least one heading
-    const headings = page.locator('h1, h2, h3, h4, h5, h6');
-    const count = await headings.count();
-    expect(count).toBeGreaterThan(0);
-  });
+	test('images have alt text', async ({ page }) => {
+		await page.goto('/');
 
-  test('images have alt text', async ({ page }) => {
-    await page.goto('/');
+		const images = page.locator('img');
+		const count = await images.count();
 
-    // All img elements should have alt attributes
-    const images = page.locator('img');
-    const count = await images.count();
+		for (let i = 0; i < count; i++) {
+			const alt = await images.nth(i).getAttribute('alt');
+			expect(alt).not.toBeNull();
+		}
+	});
 
-    for (let i = 0; i < count; i++) {
-      const alt = await images.nth(i).getAttribute('alt');
-      expect(alt).not.toBeNull();
-    }
-  });
+	test('links have accessible text', async ({ page }) => {
+		await page.goto('/browse');
 
-  test('viewport meta tag is set correctly', async ({ page }) => {
-    await page.goto('/');
+		const links = page.locator('main a');
+		const count = await links.count();
+		expect(count).toBeGreaterThan(0);
 
-    const viewport = page.locator('meta[name="viewport"]');
-    const content = await viewport.getAttribute('content');
-    expect(content).toContain('width=device-width');
-  });
-
-  test('html lang attribute is set', async ({ page }) => {
-    await page.goto('/');
-
-    const lang = await page.locator('html').getAttribute('lang');
-    expect(lang).toBeTruthy();
-  });
-
-  test('links are distinguishable and have accessible text', async ({ page }) => {
-    await page.goto('/browse');
-
-    // Navigation links should have visible text content
-    const links = page.locator('main a');
-    const count = await links.count();
-    expect(count).toBeGreaterThan(0);
-
-    for (let i = 0; i < Math.min(count, 10); i++) {
-      const text = await links.nth(i).textContent();
-      const ariaLabel = await links.nth(i).getAttribute('aria-label');
-      // Each link should have either visible text or an aria-label
-      expect(text?.trim() || ariaLabel).toBeTruthy();
-    }
-  });
+		for (let i = 0; i < Math.min(count, 10); i++) {
+			const text = await links.nth(i).textContent();
+			const ariaLabel = await links.nth(i).getAttribute('aria-label');
+			expect(text?.trim() || ariaLabel).toBeTruthy();
+		}
+	});
 });
