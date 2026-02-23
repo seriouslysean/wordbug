@@ -4,8 +4,6 @@ import { getWordFiles } from '#tools/utils';
 import type { WordData } from '#types';
 import { exit, getErrorMessage, logger } from '#utils/logger';
 
-const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
-
 /**
  * Determines whether a word should preserve its original casing.
  * Currently we preserve words containing any uppercase characters.
@@ -59,7 +57,7 @@ function migrateWordFile(filePath: string): boolean {
  * Main migration function
  */
 async function migrateAllWords(): Promise<void> {
-  logger.info('Starting preserveCase field migration', { sourceDir: SOURCE_DIR });
+  logger.info('Starting preserveCase field migration', { sourceDir: process.env.SOURCE_DIR || '(root)' });
 
   const files = getWordFiles();
 

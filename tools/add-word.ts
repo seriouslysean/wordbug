@@ -144,7 +144,7 @@ Examples:
 Environment Variables (for GitHub workflows):
   DICTIONARY_ADAPTER         Dictionary API to use (required)
   WORDNIK_API_KEY           API key for dictionary access (required)
-  SOURCE_DIR                Data source directory (default: demo)
+  SOURCE_DIR                Data source subdirectory (unset = root paths)
 
 Requirements:
   - Word must exist in dictionary

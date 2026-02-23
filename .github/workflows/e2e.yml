@@ -29,6 +29,8 @@ jobs:
         run: npm ci
 
       - run: npm run build
+        env:
+          SOURCE_DIR: demo
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
