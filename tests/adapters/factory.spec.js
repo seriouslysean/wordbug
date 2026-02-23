@@ -61,7 +61,7 @@ describe('adapter factory', () => {
         debug: vi.fn(),
       }));
 
-      vi.mock('#astro-utils/logger', () => ({
+      vi.mock('#utils/logger', () => ({
         logger: mockLogger,
       }));
 
