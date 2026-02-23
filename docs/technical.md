@@ -313,6 +313,37 @@ Definitions live in `constants/stats.ts`. Computation functions in `utils/word-s
 
 Tests are organized by what they validate, with no overlap between layers. Each function is tested at exactly one layer. Unit tests validate logic. E2E tests validate the built output. This avoids duplication while ensuring comprehensive coverage.
 
+### Layer Boundaries
+
+The key question for each test: what is the minimum layer that can verify this?
+
+**Belongs at E2E** (requires built site in a real browser):
+
+| What | Why |
+|------|-----|
+| Navigation flows (click link, page loads) | Route resolution only works against built output |
+| 404 handling | HTTP status codes require a running server |
+| Meta tags exist in rendered HTML | Verifies build pipeline assembled components correctly |
+| JSON-LD parses as valid JSON | Script tags must survive the build |
+| RSS feed and sitemap return HTTP 200 | HTTP-level concerns |
+| Skip-to-content keyboard flow | Real focus management in a real browser |
+| Image alt text in rendered pages | Build-time content processing output |
+| Link accessible text | Assembled page structure |
+
+**Does NOT belong at E2E** (tested at lower layers):
+
+| What | Better layer | Why |
+|------|-------------|-----|
+| URL generation logic | Unit | Pure function, no browser needed |
+| Meta tag content values | Component | Input/output of a single component |
+| JSON-LD structure and content | Component | Data structure validation |
+| Schema.org field correctness | Component | Schema-utils produces the data |
+| Word filtering/sorting | Unit | Pure function |
+| Import boundary enforcement | Architecture | Static analysis |
+| Statistics calculations | Unit | Pure function |
+
+E2E tests follow user journeys: each test starts at an entry point, discovers content through navigation, and asserts on element presence. No hardcoded word URLs. No content-value assertions that duplicate component tests.
+
 ### Layers
 
 | Layer | Location | Tool | Speed | Purpose |
@@ -329,7 +360,13 @@ Vitest thresholds: lines 80%, functions 80%, branches 85%, statements 80%.
 
 Excluded from Vitest coverage: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
 
-E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). They validate rendered HTML output, route resolution, meta tags, and accessibility structure. E2E always runs in demo mode — no `BASE_PATH`, `SOURCE_DIR=demo`. The CI workflow intentionally skips `setup-env` so production env vars don't break test selectors. All test URLs omit trailing slashes (`trailingSlash: 'never'`).
+E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). They verify build assembly — that the pipeline correctly assembled components into working pages — not logic (which unit and component tests cover). Three spec files organized by concern:
+
+- **`navigation.spec.ts`** — User journeys: discover a word and navigate between words, browse by year, footer section links, 404 handling
+- **`seo.spec.ts`** — Build output wiring: meta tags present (description, canonical, OpenGraph, Twitter), JSON-LD parseable, RSS and sitemap discoverable
+- **`accessibility.spec.ts`** — Structural a11y: skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text
+
+E2E always runs in demo mode — no `BASE_PATH`, `SOURCE_DIR=demo`. The CI workflow intentionally skips `setup-env` so production env vars don't break test selectors. All test URLs omit trailing slashes (`trailingSlash: 'never'`).
 
 ### CI Workflows
 

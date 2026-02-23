@@ -145,6 +145,8 @@ Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs
 
 **No overlapping tests.** Each function is tested at exactly one layer. Unit tests validate logic. E2E tests validate the built output (rendered HTML, route resolution, meta tags). Don't duplicate unit-level assertions in E2E tests or vice versa.
 
+**E2E tests verify build assembly, not logic.** The E2E layer catches problems that only exist in the assembled HTML served in a real browser: link clicks resolve to real pages, meta tags survive the build pipeline, JSON-LD script tags parse as valid JSON, keyboard focus management works, feeds and sitemaps return HTTP 200. If a check can run without a browser — URL generation, schema content, meta tag values — it belongs at the unit or component layer. E2E asserts on element presence and navigability, not content correctness.
+
 **E2E tests run in demo mode.** The E2E CI workflow skips `setup-env` and builds with Astro defaults (`SOURCE_DIR=demo`, no `BASE_PATH`). Production builds use `BASE_PATH` for GitHub Pages subdirectory hosting, but E2E validates site functionality at root. All test URLs must omit trailing slashes (`trailingSlash: 'never'`). Test elements and user journeys, not strings — discover content through navigation instead of hardcoding word URLs.
 
 **Validate E2E assertions against built HTML.** Before pushing E2E changes, build the site (`npm run build`) and verify selectors match the actual `dist/` output. Check element classes, href patterns, and page structure. A passing typecheck does not catch selector mismatches — only the built HTML reveals the truth.

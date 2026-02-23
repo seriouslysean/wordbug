@@ -37,7 +37,7 @@ npm test
 
 **What passing looks like:** All test files pass, coverage thresholds met:
 - Lines: 80%
-- Functions: 75%
+- Functions: 80%
 - Branches: 85%
 - Statements: 80%
 
@@ -70,9 +70,9 @@ npm run test:e2e
 **What passing looks like:** All Playwright tests pass across navigation, SEO, and accessibility specs.
 
 E2E tests validate the built site as a user would experience it:
-- **Navigation** (`navigation.spec.ts`) — user journeys through browse, year, letter, word pages; route resolution; 404 handling
-- **SEO** (`seo.spec.ts`) — meta tags, OpenGraph, Twitter cards, JSON-LD, RSS, sitemap present in rendered HTML
-- **Accessibility** (`accessibility.spec.ts`) — skip-to-content, landmarks, heading hierarchy, alt text, keyboard navigation
+- **Navigation** (`navigation.spec.ts`) — user journeys: discover and navigate between words, browse by year, footer section links; 404 handling
+- **SEO** (`seo.spec.ts`) — meta tags present in rendered HTML (description, canonical, OpenGraph, Twitter), JSON-LD parseable, RSS and sitemap discoverable
+- **Accessibility** (`accessibility.spec.ts`) — skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text
 
 **Design principles:**
 - Test elements and interactions, not strings. No hardcoded word URLs — discover content through navigation
