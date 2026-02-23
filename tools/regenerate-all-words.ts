@@ -115,7 +115,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
       logger.info('CONFIRMATION REQUIRED', { wordCount: wordsToRegenerate.length });
       logger.info('This will overwrite existing word files.');
       logger.info('Add --force flag to proceed without confirmation, or --dry-run to preview.');
-      process.exit(0);
+      await exit(0);
     }
 
     logger.info('Configuration', {
@@ -257,4 +257,7 @@ const options: RegenerateOptions = {
 };
 
 // Run the regeneration and write build data
-regenerateAllWords(options);
+regenerateAllWords(options).catch(async (error) => {
+  logger.error('Regeneration tool failed', { error: (error as Error).message });
+  await exit(1);
+});

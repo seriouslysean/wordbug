@@ -2,7 +2,7 @@ import fs from 'fs';
 import { showHelp } from '#tools/help-utils';
 import { getWordFiles } from '#tools/utils';
 import type { WordData } from '#types';
-import { logger } from '#utils/logger';
+import { exit, logger } from '#utils/logger';
 
 const SOURCE_DIR = process.env.SOURCE_DIR || 'demo';
 
@@ -115,4 +115,7 @@ if (args.includes('--help') || args.includes('-h')) {
 }
 
 logger.info('PreserveCase Migration Tool');
-migrateAllWords();
+migrateAllWords().catch(async (error) => {
+  logger.error('Migration tool failed', { error: (error as Error).message });
+  await exit(1);
+});

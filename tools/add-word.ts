@@ -62,12 +62,12 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
     // Validate inputs
     if (!word) {
       logger.error('Word is required', { providedInput: input });
-      process.exit(1);
+      await exit(1);
     }
 
     if (date && !isValidDate(date)) {
       logger.error('Invalid date format', { providedDate: date, expectedFormat: 'YYYYMMDD' });
-      process.exit(1);
+      await exit(1);
     }
 
     // If no date provided, use today (local timezone)
@@ -79,7 +79,7 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
         requestedDate: targetDate,
         currentDate: getTodayYYYYMMDD(),
       });
-      process.exit(1);
+      await exit(1);
     }
 
     // Check if file already exists for the target date
@@ -89,7 +89,7 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
         date: existing.date,
         existingWord: existing.word,
       });
-      process.exit(1);
+      await exit(1);
     }
 
     // Check if word already exists anywhere else in the system (always enforce global uniqueness)
@@ -100,7 +100,7 @@ async function addWord(input: string, options: AddWordOptions = {}): Promise<voi
         existingDate: existingWordByName.date,
         requestedDate: targetDate,
       });
-      process.exit(1);
+      await exit(1);
     }
 
     // Use shared word creation logic
@@ -184,4 +184,7 @@ addWord(word, {
   date,
   overwrite: values.overwrite,
   preserveCase: values['preserve-case'],
+}).catch(async (error) => {
+  logger.error('Add word tool failed', { error: (error as Error).message });
+  await exit(1);
 });
