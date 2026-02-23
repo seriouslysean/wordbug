@@ -115,7 +115,7 @@ if (args.includes('--help') || args.includes('-h')) {
 }
 
 logger.info('PreserveCase Migration Tool');
-migrateAllWords().catch(async (error) => {
-  logger.error('Migration tool failed', { error: (error as Error).message });
+migrateAllWords().catch(async (error: unknown) => {
+  logger.error('Migration tool failed', { error: error instanceof Error ? error.message : String(error) });
   await exit(1);
 });

@@ -184,7 +184,7 @@ addWord(word, {
   date,
   overwrite: values.overwrite,
   preserveCase: values['preserve-case'],
-}).catch(async (error) => {
-  logger.error('Add word tool failed', { error: (error as Error).message });
+}).catch(async (error: unknown) => {
+  logger.error('Add word tool failed', { error: error instanceof Error ? error.message : String(error) });
   await exit(1);
 });

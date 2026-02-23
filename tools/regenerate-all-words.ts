@@ -257,7 +257,7 @@ const options: RegenerateOptions = {
 };
 
 // Run the regeneration and write build data
-regenerateAllWords(options).catch(async (error) => {
-  logger.error('Regeneration tool failed', { error: (error as Error).message });
+regenerateAllWords(options).catch(async (error: unknown) => {
+  logger.error('Regeneration tool failed', { error: error instanceof Error ? error.message : String(error) });
   await exit(1);
 });

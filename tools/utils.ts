@@ -147,7 +147,7 @@ export function findExistingWord(word: string): WordData | null {
         return data;
       }
     } catch (error) {
-      logger.warn('Failed to read word file', { path: file.path, error: (error as Error).message });
+      logger.warn('Failed to read word file', { path: file.path, error: error instanceof Error ? error.message : String(error) });
     }
   }
 
@@ -162,7 +162,7 @@ export function getAllWords(): WordData[] {
     try {
       return [JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData];
     } catch (error) {
-      logger.warn('Failed to parse word file', { path: file.path, error: (error as Error).message });
+      logger.warn('Failed to parse word file', { path: file.path, error: error instanceof Error ? error.message : String(error) });
       return [];
     }
   });

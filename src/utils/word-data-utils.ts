@@ -361,12 +361,12 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
  */
 export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]> => {
   const alphabeticWords = words.filter(word => /^[a-z]/i.test(word.word));
-  const groups = Object.groupBy(alphabeticWords, word => word.word.charAt(0).toLowerCase()) as Record<string, WordData[]>;
+  const groups = Object.groupBy(alphabeticWords, word => word.word.charAt(0).toLowerCase());
 
   return Object.fromEntries(
     Object.entries(groups)
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([letter, letterWords]) => [letter, letterWords.sort((a, b) => a.word.localeCompare(b.word))])
+      .map(([letter, letterWords]) => [letter, (letterWords ?? []).sort((a, b) => a.word.localeCompare(b.word))])
   );
 };
 
