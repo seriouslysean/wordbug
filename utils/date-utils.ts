@@ -106,7 +106,7 @@ export const getMonthSlugFromDate = (dateStr: string): string => {
  * Converts month slug back to month number (1-12)
  */
 export const monthSlugToNumber = (monthSlug: string): number | null => {
-  const index = MONTH_NAMES.indexOf(monthSlug.toLowerCase() as typeof MONTH_NAMES[number]);
+  const index = MONTH_NAMES.findIndex(name => name === monthSlug.toLowerCase());
   return index >= 0 ? index + 1 : null;
 };
 

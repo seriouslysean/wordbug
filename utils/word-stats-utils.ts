@@ -71,11 +71,8 @@ export const getWordEndingStats = (words: WordData[]): WordEndingStatsResult => 
   };
 
   for (const wordObj of words) {
-    const matchedEndings = getWordEndings(wordObj.word);
-    for (const ending of matchedEndings) {
-      if (ending in endings) {
-        endings[ending as keyof typeof endings].push(wordObj);
-      }
+    for (const ending of getWordEndings(wordObj.word)) {
+      endings[ending].push(wordObj);
     }
   }
 

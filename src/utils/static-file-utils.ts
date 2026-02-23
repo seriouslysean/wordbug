@@ -32,7 +32,7 @@ export function getAsciiArt(): string | null {
   const filesToTry = [
     siteId ? `ascii-${siteId}.txt` : null,
     'ascii.txt',
-  ].filter(Boolean) as string[];
+  ].flatMap(f => f ? [f] : []);
 
   for (const filename of filesToTry) {
     try {

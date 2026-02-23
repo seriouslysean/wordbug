@@ -3,7 +3,6 @@ import { decodeHTML } from 'entities';
 import type {
   DictionaryAdapter,
   DictionaryResponse,
-  FetchOptions,
   WordData,
   WordProcessedData,
   WordnikConfig,
@@ -66,7 +65,7 @@ export const wordnikAdapter: DictionaryAdapter = {
     if (!apiKey) {
       throw new Error('Wordnik API key is required');
     }
-    const limit = (options as FetchOptions).limit || WORDNIK_CONFIG.DEFAULT_LIMIT;
+    const limit = typeof options.limit === 'number' ? options.limit : WORDNIK_CONFIG.DEFAULT_LIMIT;
     const baseUrl = WORDNIK_CONFIG.BASE_URL;
     if (!baseUrl) {
       throw new Error('WORDNIK_API_URL environment variable is required');

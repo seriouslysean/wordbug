@@ -48,6 +48,12 @@ export const flush = (): Promise<boolean> =>
  * Flushes pending Sentry events and terminates the process. Use this instead
  * of bare process.exit() in error handlers to avoid losing captured errors.
  */
+/**
+ * Extracts a message string from an unknown thrown value.
+ */
+export const getErrorMessage = (error: unknown): string =>
+  error instanceof Error ? error.message : String(error);
+
 export const exit = async (code: number): Promise<never> => {
   await flush();
   process.exit(code);

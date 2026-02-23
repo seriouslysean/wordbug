@@ -25,7 +25,7 @@ npm run tool:local tools/add-word.ts serendipity
 npm run tool:local tools/generate-images.ts --all
 ```
 
-Pre-commit hooks (husky + lint-staged) run `oxlint --fix` and related tests on staged files.
+Pre-commit hooks (lefthook) run `oxlint --fix` and related tests on staged files.
 
 ## Philosophy
 
@@ -120,7 +120,9 @@ const ctx = rawContext as LogContext;
 
 **Structured logging.** `logger.error('message', { key: value })` — message first, context object second. No log prefixes (log levels handle that). No string concatenation for context.
 
-**`await exit(code)` in CLI tools.** Never bare `process.exit()` in error handlers. The `exit()` helper from `#utils/logger` flushes pending Sentry events first. `process.exit()` kills in-flight async work immediately.
+**`await exit(code)` in CLI tools.** Never bare `process.exit()` in async error handlers. The `exit()` helper from `#utils/logger` flushes pending Sentry events first. `process.exit()` kills in-flight async work immediately. Exception: `process.exit(0)` for `--help` output and module-level validation guards (before any async work starts) are acceptable since there's nothing to flush and TypeScript needs the `never` return for type narrowing.
+
+**Main functions must have error handlers.** Every async main function call in a CLI tool must either be `await`ed inside a try/catch or have a `.catch()` handler that calls `await exit(1)`. Unhandled rejections die silently.
 
 **Throw at boundaries, catch at the top.** Pure functions throw when they can't do their job. CLI entry points catch and log with context. Don't scatter try/catch through business logic.
 
@@ -150,6 +152,8 @@ Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs
 **E2E tests run in demo mode.** The E2E CI workflow skips `setup-env` and builds with Astro defaults (`SOURCE_DIR=demo`, no `BASE_PATH`). Production builds use `BASE_PATH` for GitHub Pages subdirectory hosting, but E2E validates site functionality at root. All test URLs must omit trailing slashes (`trailingSlash: 'never'`). Test elements and user journeys, not strings — discover content through navigation instead of hardcoding word URLs.
 
 **Validate E2E assertions against built HTML.** Before pushing E2E changes, build the site (`npm run build`) and verify selectors match the actual `dist/` output. Check element classes, href patterns, and page structure. A passing typecheck does not catch selector mismatches — only the built HTML reveals the truth.
+
+**Real data over feature flags.** When a test or page needs data to exercise a code path, add demo words that produce it — don't add flags to skip the empty case. Every page the site can build should always be built. If stats pages render with zero results, that's a signal to expand the demo dataset, not to hide the page behind a flag. Feature flags for test convenience create parallel code paths that diverge from production and obscure coverage gaps.
 
 Test data lives close to use: global fixtures in `tests/setup.js`, per-file data at describe-block scope, shared helpers (used in 3+ files) in `tests/helpers/` via `#tests/*`.
 

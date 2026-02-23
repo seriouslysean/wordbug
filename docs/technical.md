@@ -126,7 +126,6 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | `SENTRY_DSN` | — | Sentry data source name |
 | `GA_ENABLED` | `false` | Google Analytics |
 | `GA_MEASUREMENT_ID` | — | GA measurement ID |
-| `SHOW_EMPTY_STATS` | `true` | Generate empty stats pages (dev convenience) |
 
 ### Theming
 
@@ -298,7 +297,7 @@ All statistics computed at build time from `allWords`:
 - **Streaks**: Current and longest consecutive word streaks
 - **Milestones**: 1st, 25th, 50th, 100th words, etc.
 
-Definitions live in `constants/stats.ts`. Computation functions in `utils/word-stats-utils.ts` (pure) and `src/utils/word-stats-utils.ts` (Astro wrapper). Empty stat pages are only generated when `__SHOW_EMPTY_STATS__` is enabled.
+Definitions live in `constants/stats.ts`. Computation functions in `utils/word-stats-utils.ts` (pure) and `src/utils/word-stats-utils.ts` (Astro wrapper). All stat pages are always generated — if a stat has zero results, the page renders with a zero count. Demo word coverage should be expanded if stats pages need test data rather than adding feature flags to skip pages.
 
 ## Image Generation
 

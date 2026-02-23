@@ -77,7 +77,7 @@ export interface RateLimit {
 export interface DictionaryDefinition extends SourceMeta {
   id?: string;
   partOfSpeech?: string;
-  text?: string;
+  text?: string | string[];
   examples?: string[];
   synonyms?: string[];
   antonyms?: string[];

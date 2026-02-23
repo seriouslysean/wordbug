@@ -3,7 +3,7 @@ import { parseArgs } from 'node:util';
 import { showHelp } from '#tools/help-utils';
 import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '#tools/utils';
 import { getAllPageMetadata } from '#utils/page-metadata-utils';
-import { exit, logger } from '#utils/logger';
+import { exit, getErrorMessage, logger } from '#utils/logger';
 
 const HELP_TEXT = `
 Generate Images Tool
@@ -102,7 +102,7 @@ async function generateSingleImage(word: string, force: boolean): Promise<boolea
     }
     return true;
   } catch (error) {
-    logger.error('Failed to generate image for word', { word, error: (error as Error).message });
+    logger.error('Failed to generate image for word', { word, error: getErrorMessage(error) });
     return false;
   }
 }
@@ -128,7 +128,7 @@ async function generatePageImage(pagePath: string, force: boolean): Promise<bool
     }
     return true;
   } catch (error) {
-    logger.error('Failed to generate page image', { pagePath, error: (error as Error).message });
+    logger.error('Failed to generate page image', { pagePath, error: getErrorMessage(error) });
     return false;
   }
 }
@@ -192,6 +192,6 @@ async function main(): Promise<void> {
 }
 
 main().catch(async (error) => {
-  logger.error('Tool execution failed', { error: (error as Error).message });
+  logger.error('Tool execution failed', { error: getErrorMessage(error) });
   await exit(1);
 });

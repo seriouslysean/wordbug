@@ -45,10 +45,11 @@ export async function getWordsFromCollection(): Promise<WordData[]> {
   return words
     .map(entry => {
       const extractedDate = entry.id.includes('/') ? entry.id.split('/').pop() : entry.id;
-      return {
+      const wordData: WordData = {
         ...entry.data,
         date: extractedDate || entry.data.date,
-      } as WordData;
+      };
+      return wordData;
     })
     .sort((a, b) => b.date.localeCompare(a.date));
 }
@@ -85,7 +86,7 @@ async function getAllWords(): Promise<WordData[]> {
       wordCache.value = await getWordsFromCollection();
       logger.info('Loaded words successfully', { count: wordCache.value.length });
     } catch (error) {
-      logger.error('Failed to load words', { error: (error as Error).message });
+      logger.error('Failed to load words', { error: error instanceof Error ? error.message : String(error) });
       wordCache.value = [];
     }
   }
@@ -294,10 +295,13 @@ export const getWordsByMonth = (
  * @returns {Object} Object with month slugs as keys and word arrays as values
  */
 export const groupWordsByMonth = (year: string, words: WordData[] = allWords): { [monthSlug: string]: WordData[] } => {
-  return Object.groupBy(
+  const groups = Object.groupBy(
     words.filter(word => word.date.startsWith(year)),
     word => getMonthSlugFromDate(word.date),
-  ) as { [monthSlug: string]: WordData[] };
+  );
+  return Object.fromEntries(
+    Object.entries(groups).map(([key, value]) => [key, value ?? []]),
+  );
 };
 
 /**
@@ -322,7 +326,10 @@ export const generateWordDataHash = (words: string[]): string => {
  * @returns {WordGroupByYearResult} Object with years as keys and word arrays as values
  */
 export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
-  return Object.groupBy(words, word => word.date.substring(0, 4)) as WordGroupByYearResult;
+  const groups = Object.groupBy(words, word => word.date.substring(0, 4));
+  return Object.fromEntries(
+    Object.entries(groups).map(([key, value]) => [key, value ?? []]),
+  );
 };
 
 
@@ -335,10 +342,12 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
  * @returns {WordGroupByLengthResult} Object with lengths as keys and word arrays as values, sorted by length
  */
 export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult => {
-  const groups = Object.groupBy(words, word => word.word.length) as WordGroupByLengthResult;
+  const groups = Object.groupBy(words, word => word.word.length);
 
   return Object.fromEntries(
-    Object.entries(groups).sort(([a], [b]) => Number(a) - Number(b)),
+    Object.entries(groups)
+      .sort(([a], [b]) => Number(a) - Number(b))
+      .map(([key, value]) => [key, value ?? []]),
   );
 };
 
@@ -360,23 +369,13 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
  * @returns {Record<string, WordData[]>} Object with letter keys and word arrays
  */
 export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]> => {
-  const groups = words.reduce<Record<string, WordData[]>>((acc, word) => {
-    const firstLetter = word.word.charAt(0).toLowerCase();
-    
-    // Only group a-z letters
-    if (firstLetter.match(/[a-z]/)) {
-      acc[firstLetter] = acc[firstLetter] || [];
-      acc[firstLetter].push(word);
-    }
-    
-    return acc;
-  }, {});
+  const alphabeticWords = words.filter(word => /^[a-z]/i.test(word.word));
+  const groups = Object.groupBy(alphabeticWords, word => word.word.charAt(0).toLowerCase());
 
-  // Sort letters alphabetically and sort words within each letter by word name
   return Object.fromEntries(
     Object.entries(groups)
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([letter, words]) => [letter, words.sort((a, b) => a.word.localeCompare(b.word))])
+      .map(([letter, letterWords]) => [letter, (letterWords ?? []).sort((a, b) => a.word.localeCompare(b.word))])
   );
 };
 

@@ -123,7 +123,6 @@ export default defineConfig({
       __ENVIRONMENT__: JSON.stringify(process.env.NODE_ENV),
       __GA_MEASUREMENT_ID__: JSON.stringify(process.env.GA_MEASUREMENT_ID),
       __GA_ENABLED__: process.env.GA_ENABLED === 'true',
-      __SHOW_EMPTY_STATS__: process.env.SHOW_EMPTY_STATS === 'true',
       __SOURCE_DIR__: JSON.stringify(process.env.SOURCE_DIR || ''),
       __WORD_DATA_PATH__: JSON.stringify(
         process.env.SOURCE_DIR
