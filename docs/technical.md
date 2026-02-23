@@ -329,7 +329,21 @@ Vitest thresholds: lines 80%, functions 80%, branches 85%, statements 80%.
 
 Excluded from Vitest coverage: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
 
-E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). They validate rendered HTML output, route resolution, meta tags, and accessibility structure.
+E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). They validate rendered HTML output, route resolution, meta tags, and accessibility structure. E2E always runs in demo mode — no `BASE_PATH`, `SOURCE_DIR=demo`. The CI workflow intentionally skips `setup-env` so production env vars don't break test selectors. All test URLs omit trailing slashes (`trailingSlash: 'never'`).
+
+### CI Workflows
+
+Five separate workflow files, one per quality gate. Each reports an individual check status for branch protection:
+
+| Workflow | File | Check Name |
+|----------|------|------------|
+| Lint | `.github/workflows/lint.yml` | `Lint / lint` |
+| Typecheck | `.github/workflows/typecheck.yml` | `Typecheck / typecheck` |
+| Test | `.github/workflows/test.yml` | `Test / test` |
+| Build | `.github/workflows/build.yml` | `Build / build` |
+| E2E | `.github/workflows/e2e.yml` | `E2E / e2e` |
+
+All five trigger on PR to main and push to main. Lint, Typecheck, Test, and Build run in parallel. E2E builds with demo defaults (no `setup-env`) then runs Playwright.
 
 ### Key Regression Test
 
