@@ -24,11 +24,12 @@ src/
   styles/                        # CSS files
   assets/                        # Static assets
 
-utils/                           # Pure Node.js utilities (11 files)
+utils/                           # Pure Node.js utilities (12 files)
   breadcrumb-utils.ts            # Breadcrumb navigation logic
   date-utils.ts                  # Date manipulation (YYYYMMDD format)
   i18n-utils.ts                  # Translation helpers (t(), tp())
-  logger.ts                      # CLI logger with Sentry (@sentry/node)
+  logger-core.ts                 # Logger factory (SentryBridge + output filter)
+  logger.ts                      # CLI logger wrapper (@sentry/node)
   page-metadata-utils.ts         # Page title/description generation
   text-pattern-utils.ts          # Pattern detection (palindromes, double letters, etc.)
   text-utils.ts                  # slugify(), syllable counting, re-exports
@@ -255,37 +256,40 @@ Two-tier system supporting root and subdirectory deployments:
 
 ## Sentry Integration
 
-Three-layer setup with separate configs per runtime:
+### Sentry SDKs
 
-### Browser (`sentry.client.config.js`)
+Three Sentry contexts, each with its own SDK:
 
-`@sentry/astro` SDK with full tracing and error-only session replays. Filters browser extension noise via `ignoreErrors` and `denyUrls`.
+| Context | SDK | Config | Purpose |
+|---------|-----|--------|---------|
+| Browser | `@sentry/astro` | `sentry.client.config.js` | Tracing, error-only session replays |
+| Server | `@sentry/astro` | `sentry.server.config.js` | Tracing disabled (static site) |
+| CLI | `@sentry/node` | Lazy init in `utils/logger.ts` | Only initializes on first error |
 
-### Server (`sentry.server.config.js`)
+### Logger Architecture
 
-`@sentry/astro` SDK with tracing disabled (static site, no server-side requests to trace).
+All loggers share a factory in `utils/logger-core.ts` that creates a `Proxy` over `console`. The factory accepts a `SentryBridge` interface and an optional output filter. Each environment provides its own bridge (wiring to the correct SDK) and filter.
 
-### CLI (`utils/logger.ts`)
+```
+utils/logger-core.ts          Core factory: createLogger(options)
+                               - Console proxy with Sentry forwarding
+                               - SentryBridge interface (withScope, captureException, captureMessage)
+                               - shouldOutput filter for log level control
 
-`@sentry/node` SDK with lazy initialization. Sentry only initializes on the first `logger.error()` call, avoiding overhead for tools that succeed without errors.
+utils/logger.ts                CLI wrapper: @sentry/node
+                               - Lazy Sentry init (first error only)
+                               - All log levels always output
+                               - exit(), flush(), getErrorMessage() helpers
 
-The logger is a `Proxy` over `console` that intercepts all method calls. Non-error calls pass through normally. Error calls forward to Sentry with structured context:
-
-```typescript
-export const logger = new Proxy(console, {
-  get(target, prop: string) {
-    // ... intercepts error calls, forwards to Sentry with scope context
-  },
-});
+src/utils/logger.ts            Astro wrapper: @sentry/astro
+                               - Sentry already initialized by Astro integration
+                               - Prod: only warn/error output
+                               - config export (isDev, sentryEnabled, version)
 ```
 
 The `isLogContext` type guard from `#types` validates the context argument before `Object.entries()` iteration. This prevents iterating over string characters or Error instance properties.
 
 **The `exit()` helper**: Always use `await exit(code)` instead of `process.exit()` in error handlers. `process.exit()` kills in-flight async work immediately, losing pending Sentry events. `exit()` flushes first.
-
-### Astro Logger (`src/utils/logger.ts`)
-
-Same Proxy pattern using `@sentry/astro`. In production, suppresses non-error console output. No `exit()` needed because Astro manages the process lifecycle.
 
 ## Statistics System
 
@@ -383,8 +387,8 @@ All five trigger on PR to main and push to main. Lint, Typecheck, Test, and Buil
 
 ### Key Regression Test
 
-The 2025-11 regression (CLI tools broke because `utils/` imported `#astro-utils/*`) is now permanently prevented by:
-- `tests/architecture/utils-boundary.spec.js` — detects forbidden imports in `utils/`
+CLI tools broke when Node.js-side code imported Astro-only modules (`#astro-utils/*`, `@sentry/astro`, Vite build-time globals). Permanently prevented by:
+- `tests/architecture/utils-boundary.spec.js` — detects forbidden imports in all Node.js-side directories (`utils/`, `adapters/`, `constants/`, `config/`)
 - `tests/tools/cli-integration.spec.js` — catches `astro:` protocol errors in real processes
 
 ## Utility Architecture
@@ -400,7 +404,8 @@ See [AGENTS.md - The Boundary](../AGENTS.md#the-boundary) for the principle and 
 | `breadcrumb-utils.ts` | Breadcrumb navigation generation |
 | `date-utils.ts` | YYYYMMDD parsing, formatting, validation |
 | `i18n-utils.ts` | `t()` translation, `tp()` pluralization |
-| `logger.ts` | CLI Proxy logger with @sentry/node |
+| `logger-core.ts` | Logger factory (SentryBridge, output filter) |
+| `logger.ts` | CLI logger wrapper with @sentry/node |
 | `page-metadata-utils.ts` | Page titles and descriptions (cached) |
 | `text-pattern-utils.ts` | Palindrome, double/triple letter detection |
 | `text-utils.ts` | `slugify()`, syllable counting |
@@ -429,9 +434,9 @@ See [AGENTS.md - The Boundary](../AGENTS.md#the-boundary) for the principle and 
 
 | Context | Can import from | Cannot import from |
 |---------|----------------|-------------------|
-| `utils/` | `#utils/*`, `#types`, `#constants/*`, `#config/*`, Node built-ins | `#astro-utils/*`, `astro:*` |
-| `src/utils/` | Everything above + `#astro-utils/*`, `astro:*` | — |
-| `tools/` | Same as `utils/` | `#astro-utils/*`, `astro:*` |
+| `utils/`, `adapters/`, `constants/`, `config/` | `#utils/*`, `#types`, `#constants/*`, `#config/*`, `#adapters/*`, Node built-ins | `#astro-utils/*`, `astro:*`, `@sentry/astro` |
+| `tools/` | Same as above + `#tools/*` | `#astro-utils/*`, `astro:*`, `@sentry/astro` |
+| `src/utils/` | Everything above + `#astro-utils/*`, `astro:*`, `@sentry/astro` | — |
 | `src/pages/`, `src/components/` | Everything | — |
 
 The thin-wrapper delegation pattern avoids logic duplication. See AGENTS.md for the canonical example.
@@ -498,6 +503,8 @@ SITE_URL="https://username.github.io" BASE_PATH="/repo"
 - DRY consolidation: stats function duplication eliminated
 - ES6+ modernization: `Object.groupBy()`, `Array.findLast()`, `util.parseArgs()`
 - Node.js 24 requirement (upgraded from 22)
+- Logger DRY: shared factory (`logger-core.ts`) with env-specific Sentry bridges
+- Boundary enforcement expanded: architecture tests now cover `adapters/`, `constants/`, `config/` (not just `utils/`)
 
 ### January 2025 - Tool Consolidation
 
