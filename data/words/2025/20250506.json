@@ -1,0 +1,113 @@
+{
+    "word": "taboo",
+    "date": "20250506",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "T5005400-1",
+            "partOfSpeech": "noun",
+            "text": "A ban or inhibition resulting from social custom or emotional aversion.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5005400-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5005400-3",
+            "partOfSpeech": "noun",
+            "text": "A prohibition, especially in Polynesia and other South Pacific islands, excluding something from use, approach, or mention because of its sacred and inviolable nature.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5005400-4",
+            "partOfSpeech": "noun",
+            "text": "An object, word, or act protected by such a prohibition.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5005400-5",
+            "partOfSpeech": "adjective",
+            "text": "Excluded or forbidden from use, approach, or mention.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [
+                "a taboo subject."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "T5005400-6",
+            "partOfSpeech": "transitive verb",
+            "text": "To exclude from use, approach, or mention; place under taboo.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "To put under taboo; disallow, or forbid the use of; interdict approach to, or contact or intercourse with; hence, to ban, exclude, or ostracize by personal authority or social influence: as, to <internalXref urlencoded=\"taboo\">taboo</internalXref> the use of tobacco; a <em>tabooed</em> person or subject (one not to be mentioned or discussed).",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Among the Polynesians and other races of the South Pacific, separated or set apart either as forbidden or as sacred; placed under ban or prohibition; consecrated either to exclusion or avoidance or to special use, regard, or service; hence, in English use, forbidden; interdicted.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Among the Polynesians and other races of the South Pacific, a system, practice, or act whereby persons, things, places, actions, or words are or may be placed under a ban, curse, or prohibition, or set apart as sacred or privileged in some specific manner, usually with very severe penalties for infraction.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Hence A prohibitory or restraining injunction or demonstration; restraint or exclusion, as from social intercourse or from use, imposed by some controlling influence; ban; prohibition; ostracism: as, to put a person or a thing under <em>taboo.</em> See the verb.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

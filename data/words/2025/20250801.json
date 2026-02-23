@@ -1,0 +1,68 @@
+{
+    "word": "ophthalmoscope",
+    "date": "20250801",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "O5107100-1",
+            "partOfSpeech": "noun",
+            "text": "An instrument for examining the interior structures of the eye, especially the retina, consisting essentially of a mirror that reflects light into the eye and a central hole through which the eye is examined.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/ophthalmoscope",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An instrument for viewing the interior of the eye, especially for examining the retina.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ophthalmoscope",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "To view the eye by means of the ophthalmoscope.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/ophthalmoscope",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An instrument for viewing the interior of the eye, particularly the retina. Light is thrown into the eye by a mirror (usually concave) and the interior is then examined with or without the aid of a lens.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/ophthalmoscope",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "an <xref>instrument</xref> for <xref>examining</xref> the <xref>interior</xref> of the <xref>eye</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/ophthalmoscope",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "medical instrument for examining the retina of the eye",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/ophthalmoscope",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

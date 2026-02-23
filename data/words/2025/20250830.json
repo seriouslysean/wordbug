@@ -1,0 +1,18 @@
+{
+    "word": "taquito",
+    "date": "20250830",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>fried</xref> <xref>corn</xref> or <xref>flour</xref> <xref>tortilla</xref>, filled usually with <xref>beef</xref> or <xref>chicken</xref> and <xref>cheese</xref>, rolled up, and dipped in a form of <xref>salsa</xref>, or <xref>guacamole</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/taquito",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

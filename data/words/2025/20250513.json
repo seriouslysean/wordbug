@@ -1,0 +1,105 @@
+{
+    "word": "extraterrestrial",
+    "date": "20250513",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "E5312300-1",
+            "partOfSpeech": "adjective",
+            "text": "Originating, located, or occurring outside Earth or its atmosphere.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [
+                "intelligent extraterrestrial life."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "E5312300-2",
+            "partOfSpeech": "noun",
+            "text": "An extraterrestrial being or life form.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Occurring outside of the earth; extramundane.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "originating or located or occurring outside Earth or its atmosphere.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [
+                "there is no clear evidence for <ex>extraterrestrial</ex> life"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a hypothetical form of life existing outside the Earth or its atmosphere, especially intelligent life on other planets or in other solar systems.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [
+                "what would you say to an <ex>extraterrestrial</ex>?"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Originating from outside of the <xref>Earth</xref>'s <xref>atmosphere</xref>, from <xref>space</xref>, or from another <xref>planet</xref>; <xref>alien</xref> to Earth or its <xref>environment</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A being originating from outside of the <xref>Earth</xref>'s <xref>atmosphere</xref>, from <xref>space</xref>, or from another <xref>planet</xref>; an <xref>alien</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a form of life assumed to exist outside the Earth or its atmosphere",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "originating or located or occurring outside Earth or its atmosphere",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/extraterrestrial",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

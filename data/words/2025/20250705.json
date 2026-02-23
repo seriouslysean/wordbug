@@ -1,0 +1,112 @@
+{
+    "word": "parenthesis",
+    "date": "20250705",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5077000-1",
+            "partOfSpeech": "noun",
+            "text": "Either or both of the upright curved lines, ( ), used to mark off explanatory or qualifying remarks in writing or printing or enclose a sum, product, or other expression considered or treated as a collective entity in a mathematical operation.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5077000-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5077000-3",
+            "partOfSpeech": "noun",
+            "text": "A qualifying or amplifying word, phrase, or sentence inserted within written matter in such a way as to be independent of the surrounding grammatical structure.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5077000-4",
+            "partOfSpeech": "noun",
+            "text": "A comment departing from the theme of discourse; a digression.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5077000-5",
+            "partOfSpeech": "noun",
+            "text": "An interruption of continuity; an interval.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An explanatory or qualifying clause, sentence, or paragraph inserted in another sentence or in the course of a longer passage, without being grammatically connected with it.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The upright curves ( ) collectively, or either of them separately, used by printers and writers to mark off an interjected explanatory clause or qualifying remark: as, to place a word or clause in <em>parenthesis</em> or within <em>parentheses.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An interval; a break; an episode.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Abbreviated <em>par.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A word, phrase, or sentence, by way of comment or explanation, inserted in, or attached to, a sentence which would be grammatically complete without it. It is usually inclosed within curved lines (see def. 2 below), or dashes.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/parenthesis",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,83 @@
+{
+    "word": "vainglorious",
+    "date": "20250413",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "V5008300-1",
+            "partOfSpeech": "adjective",
+            "text": "Excessively proud of oneself.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/vainglorious",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "V5008300-2",
+            "partOfSpeech": "adjective",
+            "text": "Characterized by or exhibiting vainglory.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/vainglorious",
+            "examples": [
+                "vainglorious boasting."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Filled with vainglory; glorying in excess of one's own achievements; extravagantly elated; boastful; vaunting.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/vainglorious",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Indicating or proceeding from vainglory; founded on excessive vanity; boastful.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/vainglorious",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Feeling or indicating vainglory; elated by vanity; boastful.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/vainglorious",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "With excessive <xref>vanity</xref> or unwarranted <xref>pride</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/vainglorious",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "feeling self-importance",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/vainglorious",
+            "examples": [
+                "he was swelled with pride",
+                "had a swelled head"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

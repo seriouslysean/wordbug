@@ -1,0 +1,116 @@
+{
+    "word": "warmth",
+    "date": "20250807",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "W5033200-1",
+            "partOfSpeech": "noun",
+            "text": "The state, sensation, or quality of producing or having a moderate degree of heat.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [
+                "an agreeable warmth in the house."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5033200-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5033200-3",
+            "partOfSpeech": "noun",
+            "text": "Friendliness, kindness, or affection.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [
+                "human warmth."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5033200-4",
+            "partOfSpeech": "noun",
+            "text": "Excitement or intensity, especially of emotion.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "W5033200-5",
+            "partOfSpeech": "noun",
+            "text": "The glowing effect produced by using predominantly red or yellow hues.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The state of being warm; gentle heat: as, the <em>warmth</em> of the sun or of the blood; also, the sensation of moderate heat.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Cordiality; geniality; hearty kindness or good feeling.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A state of lively and excited feeling; ardor; zeal; fervor; earnestness, often approaching anger; intensity; enthusiasm.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In <em>painting</em>, a glowing effect which arises from the use of warm colors (which see, under <internalXref urlencoded=\"warm\">warm</internalXref>), and also from the use of transparent colors in the process of glazing.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In other fine arts, freshness, vigor, and sympathetic treatment of material, as in fine sculpture.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

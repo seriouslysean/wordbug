@@ -1,0 +1,119 @@
+{
+    "word": "revolutionary",
+    "date": "20250606",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "R5228800-1",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5228800-2",
+            "partOfSpeech": "adjective",
+            "text": "Relating to or being a revolution.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [
+                "revolutionary war; a museum of the Revolutionary era."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5228800-3",
+            "partOfSpeech": "adjective",
+            "text": "Bringing about or supporting a political or social revolution.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [
+                "revolutionary pamphlets."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5228800-4",
+            "partOfSpeech": "adjective",
+            "text": "Marked by or resulting in radical change.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [
+                "a revolutionary discovery."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5228800-5",
+            "partOfSpeech": "noun",
+            "text": "A militant in the struggle for revolution.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5228800-6",
+            "partOfSpeech": "noun",
+            "text": "A supporter of revolutionary principles.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Pertaining to a revolution in government, or [<em>capitalized</em>] to any movement or crisis known as <em>the Revolution</em>: as, a <em>revolutionary</em> war; <em>Revolutionary</em> heroes; the <em>Revolutionary</em> epoch in American history.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Tending to produce revolution; subversive of established codes or systems: as, <em>revolutionary</em> measures; <em>revolutionary</em> doctrines.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A revolutionist.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Of or pertaining to a revolution in government; tending to, or promoting, revolution.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/revolutionary",
+            "examples": [
+                "<ex>revolutionary</ex> war; <ex>revolutionary</ex> measures; <ex>revolutionary</ex> agitators"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "word": "anthropomorphization",
+    "date": "20251230",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>endowing</xref> with <xref>human</xref> <xref>qualities</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/anthropomorphization",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>attributing</xref> human <xref>characteristics</xref> to something that is nonhuman.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/anthropomorphization",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

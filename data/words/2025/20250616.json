@@ -1,0 +1,120 @@
+{
+    "word": "metropolitan",
+    "date": "20250616",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "M5278900-1",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-2",
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or characteristic of a major city.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [
+                "crowded metropolitan streets; a metropolitan newspaper."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-3",
+            "partOfSpeech": "adjective",
+            "text": "Of or constituting a large city or urbanized area, including adjacent suburbs and towns.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [
+                "the Dallas–Fort Worth metropolitan area; a metropolitan county."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-4",
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or constituting the home territory of an imperial or colonial state.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-5",
+            "partOfSpeech": "adjective",
+            "text": "Of or relating to an ecclesiastical metropolitan.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-6",
+            "partOfSpeech": "noun",
+            "text": "A citizen of a metropolis, especially one who displays urbane characteristics, attitudes, and values.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-7",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-8",
+            "partOfSpeech": "noun",
+            "text": "In the Western Christian churches, a bishop with provincial powers, with some authority over suffragan bishops.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-9",
+            "partOfSpeech": "noun",
+            "text": "In most Eastern Orthodox churches, a bishop who is head of an ecclesiastical province and ranks next below the patriarch.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5278900-10",
+            "partOfSpeech": "noun",
+            "text": "In the Greek Orthodox church, a bishop ranking next below an archbishop.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/metropolitan",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

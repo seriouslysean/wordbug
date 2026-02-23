@@ -1,0 +1,111 @@
+{
+    "word": "hiatus",
+    "date": "20250921",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "H5192200-1",
+            "partOfSpeech": "noun",
+            "text": "A gap or interruption in space, time, or continuity; a break.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5192200-2",
+            "partOfSpeech": "noun",
+            "text": "A slight pause that occurs when two immediately adjacent vowels in consecutive syllables are pronounced, as in <em>reality</em> and <em>naive.</em>",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5192200-3",
+            "partOfSpeech": "noun",
+            "text": "A separation, aperture, fissure, or short passage in an organ or body part.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An opening; an aperture; a gap; a chasm.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In <em>anatomy</em>, a foramen.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In <em>grammar</em> and <em>prosody</em>, the coming together of two vowels without intervening consonant in successive words or syllables of one word.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A space from which something requisite to completeness is absent, as a missing link in a genealogy, an interval of unknown history, a lost or erased part of a manuscript, etc.; a lacuna; a break.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Specifically, in <em>logic</em>, a fault of demonstration, consisting in the omission to prove some premise made use of, and not self-evident or admitted.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An opening; an aperture; a gap; a chasm; esp., a defect in a manuscript, where some part is lost or effaced; a space where something is wanting; a break.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The concurrence of two vowels in two successive words or syllables.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/hiatus",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

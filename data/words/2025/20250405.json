@@ -1,0 +1,39 @@
+{
+    "word": "buckminsterfullerene",
+    "date": "20250405",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "B5540400-1",
+            "partOfSpeech": "noun",
+            "text": "An extremely stable, ball-shaped carbon molecule, C<sub>60</sub>, reminiscent of a geodesic dome, and believed to occur naturally in soot. It was the first fullerene to be discovered.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/buckminsterfullerene",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "an <xref>allotrope</xref> of <xref>carbon</xref> having a <xref>hollow</xref> <xref>molecule</xref> consisting of 60 <xref>atoms</xref> arranged in 12 <xref>pentagonal</xref> and 20 <xref>hexagonal</xref> <xref>faces</xref> to form a <xref>truncated</xref> <xref>icosahedron</xref>; the smallest of the <xref>fullerenes</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/buckminsterfullerene",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a spheroidal fullerene; the first known example of a fullerene",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/buckminsterfullerene",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

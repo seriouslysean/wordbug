@@ -1,0 +1,70 @@
+{
+    "word": "phlebotomy",
+    "date": "20250414",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5269900-1",
+            "partOfSpeech": "noun",
+            "text": "The removal of blood from a vein, usually with a needle and syringe or other container, for diagnostic or therapeutic purposes, as in the treatment of hemochomatosis.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/phlebotomy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5269900-2",
+            "partOfSpeech": "noun",
+            "text": "The removal of blood from a vein with a cutting instrument, formerly done to reduce blood volume as a treatment of disease.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/phlebotomy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The act or practice of opening a vein for letting blood, as a remedy for disease or with a view to the preservation of health.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/phlebotomy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The act or practice of opening a vein for letting blood, in the treatment of disease; venesection; bloodletting.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/phlebotomy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The opening of a <xref>vein</xref>, either to withdraw <xref>blood</xref> or for letting blood; <xref>venesection</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/phlebotomy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "surgical incision into a vein; used to treat hemochromatosis",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/phlebotomy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

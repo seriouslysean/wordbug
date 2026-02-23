@@ -1,0 +1,69 @@
+{
+    "word": "antibody",
+    "date": "20250403",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "A5351900-1",
+            "partOfSpeech": "noun",
+            "text": "A Y-shaped protein on the surface of B cells that is secreted into the blood or lymph in response to an antigenic stimulus, such as a bacterium, virus, parasite, or transplanted organ, and that neutralizes the antigen by binding specifically to it; an immunoglobulin.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/antibody",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A body or substance which inhibits the action of another substance. Also called <internalXref urlencoded=\"antisubstance\">antisubstance</internalXref> and, as a general term, <em>adaptation-product.</em> See <internalXref urlencoded=\"adaptation-product\">adaptation-product</internalXref> and <internalXref urlencoded=\"immunity\">immunity</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/antibody",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Any of various bodies or substances in the blood which act in antagonism to harmful foreign bodies, as toxins or the bacteria producing the toxins. Normal blood serum apparently contains various antibodies, and the introduction of toxins or of foreign cells also stimulates production of their specific antibodies by the immune system.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/antibody",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "more narrowly, any of the immunoglobulins present in the blood serum or other body fluids of an animal, which reacts with a specific antigenic substance, whether the antibody was produced as a consequence of the stimulus provided by the antigen, or was pre-existing prior to exposure of the organism to the antigen.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/antibody",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>protein</xref> produced by B-<xref>lymphocytes</xref> that binds to a specific <xref>antigen</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/antibody",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "any of a large variety of proteins normally present in the body or produced in response to an antigen which it neutralizes, thus producing an immune response",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/antibody",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

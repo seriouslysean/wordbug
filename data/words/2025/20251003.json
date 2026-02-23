@@ -1,0 +1,80 @@
+{
+    "word": "paranoia",
+    "date": "20251003",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5069200-1",
+            "partOfSpeech": "noun",
+            "text": "A psychotic disorder characterized by delusions of persecution with or without grandeur, often strenuously defended with apparent logic and reason.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/paranoia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5069200-2",
+            "partOfSpeech": "noun",
+            "text": "Extreme, irrational distrust of others.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/paranoia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A chronic form of insanity characterized by very gradual impairment of the intellect, systematized delusion, and usually by delusions of persecution or mandatory delusions producing homicidal tendency. In its mild form paranoia may consist in the well-marked crotchetiness exhibited in persons commonly called “cranks.”  Paranoiacs usually show evidences of bodily and nervous degeneration, and many have hallucinations, esp. of sight and hearing.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/paranoia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Unwarranted suspicion of the motives of others; -- used colloquially in a non-technical sense.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/paranoia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>psychotic</xref> <xref>disorder</xref> characterized by <xref>delusions</xref> of <xref>persecution</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/paranoia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>Extreme</xref>, <xref>irrational</xref> <xref>distrust</xref> of <xref>others</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/paranoia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a psychological disorder characterized by delusions of persecution or grandeur",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/paranoia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

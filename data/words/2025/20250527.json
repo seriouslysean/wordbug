@@ -1,0 +1,39 @@
+{
+    "word": "cyclops",
+    "date": "20250527",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "C5870050-1",
+            "partOfSpeech": "noun",
+            "text": "Any of various freshwater predatory copepods of the genus <em>Cyclops,</em> having a single eye and, in the female, two egg sacs.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cyclops",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>one</xref>-<xref>eyed</xref> giant from <xref>Greek</xref> and <xref>Roman</xref> <xref>mythology</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/cyclops",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>one</xref>-<xref>eyed</xref> <xref>creature</xref> of any species.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/cyclops",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

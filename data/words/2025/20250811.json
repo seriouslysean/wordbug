@@ -1,0 +1,59 @@
+{
+    "word": "xenon",
+    "date": "20250811",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "X5004700-1",
+            "partOfSpeech": "noun",
+            "text": "A colorless, odorless, noble gas element found in minute quantities in the atmosphere, extracted commercially from liquefied air and used in stroboscopic, bactericidal, and laser-pumping lamps. Atomic number 54; atomic weight 131.29; melting point −111.74°C; boiling point −108.09°C; density (gas) 5.89 grams per liter; specific gravity (liquid, at −109°C) 2.95; valence 0, 2, 4, 6. <i>cross-reference</i>: <strong> Periodic Table</strong>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/xenon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In <em>chem.</em>, the heaviest of the five recently discovered elementary substances present in gaseous form in the atmosphere.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/xenon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A very heavy, inert gaseous element of the noble gas group, occurring in the atmosphere in the proportion of one volume is about 20 millions. It was discovered by Ramsay and Travers in 1898. It can be condensed to a liquid boiling at -107° C., and to a solid which melts at -111.9° C. Symbol Xe (formely also X); atomic number 54; atomic weight 131.3.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/xenon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A heavy, gaseous chemical element (symbol Xe) of the noble gases group with an <xref>atomic number</xref> of 54.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/xenon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a colorless odorless inert gaseous element occurring in the earth's atmosphere in trace amounts",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/xenon",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

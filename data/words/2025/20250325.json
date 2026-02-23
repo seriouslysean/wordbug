@@ -1,0 +1,50 @@
+{
+    "word": "bluegrass",
+    "date": "20250325",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "B5353900-1",
+            "partOfSpeech": "noun",
+            "text": "Any of various grasses of the genus <em>Poa,</em> having bluish spikelets, including species such as Kentucky bluegrass that are used for pastures and lawns and others that are considered weeds.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5353900-2",
+            "partOfSpeech": "noun",
+            "text": "A type of country music that originated in the southern United States, typically played on acoustic stringed instruments and characterized by rapid tempos and jazzlike improvisation.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Kentucky bluegrass, Poa pretensis.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A style of <xref>country music</xref> with roots in Scots-Irish Appalachian folk music, <xref>blues</xref>, and <xref>jazz</xref>. Characterized by <xref>banjos</xref>, <xref>fiddles</xref>, and <xref>mandolins</xref>, but containing no drums.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

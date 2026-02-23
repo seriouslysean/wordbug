@@ -1,0 +1,59 @@
+{
+    "word": "fluorite",
+    "date": "20260120",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "F5209700-1",
+            "partOfSpeech": "noun",
+            "text": "A mineral, essentially CaF<sub>2</sub>, that is often fluorescent in ultraviolet light and occurs in light green, blue, yellow, brown, and colorless forms.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fluorite",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Same as <internalXref urlencoded=\"fluor-spar\">fluor-spar</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/fluorite",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Calcium fluoride (CaF2), a mineral of many different colors, white, yellow, purple, green, red, etc., often very beautiful, crystallizing commonly in cubes with perfect octahedral cleavage; also massive. It is used as a flux. Some varieties are used for ornamental vessels. Also called <altname>fluor spar</altname>, or simply <altname>fluor</altname>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/fluorite",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A widely occurring <xref>mineral</xref> (calcium fluoride), of various <xref>colours</xref>, used as a <xref>flux</xref> in <xref>steelmaking</xref>, and in the <xref>manufacture</xref> of <xref>glass</xref>, <xref>enamels</xref> and <xref>hydrofluoric acid</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/fluorite",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a soft mineral (calcium fluoride) that is fluorescent in ultraviolet light; chief source of fluorine",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/fluorite",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,110 @@
+{
+    "word": "elm",
+    "date": "20250723",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "E5095600-1",
+            "partOfSpeech": "noun",
+            "text": "Any of various deciduous trees of the genus <em>Ulmus,</em> characteristically having arching or curving branches, serrate leaves with asymmetric bases, and small winged fruit.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "E5095600-2",
+            "partOfSpeech": "noun",
+            "text": "The wood of one of these trees.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The common name for species of <em>Ulmus</em> (which see), mostly large trees, some common in cultivation for shade and ornament, for which the majestic height and the wide-spreading and gracefully curving branches of the principal kinds admirably adapt them.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Of other varieties of elm (comprising some trees more or less closely related to the elm and a few belonging to different families but somewhat resembling elms: those given below are among the most important.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The wing-elm or winged elm. See <internalXref urlencoded=\"wahoo\">wahoo</internalXref>,.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The winged elm, <em>Ulmus alata</em>, so called in Florida and Arkansas.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<em>Ulmus serotina</em>, a tree of limited distribution on limestone hills and river-banks in southern Kentucky and northern Alabama and Georgia, only recently distinguished from <internalXref urlencoded=\"U.%20fulva\">U. fulva</internalXref>, from which it differs in its much smaller fruit, in the absence of mucilage in the inner bark, and in other respects. The wood is reddish in color.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A tree of the genus Ulmus, of several species, much used as a shade tree, particularly in America. The English elm is <spn>Ulmus campestris</spn>; the common American or white elm is <spn>U. Americana</spn>; the slippery or red elm, <spn>U. fulva</spn>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "one of several species of beetles (esp. <spn>Galeruca calmariensis</spn>), which feed on the leaves of the elm.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "one of several species of beetles of which the larvæ bore into the wood or under the bark of the elm (esp. <spn>Saperda tridentata</spn>).",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/elm",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

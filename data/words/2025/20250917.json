@@ -1,0 +1,28 @@
+{
+    "word": "tomboyish",
+    "date": "20250917",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "adjective",
+            "text": "Displaying behavior associated with a <xref>tomboy</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/tomboyish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "used of girls; wild and boisterous",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/tomboyish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

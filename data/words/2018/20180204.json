@@ -1,0 +1,125 @@
+{
+    "word": "fish",
+    "date": "20180204",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "F5147800-1",
+            "partOfSpeech": "noun",
+            "text": "Any of numerous cold-blooded aquatic vertebrates characteristically having fins, gills, and a streamlined body and including the bony fishes, such as catfishes and tunas, and the cartilaginous fishes, such as sharks and rays.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-2",
+            "partOfSpeech": "noun",
+            "text": "Any of various jawless aquatic craniates, including the lampreys and hagfishes.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-3",
+            "partOfSpeech": "noun",
+            "text": "The flesh of such animals used as food.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-4",
+            "partOfSpeech": "noun",
+            "text": "A person, especially one considered deficient in something.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [
+                "a poor fish."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-5",
+            "partOfSpeech": "intransitive verb",
+            "text": "To catch or try to catch fish.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-6",
+            "partOfSpeech": "intransitive verb",
+            "text": "To look for something by feeling one's way; grope.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [
+                "fished in both pockets for a coin."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-7",
+            "partOfSpeech": "intransitive verb",
+            "text": "To seek something in a sly or indirect way.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [
+                "fish for compliments."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-8",
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-9",
+            "partOfSpeech": "intransitive verb",
+            "text": "To catch or try to catch (fish).",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5147800-10",
+            "partOfSpeech": "intransitive verb",
+            "text": "To catch or try to catch fish in.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/fish",
+            "examples": [
+                "fish mountain streams."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

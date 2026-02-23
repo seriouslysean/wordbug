@@ -1,0 +1,18 @@
+{
+    "word": "sriracha",
+    "date": "20250426",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "A <xref>Thai</xref>-style <xref>hot sauce</xref>, typically made from sun-ripened <xref>chili peppers</xref>, <xref>vinegar</xref>, <xref>garlic</xref>, <xref>sugar</xref> and <xref>salt</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/sriracha",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "word": "nanochip",
+    "date": "20250718",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "An <xref>integrated circuit</xref> whose size is measured in <xref>nanometres</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/nanochip",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

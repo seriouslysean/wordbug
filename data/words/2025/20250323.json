@@ -1,0 +1,79 @@
+{
+    "word": "rhododendron",
+    "date": "20250323",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "R5243200-1",
+            "partOfSpeech": "noun",
+            "text": "Any of numerous usually evergreen shrubs of the genus <em>Rhododendron</em> of the heath family, having clusters of variously colored, often bell-shaped flowers and widely grown as ornamentals.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A large genus of shrubs of the order <em>Ericaceæ</em> and tribe <em>Rhodoreæ.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "It is characterized by a broad, spreading, and oblique corolla, usually with five imbricating lobes; eight to ten stamens, the anthers opening by pores; and a five to twenty-celled ovary with numerous ovules in many crowded rows, the seeds appendaged. There are about 170 species, natives of the mountains of Europe, Asia, the Malay archipelago, and North America, most abundant in the Himalayas. They are commonly shrubs, less often trees, smooth, hairy, woolly, or scurfy, and often with whorled branches. They bear alternate entire leaves, most often crowded at the ends of the branches. Their handsome flowers are commonly borne in corymbs, and have conspicuous, more or less unequal, long, slender, and curving stamens, with long hairs clothing their base. The fruit is a woody pod, splitting septicidally from the apex into valves, and filled with seeds like fine sawdust, each containing a cylindrical embryo and fleshy albumen. Most of the species, and all of those best known, produce their new growths below the flowers, which form a terminal inflorescence destitute of leaves, and developed from a large scaly bud. The leaves in the typical species, forming the section <em>Rhododendron</em> proper, are evergreen and coriaceous; but they are deciduous in the sections <em>Azalea</em> and <em>Tsusia</em>, which include the American species commonly known as <em>azaleas</em>, and produce leaves closely encircling the flowers, or, in <em>Tsusia</em>, mixed with them. The flowers, nearly or quite 2 inches across, often reach in <em>R. Aucklandiæ</em> a breadth of 6 inches. See <internalXref urlencoded=\"pinkster-flower\">pinkster-flower</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "[<em>lowercase</em>] Any one of the many species of the above genus, belonging to the section <em>Rhododendron</em>; the rose-bay.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A genus of shrubs or small trees, often having handsome evergreen leaves, and remarkable for the beauty of their flowers; rosebay.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Any of various <xref>flowering</xref> <xref>shrubs</xref> in the genus <xref>Rhododendron</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "any shrub of the genus Rhododendron: evergreen shrubs or small shrubby trees having leathery leaves and showy clusters of campanulate (bell-shaped) flowers",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/rhododendron",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

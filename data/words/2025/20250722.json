@@ -1,0 +1,122 @@
+{
+    "word": "mechanical",
+    "date": "20250722",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "M5192500-1",
+            "partOfSpeech": "adjective",
+            "text": "Of or relating to machines or tools.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [
+                "mechanical skill."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5192500-2",
+            "partOfSpeech": "adjective",
+            "text": "Operated or produced by a mechanism or machine.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [
+                "a mechanical toy dog."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5192500-3",
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or governed by mechanics.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5192500-4",
+            "partOfSpeech": "adjective",
+            "text": "Performed or performing in an impersonal or machinelike manner; automatic.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [
+                "a droning, mechanical delivery of the speech."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5192500-5",
+            "partOfSpeech": "adjective",
+            "text": "Relating to, produced by, or dominated by physical forces.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [
+                "the mechanical aspect of trumpet playing."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5192500-6",
+            "partOfSpeech": "adjective",
+            "text": "Interpreting and explaining the phenomena of the universe by referring to causally determined material forces; mechanistic.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5192500-7",
+            "partOfSpeech": "adjective",
+            "text": "Of or relating to manual labor, its tools, and its skills.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "M5192500-8",
+            "partOfSpeech": "noun",
+            "text": "A layout consisting of type proofs, artwork, or both, exactly positioned and prepared for making an offset or other printing plate.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Pertaining to or exhibiting constructive power; of or pertaining to mechanism or machinery; also, dependent upon the use of mechanism; of the nature or character of a machine or machinery: as, <em>mechanical</em> inventions or contrivances; to do something by <em>mechanical</em> means.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Machine-like; acting or actuated by or as if by machinery, or by fixed routine; lacking spontaneity, spirit, individuality, etc.; as applied to actions, automatic, instinctive, unconscious, etc.: as, the <em>mechanical</em> action of the heart; a <em>mechanical</em> musician.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

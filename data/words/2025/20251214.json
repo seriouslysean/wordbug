@@ -1,0 +1,116 @@
+{
+    "word": "pectoral",
+    "date": "20251214",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5152000-1",
+            "partOfSpeech": "adjective",
+            "text": "Relating to or situated in the breast or chest.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [
+                "a pectoral muscle; the pectoral cavity."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152000-2",
+            "partOfSpeech": "adjective",
+            "text": "Useful in relieving disorders of the chest or respiratory tract.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152000-3",
+            "partOfSpeech": "adjective",
+            "text": "Worn on the chest or breast.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [
+                "a pectoral cross."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152000-4",
+            "partOfSpeech": "noun",
+            "text": "Any of four muscles that occur in pairs on each side of the chest.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152000-5",
+            "partOfSpeech": "noun",
+            "text": "A pectoral fin.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152000-6",
+            "partOfSpeech": "noun",
+            "text": "A medicine for relieving disorders of the chest or respiratory tract.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152000-7",
+            "partOfSpeech": "noun",
+            "text": "An ornament or decoration worn on the chest.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Figuratively, proceeding from the breast, as of the heart; from the inner consciousness.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Of, pertaining to, or connected with the breast or chest; thoracic: as, a pectoral muscle, vessel, nerve, etc.; a <em>pectornl limb.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "In <em>entomology</em>, pertaining to the pectus or lower surface of the thorax.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pectoral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,123 @@
+{
+    "word": "block",
+    "date": "20180416",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "B5336200-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-2",
+            "partOfSpeech": "noun",
+            "text": "A solid piece of a hard substance, such as wood, having one or more flat sides.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-3",
+            "partOfSpeech": "noun",
+            "text": "Such a piece used as a construction member or as a support.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-4",
+            "partOfSpeech": "noun",
+            "text": "Such a piece upon which chopping or cutting is done.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [
+                "a butcher's block."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-5",
+            "partOfSpeech": "noun",
+            "text": "Such a piece upon which persons are beheaded.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-6",
+            "partOfSpeech": "noun",
+            "text": "One of a set of small wooden or plastic pieces, such as a cube, bar, or cylinder, used as a building toy.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-7",
+            "partOfSpeech": "noun",
+            "text": "A large amount of text.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-8",
+            "partOfSpeech": "noun",
+            "text": "A starting block.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-9",
+            "partOfSpeech": "noun",
+            "text": "A stand from which articles are displayed and sold at an auction.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [
+                "Many priceless antiques went on the block."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5336200-10",
+            "partOfSpeech": "noun",
+            "text": "A mold or form on which an item is shaped or displayed.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/block",
+            "examples": [
+                "a hat block."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,114 @@
+{
+    "word": "portmanteau",
+    "date": "20250528",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5496400-1",
+            "partOfSpeech": "noun",
+            "text": "A large leather suitcase that opens into two hinged compartments.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5496400-2",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5496400-3",
+            "partOfSpeech": "noun",
+            "text": "A word formed by merging the sounds and meanings of two different words, as <em>chortle,</em> from <em>chuckle</em> and <em>snort.</em>",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5496400-4",
+            "partOfSpeech": "noun",
+            "text": "A word or part of a word that is analyzable as consisting of more than one morpheme without a clear boundary between them, as French <em>du</em> “of the” from <em>de</em> “of” and <em>le</em> “the.”",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5496400-5",
+            "partOfSpeech": "adjective",
+            "text": "General or generalized.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [
+                "a portmanteau description; portmanteau terms."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A case used in journeying for containing clothing: originally adapted to the saddle of a horseman, and therefore nearly cylindrical and of flexible make.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A trunk, especially a leather trunk of small size.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A hook or bracket on which to hang a garment, especially one which holds a coat or cloak securely for brushing.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A bag or case, usually of leather, for carrying wearing apparel, etc., on journeys.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A large <xref>travelling</xref> <xref>case</xref> usually made of <xref>leather</xref>, and opening into two equal sections.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/portmanteau",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

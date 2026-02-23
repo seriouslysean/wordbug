@@ -1,0 +1,59 @@
+{
+    "word": "okapi",
+    "date": "20250424",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "O5056300-1",
+            "partOfSpeech": "noun",
+            "text": "A ruminant mammal <em>(Okapia johnstoni)</em> of the central African rainforest, having a reddish-brown body, whitish-gray cheeks, horizontal whitish stripes on the legs and hindquarters, and short horns in the male. The okapi is closely related to the giraffe.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/okapi",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A member of the giraffe family, discovered by Sir Harry Johnston, in 1902, in the forest region near Lake Albert, Africa.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/okapi",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A peculiar mammal (<spn>Okapia johnstoni</spn>) closely related to the giraffe, discovered in the deep forests of Belgian Congo in 1900. It is smaller than an ox, and somewhat like a giraffe, except that the neck is much shorter. Like the giraffe, it has no dewclaws. There is a small prominence on each frontal bone of the male. The color of the body is chiefly reddish chestnut, the cheeks are yellowish white, and the fore and hind legs above the knees and the haunches are striped with purplish black and cream color.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/okapi",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A large <xref>ruminant</xref> <xref>mammal</xref>, Okapia johnstoni, found in the <xref>rainforests</xref> of the <xref>Congo</xref>, related to the <xref>giraffe</xref>, but with a much shorter neck, a reddish brown coat and <xref>zebra</xref>-like stripes on its <xref>hindquarters</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/okapi",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "similar to the giraffe but smaller with much shorter neck and stripe on the legs",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/okapi",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "word": "lederhosen",
+    "date": "20251204",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "L5105300-1",
+            "partOfSpeech": "noun plural",
+            "text": "Leather shorts, often with suspenders, worn by men and boys, especially in Bavaria.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/lederhosen",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "knee-breeches made of <xref>leather</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/lederhosen",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "leather shorts often worn with suspenders; worn especially by men and boys in Bavaria",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/lederhosen",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

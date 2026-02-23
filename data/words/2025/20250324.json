@@ -1,0 +1,110 @@
+{
+    "word": "albino",
+    "date": "20250324",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "A5187500-1",
+            "partOfSpeech": "noun",
+            "text": "A person or animal lacking normal pigmentation, with the result being that the skin and hair are abnormally white or milky and the eyes have a pink or blue iris and a deep-red pupil.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5187500-2",
+            "partOfSpeech": "noun",
+            "text": "A plant that lacks chlorophyll.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A person of pale, milky complexion, with light hair and pink eyes.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Hence An animal characterized by the same peculiarity in physical constitution.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A plant the leaves of which are marked by the absence of chlorophyl, or whose flowers are exceptionally white. See<em>albinism.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In Mexico, a person who has one eighth negro and seven eighths Spanish blood; the child of a Morisco woman (who is the daughter of a mulatto mother and a Spanish father) and of a Spaniard.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A person, whether negro, Indian, or white, in whom by some defect of organization the substance which gives color to the skin, hair, and eyes is deficient or in a morbid state. An albino has a skin of a milky hue, with hair of the same color, and eyes with deep red pupil and pink or blue iris. The term is also used of the lower animals, as white mice, elephants, etc.; and of plants in a whitish condition from the absence of chlorophyll.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "<xref>congenitally</xref> lacking <xref>melanin</xref> <xref>pigmentation</xref> in the skin, eyes, and hair or feathers (or more rarely only in the eyes); born with <xref>albinism</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "person or animal <xref>congenitally</xref> lacking <xref>melanin</xref> <xref>pigmentation</xref> in the skin, eyes, and hair or feathers (or more rarely only in the eyes); one born with <xref>albinism</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a person with congenital albinism: white hair and milky skin; eyes are usually pink",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/albino",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

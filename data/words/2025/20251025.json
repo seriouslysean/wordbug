@@ -1,0 +1,49 @@
+{
+    "word": "cichlid",
+    "date": "20251025",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "C5368400-1",
+            "partOfSpeech": "noun",
+            "text": "Any of numerous tropical and subtropical chiefly freshwater fishes of the family Cichlidae, which includes the tilapias and many species that are popular as aquarium fish.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cichlid",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A fish of the family <em>Cichlidæ.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/cichlid",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Any of many tropical fish, of the family <xref>Cichlidae</xref>, popular as aquarium fish.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/cichlid",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "freshwater fishes of tropical America and Africa and Asia similar to American sunfishes; some are food fishes; many small ones are popular in aquariums",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/cichlid",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

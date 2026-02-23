@@ -1,0 +1,111 @@
+{
+    "word": "pagoda",
+    "date": "20250608",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5013500-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5013500-2",
+            "partOfSpeech": "noun",
+            "text": "A religious building of East Asia and Southeast Asia, especially a multistory Buddhist tower with widely overhanging eaves separating each level, erected as a memorial or shrine.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5013500-3",
+            "partOfSpeech": "noun",
+            "text": "A stupa.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5013500-4",
+            "partOfSpeech": "noun",
+            "text": "A structure, such as a garden pavilion, built in imitation of a multistory Buddhist tower.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A small ornamental structure made in imitation of an Eastern pagoda: especially, such a building in the streets of a city in which various small articles, such as tea, etc., are sold.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In the far East, as India, China, Burma, etc., a sacred tower, usually more or less pyramidal in outline, richly carved, painted, or otherwise adorned, and of several stories, connected or not with a temple.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An idol.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "[Formerly also <internalXref urlencoded=\"pagody\">pagody</internalXref>; so called with ref. to the figure of a pagoda on the coin. The natives in Madras called the coin <em>hun</em> and <em>varahā</em> (Telugu) or <em>varāhan</em> (Tamil).] A gold coin current in India from the sixteenth century.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "[<em>capitalized</em>] [NL.] In <em>zoology</em>, a genus of mollusks.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A term by which Europeans designate religious temples and tower-like buildings of the Hindoos and Buddhists of India, Farther India, China, and Japan, -- usually but not always, devoted to idol worship.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/pagoda",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

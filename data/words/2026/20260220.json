@@ -1,0 +1,120 @@
+{
+    "word": "collateral",
+    "date": "20260220",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "C5497200-1",
+            "partOfSpeech": "adjective",
+            "text": "Situated or running side by side; parallel.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5497200-2",
+            "partOfSpeech": "adjective",
+            "text": "Coinciding in tendency or effect; concomitant or accompanying.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5497200-3",
+            "partOfSpeech": "adjective",
+            "text": "Serving to support or corroborate.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [
+                "collateral evidence."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5497200-4",
+            "partOfSpeech": "adjective",
+            "text": "Of a secondary nature; subordinate.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [
+                "collateral target damage from a bombing run."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5497200-5",
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or guaranteed by a security pledged against the performance of an obligation.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [
+                "a collateral loan."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5497200-6",
+            "partOfSpeech": "adjective",
+            "text": "Having an ancestor in common but descended from a different line.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5497200-7",
+            "partOfSpeech": "noun",
+            "text": "Property acceptable as security for a loan or other obligation.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5497200-8",
+            "partOfSpeech": "noun",
+            "text": "A collateral relative.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Situated at the side: belonging to the side or to what is at the side; hence, occupying a secondary or subordinate position.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Acting indirectly; acting through side channels.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/collateral",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

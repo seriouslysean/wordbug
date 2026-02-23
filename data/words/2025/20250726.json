@@ -1,0 +1,121 @@
+{
+    "word": "contradiction",
+    "date": "20250726",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "C5633100-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5633100-2",
+            "partOfSpeech": "noun",
+            "text": "The act or an instance of contradicting.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [
+                "the witness's contradiction of other testimony."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5633100-3",
+            "partOfSpeech": "noun",
+            "text": "The state of being contradicted.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [
+                "a supervisor who cannot tolerate contradiction from any subordinate."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5633100-4",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5633100-5",
+            "partOfSpeech": "noun",
+            "text": "An inconsistency or discrepancy.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5633100-6",
+            "partOfSpeech": "noun",
+            "text": "Inconsistency; discrepancy.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [
+                "practices that are in contradiction to human rights."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5633100-7",
+            "partOfSpeech": "noun",
+            "text": "One that contains elements that oppose or conflict with one another.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [
+                "The phrase “an unmarried husband” is a contradiction in terms."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An assertion of the direct opposite to what has been said or affirmed; denial; contrary declaration.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Opposition, whether by argument or conduct.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Direct, opposition or repugnancy; absolute inconsistency; specifically, the relation of two propositions which are so opposed that one must be false and one must be true.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/contradiction",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

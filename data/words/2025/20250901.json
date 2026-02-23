@@ -1,0 +1,29 @@
+{
+    "word": "detritivore",
+    "date": "20250901",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "D5174600-1",
+            "partOfSpeech": "noun",
+            "text": "An organism, such as a bacterium, fungus, or insect, that feeds on dead plant or animal matter.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/detritivore",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An <xref>organism</xref> that feeds on <xref>detritus</xref>; a <xref>saprophage</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/detritivore",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

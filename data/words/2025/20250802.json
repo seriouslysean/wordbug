@@ -1,0 +1,29 @@
+{
+    "word": "empanada",
+    "date": "20250802",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "E5116900-1",
+            "partOfSpeech": "noun",
+            "text": "A Spanish or Latin-American turnover with a flaky crust and a savory or sweet filling.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/empanada",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Any of a variety of stuffed <xref>pastries</xref> found in Spanish and Latin American cuisine",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/empanada",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

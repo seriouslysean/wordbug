@@ -1,0 +1,18 @@
+{
+    "word": "antidisestablishmentarianism",
+    "date": "20250809",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "the doctrine or political position that opposes the withdrawal of state recognition of an established church; -- used especially concerning the Anglican Church in England. Opposed to <ant>disestablishmentarianism</ant>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/antidisestablishmentarianism",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

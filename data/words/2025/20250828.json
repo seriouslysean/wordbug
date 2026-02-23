@@ -1,0 +1,39 @@
+{
+    "word": "triskaidekaphobia",
+    "date": "20250828",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "T5404300-1",
+            "partOfSpeech": "noun",
+            "text": "An abnormal fear of the number 13.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/triskaidekaphobia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>Fear</xref>, <xref>hate</xref>, or <xref>dislike</xref> of the number <xref>thirteen</xref> (<xref>13</xref>).",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/triskaidekaphobia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a morbid fear of the number 13",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/triskaidekaphobia",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

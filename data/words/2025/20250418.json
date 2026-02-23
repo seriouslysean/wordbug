@@ -1,0 +1,18 @@
+{
+    "word": "carcasses",
+    "date": "20250418",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "Plural form of <xref>carcass</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/carcasses",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

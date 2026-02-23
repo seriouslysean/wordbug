@@ -1,0 +1,50 @@
+{
+    "word": "photosensitivity",
+    "date": "20251115",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5291100-1",
+            "partOfSpeech": "noun",
+            "text": "Sensitivity or responsiveness to light.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/photosensitivity",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5291100-2",
+            "partOfSpeech": "noun",
+            "text": "An abnormally heightened response, especially of the skin, to sunlight or ultraviolet radiation, caused by certain disorders or chemicals and characterized by a toxic or allergic reaction.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/photosensitivity",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>sensitivity</xref> to <xref>light</xref>, especially a heightened <xref>response</xref> to light",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/photosensitivity",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "sensitivity to the action of radiant energy",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/photosensitivity",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

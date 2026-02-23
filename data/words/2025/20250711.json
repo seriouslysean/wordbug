@@ -1,0 +1,111 @@
+{
+    "word": "peculiar",
+    "date": "20250711",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5152800-1",
+            "partOfSpeech": "adjective",
+            "text": "Not ordinary or usual; odd or strange: <i>synonym</i>: <strong> strange</strong>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [
+                "noticed a peculiar odor in the room."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152800-2",
+            "partOfSpeech": "adjective",
+            "text": "Belonging distinctively or primarily to one person, group, or kind; special or unique.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [
+                "a species peculiar to the high desert."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152800-3",
+            "partOfSpeech": "noun",
+            "text": "A privilege or property that is exclusively one's own.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5152800-4",
+            "partOfSpeech": "noun",
+            "text": "A church or parish under the jurisdiction of a diocese different from that in which it lies.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In Oxford, a nickname for an Evangelical.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "One's own; pertaining to one, not to many; of private, personal, or characteristic possession and use; with <em>to</em>, belonging specially or particularly.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "… Particular; distinct; individual.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Special; particular; select.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Singular; unusual; uncommon; odd: as, the man has something <em>peculiar</em> in his manner.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "A religious denomination found in Essex, Sussex, Surrey, and principally in Kent, England, which believes that one may immediately cease from sin and become perfect in moral life and in spiritual perception. They therefore have no preachers, creeds, ordinances, or church organization. They also profess to rely wholly upon prayer for the cure of disease. Also called <internalXref urlencoded=\"Plumstead%20Peculiars\">Plumstead Peculiars</internalXref>, from the place in which the sect originated. <strong>Synonyms</strong> <em>Particular</em>, etc. See <internalXref urlencoded=\"special\">special</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/peculiar",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

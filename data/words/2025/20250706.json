@@ -1,0 +1,114 @@
+{
+    "word": "flunk",
+    "date": "20250706",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "F5208300-1",
+            "partOfSpeech": "intransitive verb",
+            "text": "To fail, especially in a course or an examination.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5208300-2",
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5208300-3",
+            "partOfSpeech": "intransitive verb",
+            "text": "To fail (an examination or course).",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5208300-4",
+            "partOfSpeech": "intransitive verb",
+            "text": "To give a failing grade to (a student).",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5208300-5",
+            "partOfSpeech": "intransitive verb",
+            "text": "To fail (a drug test, as for a performance enhancing substance).",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5208300-6",
+            "partOfSpeech": "noun",
+            "text": "A failure.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5208300-7",
+            "partOfSpeech": "noun",
+            "text": "A failing grade.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "F5208300-8",
+            "partOfSpeech": "phrasal verb",
+            "text": "To expel or be expelled from a school or course because of work that does not meet required standards.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A failure or back-down; in colleges, a complete failure in a recitation or an examination.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "To fail or give up; break down or back down, as from incompetence or fear: often with <em>out</em>: as, to <internalXref urlencoded=\"flunk\">flunk</internalXref> in a school recitation or examination; to <em>flunk out</em> from a contest.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/flunk",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

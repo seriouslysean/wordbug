@@ -1,0 +1,133 @@
+{
+    "word": "cool",
+    "date": "20180415",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "C5649300-1",
+            "partOfSpeech": "adjective",
+            "text": "Neither warm nor very cold; moderately cold.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "fresh, cool water; a cool autumn evening."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-2",
+            "partOfSpeech": "adjective",
+            "text": "Giving or suggesting relief from heat.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "a cool breeze; a cool blouse."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-3",
+            "partOfSpeech": "adjective",
+            "text": "Marked by calm self-control.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "a cool negotiator."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-4",
+            "partOfSpeech": "adjective",
+            "text": "Marked by indifference, disdain, or dislike; unfriendly or unresponsive.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "a cool greeting; was cool to the idea of higher taxes."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-5",
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or characteristic of colors, such as blue and green, that produce the impression of coolness.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-6",
+            "partOfSpeech": "adjective",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-7",
+            "partOfSpeech": "adjective",
+            "text": "Knowledgeable or aware of the latest trends or developments.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "spent all his time trying to be cool."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-8",
+            "partOfSpeech": "adjective",
+            "text": "Excellent; first-rate.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "has a cool sports car; had a cool time at the party."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-9",
+            "partOfSpeech": "adjective",
+            "text": "Acceptable; satisfactory.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "It's cool if you don't want to talk about it."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "C5649300-10",
+            "partOfSpeech": "adjective",
+            "text": "Entire; full.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "examples": [
+                "worth a cool million."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

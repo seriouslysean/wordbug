@@ -1,0 +1,59 @@
+{
+    "word": "latrine",
+    "date": "20250719",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "L5071800-1",
+            "partOfSpeech": "noun",
+            "text": "A communal toilet of a type often used in a camp or barracks.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/latrine",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A privy; a water-closet; especially, a water-closet in a public place, as in factories, schools, barracks, hospitals, etc.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/latrine",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A privy, or water-closet, esp. in a camp, hospital, etc.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/latrine",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a very simple <xref>toilet</xref> <xref>facility</xref>, usually just a <xref>pit</xref> or <xref>trench</xref>. See also the <xref>slang</xref> terms <xref>john</xref> and <xref>johnny house</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/latrine",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a public toilet in a military area",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/latrine",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

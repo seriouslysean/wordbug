@@ -1,0 +1,18 @@
+{
+    "word": "mentorship",
+    "date": "20250827",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>state</xref> of being a <xref>mentor</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/mentorship",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

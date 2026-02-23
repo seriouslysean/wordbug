@@ -1,0 +1,121 @@
+{
+    "word": "bureaucracy",
+    "date": "20250926",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "B5571600-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5571600-2",
+            "partOfSpeech": "noun",
+            "text": "Administration of a government chiefly through bureaus or departments staffed with nonelected officials.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5571600-3",
+            "partOfSpeech": "noun",
+            "text": "The departments and their officials as a group.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [
+                "promised to reorganize the federal bureaucracy."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5571600-4",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5571600-5",
+            "partOfSpeech": "noun",
+            "text": "Management or administration marked by hierarchical authority among numerous offices and by fixed procedures.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [
+                "The new department head did not know much about bureaucracy."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5571600-6",
+            "partOfSpeech": "noun",
+            "text": "The administrative structure of a large or complex organization.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [
+                "a midlevel manager in a corporate bureaucracy."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "B5571600-7",
+            "partOfSpeech": "noun",
+            "text": "An administrative system in which the need or inclination to follow rigid or complex procedures impedes effective action.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [
+                "innovative ideas that get bogged down in red tape and bureaucracy."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Government by bureaus; specifically, excessive multiplication of, and concentration of power in, administrative bureaus.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The body of officials administering such bureaus, considered collectively.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A system of carrying on the business of government by means of departments or bureaus, each under the control of a chief, in contradiction to a system in which the officers of government have an associated authority and responsibility; also, government conducted on this system.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/bureaucracy",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

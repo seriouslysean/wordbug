@@ -1,0 +1,82 @@
+{
+    "word": "abundant",
+    "date": "20251123",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "A5031700-1",
+            "partOfSpeech": "adjective",
+            "text": "Occurring in abundance: <i>synonym</i>: <strong> plentiful</strong>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/abundant",
+            "examples": [
+                "abundant crops."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "A5031700-2",
+            "partOfSpeech": "adjective",
+            "text": "Having an abundance of something; abounding.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/abundant",
+            "examples": [
+                "a region abundant in wildlife."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Plentiful; present in great quantity; fully sufficient: as, an <em>abundant</em> supply.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/abundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Possessing in great quantity; copiously supplied; having great plenty; abounding: followed by <em>in.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/abundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Fully sufficient; plentiful; in copious supply; -- followed by <ex>in</ex>, rarely by <ex>with</ex>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/abundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "a number, the sum of whose aliquot parts exceeds the number itself. Thus, 1, 2, 3, 4, 6, the aliquot parts of 12, make the number 16. This is opposed to a <contr>deficient</contr> number, as 14, whose aliquot parts are 1, 2, 7, the sum of which is 10; and to a <contr>perfect</contr> number, which is equal to the sum of its aliquot parts, as 6, whose aliquot parts are 1, 2., 3.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/abundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "present in great quantity",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/abundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

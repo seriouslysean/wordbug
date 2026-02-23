@@ -1,0 +1,49 @@
+{
+    "word": "sphygmomanometer",
+    "date": "20251012",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "S5691300-1",
+            "partOfSpeech": "noun",
+            "text": "An instrument for measuring blood pressure in the arteries, especially one consisting of a pressure gauge and a nylon or rubber cuff that wraps around the upper arm and inflates to constrict the arteries.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/sphygmomanometer",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An instrument for measuring the tension of the blood in an artery.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/sphygmomanometer",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A device used to measure <xref>blood pressure</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/sphygmomanometer",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "a pressure gauge for measuring blood pressure",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/sphygmomanometer",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

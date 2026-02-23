@@ -1,0 +1,49 @@
+{
+    "word": "hypersonic",
+    "date": "20250602",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "H5382600-1",
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or capable of speed equal to or exceeding five times the speed of sound.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hypersonic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Pertaining to or moving at a speed greatly in excess of the speed of sound, usually meaning greater than mach 5. All speeds in excess of the speed of sound are <contr>supersonic</contr>, but to be <ex>hypersonic</ex> requires even higher speed.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/hypersonic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "<xref>equal</xref> to, or <xref>greater</xref> than, or capable of achieving, five times the <xref>speed of sound</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/hypersonic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "far enough above the speed of sound so as to cause significant differences in behaviour due to chemical reactions or disassociation of the air.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/hypersonic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

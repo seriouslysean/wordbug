@@ -1,0 +1,60 @@
+{
+    "word": "penicillin",
+    "date": "20250710",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5176400-1",
+            "partOfSpeech": "noun",
+            "text": "An antibiotic drug obtained from molds especially of the genus <em>Penicillium</em> or produced synthetically, available in various preparations and usually used to treat infections caused by gram-positive bacteria.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/penicillin",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5176400-2",
+            "partOfSpeech": "noun",
+            "text": "Any of a group of broad-spectrum antibiotic drugs, synthetic or semisynthetic, that are derived from penicillin.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/penicillin",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Any of a variety of substances having a structure containing a beta-lactam ring fused to a thiirane ring, to which a carboxyl group is attached, but most commonly interpreted as <stype>benzyl penicillin</stype>. They are notable as powerful antibacterial agents of relatively low toxicity which have found extensive use in medicine for treating bacterial infections. They are categorized as one of the classes of beta-lactam antibiotic. They are produced naturally by some fungi and bacteria, and industrial production processes almost invariably start from some form of the penicillin nucleus produced by fermentation of microorganisms. The fermentation products are then chemically modified to produce derivatives of enhanced potency, safety, or antibacterial spectrum. The first <ex>penicillin</ex> to see extensive use clinically (during World War II) was <stype>penicillin G</stype>, also called <stype>benzypenicillin</stype>, and commonly simply “penicillin”.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/penicillin",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Any of a group of <xref>broad-spectrum antibiotics</xref> obtained from Penicillium <xref>molds</xref> or <xref>synthesized</xref>; they have a <xref>beta-lactam</xref> structure; most are <xref>active</xref> against <xref>gram-positive</xref> <xref>bacteria</xref> and used in the <xref>treatment</xref> of various <xref>infections</xref> and <xref>diseases</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/penicillin",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "any of various antibiotics obtained from Penicillium molds (or produced synthetically) and used in the treatment of various infections and diseases",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/penicillin",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

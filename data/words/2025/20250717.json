@@ -1,0 +1,112 @@
+{
+    "word": "inflammation",
+    "date": "20250717",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "I5143400-1",
+            "partOfSpeech": "noun",
+            "text": "The act of inflaming or the state of being inflamed.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "I5143400-2",
+            "partOfSpeech": "noun",
+            "text": "A localized protective reaction of tissue to irritation, injury, or infection, characterized by pain, redness, swelling, and sometimes loss of function.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The act of inflaming; the act of setting on fire or of taking fire, actually or figuratively.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A fiery, heated, or inflamed condition, especially as resulting from passion, excessive stimulation, as by intoxicating liquors, etc.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "In <em>pathology</em>, a morbid condition usually characterized by swelling, pain, heat, and redness.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The act of inflaming, kindling, or setting on fire; also, the state of being inflamed.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A morbid condition of any part of the body, consisting in congestion of the blood vessels, with obstruction of the blood current, and growth of morbid tissue. It is manifested outwardly by redness and swelling, attended with tenderness, heat and pain. It may be caused by exposure to any number of injurious agents.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Violent excitement; heat; passion; animosity; turbulence.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [
+                "an <ex>inflammation</ex> of the mind, of the body politic, or of parties"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The act of <xref>inflaming</xref>, <xref>kindling</xref>, or setting on <xref>fire</xref>; also, the state of being <xref>inflamed</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A condition of any part of the body, consisting in <xref>congestion</xref> of the <xref>blood vessels</xref>, with obstruction of the blood current, and growth of morbid <xref>tissue</xref>. It is <xref>manifested</xref> outwardly by redness and swelling, attended with heat and pain.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/inflammation",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

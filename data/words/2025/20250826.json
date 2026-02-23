@@ -1,0 +1,133 @@
+{
+    "word": "plunge",
+    "date": "20250826",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "P5415800-1",
+            "partOfSpeech": "intransitive verb",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-2",
+            "partOfSpeech": "intransitive verb",
+            "text": "To dive, jump, or throw oneself.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "We plunged into the lake."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-3",
+            "partOfSpeech": "intransitive verb",
+            "text": "To fall rapidly.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "The car went off the road and plunged into the gully."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-4",
+            "partOfSpeech": "intransitive verb",
+            "text": "To devote oneself to or undertake an activity earnestly or wholeheartedly.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "I plunged into my studies. She plunged ahead with her plan."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-5",
+            "partOfSpeech": "intransitive verb",
+            "text": "To enter or move headlong through something.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "The hunting dogs plunged into the forest."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-6",
+            "partOfSpeech": "intransitive verb",
+            "text": "To slope steeply downward.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "a cliff that plunges to the sea."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-7",
+            "partOfSpeech": "intransitive verb",
+            "text": "To move forward and downward violently.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "The ship plunged through rough seas."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-8",
+            "partOfSpeech": "intransitive verb",
+            "text": "To become suddenly lower; decrease dramatically.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "Stock prices plunged during the banking crisis."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-9",
+            "partOfSpeech": "intransitive verb",
+            "text": "To thrust or throw forcefully into a substance or place.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [
+                "plunged the eggs into the hot water; plunged the fork into the potato."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "P5415800-10",
+            "partOfSpeech": "intransitive verb",
+            "text": "To cast suddenly, violently, or deeply into a given state or situation.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/plunge",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "word": "snakelike",
+    "date": "20250720",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "adjective",
+            "text": "<xref>Resembling</xref> a <xref>snake</xref>. Long, thin and flexible; <xref>waving</xref> about in a snake-like manner.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/snakelike",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Like that of a <xref>snake</xref>; as, a snakelike tongue",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/snakelike",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "resembling a serpent in form",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/snakelike",
+            "examples": [
+                "snaky ridges in the sand"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

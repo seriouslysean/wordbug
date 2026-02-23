@@ -1,0 +1,110 @@
+{
+    "word": "enthusiastic",
+    "date": "20250823",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "E5164400-1",
+            "partOfSpeech": "adjective",
+            "text": "Having or demonstrating enthusiasm.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Filled with or characterized by enthusiasm, or the conceit of special intercourse with God, or of direct revelations or instructions from him.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Prone to enthusiasm; zealous or devoted; passionate in devotion to a belief or a principle, or the pursuit of an object: as, an <em>enthusiastic</em> reformer.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Elevated; ardent; inspired by or glowing with enthusiasm: as, the speaker addressed the audience in <em>enthusiastic</em> strains.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "<strong>Synonyms</strong> <em>Enthusiastic, Fanatical</em>; eager, zealous, devoted, fervent, passionate, glowing; heated, inflamed, visionary. <em>Enthusiastic</em> is most frequently used with regard to a person whose sympathies or feelings are warmly engaged in favor of any cause or pursuit, and who is full of hope and ardent zeal; while <em>fanatical</em> is generally said of a person who has fantastic and extravagant views on religious or moral subjects, or some similarly absorbing topic. See <internalXref urlencoded=\"superstition\">superstition</internalXref>.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An enthusiast.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An enthusiast; a zealot.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Filled with enthusiasm; characterized by enthusiasm; zealous.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [
+                "an <ex>enthusiastic</ex> lover of art"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "With <xref>zealous</xref> <xref>fervor</xref>; excited, motivated",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "having or showing great excitement and interest",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/enthusiastic",
+            "examples": [
+                "an enthusiastic response",
+                "was enthusiastic about taking ballet lessons"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

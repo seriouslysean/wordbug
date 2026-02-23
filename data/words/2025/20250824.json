@@ -1,0 +1,114 @@
+{
+    "word": "hyacinth",
+    "date": "20250824",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "H5355500-1",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5355500-2",
+            "partOfSpeech": "noun",
+            "text": "A bulbous Mediterranean plant <em>(Hyacinthus orientalis)</em> having narrow leaves and a terminal raceme of variously colored, usually fragrant flowers, with a funnel-shaped perianth.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5355500-3",
+            "partOfSpeech": "noun",
+            "text": "Any of several similar or related plants, such as the grape hyacinth.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5355500-4",
+            "partOfSpeech": "noun",
+            "text": "A plant, perhaps the larkspur, gladiolus, or iris, that sprang from the blood of the slain Hyacinthus.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5355500-5",
+            "partOfSpeech": "noun",
+            "text": "A deep purplish blue to vivid violet.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5355500-6",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5355500-7",
+            "partOfSpeech": "noun",
+            "text": "A reddish or cinnamon-colored variety of transparent zircon, used as a gemstone.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "H5355500-8",
+            "partOfSpeech": "noun",
+            "text": "A blue precious stone, perhaps the sapphire, known in antiquity.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An ornamental bulbous plant of the genus <em>Hyacinthus</em> (<em>H. orientalis</em>), natural order <em>Liliaceæ.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "By transfer, a plant of some other genus.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

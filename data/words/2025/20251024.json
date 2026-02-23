@@ -1,0 +1,18 @@
+{
+    "word": "scuttlefish",
+    "date": "20251024",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "A cuttlefish.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/scuttlefish",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

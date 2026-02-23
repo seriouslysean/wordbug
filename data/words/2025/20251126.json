@@ -1,0 +1,114 @@
+{
+    "word": "redundant",
+    "date": "20251126",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "R5117900-1",
+            "partOfSpeech": "adjective",
+            "text": "Exceeding what is necessary or natural; superfluous.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5117900-2",
+            "partOfSpeech": "adjective",
+            "text": "Needlessly wordy or repetitive in expression.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [
+                "a student paper filled with redundant phrases."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5117900-3",
+            "partOfSpeech": "adjective",
+            "text": "Of or relating to linguistic redundancy.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5117900-4",
+            "partOfSpeech": "adjective",
+            "text": "Dismissed or laid off from work, as for being no longer needed.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5117900-5",
+            "partOfSpeech": "adjective",
+            "text": "Of or involving redundancy in electronic equipment.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5117900-6",
+            "partOfSpeech": "adjective",
+            "text": "Of or involving redundancy in the transmission of messages.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "R5117900-7",
+            "partOfSpeech": "adjective",
+            "text": "Degenerate.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Noting a condition of the wing membrane in bats when it extends well down on the leg, and on the arm embraces the thumb beyond the first phalanx.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Rolling or flowing back, as a wave or surge.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Superfluous; exceeding what is natural or necessary; superabundant; exuberant.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/redundant",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

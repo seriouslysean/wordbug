@@ -1,0 +1,31 @@
+{
+    "word": "flabbergasted",
+    "date": "20250408",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "verb",
+            "text": "Simple past tense and past participle of <xref>flabbergast</xref>.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/flabbergasted",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "as if struck dumb with astonishment and surprise",
+            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
+            "sourceDictionary": "wordnet",
+            "sourceUrl": "https://www.wordnik.com/words/flabbergasted",
+            "examples": [
+                "was thunderstruck by the news of his promotion",
+                "the flabbergasted aldermen were speechless"
+            ],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

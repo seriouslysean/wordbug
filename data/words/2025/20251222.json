@@ -1,0 +1,108 @@
+{
+    "word": "versatile",
+    "date": "20251222",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "V5075200-1",
+            "partOfSpeech": "adjective",
+            "text": "Capable of doing many things competently.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "V5075200-2",
+            "partOfSpeech": "adjective",
+            "text": "Having varied uses or serving many functions.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "V5075200-3",
+            "partOfSpeech": "adjective",
+            "text": "Variable or inconstant; changeable.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [
+                "a versatile temperament."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "V5075200-4",
+            "partOfSpeech": "adjective",
+            "text": "Capable of moving freely in all directions, as the loosely attached anthers of certain flowers.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "In <em>ichthyology</em>, capable of being turned either way: describing a spine, a tooth, or any organ that may not be usually so turned.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Capable of being moved or turned round: as, a <em>versatile</em> spindle.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Changeable; variable; unsteady; inconstant.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "Turning with ease from one thing to another; readily applying one's self to a new task, or to various subjects; many-sided: as, a <em>versatile</em> writer; a <em>versatile</em> actor.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "In <em>botany</em>, swinging or turning freely on a support: especially noting an anther fixed by the middle on the apex of the filament, and swinging freely to and fro. See cuts under <internalXref urlencoded=\"anther\">anther</internalXref> and <em>lily.</em>",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "text": "In <em>ornithology</em>, specifically, reversible: noting any toe of a bird which may be turned either forward or backward.",
+            "attributionText": "from The Century Dictionary.",
+            "sourceDictionary": "century",
+            "sourceUrl": "https://www.wordnik.com/words/versatile",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

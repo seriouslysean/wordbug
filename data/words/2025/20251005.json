@@ -1,0 +1,123 @@
+{
+    "word": "gape",
+    "date": "20251005",
+    "adapter": "wordnik",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "G5038900-1",
+            "partOfSpeech": "intransitive verb",
+            "text": "To open the mouth wide.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-2",
+            "partOfSpeech": "intransitive verb",
+            "text": "To stare wonderingly or stupidly, often with the mouth open. <i>synonym</i>: <strong> gaze</strong>.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-3",
+            "partOfSpeech": "intransitive verb",
+            "text": "To be or become open or wide.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [
+                "Holes gaped in the ceiling."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-4",
+            "partOfSpeech": "noun",
+            "text": "The act or an instance of gaping.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [
+                "a scoring move that elicited gapes from her teammates."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-5",
+            "partOfSpeech": "noun",
+            "text": "A large opening.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [
+                "a gape in the sail."
+            ],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-6",
+            "partOfSpeech": "noun",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-7",
+            "partOfSpeech": "noun",
+            "text": "The mouth, especially when open.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-8",
+            "partOfSpeech": "noun",
+            "text": "The width of the space between the open jaws or mandibles of a vertebrate.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-9",
+            "partOfSpeech": "noun",
+            "text": "A disease of birds, especially young domesticated chickens and turkeys, caused by gapeworms and resulting in obstructed breathing.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "id": "G5038900-10",
+            "partOfSpeech": "noun",
+            "text": "A fit of yawning.",
+            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+            "sourceDictionary": "ahd-5",
+            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}
