@@ -146,8 +146,8 @@ export function findExistingWord(word: string): WordData | null {
       if (data.word?.toLowerCase() === lowerWord) {
         return data;
       }
-    } catch {
-      // File unreadable, skip
+    } catch (error) {
+      logger.warn('Failed to read word file', { path: file.path, error: (error as Error).message });
     }
   }
 
@@ -161,7 +161,8 @@ export function getAllWords(): WordData[] {
   return getWordFiles().flatMap(file => {
     try {
       return [JSON.parse(fs.readFileSync(file.path, 'utf-8')) as WordData];
-    } catch {
+    } catch (error) {
+      logger.warn('Failed to parse word file', { path: file.path, error: (error as Error).message });
       return [];
     }
   });
