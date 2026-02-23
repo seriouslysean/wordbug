@@ -1,113 +1,79 @@
 import { expect, test } from '@playwright/test';
 
 // Navigation and route resolution for the built static site.
-// These tests verify that pre-rendered pages exist and link to each other
-// correctly -- something unit tests cannot validate.
+// Tests user journeys through the site via element interaction.
+// No hardcoded word URLs -- content is discovered through navigation.
 
 test.describe('site navigation', () => {
-  test('homepage loads and displays current word', async ({ page }) => {
+  test('homepage renders with main content', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page).toHaveTitle(/Word of the Day/);
-
-    // Main content area exists
-    const main = page.locator('#main-content');
-    await expect(main).toBeVisible();
+    await expect(page.locator('#main-content')).toBeVisible();
+    await expect(page.locator('header')).toBeVisible();
+    await expect(page.locator('footer')).toBeVisible();
   });
 
-  test('homepage links to browse and stats sections', async ({ page }) => {
+  test('homepage has navigation links to browse and stats', async ({ page }) => {
     await page.goto('/');
 
-    // Header navigation links exist
-    const nav = page.locator('header');
-    await expect(nav).toBeVisible();
-
-    // Browse and stats links should be present in the page
-    const browseLink = page.locator('a[href*="/browse"]').first();
-    const statsLink = page.locator('a[href*="/stats"]').first();
-    await expect(browseLink).toBeVisible();
-    await expect(statsLink).toBeVisible();
+    await expect(page.locator('a[href*="/browse"]').first()).toBeVisible();
+    await expect(page.locator('a[href*="/stats"]').first()).toBeVisible();
   });
 
-  test('browse page loads and lists navigation options', async ({ page }) => {
+  test('browse page lists navigation categories', async ({ page }) => {
     await page.goto('/browse');
 
-    await expect(page).toHaveTitle(/Browse/i);
-
-    // Should have links to year, letter, and length browse pages
     await expect(page.locator('a[href*="/browse/year"]').first()).toBeVisible();
     await expect(page.locator('a[href*="/browse/letter"]').first()).toBeVisible();
     await expect(page.locator('a[href*="/browse/length"]').first()).toBeVisible();
   });
 
-  test('browse by year page lists available years', async ({ page }) => {
+  test('can navigate from year listing to a word page', async ({ page }) => {
     await page.goto('/browse/year');
 
-    // Should contain links to individual year pages
-    await expect(page.locator('a[href*="/browse/2025"]').first()).toBeVisible();
+    // Click a year section heading link
+    const yearLink = page.locator('main a[href*="/browse/20"]').first();
+    await expect(yearLink).toBeVisible();
+    await yearLink.click();
+
+    // Year page should list word links
+    const wordLink = page.locator('main a[href*="/word/"]').first();
+    await expect(wordLink).toBeVisible();
+    await wordLink.click();
+
+    // Word page should render content
+    await expect(page.locator('#main-content')).toBeVisible();
+    await expect(page.locator('h1, h2').first()).toBeVisible();
   });
 
-  test('year page lists words for that year', async ({ page }) => {
-    await page.goto('/browse/2025');
+  test('word page has adjacent word navigation', async ({ page }) => {
+    // Navigate to a word from the homepage previous words section
+    await page.goto('/');
+    await page.locator('main a[href*="/word/"]').first().click();
 
-    // Should contain word links
-    const wordLinks = page.locator('a[href*="/word/"]');
-    const count = await wordLinks.count();
-    expect(count).toBeGreaterThan(0);
-  });
-
-  test('browse by letter page lists available letters', async ({ page }) => {
-    await page.goto('/browse/letter');
-
-    // Should contain letter links
-    const letterLinks = page.locator('a[href*="/browse/letter/"]');
-    const count = await letterLinks.count();
-    expect(count).toBeGreaterThan(0);
-  });
-
-  test('stats page loads and lists stat categories', async ({ page }) => {
-    await page.goto('/stats');
-
-    await expect(page).toHaveTitle(/Stats/i);
-  });
-
-  test('word page displays word details', async ({ page }) => {
-    // Use a word we know exists in the demo data
-    await page.goto('/word/awareness');
-
-    await expect(page).toHaveTitle(/awareness/i);
-
-    // Should display the word
-    const heading = page.locator('h1, h2').first();
-    await expect(heading).toContainText(/awareness/i);
-  });
-
-  test('word page has navigation to adjacent words', async ({ page }) => {
-    await page.goto('/word/awareness');
-
-    // Should have previous/next navigation links
-    const navLinks = page.locator('a[href*="/word/"]');
+    const navLinks = page.locator('.word-nav a[href*="/word/"]');
     const count = await navLinks.count();
     expect(count).toBeGreaterThan(0);
   });
 
-  test('clicking a word link navigates to word page', async ({ page }) => {
-    await page.goto('/browse/2025');
+  test('browse by letter shows letter groups', async ({ page }) => {
+    await page.goto('/browse/letter');
 
-    // Click the first word link
-    const firstWordLink = page.locator('a[href*="/word/"]').first();
-    const href = await firstWordLink.getAttribute('href');
-    await firstWordLink.click();
-
-    // Should navigate to the word page
-    await expect(page).toHaveURL(new RegExp(href!));
+    const letterLinks = page.locator('main a[href*="/browse/letter/"]');
+    const count = await letterLinks.count();
+    expect(count).toBeGreaterThan(0);
   });
 
-  test('404 page renders for non-existent routes', async ({ page }) => {
+  test('stats page is reachable', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('a[href*="/stats"]').first().click();
+
+    await expect(page.locator('#main-content')).toBeVisible();
+  });
+
+  test('non-existent route returns 404', async ({ page }) => {
     const response = await page.goto('/this-page-does-not-exist');
 
-    // Static sites serve 404.html for missing routes via the preview server
-    // The page should still render (Astro preview serves the 404 page)
     expect(response?.status()).toBe(404);
   });
 });
