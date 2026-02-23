@@ -41,7 +41,7 @@ import {
  * Safely retrieve a value from a Record by key, throwing if missing.
  * Used for definition lookups where keys are known constants that always exist at runtime.
  */
-function getDefinition<T>(definitions: Record<string, T>, key: string): T {
+export function getDefinition<T>(definitions: Record<string, T>, key: string): T {
   const def = definitions[key];
   if (def === undefined) {
     throw new Error(`Missing definition for key: ${key}`);

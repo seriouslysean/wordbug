@@ -45,14 +45,7 @@ interface StatsConfig {
   arg?: string | number;
 }
 
-// Retrieve a definition by key, throwing on missing keys (programmer error, not runtime data)
-function getDefinition<T>(definitions: Record<string, T>, key: string): T {
-  const def = definitions[key];
-  if (!def) {
-    throw new Error(`Missing definition for key: ${key}`);
-  }
-  return def;
-}
+import { getDefinition } from '#utils/page-metadata-utils';
 
 const createStatsConfig = (words: WordData[]): StatsConfig[] => {
   const letterPatterns = getLetterPatternStats(words);
