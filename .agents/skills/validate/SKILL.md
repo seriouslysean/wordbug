@@ -1,6 +1,6 @@
 ---
 description: Run the full quality gate pipeline and verify the project is in a healthy state. Use this after making code changes to catch issues early.
-allowed-tools: Bash(npm run lint:*), Bash(npm run lint\:fix:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npx vitest run:*), Bash(npm run build:*)
+allowed-tools: Bash(npm run lint:*), Bash(npm run lint\:fix:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npx vitest run:*), Bash(npm run build:*), Bash(npm run test\:e2e:*), Bash(npx playwright:*)
 ---
 
 Validate the project by running the quality gate pipeline. Each gate catches a different class of issue — run them in order and stop at the first failure.
@@ -37,7 +37,7 @@ npm test
 
 **What passing looks like:** All test files pass, coverage thresholds met:
 - Lines: 80%
-- Functions: 75%
+- Functions: 80%
 - Branches: 85%
 - Statements: 80%
 
@@ -59,6 +59,28 @@ npm run build
 
 The build catches problems that lint and type checking miss: runtime evaluation errors, missing environment variable defaults, Content Collections loading failures, and template rendering errors. It builds without `.env` using defaults — if it fails, a required value is missing its default in `astro.config.ts`.
 
+## Gate 5: E2E tests (end-to-end)
+
+```sh
+npm run test:e2e
+```
+
+**Prerequisites:** Gate 4 (build) must pass first. E2E tests run Playwright against the built `dist/` output via `npm run preview`.
+
+**What passing looks like:** All Playwright tests pass across navigation, SEO, and accessibility specs.
+
+E2E tests validate the built site as a user would experience it:
+- **Navigation** (`navigation.spec.ts`) — user journeys: discover and navigate between words, browse by year, footer section links; 404 handling
+- **SEO** (`seo.spec.ts`) — meta tags present in rendered HTML (description, canonical, OpenGraph, Twitter), JSON-LD parseable, RSS and sitemap discoverable
+- **Accessibility** (`accessibility.spec.ts`) — skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text
+
+**Design principles:**
+- Test elements and interactions, not strings. No hardcoded word URLs — discover content through navigation
+- No overlap with unit tests. Unit tests validate generation logic; E2E validates the rendered output
+- E2E always runs in demo mode (no `BASE_PATH`, `SOURCE_DIR=demo`). The CI workflow skips `setup-env` intentionally — production env vars like `BASE_PATH` would break test selectors
+
+**If tests fail:** Run a specific spec to iterate faster: `npx playwright test tests/e2e/navigation.spec.ts`. Use `--headed` for a visible browser. Check that `dist/` exists and was built with demo defaults (no `BASE_PATH`).
+
 ## Summary
 
-If all four gates pass, the project is healthy. If you changed code, you should also verify that no existing behavior was broken by reviewing the test output carefully — passing tests with reduced coverage may indicate you removed test-covered code.
+If all five gates pass, the project is healthy. If you changed code, you should also verify that no existing behavior was broken by reviewing the test output carefully — passing tests with reduced coverage may indicate you removed test-covered code.

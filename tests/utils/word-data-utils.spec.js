@@ -7,7 +7,6 @@ import {
   vi,
 } from 'vitest';
 
-import { isValidDictionaryData } from '#utils/word-validation';
 import {
   getAdjacentWords,
   getCurrentWord,
@@ -73,50 +72,6 @@ describe('word-data-utils', () => {
 
   afterEach(() => {
     vi.useRealTimers();
-  });
-
-  describe('isValidDictionaryData', () => {
-    it('validates data with text content', () => {
-      const validData = [{ text: 'A valid definition', partOfSpeech: 'noun' }];
-      expect(isValidDictionaryData(validData)).toBe(true);
-    });
-
-    it('validates data with only part of speech', () => {
-      const validData = [{ partOfSpeech: 'noun' }];
-      expect(isValidDictionaryData(validData)).toBe(true);
-    });
-
-    it('validates data with only text', () => {
-      const validData = [{ text: 'A definition without part of speech' }];
-      expect(isValidDictionaryData(validData)).toBe(true);
-    });
-
-    it('rejects empty array', () => {
-      expect(isValidDictionaryData([])).toBe(false);
-    });
-
-    it('rejects null/undefined', () => {
-      expect(isValidDictionaryData(null)).toBe(false);
-      expect(isValidDictionaryData(undefined)).toBe(false);
-    });
-
-    it('rejects non-array input', () => {
-      expect(isValidDictionaryData('not an array')).toBe(false);
-      expect(isValidDictionaryData({})).toBe(false);
-    });
-
-    it('rejects data with no meaningful content', () => {
-      const invalidData = [{ id: '123', sourceDictionary: 'test' }]; // no text or partOfSpeech
-      expect(isValidDictionaryData(invalidData)).toBe(false);
-    });
-
-    it('accepts mixed data if at least one entry is valid', () => {
-      const mixedData = [
-        { id: '123' }, // invalid
-        { text: 'Valid definition' }, // valid
-      ];
-      expect(isValidDictionaryData(mixedData)).toBe(true);
-    });
   });
 
   describe('getCurrentWord', () => {

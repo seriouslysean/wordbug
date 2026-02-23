@@ -18,6 +18,10 @@ npm-debug.log*
 # test coverage
 coverage/
 
+# playwright
+test-results/
+playwright-report/
+
 # macOS-specific files
 .DS_Store
 

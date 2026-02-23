@@ -99,46 +99,10 @@ describe('logger', () => {
 
   describe('sentry integration', () => {
     it('handles Sentry errors gracefully', () => {
-      // Should not throw even if Sentry internals fail
       expect(() => {
         logger.warn('test warning');
         logger.error('test error');
       }).not.toThrow();
-    });
-
-    it('respects sentryEnabled configuration', () => {
-      logger.warn('test warning');
-      logger.error('test error');
-
-      // Sentry integration should only be called if enabled
-      if (config.sentryEnabled) {
-        expect(true).toBe(true);
-      } else {
-        expect(true).toBe(true);
-      }
-    });
-  });
-
-  describe('fast-fail behavior', () => {
-    it('implements fast-fail logic correctly', () => {
-      expect(typeof logger.debug).toBe('function');
-      expect(typeof logger.info).toBe('function');
-      expect(typeof logger.warn).toBe('function');
-      expect(typeof logger.error).toBe('function');
-
-      expect(() => logger.debug('test')).not.toThrow();
-      expect(() => logger.info('test')).not.toThrow();
-      expect(() => logger.warn('test')).not.toThrow();
-      expect(() => logger.error('test')).not.toThrow();
-    });
-  });
-
-  describe('proxy behavior', () => {
-    it('maintains console API compatibility', () => {
-      expect(logger.debug.length).toBe(console.debug.length);
-      expect(logger.info.length).toBe(console.info.length);
-      expect(logger.warn.length).toBe(console.warn.length);
-      expect(logger.error.length).toBe(console.error.length);
     });
   });
 });

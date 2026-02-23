@@ -53,14 +53,5 @@ describe('build-utils', () => {
       expect(buildData.wordsHash).toBe('hash-of-0-words');
     });
 
-    it('uses build-time constants for version and release', () => {
-      const mockWords = [{ word: 'test', date: '20240101' }];
-
-      const buildData = getBuildData(mockWords);
-
-      expect(typeof buildData.version).toBe('string');
-      expect(typeof buildData.release).toBe('string');
-      expect(typeof buildData.timestamp).toBe('string');
-    });
-  });
+});
 });

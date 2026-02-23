@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -31,6 +31,8 @@
     "tool:regenerate-all-words": "tsx tools/regenerate-all-words.ts",
     "test": "vitest run --coverage",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
     "typecheck": "astro check",
@@ -51,6 +53,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/sitemap": "^3.7.0",
+    "@playwright/test": "^1.58.2",
     "@sentry/astro": "^9.32.0",
     "@sentry/node": "^9.32.0",
     "@vitest/coverage-v8": "^4.0.18",

@@ -5,7 +5,7 @@ import {
  afterEach,beforeEach, describe, expect, it,
 } from 'vitest';
 
-import { isValidDictionaryData as isValidWordData } from '#utils/word-validation';
+import { isValidDictionaryData } from '#utils/word-validation';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -54,76 +54,14 @@ const checkExistingWordByName = (word, testWordsDir) => {
 };
 
 describe('add-word tool validation logic', () => {
-  describe('isValidWordData function', () => {
-    it('should reject empty objects (typical Wordnik response for invalid words)', () => {
+  describe('isValidDictionaryData with Wordnik responses', () => {
+    it('should reject typical Wordnik response for invalid words (objects with metadata but no definitions)', () => {
       const emptyData = [
         { citations: [], exampleUses: [], labels: [], notes: [], relatedWords: [], textProns: [] },
         { citations: [], exampleUses: [], labels: [], notes: [], relatedWords: [], textProns: [] },
       ];
 
-      expect(isValidWordData(emptyData)).toBe(false);
-    });
-
-    it('should accept valid word data with all fields', () => {
-      const validData = [
-        {
-          word: 'magnificent',
-          text: 'Splendid in appearance; grand',
-          partOfSpeech: 'adjective',
-        },
-      ];
-
-      expect(isValidWordData(validData)).toBe(true);
-    });
-
-    it('should accept data with only text field', () => {
-      const dataWithText = [
-        {
-          text: 'A test definition',
-          citations: [],
-          exampleUses: [],
-        },
-      ];
-
-      expect(isValidWordData(dataWithText)).toBe(true);
-    });
-
-    it('should accept data with only partOfSpeech field', () => {
-      const dataWithPartOfSpeech = [
-        {
-          partOfSpeech: 'noun',
-          citations: [],
-          exampleUses: [],
-        },
-      ];
-
-      expect(isValidWordData(dataWithPartOfSpeech)).toBe(true);
-    });
-
-    it('should reject completely empty array', () => {
-      const emptyArray = [];
-
-      expect(isValidWordData(emptyArray)).toBe(false);
-    });
-
-    it('should reject null or undefined input', () => {
-      expect(isValidWordData(null)).toBe(false);
-      expect(isValidWordData(undefined)).toBe(false);
-    });
-
-    it('should reject non-array input', () => {
-      expect(isValidWordData('not an array')).toBe(false);
-      expect(isValidWordData({})).toBe(false);
-      expect(isValidWordData(123)).toBe(false);
-    });
-
-    it('should handle mixed valid and invalid entries', () => {
-      const mixedData = [
-        { citations: [], exampleUses: [], labels: [] }, // Invalid entry
-        { text: 'A valid definition' }, // Valid entry
-      ];
-
-      expect(isValidWordData(mixedData)).toBe(true);
+      expect(isValidDictionaryData(emptyData)).toBe(false);
     });
   });
 

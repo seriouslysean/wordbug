@@ -8,6 +8,7 @@ export default defineConfig({
     setupFiles: ['tests/setup.js'],
     isolate: false,
     env: {
+      BASE_PATH: '/',
       SOURCE_DIR: 'demo',
     },
     coverage: {
@@ -31,7 +32,7 @@ export default defineConfig({
         autoUpdate: false,
         global: {
           branches: 85,
-          functions: 75,
+          functions: 80,
           lines: 80,
           statements: 80,
         },
