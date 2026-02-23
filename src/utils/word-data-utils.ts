@@ -360,23 +360,13 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
  * @returns {Record<string, WordData[]>} Object with letter keys and word arrays
  */
 export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]> => {
-  const groups = words.reduce<Record<string, WordData[]>>((acc, word) => {
-    const firstLetter = word.word.charAt(0).toLowerCase();
-    
-    // Only group a-z letters
-    if (firstLetter.match(/[a-z]/)) {
-      acc[firstLetter] = acc[firstLetter] || [];
-      acc[firstLetter].push(word);
-    }
-    
-    return acc;
-  }, {});
+  const alphabeticWords = words.filter(word => /^[a-z]/i.test(word.word));
+  const groups = Object.groupBy(alphabeticWords, word => word.word.charAt(0).toLowerCase()) as Record<string, WordData[]>;
 
-  // Sort letters alphabetically and sort words within each letter by word name
   return Object.fromEntries(
     Object.entries(groups)
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([letter, words]) => [letter, words.sort((a, b) => a.word.localeCompare(b.word))])
+      .map(([letter, letterWords]) => [letter, letterWords.sort((a, b) => a.word.localeCompare(b.word))])
   );
 };
 
