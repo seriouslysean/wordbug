@@ -8,7 +8,7 @@ test.describe('site navigation', () => {
   test('homepage loads and displays current word', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page).toHaveTitle(/Test Site/);
+    await expect(page).toHaveTitle(/Occasional Word of the Day/);
 
     // Main content area exists
     const main = page.locator('#main-content');
