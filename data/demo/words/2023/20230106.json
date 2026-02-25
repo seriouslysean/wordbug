@@ -1,0 +1,18 @@
+{
+    "word": "Amblypygi",
+    "date": "20230106",
+    "adapter": "wordnik",
+    "preserveCase": true,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "A taxonomic <xref>order</xref> within the <xref>class</xref> <xref>Arachnida</xref> — the tailless whip scorpions/whip spiders.",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/Amblypygi",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        }
+    ]
+}

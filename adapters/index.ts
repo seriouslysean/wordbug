@@ -39,10 +39,10 @@ export interface FetchResult {
 /**
  * Parses DICTIONARY_FALLBACK into an ordered list of adapter names.
  * Supports comma-separated values (e.g. "wordnik,wiktionary").
- * Returns empty array when fallback is unset, empty, or "none".
+ * Defaults to "wiktionary" when unset. Set to "none" or "" to disable.
  */
 function parseFallbackChain(): string[] {
-  const raw = process.env.DICTIONARY_FALLBACK;
+  const raw = process.env.DICTIONARY_FALLBACK ?? 'wiktionary';
   if (!raw || raw === 'none') {
     return [];
   }
@@ -65,9 +65,10 @@ export async function fetchWithFallback(word: string, options?: FetchOptions): P
     }
 
     let lastError: unknown = primaryError;
+    let previousName = primary.name;
     for (const fallbackName of fallbacks) {
       logger.warn('Adapter failed, trying fallback', {
-        previous: primary.name, fallback: fallbackName, word,
+        previous: previousName, fallback: fallbackName, word,
       });
       try {
         const fallback = getAdapterByName(fallbackName);
@@ -75,6 +76,7 @@ export async function fetchWithFallback(word: string, options?: FetchOptions): P
         return { response, adapterName: fallback.name };
       } catch (fallbackError) {
         lastError = fallbackError;
+        previousName = fallbackName;
       }
     }
 

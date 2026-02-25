@@ -79,16 +79,26 @@ describe('fetchWithFallback', () => {
     );
   });
 
-  it('throws primary error when fallback is not configured', async () => {
+  it('defaults to wiktionary fallback when DICTIONARY_FALLBACK is unset', async () => {
     vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
     delete process.env.DICTIONARY_FALLBACK;
 
-    const primaryError = new Error('Word not found');
+    const fallbackResponse = { word: 'test', definitions: [{ text: 'a test', partOfSpeech: 'noun' }], meta: { source: 'Wiktionary', attribution: '', url: '' } };
 
     vi.doMock('#adapters/wordnik', () => ({
       wordnikAdapter: {
         name: 'wordnik',
-        fetchWordData: vi.fn().mockRejectedValue(primaryError),
+        fetchWordData: vi.fn().mockRejectedValue(new Error('Word not found')),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    vi.doMock('#adapters/wiktionary', () => ({
+      wiktionaryAdapter: {
+        name: 'wiktionary',
+        fetchWordData: vi.fn().mockResolvedValue(fallbackResponse),
         transformToWordData: vi.fn(),
         transformWordData: vi.fn(),
         isValidResponse: vi.fn(),
@@ -96,8 +106,9 @@ describe('fetchWithFallback', () => {
     }));
 
     const { fetchWithFallback } = await import('#adapters');
+    const result = await fetchWithFallback('test');
 
-    await expect(fetchWithFallback('test')).rejects.toThrow('Word not found');
+    expect(result.adapterName).toBe('wiktionary');
   });
 
   it('throws primary error when fallback is "none"', async () => {
@@ -190,6 +201,14 @@ describe('fetchWithFallback', () => {
     expect(result.adapterName).toBe('wiktionary');
     expect(result.response).toEqual(wiktionaryResponse);
     expect(mockLogger.warn).toHaveBeenCalledTimes(2);
+    expect(mockLogger.warn).toHaveBeenNthCalledWith(1,
+      'Adapter failed, trying fallback',
+      expect.objectContaining({ previous: 'merriam-webster', fallback: 'wordnik' }),
+    );
+    expect(mockLogger.warn).toHaveBeenNthCalledWith(2,
+      'Adapter failed, trying fallback',
+      expect.objectContaining({ previous: 'wordnik', fallback: 'wiktionary' }),
+    );
   });
 
   it('returns first successful fallback in chain', async () => {
