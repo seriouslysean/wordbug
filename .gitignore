@@ -22,6 +22,9 @@ coverage/
 test-results/
 playwright-report/
 
+# local Claude Code settings (user-specific)
+.claude/settings.local.json
+
 # macOS-specific files
 .DS_Store
 
