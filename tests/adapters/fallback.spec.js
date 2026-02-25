@@ -74,8 +74,8 @@ describe('fetchWithFallback', () => {
     expect(result.adapterName).toBe('wiktionary');
     expect(result.response).toEqual(fallbackResponse);
     expect(mockLogger.warn).toHaveBeenCalledWith(
-      'Primary adapter failed, trying fallback',
-      expect.objectContaining({ primary: 'merriam-webster', fallback: 'wiktionary' }),
+      'Adapter failed, trying fallback',
+      expect.objectContaining({ previous: 'merriam-webster', fallback: 'wiktionary' }),
     );
   });
 
@@ -127,6 +127,123 @@ describe('fetchWithFallback', () => {
       merriamWebsterAdapter: {
         name: 'merriam-webster',
         fetchWordData: vi.fn().mockRejectedValue(new Error('MW: not found')),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    vi.doMock('#adapters/wiktionary', () => ({
+      wiktionaryAdapter: {
+        name: 'wiktionary',
+        fetchWordData: vi.fn().mockRejectedValue(new Error('Wiktionary: not found')),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    const { fetchWithFallback } = await import('#adapters');
+
+    await expect(fetchWithFallback('test')).rejects.toThrow('Wiktionary: not found');
+  });
+
+  it('tries each fallback in chain order until one succeeds', async () => {
+    vi.stubEnv('DICTIONARY_ADAPTER', 'merriam-webster');
+    vi.stubEnv('DICTIONARY_FALLBACK', 'wordnik,wiktionary');
+
+    const wiktionaryResponse = { word: 'test', definitions: [{ text: 'a test', partOfSpeech: 'noun' }], meta: { source: 'Wiktionary', attribution: '', url: '' } };
+
+    vi.doMock('#adapters/merriam-webster', () => ({
+      merriamWebsterAdapter: {
+        name: 'merriam-webster',
+        fetchWordData: vi.fn().mockRejectedValue(new Error('MW: not found')),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    vi.doMock('#adapters/wordnik', () => ({
+      wordnikAdapter: {
+        name: 'wordnik',
+        fetchWordData: vi.fn().mockRejectedValue(new Error('Wordnik: not found')),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    vi.doMock('#adapters/wiktionary', () => ({
+      wiktionaryAdapter: {
+        name: 'wiktionary',
+        fetchWordData: vi.fn().mockResolvedValue(wiktionaryResponse),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    const { fetchWithFallback } = await import('#adapters');
+    const result = await fetchWithFallback('test');
+
+    expect(result.adapterName).toBe('wiktionary');
+    expect(result.response).toEqual(wiktionaryResponse);
+    expect(mockLogger.warn).toHaveBeenCalledTimes(2);
+  });
+
+  it('returns first successful fallback in chain', async () => {
+    vi.stubEnv('DICTIONARY_ADAPTER', 'merriam-webster');
+    vi.stubEnv('DICTIONARY_FALLBACK', 'wordnik,wiktionary');
+
+    const wordnikResponse = { word: 'test', definitions: [{ text: 'a test', partOfSpeech: 'noun' }], meta: { source: 'Wordnik', attribution: '', url: '' } };
+
+    vi.doMock('#adapters/merriam-webster', () => ({
+      merriamWebsterAdapter: {
+        name: 'merriam-webster',
+        fetchWordData: vi.fn().mockRejectedValue(new Error('MW: not found')),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    vi.doMock('#adapters/wordnik', () => ({
+      wordnikAdapter: {
+        name: 'wordnik',
+        fetchWordData: vi.fn().mockResolvedValue(wordnikResponse),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    const { fetchWithFallback } = await import('#adapters');
+    const result = await fetchWithFallback('test');
+
+    expect(result.adapterName).toBe('wordnik');
+    expect(result.response).toEqual(wordnikResponse);
+    expect(mockLogger.warn).toHaveBeenCalledTimes(1);
+  });
+
+  it('throws last error when all fallbacks in chain fail', async () => {
+    vi.stubEnv('DICTIONARY_ADAPTER', 'merriam-webster');
+    vi.stubEnv('DICTIONARY_FALLBACK', 'wordnik,wiktionary');
+
+    vi.doMock('#adapters/merriam-webster', () => ({
+      merriamWebsterAdapter: {
+        name: 'merriam-webster',
+        fetchWordData: vi.fn().mockRejectedValue(new Error('MW: not found')),
+        transformToWordData: vi.fn(),
+        transformWordData: vi.fn(),
+        isValidResponse: vi.fn(),
+      },
+    }));
+
+    vi.doMock('#adapters/wordnik', () => ({
+      wordnikAdapter: {
+        name: 'wordnik',
+        fetchWordData: vi.fn().mockRejectedValue(new Error('Wordnik: not found')),
         transformToWordData: vi.fn(),
         transformWordData: vi.fn(),
         isValidResponse: vi.fn(),

@@ -37,8 +37,21 @@ export interface FetchResult {
 }
 
 /**
- * Fetches word data using the primary adapter, falling back to DICTIONARY_FALLBACK
- * when the primary fails and a fallback is configured.
+ * Parses DICTIONARY_FALLBACK into an ordered list of adapter names.
+ * Supports comma-separated values (e.g. "wordnik,wiktionary").
+ * Returns empty array when fallback is unset, empty, or "none".
+ */
+function parseFallbackChain(): string[] {
+  const raw = process.env.DICTIONARY_FALLBACK;
+  if (!raw || raw === 'none') {
+    return [];
+  }
+  return raw.split(',').map(s => s.trim()).filter(Boolean);
+}
+
+/**
+ * Fetches word data using the primary adapter, then tries each fallback
+ * in DICTIONARY_FALLBACK order (comma-separated) until one succeeds.
  */
 export async function fetchWithFallback(word: string, options?: FetchOptions): Promise<FetchResult> {
   const primary = getAdapter();
@@ -46,16 +59,25 @@ export async function fetchWithFallback(word: string, options?: FetchOptions): P
     const response = await primary.fetchWordData(word, options);
     return { response, adapterName: primary.name };
   } catch (primaryError) {
-    const fallbackName = process.env.DICTIONARY_FALLBACK;
-    if (!fallbackName || fallbackName === 'none') {
+    const fallbacks = parseFallbackChain();
+    if (fallbacks.length === 0) {
       throw primaryError;
     }
 
-    logger.warn('Primary adapter failed, trying fallback', {
-      primary: primary.name, fallback: fallbackName, word,
-    });
-    const fallback = getAdapterByName(fallbackName);
-    const response = await fallback.fetchWordData(word, options);
-    return { response, adapterName: fallback.name };
+    let lastError: unknown = primaryError;
+    for (const fallbackName of fallbacks) {
+      logger.warn('Adapter failed, trying fallback', {
+        previous: primary.name, fallback: fallbackName, word,
+      });
+      try {
+        const fallback = getAdapterByName(fallbackName);
+        const response = await fallback.fetchWordData(word, options);
+        return { response, adapterName: fallback.name };
+      } catch (fallbackError) {
+        lastError = fallbackError;
+      }
+    }
+
+    throw lastError;
   }
 }

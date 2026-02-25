@@ -19,7 +19,7 @@ export const COMMON_ENV_DOCS = `
 Common Environment Variables:
   SOURCE_DIR                 Data source subdirectory (unset = root paths)
   DICTIONARY_ADAPTER         Dictionary API to use (default: wordnik)
-  DICTIONARY_FALLBACK        Fallback when primary fails (default: none)
+  DICTIONARY_FALLBACK        Fallback chain, comma-separated (default: wiktionary)
   WORDNIK_API_KEY           API key for Wordnik dictionary
   MERRIAM_WEBSTER_API_KEY   API key for Merriam-Webster dictionary
   SITE_TITLE                Site title for generated content
