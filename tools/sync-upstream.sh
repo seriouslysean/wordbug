@@ -4,18 +4,19 @@
 #
 # Usage:
 #   npm run tool:sync           # from a downstream repo
-#   bash tools/sync-upstream.sh # direct invocation
+#   ./tools/sync-upstream.sh    # direct invocation
 #
 # What it does:
 #   1. Verifies an 'upstream' remote exists (downstream signal)
 #   2. Fetches upstream/main
-#   3. Rebases local main onto upstream/main
+#   3. Merges upstream/main into local main
 #   4. Resolves lockfile conflicts automatically (accept upstream + npm install)
 #   5. Runs npm install to pick up any dependency changes
 #
+# Uses merge (not rebase) so downstream can regular-push without force.
 # Downstream repos diverge from upstream only in paths that upstream never
 # touches: data/words/, public/images/social/, and favicon. These paths
-# rebase cleanly since upstream uses data/demo/words/ via SOURCE_DIR.
+# merge cleanly since upstream uses data/demo/words/ via SOURCE_DIR.
 
 set -euo pipefail
 
@@ -29,7 +30,6 @@ echo "Fetching upstream..."
 git fetch upstream
 
 # Check if we're already up to date
-LOCAL=$(git rev-parse HEAD)
 UPSTREAM=$(git rev-parse upstream/main)
 MERGE_BASE=$(git merge-base HEAD upstream/main)
 
@@ -38,22 +38,23 @@ if [ "$MERGE_BASE" = "$UPSTREAM" ]; then
   exit 0
 fi
 
-echo "Rebasing onto upstream/main..."
-if git rebase upstream/main; then
-  echo "Rebase succeeded."
+echo "Merging upstream/main..."
+if git merge upstream/main --no-edit; then
+  echo "Merge succeeded."
 else
   # Check if the only conflict is package-lock.json
   CONFLICTS=$(git diff --name-only --diff-filter=U 2>/dev/null || true)
   if [ "$CONFLICTS" = "package-lock.json" ]; then
     echo "Resolving lockfile conflict (accepting upstream version)..."
     git checkout --theirs package-lock.json
+    npm install
     git add package-lock.json
-    git rebase --continue
+    git commit --no-edit
   else
-    echo "Rebase conflict in unexpected files:"
+    echo "Merge conflict in unexpected files:"
     echo "$CONFLICTS"
     echo ""
-    echo "Resolve manually, then run: git rebase --continue"
+    echo "Resolve manually, then commit."
     exit 1
   fi
 fi
