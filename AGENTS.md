@@ -22,7 +22,7 @@ npm run lint:fix                   # oxlint auto-fix
 
 # CLI tools:
 npm run tool:local tools/add-word.ts serendipity
-npm run tool:local tools/generate-images.ts --all
+npm run tool:local tools/generate-images.ts
 ```
 
 Pre-commit hooks (lefthook) run `oxlint --fix` and related tests on staged files.
@@ -55,7 +55,9 @@ When you need shared logic, put the pure function in `utils/` and create a thin 
 
 ### Adapters are pass-throughs
 
-External API adapters (`adapters/`) look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller decides `--preserve-case`, the adapter respects it without second-guessing. See `tools/add-word.ts` and `adapters/wordnik.ts` for the pattern.
+External API adapters (`adapters/`) look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller decides `--preserve-case`, the adapter respects it without second-guessing.
+
+Three adapters exist: `merriam-webster` (primary), `wordnik`, and `wiktionary`. All share infrastructure from `utils/adapter-utils.ts` (POS normalization, response transforms, HTTP error handling). The adapter registry in `adapters/index.ts` maps names to implementations — no switch statements. `fetchWithFallback()` tries the primary adapter, then falls back through `DICTIONARY_FALLBACK` (comma-separated). See `tools/add-word.ts` and any adapter for the pattern.
 
 ## The Boundary
 
@@ -215,6 +217,18 @@ These aren't enforced by tools, but the codebase follows them consistently:
 - No emojis anywhere in the codebase
 - No log message prefixes (log levels are sufficient)
 - Don't commit planning docs, investigation notes, or temporary files
+
+## Releasing
+
+1. Run all quality gates
+2. Commit changes
+3. `npm version minor --no-git-tag-version` (bumps `package.json` without auto-committing)
+4. Commit: `chore: bump version to X.Y.0`
+5. Tag: `vX.Y.0`
+6. Push with tags: `git push && git push --tags`
+7. Create release: `gh release create vX.Y.0 --generate-notes --notes-start-tag vPREV`
+
+After releasing, sync downstream repos with `npm run tool:sync` (merge-based, no force push).
 
 ## Contributing via Git
 

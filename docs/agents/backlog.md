@@ -18,8 +18,9 @@ Known gaps and technical debt, organized by area.
 
 ### Error Handling Consistency
 
-- CLI tools now use consistent exit patterns (`await exit()` in async handlers, `.catch()` on main calls)
+- CLI tools use consistent exit patterns (`await exit()` in async handlers, `.catch()` on main calls)
 - Silent catch blocks in tools/utils.ts now log warnings
+- Shared HTTP error helpers in `utils/adapter-utils.ts` (`throwOnHttpError`, `parseJsonResponse`, `throwWordNotFound`) standardize adapter error paths
 - Remaining: no standardized error types, mixed strategies in non-CLI code (throw, return null, log and continue)
 
 ### HTML/SEO
@@ -44,7 +45,7 @@ Several env vars lack documentation in `docs/technical.md`:
 
 ## Test Coverage
 
-Coverage improved from 31.67% to ~84% (~405 tests across 5 layers: unit, component, architecture, CLI integration, E2E).
+Coverage improved from 31.67% to ~84% (~499 tests across 5 layers: unit, component, architecture, CLI integration, E2E).
 
 ### Remaining Gaps
 

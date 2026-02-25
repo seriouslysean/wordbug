@@ -24,7 +24,8 @@ src/
   styles/                        # CSS files
   assets/                        # Static assets
 
-utils/                           # Pure Node.js utilities (12 files)
+utils/                           # Pure Node.js utilities (13 files)
+  adapter-utils.ts               # Shared adapter helpers (POS, transforms, HTTP)
   breadcrumb-utils.ts            # Breadcrumb navigation logic
   date-utils.ts                  # Date manipulation (YYYYMMDD format)
   i18n-utils.ts                  # Translation helpers (t(), tp())
@@ -48,8 +49,10 @@ tools/                           # CLI tools (Node.js only, no Astro deps)
   utils.ts                       # Shared tool utilities
 
 adapters/                        # Dictionary API adapters
-  index.ts                       # Adapter factory
+  index.ts                       # Adapter factory + fallback orchestration
+  merriam-webster.ts             # Merriam-Webster Collegiate API
   wordnik.ts                     # Wordnik API implementation
+  wiktionary.ts                  # Wiktionary (Free Dictionary API)
 
 config/
   paths.ts                       # Path configuration (SOURCE_DIR-based)
@@ -68,7 +71,9 @@ types/                           # Shared TypeScript definitions
   stats.ts                       # StatsDefinition, StatsSlug, SuffixKey
   schema.ts                      # JSON-LD schema types
   seo.ts                         # SEO metadata types
+  merriam-webster.ts             # MW API response types (MWEntry, MWConfig)
   wordnik.ts                     # Wordnik API response types
+  wiktionary.ts                  # Wiktionary API response types
   vite.d.ts                      # Build-time global declarations
   window.d.ts                    # Browser window extensions
   opentype.js.d.ts               # OpenType.js type shim
@@ -107,7 +112,11 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `SOURCE_DIR` | `''` | Data source subdirectory (unset = root paths) |
-| `DICTIONARY_ADAPTER` | `wordnik` | Dictionary API to use |
+| `DICTIONARY_ADAPTER` | `merriam-webster` | Primary dictionary adapter |
+| `DICTIONARY_FALLBACK` | `wiktionary` | Comma-separated fallback adapters |
+| `MERRIAM_WEBSTER_API_KEY` | — | MW Collegiate API key |
+| `MERRIAM_WEBSTER_API_URL` | `https://dictionaryapi.com/api/v3/references` | MW API endpoint |
+| `MERRIAM_WEBSTER_DICTIONARY` | `collegiate` | MW dictionary name |
 | `WORDNIK_API_KEY` | — | Wordnik API key |
 | `WORDNIK_API_URL` | `https://api.wordnik.com/v4` | Wordnik API endpoint |
 | `WORDNIK_WEBSITE_URL` | `https://www.wordnik.com` | Wordnik website (for cross-ref links) |
@@ -214,10 +223,12 @@ npm run tool:local tools/add-word.ts serendipity --overwrite
 Consolidated image generation (SVG templates, Sharp PNG conversion, 1200x630px OpenGraph).
 
 ```sh
-npm run tool:local tools/generate-images.ts serendipity    # Single word
-npm run tool:local tools/generate-images.ts --all          # All words
-npm run tool:local tools/generate-images.ts --generic      # Generic page images
-npm run tool:local tools/generate-images.ts --page stats   # Specific page
+npm run tool:local tools/generate-images.ts                      # All images
+npm run tool:local tools/generate-images.ts --word serendipity   # Single word
+npm run tool:local tools/generate-images.ts --words              # All word images
+npm run tool:local tools/generate-images.ts --generic            # Generic page images
+npm run tool:local tools/generate-images.ts --page stats         # Specific page
+npm run tool:local tools/generate-images.ts --force              # Regenerate existing
 ```
 
 ### `regenerate-all-words.ts`
