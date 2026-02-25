@@ -1,0 +1,111 @@
+[
+    {
+        "meta": {
+            "id": "learned",
+            "uuid": "c9d0e1f2-a3b4-5678-cdef-901234567890",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["learned", "learnedly", "learnedness"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "learned",
+            "prs": [
+                {
+                    "mw": "\u02c8l\u0259r-n\u0259d"
+                }
+            ]
+        },
+        "fl": "adjective",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}having or demonstrating learning {bc}{sx|erudite||}"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "a {it}learned{/it} scholar"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "2",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}acquired by learning"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "{it}learned{/it} behavior"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "having or demonstrating learning :  erudite",
+            "acquired by learning"
+        ]
+    },
+    {
+        "meta": {
+            "id": "Learned",
+            "uuid": "d0e1f2a3-b4c5-6789-defa-012345678901",
+            "src": "collegiate",
+            "section": "biog",
+            "stems": ["Learned"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "Learned"
+        },
+        "fl": "biographical name",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "Billings 1872\u20131961 American jurist"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "Billings 1872-1961 American jurist"
+        ]
+    }
+]

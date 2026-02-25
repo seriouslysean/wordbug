@@ -1,222 +1,149 @@
 {
     "word": "of",
     "date": "20250119",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "O5039800-1",
+            "id": "of",
             "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Derived or coming from; originating at or from.",
-            "sequence": "1",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "customs of the South."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "—used as a function word to indicate a point of reckoning",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "plays of Shakespeare",
+                "very kind of you",
+                "a fish of the western Atlantic",
+                "stories of her travels",
+                "slow of speech",
+                "quarter of ten",
+                "A plague of all cowards …"
+            ]
         },
         {
-            "id": "O5039800-2",
+            "id": "of",
             "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Caused by; resulting from.",
-            "sequence": "2",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "a death of tuberculosis."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "—used as a function word to indicate origin or derivation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "plays of Shakespeare",
+                "very kind of you",
+                "a fish of the western Atlantic",
+                "stories of her travels",
+                "slow of speech",
+                "quarter of ten",
+                "A plague of all cowards …"
+            ]
         },
         {
-            "id": "O5039800-3",
+            "id": "of",
             "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Away from; at a distance from.",
-            "sequence": "3",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "a mile east of here."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "—used as a function word to indicate the cause, motive, or reason",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "plays of Shakespeare",
+                "very kind of you",
+                "a fish of the western Atlantic",
+                "stories of her travels",
+                "slow of speech",
+                "quarter of ten",
+                "A plague of all cowards …"
+            ]
         },
         {
-            "id": "O5039800-4",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "So as to be separated or relieved from.",
-            "sequence": "4",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "robbed of one's dignity; cured of distemper."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "of",
+            "partOfSpeech": "verb",
+            "text": "have —used in place of the contraction 've often in representations of uneducated speech",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
         },
         {
-            "id": "O5039800-5",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "From the total or group comprising.",
-            "sequence": "5",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "give of one's time; two of my friends; most of the cases."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "OF",
+            "text": "outfield",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
         },
         {
-            "id": "O5039800-6",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Composed or made from.",
-            "sequence": "6",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "a dress of silk."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "of a certain age",
+            "text": "of a somewhat advanced age: no longer young",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "remembered by people of a certain age"
+            ]
         },
         {
-            "id": "O5039800-7",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Associated with or adhering to.",
-            "sequence": "7",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "people of your religion."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "of a piece",
+            "text": "alike, consistent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
         },
         {
-            "id": "O5039800-8",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Belonging or connected to.",
-            "sequence": "8",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "the rungs of a ladder."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "of choice",
+            "text": "to be preferred",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
         },
         {
-            "id": "O5039800-9",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sequence": "9",
-            "score": 0,
-            "word": "of",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "of course",
+            "text": "following the ordinary way or procedure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "will be done as a matter of course",
+                "Of course we will go."
+            ]
         },
         {
-            "id": "O5039800-10",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Possessing; having.",
-            "sequence": "10",
-            "score": 0,
-            "word": "of",
-            "exampleUses": [
-                {
-                    "text": "a person of honor."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/of",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "of course",
+            "text": "as might be expected",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "will be done as a matter of course",
+                "Of course we will go."
+            ]
+        },
+        {
+            "id": "of few words",
+            "text": "not inclined to say more than is necessary: laconic",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "a person of few words"
+            ]
+        },
+        {
+            "id": "of late",
+            "text": "in the period shortly or immediately preceding: recently",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "has been sick of late"
+            ]
+        },
+        {
+            "id": "of necessity",
+            "text": "in such a way that it cannot be otherwise; also: as a necessary consequence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "further changes will occur of necessity"
+            ]
         }
     ]
 }

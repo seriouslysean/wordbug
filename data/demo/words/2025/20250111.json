@@ -1,124 +1,205 @@
 {
     "word": "reading",
     "date": "20250111",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "R5074300-1",
+            "id": "reading",
             "partOfSpeech": "noun",
-            "text": "The act or activity of one that reads.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "R5074300-2",
-            "partOfSpeech": "noun",
-            "text": "The act or practice of rendering aloud written or printed matter.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "text": "the act of reading",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading",
             "examples": [
-                "skilled at forensic reading."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a study to get some reading of shoppers' preferences"
+            ]
         },
         {
-            "id": "R5074300-3",
+            "id": "reading",
             "partOfSpeech": "noun",
-            "text": "An official or public recitation of written material.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "text": "material read or for reading",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading",
             "examples": [
-                "the reading of a will; a reading by the poet of her own works."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a study to get some reading of shoppers' preferences"
+            ]
         },
         {
-            "id": "R5074300-4",
+            "id": "reading",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "R5074300-5",
-            "partOfSpeech": "noun",
-            "text": "The specific form of a particular passage in a text.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "text": "extent of material read",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading",
             "examples": [
-                "a manuscript with a variant reading."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a study to get some reading of shoppers' preferences"
+            ]
         },
         {
-            "id": "R5074300-6",
-            "partOfSpeech": "noun",
-            "text": "The distinctive interpretation of a work of performing art given by the person or persons performing it.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Reading:b",
+            "text": "1st Marquis of 1860-1935 Rufus Daniel Isaacs British statesman; viceroy of India (1921-26)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
         },
         {
-            "id": "R5074300-7",
-            "partOfSpeech": "noun",
-            "text": "An interpretation or appraisal.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "id": "Reading:g",
+            "text": "town in eastern Massachusetts north of Boston population 24,747",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
+        },
+        {
+            "id": "Reading:g",
+            "text": "city on the Schuylkill River in southeastern Pennsylvania population 88,082",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
+        },
+        {
+            "id": "Reading:g",
+            "text": "town on the Thames River in southern England that is the capital of Berkshire population 219,000",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
+        },
+        {
+            "id": "read",
+            "partOfSpeech": "verb",
+            "text": "to receive or take in the sense of (letters, symbols, etc.) especially by sight or touch",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading",
             "examples": [
-                "He gave us his reading of the situation."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "read lips",
+                "read them a story",
+                "read law",
+                "read palms",
+                "able to read his fortune",
+                "reads him like a book",
+                "a good canoeist reads the rapids",
+                "a golfer reading a green",
+                "read a blitz",
+                "how do you read this passage",
+                "read a nonexistent meaning into her words",
+                "read hurry for harry",
+                "the thermometer reads zero",
+                "I had a minor problem with the disk drive in that the machine would not read the disk the first time it was powered up each day but had to be turned off and back on again.",
+                "this book reads smoothly",
+                "a passage that reads differently in older versions"
+            ]
         },
         {
-            "id": "R5074300-8",
-            "partOfSpeech": "noun",
-            "text": "Written or printed material.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
+            "id": "read",
+            "partOfSpeech": "verb",
+            "text": "to study the movements of with mental formulation of the communication expressed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading",
             "examples": [
-                "The survivors' account is fascinating reading."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "read lips",
+                "read them a story",
+                "read law",
+                "read palms",
+                "able to read his fortune",
+                "reads him like a book",
+                "a good canoeist reads the rapids",
+                "a golfer reading a green",
+                "read a blitz",
+                "how do you read this passage",
+                "read a nonexistent meaning into her words",
+                "read hurry for harry",
+                "the thermometer reads zero",
+                "I had a minor problem with the disk drive in that the machine would not read the disk the first time it was powered up each day but had to be turned off and back on again.",
+                "this book reads smoothly",
+                "a passage that reads differently in older versions"
+            ]
         },
         {
-            "id": "R5074300-9",
+            "id": "read",
+            "partOfSpeech": "verb",
+            "text": "to utter aloud the printed or written words of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading",
+            "examples": [
+                "read lips",
+                "read them a story",
+                "read law",
+                "read palms",
+                "able to read his fortune",
+                "reads him like a book",
+                "a good canoeist reads the rapids",
+                "a golfer reading a green",
+                "read a blitz",
+                "how do you read this passage",
+                "read a nonexistent meaning into her words",
+                "read hurry for harry",
+                "the thermometer reads zero",
+                "I had a minor problem with the disk drive in that the machine would not read the disk the first time it was powered up each day but had to be turned off and back on again.",
+                "this book reads smoothly",
+                "a passage that reads differently in older versions"
+            ]
+        },
+        {
+            "id": "reading desk",
             "partOfSpeech": "noun",
-            "text": "The information indicated by a gauge or graduated instrument.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "lectern",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
         },
         {
-            "text": "Inclined to read; having a taste for reading; of a studious disposition: as, a <em>reading</em> community.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/reading",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "reading frame",
+            "partOfSpeech": "noun",
+            "text": "a sequence of nucleotide triplets that is potentially translatable into a polypeptide and that is determined by the placement of a codon that initiates translation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
+        },
+        {
+            "id": "reading glasses",
+            "partOfSpeech": "noun",
+            "text": "eyeglasses used for reading or close work",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading",
+            "examples": [
+                "… each button on the phone has one large number and three tiny letters squeezed about it so you have to squint real hard, especially if you don't have your reading glasses on."
+            ]
+        },
+        {
+            "id": "first reading",
+            "partOfSpeech": "noun",
+            "text": "the first submitting of a bill before a quorum of a legislative assembly usually by title or number only",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
+        },
+        {
+            "id": "second reading",
+            "partOfSpeech": "noun",
+            "text": "the stage in the British legislative process following the first reading and usually providing for debate on the principal features of a bill before its submission to a committee for consideration of details",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
+        },
+        {
+            "id": "second reading",
+            "partOfSpeech": "noun",
+            "text": "the stage in the U.S. legislative process that occurs when a bill has been reported back from committee and that provides an opportunity for full debate and amendment before a vote is taken on the question of a third reading",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
+        },
+        {
+            "id": "speed-reading",
+            "partOfSpeech": "noun",
+            "text": "a method of reading rapidly by skimming",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
         }
     ]
 }

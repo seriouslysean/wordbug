@@ -1,8 +1,8 @@
 import fs from 'fs';
 
-import { getAdapter } from '#adapters';
+import { fetchWithFallback } from '#adapters';
 import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
-import { getAllWords } from '#tools/utils';
+import { getWordFiles } from '#tools/utils';
 import type { WordData } from '#types';
 import { exit, getErrorMessage, logger } from '#utils/logger';
 import { isValidDictionaryData } from '#utils/word-validation';
@@ -35,19 +35,18 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
       throw new Error('DICTIONARY_ADAPTER environment variable is required');
     }
 
-    const adapter = getAdapter();
-    const response = await adapter.fetchWordData(word);
+    const { response, adapterName } = await fetchWithFallback(word);
     const data = response.definitions;
 
     if (!isValidDictionaryData(data)) {
-      logger.error('Invalid word data received from adapter', { word, adapter: adapter.name });
+      logger.error('Invalid word data received from adapter', { word, adapter: adapterName });
       return false;
     }
 
     const wordData: WordData = {
       word: word.toLowerCase(),
       date,
-      adapter: process.env.DICTIONARY_ADAPTER,
+      adapter: adapterName,
       data,
     };
 
@@ -91,16 +90,8 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
  */
 async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
   try {
-    const allWords = getAllWords();
-    logger.info('Found word files to process', { count: allWords.length });
-
-    const wordsToRegenerate = allWords.map(wordData => ({
-      word: wordData.word,
-      date: wordData.date,
-      path: `data/words/${wordData.date.slice(0, 4)}/${wordData.date}.json`,
-    }));
-
-    logger.info('Extracted words to regenerate', { count: wordsToRegenerate.length });
+    const wordsToRegenerate = getWordFiles();
+    logger.info('Found word files to process', { count: wordsToRegenerate.length });
 
     if (options.dryRun) {
       logger.info('DRY RUN MODE - Words that would be regenerated:');

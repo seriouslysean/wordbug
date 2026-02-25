@@ -1,0 +1,67 @@
+[
+    {
+        "meta": {
+            "id": "Richter scale",
+            "uuid": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["Richter scale", "Richter scales"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "Rich*ter scale",
+            "prs": [
+                {
+                    "mw": "\u02c8rik-t\u0259r-"
+                }
+            ]
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}an open-ended logarithmic scale for expressing the magnitude of a seismographic disturbance (such as an earthquake) in terms of the energy dissipated in it with 1.5 indicating the smallest earthquake that can be felt, 4.5 an earthquake causing slight damage, and 8.5 a very devastating earthquake"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "et": [
+            [
+                "text",
+                "Charles F. Richter"
+            ]
+        ],
+        "date": "1938",
+        "shortdef": [
+            "an open-ended logarithmic scale for expressing the magnitude of a seismographic disturbance (such as an earthquake) in terms of the energy dissipated in it with 1.5 indicating the smallest earthquake that can be felt, 4.5 an earthquake causing slight damage, and 8.5 a very devastating earthquake"
+        ]
+    },
+    {
+        "meta": {
+            "id": "Charles F. Richter",
+            "uuid": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+            "src": "learners",
+            "section": "biog",
+            "stems": ["Charles F. Richter"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "Richter"
+        },
+        "fl": "biographical name",
+        "shortdef": [
+            "American seismologist"
+        ]
+    }
+]

@@ -1,123 +1,204 @@
 {
     "word": "level",
     "date": "20230920",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "L5143400-1",
+            "id": "level",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "L5143400-2",
-            "partOfSpeech": "noun",
-            "text": "Relative position or rank on a scale.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
+            "text": "a device for establishing a horizontal line or plane by means of a bubble in a liquid that shows adjustment to the horizontal by movement to the center of a slightly bowed glass tube",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
             "examples": [
-                "the local level of government; studying at the graduate level."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "water seeks its own level",
+                "Charts were arranged at eye level.",
+                "the level of the plateau",
+                "funded at the national level",
+                "The job appeals to me on many levels.",
+                "a normal blood-sugar level",
+                "a high level of hostility",
+                "A commonly held belief among developers is that the opening level of a well-programmed game teaches the player what thematic rules to anticipate going forward."
+            ]
         },
         {
-            "id": "L5143400-3",
+            "id": "level",
             "partOfSpeech": "noun",
-            "text": "A relative degree, as of achievement, intensity, or concentration.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
+            "text": "a measurement of the difference of altitude of two points by means of a level",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
             "examples": [
-                "an unsafe level of toxicity; a high level of frustration."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "water seeks its own level",
+                "Charts were arranged at eye level.",
+                "the level of the plateau",
+                "funded at the national level",
+                "The job appeals to me on many levels.",
+                "a normal blood-sugar level",
+                "a high level of hostility",
+                "A commonly held belief among developers is that the opening level of a well-programmed game teaches the player what thematic rules to anticipate going forward."
+            ]
         },
         {
-            "id": "L5143400-4",
+            "id": "level",
             "partOfSpeech": "noun",
-            "text": "A natural or proper position, place, or stage.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
+            "text": "horizontal condition; especially: equilibrium of a fluid marked by a horizontal surface of even altitude",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
             "examples": [
-                "I finally found my own level in the business world."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "water seeks its own level",
+                "Charts were arranged at eye level.",
+                "the level of the plateau",
+                "funded at the national level",
+                "The job appeals to me on many levels.",
+                "a normal blood-sugar level",
+                "a high level of hostility",
+                "A commonly held belief among developers is that the opening level of a well-programmed game teaches the player what thematic rules to anticipate going forward."
+            ]
         },
         {
-            "id": "L5143400-5",
-            "partOfSpeech": "noun",
-            "text": "Position along a vertical axis; height or depth.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
+            "id": "level",
+            "partOfSpeech": "verb",
+            "text": "to make (a line or surface) horizontal: make flat or level",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
             "examples": [
-                "a platform at knee level."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "level a field",
+                "level off a house lot",
+                "leveled a charge of fraud",
+                "… love levels all ranks.",
+                "leveled him with one punch",
+                "The plane leveled off at 10,000 feet."
+            ]
         },
         {
-            "id": "L5143400-6",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "level",
+            "partOfSpeech": "verb",
+            "text": "to bring to a horizontal aiming position",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
+            "examples": [
+                "level a field",
+                "level off a house lot",
+                "leveled a charge of fraud",
+                "… love levels all ranks.",
+                "leveled him with one punch",
+                "The plane leveled off at 10,000 feet."
+            ]
         },
         {
-            "id": "L5143400-7",
-            "partOfSpeech": "noun",
-            "text": "A horizontal line or plane at right angles to the plumb.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "level",
+            "partOfSpeech": "verb",
+            "text": "aim, direct",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
+            "examples": [
+                "level a field",
+                "level off a house lot",
+                "leveled a charge of fraud",
+                "… love levels all ranks.",
+                "leveled him with one punch",
+                "The plane leveled off at 10,000 feet."
+            ]
         },
         {
-            "id": "L5143400-8",
-            "partOfSpeech": "noun",
-            "text": "The position or height of such a line or plane.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "level",
+            "partOfSpeech": "adjective",
+            "text": "having no part higher than another: conforming to the curvature of the liquid parts of the earth's surface",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
+            "examples": [
+                "gave him a level look",
+                "spoke in level tones",
+                "… arrive at a justly proportional and level judgment on this affair.",
+                "level stress",
+                "top-level thinking"
+            ]
         },
         {
-            "id": "L5143400-9",
-            "partOfSpeech": "noun",
-            "text": "A flat, horizontal surface.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "level",
+            "partOfSpeech": "adjective",
+            "text": "parallel with the plane of the horizon: horizontal",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
+            "examples": [
+                "gave him a level look",
+                "spoke in level tones",
+                "… arrive at a justly proportional and level judgment on this affair.",
+                "level stress",
+                "top-level thinking"
+            ]
         },
         {
-            "id": "L5143400-10",
+            "id": "level",
+            "partOfSpeech": "adjective",
+            "text": "even or unvarying in height",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
+            "examples": [
+                "gave him a level look",
+                "spoke in level tones",
+                "… arrive at a justly proportional and level judgment on this affair.",
+                "level stress",
+                "top-level thinking"
+            ]
+        },
+        {
+            "id": "level best",
+            "text": "very best",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level"
+        },
+        {
+            "id": "level crossing",
             "partOfSpeech": "noun",
-            "text": "A land area of uniform elevation.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/level",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "grade crossing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level"
+        },
+        {
+            "id": "level off",
+            "partOfSpeech": "verb",
+            "text": "to approach or reach a steady rate, volume, or amount: stabilize",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
+            "examples": [
+                "expect prices to level off"
+            ]
+        },
+        {
+            "id": "level of significance",
+            "partOfSpeech": "noun",
+            "text": "the probability of rejecting the null hypothesis in a statistical test when it is true —called also significance level",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level"
+        },
+        {
+            "id": "level up",
+            "partOfSpeech": "verb",
+            "text": "to advance or improve (oneself, someone else, or something) in or as if in a game",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/level",
+            "examples": [
+                "Collect cards and magic potions, then level up your favourite dragons to increase their abilities.",
+                "Staying competitive comes down to many factors, but one that's often overlooked, in my opinion, is the ongoing need to level up your marketing team.",
+                "That [Kevin] Reilly has leveled up the brands of both networks is clear in their programming selections.",
+                "We provide nurses with the tools they need to level up their careers and their profession …",
+                "Leveling up and finding new weapons, armor, or items give you plenty of incentive to keep slashing and button mashing away.",
+                "Companies coax helpers to participate by offering points for useful answers, connecting total points to specific achievement levels, and encouraging users to level up, for even greater prestige."
+            ]
         }
     ]
 }

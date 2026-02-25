@@ -1,6 +1,5 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
-import { normalizePartOfSpeech } from '#utils/word-data-utils';
 
 const dictionaryDefinitionSchema = z.object({
   id: z.string().optional(),
@@ -25,12 +24,7 @@ export const collections = {
       date: z.string(),
       adapter: z.string(),
       preserveCase: z.boolean().default(false),
-      data: z.array(dictionaryDefinitionSchema).transform((definitions) =>
-        definitions.map(def => ({
-          ...def,
-          partOfSpeech: def.partOfSpeech ? normalizePartOfSpeech(def.partOfSpeech) : def.partOfSpeech,
-        }))
-      ),
+      data: z.array(dictionaryDefinitionSchema),
     }),
   }),
 };

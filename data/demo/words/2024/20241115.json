@@ -1,123 +1,143 @@
 {
     "word": "speed",
     "date": "20241115",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5676100-1",
+            "id": "speed",
             "partOfSpeech": "noun",
-            "text": "The rate or a measure of the rate of motion, especially.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5676100-3",
-            "partOfSpeech": "noun",
-            "text": "Distance traveled divided by the time of travel.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5676100-4",
-            "partOfSpeech": "noun",
-            "text": "The limit of this quotient as the time of travel becomes vanishingly small; the first derivative of distance with respect to time.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5676100-5",
-            "partOfSpeech": "noun",
-            "text": "The magnitude of a velocity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5676100-5",
-            "partOfSpeech": "noun",
-            "text": "Swiftness of action.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "text": "rate of motion: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed",
             "examples": [
-                "He wrote the first chapter with great speed."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "just my speed"
+            ]
         },
         {
-            "id": "S5676100-6",
+            "id": "speed",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5676100-7",
-            "partOfSpeech": "noun",
-            "text": "The act of moving rapidly.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "text": "velocity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed",
             "examples": [
-                "finished the race in a burst of speed."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "just my speed"
+            ]
         },
         {
-            "id": "S5676100-8",
+            "id": "speed",
             "partOfSpeech": "noun",
-            "text": "The state of being in rapid motion; rapidity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "text": "the magnitude of a velocity irrespective of direction",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed",
             "examples": [
-                "The river's speed made a rescue difficult."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "just my speed"
+            ]
         },
         {
-            "id": "S5676100-9",
-            "partOfSpeech": "noun",
-            "text": "A transmission gear or set of gears in a motor vehicle.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
+            "id": "speed",
+            "partOfSpeech": "verb",
+            "text": "to make haste",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed",
             "examples": [
-                "What speed is the car in now?"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "sped to her bedside",
+                "the heart speeds up",
+                "speed an arrow"
+            ]
         },
         {
-            "id": "S5676100-10",
+            "id": "speed",
+            "partOfSpeech": "verb",
+            "text": "to go or drive at excessive or illegal speed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed",
+            "examples": [
+                "sped to her bedside",
+                "the heart speeds up",
+                "speed an arrow"
+            ]
+        },
+        {
+            "id": "speed",
+            "partOfSpeech": "verb",
+            "text": "to move, work, or take place faster: accelerate",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed",
+            "examples": [
+                "sped to her bedside",
+                "the heart speeds up",
+                "speed an arrow"
+            ]
+        },
+        {
+            "id": "speed bump",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/speed",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a low raised ridge across a roadway (as in a parking lot) to limit vehicle speed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
+        },
+        {
+            "id": "speed dating",
+            "partOfSpeech": "noun",
+            "text": "an event at which each participant converses individually with all the prospective partners for a few minutes in order to select those with whom dates are desired",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
+        },
+        {
+            "id": "speed dial",
+            "partOfSpeech": "noun",
+            "text": "a telephone function by which a selected stored number can be dialed by pressing only one key",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
+        },
+        {
+            "id": "speed freak",
+            "partOfSpeech": "noun",
+            "text": "one who habitually misuses amphetamines and especially methamphetamine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
+        },
+        {
+            "id": "speed limit",
+            "partOfSpeech": "noun",
+            "text": "the maximum or minimum speed permitted by law in a given area under specified circumstances",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
+        },
+        {
+            "id": "speed of light",
+            "partOfSpeech": "noun",
+            "text": "a fundamental physical constant that is the speed at which electromagnetic radiation propagates in a vacuum and that has a value fixed by international convention of 299,792,458 meters per second —symbol c",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
+        },
+        {
+            "id": "speed-reading",
+            "partOfSpeech": "noun",
+            "text": "a method of reading rapidly by skimming",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
+        },
+        {
+            "id": "speed shop",
+            "partOfSpeech": "noun",
+            "text": "a shop that sells custom automotive equipment especially to hot-rodders",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
         }
     ]
 }

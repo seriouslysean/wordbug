@@ -1,41 +1,77 @@
 {
-    "word": "Japan",
+    "word": "japan",
     "date": "20230101",
-    "adapter": "wordnik",
-    "preserveCase": true,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "J5017300-1",
-            "text": [
-                "Sea of",
-                "An enclosed arm of the western Pacific Ocean between Japan and the Asian mainland. Several straits connect it with the East China Sea, the Pacific Ocean, and the Sea of Okhotsk."
-            ],
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/Japan",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "japan",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or originating in Japan: of a kind or style characteristic of Japanese workmanship",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
         },
         {
-            "id": "J5017200-1",
-            "text": "A country consisting of an archipelago off the eastern coast of Asia. The islands' indigenous culture was largely supplanted after c. 600 BC by settlers from the mainland, who adopted an imperial system of government modeled on China's. After a long period (12th–19th century) of domination by a series of shoguns, feudalism was abolished on the restoration of the emperor Mutsuhito (1868) and the country was opened to trade with the West. Japan's industrialization and expansionism led to a series of wars, culminating in its defeat (1945) in World War II. After the war Japan's economy was rebuilt with American assistance, developing an industrial sector centered around automobiles and electronics. Tokyo is the capital and the largest city.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/Japan",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "japan",
+            "partOfSpeech": "noun",
+            "text": "any of several varnishes yielding a hard brilliant finish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
         },
         {
-            "partOfSpeech": "proper noun",
-            "text": "An <xref>island</xref> <xref>nation</xref> in the <xref>Pacific Ocean</xref>, located the east of <xref>China</xref>, <xref>Korea</xref> and <xref>Russia</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/Japan",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "japan",
+            "partOfSpeech": "noun",
+            "text": "a hard dark coating containing asphalt and a drier that is used especially on metal and fixed by heating —called also japan black",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
+        },
+        {
+            "id": "japan",
+            "partOfSpeech": "noun",
+            "text": "work (such as lacquerware) finished and decorated in the Japanese manner",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
+        },
+        {
+            "id": "japan",
+            "partOfSpeech": "verb",
+            "text": "to cover with or as if with a coat of japan",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
+        },
+        {
+            "id": "japan",
+            "partOfSpeech": "verb",
+            "text": "to give a high gloss to",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
+        },
+        {
+            "id": "Japan:g",
+            "text": "country in eastern Asia comprising Honshu, Hokkaido, Kyushu, Shikoku, and other islands in the western Pacific; a constitutional monarchy; capital Tokyo area 145,914 square miles (377,915 square kilometers), population 126,168,000",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
+        },
+        {
+            "id": "Japan wax",
+            "partOfSpeech": "noun",
+            "text": "a yellowish fat obtained from the berries of several Asian sumacs (such as Rhus verniciflua and R. succedanea) and used chiefly in polishes",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
+        },
+        {
+            "id": "Japan, Sea of:g",
+            "text": "arm of the western North Pacific between Japan and Korea —traditionally called Sea of Japan in the majority of English-language sources; called East Sea by English-speaking Koreans and by some present-day English-language sources",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/Japan"
         }
     ]
 }

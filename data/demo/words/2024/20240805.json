@@ -1,80 +1,39 @@
 {
     "word": "gym",
     "date": "20240805",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "G5333100-1",
+            "id": "gym",
             "partOfSpeech": "noun",
-            "text": "A gymnasium.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gym",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "gymnasium",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gym"
         },
         {
-            "id": "G5333100-2",
+            "id": "gym",
             "partOfSpeech": "noun",
-            "text": "A course in physical education.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gym",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "physical education",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gym"
         },
         {
-            "id": "G5333100-3",
+            "id": "gym",
             "partOfSpeech": "noun",
-            "text": "A metal frame supporting equipment used in outdoor play.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gym",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a usually metal frame supporting an assortment of outdoor play equipment (such as a swing, seesaw, and rings)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gym"
         },
         {
+            "id": "jungle gym",
             "partOfSpeech": "noun",
-            "text": "Short form of <xref>gymnasium</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/gym",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A sports facility specialized for lifting <xref>weights</xref> and <xref>exercise</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/gym",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<xref>physical education</xref> class",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/gym",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "athletic facility equipped for sports or physical training",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/gym",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a structure of vertical and horizontal bars for use by children at play",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gym"
         }
     ]
 }

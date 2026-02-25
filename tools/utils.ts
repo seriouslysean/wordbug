@@ -4,7 +4,7 @@ import opentype from 'opentype.js';
 import path from 'path';
 import sharp from 'sharp';
 
-import { getAdapter } from '#adapters';
+import { fetchWithFallback } from '#adapters';
 import { paths } from '#config/paths';
 import type { CreateWordEntryResult, WordData } from '#types';
 import { formatDate, isValidDate } from '#utils/date-utils';
@@ -325,9 +325,8 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
   fs.mkdirSync(dirPath, { recursive: true });
 
   // Fetch word data using finalWord (lowercased by default) so common words match
-  // Wordnik entries. When preserveCase is true, original capitalization is retained.
-  const adapter = getAdapter();
-  const response = await adapter.fetchWordData(finalWord);
+  // dictionary entries. When preserveCase is true, original capitalization is retained.
+  const { response, adapterName } = await fetchWithFallback(finalWord);
   const data = response.definitions;
 
   if (!isValidDictionaryData(data)) {
@@ -337,7 +336,7 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
   const wordData: WordData = {
     word: finalWord,
     date,
-    adapter: process.env.DICTIONARY_ADAPTER,
+    adapter: adapterName,
     preserveCase,
     data,
   };

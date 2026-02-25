@@ -1,123 +1,184 @@
 {
     "word": "daily",
     "date": "20250107",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5008000-1",
+            "id": "daily",
             "partOfSpeech": "adjective",
-            "text": "Of or occurring during the day.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5008000-2",
-            "partOfSpeech": "adjective",
-            "text": "Happening or done every day.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "text": "occurring, made, or acted upon every day",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
             "examples": [
-                "the physician's daily rounds."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "daily needs",
+                "a daily newspaper",
+                "a daily schedule",
+                "average daily wage",
+                "daily statistics"
+            ]
         },
         {
-            "id": "D5008000-3",
+            "id": "daily",
             "partOfSpeech": "adjective",
-            "text": "Computed or assessed for each day.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "text": "issued every day or every weekday",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
             "examples": [
-                "a daily record."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "daily needs",
+                "a daily newspaper",
+                "a daily schedule",
+                "average daily wage",
+                "daily statistics"
+            ]
         },
         {
-            "id": "D5008000-4",
+            "id": "daily",
             "partOfSpeech": "adjective",
-            "text": "Everyday.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "text": "of or providing for every day",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
             "examples": [
-                "casual clothes only for daily use."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "daily needs",
+                "a daily newspaper",
+                "a daily schedule",
+                "average daily wage",
+                "daily statistics"
+            ]
         },
         {
-            "id": "D5008000-5",
+            "id": "daily",
             "partOfSpeech": "adverb",
-            "text": "Every day.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "text": "every day",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
             "examples": [
-                "Exercise daily."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "Take one pill twice daily.",
+                "They serve lunch at school daily."
+            ]
         },
         {
-            "id": "D5008000-6",
+            "id": "daily",
             "partOfSpeech": "adverb",
-            "text": "Once a day.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
+            "text": "every weekday",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
             "examples": [
-                "Wind the clock daily."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "Take one pill twice daily.",
+                "They serve lunch at school daily."
+            ]
         },
         {
-            "id": "D5008000-7",
+            "id": "daily",
             "partOfSpeech": "noun",
-            "text": "A newspaper published every day or every weekday.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a newspaper that is published every day or every day except Sunday",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily"
         },
         {
-            "id": "D5008000-8",
+            "id": "daily",
             "partOfSpeech": "noun",
-            "text": "The first, unedited print of movie film usually viewed after a day's shooting; the rushes.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "unedited movie footage processed or shared immediately after shooting for review by the cinematographer, director, or producer: rush",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily"
         },
         {
-            "text": "Every day; day by day.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "daily",
+            "partOfSpeech": "noun",
+            "text": "a quest or task in a video game that resets every day and for which a small bonus is given when completed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily"
         },
         {
-            "text": "Happening or being every day; pertaining to each successive day; diurnal: as, <em>daily</em> labor; a <em>daily</em> allowance; a <em>daily</em> newspaper.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/daily",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "daily double",
+            "partOfSpeech": "noun",
+            "text": "a system of betting (as on horse races) in which the bettor must pick the winners of two stipulated races in order to win",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily"
+        },
+        {
+            "id": "daily dozen",
+            "partOfSpeech": "noun",
+            "text": "a series of physical exercises to be performed daily: workout",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily"
+        },
+        {
+            "id": "daily dozen",
+            "partOfSpeech": "noun",
+            "text": "a set of routine duties or tasks",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily"
+        },
+        {
+            "id": "basis",
+            "partOfSpeech": "noun",
+            "text": "the bottom of something considered as its foundation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
+            "examples": [
+                "Fruit juice constitutes the basis of jelly.",
+                "stories with little basis in reality",
+                "no legal basis for a new trial",
+                "still some basis for hope",
+                "selected on the basis of test scores",
+                "hired on a trial basis",
+                "He is on a first-name basis with his customers.",
+                "meets with us on a regular basis =regularly",
+                "The department sends reports on a daily basis. =every day",
+                "concepts that form the basis of the country's economic policies"
+            ]
+        },
+        {
+            "id": "basis",
+            "partOfSpeech": "noun",
+            "text": "the principal component of something",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
+            "examples": [
+                "Fruit juice constitutes the basis of jelly.",
+                "stories with little basis in reality",
+                "no legal basis for a new trial",
+                "still some basis for hope",
+                "selected on the basis of test scores",
+                "hired on a trial basis",
+                "He is on a first-name basis with his customers.",
+                "meets with us on a regular basis =regularly",
+                "The department sends reports on a daily basis. =every day",
+                "concepts that form the basis of the country's economic policies"
+            ]
+        },
+        {
+            "id": "basis",
+            "partOfSpeech": "noun",
+            "text": "something on which something else is established or based",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daily",
+            "examples": [
+                "Fruit juice constitutes the basis of jelly.",
+                "stories with little basis in reality",
+                "no legal basis for a new trial",
+                "still some basis for hope",
+                "selected on the basis of test scores",
+                "hired on a trial basis",
+                "He is on a first-name basis with his customers.",
+                "meets with us on a regular basis =regularly",
+                "The department sends reports on a daily basis. =every day",
+                "concepts that form the basis of the country's economic policies"
+            ]
         }
     ]
 }

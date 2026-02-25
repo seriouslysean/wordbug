@@ -1,222 +1,173 @@
 {
     "word": "the",
     "date": "20250118",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "T5158500-1",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sequence": "1",
-            "score": 0,
-            "word": "the",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the",
+            "partOfSpeech": "article",
+            "text": "—used as a function word to indicate that a following noun or noun equivalent is definite or has been previously specified by context or by circumstance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
         },
         {
-            "id": "T5158500-2",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used before singular or plural nouns and noun phrases that denote particular, specified persons or things.",
-            "sequence": "2",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the baby; the dress I wore."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the",
+            "partOfSpeech": "article",
+            "text": "—used as a function word to indicate that a following noun or noun equivalent is a unique or a particular member of its class",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
         },
         {
-            "id": "T5158500-3",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used before a noun, and generally stressed, to emphasize one of a group or type as the most outstanding or prominent.",
-            "sequence": "3",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "considered Wicker Park to be the neighborhood to live in these days."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the",
+            "partOfSpeech": "article",
+            "text": "—used as a function word before nouns that designate natural phenomena or points of the compass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
         },
         {
-            "id": "T5158500-4",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used to indicate uniqueness.",
-            "sequence": "4",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the Prince of Wales; the moon."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the",
+            "partOfSpeech": "adverb",
+            "text": "than before: than otherwise —used before a comparative",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "the sooner the better",
+                "The harder you work, the quicker you will finish.",
+                "the sooner the better",
+                "likes this the best"
+            ]
         },
         {
-            "id": "T5158500-5",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used before nouns that designate natural phenomena or points of the compass.",
-            "sequence": "5",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the weather; a wind from the south."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the",
+            "partOfSpeech": "adverb",
+            "text": "to what extent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "the sooner the better",
+                "The harder you work, the quicker you will finish.",
+                "the sooner the better",
+                "likes this the best"
+            ]
         },
         {
-            "id": "T5158500-6",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used as the equivalent of a possessive adjective before names of some parts of the body.",
-            "sequence": "6",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "grab him by the neck; an infection of the hand."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the",
+            "partOfSpeech": "adverb",
+            "text": "to that extent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "the sooner the better",
+                "The harder you work, the quicker you will finish.",
+                "the sooner the better",
+                "likes this the best"
+            ]
         },
         {
-            "id": "T5158500-7",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used before a noun specifying a field of endeavor.",
-            "sequence": "7",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the law; the film industry; the stage."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the",
+            "partOfSpeech": "preposition",
+            "text": "per",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "a dollar the dozen"
+            ]
         },
         {
-            "id": "T5158500-8",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used before a proper name, as of a monument or ship.",
-            "sequence": "8",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "the Alamo; the Titanic."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the-",
+            "partOfSpeech": "noun",
+            "text": "god: God",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "theism",
+                "theocentric"
+            ]
         },
         {
-            "id": "T5158500-9",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used before the plural form of a numeral denoting a specific decade of a century or of a lifespan.",
-            "sequence": "9",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "rural life in the Thirties."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the blind leading the blind",
+            "text": "—used informally to describe a situation in which someone who is not sure how to do something is helping another person who also is not sure how to do it",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
         },
         {
-            "id": "T5158500-10",
-            "partOfSpeech": "definite article.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Used before a singular noun indicating that the noun is generic.",
-            "sequence": "10",
-            "score": 0,
-            "word": "the",
-            "exampleUses": [
-                {
-                    "text": "The loggerhead turtle is an endangered species."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/the",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "the dansant",
+            "partOfSpeech": "noun",
+            "text": "tea dance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the end of one's rope",
+            "partOfSpeech": "noun",
+            "text": "a state at which one is no longer able to deal with a problem, difficult situation, etc.",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "I'm at the end of my rope with your attitude."
+            ]
+        },
+        {
+            "id": "the lap of luxury",
+            "partOfSpeech": "noun",
+            "text": "an environment of great ease, comfort, and wealth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the last moment",
+            "text": "the latest possible time",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "The flight was cancelled at the last moment."
+            ]
+        },
+        {
+            "id": "the likes of",
+            "text": "such people as: such things as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "reads the likes of Austen and Browning",
+                "… a fantastic celebration the likes of which had never been seen before …"
+            ]
+        },
+        {
+            "id": "the likes of",
+            "text": "such a one as and perhaps others similar to —usually used with disparaging overtones",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "reads the likes of Austen and Browning",
+                "… a fantastic celebration the likes of which had never been seen before …"
+            ]
+        },
+        {
+            "id": "the likes of",
+            "text": "the kind or sort of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "reads the likes of Austen and Browning",
+                "… a fantastic celebration the likes of which had never been seen before …"
+            ]
         }
     ]
 }

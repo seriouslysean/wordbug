@@ -1,201 +1,165 @@
 {
     "word": "day",
     "date": "20250117",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5043200-1",
+            "id": "day",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "The period of light between dawn and nightfall; the interval from sunrise to sunset.",
-            "sequence": "1",
-            "score": 0,
-            "word": "day",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "the time of light between one night and the next",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day",
+            "examples": [
+                "the shortest day of the year",
+                "woke up at the break of day",
+                "sleeps during the day and works at night",
+                "the length of one day on Mars",
+                "open seven days a week",
+                "the first day of every month",
+                "Take one pill two times a day.",
+                "their wedding day",
+                "the day of her birth",
+                "in grandfather's day",
+                "played hard and won the day",
+                "starts his day with a cup of coffee",
+                "after a long day at school",
+                "We have a busy day tomorrow."
+            ]
         },
         {
-            "id": "D5043200-2",
+            "id": "day",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sequence": "2",
-            "score": 0,
-            "word": "day",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "daylight",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day",
+            "examples": [
+                "the shortest day of the year",
+                "woke up at the break of day",
+                "sleeps during the day and works at night",
+                "the length of one day on Mars",
+                "open seven days a week",
+                "the first day of every month",
+                "Take one pill two times a day.",
+                "their wedding day",
+                "the day of her birth",
+                "in grandfather's day",
+                "played hard and won the day",
+                "starts his day with a cup of coffee",
+                "after a long day at school",
+                "We have a busy day tomorrow."
+            ]
         },
         {
-            "id": "D5043200-3",
+            "id": "day",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "The 24-hour period during which the earth completes one rotation on its axis, traditionally measured from midnight to midnight.",
-            "sequence": "3",
-            "score": 0,
-            "word": "day",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "daytime",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day",
+            "examples": [
+                "the shortest day of the year",
+                "woke up at the break of day",
+                "sleeps during the day and works at night",
+                "the length of one day on Mars",
+                "open seven days a week",
+                "the first day of every month",
+                "Take one pill two times a day.",
+                "their wedding day",
+                "the day of her birth",
+                "in grandfather's day",
+                "played hard and won the day",
+                "starts his day with a cup of coffee",
+                "after a long day at school",
+                "We have a busy day tomorrow."
+            ]
         },
         {
-            "id": "D5043200-4",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "The period during which a celestial body makes a similar rotation.",
-            "sequence": "4",
-            "score": 0,
-            "word": "day",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "Day:b1",
+            "text": "Clarence Shepard, Jr. 1874—1935 American author",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
         },
         {
-            "id": "D5043200-5",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "One of the numbered 24-hour periods into which a week, month, or year is divided.",
-            "sequence": "5",
-            "score": 0,
-            "word": "day",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "Day:b2",
+            "text": "Thomas 1748—1789 English author",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
         },
         {
-            "id": "D5043200-6",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "The portion of a 24-hour period that is devoted to work, school, or business.",
-            "sequence": "6",
-            "score": 0,
-            "word": "day",
-            "exampleUses": [
-                {
-                    "text": "an eight-hour day; a sale that lasted for three days."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "Day:b3",
+            "text": "William Rufus 1849—1923 American statesman and jurist",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
         },
         {
-            "id": "D5043200-7",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "A 24-hour period or a portion of it that is reserved for a certain activity.",
-            "sequence": "7",
-            "score": 0,
-            "word": "day",
-            "exampleUses": [
-                {
-                    "text": "a day of rest."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "day after day",
+            "text": "for an indefinite or seemingly endless number of days",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day",
+            "examples": [
+                "followed the same routine day after day"
+            ]
         },
         {
-            "id": "D5043200-8",
+            "id": "day care",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sequence": "8",
-            "score": 0,
-            "word": "day",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "supervision of and care for children or physically or mentally disabled adults that is provided during the day by a person or organization —often used before another noun",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day",
+            "examples": [
+                "a child enrolled in day care"
+            ]
         },
         {
-            "id": "D5043200-9",
+            "id": "day care",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "A specific, characteristic period in one's lifetime.",
-            "sequence": "9",
-            "score": 0,
-            "word": "day",
-            "exampleUses": [
-                {
-                    "text": "In Grandmother's day, skirts were long."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "a program, facility, or organization offering day care",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day",
+            "examples": [
+                "a child enrolled in day care"
+            ]
         },
         {
-            "id": "D5043200-10",
+            "id": "Day-Glo",
+            "text": "—used for fluorescent materials or colors",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
+        },
+        {
+            "id": "day in and day out",
+            "text": "for an indefinite number of successive days",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day",
+            "examples": [
+                "does the same thing at work day in and day out"
+            ]
+        },
+        {
+            "id": "day job",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "A period of opportunity or prominence.",
-            "sequence": "10",
-            "score": 0,
-            "word": "day",
-            "exampleUses": [
-                {
-                    "text": "Every defendant is entitled to a day in court. That child will have her day."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/day",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "one's regular employment as contrasted with an occasional, secondary, or coveted job",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
+        },
+        {
+            "id": "day laborer",
+            "partOfSpeech": "noun",
+            "text": "one who works for daily wages especially as an unskilled laborer",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
         }
     ]
 }

@@ -1,119 +1,230 @@
 {
     "word": "book",
     "date": "20250108",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "B5400900-1",
+            "id": "book",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "B5400900-2",
-            "partOfSpeech": "noun",
-            "text": "A set of written, printed, or blank pages fastened along one side and encased between protective covers.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "B5400900-3",
-            "partOfSpeech": "noun",
-            "text": "An e-book or other electronic resource structured like a book.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "B5400900-4",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "B5400900-5",
-            "partOfSpeech": "noun",
-            "text": "A printed or written literary work.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
+            "text": "a set of written sheets of skin or paper or tablets of wood or ivory",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
             "examples": [
-                "Did you ever finish writing that book?"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "an address book",
+                "reading a good book",
+                "reference books",
+                "hardcover and paperback books",
+                "the books of the Bible",
+                "put his hand on the Book and took the oath",
+                "the great book of nature",
+                "her face was an open book",
+                "tried every trick in the book",
+                "The book on him is that he can't hit a curveball.",
+                "runs her business by the book",
+                "threw the book at him",
+                "bring criminals to book",
+                "a book of stamps",
+                "a book of matches"
+            ]
         },
         {
-            "id": "B5400900-6",
+            "id": "book",
             "partOfSpeech": "noun",
-            "text": "A main division of a larger printed or written work.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
+            "text": "a set of written, printed, or blank sheets bound together between a front and back cover",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
             "examples": [
-                "a book of the Old Testament."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "an address book",
+                "reading a good book",
+                "reference books",
+                "hardcover and paperback books",
+                "the books of the Bible",
+                "put his hand on the Book and took the oath",
+                "the great book of nature",
+                "her face was an open book",
+                "tried every trick in the book",
+                "The book on him is that he can't hit a curveball.",
+                "runs her business by the book",
+                "threw the book at him",
+                "bring criminals to book",
+                "a book of stamps",
+                "a book of matches"
+            ]
         },
         {
-            "id": "B5400900-7",
+            "id": "book",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "B5400900-8",
-            "partOfSpeech": "noun",
-            "text": "A volume in which financial or business transactions are recorded.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "B5400900-9",
-            "partOfSpeech": "noun",
-            "text": "Financial or business records considered as a group.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
+            "text": "a long written or printed literary composition",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
             "examples": [
-                "checked the expenditures on the books."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "an address book",
+                "reading a good book",
+                "reference books",
+                "hardcover and paperback books",
+                "the books of the Bible",
+                "put his hand on the Book and took the oath",
+                "the great book of nature",
+                "her face was an open book",
+                "tried every trick in the book",
+                "The book on him is that he can't hit a curveball.",
+                "runs her business by the book",
+                "threw the book at him",
+                "bring criminals to book",
+                "a book of stamps",
+                "a book of matches"
+            ]
         },
         {
-            "id": "B5400900-10",
+            "id": "book",
+            "partOfSpeech": "adjective",
+            "text": "derived from books and not from practical experience",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
+            "examples": [
+                "book learning",
+                "book assets"
+            ]
+        },
+        {
+            "id": "book",
+            "partOfSpeech": "adjective",
+            "text": "shown by ledgers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
+            "examples": [
+                "book learning",
+                "book assets"
+            ]
+        },
+        {
+            "id": "book",
+            "partOfSpeech": "verb",
+            "text": "to register (something, such as a name) for some future activity or condition (as to engage transportation or reserve lodgings)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
+            "examples": [
+                "was booked to sail on Monday",
+                "book the band for a week",
+                "booking a strategy meeting",
+                "book two seats at the theater",
+                "tried to make reservations, but they were all booked up",
+                "was booked on suspicion of murder",
+                "booking him for a late tackle",
+                "book through your travel agent",
+                "We booked out of there."
+            ]
+        },
+        {
+            "id": "book",
+            "partOfSpeech": "verb",
+            "text": "to schedule engagements for",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
+            "examples": [
+                "was booked to sail on Monday",
+                "book the band for a week",
+                "booking a strategy meeting",
+                "book two seats at the theater",
+                "tried to make reservations, but they were all booked up",
+                "was booked on suspicion of murder",
+                "booking him for a late tackle",
+                "book through your travel agent",
+                "We booked out of there."
+            ]
+        },
+        {
+            "id": "book",
+            "partOfSpeech": "verb",
+            "text": "to set aside time for",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
+            "examples": [
+                "was booked to sail on Monday",
+                "book the band for a week",
+                "booking a strategy meeting",
+                "book two seats at the theater",
+                "tried to make reservations, but they were all booked up",
+                "was booked on suspicion of murder",
+                "booking him for a late tackle",
+                "book through your travel agent",
+                "We booked out of there."
+            ]
+        },
+        {
+            "id": "book bag",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/book",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a bag or sack (such as a knapsack) often with a handle or strap that is used for holding books and other items",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book",
+            "examples": [
+                "Students who attended the event each received a bookbag filled with school supplies such as notebooks, folders, pencil pouches, pencils, pens and crayons."
+            ]
+        },
+        {
+            "id": "book club",
+            "partOfSpeech": "noun",
+            "text": "an organization that ships selected books to members usually on a regular schedule and often at discount prices",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
+        },
+        {
+            "id": "book club",
+            "partOfSpeech": "noun",
+            "text": "a group of people who meet regularly to discuss books they are reading",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
+        },
+        {
+            "id": "book louse",
+            "partOfSpeech": "noun",
+            "text": "any of various tiny usually wingless insects (order Psocoptera and especially genus Liposcelis) that feed on organic matter and especially mold, usually inhabit damp areas, and are often found in stored papers, books, and grains",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
+        },
+        {
+            "id": "book lung",
+            "partOfSpeech": "noun",
+            "text": "a saccular breathing organ in many arachnids containing thin folds of membrane arranged like the leaves of a book",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
+        },
+        {
+            "id": "book-match",
+            "partOfSpeech": "verb",
+            "text": "to match the grains of (a pair of sheets of veneer or plywood) so that one sheet seems to be the mirror image of the other",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
+        },
+        {
+            "id": "Book of Common Prayer",
+            "partOfSpeech": "noun",
+            "text": "the service book of the Anglican Communion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
+        },
+        {
+            "id": "book off",
+            "partOfSpeech": "verb",
+            "text": "to notify an employer that one is not reporting for work (as because of sickness)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
         }
     ]
 }

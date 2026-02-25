@@ -1,18 +1,14 @@
 {
     "word": "pneumonoultramicroscopicsilicovolcanoconiosis",
     "date": "20240701",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "wiktionary",
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "A <xref>factitious</xref> <xref>disease</xref> of the lungs, allegedly caused by inhaling <xref>microscopic</xref> <xref>silicate</xref> <xref>particles</xref> originating from eruption of a volcano.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "text": "A disease of the lungs, allegedly caused by inhaling microscopic silicate particles originating from eruption of a volcano.",
+            "attributionText": "from Wiktionary",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/pneumonoultramicroscopicsilicovolcanoconiosis",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumonoultramicroscopicsilicovolcanoconiosis"
         }
     ]
 }

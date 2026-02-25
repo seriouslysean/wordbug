@@ -1,68 +1,68 @@
 {
     "word": "ice cream",
     "date": "20240615",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "I5008900-1",
-            "partOfSpeech": "noun",
-            "text": "A smooth, sweet, cold food prepared from a frozen mixture of milk products and flavorings, containing a minimum of 10 percent milk fat and eaten as a snack or dessert.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "ice-cream",
+            "partOfSpeech": "adjective",
+            "text": "of a color similar to that of vanilla ice cream",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ice%20cream"
         },
         {
+            "id": "ice cream",
             "partOfSpeech": "noun",
-            "text": "A confection made by congealing variously flavored cream or custard in a vessel surrounded with a freezing-mixture.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a sweet flavored frozen food containing cream or butterfat and usually eggs",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ice%20cream"
         },
         {
+            "id": "Neapolitan ice cream",
             "partOfSpeech": "noun",
-            "text": "A <xref>dessert</xref> made from <xref>frozen</xref> <xref>sweetened</xref> <xref>cream</xref> or a similar substance, usually <xref>flavoured</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a brick of from two to four layers of ice cream of different flavors",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ice%20cream"
         },
         {
+            "id": "ice-cream chair",
             "partOfSpeech": "noun",
-            "text": "A snack consisting of ice cream on a stick or in a wafer cone.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a small armless chair with a circular seat for use at a table (as at a café)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ice%20cream"
         },
         {
+            "id": "ice-cream cone",
             "partOfSpeech": "noun",
-            "text": "frozen dessert containing cream and sugar and flavoring",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a thin crisp edible cone for holding ice cream; also: one filled with ice cream",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ice%20cream"
         },
         {
+            "id": "ice-cream headache",
             "partOfSpeech": "noun",
-            "text": "frozen dessert containing cream and sugar and flavoring",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/ice%20cream",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "brain freeze",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ice%20cream"
+        },
+        {
+            "id": "sundae",
+            "partOfSpeech": "noun",
+            "text": "a dish consisting of ice cream served with toppings (such as crushed fruit, syrup, nuts, or whipped cream)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ice%20cream",
+            "examples": [
+                "… at about 700 locations, the company is testing “dessert stations” behind the counter where employees can make sundaes topped with cake or brownie chunks.",
+                "According to the legend, the ice-cream sundae was first concocted in 1881 at a soda fountain at 1404 15th Street, Two Rivers. The addition of chocolate increased its cost, and to limit the demand, it was sold on Sunday only.",
+                "On the sweet side, area eateries have plenty of tempting treats to help you keep your cool—like the \"Unicorn Junior,\" a tasty, quirky take on the traditional ice cream sundae made with cotton candy ice cream, marshmallow sauce and a magical scoop of Lucky Charms."
+            ]
         }
     ]
 }

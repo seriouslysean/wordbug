@@ -1,109 +1,144 @@
 {
     "word": "they",
     "date": "20230108",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "T5177900-1",
+            "id": "they",
             "partOfSpeech": "pronoun",
-            "text": "Used to refer to the ones previously mentioned or implied.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "T5177900-2",
-            "partOfSpeech": "pronoun",
-            "text": "Used to refer to the one previously mentioned or implied, especially as a substitute for generic <em>he</em>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/they",
+            "text": "those ones: those people, animals, or things",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
             "examples": [
-                "Every person has rights under the law, but they don't always know them."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "They dance well.",
+                "What do they want to do?",
+                "They aren't as popular as they once were."
+            ]
         },
         {
-            "id": "T5177900-3",
+            "id": "they",
             "partOfSpeech": "pronoun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "—used to refer to people in a general way or to a group of people who are not specified",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "They dance well.",
+                "What do they want to do?",
+                "They aren't as popular as they once were."
+            ]
         },
         {
-            "id": "T5177900-4",
+            "id": "they",
             "partOfSpeech": "pronoun",
-            "text": "Used to refer to people in general.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "—used with a singular indefinite pronoun antecedent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "They dance well.",
+                "What do they want to do?",
+                "They aren't as popular as they once were."
+            ]
         },
         {
-            "id": "T5177900-5",
-            "partOfSpeech": "pronoun",
-            "text": "Used to refer to people in general as seen in a position of authority.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "YMCA",
+            "partOfSpeech": "noun",
+            "text": "an international organization that promotes the spiritual, intellectual, social, and physical welfare originally of young men —usually used with the —sometimes shortened informally to the Y",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they"
         },
         {
-            "text": "A Middle English variant of <internalXref urlencoded=\"though\">though</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "YWCA",
+            "partOfSpeech": "noun",
+            "text": "an international organization that promotes the spiritual, intellectual, social, and physical welfare originally of young women —usually used with the —sometimes shortened informally to the Y",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they"
         },
         {
-            "text": "The plural pronoun of the third person. It stands for a plural noun or pronoun preceding, or in place of one not expressed when pointed out by the situation. It is without gender-forms.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "bite off more than one can chew",
+            "text": "to undertake more than one can handle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they"
         },
         {
-            "text": "Poss. <em>their.</em> Of or belonging to them: now always preceding the noun, with the value of an attributive adjective.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "mouth",
+            "partOfSpeech": "noun",
+            "text": "the natural opening through which food passes into the body of an animal and which in vertebrates is typically bounded externally by the lips and internally by the pharynx and encloses the tongue, gums, and teeth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "Don't talk with your mouth full.",
+                "wiped his mouth after eating =wiped his lips and the surrounding area",
+                "The medication is taken by mouth.",
+                "made a mouth",
+                "had too many mouths to feed",
+                "finally gave mouth to her feelings",
+                "He says something stupid every time he opens his mouth. =every time he speaks",
+                "… he is the mouth … of the House in its relations with the Crown …",
+                "He is not all mouth. … He gets results.",
+                "Just don't take any mouth from him.",
+                "has quite a mouth on him",
+                "told her to watch her mouth =to not use offensive language or say offensive things",
+                "the mouth of a well/cave",
+                "the mouth of a volcano",
+                "the mouth of a bottle"
+            ]
         },
         {
-            "text": "Poss. <em>theirs.</em> That which belongs to them: always used without the noun, and having the value of a nominative or an objective.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "mouth",
+            "partOfSpeech": "noun",
+            "text": "grimace",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "Don't talk with your mouth full.",
+                "wiped his mouth after eating =wiped his lips and the surrounding area",
+                "The medication is taken by mouth.",
+                "made a mouth",
+                "had too many mouths to feed",
+                "finally gave mouth to her feelings",
+                "He says something stupid every time he opens his mouth. =every time he speaks",
+                "… he is the mouth … of the House in its relations with the Crown …",
+                "He is not all mouth. … He gets results.",
+                "Just don't take any mouth from him.",
+                "has quite a mouth on him",
+                "told her to watch her mouth =to not use offensive language or say offensive things",
+                "the mouth of a well/cave",
+                "the mouth of a volcano",
+                "the mouth of a bottle"
+            ]
         },
         {
-            "text": "Obj. (acc.), <em>them.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/they",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "mouth",
+            "partOfSpeech": "noun",
+            "text": "an individual requiring food",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "Don't talk with your mouth full.",
+                "wiped his mouth after eating =wiped his lips and the surrounding area",
+                "The medication is taken by mouth.",
+                "made a mouth",
+                "had too many mouths to feed",
+                "finally gave mouth to her feelings",
+                "He says something stupid every time he opens his mouth. =every time he speaks",
+                "… he is the mouth … of the House in its relations with the Crown …",
+                "He is not all mouth. … He gets results.",
+                "Just don't take any mouth from him.",
+                "has quite a mouth on him",
+                "told her to watch her mouth =to not use offensive language or say offensive things",
+                "the mouth of a well/cave",
+                "the mouth of a volcano",
+                "the mouth of a bottle"
+            ]
         }
     ]
 }

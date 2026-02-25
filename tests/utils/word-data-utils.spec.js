@@ -50,18 +50,18 @@ describe('word-data-utils', () => {
     { word: 'year2023', date: '20231201', data: [{ text: '2023 word', partOfSpeech: 'verb' }] },
   ];
 
-  // Additional mock data for part-of-speech tests
+  // Mock data with pre-normalized POS (adapters normalize at fetch time)
   const mockWordDataWithComplexPartOfSpeech = [
     { word: 'run', date: '20250120', data: [
-      { text: 'To move swiftly', partOfSpeech: 'intransitive verb' },
+      { text: 'To move swiftly', partOfSpeech: 'verb' },
       { text: 'A distance run', partOfSpeech: 'noun' }
     ]},
     { word: 'beautiful', date: '20250119', data: [{ text: 'Pleasing to look at', partOfSpeech: 'adjective' }] },
     { word: 'quickly', date: '20250118', data: [{ text: 'In a quick manner', partOfSpeech: 'adverb' }] },
-    { word: 'help', date: '20250117', data: [{ text: 'To assist', partOfSpeech: 'transitive verb' }] },
-    { word: 'indices', date: '20250114', data: [{ text: 'Plural of index', partOfSpeech: 'noun plural' }] },
-    { word: 'the', date: '20250116', data: [{ text: 'Definite article', partOfSpeech: 'definite article' }] },
-    { word: 'have', date: '20250115', data: [{ text: 'Auxiliary verb', partOfSpeech: 'auxiliary verb' }] },
+    { word: 'help', date: '20250117', data: [{ text: 'To assist', partOfSpeech: 'verb' }] },
+    { word: 'indices', date: '20250114', data: [{ text: 'Plural of index', partOfSpeech: 'noun' }] },
+    { word: 'the', date: '20250116', data: [{ text: 'Definite article', partOfSpeech: 'article' }] },
+    { word: 'have', date: '20250115', data: [{ text: 'Auxiliary verb', partOfSpeech: 'verb' }] },
   ];
 
 
@@ -168,14 +168,45 @@ describe('word-data-utils', () => {
   });
 
   describe('getWordDetails', () => {
-    it('extracts word details using adapter', () => {
+    it('handles missing word data', () => {
       const result = getWordDetails(null);
       expect(result).toEqual({ partOfSpeech: '', definition: '', meta: null });
     });
 
-    it('handles missing word data', () => {
-      const result = getWordDetails(null);
-      expect(result).toEqual({ partOfSpeech: '', definition: '', meta: null });
+    it('dispatches to the correct adapter based on wordData.adapter field', () => {
+      const wordnikWord = {
+        word: 'test',
+        date: '20250101',
+        adapter: 'wordnik',
+        data: [{ text: 'A wordnik def', partOfSpeech: 'noun', attributionText: 'from Wordnik' }],
+      };
+      const result = getWordDetails(wordnikWord);
+      expect(result.definition).toBe('A wordnik def');
+      expect(result.partOfSpeech).toBe('noun');
+    });
+
+    it('dispatches to merriam-webster adapter when adapter field says so', () => {
+      const mwWord = {
+        word: 'test',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [{ text: 'An MW def', partOfSpeech: 'noun', attributionText: 'from Merriam-Webster' }],
+      };
+      const result = getWordDetails(mwWord);
+      expect(result.definition).toBe('An MW def');
+      expect(result.meta.attributionText).toContain('Merriam-Webster');
+    });
+
+    it('dispatches to wiktionary adapter when adapter field says so', () => {
+      const wiktionaryWord = {
+        word: 'test',
+        date: '20250101',
+        adapter: 'wiktionary',
+        data: [{ text: 'A wiktionary def', partOfSpeech: 'noun', attributionText: 'from Wiktionary' }],
+      };
+      const result = getWordDetails(wiktionaryWord);
+      expect(result.definition).toBe('A wiktionary def');
+      expect(result.meta.attributionText).toContain('Wiktionary');
     });
   });
 
@@ -438,27 +469,24 @@ describe('word-data-utils', () => {
   });
 
   describe('part-of-speech utilities', () => {
-    it('normalizes basic parts of speech', () => {
+    it('normalizes case and whitespace', () => {
       expect(normalizePartOfSpeech('noun')).toBe('noun');
       expect(normalizePartOfSpeech('Adjective')).toBe('adjective');
       expect(normalizePartOfSpeech('VERB  ')).toBe('verb');
     });
 
-    it('normalizes verb variations', () => {
+    it('maps known variants via legacy compat layer', () => {
       expect(normalizePartOfSpeech('transitive verb')).toBe('verb');
       expect(normalizePartOfSpeech('intransitive verb')).toBe('verb');
       expect(normalizePartOfSpeech('auxiliary verb')).toBe('verb');
-      expect(normalizePartOfSpeech('phrasal verb')).toBe('verb');
-    });
-
-    it('normalizes noun variations', () => {
       expect(normalizePartOfSpeech('proper noun')).toBe('noun');
       expect(normalizePartOfSpeech('noun plural')).toBe('noun');
+      expect(normalizePartOfSpeech('definite article')).toBe('article');
     });
 
-    it('normalizes article variations', () => {
-      expect(normalizePartOfSpeech('definite article')).toBe('article');
-      expect(normalizePartOfSpeech('definite article.')).toBe('article'); // with trailing period
+    it('passes through unmappable variants unchanged', () => {
+      expect(normalizePartOfSpeech('abbreviation')).toBe('abbreviation');
+      expect(normalizePartOfSpeech('phrase')).toBe('phrase');
     });
 
     it('removes trailing punctuation', () => {
@@ -474,11 +502,11 @@ describe('word-data-utils', () => {
 
     it('filters words by part of speech', () => {
       const nouns = getWordsByPartOfSpeech('noun', mockWordDataWithComplexPartOfSpeech);
-      expect(nouns).toHaveLength(2); // 'run' and 'indices' normalize to noun
+      expect(nouns).toHaveLength(2); // 'run' and 'indices'
       expect(nouns.map(w => w.word).sort()).toEqual(['indices', 'run']);
 
       const verbs = getWordsByPartOfSpeech('verb', mockWordDataWithComplexPartOfSpeech);
-      expect(verbs).toHaveLength(3); // 'run', 'help', 'have' (normalized from various verb types)
+      expect(verbs).toHaveLength(3); // 'run', 'help', 'have'
       expect(verbs.map(w => w.word).sort()).toEqual(['have', 'help', 'run']);
     });
 

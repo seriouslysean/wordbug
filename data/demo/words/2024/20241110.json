@@ -1,120 +1,95 @@
 {
     "word": "honey",
     "date": "20241110",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "H5274300-1",
+            "id": "honey",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a sweet viscid material elaborated out of the nectar of flowers in the honey sac of various bees",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
         },
         {
-            "id": "H5274300-2",
+            "id": "honey",
             "partOfSpeech": "noun",
-            "text": "A sweet yellowish or brownish viscid fluid produced by various bees from the nectar of flowers and used as food.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a sweet fluid resembling honey that is collected or elaborated by various insects",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
         },
         {
-            "id": "H5274300-3",
+            "id": "honey",
             "partOfSpeech": "noun",
-            "text": "A similar substance made by certain other insects.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a loved one: sweetheart, dear",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
         },
         {
-            "id": "H5274300-4",
+            "id": "honey",
+            "partOfSpeech": "verb",
+            "text": "to sweeten with or as if with honey",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "verb",
+            "text": "to speak ingratiatingly to: flatter",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "verb",
+            "text": "to use blandishments or cajolery",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or resembling honey",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "adjective",
+            "text": "much loved: dear",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey locust",
             "partOfSpeech": "noun",
-            "text": "A sweet substance, such as nectar or syrup.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a tall usually spiny North American leguminous tree (Gleditsia triacanthos) with very hard wood and long twisted pods containing a sweet edible pulp and seeds that resemble beans",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
         },
         {
-            "id": "H5274300-5",
+            "id": "honey sac",
             "partOfSpeech": "noun",
-            "text": "Sweetness; pleasantness.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a distension of the esophagus of a bee in which honey is elaborated —called also honey stomach",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
         },
         {
-            "id": "H5274300-6",
+            "id": "honeybee",
             "partOfSpeech": "noun",
-            "text": "Sweetheart; dear. Used as a term of endearment.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "H5274300-7",
-            "partOfSpeech": "noun",
-            "text": "Something remarkably fine.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [
-                "a honey of a car."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "H5274300-8",
-            "partOfSpeech": "transitive verb",
-            "text": "To sweeten with honey; add honey to.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "H5274300-9",
-            "partOfSpeech": "transitive verb",
-            "text": "To make pleasant or appealing.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [
-                "His words were honeyed as he spoke."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "H5274300-10",
-            "partOfSpeech": "transitive verb",
-            "text": "To give a yellow or golden color to.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/honey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a honey-producing bee (genus Apis of the family Apidae); especially: a European bee (A. mellifera) introduced worldwide and kept in hives for the honey it produces",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
         }
     ]
 }

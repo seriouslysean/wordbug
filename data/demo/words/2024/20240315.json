@@ -1,97 +1,203 @@
 {
     "word": "absolute",
     "date": "20240315",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "text": "Free from every restriction; unconditional: as, the only <em>absolute</em> necessity is logical necessity; <em>absolute</em> skepticism; <em>absolute</em> proof.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute",
+            "partOfSpeech": "adjective",
+            "text": "free from imperfection: perfect",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute",
+            "examples": [
+                "… it is a most absolute and excellent horse.",
+                "absolute alcohol",
+                "an absolute lie",
+                "absolute power",
+                "an absolute requirement",
+                "absolute freedom",
+                "absolute proof",
+                "absolute electric units",
+                "absolute temperature",
+                "10° absolute",
+                "absolute knowledge",
+                "absolute justice",
+                "the absolute construction this being the case in the sentence \"this being the case, let us go\"",
+                "Ours in \"your work and ours\" is absolute.",
+                "Kill in \"if looks could kill\" is an absolute verb.",
+                "an absolute term in logic",
+                "absolute music",
+                "absolute altitude"
+            ]
         },
         {
-            "text": "Perfect; complete; entire; possessed as a quality in the highest degree, or possessing the essential characteristics of the attribute named in the highest degree: as, <em>absolute</em> purity; <em>absolute</em> liberty.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute",
+            "partOfSpeech": "adjective",
+            "text": "free or relatively free from mixture: pure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute",
+            "examples": [
+                "… it is a most absolute and excellent horse.",
+                "absolute alcohol",
+                "an absolute lie",
+                "absolute power",
+                "an absolute requirement",
+                "absolute freedom",
+                "absolute proof",
+                "absolute electric units",
+                "absolute temperature",
+                "10° absolute",
+                "absolute knowledge",
+                "absolute justice",
+                "the absolute construction this being the case in the sentence \"this being the case, let us go\"",
+                "Ours in \"your work and ours\" is absolute.",
+                "Kill in \"if looks could kill\" is an absolute verb.",
+                "an absolute term in logic",
+                "absolute music",
+                "absolute altitude"
+            ]
         },
         {
-            "text": "Hence Perfect; free from imperfection: sometimes applied to persons.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute",
+            "partOfSpeech": "adjective",
+            "text": "outright, unmitigated",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute",
+            "examples": [
+                "… it is a most absolute and excellent horse.",
+                "absolute alcohol",
+                "an absolute lie",
+                "absolute power",
+                "an absolute requirement",
+                "absolute freedom",
+                "absolute proof",
+                "absolute electric units",
+                "absolute temperature",
+                "10° absolute",
+                "absolute knowledge",
+                "absolute justice",
+                "the absolute construction this being the case in the sentence \"this being the case, let us go\"",
+                "Ours in \"your work and ours\" is absolute.",
+                "Kill in \"if looks could kill\" is an absolute verb.",
+                "an absolute term in logic",
+                "absolute music",
+                "absolute altitude"
+            ]
         },
         {
-            "text": "Fixed; determined: not merely provisional; irrevocable.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute ceiling",
+            "partOfSpeech": "noun",
+            "text": "the maximum height above sea level at which a particular airplane can maintain horizontal flight under standard air conditions —called also ceiling",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         },
         {
-            "text": "Viewed independently of other similar things; not considered with reference to other similar things as standards; not comparative merely: opposed to <em>relative</em>: as, <em>absolute</em> position; <em>absolute</em> velocity (see below).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute convergence",
+            "partOfSpeech": "noun",
+            "text": "convergence of a mathematical series when the absolute values of the terms are taken",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         },
         {
-            "text": "Unlimited in certain essential respects; arbitrary; despotic: applied especially to a system of government in which the will of the sovereign is comparatively unhampered by laws or usage: as, an <em>absolute</em> monarchy.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute humidity",
+            "partOfSpeech": "noun",
+            "text": "the amount of water vapor present in a unit volume of air",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         },
         {
-            "text": "Certain; infallible.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute magnitude",
+            "partOfSpeech": "noun",
+            "text": "a measure of the intrinsic luminosity of a celestial body (such as a star) expressed as the apparent magnitude the body would have if viewed from a distance of 10 parsecs",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         },
         {
-            "text": "Domineering; peremptory; exacting strict obedience.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute pitch",
+            "partOfSpeech": "noun",
+            "text": "the position of a tone in a standard scale independently determined by its rate of vibration",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         },
         {
-            "text": "Ultimate; not derived from anything else: as, an <em>absolute</em> principle. Immeasurable; not definable by measurement; not led up to by insensible gradations: as, the distinction between right and wrong is <em>absolute.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute pitch",
+            "partOfSpeech": "noun",
+            "text": "the ability to recognize or sing a given isolated note —called also perfect pitch",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         },
         {
-            "text": "In <em>grammar</em>, standing out of the usual syntactical relation or construction: applied to the case of a noun and an adjunct in no relation of dependence upon the rest of the sentence, and defining the time or circumstances of an action: as, the <em>genitive absolute</em> in Greek, the <em>ablative absolute</em> in Latin, the <em>locative absolute</em> in Sanskrit, and the <em>nominative absolute</em> in English.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/absolute",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "absolute space",
+            "partOfSpeech": "noun",
+            "text": "space",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
+        },
+        {
+            "id": "absolute unit",
+            "partOfSpeech": "noun",
+            "text": "a unit of measurement that relates to or can be derived in the simplest manner from the fundamental units of length, mass, and time",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute",
+            "examples": [
+                "Many people use the term decibel as if it were an absolute unit for measuring the amplitude of electrical audio signals. However, that is not correct. When used with electrical audio signals, decibels express the ratio of two values.",
+                "The internet is being regaled by the sight of an absolute unit of a walrus struggling to board a boat.",
+                "A hulking Highland cow held up train passengers near Glasgow after escaping from a country park, leading rail staff to dub the beast an “absolute unit.”",
+                "The absolute unit of a Bible that President Biden swore his oath of office on has been in his family since 1893!",
+                "He's also a 6-foot, 256-pound absolute unit—to put it in the parlance of his fans on social media—who will punt in the NFL if he keeps improving in his final college season.",
+                "The reason for the extra napkins? These tortas are absolute units, loaded with multiple types of meat."
+            ]
+        },
+        {
+            "id": "absolute unit",
+            "partOfSpeech": "noun",
+            "text": "an impressively large person or thing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute",
+            "examples": [
+                "Many people use the term decibel as if it were an absolute unit for measuring the amplitude of electrical audio signals. However, that is not correct. When used with electrical audio signals, decibels express the ratio of two values.",
+                "The internet is being regaled by the sight of an absolute unit of a walrus struggling to board a boat.",
+                "A hulking Highland cow held up train passengers near Glasgow after escaping from a country park, leading rail staff to dub the beast an “absolute unit.”",
+                "The absolute unit of a Bible that President Biden swore his oath of office on has been in his family since 1893!",
+                "He's also a 6-foot, 256-pound absolute unit—to put it in the parlance of his fans on social media—who will punt in the NFL if he keeps improving in his final college season.",
+                "The reason for the extra napkins? These tortas are absolute units, loaded with multiple types of meat."
+            ]
+        },
+        {
+            "id": "absolute value",
+            "partOfSpeech": "noun",
+            "text": "a nonnegative number equal in numerical value to a given real number",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
+        },
+        {
+            "id": "absolute value",
+            "partOfSpeech": "noun",
+            "text": "the positive square root of the sum of the squares of the real and imaginary parts of a complex number",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
+        },
+        {
+            "id": "absolute zero",
+            "partOfSpeech": "noun",
+            "text": "a theoretical temperature characterized by complete absence of heat and motion and equivalent to exactly —273.15°C or —459.67°F",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         }
     ]
 }

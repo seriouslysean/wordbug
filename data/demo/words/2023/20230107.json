@@ -1,48 +1,90 @@
 {
     "word": "indices",
     "date": "20230107",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "I5114800-1",
+            "id": "index",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/indices",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a list (as of bibliographical information or citations to a body of literature) arranged usually in alphabetical order of some specified datum (such as author, subject, or keyword): such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices",
+            "examples": [
+                "3 is the index of the expression \\sqrt[3] to indicate the cube root of 5"
+            ]
         },
         {
+            "id": "index",
             "partOfSpeech": "noun",
-            "text": "Latin plural of <internalXref urlencoded=\"index\">index</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/indices",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a list of items (such as topics or names) treated in a printed work that gives for each item the page number where it may be found",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices",
+            "examples": [
+                "3 is the index of the expression \\sqrt[3] to indicate the cube root of 5"
+            ]
         },
         {
-            "partOfSpeech": "noun plural",
-            "text": "See <xref urlencoded=\"index\">index</xref>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/indices",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "index",
+            "partOfSpeech": "noun",
+            "text": "a list of publicly traded companies and their stock prices",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices",
+            "examples": [
+                "3 is the index of the expression \\sqrt[3] to indicate the cube root of 5"
+            ]
         },
         {
+            "id": "cephalic index",
             "partOfSpeech": "noun",
-            "text": "Plural form of <xref>index</xref>. (when used in the sense of a <xref>key</xref> to locate an <xref>element</xref> in a list, <xref>vector</xref> or <xref>matrix</xref> in computing or mathematics)",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/indices",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the ratio multiplied by 100 of the maximum breadth from side to side of the head to its maximum length from front to back in living individuals",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices"
+        },
+        {
+            "id": "cross-index",
+            "partOfSpeech": "verb",
+            "text": "to index (an item) under a second or under more than one heading",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices",
+            "examples": [
+                "cross-index a book"
+            ]
+        },
+        {
+            "id": "cross-index",
+            "partOfSpeech": "verb",
+            "text": "to supply with a cross-referenced index",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices",
+            "examples": [
+                "cross-index a book"
+            ]
+        },
+        {
+            "id": "heat index",
+            "partOfSpeech": "noun",
+            "text": "a value that indicates what the ambient temperature feels like to the human body and that is derived from a calculation using air temperature and relative humidity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices",
+            "examples": [
+                "The most likely chances for a heat advisory are Thursday and Friday, when the heat index could approach at least 100 degrees, according to National Weather Service meteorologists …",
+                "The heat index is defined as a function of temperature and relative humidity. The combination of the two results in an apparent temperature that gives an idea of what the hot and humid air feels like to the average person."
+            ]
+        },
+        {
+            "id": "therapeutic index",
+            "partOfSpeech": "noun",
+            "text": "a measure of the relative desirability of a drug for the attaining of a particular medical end that is usually expressed as the ratio of the largest dose producing no toxic symptoms to the smallest dose routinely producing cures",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/indices"
         }
     ]
 }

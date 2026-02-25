@@ -1,130 +1,239 @@
 {
     "word": "a",
     "date": "20230115",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "A5000200-1",
-            "partOfSpeech": "article",
-            "text": "Used before nouns and noun phrases that denote a single but unspecified person or thing.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [
-                "a region; a person."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000200-2",
-            "partOfSpeech": "article",
-            "text": "Used before terms that denote number, amount, quantity, or degree.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [
-                "only a few of the voters; a bit more rest; a little excited."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000200-3",
-            "partOfSpeech": "article",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000200-4",
-            "partOfSpeech": "article",
-            "text": "Used before a proper name to denote a type or a member of a class.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [
-                "the wisdom of a Socrates."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000200-5",
-            "partOfSpeech": "article",
-            "text": "Used before a mass noun to indicate a single type or example.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [
-                "a dry wine."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000200-6",
-            "partOfSpeech": "article",
-            "text": "The same.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [
-                "birds of a feather."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000200-7",
-            "partOfSpeech": "article",
-            "text": "Any.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [
-                "not a drop to drink."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000400-1",
-            "partOfSpeech": "auxiliary verb",
-            "text": "Have.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [
-                "He'd a come if he could."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5000100-1",
+            "id": "a",
             "partOfSpeech": "noun",
-            "text": "The first letter of the modern English alphabet.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the 1st letter of the English alphabet",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "… the so-called Boston pronunciation, with its broad a's …"
+            ]
         },
         {
-            "id": "A5000100-2",
+            "id": "a",
             "partOfSpeech": "noun",
-            "text": "Any of the speech sounds represented by the letter <em>a.</em>",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/a",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a graphic representation of this letter",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "… the so-called Boston pronunciation, with its broad a's …"
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "noun",
+            "text": "a speech counterpart of orthographic a",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "… the so-called Boston pronunciation, with its broad a's …"
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "article",
+            "text": "—used as a function word before singular nouns when the referent is unspecified and before number collectives and some numbers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "birds of a feather",
+                "swords all of a length",
+                "a person who is sick can't work"
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "article",
+            "text": "the same",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "birds of a feather",
+                "swords all of a length",
+                "a person who is sick can't work"
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "article",
+            "text": "—used as a function word before a singular noun followed by a restrictive modifier",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "birds of a feather",
+                "swords all of a length",
+                "a person who is sick can't work"
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "preposition",
+            "text": "in, to, or for each",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "twice a week"
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "preposition",
+            "text": "on, in, at",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "twice a week"
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "preposition",
+            "text": "of —often attached to the preceding word",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "There are a lot a stairs, but the view at the top is absolutely beautiful."
+            ]
+        },
+        {
+            "id": "a",
+            "partOfSpeech": "verb",
+            "text": "have",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "I might a had husbands afore now …",
+                "Poor Sir William! never shall I forget how he looked whin my lady and he parted. I could a tould the reason, but I'd a cut my tongue out first."
+            ]
+        },
+        {
+            "id": "a",
+            "text": "absent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a"
+        },
+        {
+            "id": "a",
+            "text": "acceleration",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a"
+        },
+        {
+            "id": "a",
+            "text": "acre",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a"
+        },
+        {
+            "id": "a",
+            "text": "adult",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a"
+        },
+        {
+            "id": "a",
+            "text": "alto",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a"
+        },
+        {
+            "id": "a-",
+            "partOfSpeech": "noun",
+            "text": "on: in: at",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "abed",
+                "afire",
+                "aloud",
+                "gone a-hunting",
+                "atingle"
+            ]
+        },
+        {
+            "id": "a-",
+            "partOfSpeech": "noun",
+            "text": "in (such) a state or condition",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "abed",
+                "afire",
+                "aloud",
+                "gone a-hunting",
+                "atingle"
+            ]
+        },
+        {
+            "id": "a-",
+            "partOfSpeech": "noun",
+            "text": "in (such) a manner",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "abed",
+                "afire",
+                "aloud",
+                "gone a-hunting",
+                "atingle"
+            ]
+        },
+        {
+            "id": "a-",
+            "partOfSpeech": "noun",
+            "text": "not: without —a- before consonants other than h and sometimes even before h, an- before vowels and usually before h",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "asexual"
+            ]
+        },
+        {
+            "id": "-a-",
+            "partOfSpeech": "noun",
+            "text": "replacing carbon especially in a ring",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "aza-"
+            ]
+        },
+        {
+            "id": "-a",
+            "partOfSpeech": "noun",
+            "text": "oxide",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/a",
+            "examples": [
+                "silica",
+                "alumina",
+                "magnesia"
+            ]
         }
     ]
 }

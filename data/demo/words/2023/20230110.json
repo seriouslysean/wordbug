@@ -1,129 +1,305 @@
 {
     "word": "over",
     "date": "20230110",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "O5192100-1",
-            "partOfSpeech": "preposition",
-            "text": "In or at a position above or higher than.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
+            "id": "over",
+            "partOfSpeech": "adverb",
+            "text": "across a barrier or intervening space; specifically: across the goal line in football",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
             "examples": [
-                "a sign over the door; a hawk gliding over the hills."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "threw the ball over",
+                "wandered too near the cliff and fell over",
+                "soup boiled over",
+                "turned his cards over",
+                "knocked the lamp over",
+                "hand it over",
+                "He's gone over to the opposition.",
+                "got his point over",
+                "invite some friends over",
+                "the next town over",
+                "won them over",
+                "show ran a minute over",
+                "a condition common in people 65 and over",
+                "had some money left over",
+                "… over-conservative traditionalists …",
+                "stay over",
+                "sleep over",
+                "The plane was directly over.",
+                "windows boarded over",
+                "read it over",
+                "talked the matter over with his wife",
+                "do it over",
+                "Let's start over from the beginning."
+            ]
         },
         {
-            "id": "O5192100-2",
-            "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "O5192100-3",
-            "partOfSpeech": "preposition",
-            "text": "Above and across from one end or side to the other.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
+            "id": "over",
+            "partOfSpeech": "adverb",
+            "text": "forward beyond an edge or brink and often down",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
             "examples": [
-                "a jump over the fence."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "threw the ball over",
+                "wandered too near the cliff and fell over",
+                "soup boiled over",
+                "turned his cards over",
+                "knocked the lamp over",
+                "hand it over",
+                "He's gone over to the opposition.",
+                "got his point over",
+                "invite some friends over",
+                "the next town over",
+                "won them over",
+                "show ran a minute over",
+                "a condition common in people 65 and over",
+                "had some money left over",
+                "… over-conservative traditionalists …",
+                "stay over",
+                "sleep over",
+                "The plane was directly over.",
+                "windows boarded over",
+                "read it over",
+                "talked the matter over with his wife",
+                "do it over",
+                "Let's start over from the beginning."
+            ]
         },
         {
-            "id": "O5192100-4",
-            "partOfSpeech": "preposition",
-            "text": "To the other side of; across.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
+            "id": "over",
+            "partOfSpeech": "adverb",
+            "text": "across the brim",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
             "examples": [
-                "strolled over the bridge."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "threw the ball over",
+                "wandered too near the cliff and fell over",
+                "soup boiled over",
+                "turned his cards over",
+                "knocked the lamp over",
+                "hand it over",
+                "He's gone over to the opposition.",
+                "got his point over",
+                "invite some friends over",
+                "the next town over",
+                "won them over",
+                "show ran a minute over",
+                "a condition common in people 65 and over",
+                "had some money left over",
+                "… over-conservative traditionalists …",
+                "stay over",
+                "sleep over",
+                "The plane was directly over.",
+                "windows boarded over",
+                "read it over",
+                "talked the matter over with his wife",
+                "do it over",
+                "Let's start over from the beginning."
+            ]
         },
         {
-            "id": "O5192100-5",
+            "id": "over",
             "partOfSpeech": "preposition",
-            "text": "Across the edge of and down.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
+            "text": "—used as a function word to indicate motion or situation in a position higher than or above another",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
             "examples": [
-                "fell over the cliff."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "cost over $5",
+                "waited over an hour",
+                "They had well over 200 people at their wedding.",
+                "showed me over the house",
+                "went over his notes",
+                "These trees once flourished over most of the area.",
+                "On that day Lily was over the worst of the fever, and he had been able to tell Mrs. Dale that he did not think that she was now in danger.",
+                "… she had already filed New York State paperwork for a legal separation and was constantly on the phone with her new, non-Catholic, nonmusical boyfriend in Manhattan, reassuring him, every day, that she was so, so over Stephen.",
+                "I think I'm over \"It's a Wonderful Life,\" at least for this year. Fortunately, there is another classic Jimmy Stewart Christmas film to enjoy.",
+                "over the past 25 years",
+                "stay over Sunday"
+            ]
         },
         {
-            "id": "O5192100-6",
+            "id": "over",
             "partOfSpeech": "preposition",
-            "text": "On the other side of.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
+            "text": "—used as a function word to indicate the possession of authority, power, or jurisdiction in regard to some thing or person",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
             "examples": [
-                "a village over the border."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "cost over $5",
+                "waited over an hour",
+                "They had well over 200 people at their wedding.",
+                "showed me over the house",
+                "went over his notes",
+                "These trees once flourished over most of the area.",
+                "On that day Lily was over the worst of the fever, and he had been able to tell Mrs. Dale that he did not think that she was now in danger.",
+                "… she had already filed New York State paperwork for a legal separation and was constantly on the phone with her new, non-Catholic, nonmusical boyfriend in Manhattan, reassuring him, every day, that she was so, so over Stephen.",
+                "I think I'm over \"It's a Wonderful Life,\" at least for this year. Fortunately, there is another classic Jimmy Stewart Christmas film to enjoy.",
+                "over the past 25 years",
+                "stay over Sunday"
+            ]
         },
         {
-            "id": "O5192100-7",
+            "id": "over",
             "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "O5192100-8",
-            "partOfSpeech": "preposition",
-            "text": "Upon the surface of.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
+            "text": "—used as a function word to indicate superiority, advantage, or preference",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
             "examples": [
-                "put a coat of varnish over the woodwork."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "cost over $5",
+                "waited over an hour",
+                "They had well over 200 people at their wedding.",
+                "showed me over the house",
+                "went over his notes",
+                "These trees once flourished over most of the area.",
+                "On that day Lily was over the worst of the fever, and he had been able to tell Mrs. Dale that he did not think that she was now in danger.",
+                "… she had already filed New York State paperwork for a legal separation and was constantly on the phone with her new, non-Catholic, nonmusical boyfriend in Manhattan, reassuring him, every day, that she was so, so over Stephen.",
+                "I think I'm over \"It's a Wonderful Life,\" at least for this year. Fortunately, there is another classic Jimmy Stewart Christmas film to enjoy.",
+                "over the past 25 years",
+                "stay over Sunday"
+            ]
         },
         {
-            "id": "O5192100-9",
-            "partOfSpeech": "preposition",
-            "text": "On top of or down upon.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
+            "id": "over",
+            "partOfSpeech": "adjective",
+            "text": "upper, higher",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
             "examples": [
-                "clubbed him over the head; tripped over the toys."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "over imagination",
+                "… something over to provide for unusual requirements.",
+                "the day is over",
+                "ordered two eggs over",
+                "Over nearly two decades, the once funky Savoy has quietly grown up in SoHo. But as the fickle glitterati have begun to spurn the area for being \"so over,\" Savoy has only gotten more self-assured."
+            ]
         },
         {
-            "id": "O5192100-10",
+            "id": "over",
+            "partOfSpeech": "adjective",
+            "text": "outer, covering",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
+            "examples": [
+                "over imagination",
+                "… something over to provide for unusual requirements.",
+                "the day is over",
+                "ordered two eggs over",
+                "Over nearly two decades, the once funky Savoy has quietly grown up in SoHo. But as the fickle glitterati have begun to spurn the area for being \"so over,\" Savoy has only gotten more self-assured."
+            ]
+        },
+        {
+            "id": "over",
+            "partOfSpeech": "adjective",
+            "text": "excessive",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
+            "examples": [
+                "over imagination",
+                "… something over to provide for unusual requirements.",
+                "the day is over",
+                "ordered two eggs over",
+                "Over nearly two decades, the once funky Savoy has quietly grown up in SoHo. But as the fickle glitterati have begun to spurn the area for being \"so over,\" Savoy has only gotten more self-assured."
+            ]
+        },
+        {
+            "id": "over",
+            "partOfSpeech": "verb",
+            "text": "to leap over",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over"
+        },
+        {
+            "id": "over-",
+            "partOfSpeech": "noun",
+            "text": "so as to exceed or surpass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
+            "examples": [
+                "overachieve",
+                "overstimulation",
+                "overconfident"
+            ]
+        },
+        {
+            "id": "over-",
+            "partOfSpeech": "noun",
+            "text": "excessive",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
+            "examples": [
+                "overachieve",
+                "overstimulation",
+                "overconfident"
+            ]
+        },
+        {
+            "id": "over-",
+            "partOfSpeech": "noun",
+            "text": "to an excessive degree",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
+            "examples": [
+                "overachieve",
+                "overstimulation",
+                "overconfident"
+            ]
+        },
+        {
+            "id": "over a barrel",
+            "text": "at a disadvantage: in an awkward position",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over"
+        },
+        {
+            "id": "over against",
             "partOfSpeech": "preposition",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/over",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "as opposed to: in contrast with",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
+            "examples": [
+                "comparing the results of one method over against another"
+            ]
+        },
+        {
+            "id": "over and above",
+            "partOfSpeech": "preposition",
+            "text": "in addition to: besides",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over"
+        },
+        {
+            "id": "over and over",
+            "partOfSpeech": "adverb",
+            "text": "repeatedly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over"
+        },
+        {
+            "id": "over easy",
+            "text": "fried on one side then turned and fried lightly on the other side",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/over",
+            "examples": [
+                "eggs over easy"
+            ]
         }
     ]
 }

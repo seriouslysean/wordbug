@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import { getAdapter } from '#adapters';
+import { getAdapterByName } from '#adapters';
 import type {
   WordAdjacentResult,
   WordData,
@@ -18,7 +18,7 @@ import {
   getAvailableMonths,
   getAvailableLetters,
   getAvailablePartsOfSpeech,
-  normalizePartOfSpeech,
+  normalizeToBasePOS,
   findValidDefinition,
   getWordsByLength as getWordsByLengthPure,
   getWordsByLetter as getWordsByLetterPure,
@@ -68,7 +68,7 @@ export function extractWordDefinition(wordData: WordData): { definition: string;
   if (validDefinition) {
     return {
       definition: validDefinition.text,
-      partOfSpeech: validDefinition.partOfSpeech,
+      partOfSpeech: normalizeToBasePOS(validDefinition.partOfSpeech),
     };
   }
 
@@ -163,8 +163,25 @@ export const milestoneWords = getChronologicalMilestones(allWords);
  * @returns {WordProcessedData} Processed word data with standardized fields for UI consumption
  */
 export function getProcessedWord(wordData: WordData): WordProcessedData {
-  const adapter = getAdapter();
-  return adapter.transformWordData(wordData);
+  try {
+    const adapter = getAdapterByName(wordData.adapter);
+    const result = adapter.transformWordData(wordData);
+    return {
+      ...result,
+      partOfSpeech: result.partOfSpeech ? normalizeToBasePOS(result.partOfSpeech) : '',
+    };
+  } catch {
+    // Fallback for mock/synthetic words (e.g. 404 page) with no real adapter
+    const validDef = findValidDefinition(wordData.data);
+    if (!validDef) {
+      return { partOfSpeech: '', definition: '', meta: null };
+    }
+    return {
+      partOfSpeech: normalizeToBasePOS(validDef.partOfSpeech),
+      definition: validDef.text,
+      meta: null,
+    };
+  }
 }
 
 /**
@@ -403,10 +420,13 @@ export const groupWordsByPartOfSpeech = (words: WordData[]): WordGroupByPartOfSp
       const partsOfSpeech = new Set<string>();
       word.data.forEach(definition => {
         if (definition.partOfSpeech) {
-          partsOfSpeech.add(normalizePartOfSpeech(definition.partOfSpeech));
+          const normalized = normalizeToBasePOS(definition.partOfSpeech);
+          if (normalized) {
+            partsOfSpeech.add(normalized);
+          }
         }
       });
-      
+
       // Add word to each part of speech group
       partsOfSpeech.forEach(partOfSpeech => {
         acc[partOfSpeech] = acc[partOfSpeech] || [];
@@ -416,7 +436,7 @@ export const groupWordsByPartOfSpeech = (words: WordData[]): WordGroupByPartOfSp
         }
       });
     }
-    
+
     return acc;
   }, {});
 

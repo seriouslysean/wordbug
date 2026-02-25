@@ -57,8 +57,8 @@ describe('wordnik adapter', () => {
 
   describe('transformWordData', () => {
     it('handles valid word data', async () => {
-      const { transformWordData } = await import('#adapters/wordnik');
-      const result = transformWordData({
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      const result = wordnikAdapter.transformWordData({
         data: [{ text: 'A test definition', partOfSpeech: 'noun' }],
       });
       expect(result.definition).toContain('A test definition');
@@ -66,19 +66,19 @@ describe('wordnik adapter', () => {
     });
 
     it('handles missing word data', async () => {
-      const { transformWordData } = await import('#adapters/wordnik');
-      expect(() => transformWordData(null)).not.toThrow();
-      expect(() => transformWordData(undefined)).not.toThrow();
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      expect(() => wordnikAdapter.transformWordData(null)).not.toThrow();
+      expect(() => wordnikAdapter.transformWordData(undefined)).not.toThrow();
     });
 
     it('handles missing data gracefully', async () => {
-      const { transformWordData } = await import('#adapters/wordnik');
-      expect(transformWordData(null)).toEqual({ partOfSpeech: '', definition: '', meta: null });
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      expect(wordnikAdapter.transformWordData(null)).toEqual({ partOfSpeech: '', definition: '', meta: null });
     });
 
     it('handles empty data arrays', async () => {
-      const { transformWordData } = await import('#adapters/wordnik');
-      expect(transformWordData({ data: [] })).toEqual({ partOfSpeech: '', definition: '', meta: null });
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      expect(wordnikAdapter.transformWordData({ data: [] })).toEqual({ partOfSpeech: '', definition: '', meta: null });
     });
   });
 
@@ -113,12 +113,54 @@ describe('wordnik adapter', () => {
     });
   });
 
-  describe('WORDNIK_CONFIG', () => {
+  describe('CONFIG', () => {
     it('exports configuration constants', async () => {
-      const { WORDNIK_CONFIG } = await import('#adapters/wordnik');
-      expect(WORDNIK_CONFIG).toHaveProperty('BASE_URL');
-      expect(WORDNIK_CONFIG).toHaveProperty('DEFAULT_LIMIT');
-      expect(WORDNIK_CONFIG.DEFAULT_LIMIT).toBe(10);
+      const { CONFIG } = await import('#adapters/wordnik');
+      expect(CONFIG).toHaveProperty('BASE_URL');
+      expect(CONFIG).toHaveProperty('DEFAULT_LIMIT');
+      expect(CONFIG.DEFAULT_LIMIT).toBe(10);
+    });
+  });
+
+  describe('POS normalization', () => {
+    beforeEach(() => {
+      vi.stubEnv('WORDNIK_API_KEY', 'test-key');
+    });
+
+    it('passes through base POS unchanged', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      const defs = [{ id: '1', text: 'A test', partOfSpeech: 'noun', attributionText: 'test' }];
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, defs));
+
+      const result = await wordnikAdapter.fetchWordData('test');
+      expect(result.definitions[0].partOfSpeech).toBe('noun');
+    });
+
+    it('normalizes hyphenated verb variants', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      const defs = [{ id: '1', text: 'To do', partOfSpeech: 'auxiliary-verb', attributionText: 'test' }];
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, defs));
+
+      const result = await wordnikAdapter.fetchWordData('have');
+      expect(result.definitions[0].partOfSpeech).toBe('verb');
+    });
+
+    it('normalizes noun variants', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      const defs = [{ id: '1', text: 'More than one', partOfSpeech: 'noun-plural', attributionText: 'test' }];
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, defs));
+
+      const result = await wordnikAdapter.fetchWordData('indices');
+      expect(result.definitions[0].partOfSpeech).toBe('noun');
+    });
+
+    it('returns undefined for unmappable POS', async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      const defs = [{ id: '1', text: 'An affix', partOfSpeech: 'affix', attributionText: 'test' }];
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, defs));
+
+      const result = await wordnikAdapter.fetchWordData('un');
+      expect(result.definitions[0].partOfSpeech).toBeUndefined();
     });
   });
 

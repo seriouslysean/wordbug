@@ -1,5 +1,5 @@
 import type { WordData } from '#types';
-import { PART_OF_SPEECH_NORMALIZATION } from '#constants/parts-of-speech';
+import { isBasePartOfSpeech } from '#constants/parts-of-speech';
 
 /**
  * Finds the first valid definition with a part of speech from word data.
@@ -82,21 +82,58 @@ export const getAvailableLetters = (words: WordData[]): string[] => {
 };
 
 /**
- * Normalize part of speech to base grammatical categories.
- * Maps compound and variant types to their base types for cleaner categorization.
- *
- * @param partOfSpeech - Raw part of speech string from dictionary API
- * @returns Normalized base part of speech type
+ * Backward-compat map for stored data that pre-dates adapter-level POS normalization.
+ * Once all data has been re-fetched, this map becomes a no-op.
  */
-export const normalizePartOfSpeech = (partOfSpeech: string): string => {
-  // Remove trailing punctuation and normalize case
-  const normalized = partOfSpeech.toLowerCase().trim().replace(/[.,;!?]+$/, '');
-
-  return PART_OF_SPEECH_NORMALIZATION[normalized] ?? normalized;
+const LEGACY_POS_MAP: Record<string, string> = {
+  'auxiliary verb': 'verb',
+  'intransitive verb': 'verb',
+  'transitive verb': 'verb',
+  'phrasal verb': 'verb',
+  'proper noun': 'noun',
+  'noun plural': 'noun',
+  'plural noun': 'noun',
+  'noun phrase': 'noun',
+  'noun suffix': 'noun',
+  'noun combining form': 'noun',
+  'combining form': 'noun',
+  'prefix': 'noun',
+  'proper-noun': 'noun',
+  'noun-plural': 'noun',
+  'adjective suffix': 'adjective',
+  'definite article': 'article',
+  'indefinite article': 'article',
+  'auxiliary-verb': 'verb',
+  'exclamation': 'interjection',
 };
 
 /**
- * Get all available parts of speech from word data
+ * Cleans and normalizes a part-of-speech string. Adapters normalize variant POS
+ * at fetch time; this is a read-time compat layer for old stored data that maps
+ * known variants to base types. Unknown variants pass through unchanged.
+ */
+export const normalizePartOfSpeech = (partOfSpeech: string): string => {
+  const cleaned = partOfSpeech.toLowerCase().trim().replace(/[.,;!?]+$/, '');
+  if (isBasePartOfSpeech(cleaned)) {
+    return cleaned;
+  }
+  return LEGACY_POS_MAP[cleaned] ?? cleaned;
+};
+
+/**
+ * Normalizes a POS string and returns it only if it resolves to a base type.
+ * Returns empty string for unmappable or non-base values, so translation keys
+ * and display labels never receive unexpected POS strings.
+ */
+export const normalizeToBasePOS = (raw: string): string => {
+  const normalized = normalizePartOfSpeech(raw);
+  return isBasePartOfSpeech(normalized) ? normalized : '';
+};
+
+/**
+ * Get all available parts of speech from word data.
+ * Filters to base POS types only — variant values that survive normalization
+ * (e.g. "abbreviation", "phrase") are excluded from browse pages.
  */
 export const getAvailablePartsOfSpeech = (words: WordData[]): string[] => {
   const partsOfSpeech = new Set<string>();
@@ -105,7 +142,10 @@ export const getAvailablePartsOfSpeech = (words: WordData[]): string[] => {
     if (word.data && Array.isArray(word.data)) {
       word.data.forEach(definition => {
         if (definition.partOfSpeech) {
-          partsOfSpeech.add(normalizePartOfSpeech(definition.partOfSpeech));
+          const normalized = normalizePartOfSpeech(definition.partOfSpeech);
+          if (isBasePartOfSpeech(normalized)) {
+            partsOfSpeech.add(normalized);
+          }
         }
       });
     }

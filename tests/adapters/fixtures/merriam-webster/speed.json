@@ -1,0 +1,136 @@
+[
+    {
+        "meta": {
+            "id": "speed:1",
+            "uuid": "e1f2a3b4-c5d6-7890-efab-123456789012",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["speed", "speeds"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "speed",
+            "prs": [
+                {
+                    "mw": "\u02c8sp\u0113d"
+                }
+            ]
+        },
+        "hom": 1,
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}the act or state of moving swiftly {bc}{sx|swiftness||}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "2",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}rate of motion: such as"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "3",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}the sensitivity of a photographic film, plate, or paper expressed numerically"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "the act or state of moving swiftly :  swiftness",
+            "rate of motion: such as",
+            "the sensitivity of a photographic film, plate, or paper expressed numerically"
+        ]
+    },
+    {
+        "meta": {
+            "id": "speed:2",
+            "uuid": "f2a3b4c5-d6e7-8901-fabc-234567890123",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["speed", "sped", "speeded", "speeding", "speeds"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "speed"
+        },
+        "hom": 2,
+        "fl": "verb",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}to move or cause to move fast"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "the car {it}sped{/it} down the highway"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "2",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}to go or drive at excessive or illegal speed"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "to move or cause to move fast",
+            "to go or drive at excessive or illegal speed"
+        ]
+    }
+]

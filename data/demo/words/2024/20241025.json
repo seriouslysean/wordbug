@@ -1,117 +1,123 @@
 {
     "word": "coffee",
     "date": "20241025",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5477300-1",
+            "id": "coffee",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5477300-2",
-            "partOfSpeech": "noun",
-            "text": "Any of various tropical African shrubs or trees of the genus <em>Coffea,</em> especially <em>C. arabica</em> or <em>C. canephora,</em> widely cultivated in the tropics for their seeds that are dried, roasted, and ground to prepare a stimulating aromatic drink.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5477300-3",
-            "partOfSpeech": "noun",
-            "text": "The beanlike seeds of this plant, two of which are found in each fruit.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5477300-4",
-            "partOfSpeech": "noun",
-            "text": "The beverage prepared from the seeds of this plant.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "text": "a beverage made by percolation, infusion, or decoction from the roasted and ground seeds of a coffee plant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee",
             "examples": [
-                "likes to drink coffee with breakfast."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "instant coffee",
+                "two coffees"
+            ]
         },
         {
-            "id": "C5477300-5",
+            "id": "coffee",
             "partOfSpeech": "noun",
-            "text": "A serving of such a beverage.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
+            "text": "any of several Old World tropical plants (genus Coffea and especially C. arabica and C. canephora) of the madder family that are widely cultivated in warm regions for their seeds from which coffee is prepared",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee",
             "examples": [
-                "ordered two coffees with sugar."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "instant coffee",
+                "two coffees"
+            ]
         },
         {
-            "id": "C5477300-6",
+            "id": "coffee",
             "partOfSpeech": "noun",
-            "text": "A moderate brown to dark brown or dark grayish brown.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "coffee seeds especially roasted and often ground",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee",
+            "examples": [
+                "instant coffee",
+                "two coffees"
+            ]
         },
         {
-            "id": "C5477300-7",
+            "id": "coffee bar",
             "partOfSpeech": "noun",
-            "text": "An informal social gathering at which coffee and other refreshments are served.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an establishment or counter where coffee and usually light refreshments are served",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
         },
         {
+            "id": "coffee bean",
             "partOfSpeech": "noun",
-            "text": "The berry of trees belonging to the genus <em>Coffea</em>, natural order <em>Rubiaceæ.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the usually dried and roasted seed of a tropical plant (genus Coffea and especially C. arabica and C. canephora) from which coffee is prepared",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
         },
         {
+            "id": "coffee break",
             "partOfSpeech": "noun",
-            "text": "A drink made from the seeds of the coffee-tree, by infusion or decoction.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a short period for rest and refreshments",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
         },
         {
+            "id": "coffee cake",
             "partOfSpeech": "noun",
-            "text": "A light meal resembling afternoon tea, at which coffee is served.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/coffee",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a sweet rich bread often with added fruit, nuts, and spices that is sometimes glazed after baking",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee hour",
+            "partOfSpeech": "noun",
+            "text": "a usually fixed occasion of informal meeting and chatting at which refreshments are served",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee hour",
+            "partOfSpeech": "noun",
+            "text": "coffee break",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee klatch",
+            "partOfSpeech": "noun",
+            "text": "kaffeeklatsch",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee maker",
+            "partOfSpeech": "noun",
+            "text": "a utensil or appliance in which coffee is brewed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee mill",
+            "partOfSpeech": "noun",
+            "text": "a mill for grinding coffee beans",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee ring",
+            "partOfSpeech": "noun",
+            "text": "coffee cake in the shape of a ring",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
         }
     ]
 }

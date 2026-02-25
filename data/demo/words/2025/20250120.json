@@ -1,206 +1,209 @@
 {
     "word": "word",
     "date": "20250120",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "W5229000-1",
+            "id": "word",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "A sound or a combination of sounds, or its representation in writing or printing, that symbolizes and communicates a meaning and may consist of a single morpheme or of a combination of morphemes.",
-            "sequence": "1",
-            "score": 0,
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "a speech sound or series of speech sounds that symbolizes and communicates a meaning usually without being divisible into smaller units capable of independent use",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word",
+            "examples": [
+                "the order of words in a phrase",
+                "the meaning of a word",
+                "a word that rhymes with her name",
+                "… signage shows visitors how to sign the word “goat”—while a goat pokes his head through the fence.",
+                "The word go also has the forms goes, going, went, and gone.",
+                "the number of words to a line",
+                "a word of advice",
+                "I would like to have a word with you.",
+                "For the first time through his own words, witness the journey of a shy but prodigious musical talent who would soon become one of the defining artists of his generation.",
+                "putting one's feelings into words",
+                "wonderful beyond words =beyond what can be expressed in language",
+                "Don't move till I give the word.",
+                "We will wait for your word before we serve dinner.",
+                "sent word that they would be late",
+                "Any word on how they are?",
+                "If word gets out, we're all in trouble.",
+                "Word has it that the event is going to be cancelled.",
+                "kept their word",
+                "I won't go back on my word.",
+                "… the Dodgers have lived up to their word.",
+                "… the precepts of God's Word: \"Thou shalt love thy neighbor as thyself.\"",
+                "… preach the Word to those of their people who had formerly floundered without it.",
+                "… the Incarnation, the belief that in Christ the Word was made flesh.",
+                "loyal in word and deed",
+                "One remembers his first modest advertisements headed with the magic word Thrift, Thrift, Thrift, thrice repeated …"
+            ]
         },
         {
-            "id": "W5229000-2",
+            "id": "word",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sequence": "2",
-            "score": 0,
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "a gesture or series of gestures that symbolizes and communicates a meaning of an object or concept: sign",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word",
+            "examples": [
+                "the order of words in a phrase",
+                "the meaning of a word",
+                "a word that rhymes with her name",
+                "… signage shows visitors how to sign the word “goat”—while a goat pokes his head through the fence.",
+                "The word go also has the forms goes, going, went, and gone.",
+                "the number of words to a line",
+                "a word of advice",
+                "I would like to have a word with you.",
+                "For the first time through his own words, witness the journey of a shy but prodigious musical talent who would soon become one of the defining artists of his generation.",
+                "putting one's feelings into words",
+                "wonderful beyond words =beyond what can be expressed in language",
+                "Don't move till I give the word.",
+                "We will wait for your word before we serve dinner.",
+                "sent word that they would be late",
+                "Any word on how they are?",
+                "If word gets out, we're all in trouble.",
+                "Word has it that the event is going to be cancelled.",
+                "kept their word",
+                "I won't go back on my word.",
+                "… the Dodgers have lived up to their word.",
+                "… the precepts of God's Word: \"Thou shalt love thy neighbor as thyself.\"",
+                "… preach the Word to those of their people who had formerly floundered without it.",
+                "… the Incarnation, the belief that in Christ the Word was made flesh.",
+                "loyal in word and deed",
+                "One remembers his first modest advertisements headed with the magic word Thrift, Thrift, Thrift, thrice repeated …"
+            ]
         },
         {
-            "id": "W5229000-3",
+            "id": "word",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Something said; an utterance, remark, or comment.",
-            "sequence": "3",
-            "score": 0,
-            "word": "word",
-            "exampleUses": [
-                {
-                    "text": "May I say a word about that?"
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "the entire set of linguistic forms produced by combining a single base with various inflectional elements without change in the part of speech elements",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word",
+            "examples": [
+                "the order of words in a phrase",
+                "the meaning of a word",
+                "a word that rhymes with her name",
+                "… signage shows visitors how to sign the word “goat”—while a goat pokes his head through the fence.",
+                "The word go also has the forms goes, going, went, and gone.",
+                "the number of words to a line",
+                "a word of advice",
+                "I would like to have a word with you.",
+                "For the first time through his own words, witness the journey of a shy but prodigious musical talent who would soon become one of the defining artists of his generation.",
+                "putting one's feelings into words",
+                "wonderful beyond words =beyond what can be expressed in language",
+                "Don't move till I give the word.",
+                "We will wait for your word before we serve dinner.",
+                "sent word that they would be late",
+                "Any word on how they are?",
+                "If word gets out, we're all in trouble.",
+                "Word has it that the event is going to be cancelled.",
+                "kept their word",
+                "I won't go back on my word.",
+                "… the Dodgers have lived up to their word.",
+                "… the precepts of God's Word: \"Thou shalt love thy neighbor as thyself.\"",
+                "… preach the Word to those of their people who had formerly floundered without it.",
+                "… the Incarnation, the belief that in Christ the Word was made flesh.",
+                "loyal in word and deed",
+                "One remembers his first modest advertisements headed with the magic word Thrift, Thrift, Thrift, thrice repeated …"
+            ]
         },
         {
-            "id": "W5229000-4",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "A command or direction; an order.",
-            "sequence": "4",
-            "score": 0,
-            "word": "word",
-            "exampleUses": [
-                {
-                    "text": "gave the word to retreat."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "word",
+            "partOfSpeech": "verb",
+            "text": "to express in words: phrase",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word",
+            "examples": [
+                "a carefully worded reply",
+                "Could we word the headline differently?",
+                "The exact way to word the conversation depends on you—and your friendship."
+            ]
         },
         {
-            "id": "W5229000-5",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "An assurance or promise; sworn intention.",
-            "sequence": "5",
-            "score": 0,
-            "word": "word",
-            "exampleUses": [
-                {
-                    "text": "She has kept her word."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "word",
+            "partOfSpeech": "verb",
+            "text": "speak",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word",
+            "examples": [
+                "a carefully worded reply",
+                "Could we word the headline differently?",
+                "The exact way to word the conversation depends on you—and your friendship."
+            ]
         },
         {
-            "id": "W5229000-6",
+            "id": "word-association test",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "A verbal signal; a password or watchword.",
-            "sequence": "6",
-            "score": 0,
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "a test of personality and mental function in which the subject is required to respond to each of a series of words with the first word that comes to mind or with a word of a specified class of words (such as antonyms)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word"
         },
         {
-            "id": "W5229000-7",
+            "id": "word class",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sequence": "7",
-            "score": 0,
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "a linguistic form class whose members are words; especially: part of speech",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word"
         },
         {
-            "id": "W5229000-8",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Discourse or talk; speech.",
-            "sequence": "8",
-            "score": 0,
-            "word": "word",
-            "exampleUses": [
-                {
-                    "text": "Actions speak louder than words."
-                }
-            ],
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "word-for-word",
+            "partOfSpeech": "adjective",
+            "text": "being in or following the exact words: verbatim",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word",
+            "examples": [
+                "a word-for-word translation"
+            ]
         },
         {
-            "id": "W5229000-9",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "The text of a vocal composition; lyrics.",
-            "sequence": "9",
-            "score": 0,
-            "labels": [
-                {
-                    "text": "Music",
-                    "type": "fld"
-                }
-            ],
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "id": "word for word",
+            "partOfSpeech": "adverb",
+            "text": "in the exact words: verbatim",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word"
         },
         {
-            "id": "W5229000-10",
+            "id": "word-hoard",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "text": "Hostile or angry remarks made back and forth.",
-            "sequence": "10",
-            "score": 0,
-            "word": "word",
-            "attributionUrl": "https://ahdictionary.com/",
-            "wordnikUrl": "https://www.wordnik.com/words/word",
-            "citations": [],
-            "exampleUses": [],
-            "labels": [],
-            "notes": [],
-            "relatedWords": [],
-            "textProns": []
+            "text": "a supply of words: vocabulary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word"
+        },
+        {
+            "id": "word-mongering",
+            "partOfSpeech": "noun",
+            "text": "the use of empty or bombastic words",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word"
+        },
+        {
+            "id": "word-of-mouth",
+            "partOfSpeech": "adjective",
+            "text": "orally communicated; also: generated from or reliant on oral publicity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word",
+            "examples": [
+                "word-of-mouth customers",
+                "a word-of-mouth business"
+            ]
+        },
+        {
+            "id": "word of mouth",
+            "partOfSpeech": "noun",
+            "text": "oral communication; especially: oral often inadvertent publicity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/word"
         }
     ]
 }

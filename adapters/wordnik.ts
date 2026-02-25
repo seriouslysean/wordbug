@@ -3,17 +3,34 @@ import { decodeHTML } from 'entities';
 import type {
   DictionaryAdapter,
   DictionaryResponse,
-  WordData,
-  WordProcessedData,
   WordnikConfig,
   WordnikDefinition,
 } from '#types';
-import { findValidDefinition } from '#utils/word-data-utils';
+import {
+  normalizePOS,
+  transformToWordData,
+  transformWordData,
+} from '#utils/adapter-utils';
+
+/**
+ * Maps Wordnik POS strings to elementary POS types.
+ * Values not in this map AND not already a base POS -> undefined (no POS stored).
+ */
+const POS_MAP: Record<string, string> = {
+  'auxiliary-verb': 'verb',
+  'intransitive verb': 'verb',
+  'transitive verb': 'verb',
+  'phrasal verb': 'verb',
+  'proper-noun': 'noun',
+  'noun-plural': 'noun',
+  'proper noun': 'noun',
+  'noun plural': 'noun',
+};
 
 /**
  * Configuration constants for Wordnik API integration
  */
-export const WORDNIK_CONFIG: WordnikConfig = {
+export const CONFIG: WordnikConfig = {
   BASE_URL: process.env.WORDNIK_API_URL,
   DEFAULT_LIMIT: 10,
   /** Delay between requests in milliseconds (1 second - Wordnik API best practice) */
@@ -65,8 +82,8 @@ export const wordnikAdapter: DictionaryAdapter = {
     if (!apiKey) {
       throw new Error('Wordnik API key is required');
     }
-    const limit = typeof options.limit === 'number' ? options.limit : WORDNIK_CONFIG.DEFAULT_LIMIT;
-    const baseUrl = WORDNIK_CONFIG.BASE_URL;
+    const limit = typeof options.limit === 'number' ? options.limit : CONFIG.DEFAULT_LIMIT;
+    const baseUrl = CONFIG.BASE_URL;
     if (!baseUrl) {
       throw new Error('WORDNIK_API_URL environment variable is required');
     }
@@ -82,7 +99,7 @@ export const wordnikAdapter: DictionaryAdapter = {
       word: word.toLowerCase(),
       definitions: data.map((def) => ({
         id: def.id,
-        partOfSpeech: def.partOfSpeech,
+        partOfSpeech: def.partOfSpeech ? normalizePOS(def.partOfSpeech, POS_MAP) : undefined,
         text: def.text,
         attributionText: def.attributionText,
         sourceDictionary: def.sourceDictionary,
@@ -99,26 +116,13 @@ export const wordnikAdapter: DictionaryAdapter = {
     };
   },
 
-  /**
-   * Transforms a DictionaryResponse to our internal WordData format
-   * @param response - The standardized dictionary response
-   * @param date - Date string in YYYYMMDD format
-   * @returns WordData object for internal storage
-   */
-  transformToWordData(response: DictionaryResponse, date: string): WordData {
-    return {
-      word: response.word,
-      date,
-      adapter: 'wordnik',
-      data: response.definitions,
-      rawData: response,
-    };
+  transformToWordData(response: DictionaryResponse, date: string) {
+    return transformToWordData('wordnik', response, date);
   },
 
-  /**
-   * Transforms WordData to processed format for display
-   */
-  transformWordData,
+  transformWordData(wordData) {
+    return transformWordData(wordData, 'from Wordnik', processCrossReferences);
+  },
 
   /**
    * Validates if the API response contains usable word data
@@ -129,36 +133,6 @@ export const wordnikAdapter: DictionaryAdapter = {
     return Array.isArray(response) ? response.length > 0 : !!response;
   },
 };
-
-/**
- * Transforms WordData to processed format for display
- * @param wordData - The internal word data structure
- * @returns WordProcessedData with the first valid definition formatted for display
- */
-export function transformWordData(wordData: WordData): WordProcessedData {
-  if (!wordData || !wordData.data || wordData.data.length === 0) {
-    return { partOfSpeech: '', definition: '', meta: null };
-  }
-
-  const validDefinition = findValidDefinition(wordData.data);
-
-  if (!validDefinition) {
-    return { partOfSpeech: '', definition: '', meta: null };
-  }
-
-  // Find the full definition item to get metadata
-  const fullDefinition = wordData.data.find(definition => definition.partOfSpeech === validDefinition.partOfSpeech);
-
-  return {
-    partOfSpeech: validDefinition.partOfSpeech,
-    definition: processCrossReferences(validDefinition.text),
-    meta: {
-      attributionText: fullDefinition?.attributionText || 'from Wordnik',
-      sourceDictionary: fullDefinition?.sourceDictionary,
-      sourceUrl: fullDefinition?.sourceUrl || '',
-    },
-  };
-}
 
 /**
  * Generates a Wordnik website URL for a given word

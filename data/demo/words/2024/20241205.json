@@ -1,120 +1,252 @@
 {
     "word": "first",
     "date": "20241205",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "F5143200-1",
-            "partOfSpeech": "noun",
-            "text": "The ordinal number matching the number one in a series.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-2",
-            "partOfSpeech": "noun",
-            "text": "The one coming, occurring, or ranking before or above all others.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-3",
-            "partOfSpeech": "noun",
-            "text": "The beginning; the outset.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [
-                "from the first; at first."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-4",
-            "partOfSpeech": "noun",
-            "text": "The voice or instrument highest in pitch or carrying the principal part.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-5",
-            "partOfSpeech": "noun",
-            "text": "The transmission gear or corresponding gear ratio used to produce the range of lowest drive speeds in a motor vehicle.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-6",
-            "partOfSpeech": "noun",
-            "text": "The winning position in a contest.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [
-                "finished the season in first."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-7",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-8",
-            "partOfSpeech": "noun",
-            "text": "First base.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-9",
-            "partOfSpeech": "noun",
-            "text": "A first baseman.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5143200-10",
+            "id": "first",
             "partOfSpeech": "adjective",
-            "text": "Corresponding in order to the number one.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/first",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "preceding all others in time, order, or importance: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "the first arrivals",
+                "my first try",
+                "first prize",
+                "Take your first left.",
+                "will fix these errors at the first opportunity",
+                "his first girlfriend",
+                "couldn't get the car out of first gear",
+                "first violins"
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "adjective",
+            "text": "earliest",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "the first arrivals",
+                "my first try",
+                "first prize",
+                "Take your first left.",
+                "will fix these errors at the first opportunity",
+                "his first girlfriend",
+                "couldn't get the car out of first gear",
+                "first violins"
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "adjective",
+            "text": "being the lowest forward gear or speed of a motor vehicle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "the first arrivals",
+                "my first try",
+                "first prize",
+                "Take your first left.",
+                "will fix these errors at the first opportunity",
+                "his first girlfriend",
+                "couldn't get the car out of first gear",
+                "first violins"
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "adverb",
+            "text": "before another in time, space, or importance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "paid them first",
+                "finished first in the race",
+                "I love my job, but my family comes first.",
+                "loved her when I first saw her",
+                "Surrender? We'll die first."
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "adverb",
+            "text": "as the first thing to be mentioned —often used with of all or off",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "paid them first",
+                "finished first in the race",
+                "I love my job, but my family comes first.",
+                "loved her when I first saw her",
+                "Surrender? We'll die first."
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "adverb",
+            "text": "for the first time",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "paid them first",
+                "finished first in the race",
+                "I love my job, but my family comes first.",
+                "loved her when I first saw her",
+                "Surrender? We'll die first."
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "noun",
+            "text": "one that is number one in a series",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "The transplant was a medical first.",
+                "took first in the contest"
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "noun",
+            "text": "something that is first: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "The transplant was a medical first.",
+                "took first in the contest"
+            ]
+        },
+        {
+            "id": "first",
+            "partOfSpeech": "noun",
+            "text": "the first occurrence or item of a kind",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "The transplant was a medical first.",
+                "took first in the contest"
+            ]
+        },
+        {
+            "id": "first aid",
+            "partOfSpeech": "noun",
+            "text": "emergency care or treatment given to an ill or injured person before regular medical aid can be obtained",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
+        },
+        {
+            "id": "first base",
+            "partOfSpeech": "noun",
+            "text": "the base that must be touched first by a base runner in baseball",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "plans never got to first base"
+            ]
+        },
+        {
+            "id": "first base",
+            "partOfSpeech": "noun",
+            "text": "the player position for defending the area around first base",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "plans never got to first base"
+            ]
+        },
+        {
+            "id": "first base",
+            "partOfSpeech": "noun",
+            "text": "the first step or stage in a course of action",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "plans never got to first base"
+            ]
+        },
+        {
+            "id": "first cause",
+            "partOfSpeech": "noun",
+            "text": "the self-created ultimate source of all being",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
+        },
+        {
+            "id": "first-class",
+            "partOfSpeech": "adjective",
+            "text": "of or relating to first class",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "a first-class meal"
+            ]
+        },
+        {
+            "id": "first-class",
+            "partOfSpeech": "adjective",
+            "text": "of the highest quality",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first",
+            "examples": [
+                "a first-class meal"
+            ]
+        },
+        {
+            "id": "first come, first served",
+            "text": "—used to say that the people who arrive earliest get served before those who arrive later",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
+        },
+        {
+            "id": "first class",
+            "partOfSpeech": "noun",
+            "text": "the first or highest group in a classification: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
+        },
+        {
+            "id": "first class",
+            "partOfSpeech": "noun",
+            "text": "the highest class of travel accommodations",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
+        },
+        {
+            "id": "first class",
+            "partOfSpeech": "noun",
+            "text": "a class of mail that comprises letters, postcards, or matter sealed against inspection",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
+        },
+        {
+            "id": "first cousin",
+            "partOfSpeech": "noun",
+            "text": "cousin",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
         }
     ]
 }

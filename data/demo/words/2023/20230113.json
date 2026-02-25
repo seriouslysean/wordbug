@@ -1,136 +1,167 @@
 {
     "word": "some",
     "date": "20230113",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5608000-1",
+            "id": "some",
             "partOfSpeech": "adjective",
-            "text": "Being an unspecified number or quantity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
+            "text": "being an unknown, undetermined, or unspecified unit or thing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
             "examples": [
-                "Some people came into the room. Would you like some sugar?"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "some person knocked",
+                "some gems are hard",
+                "give me some water",
+                "have some apples",
+                "that was some party"
+            ]
         },
         {
-            "id": "S5608000-2",
+            "id": "some",
             "partOfSpeech": "adjective",
-            "text": "Being a portion or an unspecified number or quantity of a whole or group.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
+            "text": "being one, a part, or an unspecified number of something (such as a class or group) named or implied",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
             "examples": [
-                "He likes some modern sculpture but not all."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "some person knocked",
+                "some gems are hard",
+                "give me some water",
+                "have some apples",
+                "that was some party"
+            ]
         },
         {
-            "id": "S5608000-3",
+            "id": "some",
             "partOfSpeech": "adjective",
-            "text": "Being a considerable number or quantity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
+            "text": "being of an unspecified amount or number",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
             "examples": [
-                "She has been directing films for some years now."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "some person knocked",
+                "some gems are hard",
+                "give me some water",
+                "have some apples",
+                "that was some party"
+            ]
         },
         {
-            "id": "S5608000-4",
-            "partOfSpeech": "adjective",
-            "text": "Unknown or unspecified by name.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
-            "examples": [
-                "Some man called."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5608000-5",
-            "partOfSpeech": "adjective",
-            "text": "Being part and perhaps all of a class.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5608000-6",
-            "partOfSpeech": "adjective",
-            "text": "Remarkable.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
-            "examples": [
-                "She is some skier."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5608000-7",
+            "id": "some",
             "partOfSpeech": "pronoun",
-            "text": "An indefinite or unspecified number or portion.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
+            "text": "one indeterminate quantity, portion, or number as distinguished from the rest",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
             "examples": [
-                "We took some of the books to the auction."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "ran a mile and then some"
+            ]
         },
         {
-            "id": "S5608000-8",
+            "id": "some",
             "partOfSpeech": "pronoun",
-            "text": "An indefinite additional quantity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
+            "text": "an indefinite additional amount",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
             "examples": [
-                "did the assigned work and then some."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "ran a mile and then some"
+            ]
         },
         {
-            "id": "S5608000-9",
+            "id": "some",
             "partOfSpeech": "adverb",
-            "text": "Approximately; about.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
+            "text": "about",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
             "examples": [
-                "Some 40 people attended the rally."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "some 80 houses",
+                "twenty-some people",
+                "felt some better",
+                "the cut bled some",
+                "I need to work on it some more"
+            ]
         },
         {
-            "id": "S5608000-10",
+            "id": "some",
             "partOfSpeech": "adverb",
-            "text": "Somewhat.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/some",
+            "text": "in some degree: somewhat",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
             "examples": [
-                "some tired."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "some 80 houses",
+                "twenty-some people",
+                "felt some better",
+                "the cut bled some",
+                "I need to work on it some more"
+            ]
+        },
+        {
+            "id": "some",
+            "partOfSpeech": "adverb",
+            "text": "to some degree or extent: a little",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
+            "examples": [
+                "some 80 houses",
+                "twenty-some people",
+                "felt some better",
+                "the cut bled some",
+                "I need to work on it some more"
+            ]
+        },
+        {
+            "id": "-some",
+            "partOfSpeech": "adjective",
+            "text": "characterized by a (specified) thing, quality, state, or action",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
+            "examples": [
+                "awesome",
+                "burdensome",
+                "cuddlesome"
+            ]
+        },
+        {
+            "id": "-some",
+            "partOfSpeech": "noun",
+            "text": "group of (so many) members and especially persons",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
+            "examples": [
+                "foursome"
+            ]
+        },
+        {
+            "id": "-some",
+            "partOfSpeech": "noun",
+            "text": "body",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
+            "examples": [
+                "chromosome",
+                "autosome"
+            ]
+        },
+        {
+            "id": "-some",
+            "partOfSpeech": "noun",
+            "text": "chromosome",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/some",
+            "examples": [
+                "chromosome",
+                "autosome"
+            ]
         }
     ]
 }

@@ -1,115 +1,89 @@
 {
     "word": "knowledge",
     "date": "20250115",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "K5098900-1",
+            "id": "knowledge",
             "partOfSpeech": "noun",
-            "text": "The state or fact of knowing.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "text": "information, understanding, or skill that you get from experience or education",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/knowledge",
             "examples": [
-                "Humans naturally aspire to knowledge."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a thirst/quest for knowledge",
+                "They have little/no/some knowledge of fashion/history/cooking.",
+                "knowledge of advanced mathematics",
+                "has little knowledge of the techniques of drawing and painting",
+                "a knowledge of foreign languages",
+                "The decision was made without my knowledge. =I did not know about the decision",
+                "answered to the best of my knowledge",
+                "the nature of knowledge",
+                "a person of unusual knowledge",
+                "It's common knowledge =most people know that she plans to run for mayor.",
+                "His legal problems are a matter of public knowledge. =have been in the news and are widely known",
+                "adding to the vast store of knowledge"
+            ]
         },
         {
-            "id": "K5098900-2",
+            "id": "knowledge",
             "partOfSpeech": "noun",
-            "text": "Familiarity, awareness, or understanding gained through experience or study.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "text": "acquaintance with or understanding of a science, art, or technique",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/knowledge",
             "examples": [
-                "has great knowledge of these parts; has only limited knowledge of chemistry."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a thirst/quest for knowledge",
+                "They have little/no/some knowledge of fashion/history/cooking.",
+                "knowledge of advanced mathematics",
+                "has little knowledge of the techniques of drawing and painting",
+                "a knowledge of foreign languages",
+                "The decision was made without my knowledge. =I did not know about the decision",
+                "answered to the best of my knowledge",
+                "the nature of knowledge",
+                "a person of unusual knowledge",
+                "It's common knowledge =most people know that she plans to run for mayor.",
+                "His legal problems are a matter of public knowledge. =have been in the news and are widely known",
+                "adding to the vast store of knowledge"
+            ]
         },
         {
-            "id": "K5098900-3",
+            "id": "knowledge",
             "partOfSpeech": "noun",
-            "text": "The sum or range of what has been perceived, discovered, or learned.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
+            "text": "the fact or condition of being aware of something",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/knowledge",
             "examples": [
-                "the extraordinary knowledge housed in the library."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a thirst/quest for knowledge",
+                "They have little/no/some knowledge of fashion/history/cooking.",
+                "knowledge of advanced mathematics",
+                "has little knowledge of the techniques of drawing and painting",
+                "a knowledge of foreign languages",
+                "The decision was made without my knowledge. =I did not know about the decision",
+                "answered to the best of my knowledge",
+                "the nature of knowledge",
+                "a person of unusual knowledge",
+                "It's common knowledge =most people know that she plans to run for mayor.",
+                "His legal problems are a matter of public knowledge. =have been in the news and are widely known",
+                "adding to the vast store of knowledge"
+            ]
         },
         {
-            "id": "K5098900-4",
+            "id": "knowledge engineering",
             "partOfSpeech": "noun",
-            "text": "Carnal knowledge.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a branch of artificial intelligence that emphasizes the development and use of expert systems",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/knowledge"
         },
         {
-            "text": "To acknowledge; confess; avow.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To confess.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "self-knowledge",
             "partOfSpeech": "noun",
-            "text": "The state of being or of having become aware of fact or truth; intellectual recognition of or acquaintance with fact or truth; the condition of knowing.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A perception, judgment, or idea which is in accord with fact or truth; that which is known.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Acquaintance with things ascertained or ascertainable; acquired information; learning.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Practical understanding; familiarity gained by actual experience; acquaintance with any fact or person: as, a <em>knowledge</em> of seamanship; I have no <em>knowledge</em> of the man.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/knowledge",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "knowledge or understanding of one's own capabilities, character, feelings, or motivations: self-understanding",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/knowledge"
         }
     ]
 }

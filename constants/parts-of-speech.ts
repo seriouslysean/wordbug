@@ -3,13 +3,9 @@
  * Used by normalization, translations, and URL generation.
  */
 
-// =====================================================
-// Base Part of Speech Types
-// =====================================================
-
 /**
- * Base grammatical categories used for word classification.
- * These are the normalized types that appear in translations and URLs.
+ * Elementary grammatical categories. Adapters normalize raw POS values to these
+ * at fetch time. Unknown/unmappable POS becomes undefined (no POS stored).
  */
 export const BASE_PARTS_OF_SPEECH = {
   ADJECTIVE: 'adjective',
@@ -17,41 +13,19 @@ export const BASE_PARTS_OF_SPEECH = {
   ARTICLE: 'article',
   CONJUNCTION: 'conjunction',
   DETERMINER: 'determiner',
-  IDIOM: 'idiom',
-  INITIALISM: 'initialism',
   INTERJECTION: 'interjection',
-  MODAL: 'modal',
   NOUN: 'noun',
   PREPOSITION: 'preposition',
   PRONOUN: 'pronoun',
   VERB: 'verb',
 } as const;
 
-// =====================================================
-// Part of Speech Normalization Map
-// =====================================================
+export type BasePartOfSpeech = typeof BASE_PARTS_OF_SPEECH[keyof typeof BASE_PARTS_OF_SPEECH];
+
+const BASE_VALUES = new Set<string>(Object.values(BASE_PARTS_OF_SPEECH));
 
 /**
- * Maps compound/variant part of speech types from Wordnik API to base types.
- * This enables cleaner categorization while preserving granular source data.
+ * Type guard: checks whether a string is one of the elementary POS values.
  */
-export const PART_OF_SPEECH_NORMALIZATION: Record<string, string> = {
-  // Verb variations
-  'auxiliary verb': BASE_PARTS_OF_SPEECH.VERB,
-  'intransitive verb': BASE_PARTS_OF_SPEECH.VERB,
-  'transitive verb': BASE_PARTS_OF_SPEECH.VERB,
-  'phrasal verb': BASE_PARTS_OF_SPEECH.VERB,
-
-  // Noun variations
-  'proper noun': BASE_PARTS_OF_SPEECH.NOUN,
-  'noun plural': BASE_PARTS_OF_SPEECH.NOUN,
-
-  // Article variations
-  'definite article': BASE_PARTS_OF_SPEECH.ARTICLE,
-} as const;
-
-// =====================================================
-// Type Exports
-// =====================================================
-
-export type BasePartOfSpeech = typeof BASE_PARTS_OF_SPEECH[keyof typeof BASE_PARTS_OF_SPEECH];
+export const isBasePartOfSpeech = (value: string): value is BasePartOfSpeech =>
+  BASE_VALUES.has(value);

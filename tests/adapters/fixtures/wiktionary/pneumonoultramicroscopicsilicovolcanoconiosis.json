@@ -1,0 +1,36 @@
+[
+    {
+        "word": "pneumonoultramicroscopicsilicovolcanoconiosis",
+        "phonetics": [
+            {
+                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/pneumonoultramicroscopicsilicovolcanoconiosis.mp3",
+                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=17494319",
+                "license": {
+                    "name": "BY-SA 3.0",
+                    "url": "https://creativecommons.org/licenses/by-sa/3.0"
+                }
+            }
+        ],
+        "meanings": [
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "A disease of the lungs, allegedly caused by inhaling microscopic silicate particles originating from eruption of a volcano.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ],
+                "synonyms": [],
+                "antonyms": []
+            }
+        ],
+        "license": {
+            "name": "CC BY-SA 3.0",
+            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+        },
+        "sourceUrls": [
+            "https://en.wiktionary.org/wiki/pneumonoultramicroscopicsilicovolcanoconiosis"
+        ]
+    }
+]

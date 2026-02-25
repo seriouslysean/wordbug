@@ -1,0 +1,63 @@
+[
+    {
+        "meta": {
+            "id": "serendipity",
+            "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["serendipity", "serendipities"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "ser*en*dip*i*ty",
+            "prs": [
+                {
+                    "mw": "\u02ccser-\u0259n-\u02c8di-p\u0259-t\u0113",
+                    "sound": {
+                        "audio": "serend01",
+                        "ref": "c",
+                        "stat": "1"
+                    }
+                }
+            ]
+        },
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}the faculty or phenomenon of finding valuable or agreeable things not sought for"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "a fortunate stroke of {it}serendipity{/it}"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "et": [
+            [
+                "text",
+                "from its possession by the heroes of the Persian fairy tale {it}The Three Princes of Serendip{/it}"
+            ]
+        ],
+        "date": "1754",
+        "shortdef": [
+            "the faculty or phenomenon of finding valuable or agreeable things not sought for"
+        ]
+    }
+]

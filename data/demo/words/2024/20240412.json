@@ -1,17 +1,47 @@
 {
     "word": "anemones",
     "date": "20240412",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "anemone",
             "partOfSpeech": "noun",
-            "text": "Plural form of <xref>anemone</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/anemones",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a large genus (Anemone) of perennial herbs of the buttercup family having lobed or divided leaves and showy flowers without petals but with conspicuous sepals —called also windflower",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anemones"
+        },
+        {
+            "id": "anemone",
+            "partOfSpeech": "noun",
+            "text": "sea anemone",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anemones"
+        },
+        {
+            "id": "rue anemone",
+            "partOfSpeech": "noun",
+            "text": "a delicate vernal North American herb (Thalictrum thalictroides synonym Anemonella thalictroides) of the buttercup family that has white flowers resembling those of the wood anemone and basal leaves",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anemones"
+        },
+        {
+            "id": "sea anemone",
+            "partOfSpeech": "noun",
+            "text": "any of numerous usually solitary anthozoan polyps (order Actiniaria) whose form, bright and varied colors, and cluster of tentacles superficially resemble a flower",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anemones"
+        },
+        {
+            "id": "wood anemone",
+            "partOfSpeech": "noun",
+            "text": "any of several anemones; especially: one (Anemone quinquefolia) of North America with solitary often pink-tinged flowers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anemones"
         }
     ]
 }

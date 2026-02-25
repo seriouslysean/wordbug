@@ -1,0 +1,148 @@
+[
+    {
+        "meta": {
+            "id": "test:1",
+            "uuid": "d4e5f6a7-b8c9-0123-defa-456789012345",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["test", "tests"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "test"
+        },
+        "hom": 1,
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1 a",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}a means of testing: such as"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "2",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}something (such as a series of questions or exercises) for measuring the skill, knowledge, intelligence, capacities, or aptitudes of an individual or group"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "a {it}test{/it} of reading comprehension"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "a means of testing: such as",
+            "something (such as a series of questions or exercises) for measuring the skill, knowledge, intelligence, capacities, or aptitudes of an individual or group",
+            "a procedure, reaction, or reagent used to identify or characterize a substance or constituent"
+        ]
+    },
+    {
+        "meta": {
+            "id": "test:2",
+            "uuid": "e5f6a7b8-c9d0-1234-efab-567890123456",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["test", "tested", "testing", "tests"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "test"
+        },
+        "hom": 2,
+        "fl": "verb",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}to put to test or proof"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "{it}test{/it} your knowledge"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "to put to test or proof",
+            "to require a doctrinal oath of"
+        ]
+    },
+    {
+        "meta": {
+            "id": "test:3",
+            "uuid": "f6a7b8c9-d0e1-2345-fabc-678901234567",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["test"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "test"
+        },
+        "hom": 3,
+        "fl": "adjective",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}of, relating to, or constituting a test"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "of, relating to, or constituting a test"
+        ]
+    }
+]
