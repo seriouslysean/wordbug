@@ -29,6 +29,7 @@
     "tool:migrate-preserve-case": "tsx tools/migrate-preserve-case.ts",
     "tool:ping-search-engines": "tsx tools/ping-search-engines.ts",
     "tool:regenerate-all-words": "tsx tools/regenerate-all-words.ts",
+    "tool:sync": "./tools/sync-upstream.sh",
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
