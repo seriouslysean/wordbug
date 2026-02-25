@@ -1,67 +1,15 @@
 {
     "word": "feces",
     "date": "20250427",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "F5064200-1",
-            "partOfSpeech": "noun plural",
-            "text": "Waste matter eliminated from the bowels; excrement.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/feces",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Dregs; lees; sediment; matter excreted and ejected.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/feces",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Specifically The undigested portions of the food, mixed with some secretions in the alimentary canal, which are evacuated at the anus; dung; excrement.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/feces",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun plural",
-            "text": "dregs; sediment; excrement. See <xref urlencoded=\"f%C3%A6ces\">fæces</xref>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/feces",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "feces",
             "partOfSpeech": "noun",
-            "text": "<xref>Digested</xref> <xref>waste</xref> material <xref>discharged</xref> from the <xref>bowels</xref>; <xref>excrement</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/feces",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "solid excretory product evacuated from the bowels",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/feces",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "bodily waste discharged through the anus: excrement",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/feces"
         }
     ]
 }

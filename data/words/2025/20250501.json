@@ -1,111 +1,107 @@
 {
     "word": "jersey",
     "date": "20250501",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "J5034300-1",
+            "id": "jersey",
             "partOfSpeech": "noun",
-            "text": "A soft, plain-knitted fabric used for clothing.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of various close-fitting usually circular-knitted garments especially for the upper body",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey",
+            "examples": [
+                "a football jersey"
+            ]
         },
         {
-            "id": "J5034300-2",
+            "id": "jersey",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an often loose-fitting shirt that is worn by a member of a sports team as part of a team uniform and that typically has the athlete's name and number on the back",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey",
+            "examples": [
+                "a football jersey"
+            ]
         },
         {
-            "id": "J5034300-3",
+            "id": "jersey",
             "partOfSpeech": "noun",
-            "text": "A shirt worn by an athlete, often displaying the name of the player, team, or sponsor.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a plain weft-knitted fabric made of wool, cotton, nylon, rayon, or silk and used especially for clothing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey",
+            "examples": [
+                "a football jersey"
+            ]
         },
         {
-            "id": "J5034300-4",
-            "partOfSpeech": "noun",
-            "text": "A close-fitting knitted pullover shirt, jacket, or sweater.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Jersey:g",
+            "text": "island in the English Channel; one of the Channel Islands; capital Saint Helier area 45 square miles (117 square kilometers)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         },
         {
-            "id": "J5034300-5",
-            "partOfSpeech": "noun",
-            "text": "Any of a breed of fawn-colored dairy cattle developed on the island of Jersey and producing milk that is rich in butterfat.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Jersey:g",
+            "text": "new jersey —an informal name",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         },
         {
+            "id": "Jersey barrier",
             "partOfSpeech": "noun",
-            "text": "[<em>capitalized</em>] A celebrated breed of dairy cattle which originated in the island of Jersey, in the English channel, and is noted for the yield of milk.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a concrete slab 32 inches high with slanted sides that is used in tandem with others to block or reroute traffic or to divide highways",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         },
         {
+            "id": "Jersey pine",
             "partOfSpeech": "noun",
-            "text": "Fine woolen yarn; fine or select wool, separated from the inferior quality by combing.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "virginia pine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "A close-fitting upper garment, extending to the hips, made of elastic woolen or silk material, and worn with some variation of form by both men and women.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Jersey City:g",
+            "text": "city and port on the Hudson River and Upper New York Bay in northeastern New Jersey population 247,597",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         },
         {
-            "text": "Made of fine woolen yarn or pure wool.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "New Jersey tea",
+            "partOfSpeech": "noun",
+            "text": "a low deciduous shrub (Ceanothus americanus) of the buckthorn family that is found in the eastern U.S. and has dull green leaves and small white flowers borne in large terminal panicles",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         },
         {
+            "id": "New Jersey:g",
+            "text": "state in the eastern U.S. bordering on Lower New York Bay, Delaware Bay, and the Atlantic Ocean and separated from Pennsylvania and Delaware by the Delaware River; capital Trenton area 7787 square miles (20,168 square kilometers), population 8,791,894",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
+        },
+        {
+            "id": "Virginia pine",
             "partOfSpeech": "noun",
-            "text": "The finest of wool separated from the rest; combed wool; also, fine yarn of wool.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/jersey",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a pine (Pinus virginiana) of the eastern U.S. that has short needles occurring in pairs —called also Jersey pine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
+        },
+        {
+            "id": "Langtry:b",
+            "text": "Lillie 1853—1929 née (Emilie Charlotte) Le Breton; the Jersey Lily British actress",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         }
     ]
 }

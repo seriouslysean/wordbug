@@ -1,101 +1,15 @@
 {
     "word": "kiln",
     "date": "20250806",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "K5063100-1",
+            "id": "kiln",
             "partOfSpeech": "noun",
-            "text": "Any of various ovens for hardening, burning, or drying substances such as grain, meal, or clay, especially a brick-lined oven used to bake or fire ceramics.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "K5063100-2",
-            "partOfSpeech": "transitive verb",
-            "text": "To process in one of these ovens.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To dry or burn in a kiln.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A furnace or oven for drying, baking, or burning.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A large stove or oven; a furnace of brick or stone, or a heated chamber, for the purpose of hardening, burning, or drying anything",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [
-                "a <ex>kiln</ex> for baking or hardening earthen vessels; a <ex>kiln</ex> for drying grain, meal, lumber, etc.; a <ex>kiln</ex> for calcining limestone."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A furnace for burning bricks; a brickkiln.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An <xref>oven</xref> or <xref>furnace</xref> or a heated chamber, for the purpose of <xref>hardening</xref>, burning, <xref>calcining</xref> or drying anything; for example, <xref>firing</xref> <xref>ceramics</xref>, <xref>curing</xref> or preserving <xref>tobacco</xref>, or <xref>smelting</xref> <xref>ores</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "verb",
-            "text": "To <xref>bake</xref> in a kiln.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a furnace for firing or burning or drying such things as porcelain or bricks",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/kiln",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an oven, furnace, or heated enclosure used for processing a substance by burning, firing, or drying",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/kiln"
         }
     ]
 }

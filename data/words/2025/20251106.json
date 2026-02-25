@@ -1,117 +1,52 @@
 {
     "word": "perennial",
     "date": "20251106",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "P5200000-1",
+            "id": "perennial",
             "partOfSpeech": "adjective",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "P5200000-2",
-            "partOfSpeech": "adjective",
-            "text": "Lasting an indefinitely long time; enduring.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
+            "text": "present at all seasons of the year",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/perennial",
             "examples": [
-                "an author's perennial popularity among children."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "perennial asters",
+                "perennial favorites",
+                "the perennial quest for certainty",
+                "a perennial student",
+                "death is a perennial literary theme"
+            ]
         },
         {
-            "id": "P5200000-3",
+            "id": "perennial",
             "partOfSpeech": "adjective",
-            "text": "Appearing again and again or year after year; recurrent: <i>synonym</i>: <strong> continual</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
+            "text": "persisting for several years usually with new herbaceous growth from a perennating part",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/perennial",
             "examples": [
-                "a perennial contender for the championship."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "perennial asters",
+                "perennial favorites",
+                "the perennial quest for certainty",
+                "a perennial student",
+                "death is a perennial literary theme"
+            ]
         },
         {
-            "id": "P5200000-4",
+            "id": "perennial",
             "partOfSpeech": "adjective",
-            "text": "Living three or more years.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "P5200000-5",
-            "partOfSpeech": "adjective",
-            "text": "Lasting or active throughout the year.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
+            "text": "persistent, enduring",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/perennial",
             "examples": [
-                "a perennial stream."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "P5200000-6",
-            "partOfSpeech": "noun",
-            "text": "A perennial plant.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "P5200000-7",
-            "partOfSpeech": "noun",
-            "text": "Something that recurs or seems to recur on a yearly or continual basis.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Lasting or continuing without cessation through the year, or through many years: as, a <em>perennial</em> spring or fountain.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Continuing without stop or intermission; perpetual; unceasing; never-failing; everlasting.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "In <em>zoology</em>, growing continually: noting teeth which have the pulp-cavity open, and grow indefinitely from persistent pulps: as, the <em>perennial</em> incisors of a rodent.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/perennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+                "perennial asters",
+                "perennial favorites",
+                "the perennial quest for certainty",
+                "a perennial student",
+                "death is a perennial literary theme"
+            ]
         }
     ]
 }

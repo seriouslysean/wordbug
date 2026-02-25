@@ -1,112 +1,68 @@
 {
     "word": "velocity",
     "date": "20250421",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "V5051700-1",
+            "id": "velocity",
             "partOfSpeech": "noun",
-            "text": "Rapidity or speed of motion; swiftness.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "quickness of motion: speed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/velocity",
+            "examples": [
+                "the velocity of sound",
+                "[my horse's] strong suit is grace & personal comeliness, rather than velocity",
+                "The power pitcher relies on velocity …",
+                "… the velocity of historical change …",
+                "the velocity of money"
+            ]
         },
         {
-            "id": "V5051700-2",
+            "id": "velocity",
             "partOfSpeech": "noun",
-            "text": "A vector quantity whose magnitude is a body's speed and whose direction is the body's direction of motion.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "rapidity of movement",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/velocity",
+            "examples": [
+                "the velocity of sound",
+                "[my horse's] strong suit is grace & personal comeliness, rather than velocity",
+                "The power pitcher relies on velocity …",
+                "… the velocity of historical change …",
+                "the velocity of money"
+            ]
         },
         {
-            "id": "V5051700-3",
+            "id": "velocity",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "speed imparted to something",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/velocity",
+            "examples": [
+                "the velocity of sound",
+                "[my horse's] strong suit is grace & personal comeliness, rather than velocity",
+                "The power pitcher relies on velocity …",
+                "… the velocity of historical change …",
+                "the velocity of money"
+            ]
         },
         {
-            "id": "V5051700-4",
+            "id": "angular velocity",
             "partOfSpeech": "noun",
-            "text": "The rate of speed of action or occurrence.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the rate of rotation around an axis usually expressed in radians or revolutions per second or per minute",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/velocity"
         },
         {
-            "id": "V5051700-5",
+            "id": "escape velocity",
             "partOfSpeech": "noun",
-            "text": "The rate at which money changes hands in an economy.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Quickness of motion; speed in movement; swiftness; rapidity; celerity: used only (or chiefly) of inanimate objects. See def. 2.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<strong>.2.</strong> In <em>physics</em>, rate of motion; the rate at which a body changes its position in space; the rate of change of position of a point per unit of time.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>music</em>, decided rapidity of tempo or pace, particularly in a bravura passage.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The velocity at which the mode of flow of a liquid, in a pipe or channel, is modified by the setting up of eddy-motion and the consequent interruption of the stream lines.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Same as <internalXref urlencoded=\"critical%20wordnikxref%20velocity\">critical velocity</internalXref> .",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/velocity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the minimum velocity that a moving body (such as a rocket) must have to escape from the gravitational field of a celestial body (such as the earth) and move outward into space",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/velocity"
         }
     ]
 }

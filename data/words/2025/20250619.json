@@ -1,112 +1,70 @@
 {
     "word": "lunatic",
     "date": "20250619",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "L5309000-1",
+            "id": "lunatic",
             "partOfSpeech": "noun",
-            "text": "A person who is affected by lunacy; a mentally deranged person.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "someone affected with a severely disordered state of mind",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/lunatic"
         },
         {
-            "id": "L5309000-2",
+            "id": "lunatic",
             "partOfSpeech": "noun",
-            "text": "A very foolish person.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a person who behaves in a wildly foolish, reckless, or uncontrolled manner",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/lunatic"
         },
         {
-            "id": "L5309000-3",
+            "id": "lunatic",
             "partOfSpeech": "adjective",
-            "text": "Affected by lunacy; mentally deranged.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "L5309000-4",
-            "partOfSpeech": "adjective",
-            "text": "Of or for people who are mentally deranged.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "L5309000-5",
-            "partOfSpeech": "adjective",
-            "text": "Wildly or giddily foolish.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
+            "text": "affected with a severely disordered state of mind",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/lunatic",
             "examples": [
-                "a lunatic decision."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a lunatic asylum",
+                "a lunatic idea",
+                "lunatic behavior"
+            ]
         },
         {
-            "text": "Moonstruck; affected by lunacy; periodically insane, with lucid intervals; crazy.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "lunatic",
+            "partOfSpeech": "adjective",
+            "text": "providing care to mentally ill people",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/lunatic",
+            "examples": [
+                "a lunatic asylum",
+                "a lunatic idea",
+                "lunatic behavior"
+            ]
         },
         {
-            "text": "Indicating lunacy; in the nature of lunacy.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "lunatic",
+            "partOfSpeech": "adjective",
+            "text": "wildly foolish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/lunatic",
+            "examples": [
+                "a lunatic asylum",
+                "a lunatic idea",
+                "lunatic behavior"
+            ]
         },
         {
-            "text": "Of or like the moon.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "lunatic fringe",
             "partOfSpeech": "noun",
-            "text": "A person affected with lunacy; specifically, an insane person who has lucid intervals, or one whose unsoundness of mind is acquired, not congenital, as distinguished from an <em>idiot.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "More generally (and in law), any person of unsound mind. See further under <em>lunacy</em> and <em>insanity.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/lunatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the members of a usually political or social movement espousing extreme, eccentric, or fanatical views",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/lunatic"
         }
     ]
 }

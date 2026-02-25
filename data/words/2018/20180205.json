@@ -1,69 +1,90 @@
 {
     "word": "daddy",
     "date": "20180205",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5004500-1",
+            "id": "daddy",
             "partOfSpeech": "noun",
-            "text": "A father.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/daddy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "father",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
         },
         {
+            "id": "daddy",
             "partOfSpeech": "noun",
-            "text": "A father; papa: diminutive of <em>dad</em>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/daddy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "granddaddy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
         },
         {
+            "id": "daddy longlegs",
             "partOfSpeech": "noun",
-            "text": "Diminutive of <xref urlencoded=\"dad\">dad</xref>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/daddy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "crane fly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
         },
         {
+            "id": "daddy longlegs",
             "partOfSpeech": "noun",
-            "text": "<xref>father</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/daddy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of an order (Opiliones) of arachnids that have slender usually long legs and that resemble spiders but have an oval body lacking a constriction —called also harvestman",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
         },
         {
+            "id": "big daddy",
             "partOfSpeech": "noun",
-            "text": "male lover.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/daddy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "one preeminent especially by reason of power, size, or seniority: one representing paternalistic authority",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy",
+            "examples": [
+                "He's the Big Daddy of Spanish filmmakers …"
+            ]
         },
         {
+            "id": "mack daddy",
             "partOfSpeech": "noun",
-            "text": "an informal term for a father; probably derived from baby talk",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/daddy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a conspicuously successful pimp",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
+        },
+        {
+            "id": "mack daddy",
+            "partOfSpeech": "noun",
+            "text": "a slick womanizer",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
+        },
+        {
+            "id": "mack daddy",
+            "partOfSpeech": "noun",
+            "text": "one that is the best",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
+        },
+        {
+            "id": "sugar daddy",
+            "partOfSpeech": "noun",
+            "text": "a well-to-do usually older man who supports or spends lavishly on a mistress, girlfriend, or boyfriend",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
+        },
+        {
+            "id": "sugar daddy",
+            "partOfSpeech": "noun",
+            "text": "a generous benefactor of a cause or undertaking",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
         }
     ]
 }

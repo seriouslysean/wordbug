@@ -1,115 +1,114 @@
 {
     "word": "car",
     "date": "20180323",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5097400-1",
+            "id": "car",
             "partOfSpeech": "noun",
-            "text": "An automobile.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5097400-2",
-            "partOfSpeech": "noun",
-            "text": "A vehicle, such as a streetcar, that runs on rails.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/car",
+            "text": "a vehicle moving on wheels: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car",
             "examples": [
-                "a railroad car."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "The train has 20 cars.",
+                "traveled to Boston by car"
+            ]
         },
         {
-            "id": "C5097400-3",
+            "id": "car",
             "partOfSpeech": "noun",
-            "text": "A boxlike enclosure for passengers and freight on a conveyance.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/car",
+            "text": "carriage, chariot",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car",
             "examples": [
-                "an elevator car."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "The train has 20 cars.",
+                "traveled to Boston by car"
+            ]
         },
         {
-            "id": "C5097400-4",
+            "id": "car",
             "partOfSpeech": "noun",
-            "text": "The part of a balloon or airship that carries people and cargo.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a vehicle designed to move on rails (as of a railroad)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car",
+            "examples": [
+                "The train has 20 cars.",
+                "traveled to Boston by car"
+            ]
         },
         {
-            "id": "C5097400-5",
+            "id": "CAR",
+            "text": "civil air regulations",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
+        },
+        {
+            "id": "car bomb",
             "partOfSpeech": "noun",
-            "text": "A chariot, carriage, or cart.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an explosive device concealed in an automobile for use as a weapon of terrorism",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
         },
         {
-            "text": "Left, as opposed to <em>right.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "car coat",
             "partOfSpeech": "noun",
-            "text": "A wood or grove, generally of alders, on a moist soil.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a three-quarter-length overcoat",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
         },
         {
+            "id": "car park",
             "partOfSpeech": "noun",
-            "text": "Any hollow place or marsh.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a lot or garage for parking",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
         },
         {
-            "text": "To carry.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "car pool",
             "partOfSpeech": "noun",
-            "text": "A rock.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/car",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an arrangement in which a group of people commute together by car; also: the group entering into such an arrangement",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
+        },
+        {
+            "id": "car seat",
+            "partOfSpeech": "noun",
+            "text": "a portable seat for an infant or a small child that attaches to an automobile seat and holds the child safely",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
+        },
+        {
+            "id": "car wash",
+            "partOfSpeech": "noun",
+            "text": "an area or structure equipped with facilities for washing automobiles",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
+        },
+        {
+            "id": "car wash",
+            "partOfSpeech": "noun",
+            "text": "an event at which people pay to have their cars washed to raise money for some purpose",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
+        },
+        {
+            "id": "bar car",
+            "partOfSpeech": "noun",
+            "text": "club car",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
         }
     ]
 }

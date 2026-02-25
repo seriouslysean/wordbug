@@ -1,57 +1,29 @@
 {
     "word": "adrenaline",
     "date": "20251122",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "A5101900-1",
+            "id": "adrenaline",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/adrenaline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "epinephrine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/adrenaline",
+            "examples": [
+                "He felt a rush of adrenaline as he parachuted from the airplane.",
+                "The fans were jubilant, raucous, their adrenaline running high.",
+                "My reputation was as a single-day racer; show me the start line and I would win on adrenaline and anger, chopping off my competitors one by one.",
+                "London's summer antiques scene has been given a massive injection of adrenaline."
+            ]
         },
         {
+            "id": "epinephrine",
             "partOfSpeech": "noun",
-            "text": ".",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/adrenaline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "a hormone secreted by the adrenal medulla that acts as a powerful stimulant in reponse to fear or stress; it stimulates autonomic nerve action. It can be obtained as a crystalline substance, C9H13NO3. It is used in medicine as a vasoconstrictor (hemostatic) and cardiac stimulant, also to reduce allergic reactions and to stimulate the heart in cases of cardiac arrest.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/adrenaline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An alternative name for <xref>epinephrine</xref>; the <xref>hormone</xref> and <xref>neurotransmitter</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/adrenaline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a catecholamine secreted by the adrenal medulla in response to stress (trade name Adrenalin); stimulates autonomic nerve action",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/adrenaline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a crystalline sympathomimetic hormone C9H13NO3 that is the principal blood-pressure raising hormone secreted by the medulla of the adrenal glands, is prepared from adrenal extracts or made synthetically, and is used medicinally especially to stimulate the heart during cardiac arrest and to treat life-threatening allergic reactions —called also adrenaline",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/adrenaline"
         }
     ]
 }

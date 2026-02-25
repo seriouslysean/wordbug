@@ -1,111 +1,48 @@
 {
     "word": "reptilian",
     "date": "20251016",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "R5180400-1",
+            "id": "reptilian",
             "partOfSpeech": "adjective",
-            "text": "Of or relating to reptiles.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "resembling or having the characteristics of the reptiles",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reptilian",
+            "examples": [
+                "… a reptilian villain!"
+            ]
         },
         {
-            "id": "R5180400-2",
+            "id": "reptilian",
             "partOfSpeech": "adjective",
-            "text": "Resembling or characteristic of a reptile.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of or relating to the reptiles",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reptilian",
+            "examples": [
+                "… a reptilian villain!"
+            ]
         },
         {
-            "id": "R5180400-3",
+            "id": "reptilian",
             "partOfSpeech": "adjective",
-            "text": "Despicable; treacherous.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "cold-bloodedly treacherous",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reptilian",
+            "examples": [
+                "… a reptilian villain!"
+            ]
         },
         {
-            "id": "R5180400-4",
+            "id": "reptilian",
             "partOfSpeech": "noun",
-            "text": "A reptile.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Of or pertaining to the <em>Reptilia</em>, in any sense; resembling or like a reptile.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Any member of the <em>Reptilia</em>; a reptile.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Belonging to the reptiles.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "that part of geological time comprising the Triassic, Jurassic, and Cretaceous periods, and distinguished as that era in which the class of reptiles attained its highest expansion; -- called also the <altname>Secondary</altname> or <altname>Mezozoic</altname> age.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One of the Reptilia; a reptile.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>Reptile</xref>-like.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/reptilian",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "reptile",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reptilian"
         }
     ]
 }

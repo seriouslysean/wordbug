@@ -1,118 +1,115 @@
 {
     "word": "cheese",
     "date": "20180424",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5275900-1",
+            "id": "cheese",
             "partOfSpeech": "noun",
-            "text": "An important person.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5275700-1",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5275700-2",
-            "partOfSpeech": "noun",
-            "text": "A solid food prepared from the pressed curd of milk, often seasoned and aged.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5275700-3",
-            "partOfSpeech": "noun",
-            "text": "A molded mass of this substance.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5275700-4",
-            "partOfSpeech": "noun",
-            "text": "Something resembling this substance in shape or consistency.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5275800-1",
-            "partOfSpeech": "transitive verb",
-            "text": "To stop.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5275800-2",
-            "partOfSpeech": "phrasal verb",
-            "text": "To anger or irritate.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
+            "text": "a food consisting of the coagulated, compressed, and usually ripened curd of milk separated from the whey",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese",
             "examples": [
-                "The footballers were cheesed off by the referee's decision that cost them the game."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "cinematic cheese"
+            ]
         },
         {
-            "id": "C5275800-3",
-            "partOfSpeech": "idiom",
-            "text": "(<em>cheese it</em>)  To look out. Often used in the imperative.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5275800-4",
-            "partOfSpeech": "idiom",
-            "text": "(<em>cheese it</em>)  To get away fast; get going. Often used in the imperative.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "cheese",
             "partOfSpeech": "noun",
-            "text": "The thing; the correct or proper thing; the finished or perfect thing: always with the definite article.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/cheese",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an often cylindrical cake of this food",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese",
+            "examples": [
+                "cinematic cheese"
+            ]
+        },
+        {
+            "id": "cheese",
+            "partOfSpeech": "noun",
+            "text": "something resembling cheese in shape or consistency",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese",
+            "examples": [
+                "cinematic cheese"
+            ]
+        },
+        {
+            "id": "cheese",
+            "partOfSpeech": "verb",
+            "text": "to put an end to: stop",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
+        },
+        {
+            "id": "cheese",
+            "partOfSpeech": "noun",
+            "text": "someone important",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
+        },
+        {
+            "id": "cheese it",
+            "text": "—used in the imperative as a warning of danger",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
+        },
+        {
+            "id": "American cheese",
+            "partOfSpeech": "noun",
+            "text": "a processed cheese made from American cheddar",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
+        },
+        {
+            "id": "big cheese",
+            "partOfSpeech": "noun",
+            "text": "boss, big gun",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
+        },
+        {
+            "id": "blue cheese",
+            "partOfSpeech": "noun",
+            "text": "a cheese marked with veins of greenish-blue mold",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese",
+            "examples": [
+                "Where does the blue in blue cheese come from? Mold. But it's harmless mold, so enjoy!",
+                "The beef was a perfect medium-rare, and the sauce was robust, ideal for the meat with just the right touch of bleu cheese."
+            ]
+        },
+        {
+            "id": "Cheshire cheese",
+            "partOfSpeech": "noun",
+            "text": "a cheese similar to cheddar made chiefly in Cheshire, England",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
+        },
+        {
+            "id": "club cheese",
+            "partOfSpeech": "noun",
+            "text": "a processed cheese made by grinding cheddar and other cheeses usually with added seasonings",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
+        },
+        {
+            "id": "cook cheese",
+            "partOfSpeech": "noun",
+            "text": "an unripened cheese made from curd that has been cooked to a soft consistency —called also cooked cheese",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
         }
     ]
 }

@@ -1,107 +1,88 @@
 {
     "word": "confined",
     "date": "20250422",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "text": "Restricted to the service of one employer, as a laborer hired by him for the year; as, “a numerous body of <em>confined</em> labourers,”",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Restrained within limits; imprisoned; secluded; close; narrow; mean: as, a <em>confined</em> mind.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "In <em>pathology</em>, constipated: as, the bowels may be <em>confined.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "confined",
             "partOfSpeech": "adjective",
-            "text": "having movement restricted to within a certain area; -- usually a building. Opposite of <ant>unconfined</ant>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "deprived of liberty; especially placed under arrest or restraint.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "having movement restricted to within an enclosed outdoor area; -- of animals.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "not invading healthy tissue.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "held prisoner.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "having movement or progress restricted to a certain area.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
+            "text": "kept within confines: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/confined",
             "examples": [
-                "an outbreak of the plague <ex>confined</ex> to one quarter of the city; wildfires <ex>confined</ex> to within the canyon"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "confined to bed",
+                "confined prisoners",
+                "confined spaces",
+                "a confined compartment",
+                "In Scotland, the Countess of Athole, who was lying-in at Edinburgh Castle near the similarly confined Mary, Queen of Scots, is reported to have cast her own birth pangs onto a waiting-woman in the queen's chamber."
+            ]
         },
         {
+            "id": "confined",
+            "partOfSpeech": "adjective",
+            "text": "limited to a particular location",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/confined",
+            "examples": [
+                "confined to bed",
+                "confined prisoners",
+                "confined spaces",
+                "a confined compartment",
+                "In Scotland, the Countess of Athole, who was lying-in at Edinburgh Castle near the similarly confined Mary, Queen of Scots, is reported to have cast her own birth pangs onto a waiting-woman in the queen's chamber."
+            ]
+        },
+        {
+            "id": "confined",
+            "partOfSpeech": "adjective",
+            "text": "held captive",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/confined",
+            "examples": [
+                "confined to bed",
+                "confined prisoners",
+                "confined spaces",
+                "a confined compartment",
+                "In Scotland, the Countess of Athole, who was lying-in at Edinburgh Castle near the similarly confined Mary, Queen of Scots, is reported to have cast her own birth pangs onto a waiting-woman in the queen's chamber."
+            ]
+        },
+        {
+            "id": "confine",
             "partOfSpeech": "verb",
-            "text": "Simple past tense and past participle of <xref>confine</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/confined",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "border",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/confined",
+            "examples": [
+                "Dikes confined the floodwaters.",
+                "will confine my remarks to one subject"
+            ]
+        },
+        {
+            "id": "confine",
+            "partOfSpeech": "verb",
+            "text": "to hold within a location",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/confined",
+            "examples": [
+                "Dikes confined the floodwaters.",
+                "will confine my remarks to one subject"
+            ]
+        },
+        {
+            "id": "confine",
+            "partOfSpeech": "verb",
+            "text": "imprison",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/confined",
+            "examples": [
+                "Dikes confined the floodwaters.",
+                "will confine my remarks to one subject"
+            ]
         }
     ]
 }

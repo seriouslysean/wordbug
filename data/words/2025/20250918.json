@@ -1,69 +1,20 @@
 {
     "word": "chronological",
     "date": "20250918",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5354800-1",
+            "id": "chronological",
             "partOfSpeech": "adjective",
-            "text": "Arranged in order of time of occurrence.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/chronological",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5354800-2",
-            "partOfSpeech": "adjective",
-            "text": "Relating to or in accordance with chronology.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/chronological",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Relating to chronology; containing an account of events in the order of time; according to the order of time: as, a <em>chronological</em> table or narrative; a <em>chronological</em> arrangement of works of art.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/chronological",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "In order of <xref>time</xref> from the <xref>earliest</xref> to the <xref>latest</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/chronological",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "In units of time.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/chronological",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "relating to or arranged according to temporal order",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/chronological",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of, relating to, or arranged in or according to the order of time; also: reckoned in units of time",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/chronological",
+            "examples": [
+                "chronological tables of American history",
+                "His art is arranged in chronological order.",
+                "chronological age"
+            ]
         }
     ]
 }

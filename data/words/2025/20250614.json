@@ -1,110 +1,23 @@
 {
     "word": "transparency",
     "date": "20250614",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "T5353400-1",
+            "id": "transparency",
             "partOfSpeech": "noun",
-            "text": "The quality or state of being transparent.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the quality or state of being transparent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/transparency"
         },
         {
-            "id": "T5353400-2",
+            "id": "transparency",
             "partOfSpeech": "noun",
-            "text": "A transparent object, especially a photographic slide that is viewed by light shining through it from behind or by projection.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The property or state of being transparent; that state or property of a body by which it admits of the passage of: rays of light so that forms, colors, and brightness of objects can be seen through it; diaphaneity.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Something intended to be seen by means of transmitted light, as a picture, a sign, or other representation; often, an announcement of news, painted on canvas or other translucent material and lighted from behind; hence, by extension, a frame or construction, usually of wood and muslin, containing the lights necessary, and having one, two, or four inscriptions, or the like, on different sides.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>photography</em>, a positive picture on glass, intended to be viewed by transmitted light.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A translation of the German title <em>Durchlaucht</em> (Seine Durchlaucht, literally ‘His Perlustriousness,’ used like the English <em>His Serene Highness</em>).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The quality or condition of being transparent; transparence.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "That which is transparent; especially, a picture painted on thin cloth or glass, or impressed on porcelain, or the like, to be viewed by natural or artificial light, which shines through it.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a <xref>transparent</xref> <xref>object</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "specifically, a transparent material with an image on it, that is <xref>viewable</xref> by shining <xref>light</xref> through it.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/transparency",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "something transparent; especially: a picture (as on film) viewed by light shining through it or by projection",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/transparency"
         }
     ]
 }

@@ -1,105 +1,33 @@
 {
     "word": "delirious",
     "date": "20250524",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5113400-1",
+            "id": "delirious",
             "partOfSpeech": "adjective",
-            "text": "Of, suffering from, or characteristic of delirium.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5113400-2",
-            "partOfSpeech": "adjective",
-            "text": "Marked by uncontrolled excitement or emotion; ecstatic.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
+            "text": "of, relating to, or characteristic of delirium",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delirious",
             "examples": [
-                "delirious joy; a crowd of delirious baseball fans."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "delirious mutterings",
+                "delirious with fever",
+                "delirious fans"
+            ]
         },
         {
-            "text": "Wandering in mind; having ideas and fancies that are wild, fantastic, or incoherent; light-headed; flighty; raving.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Characterized by or proceeding from wild excitement, exaggerated emotion, or rapture: as, <em>delirious</em> joy.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "delirious",
             "partOfSpeech": "adjective",
-            "text": "Having a delirium; wandering in mind; light-headed; insane; raving; wild",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
+            "text": "affected with or marked by delirium",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delirious",
             "examples": [
-                "a <ex>delirious</ex> patient; <ex>delirious</ex> fancies."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Being in the state of <xref>delirium</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having uncontrolled <xref>excitement</xref>; <xref>ecstatic</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "marked by uncontrolled excitement or emotion",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
-            "examples": [
-                "something frantic in their gaiety",
-                "a mad whirl of pleasure"
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "experiencing delirium",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/delirious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+                "delirious mutterings",
+                "delirious with fever",
+                "delirious fans"
+            ]
         }
     ]
 }

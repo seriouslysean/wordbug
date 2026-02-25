@@ -1,66 +1,31 @@
 {
     "word": "semicircular",
     "date": "20250905",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "text": "Having the form of a half-circle.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/semicircular",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "semicircle",
+            "partOfSpeech": "noun",
+            "text": "a half of a circle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/semicircular"
         },
         {
-            "text": "Specifically, in <em>anatomy</em>, noting the three canals of the internal ear, whatever their actual shape. They are usually horseshoe-shaped or oval, and sometimes quite irregular. See <internalXref urlencoded=\"canal\">canal</internalXref>, and cuts under <em>Crocodilia, ear</em>, and <em>periotic.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/semicircular",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "semicircle",
+            "partOfSpeech": "noun",
+            "text": "an object or arrangement of objects in the form of a half circle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/semicircular"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "Having the form of half of a circle.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/semicircular",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "certain canals of the inner ear. See under <er>Ear</er>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/semicircular",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "In the shape of half of a <xref>circle</xref> or a <xref>semicircle</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/semicircular",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "curved into a half circle",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/semicircular",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "semicircular canal",
+            "partOfSpeech": "noun",
+            "text": "any of three loop-shaped tubular parts of the inner ear that are filled with a watery fluid, are positioned at nearly right angles to each other, and play a role in the maintenance of balance and stabilization by detecting rotations or angular movements of the head",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/semicircular"
         }
     ]
 }

@@ -1,69 +1,31 @@
 {
     "word": "onomatopoeia",
     "date": "20250407",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "O5089900-1",
+            "id": "onomatopoeia",
             "partOfSpeech": "noun",
-            "text": "The formation or use of words such as <em>buzz</em> or <em>murmur</em> that imitate the sounds associated with the objects or actions they refer to.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/onomatopoeia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the naming of a thing or action by a vocal imitation of the sound associated with it: the creation of words that imitate natural sounds (such as buzz, hiss); also: a word formed by onomatopoeia",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/onomatopoeia",
+            "examples": [
+                "… some of our most beloved onomatopoeias: crackle, sizzle, pop, slurp.",
+                "a study of the poet's onomatopoeia"
+            ]
         },
         {
+            "id": "onomatopoeia",
             "partOfSpeech": "noun",
-            "text": "A word formed in imitation of the sound of the thing it signifies; an imitative word. See the extract.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/onomatopoeia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The property of a <xref>word</xref> of sounding like what it represents.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/onomatopoeia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A word that sounds like what it represents, such as \"gurgle\" or \"hiss\".",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/onomatopoeia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The use of language whose sound imitates that which it names.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/onomatopoeia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "using words that imitate the sound they denote",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/onomatopoeia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the use of words whose sound suggests the sense",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/onomatopoeia",
+            "examples": [
+                "… some of our most beloved onomatopoeias: crackle, sizzle, pop, slurp.",
+                "a study of the poet's onomatopoeia"
+            ]
         }
     ]
 }

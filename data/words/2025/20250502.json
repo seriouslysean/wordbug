@@ -1,18 +1,15 @@
 {
     "word": "jetstream",
     "date": "20250502",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "jet stream",
             "partOfSpeech": "noun",
-            "text": "Alternative spelling of <xref>jet stream</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/jetstream",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a long narrow meandering current of high-speed winds near the tropopause blowing from a generally westerly direction and often exceeding a speed of 250 miles (402 kilometers) per hour",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jetstream"
         }
     ]
 }

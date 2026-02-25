@@ -1,74 +1,21 @@
 {
     "word": "abruptly",
     "date": "20250804",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "text": "Brokenly; by breaking or being broken off suddenly: as, the path or the discourse ended <em>abruptly.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/abruptly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Precipitously, or with a very steep slope: as, the rocks rise <em>abruptly</em> from the water's edge.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/abruptly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Suddenly, without giving notice, or without the usual forms: as, the minister left France <em>abruptly.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/abruptly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "With an abrupt termination.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/abruptly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "abruptly",
             "partOfSpeech": "adverb",
-            "text": "In an abrupt manner; without giving notice, or without the usual forms; suddenly.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/abruptly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adverb",
-            "text": "Precipitously.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/abruptly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adverb",
-            "text": "quickly and without warning",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/abruptly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "in an abrupt manner: in a sudden and unexpected way",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/abruptly",
+            "examples": [
+                "He left abruptly.",
+                "The car swerved abruptly onto the exit ramp.",
+                "Her career as a psychologist ended abruptly several years ago when a hacker broke into some of her private client files and made them public …",
+                "The small, rocky Anacapa Island [California] has steep cliffs which rise abruptly from the ocean on almost every side …"
+            ]
         }
     ]
 }

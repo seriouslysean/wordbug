@@ -1,113 +1,98 @@
 {
     "word": "delinquent",
     "date": "20251002",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5113200-1",
-            "partOfSpeech": "adjective",
-            "text": "Failing to do what law or duty requires.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5113200-2",
-            "partOfSpeech": "adjective",
-            "text": "Overdue in payment.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
+            "id": "delinquent",
+            "partOfSpeech": "noun",
+            "text": "one that is delinquent: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent",
             "examples": [
-                "a delinquent account."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a tax delinquent"
+            ]
         },
         {
-            "id": "D5113200-3",
+            "id": "delinquent",
             "partOfSpeech": "noun",
-            "text": "A juvenile delinquent.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a usually young person who regularly performs illegal or immoral acts",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent",
+            "examples": [
+                "a tax delinquent"
+            ]
         },
         {
-            "id": "D5113200-4",
+            "id": "delinquent",
             "partOfSpeech": "noun",
-            "text": "A person who neglects or fails to do what law or duty requires.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a person or entity whose debt is overdue",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent",
+            "examples": [
+                "a tax delinquent"
+            ]
         },
         {
-            "text": "Failing in duty; offending by neglect of duty or obligation: as, a <em>delinquent</em> tenant; a <em>delinquent</em> subscriber.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One who fails to perform a duty or discharge an obligation; one guilty of a delinquency; an offender; a culprit.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<strong>Synonyms</strong> <em>Offender, Delinquent</em>, (see <internalXref urlencoded=\"offender\">offender</internalXref>); wrong-doer.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "delinquent",
             "partOfSpeech": "adjective",
-            "text": "Failing in duty; offending by neglect of duty.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "offending by neglect or violation of duty or of law",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent",
+            "examples": [
+                "… were clearly delinquent in not immediately alerting Western Europe to the accident …",
+                "a delinquent charge account",
+                "… efforts to crack down on parents delinquent in child-support payments …",
+                "delinquent behavior"
+            ]
         },
         {
-            "partOfSpeech": "noun",
-            "text": "One who fails or neglects to perform his duty; an offender or transgressor; one who commits a fault or a crime; a culprit.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "delinquent",
             "partOfSpeech": "adjective",
-            "text": "<xref>Late</xref> or failing to pay a <xref>debt</xref> or other financial obligation, like a mortgage or loan.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/delinquent",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "being overdue in payment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent",
+            "examples": [
+                "… were clearly delinquent in not immediately alerting Western Europe to the accident …",
+                "a delinquent charge account",
+                "… efforts to crack down on parents delinquent in child-support payments …",
+                "delinquent behavior"
+            ]
+        },
+        {
+            "id": "delinquent",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or characteristic of people who regularly perform illegal or immoral acts: marked by delinquency",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent",
+            "examples": [
+                "… were clearly delinquent in not immediately alerting Western Europe to the accident …",
+                "a delinquent charge account",
+                "… efforts to crack down on parents delinquent in child-support payments …",
+                "delinquent behavior"
+            ]
+        },
+        {
+            "id": "juvenile delinquency",
+            "partOfSpeech": "noun",
+            "text": "conduct by a juvenile characterized by antisocial behavior that is beyond parental control and therefore subject to legal action",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent"
+        },
+        {
+            "id": "juvenile delinquency",
+            "partOfSpeech": "noun",
+            "text": "a violation of the law committed by a juvenile and not punishable by death or life imprisonment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent"
         }
     ]
 }

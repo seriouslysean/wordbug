@@ -1,81 +1,23 @@
 {
     "word": "subatomic",
     "date": "20250416",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5904500-1",
+            "id": "subatomic",
             "partOfSpeech": "adjective",
-            "text": "Of or relating to particles that are smaller than an atom.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/subatomic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of or relating to the inside of the atom",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/subatomic"
         },
         {
-            "id": "S5904500-2",
+            "id": "subatomic",
             "partOfSpeech": "adjective",
-            "text": "Having dimensions or participating in reactions characteristic of the constituents of the atom.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/subatomic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Of or pertaining to the relations of assumed particles or subdivisions of matter smaller than the atom: as, <em>subatomic</em> energy.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/subatomic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Relating to <xref>particles</xref> that are <xref>constituents</xref> of the <xref>atom</xref>, or are <xref>smaller</xref> than an atom; such as <xref>proton</xref>, <xref>neutron</xref>, <xref>electron</xref>, etc.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/subatomic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Relating to any <xref>length</xref> or <xref>mass</xref> that is smaller in <xref>scale</xref> than a the <xref>diameter</xref> of a <xref>hydrogen</xref> atom.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/subatomic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "of smaller than atomic dimensions",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/subatomic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "of or relating to constituents of the atom or forces within the atom",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/subatomic",
-            "examples": [
-                "harnessing subatomic energy"
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of, relating to, or being particles smaller than atoms",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/subatomic"
         }
     ]
 }

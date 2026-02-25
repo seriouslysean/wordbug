@@ -1,18 +1,15 @@
 {
     "word": "sriracha",
     "date": "20250426",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "sriracha",
             "partOfSpeech": "noun",
-            "text": "A <xref>Thai</xref>-style <xref>hot sauce</xref>, typically made from sun-ripened <xref>chili peppers</xref>, <xref>vinegar</xref>, <xref>garlic</xref>, <xref>sugar</xref> and <xref>salt</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sriracha",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a pungent sauce that is made from hot peppers pureed with usually garlic, sugar, salt, and vinegar and that is typically used as a condiment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sriracha"
         }
     ]
 }

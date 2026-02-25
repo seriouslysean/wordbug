@@ -1,89 +1,15 @@
 {
     "word": "myrrh",
     "date": "20250708",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "M5557310-1",
+            "id": "myrrh",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5557300-1",
-            "partOfSpeech": "noun",
-            "text": "An aromatic gum resin obtained from several trees and shrubs of the genus <em>Commiphora</em> of northeastern Africa and Arabia, used in perfume, incense, and medicinal preparations.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A gummy resinous exudation from several species of <em>Commiphora</em> (<em>Balsamodendron</em>).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The sweet cicely of Europe. See <internalXref urlencoded=\"Myrrhis\">Myrrhis</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A gum resin, usually of a yellowish brown or amber color, of an aromatic odor, and a bitter, slightly pungent taste. It is valued for its odor and for its medicinal properties. It exudes from the bark of a shrub of Abyssinia and Arabia, the <spn>Commiphora Myrrha</spn> (syn. <spn>Balsamodendron Myrrha</spn>) of the family <ex>Burseraceae</ex>, or from the <spn>Commiphora abyssinica</spn>. The myrrh of the Bible is supposed to have been partly the gum above named, and partly the exudation of species of Cistus, or rockrose.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "See the Note under <er>Bdellium</er>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A red-brown <xref>resinous</xref> material, the dried sap of the Commiphora <xref>myrrha</xref> tree.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "aromatic resin that is burned as incense and used in perfume",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/myrrh",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a yellowish-brown to reddish-brown aromatic gum resin with a bitter slightly pungent taste obtained from a tree (especially Commiphora myrrha of the family Burseraceae) of eastern Africa and Arabia; also: a mixture of myrrh and labdanum",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/myrrh"
         }
     ]
 }

@@ -1,111 +1,58 @@
 {
     "word": "copious",
     "date": "20250815",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5656600-1",
+            "id": "copious",
             "partOfSpeech": "adjective",
-            "text": "Yielding or containing plenty; affording ample supply: <i>synonym</i>: <strong> plentiful</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
+            "text": "yielding something abundantly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/copious",
             "examples": [
-                "a copious harvest."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a copious harvest",
+                "copious springs",
+                "copious references to other writers",
+                "… Shakespeare, whose soul was so copious …",
+                "a copious talker",
+                "copious weeping",
+                "copious food and drink"
+            ]
         },
         {
-            "id": "C5656600-2",
+            "id": "copious",
             "partOfSpeech": "adjective",
-            "text": "Large in quantity; abundant.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
+            "text": "plentiful in number",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/copious",
             "examples": [
-                "copious rainfall."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a copious harvest",
+                "copious springs",
+                "copious references to other writers",
+                "… Shakespeare, whose soul was so copious …",
+                "a copious talker",
+                "copious weeping",
+                "copious food and drink"
+            ]
         },
         {
-            "id": "C5656600-3",
+            "id": "copious",
             "partOfSpeech": "adjective",
-            "text": "Abounding in matter, thoughts, or words; wordy.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Abundant; plentiful; ample; large in quantity or number: as, <em>copious</em> supplies; a <em>copious</em> feast; <em>copious</em> notes of a lecture; <em>copious</em> rain.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Exhibiting abundance or fullness, as of thoughts or words.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Having an abundant supply; abounding; plenteous; liberal.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "<strong>Synonyms</strong> <em>Ample, Copious, Plenteous</em> (see <internalXref urlencoded=\"ample\">ample</internalXref>), rich, full, exuberant, overflowing, profuse.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Large in quantity or amount; plentiful; abundant; fruitful.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Great in quantity or number, <xref>profuse</xref>, <xref>abundant</xref>; taking place on a large scale.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having an abundant supply.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/copious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "full of thought, information, or matter",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/copious",
+            "examples": [
+                "a copious harvest",
+                "copious springs",
+                "copious references to other writers",
+                "… Shakespeare, whose soul was so copious …",
+                "a copious talker",
+                "copious weeping",
+                "copious food and drink"
+            ]
         }
     ]
 }

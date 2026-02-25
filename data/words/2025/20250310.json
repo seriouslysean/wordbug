@@ -1,125 +1,73 @@
 {
     "word": "phantom",
     "date": "20250310",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "P5251400-1",
+            "id": "phantom",
             "partOfSpeech": "noun",
-            "text": "Something apparently seen, heard, or sensed, but having no physical reality; a ghost or apparition.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "P5251400-2",
-            "partOfSpeech": "noun",
-            "text": "An image that appears only in the mind; an illusion.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
+            "text": "something apparent to sense but with no substantial existence: apparition",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/phantom",
             "examples": [
-                "phantoms of a disturbed mind."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the phantom of disease and want",
+                "She was a phantom of delight …"
+            ]
         },
         {
-            "id": "P5251400-3",
+            "id": "phantom",
             "partOfSpeech": "noun",
-            "text": "A model of a human body or body part.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "something elusive or visionary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/phantom",
+            "examples": [
+                "the phantom of disease and want",
+                "She was a phantom of delight …"
+            ]
         },
         {
-            "id": "P5251400-4",
+            "id": "phantom",
+            "partOfSpeech": "noun",
+            "text": "an object of continual dread or abhorrence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/phantom",
+            "examples": [
+                "the phantom of disease and want",
+                "She was a phantom of delight …"
+            ]
+        },
+        {
+            "id": "phantom",
             "partOfSpeech": "adjective",
-            "text": "Resembling, characteristic of, or being a phantom.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
+            "text": "of the nature of, suggesting, or being a phantom: illusory",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/phantom",
             "examples": [
-                "tales of a phantom ship haunting the bay."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "phantom voters"
+            ]
         },
         {
-            "id": "P5251400-5",
+            "id": "phantom",
             "partOfSpeech": "adjective",
-            "text": "Fictitious or nonexistent, often when intended to deceive.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
+            "text": "fictitious, dummy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/phantom",
             "examples": [
-                "phantom employees on the payroll; deposits in a phantom bank account."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "phantom voters"
+            ]
         },
         {
-            "id": "P5251400-6",
-            "partOfSpeech": "adjective",
-            "text": "Believed to be real even though illusory.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
-            "examples": [
-                "a phantom pregnancy."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "P5251400-7",
-            "partOfSpeech": "adjective",
-            "text": "Being a phantom limb.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
-            "examples": [
-                "a phantom arm."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "phantom limb",
             "partOfSpeech": "noun",
-            "text": "A phantom crystal.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A map or diagram of the magnetic field made by strewing iron filings upon a plate of glass-or other smooth surface and allowing them to arrange themselves along the lines of force.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Appearance merely; illusion; unreality; fancy; delusion; deception; deceit.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/phantom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an often painful sensation of the presence of a limb that has been amputated —called also phantom pain",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/phantom"
         }
     ]
 }

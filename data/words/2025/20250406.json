@@ -1,112 +1,72 @@
 {
     "word": "crepe",
     "date": "20250406",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5771300-1",
+            "id": "crepe",
             "partOfSpeech": "noun",
-            "text": "A light soft thin fabric of silk, cotton, wool, or another fiber, with a crinkled surface.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a light crinkled fabric woven of any of various fibers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe",
+            "examples": [
+                "crepe-soled shoes"
+            ]
         },
         {
-            "id": "C5771300-2",
+            "id": "crepe",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "crape",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe",
+            "examples": [
+                "crepe-soled shoes"
+            ]
         },
         {
-            "id": "C5771300-3",
+            "id": "crepe",
             "partOfSpeech": "noun",
-            "text": "Crepe paper.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "crude rubber in the form of nearly white to brown crinkled sheets used especially for shoe soles",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe",
+            "examples": [
+                "crepe-soled shoes"
+            ]
         },
         {
-            "id": "C5771300-4",
+            "id": "crepe de chine",
             "partOfSpeech": "noun",
-            "text": "Crepe rubber.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a soft fine or sheer clothing crepe especially of silk",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe"
         },
         {
-            "id": "C5771300-5",
+            "id": "crepe myrtle",
             "partOfSpeech": "noun",
-            "text": "A very thin pancake, often stuffed and rolled up.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "crape myrtle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe"
         },
         {
+            "id": "crepe paper",
             "partOfSpeech": "noun",
-            "text": "A soft thin light fabric with a crinkled surface.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "paper with a crinkled or puckered texture",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe"
         },
         {
+            "id": "crepe suzette",
             "partOfSpeech": "noun",
-            "text": "A very thin pancake.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<xref>crepe paper</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Rubber in sheets used especially for shoe soles.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A <xref>death</xref> <xref>notice</xref> printed on white card with a background of black crepe paper or <xref>cloth</xref>, placed on a the door of a <xref>residence</xref> or <xref>business</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/crepe",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a thin folded or rolled pancake in a hot orange-butter sauce that is sprinkled with a liqueur (such as cognac or curaçao) and set ablaze for serving",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe"
         }
     ]
 }

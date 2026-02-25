@@ -1,18 +1,46 @@
 {
     "word": "eau",
     "date": "20251210",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "eau de cologne",
             "partOfSpeech": "noun",
-            "text": "Water: a word designating various spirituous waters, particularly perfumes and cordials; it also enters into several French heraldic phrases.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/eau",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "cologne",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/eau"
+        },
+        {
+            "id": "eau de parfum",
+            "partOfSpeech": "noun",
+            "text": "a perfumed liquid containing a percentage of fragrant oils that is lower than that in perfume but greater than that in eau de toilette",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/eau"
+        },
+        {
+            "id": "eau de toilette",
+            "partOfSpeech": "noun",
+            "text": "a perfumed liquid containing a lower percentage of fragrant oils than is contained in ordinary perfume or eau de parfum —called also toilet water",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/eau"
+        },
+        {
+            "id": "eau-de-vie",
+            "partOfSpeech": "noun",
+            "text": "a clear brandy distilled from the fermented juice of fruit (such as pears or raspberries)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/eau"
+        },
+        {
+            "id": "Eau Claire:g",
+            "text": "city on the Chippewa River in western Wisconsin population 65,883",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/eau"
         }
     ]
 }

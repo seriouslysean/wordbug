@@ -1,114 +1,95 @@
 {
     "word": "hyacinth",
     "date": "20250824",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "H5355500-1",
+            "id": "hyacinth",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a precious stone of the ancients sometimes held to be the sapphire",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
-            "id": "H5355500-2",
+            "id": "hyacinth",
             "partOfSpeech": "noun",
-            "text": "A bulbous Mediterranean plant <em>(Hyacinthus orientalis)</em> having narrow leaves and a terminal raceme of variously colored, usually fragrant flowers, with a funnel-shaped perianth.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a gem zircon or hessonite",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
-            "id": "H5355500-3",
+            "id": "hyacinth",
             "partOfSpeech": "noun",
-            "text": "Any of several similar or related plants, such as the grape hyacinth.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a plant of the ancients held to be a lily, iris, larkspur, or gladiolus",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
-            "id": "H5355500-4",
+            "id": "grape hyacinth",
             "partOfSpeech": "noun",
-            "text": "A plant, perhaps the larkspur, gladiolus, or iris, that sprang from the blood of the slain Hyacinthus.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of several small bulbous spring-flowering herbs (genus Muscari) of the asparagus family with racemes of usually blue flowers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
-            "id": "H5355500-5",
+            "id": "water hyacinth",
             "partOfSpeech": "noun",
-            "text": "A deep purplish blue to vivid violet.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a showy floating aquatic herb (Pontederia crassipes synonym Eichhornia crassipes) of tropical South America that has become naturalized in warm regions (as of the southern U.S.) often clogging waterways",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
-            "id": "H5355500-6",
+            "id": "wild hyacinth",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of several plants with flowers suggestive of hyacinths: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
-            "id": "H5355500-7",
+            "id": "wild hyacinth",
             "partOfSpeech": "noun",
-            "text": "A reddish or cinnamon-colored variety of transparent zircon, used as a gemstone.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a camas (Camassia scilloides) of eastern North America with white or bluish racemose flowers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
-            "id": "H5355500-8",
+            "id": "wild hyacinth",
             "partOfSpeech": "noun",
-            "text": "A blue precious stone, perhaps the sapphire, known in antiquity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "bluebell",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
+            "id": "bluebell",
             "partOfSpeech": "noun",
-            "text": "An ornamental bulbous plant of the genus <em>Hyacinthus</em> (<em>H. orientalis</em>), natural order <em>Liliaceæ.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of various bellflowers; especially: harebell",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         },
         {
+            "id": "bluebell",
             "partOfSpeech": "noun",
-            "text": "By transfer, a plant of some other genus.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/hyacinth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of various plants bearing blue bell-shaped flowers: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
+        },
+        {
+            "id": "bluebell",
+            "partOfSpeech": "noun",
+            "text": "a European herb (Hyacinthoides non-scripta) of the asparagus family having scapose racemes of drooping bell-shaped flowers —called also wild hyacinth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         }
     ]
 }

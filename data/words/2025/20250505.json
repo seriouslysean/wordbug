@@ -1,29 +1,18 @@
 {
     "word": "pareidolia",
     "date": "20250505",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "P5076050-1",
+            "id": "pareidolia",
             "partOfSpeech": "noun",
-            "text": "The perception of a recognizable image or meaningful pattern where none exists or is intended, as the perception of a face in the surface features of the moon.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/pareidolia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The tendency to <xref>interpret</xref> a <xref>vague</xref> <xref>stimulus</xref> as something <xref>known</xref> to the <xref>observer</xref>, such as interpreting marks on Mars as canals, seeing shapes in clouds, or hearing hidden messages in music.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/pareidolia",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the tendency to perceive a specific, often meaningful image in a random or ambiguous visual pattern",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/pareidolia",
+            "examples": [
+                "The scientific explanation for some people is pareidolia, or the human ability to see shapes or make pictures out of randomness. Think of the Rorschach inkblot test."
+            ]
         }
     ]
 }

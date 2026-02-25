@@ -1,112 +1,93 @@
 {
     "word": "municipal",
     "date": "20250813",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "M5524400-1",
+            "id": "municipal",
             "partOfSpeech": "adjective",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5524400-2",
-            "partOfSpeech": "adjective",
-            "text": "Of, relating to, or typical of a municipality.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5524400-3",
-            "partOfSpeech": "adjective",
-            "text": "Having local self-government.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5524400-4",
-            "partOfSpeech": "adjective",
-            "text": "Issued on the authority of a local or state government.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5524400-5",
-            "partOfSpeech": "adjective",
-            "text": "Of or relating to the internal affairs of a nation.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5524400-6",
-            "partOfSpeech": "noun",
-            "text": "A municipal bond.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
+            "text": "of or relating to the internal affairs of a major political unit (such as a nation)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal",
             "examples": [
-                "invested in tax-free municipals."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "… municipal legislation … enacted for the fulfillment of the treaties …",
+                "municipal government",
+                "municipal water supplies",
+                "municipal elections",
+                "municipal courts",
+                "a municipal building",
+                "a municipal library",
+                "… a new very municipal variety of dwarf sweet pea …"
+            ]
         },
         {
-            "text": "Of or pertaining to the local self-government or corporate government of a city or town.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "municipal",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or characteristic of a municipality",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal",
+            "examples": [
+                "… municipal legislation … enacted for the fulfillment of the treaties …",
+                "municipal government",
+                "municipal water supplies",
+                "municipal elections",
+                "municipal courts",
+                "a municipal building",
+                "a municipal library",
+                "… a new very municipal variety of dwarf sweet pea …"
+            ]
         },
         {
-            "text": "Self-governing, as a free city.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "municipal",
+            "partOfSpeech": "adjective",
+            "text": "having local self-government",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal",
+            "examples": [
+                "… municipal legislation … enacted for the fulfillment of the treaties …",
+                "municipal government",
+                "municipal water supplies",
+                "municipal elections",
+                "municipal courts",
+                "a municipal building",
+                "a municipal library",
+                "… a new very municipal variety of dwarf sweet pea …"
+            ]
         },
         {
-            "text": "Pertaining to the internal affairs of a state, kingdom, or nation, and its citizens: as, <em>municipal</em> law (which see, below).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "municipal",
             "partOfSpeech": "noun",
-            "text": "A municipal magistrate at Toulouse in the Middle Ages. See the extract.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/municipal",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a security issued by a state or local government or by an authority set up by such a government —usually used in plural",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal"
+        },
+        {
+            "id": "municipal borough",
+            "partOfSpeech": "noun",
+            "text": "a borough in England or Wales having powers of self-government limited by its inclusion in an administrative county",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal"
+        },
+        {
+            "id": "municipal court",
+            "partOfSpeech": "noun",
+            "text": "a court that sits in some cities and larger towns and that usually has civil and criminal jurisdiction over cases arising within the municipality",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal"
+        },
+        {
+            "id": "municipal court",
+            "partOfSpeech": "noun",
+            "text": "police court",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal"
         }
     ]
 }

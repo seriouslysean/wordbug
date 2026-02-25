@@ -1,46 +1,31 @@
 {
     "word": "linty",
     "date": "20250630",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "text": "Like lint or flax; soft.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/linty",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "lint",
+            "partOfSpeech": "noun",
+            "text": "a soft fleecy material made from linen usually by scraping",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/linty"
         },
         {
-            "text": "Covered with or full of lint.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/linty",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "lint",
+            "partOfSpeech": "noun",
+            "text": "fuzz consisting especially of fine ravelings and short fibers of yarn and fabric",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/linty"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "Of or pertaining to <xref>lint</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/linty",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Covered with <xref>lint</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/linty",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "lint",
+            "partOfSpeech": "noun",
+            "text": "a fibrous coat of thick convoluted hairs borne by cotton seeds that yields the cotton staple",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/linty"
         }
     ]
 }

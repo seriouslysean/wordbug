@@ -1,113 +1,95 @@
 {
     "word": "taboo",
     "date": "20250506",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "T5005400-1",
-            "partOfSpeech": "noun",
-            "text": "A ban or inhibition resulting from social custom or emotional aversion.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "T5005400-2",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "T5005400-3",
-            "partOfSpeech": "noun",
-            "text": "A prohibition, especially in Polynesia and other South Pacific islands, excluding something from use, approach, or mention because of its sacred and inviolable nature.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "T5005400-4",
-            "partOfSpeech": "noun",
-            "text": "An object, word, or act protected by such a prohibition.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "T5005400-5",
+            "id": "taboo",
             "partOfSpeech": "adjective",
-            "text": "Excluded or forbidden from use, approach, or mention.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
+            "text": "banned on grounds of morality or taste",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo",
             "examples": [
-                "a taboo subject."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the subject is taboo",
+                "Treatments outside the statistically proven are considered taboo …"
+            ]
         },
         {
-            "id": "T5005400-6",
-            "partOfSpeech": "transitive verb",
-            "text": "To exclude from use, approach, or mention; place under taboo.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "taboo",
+            "partOfSpeech": "adjective",
+            "text": "banned as constituting a risk",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo",
+            "examples": [
+                "the subject is taboo",
+                "Treatments outside the statistically proven are considered taboo …"
+            ]
         },
         {
-            "text": "To put under taboo; disallow, or forbid the use of; interdict approach to, or contact or intercourse with; hence, to ban, exclude, or ostracize by personal authority or social influence: as, to <internalXref urlencoded=\"taboo\">taboo</internalXref> the use of tobacco; a <em>tabooed</em> person or subject (one not to be mentioned or discussed).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "taboo",
+            "partOfSpeech": "adjective",
+            "text": "forbidden for nonreligious use or contact because of what are held to be dangerous supernatural powers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo",
+            "examples": [
+                "the subject is taboo",
+                "Treatments outside the statistically proven are considered taboo …"
+            ]
         },
         {
-            "text": "Among the Polynesians and other races of the South Pacific, separated or set apart either as forbidden or as sacred; placed under ban or prohibition; consecrated either to exclusion or avoidance or to special use, regard, or service; hence, in English use, forbidden; interdicted.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "taboo",
             "partOfSpeech": "noun",
-            "text": "Among the Polynesians and other races of the South Pacific, a system, practice, or act whereby persons, things, places, actions, or words are or may be placed under a ban, curse, or prohibition, or set apart as sacred or privileged in some specific manner, usually with very severe penalties for infraction.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a prohibition imposed by social custom or as a protective measure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo",
+            "examples": [
+                "… they may have developed a taboo against eating fish.",
+                "… the tacticians in a conservative Republican Administration now deem membership in the club a taboo."
+            ]
         },
         {
+            "id": "taboo",
             "partOfSpeech": "noun",
-            "text": "Hence A prohibitory or restraining injunction or demonstration; restraint or exclusion, as from social intercourse or from use, imposed by some controlling influence; ban; prohibition; ostracism: as, to put a person or a thing under <em>taboo.</em> See the verb.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/taboo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "something that is not acceptable to say, mention, or do: something that is taboo",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo",
+            "examples": [
+                "… they may have developed a taboo against eating fish.",
+                "… the tacticians in a conservative Republican Administration now deem membership in the club a taboo."
+            ]
+        },
+        {
+            "id": "taboo",
+            "partOfSpeech": "noun",
+            "text": "a prohibition against touching, saying, or doing something for fear of immediate harm from a supernatural force",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo",
+            "examples": [
+                "… they may have developed a taboo against eating fish.",
+                "… the tacticians in a conservative Republican Administration now deem membership in the club a taboo."
+            ]
+        },
+        {
+            "id": "taboo",
+            "partOfSpeech": "verb",
+            "text": "to set apart as taboo especially by marking with a ritualistic symbol",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo"
+        },
+        {
+            "id": "taboo",
+            "partOfSpeech": "verb",
+            "text": "to avoid or ban as taboo",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo"
         }
     ]
 }

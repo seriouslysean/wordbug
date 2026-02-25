@@ -1,112 +1,47 @@
 {
     "word": "soprano",
     "date": "20260207",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5620800-1",
-            "partOfSpeech": "noun",
-            "text": "The highest singing voice of a woman or young boy.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "soprano",
+            "partOfSpeech": "adjective",
+            "text": "relating to or having the range or part of a soprano",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/soprano"
         },
         {
-            "id": "S5620800-2",
+            "id": "soprano",
             "partOfSpeech": "noun",
-            "text": "A singer having such a voice.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the highest singing voice of women or boys and formerly of castrati; also: a person having this voice",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/soprano"
         },
         {
-            "id": "S5620800-3",
+            "id": "soprano",
             "partOfSpeech": "noun",
-            "text": "The tonal range characteristic of a soprano.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the highest voice part in a 4-part chorus",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/soprano"
         },
         {
-            "id": "S5620800-4",
+            "id": "soprano",
             "partOfSpeech": "noun",
-            "text": "An instrument that sounds within this range.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a member of a family of instruments having the highest range",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/soprano"
         },
         {
-            "id": "S5620800-5",
+            "id": "mezzo-soprano",
             "partOfSpeech": "noun",
-            "text": "A vocal or instrumental part written within this range.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>music</em>, the highest variety of the female voice; treble.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A singer with such a voice.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A voice-part for or sung by such a voice.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Pertaining to the soprano: as, <em>soprano</em> music: a <em>soprano</em> voice; the <em>soprano</em> compass.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The treble; the highest vocal register; the highest kind of female or boy's voice; the upper part in harmony for mixed voices.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/soprano",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a woman's voice with a range between soprano and contralto; also: a singer having this voice",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/soprano"
         }
     ]
 }

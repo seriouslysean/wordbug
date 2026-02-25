@@ -1,18 +1,21 @@
 {
     "word": "ricocheted",
     "date": "20250716",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "ricochet",
             "partOfSpeech": "verb",
-            "text": "Simple past tense and past participle of <xref>ricochet</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/ricocheted",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "to bounce or skip with or as if with a glancing rebound",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ricocheted",
+            "examples": [
+                "… fired a shot and watched the puck ricochet off Ellett's left skate …",
+                "The bullet that hit President Reagan had ricocheted off the presidential limousine.",
+                "The ball ricochets at a right angle, falling with force into the first baseman's glove …",
+                "The chute snaps open, the sound ricocheting through the gorge like a gunshot, and McGuire is soaring, carving S turns into the air, swooping over a winding creek."
+            ]
         }
     ]
 }

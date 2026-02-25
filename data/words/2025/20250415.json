@@ -1,100 +1,51 @@
 {
     "word": "escalator",
     "date": "20250415",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "E5212300-1",
+            "id": "escalator",
             "partOfSpeech": "noun",
-            "text": "A moving stairway consisting of steps attached to a continuously circulating belt.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a power-driven set of stairs arranged like an endless belt that ascend or descend continuously",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/escalator",
+            "examples": [
+                "… a never-stopping escalator of economic progress."
+            ]
         },
         {
-            "id": "E5212300-2",
+            "id": "escalator",
             "partOfSpeech": "noun",
-            "text": "An escalator clause.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an upward course suggestive of an escalator",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/escalator",
+            "examples": [
+                "… a never-stopping escalator of economic progress."
+            ]
         },
         {
+            "id": "escalator",
             "partOfSpeech": "noun",
-            "text": "A moving stairway.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an escalator clause or provision",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/escalator",
+            "examples": [
+                "… a never-stopping escalator of economic progress."
+            ]
         },
         {
-            "partOfSpeech": "noun",
-            "text": "A stairway or incline arranged like an endless belt so that the steps or treads ascend or descend continuously, and one stepping upon it is carried up or down; -- originally a trade term, which has become the generic name for such devices. Such devices are in common use in large retail establishments such as department stores, and in public buildings having a heavy traffic of persons between adjacent floors.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A <xref>motor</xref>-driven mechanical device consisting of a <xref>continuous</xref> <xref>loop</xref> of <xref>steps</xref> that automatically <xref>conveys</xref> people from one floor to another.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An upward or progressive course.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An <xref>escalator clause</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a stairway whose steps move continuously on a circulating belt",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a clause in a contract that provides for an increase or a decrease in wages or prices or benefits etc. depending on certain conditions (as a change in the cost of living index)",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/escalator",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "escalator",
+            "partOfSpeech": "adjective",
+            "text": "providing for a periodic proportional upward or downward adjustment (as of prices or wages)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/escalator",
+            "examples": [
+                "… an escalator arrangement tying the base pay … to living costs …"
+            ]
         }
     ]
 }

@@ -1,109 +1,42 @@
 {
     "word": "tempo",
     "date": "20250601",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "T5108700-1",
+            "id": "tempo",
             "partOfSpeech": "noun",
-            "text": "The speed at which music is or ought to be played, often indicated on written compositions by a descriptive or metronomic direction to the performer.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the rate of speed of a musical piece or passage indicated by one of a series of directions (such as largo, presto, or allegro) and often by an exact metronome marking",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tempo"
         },
         {
-            "id": "T5108700-2",
+            "id": "tempo",
             "partOfSpeech": "noun",
-            "text": "A characteristic rate or rhythm of activity; a pace.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "rate of motion or activity: pace",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tempo"
         },
         {
-            "partOfSpeech": "noun",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "a tempo",
+            "text": "in time —used as a direction in music to return to the original tempo",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tempo"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "In <em>music</em>, the relative rapidity of rhythm; time; movement.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The characteristic rhythmical and metrical movement or pattern of a dance: as, <em>tempo di valse, tempo di menuetto</em>, etc.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An oval brass coin, with a square hole in the middle, first coined in Japan during the period “tempo” (1830–43 inclusive), and now equal to eight rin or cash, or eight tenths of a sen. One hundred and twenty-five tempos make one yen.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The rate or degree of movement in time.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "in exact time; -- sometimes, directing a return to strict time after a tempo rubato.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "See under <er>Rubato</er>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a <xref>frequency</xref> or <xref>rate</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/tempo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "up-tempo",
+            "partOfSpeech": "adjective",
+            "text": "having a fast-moving tempo",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tempo",
+            "examples": [
+                "up-tempo music",
+                "an aggressive up-tempo style of basketball"
+            ]
         }
     ]
 }

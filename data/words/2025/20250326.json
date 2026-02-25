@@ -1,18 +1,49 @@
 {
     "word": "oscillated",
     "date": "20250326",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "oscillate",
             "partOfSpeech": "verb",
-            "text": "Simple past tense and past participle of <xref>oscillate</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/oscillated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "to swing backward and forward like a pendulum",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/oscillated",
+            "examples": [
+                "The fan was oscillating.",
+                "… he oscillates regularly between his comfortable home … and his downtown office-laboratory …",
+                "The mood of the voters has oscillated between optimism and pessimism.",
+                "Bank rate oscillates between 2 and 6 percent."
+            ]
+        },
+        {
+            "id": "oscillate",
+            "partOfSpeech": "verb",
+            "text": "to move or travel back and forth between two points",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/oscillated",
+            "examples": [
+                "The fan was oscillating.",
+                "… he oscillates regularly between his comfortable home … and his downtown office-laboratory …",
+                "The mood of the voters has oscillated between optimism and pessimism.",
+                "Bank rate oscillates between 2 and 6 percent."
+            ]
+        },
+        {
+            "id": "oscillate",
+            "partOfSpeech": "verb",
+            "text": "to vary between opposing beliefs, feelings, or theories",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/oscillated",
+            "examples": [
+                "The fan was oscillating.",
+                "… he oscillates regularly between his comfortable home … and his downtown office-laboratory …",
+                "The mood of the voters has oscillated between optimism and pessimism.",
+                "Bank rate oscillates between 2 and 6 percent."
+            ]
         }
     ]
 }

@@ -1,18 +1,19 @@
 {
     "word": "ululated",
     "date": "20230401",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "ululate",
             "partOfSpeech": "verb",
-            "text": "Simple past tense and past participle of <xref>ululate</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/ululated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "to utter a loud, usually protracted, high-pitched, rhythmical sound especially as an expression of sorrow, joy, celebration, or reverence: howl",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ululated",
+            "examples": [
+                "… eight singers took to the aisle, dancing with ferocious energy as the chorus sang, ululated and clapped in an exuberant, multisensory ode to joy.",
+                "As soon as he said our mother's name, my sisters began to wail: keening, ululating cries, the Greek expression of sorrow for the dead."
+            ]
         }
     ]
 }

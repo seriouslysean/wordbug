@@ -1,31 +1,31 @@
 {
     "word": "flabbergasted",
     "date": "20250408",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "partOfSpeech": "verb",
-            "text": "Simple past tense and past participle of <xref>flabbergast</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/flabbergasted",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "flabbergasted",
+            "partOfSpeech": "adjective",
+            "text": "feeling or showing intense shock, surprise, or wonder: utterly astonished",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/flabbergasted",
+            "examples": [
+                "Every second person wore a blank flabbergasted expression, having just offered some gratuitous insult to a stranger, or, perhaps, received one.",
+                "That was the highlight of our career, when Vince Gill walked on stage one night and asked us to be the next members. We were flabbergasted, just speechless …",
+                "But if the findings, published in 1996, surprised most scientists, recent research has left them flabbergasted."
+            ]
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "as if struck dumb with astonishment and surprise",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/flabbergasted",
+            "id": "flabbergast",
+            "partOfSpeech": "verb",
+            "text": "to overwhelm with shock, surprise, or wonder: dumbfound",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/flabbergasted",
             "examples": [
-                "was thunderstruck by the news of his promotion",
-                "the flabbergasted aldermen were speechless"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "We were flabbergasted by the news that he had won the lottery."
+            ]
         }
     ]
 }

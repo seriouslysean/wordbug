@@ -1,29 +1,15 @@
 {
     "word": "perimenopause",
     "date": "20250626",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "P5207800-1",
+            "id": "perimenopause",
             "partOfSpeech": "noun",
-            "text": "The period of a woman's life characterized by physiological changes associated with the end of reproductive capacity, terminating with the completion of menopause.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/perimenopause",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The physiological stage menstruating women go through when approaching <xref>menopause</xref>, when, due to hormonal changes, they progress from their usual pattern of <xref>menstruation</xref> through a phase of atypical menstruation, and finally cease menstruating. Perimenopause ends when a woman has not menstruated for a year.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/perimenopause",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the period around the onset of menopause that is often marked by various physical signs (such as hot flashes and menstrual irregularity)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/perimenopause"
         }
     ]
 }

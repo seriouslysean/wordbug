@@ -1,117 +1,83 @@
 {
     "word": "therapeutic",
     "date": "20251112",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "T5166500-1",
+            "id": "therapeutic",
             "partOfSpeech": "adjective",
-            "text": "Having or exhibiting healing powers.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
+            "text": "of or relating to the treatment of disease or disorders by remedial agents or methods: curative, medicinal",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/therapeutic",
             "examples": [
-                "a therapeutic agent; therapeutic exercises."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "T5166500-2",
-            "partOfSpeech": "adjective",
-            "text": "Of or relating to the medical treatment of a disease or condition.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Curative; pertaining to the healing art; concerned in discovering and applying remedies for diseases. Also <internalXref urlencoded=\"therapeutical\">therapeutical</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One of the Therapeutæ.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One of the Therapeutæ.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Of or pertaining to the healing art; concerned in discovering and applying remedies for diseases; curative.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Of, or relating to <xref>therapy</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having <xref>healing</xref> <xref>powers</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "tending to cure or restore to health",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [
-                "a therapeutic agent",
                 "therapeutic diets",
-                "remedial surgery",
-                "her gentle healing hand",
-                "a sanative environment of mountains and fresh air"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "They confirmed the therapeutic effect of supplemental light in treating winter depression with phototherapy.",
+                "A just-right amount is the therapeutic dose, just enough to provide the intended effect without problems.",
+                "Warm lotion manicures … are a luxurious, therapeutic treat …",
+                "… they painted, hoed, swept, and planted when the mood for therapeutic work struck them, and lolled on the beach when they felt like it.",
+                "In classical economics, before the illusion of fine-tuning became widespread, recessions were regarded as therapeutic."
+            ]
         },
         {
+            "id": "therapeutic",
             "partOfSpeech": "adjective",
-            "text": "relating to or involved in therapy",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/therapeutic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "having a beneficial effect on the body or mind",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/therapeutic",
+            "examples": [
+                "therapeutic diets",
+                "They confirmed the therapeutic effect of supplemental light in treating winter depression with phototherapy.",
+                "A just-right amount is the therapeutic dose, just enough to provide the intended effect without problems.",
+                "Warm lotion manicures … are a luxurious, therapeutic treat …",
+                "… they painted, hoed, swept, and planted when the mood for therapeutic work struck them, and lolled on the beach when they felt like it.",
+                "In classical economics, before the illusion of fine-tuning became widespread, recessions were regarded as therapeutic."
+            ]
+        },
+        {
+            "id": "therapeutic",
+            "partOfSpeech": "adjective",
+            "text": "producing a useful or favorable result or effect",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/therapeutic",
+            "examples": [
+                "therapeutic diets",
+                "They confirmed the therapeutic effect of supplemental light in treating winter depression with phototherapy.",
+                "A just-right amount is the therapeutic dose, just enough to provide the intended effect without problems.",
+                "Warm lotion manicures … are a luxurious, therapeutic treat …",
+                "… they painted, hoed, swept, and planted when the mood for therapeutic work struck them, and lolled on the beach when they felt like it.",
+                "In classical economics, before the illusion of fine-tuning became widespread, recessions were regarded as therapeutic."
+            ]
+        },
+        {
+            "id": "therapeutic index",
+            "partOfSpeech": "noun",
+            "text": "a measure of the relative desirability of a drug for the attaining of a particular medical end that is usually expressed as the ratio of the largest dose producing no toxic symptoms to the smallest dose routinely producing cures",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/therapeutic"
+        },
+        {
+            "id": "therapeutic touch",
+            "partOfSpeech": "noun",
+            "text": "a technique in alternative medicine that involves passing the hands over the body of the person being treated and that is held to induce relaxation, reduce pain, and promote healing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/therapeutic"
+        },
+        {
+            "id": "subtherapeutic",
+            "partOfSpeech": "adjective",
+            "text": "less than therapeutic: having, using, or being a dose that is below what is used for treating disease or producing an optimal therapeutic effect",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/therapeutic",
+            "examples": [
+                "… with a fixed dose of 95 mg/kg/day, initial levels during the febrile phase were subtherapeutic (<20 mg/dL)…",
+                "Farm animals are the target of nearly half the antibiotics produced in the United States, mostly in the form of low or subtherapeutic doses aimed at preventing disease or promoting growth."
+            ]
         }
     ]
 }

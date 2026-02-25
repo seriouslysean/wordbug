@@ -1,117 +1,31 @@
 {
     "word": "filament",
     "date": "20250609",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "F5117300-1",
+            "id": "filament",
             "partOfSpeech": "noun",
-            "text": "A fine or very thin thread or fiber.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [
-                "filaments of cloth; filaments of flax."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a single thread or a thin flexible threadlike object, process, or appendage: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/filament"
         },
         {
-            "id": "F5117300-2",
+            "id": "filament",
             "partOfSpeech": "noun",
-            "text": "A slender or threadlike structure or part, especially.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a tenuous conductor (as of carbon or metal) made incandescent by the passage of an electric current; specifically: a cathode in the form of a metal wire in an electron tube",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/filament"
         },
         {
-            "id": "F5117300-4",
+            "id": "filament",
             "partOfSpeech": "noun",
-            "text": "A fine wire that is heated electrically to produce light in an incandescent lamp.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5117300-5",
-            "partOfSpeech": "noun",
-            "text": "The stalk that bears the anther in the stamen of a flower.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5117300-6",
-            "partOfSpeech": "noun",
-            "text": "A chainlike series of cells, as in many algae.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5117300-7",
-            "partOfSpeech": "noun",
-            "text": "A long thin cellular structure characteristic of many fungi, usually having multiple nuclei and often divided by septa.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "F5117300-8",
-            "partOfSpeech": "noun",
-            "text": "Any of various long thin celestial objects or phenomena, such as a solar filament.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>geometrical topics</em>, a movable object which at any one instant, or indivisible determination of time, is at every part of a line. During a lapse of time a filament is restricted to being in some surface, which it is said to generate.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A long threadlike bacterial growth.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A fine untwisted thread; a separate fiber or fibril of any vegetable or animal tissue or product, natural or artificial, or of a fibrous mineral: as, a <em>filament</em> of silk, wool, cobweb, or asbestos; a cortical or muscular <em>filament.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/filament",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a thin and fine elongated constituent part of a gill",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/filament"
         }
     ]
 }

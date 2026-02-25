@@ -1,112 +1,46 @@
 {
     "word": "ottoman",
     "date": "20250902",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "O5167700-1",
+            "id": "ottoman",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a member of a Turkish dynasty founded by Osman I that ruled the Ottoman Empire",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ottoman"
         },
         {
-            "id": "O5167700-2",
+            "id": "ottoman",
             "partOfSpeech": "noun",
-            "text": "An upholstered sofa or divan without arms or a back.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a citizen or functionary of the Ottoman Empire",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ottoman"
         },
         {
-            "id": "O5167700-3",
+            "id": "ottoman",
             "partOfSpeech": "noun",
-            "text": "An upholstered low seat or cushioned footstool.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an upholstered often overstuffed seat or couch usually without a back",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ottoman"
         },
         {
-            "id": "O5167700-4",
-            "partOfSpeech": "noun",
-            "text": "A heavy silk or rayon fabric with a corded texture, usually used for coats and trimmings.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A piece of furniture forming a seat or seats, used in a drawing-room or sitting-room.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A corded silk having large cords; a kind of gros-grain. Compare <internalXref urlencoded=\"faille\">faille</internalXref>, 3.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Pertaining to that branch of the Turks to which belong the founders and ruling class of the Turkish or Ottoman empire.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One of that branch of the Turks which founded and rule the Turkish empire.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "Ottoman",
             "partOfSpeech": "adjective",
-            "text": "Of or pertaining to the Turks.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [
-                "the <ex>Ottoman</ex> power or empire"
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of or relating to the Ottoman Empire or its citizens",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ottoman"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "A Turk.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/ottoman",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Ottoman Empire:g",
+            "text": "former Turkish sultanate in southeastern Europe, western Asia, and northern Africa including at its greatest extent Turkey, Syria, Mesopotamia, Palestine, Arabia, Egypt, the Barbary States, the Balkans, and parts of Russia and Hungary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ottoman"
         }
     ]
 }

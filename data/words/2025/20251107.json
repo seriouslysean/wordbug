@@ -1,114 +1,52 @@
 {
     "word": "fanciful",
     "date": "20251107",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "F5029800-1",
+            "id": "fanciful",
             "partOfSpeech": "adjective",
-            "text": "Created in the fancy; imaginary or unreal.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
+            "text": "marked by fancy or unrestrained imagination rather than by reason and experience",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fanciful",
             "examples": [
-                "a fanciful story."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a fanciful person",
+                "a fanciful tale of a monster in the woods",
+                "a fanciful notion",
+                "the falsehoods about some fanciful secret treaties",
+                "gave their children fanciful names"
+            ]
         },
         {
-            "id": "F5029800-2",
+            "id": "fanciful",
             "partOfSpeech": "adjective",
-            "text": "Tending to indulge in fancy.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
+            "text": "existing in fancy only",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fanciful",
             "examples": [
-                "a fanciful mind."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a fanciful person",
+                "a fanciful tale of a monster in the woods",
+                "a fanciful notion",
+                "the falsehoods about some fanciful secret treaties",
+                "gave their children fanciful names"
+            ]
         },
         {
-            "id": "F5029800-3",
+            "id": "fanciful",
             "partOfSpeech": "adjective",
-            "text": "Showing invention or whimsy in design; imaginative. <i>synonym</i>: <strong> fantastic</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Led by fancy rather than by reason and experience; subject to the influence of fancy; whimsical: applied to persons.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Opposed to real.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Dictated or produced by fancy; appealing to or engaging the fancy; characterized by capricious aspects or qualities; curious: applied to things: as, a <em>fanciful</em> scheme; <em>fanciful</em> shapes.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "<strong>Synonyms</strong> Imaginative, visionary, capricious, eccentric.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "<em>Fanciful, Fantastic, Grotesque</em>, chimerical, wild. <em>Fantastic</em> and <em>grotesque</em> may be applied to persons or to things, but <em>grotesque</em> to persons only when indicating outward appearance. That which is <em>fanciful</em> is odd, but not beyond the point of pleasing; that which is <em>fantastic</em> goes beyond that point, suggesting an unregulated or half-crazy fancy: as, the <em>fantastic</em> notions or dress of a lunatic. That which is <em>grotesque</em> carries fancy so far as to be unnatural, absurd, a combination of incongruous parts, a travesty upon the real or proper.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Full of fancy; guided by fancy, rather than by reason and experience; whimsical.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
+            "text": "marked by or as if by fancy or whim",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fanciful",
             "examples": [
-                "a <ex>fanciful</ex> man forms visionary projects"
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Conceived in the fancy; not consistent with facts or reason; abounding in ideal qualities or figures",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/fanciful",
-            "examples": [
-                "a <ex>fanciful</ex> scheme; a <ex>fanciful</ex> theory."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a fanciful person",
+                "a fanciful tale of a monster in the woods",
+                "a fanciful notion",
+                "the falsehoods about some fanciful secret treaties",
+                "gave their children fanciful names"
+            ]
         }
     ]
 }

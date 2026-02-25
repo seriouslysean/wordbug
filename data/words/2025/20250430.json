@@ -1,18 +1,15 @@
 {
     "word": "reiki",
     "date": "20250430",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "Reiki",
             "partOfSpeech": "noun",
-            "text": "A Japanese form of <xref>alternative medicine</xref> believed to involve transferring <xref>chi</xref> through one's palms.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/reiki",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a system of touching with the hands based on the belief that such touching by an experienced practitioner produces beneficial effects by strengthening and normalizing certain vital energy fields held to exist within the body",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reiki"
         }
     ]
 }

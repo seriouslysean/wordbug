@@ -1,78 +1,55 @@
 {
     "word": "highfalutin",
     "date": "20251105",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "H5202100-1",
+            "id": "highfalutin",
             "partOfSpeech": "adjective",
-            "text": "Pompous or pretentious.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/highfalutin",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "pretentious, fancy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/highfalutin",
+            "examples": [
+                "highfalutin people",
+                "giving a highfalutin speech"
+            ]
         },
         {
-            "partOfSpeech": "noun",
-            "text": "Pompous speech or writing; bombast; fustian.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/highfalutin",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Pompous; high-sounding; bombastic.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/highfalutin",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "highfalutin",
             "partOfSpeech": "adjective",
-            "text": "Affectedly genteel; pretentious; haughty; snobbish.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/highfalutin",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "expressed in or marked by the use of language that is elaborated or heightened by artificial or empty means: pompous",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/highfalutin",
+            "examples": [
+                "highfalutin people",
+                "giving a highfalutin speech"
+            ]
         },
         {
-            "partOfSpeech": "noun",
-            "text": "High-flown, bombastic language.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/highfalutin",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "hifalutin",
             "partOfSpeech": "adjective",
-            "text": "Self-<xref>important</xref>, <xref>pompous</xref>; <xref>arrogant</xref> or <xref>egotistical</xref>; tending to <xref>show off</xref> or hold oneself in unduly high <xref>regard</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/highfalutin",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "pretentious, fancy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/highfalutin",
+            "examples": [
+                "highfalutin people",
+                "giving a highfalutin speech"
+            ]
         },
         {
+            "id": "hifalutin",
             "partOfSpeech": "adjective",
-            "text": "affectedly genteel",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/highfalutin",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "expressed in or marked by the use of language that is elaborated or heightened by artificial or empty means: pompous",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/highfalutin",
+            "examples": [
+                "highfalutin people",
+                "giving a highfalutin speech"
+            ]
         }
     ]
 }

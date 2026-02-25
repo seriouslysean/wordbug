@@ -1,80 +1,20 @@
 {
     "word": "nefarious",
     "date": "20250707",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "N5055300-1",
+            "id": "nefarious",
             "partOfSpeech": "adjective",
-            "text": "Infamous by way of being extremely wicked.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/nefarious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Wicked in the extreme; heinous; abominable; atrociously sinful or villainous; detestably vile.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/nefarious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "<strong>Synonyms</strong> <em>Nefarious, Execrable, Flagitious, Enormous, Villainous, Abominable, Horrible</em>, atrocious, infamous, iniquitous, impious, dreadful, detestable. The first seven words characterize extreme wickedness. As with the words under <em>atrocious</em>, when loosely used they approach each other in meaning; hence only their primary meanings will be indicated here: <em>nefarious</em>, unspeakably wicked, impious; <em>execrable</em>, worthy of execration or cursing, utterly hateful; <em>flagitious</em>, proceeding from burning desire (as lust), grossly or brutally wicked or vile, <em>enormous</em>, not common in this sense except with a strong noun, as <em>enormous</em> wickedness, but sometimes meaning wicked beyond common measure; <em>villainous</em>, worthy of a villain, greatly criminal or capable of great crimes; <em>abominable</em>, loathsome in wickedness, the object of a religious detestation; <em>horrible</em>, exciting horror, mental agitation, or shrinking; shocking: it is less common as applied to moral conduct, See <em>abandoned, atrocious, criminal</em>, and <em>irreligious.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/nefarious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Wicked in the extreme; abominable; iniquitous; atrociously villainous; execrable; detestably vile.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/nefarious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>infamous</xref> for being <xref>wicked</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/nefarious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>wicked</xref> or <xref>criminal</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/nefarious",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "extremely wicked",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/nefarious",
+            "text": "flagrantly wicked or corrupt: evil",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/nefarious",
             "examples": [
-                "a villainous plot",
-                "a villainous band of thieves"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a nefarious scheme",
+                "The more nefarious of these supervillains hide in plain sight.",
+                "The town itself is a classic of the genre, full of scheming locals, buried secrets and nefarious elites trying to make a quick buck."
+            ]
         }
     ]
 }

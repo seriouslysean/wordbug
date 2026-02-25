@@ -1,39 +1,22 @@
 {
     "word": "timpani",
     "date": "20250514",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "T5244900-1",
-            "partOfSpeech": "noun plural",
-            "text": "A set of tunable kettledrums typically used in the percussion section of a symphony orchestra.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/timpani",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "timpani",
+            "partOfSpeech": "noun",
+            "text": "a set of two or more kettledrums played by one performer in an orchestra or band",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/timpani"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "The <xref>set</xref> of <xref>precision</xref> <xref>kettledrums</xref> in an <xref>orchestra</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/timpani",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a large hemispherical brass or copper percussion instrument with a drumhead that can be tuned by adjusting the tension on it",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/timpani",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "tympani",
+            "text": "a set of two or more kettledrums played by one performer in an orchestra or band",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/timpani"
         }
     ]
 }

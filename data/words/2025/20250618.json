@@ -1,105 +1,105 @@
 {
     "word": "amp",
     "date": "20250618",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "A5273800-1",
+            "id": "amp",
             "partOfSpeech": "noun",
-            "text": "An ampere.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "ampere",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp"
         },
         {
-            "id": "A5273800-2",
+            "id": "amp",
             "partOfSpeech": "noun",
-            "text": "An amplifier, especially one used to amplify music.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "amplifier; also: a unit consisting of an electronic amplifier and a loudspeaker",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp"
         },
         {
-            "id": "A5273800-3",
-            "partOfSpeech": "transitive verb",
-            "text": "To amplify.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5273800-4",
-            "partOfSpeech": "transitive verb",
-            "text": "To stimulate or excite. Often used with <em>up</em>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [
-                "was amped up on coffee."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5273800-5",
-            "partOfSpeech": "transitive verb",
-            "text": "To modify (something) so as to increase its capacity to perform or satisfy.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<xref>ampere</xref>, the unit of electrical <xref>current</xref>;",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "amp",
             "partOfSpeech": "verb",
-            "text": "To <xref>amplify</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "to make (someone) more excited or energetic: excite, energize —often used with up",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp",
+            "examples": [
+                "Players either get amped by the electricity of the event or founder in the ambient chaos.",
+                "The violence is amped by the presence of automatic weapons and gyrating camerawork, but it all feels very familiar.",
+                "In this convention year … the stakes have been amped."
+            ]
         },
         {
-            "partOfSpeech": "noun",
-            "text": "the basic unit of electric current adopted under the Systeme International d'Unites",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "amp",
+            "partOfSpeech": "verb",
+            "text": "to make (something) more intense: heighten, intensify —usually used with up",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp",
+            "examples": [
+                "Players either get amped by the electricity of the event or founder in the ambient chaos.",
+                "The violence is amped by the presence of automatic weapons and gyrating camerawork, but it all feels very familiar.",
+                "In this convention year … the stakes have been amped."
+            ]
         },
         {
+            "id": "amp",
+            "partOfSpeech": "verb",
+            "text": "to increase the amount of (something): raise —usually used with up",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp",
+            "examples": [
+                "Players either get amped by the electricity of the event or founder in the ambient chaos.",
+                "The violence is amped by the presence of automatic weapons and gyrating camerawork, but it all feels very familiar.",
+                "In this convention year … the stakes have been amped."
+            ]
+        },
+        {
+            "id": "AMP",
             "partOfSpeech": "noun",
-            "text": "a nucleotide found in muscle cells and important in metabolism; reversibly convertible to ADP and ATP",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/amp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a nucleotide C10H12N5O3H2PO4 composed of adenosine and one phosphate group that is reversibly convertible to ADP and ATP in metabolic reactions —called also adenosine monophosphate, adenylic acid",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp"
+        },
+        {
+            "id": "amp-hour",
+            "partOfSpeech": "noun",
+            "text": "ampere-hour",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp"
+        },
+        {
+            "id": "amp hr",
+            "text": "ampere-hour",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp"
+        },
+        {
+            "id": "cyclic AMP",
+            "partOfSpeech": "noun",
+            "text": "a cyclic mononucleotide of adenosine that is formed from ATP and is responsible for the intracellular mediation of hormonal effects on various cellular processes —called also adenosine 3',5'-monophosphate",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp"
+        },
+        {
+            "id": "preamp",
+            "partOfSpeech": "noun",
+            "text": "preamplifier",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/amp",
+            "examples": [
+                "On a fundamental level, a preamp makes sound louder without adding noise. Plug a smartphone into a stereo with the volume maxed out and you'll likely get a lot of distortion. A preamp adds that volume without the noise.",
+                "The goal was to assemble a transportable machine that would pick up the specific nuclear signatures associated with materials used in nuclear weapons while screening out materials that might trigger a similar reading, a lab spokesman said. … The systems' parts, though not all available from Radio Shack, came from components on hand at the lab … including a hand-held computer, a pre-amp, an amplifier and a solid-state detector."
+            ]
         }
     ]
 }

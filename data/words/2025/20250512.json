@@ -1,111 +1,52 @@
 {
     "word": "dilemma",
     "date": "20250512",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5228300-1",
+            "id": "dilemma",
             "partOfSpeech": "noun",
-            "text": "A situation that requires a choice between options that are or seem equally unfavorable or unsatisfactory.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a usually undesirable or unpleasant choice",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dilemma",
+            "examples": [
+                "faces this dilemma: raise prices or reduce staff",
+                "Here am I brought to a very pretty dilemma; I must commit murder or commit matrimony …",
+                "Lords and bailiffs were in a terrible dilemma.",
+                "… the dilemma of \"liberty versus order.\"",
+                "Unemployment … the great central dilemma of our advancing technology."
+            ]
         },
         {
-            "id": "D5228300-2",
+            "id": "dilemma",
             "partOfSpeech": "noun",
-            "text": "A problem that seems to defy a satisfactory solution.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a situation involving such a choice; broadly: predicament",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dilemma",
+            "examples": [
+                "faces this dilemma: raise prices or reduce staff",
+                "Here am I brought to a very pretty dilemma; I must commit murder or commit matrimony …",
+                "Lords and bailiffs were in a terrible dilemma.",
+                "… the dilemma of \"liberty versus order.\"",
+                "Unemployment … the great central dilemma of our advancing technology."
+            ]
         },
         {
-            "id": "D5228300-3",
+            "id": "dilemma",
             "partOfSpeech": "noun",
-            "text": "An argument that presents two alternatives, each of which has the same consequence.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A form of argument in which it is shown that whoever maintains a certain proposition must accept one or other of two alternative conclusions, and that each of these involves the denial of the proposition in question.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A difficult or doubtful choice; a state of things in which the alternatives appear to be equally bad or undesirable.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An argument which presents an antagonist with two or more alternatives, but is equally conclusive against him, whichever alternative he chooses.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A state of things in which evils or obstacles present themselves on every side, and it is difficult to determine what course to pursue; a vexatious alternative or predicament; a difficult choice or position.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "alternatives, each of which is equally difficult of encountering.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A <xref>circumstance</xref> in which a choice must be made between two or more <xref>alternatives</xref> that seem equally <xref>undesirable</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "this sense) (disputed) A difficult circumstance or <xref>problem</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/dilemma",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a problem involving a difficult choice",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dilemma",
+            "examples": [
+                "faces this dilemma: raise prices or reduce staff",
+                "Here am I brought to a very pretty dilemma; I must commit murder or commit matrimony …",
+                "Lords and bailiffs were in a terrible dilemma.",
+                "… the dilemma of \"liberty versus order.\"",
+                "Unemployment … the great central dilemma of our advancing technology."
+            ]
         }
     ]
 }

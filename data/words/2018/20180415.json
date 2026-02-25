@@ -1,133 +1,203 @@
 {
     "word": "cool",
     "date": "20180415",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5649300-1",
+            "id": "cool",
             "partOfSpeech": "adjective",
-            "text": "Neither warm nor very cold; moderately cold.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "text": "moderately cold: lacking in warmth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "fresh, cool water; a cool autumn evening."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "The plant grows best in cool climates.",
+                "a cool and calculating businessperson",
+                "They stayed cool through the emergency.",
+                "It's important to keep a cool head =remain calm in a crisis.",
+                "a cool impersonal manner",
+                "We used to fight, but we're cool now.",
+                "a cool reply",
+                "got a cool reception",
+                "a cool dress",
+                "That was a really cool movie.",
+                "Is getting together Friday night cool with you?",
+                "… not happy with the new shoes … because they were not \"cool.\"",
+                "… while over 90% of children think superheroes are “cool,” it was their costume and their ability to save the world they admired most …",
+                "Those looking for a cool place to grab a drink with friends will want to check out this list of six special Southern California bars."
+            ]
         },
         {
-            "id": "C5649300-2",
+            "id": "cool",
             "partOfSpeech": "adjective",
-            "text": "Giving or suggesting relief from heat.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "text": "marked by steady dispassionate calmness and self-control",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "a cool breeze; a cool blouse."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "The plant grows best in cool climates.",
+                "a cool and calculating businessperson",
+                "They stayed cool through the emergency.",
+                "It's important to keep a cool head =remain calm in a crisis.",
+                "a cool impersonal manner",
+                "We used to fight, but we're cool now.",
+                "a cool reply",
+                "got a cool reception",
+                "a cool dress",
+                "That was a really cool movie.",
+                "Is getting together Friday night cool with you?",
+                "… not happy with the new shoes … because they were not \"cool.\"",
+                "… while over 90% of children think superheroes are “cool,” it was their costume and their ability to save the world they admired most …",
+                "Those looking for a cool place to grab a drink with friends will want to check out this list of six special Southern California bars."
+            ]
         },
         {
-            "id": "C5649300-3",
+            "id": "cool",
             "partOfSpeech": "adjective",
-            "text": "Marked by calm self-control.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "text": "lacking ardor or friendliness",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "a cool negotiator."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "The plant grows best in cool climates.",
+                "a cool and calculating businessperson",
+                "They stayed cool through the emergency.",
+                "It's important to keep a cool head =remain calm in a crisis.",
+                "a cool impersonal manner",
+                "We used to fight, but we're cool now.",
+                "a cool reply",
+                "got a cool reception",
+                "a cool dress",
+                "That was a really cool movie.",
+                "Is getting together Friday night cool with you?",
+                "… not happy with the new shoes … because they were not \"cool.\"",
+                "… while over 90% of children think superheroes are “cool,” it was their costume and their ability to save the world they admired most …",
+                "Those looking for a cool place to grab a drink with friends will want to check out this list of six special Southern California bars."
+            ]
         },
         {
-            "id": "C5649300-4",
-            "partOfSpeech": "adjective",
-            "text": "Marked by indifference, disdain, or dislike; unfriendly or unresponsive.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "id": "cool",
+            "partOfSpeech": "verb",
+            "text": "to become cool: lose heat or warmth —sometimes used with off or down",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "a cool greeting; was cool to the idea of higher taxes."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "placed the pie in the window to cool",
+                "His anger cooled.",
+                "cooled the room with a fan",
+                "cooled her growing anger"
+            ]
         },
         {
-            "id": "C5649300-5",
-            "partOfSpeech": "adjective",
-            "text": "Of, relating to, or characteristic of colors, such as blue and green, that produce the impression of coolness.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5649300-6",
-            "partOfSpeech": "adjective",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5649300-7",
-            "partOfSpeech": "adjective",
-            "text": "Knowledgeable or aware of the latest trends or developments.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "id": "cool",
+            "partOfSpeech": "verb",
+            "text": "to lose ardor or passion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "spent all his time trying to be cool."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "placed the pie in the window to cool",
+                "His anger cooled.",
+                "cooled the room with a fan",
+                "cooled her growing anger"
+            ]
         },
         {
-            "id": "C5649300-8",
-            "partOfSpeech": "adjective",
-            "text": "Excellent; first-rate.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "id": "cool",
+            "partOfSpeech": "verb",
+            "text": "to make cool: impart a feeling of coolness to —often used with off or down",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "has a cool sports car; had a cool time at the party."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "placed the pie in the window to cool",
+                "His anger cooled.",
+                "cooled the room with a fan",
+                "cooled her growing anger"
+            ]
         },
         {
-            "id": "C5649300-9",
-            "partOfSpeech": "adjective",
-            "text": "Acceptable; satisfactory.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "id": "cool",
+            "partOfSpeech": "noun",
+            "text": "a cool time, place, or situation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "It's cool if you don't want to talk about it."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the cool of the evening",
+                "… his ardor, her cool, his earthiness, her spirituality.",
+                "The player lost his cool and began yelling at the referee."
+            ]
         },
         {
-            "id": "C5649300-10",
-            "partOfSpeech": "adjective",
-            "text": "Entire; full.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cool",
+            "id": "cool",
+            "partOfSpeech": "noun",
+            "text": "absence of excitement or emotional involvement: detachment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
             "examples": [
-                "worth a cool million."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the cool of the evening",
+                "… his ardor, her cool, his earthiness, her spirituality.",
+                "The player lost his cool and began yelling at the referee."
+            ]
+        },
+        {
+            "id": "cool",
+            "partOfSpeech": "noun",
+            "text": "poise, composure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
+            "examples": [
+                "the cool of the evening",
+                "… his ardor, her cool, his earthiness, her spirituality.",
+                "The player lost his cool and began yelling at the referee."
+            ]
+        },
+        {
+            "id": "cool",
+            "partOfSpeech": "adverb",
+            "text": "in a casual and nonchalant manner",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
+            "examples": [
+                "play it cool"
+            ]
+        },
+        {
+            "id": "cool beans",
+            "partOfSpeech": "interjection",
+            "text": "—used like cool to express agreement or approval",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool"
+        },
+        {
+            "id": "cool it",
+            "text": "to calm down: go easy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool",
+            "examples": [
+                "The word went out to the young to cool it."
+            ]
+        },
+        {
+            "id": "cool one's heels",
+            "text": "to wait or be kept waiting for a long time especially from or as if from disdain or discourtesy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool"
+        },
+        {
+            "id": "blow one's cool",
+            "text": "to lose one's composure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cool"
         }
     ]
 }

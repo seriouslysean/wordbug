@@ -1,116 +1,102 @@
 {
     "word": "secondhand",
     "date": "20250617",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5218400-1",
+            "id": "secondhand",
             "partOfSpeech": "adjective",
-            "text": "Previously used by another; not new.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5218400-2",
-            "partOfSpeech": "adjective",
-            "text": "Dealing in previously used merchandise.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5218400-3",
-            "partOfSpeech": "adjective",
-            "text": "Obtained, derived, or borrowed from another; not original.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5218400-4",
-            "partOfSpeech": "adverb",
-            "text": "In an indirect manner; indirectly.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Not original or primary; received from another.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
+            "text": "received from or through an intermediary: borrowed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand",
             "examples": [
-                "<ex>secondhand</ex> information"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "secondhand ideas",
+                "secondhand books",
+                "a secondhand bookstore"
+            ]
         },
         {
+            "id": "secondhand",
             "partOfSpeech": "adjective",
-            "text": "Not new; already or previously possessed or used by another.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
+            "text": "derivative",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand",
             "examples": [
-                "a <ex>secondhand</ex> book, garment"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "secondhand ideas",
+                "secondhand books",
+                "a secondhand bookstore"
+            ]
         },
         {
+            "id": "secondhand",
             "partOfSpeech": "adjective",
-            "text": "See <er>Hand</er>, n., 10.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "acquired after being used by another: not new",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand",
+            "examples": [
+                "secondhand ideas",
+                "secondhand books",
+                "a secondhand bookstore"
+            ]
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "not <xref>new</xref>; <xref>previously</xref> <xref>owned</xref> and <xref>used</xref> by another",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>dealing</xref> in such <xref>merchandise</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "secondhand",
             "partOfSpeech": "adverb",
-            "text": "<xref>indirectly</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/secondhand",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "at second hand: indirectly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand",
+            "examples": [
+                "heard about it secondhand",
+                "bought the couch secondhand"
+            ]
+        },
+        {
+            "id": "secondhand",
+            "partOfSpeech": "adverb",
+            "text": "as a secondhand item",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand",
+            "examples": [
+                "heard about it secondhand",
+                "bought the couch secondhand"
+            ]
+        },
+        {
+            "id": "second hand",
+            "partOfSpeech": "noun",
+            "text": "an intermediate person or means: intermediary —usually used in the phrase at second hand",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand"
+        },
+        {
+            "id": "second hand",
+            "partOfSpeech": "noun",
+            "text": "the hand marking seconds on a timepiece",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand"
+        },
+        {
+            "id": "secondhand smoke",
+            "partOfSpeech": "noun",
+            "text": "tobacco smoke that is exhaled by smokers or is given off by burning tobacco and is inhaled by persons nearby",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand"
+        },
+        {
+            "id": "sweep-second hand",
+            "partOfSpeech": "noun",
+            "text": "a hand marking seconds on a timepiece mounted concentrically with the other hands and read from the same dial as the minute hand",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand"
         }
     ]
 }

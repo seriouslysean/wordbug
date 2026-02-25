@@ -1,123 +1,105 @@
 {
     "word": "grasp",
     "date": "20250908",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "G5242700-1",
-            "partOfSpeech": "intransitive verb",
-            "text": "To take hold of or seize firmly with the hand, the foot, another body part, or an instrument.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
+            "id": "grasp",
+            "partOfSpeech": "verb",
+            "text": "to make the motion of seizing: clutch",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp",
             "examples": [
-                "The elephant grasped the branch with its trunk."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "grasping for support",
+                "grasp the opportunity for advancement",
+                "grasped the pen and began writing",
+                "failed to grasp the danger of the situation"
+            ]
         },
         {
-            "id": "G5242700-2",
-            "partOfSpeech": "intransitive verb",
-            "text": "To hold with the arms; embrace.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5242700-3",
-            "partOfSpeech": "intransitive verb",
-            "text": "To take hold of intellectually; comprehend. <i>synonym</i>: <strong> understand</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5242700-4",
-            "partOfSpeech": "intransitive verb",
-            "text": "To make a motion of seizing, snatching, or clutching.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5242700-5",
-            "partOfSpeech": "intransitive verb",
-            "text": "To show eager and prompt willingness or acceptance.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
+            "id": "grasp",
+            "partOfSpeech": "verb",
+            "text": "to take or seize eagerly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp",
             "examples": [
-                "grasps at any opportunity."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "grasping for support",
+                "grasp the opportunity for advancement",
+                "grasped the pen and began writing",
+                "failed to grasp the danger of the situation"
+            ]
         },
         {
-            "id": "G5242700-6",
-            "partOfSpeech": "noun",
-            "text": "The act of grasping.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5242700-7",
-            "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5242700-8",
-            "partOfSpeech": "noun",
-            "text": "A firm hold or grip.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5242700-9",
-            "partOfSpeech": "noun",
-            "text": "An embrace.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5242700-10",
-            "partOfSpeech": "noun",
-            "text": "The ability or power to seize or attain; reach.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/grasp",
+            "id": "grasp",
+            "partOfSpeech": "verb",
+            "text": "to clasp or embrace especially with the fingers or arms",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp",
             "examples": [
-                "Victory in the election was within her grasp."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "grasping for support",
+                "grasp the opportunity for advancement",
+                "grasped the pen and began writing",
+                "failed to grasp the danger of the situation"
+            ]
+        },
+        {
+            "id": "grasp",
+            "partOfSpeech": "noun",
+            "text": "handle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp",
+            "examples": [
+                "kept a firm grasp on the rope",
+                "The books on the top shelf were beyond my grasp.",
+                "Success lay within their grasp.",
+                "a remarkable grasp of the subject"
+            ]
+        },
+        {
+            "id": "grasp",
+            "partOfSpeech": "noun",
+            "text": "embrace",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp",
+            "examples": [
+                "kept a firm grasp on the rope",
+                "The books on the top shelf were beyond my grasp.",
+                "Success lay within their grasp.",
+                "a remarkable grasp of the subject"
+            ]
+        },
+        {
+            "id": "grasp",
+            "partOfSpeech": "noun",
+            "text": "hold, control",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp",
+            "examples": [
+                "kept a firm grasp on the rope",
+                "The books on the top shelf were beyond my grasp.",
+                "Success lay within their grasp.",
+                "a remarkable grasp of the subject"
+            ]
+        },
+        {
+            "id": "grasp at straws",
+            "text": "to reach for or try anything in desperation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp"
+        },
+        {
+            "id": "grasp the nettle",
+            "text": "to act boldly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp"
         }
     ]
 }

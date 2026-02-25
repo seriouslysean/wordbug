@@ -1,39 +1,23 @@
 {
     "word": "cyclops",
     "date": "20250527",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5870050-1",
+            "id": "cyclops",
             "partOfSpeech": "noun",
-            "text": "Any of various freshwater predatory copepods of the genus <em>Cyclops,</em> having a single eye and, in the female, two egg sacs.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cyclops",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a race of giants in Greek mythology with a single eye in the middle of the forehead",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cyclops"
         },
         {
+            "id": "cyclops",
             "partOfSpeech": "noun",
-            "text": "A <xref>one</xref>-<xref>eyed</xref> giant from <xref>Greek</xref> and <xref>Roman</xref> <xref>mythology</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cyclops",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A <xref>one</xref>-<xref>eyed</xref> <xref>creature</xref> of any species.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cyclops",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a genus (Cyclops) of freshwater predatory copepods having a single median eye",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cyclops"
         }
     ]
 }

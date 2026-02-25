@@ -1,79 +1,39 @@
 {
     "word": "darned",
     "date": "20250628",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5031600-1",
-            "partOfSpeech": "adjective",
-            "text": "Damned.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/darned",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "an intensifying expletive; a eupehmism for <altname>damned</altname>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/darned",
-            "examples": [
-                "for no <ex>darned</ex> reason at all"
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "darn",
             "partOfSpeech": "verb",
-            "text": "Simple past tense and past participle of <xref>darn</xref>. See <xref>etymology 1</xref> (\"damn\") and <xref>etymology 2</xref> (\"mend\")",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/darned",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "to mend with interlacing stitches",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/darned"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "A <xref>minced oath</xref> for <xref>damned</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/darned",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "darn",
+            "partOfSpeech": "verb",
+            "text": "to embroider by filling in with long running or interlacing stitches",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/darned"
         },
         {
-            "partOfSpeech": "adverb",
-            "text": "<xref>Damned</xref>, <xref>extremely</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/darned",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "darn",
+            "partOfSpeech": "verb",
+            "text": "to do darning",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/darned"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "expletives used informally as intensifiers",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/darned",
-            "examples": [
-                "not a blessed dime",
-                "a deuced idiot",
-                "a blame cold winter",
-                "an infernal nuisance",
-                "I'll be damned (or blessed or darned or goddamned) if I'll do any such thing",
-                "it's a blamed shame",
-                "he's a damn (or goddam or goddamned) fool"
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "darn",
+            "partOfSpeech": "verb",
+            "text": "damn",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/darned"
         }
     ]
 }

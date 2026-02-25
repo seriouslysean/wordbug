@@ -1,110 +1,39 @@
 {
     "word": "kale",
     "date": "20251113",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "K5006800-1",
+            "id": "kale",
             "partOfSpeech": "noun",
-            "text": "A plant <em>(Brassica oleracea</em> var. <em>acephala)</em> in the mustard family, having dark green, spreading, usually crinkled leaves that are eaten as a vegetable.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a hardy cabbage (Brassica oleracea var. acephala) with curled often finely incised leaves that do not form a dense head; also: its leaves used as a vegetable",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/kale"
         },
         {
-            "id": "K5006800-2",
+            "id": "kale",
             "partOfSpeech": "noun",
-            "text": "Money.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "cole",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/kale"
         },
         {
+            "id": "kale",
             "partOfSpeech": "noun",
-            "text": "In Scotland, loosely, cabbage in general, and by extension any kind of greens; specifically, both there and elsewhere, any variety of cabbage with curled or wrinkled leaves not forming compact heads like the common cabbage, nor yielding a fleshy edible inflorescence like the cauliflower and broccoli, and usually having a long stalk; borecole.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "money",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/kale"
         },
         {
+            "id": "sea kale",
             "partOfSpeech": "noun",
-            "text": "A broth made in Scotland in which kale or cabbage is a principal ingredient; hence, any soup, no matter of what composed, and, by a further extension, dinner: as, will you come and tak' your <em>kale</em> wi' me?",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<em>Brassica oleracea</em>, the cabbage-plant, in its wild state.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A variety of cabbage in which the leaves do not form a head, being nearly the original or wild form of the species.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "See <er>Kail</er>, 2.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a European cruciferous herb (<spn>Crambe maritima</spn>), often used as a pot herb; sea cabbage.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<xref>cole</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An edible plant, similar to <xref>cabbage</xref>, with curled leaves that do not form a dense head (Brassica oleracea var. acephala)",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/kale",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a succulent Eurasian perennial herb (Crambe maritima) of the mustard family used as a potherb",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/kale"
         }
     ]
 }

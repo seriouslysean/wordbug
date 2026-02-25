@@ -1,28 +1,23 @@
 {
     "word": "anthropomorphization",
     "date": "20251230",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "partOfSpeech": "noun",
-            "text": "<xref>endowing</xref> with <xref>human</xref> <xref>qualities</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/anthropomorphization",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "anthropomorphize",
+            "partOfSpeech": "verb",
+            "text": "to attribute human form or personality to",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anthropomorphization"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "<xref>attributing</xref> human <xref>characteristics</xref> to something that is nonhuman.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/anthropomorphization",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "anthropomorphize",
+            "partOfSpeech": "verb",
+            "text": "to attribute human form or personality to things not human",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anthropomorphization"
         }
     ]
 }

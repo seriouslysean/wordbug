@@ -1,119 +1,73 @@
 {
     "word": "sophisticated",
     "date": "20250603",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5619700-1",
+            "id": "sophisticated",
             "partOfSpeech": "adjective",
-            "text": "Having or showing much worldly knowledge or cultural refinement.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
+            "text": "deprived of native or original simplicity: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sophisticated",
             "examples": [
-                "a sophisticated businesswoman who is unlikely to be outmaneuvered; a sophisticated appraisal of the movie."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "sophisticated electronic devices",
+                "a sophisticated lady",
+                "a sophisticated columnist",
+                "a sophisticated novel"
+            ]
         },
         {
-            "id": "S5619700-2",
+            "id": "sophisticated",
             "partOfSpeech": "adjective",
-            "text": "Very complex or complicated.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
+            "text": "highly complicated or developed: complex",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sophisticated",
             "examples": [
-                "the latest and most sophisticated technology."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "sophisticated electronic devices",
+                "a sophisticated lady",
+                "a sophisticated columnist",
+                "a sophisticated novel"
+            ]
         },
         {
-            "id": "S5619700-3",
+            "id": "sophisticated",
             "partOfSpeech": "adjective",
-            "text": "Suitable for or appealing to the tastes of sophisticates.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
+            "text": "having a refined knowledge of the ways of the world cultivated especially through wide experience",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sophisticated",
             "examples": [
-                "a sophisticated drama."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "sophisticated electronic devices",
+                "a sophisticated lady",
+                "a sophisticated columnist",
+                "a sophisticated novel"
+            ]
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "Having <xref>obtained</xref> <xref>worldly</xref> <xref>experience</xref>, and lacking <xref>naiveté</xref>; <xref>cosmopolitan</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>Elegant</xref>, <xref>refined</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>Complicated</xref>, especially of <xref>complex</xref> <xref>technology</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>Appealing</xref> to the <xref>tastes</xref> of an <xref>intellectual</xref>; <xref>cerebral</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>Dishonest</xref> or <xref>misleading</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "sophisticate",
             "partOfSpeech": "verb",
-            "text": "Simple past tense and past participle of <xref>sophisticate</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "to alter deceptively; especially: adulterate",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sophisticated"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "ahead in development; complex or intricate",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/sophisticated",
-            "examples": [
-                "a sophisticated electronic control system"
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "sophisticate",
+            "partOfSpeech": "verb",
+            "text": "to deprive of genuineness, naturalness, or simplicity; especially: to deprive of naïveté and make worldly-wise: disillusion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sophisticated"
+        },
+        {
+            "id": "sophisticate",
+            "partOfSpeech": "verb",
+            "text": "to make complicated or complex",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sophisticated"
         }
     ]
 }

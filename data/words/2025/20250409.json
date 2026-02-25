@@ -1,111 +1,39 @@
 {
     "word": "metalloid",
     "date": "20250409",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "M5262400-1",
+            "id": "metalloid",
             "partOfSpeech": "noun",
-            "text": "A nonmetallic element, such as arsenic, that has some of the chemical properties of a metal. Most metalloids behave as semiconductors.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an element intermediate in properties between the typical metals and nonmetals",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/metalloid"
         },
         {
-            "id": "M5262400-2",
+            "id": "metalloid",
             "partOfSpeech": "noun",
-            "text": "A nonmetallic element, such as carbon, that can form an alloy with metals.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a nonmetal that can combine with a metal to form an alloy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/metalloid"
         },
         {
-            "id": "M5262400-3",
+            "id": "metalloid",
             "partOfSpeech": "adjective",
-            "text": "Relating to or having the properties of a metalloid.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "resembling a metal",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/metalloid"
         },
         {
-            "id": "M5262400-4",
+            "id": "metalloid",
             "partOfSpeech": "adjective",
-            "text": "Having the appearance of a metal.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Relating to metalloids; like metal; having the form or appearance of a metal.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>chem.</em>, a term which has been variously applied: as",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "to the metallic bases of the fixed alkalis and alkaline earths, probably in consequence of their low specific gravity; and",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "to all the non-metallic elementary substances.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having the appearance of a metal.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having the properties of a nonmetal; nonmetallic; acid; negative.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/metalloid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of, relating to, or being a metalloid",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/metalloid"
         }
     ]
 }

@@ -1,73 +1,15 @@
 {
     "word": "semiaquatic",
     "date": "20250730",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5266200-1",
+            "id": "semiaquatic",
             "partOfSpeech": "adjective",
-            "text": "Living or able to live both on land and in the water.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/semiaquatic",
-            "examples": [
-                "semiaquatic rodents."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5266200-2",
-            "partOfSpeech": "adjective",
-            "text": "Growing in saturated soil.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/semiaquatic",
-            "examples": [
-                "a semiaquatic fern."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "In <em>zoöl</em> and <em>botany</em>, living close to water, and sometimes entering it, but not necessarily existing by it: as, the <em>semiaquatic</em> spiders, which run over the surface of water, or dive and conceal themselves beneath it; <em>semiaquatic</em> plants, which grow between tides, or in pools that periodically become dry, etc.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/semiaquatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Alternative spelling of <xref>semi-aquatic</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/semiaquatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "partially aquatic; living or growing partly on land and partly in water",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/semiaquatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "having an aquatic early or larval form and a terrestrial adult form",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/semiaquatic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "growing equally well in or adjacent to water; also: frequenting but not living wholly in water",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/semiaquatic"
         }
     ]
 }

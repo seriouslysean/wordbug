@@ -1,110 +1,103 @@
 {
     "word": "elm",
     "date": "20250723",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "E5095600-1",
+            "id": "elm",
             "partOfSpeech": "noun",
-            "text": "Any of various deciduous trees of the genus <em>Ulmus,</em> characteristically having arching or curving branches, serrate leaves with asymmetric bases, and small winged fruit.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a genus (Ulmus of the family Ulmaceae, the elm family) of usually large deciduous north temperate-zone trees with alternate stipulate leaves and fruit that is a samara",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
-            "id": "E5095600-2",
+            "id": "elm",
             "partOfSpeech": "noun",
-            "text": "The wood of one of these trees.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the wood of an elm",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "elm bark beetle",
             "partOfSpeech": "noun",
-            "text": "The common name for species of <em>Ulmus</em> (which see), mostly large trees, some common in cultivation for shade and ornament, for which the majestic height and the wide-spreading and gracefully curving branches of the principal kinds admirably adapt them.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "either of two beetles (family Scolytidae) that are vectors for the fungus causing Dutch elm disease:",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "elm bark beetle",
             "partOfSpeech": "noun",
-            "text": "Of other varieties of elm (comprising some trees more or less closely related to the elm and a few belonging to different families but somewhat resembling elms: those given below are among the most important.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "one (Hylurgopinus rufipes) native to eastern North America",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "elm bark beetle",
             "partOfSpeech": "noun",
-            "text": "The wing-elm or winged elm. See <internalXref urlencoded=\"wahoo\">wahoo</internalXref>,.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "one (Scolytus multistriatus) introduced from Europe into eastern North America",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "elm leaf beetle",
             "partOfSpeech": "noun",
-            "text": "The winged elm, <em>Ulmus alata</em>, so called in Florida and Arkansas.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a small yellow to greenish black-striped Old World chrysomelid beetle (Pyrrhalta luteola) that in the larval and adult stage is a leaf-eating pest of elms in eastern North America",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "elm yellows",
             "partOfSpeech": "noun",
-            "text": "<em>Ulmus serotina</em>, a tree of limited distribution on limestone hills and river-banks in southern Kentucky and northern Alabama and Georgia, only recently distinguished from <internalXref urlencoded=\"U.%20fulva\">U. fulva</internalXref>, from which it differs in its much smaller fruit, in the absence of mucilage in the inner bark, and in other respects. The wood is reddish in color.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a usually fatal disease of North American elms (such as the American elm) that is characterized by yellowish, often black-flecked discoloration and degeneration of the phloem and that results in death of the root system followed by wilting, yellowing, and loss of leaves —called also phloem necrosis",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "American elm",
             "partOfSpeech": "noun",
-            "text": "A tree of the genus Ulmus, of several species, much used as a shade tree, particularly in America. The English elm is <spn>Ulmus campestris</spn>; the common American or white elm is <spn>U. Americana</spn>; the slippery or red elm, <spn>U. fulva</spn>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a large elm (Ulmus americana) of eastern and central North America that has gradually spreading branches and pendulous branchlets",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "Dutch elm disease",
             "partOfSpeech": "noun",
-            "text": "one of several species of beetles (esp. <spn>Galeruca calmariensis</spn>), which feed on the leaves of the elm.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a disease of elms caused by an ascomycetous fungus (Ceratocystis ulmi) and characterized by yellowing of the foliage, defoliation, and death",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         },
         {
+            "id": "slippery elm",
             "partOfSpeech": "noun",
-            "text": "one of several species of beetles of which the larvæ bore into the wood or under the bark of the elm (esp. <spn>Saperda tridentata</spn>).",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/elm",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a large-leaved elm (Ulmus rubra synonym U. fulva) of eastern and central North America that has hard wood and fragrant mucilaginous inner bark; also: the bark",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
+        },
+        {
+            "id": "smaller European elm bark beetle",
+            "partOfSpeech": "noun",
+            "text": "elm bark beetle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
+        },
+        {
+            "id": "winged elm",
+            "partOfSpeech": "noun",
+            "text": "an elm (Ulmus alata) of the U.S. having twigs with prominent corky projections —called also wahoo",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         }
     ]
 }

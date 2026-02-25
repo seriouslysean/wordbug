@@ -1,131 +1,145 @@
 {
     "word": "discipline",
     "date": "20250610",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5261300-1",
+            "id": "discipline",
             "partOfSpeech": "noun",
-            "text": "Training expected to produce a specific character or pattern of behavior, especially training that produces moral or mental improvement.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
+            "text": "control gained by enforcing obedience or order",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
             "examples": [
-                "was raised in the strictest discipline."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "struggled to maintain discipline in the classroom",
+                "The troops were praised for their dedication and discipline.",
+                "lacked the discipline to practice regularly",
+                "was responsible for meting out discipline",
+                "… keep the discipline of putting money toward your savings regularly.",
+                "Practicing running at this marathon pace … will be good discipline.",
+                "academic disciplines",
+                "Across the Games, around 10,500 athletes competed in 48 sports disciplines.",
+                "following the disciplines of priesthood"
+            ]
         },
         {
-            "id": "D5261300-2",
+            "id": "discipline",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5261300-3",
-            "partOfSpeech": "noun",
-            "text": "Control obtained by enforcing compliance or order.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
+            "text": "behavior in accordance with rules: orderly conduct",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
             "examples": [
-                "military discipline."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "struggled to maintain discipline in the classroom",
+                "The troops were praised for their dedication and discipline.",
+                "lacked the discipline to practice regularly",
+                "was responsible for meting out discipline",
+                "… keep the discipline of putting money toward your savings regularly.",
+                "Practicing running at this marathon pace … will be good discipline.",
+                "academic disciplines",
+                "Across the Games, around 10,500 athletes competed in 48 sports disciplines.",
+                "following the disciplines of priesthood"
+            ]
         },
         {
-            "id": "D5261300-4",
+            "id": "discipline",
             "partOfSpeech": "noun",
-            "text": "Controlled behavior resulting from disciplinary training; self-control.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
+            "text": "self-control",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
             "examples": [
-                "Dieting takes a lot of discipline."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "struggled to maintain discipline in the classroom",
+                "The troops were praised for their dedication and discipline.",
+                "lacked the discipline to practice regularly",
+                "was responsible for meting out discipline",
+                "… keep the discipline of putting money toward your savings regularly.",
+                "Practicing running at this marathon pace … will be good discipline.",
+                "academic disciplines",
+                "Across the Games, around 10,500 athletes competed in 48 sports disciplines.",
+                "following the disciplines of priesthood"
+            ]
         },
         {
-            "id": "D5261300-5",
+            "id": "discipline",
+            "partOfSpeech": "verb",
+            "text": "to punish or penalize as a means of enforcing obedience and perfecting moral character",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
+            "examples": [
+                "debates about the proper way to discipline a child",
+                "was disciplined for misbehaving in class",
+                "a player repeatedly disciplined by the league",
+                "I'm trying to discipline myself to exercise each morning.",
+                "discipline troops",
+                "Serious writers discipline and refine their writing styles."
+            ]
+        },
+        {
+            "id": "discipline",
+            "partOfSpeech": "verb",
+            "text": "to train or develop by instruction and exercise especially in self-control",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
+            "examples": [
+                "debates about the proper way to discipline a child",
+                "was disciplined for misbehaving in class",
+                "a player repeatedly disciplined by the league",
+                "I'm trying to discipline myself to exercise each morning.",
+                "discipline troops",
+                "Serious writers discipline and refine their writing styles."
+            ]
+        },
+        {
+            "id": "discipline",
+            "partOfSpeech": "verb",
+            "text": "to bring (a group) under control",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
+            "examples": [
+                "debates about the proper way to discipline a child",
+                "was disciplined for misbehaving in class",
+                "a player repeatedly disciplined by the league",
+                "I'm trying to discipline myself to exercise each morning.",
+                "discipline troops",
+                "Serious writers discipline and refine their writing styles."
+            ]
+        },
+        {
+            "id": "self-discipline",
             "partOfSpeech": "noun",
-            "text": "A state of order based on submission to rules and authority.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
-            "examples": [
-                "a teacher who demanded discipline in the classroom."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "correction or regulation of oneself for the sake of improvement",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline"
         },
         {
-            "id": "D5261300-6",
+            "id": "multidiscipline",
+            "partOfSpeech": "adjective",
+            "text": "combining or involving more than one discipline or field of study: multidisciplinary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
+            "examples": [
+                "… leadership challenges in a multidiscipline department …",
+                "A $20,000 grant … helped the staff develop a large, multidiscipline area divided into areas focusing on science, technology, math, language arts, art, music and engineering …",
+                "The system is designed to support multidiscipline classroom use, change the table height to adapt to a particular activity, integrate the latest teaching technology, meet ADA requirements, and decrease the size required for science classrooms."
+            ]
+        },
+        {
+            "id": "subdiscipline",
             "partOfSpeech": "noun",
-            "text": "Punishment intended to correct or train.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
+            "text": "a discipline (such as an academic discipline) that is part of a broader discipline",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/discipline",
             "examples": [
-                "subjected to harsh discipline."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5261300-7",
-            "partOfSpeech": "noun",
-            "text": "A set of rules or methods, as those regulating the practice of a church or monastic order.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5261300-8",
-            "partOfSpeech": "noun",
-            "text": "A branch of knowledge or teaching.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
-            "examples": [
-                "the discipline of mathematics."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5261300-9",
-            "partOfSpeech": "transitive verb",
-            "text": "To train by instruction and practice, as in following rules or developing self-control: <i>synonym</i>: <strong> teach</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
-            "examples": [
-                "The sergeant disciplined the recruits to become soldiers."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "D5261300-10",
-            "partOfSpeech": "transitive verb",
-            "text": "To punish in order to gain control or enforce obedience. <i>synonym</i>: <strong> punish</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/discipline",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+                "Organic chemistry is a subdiscipline of chemistry.",
+                "The management of programmers is a discipline unto itself. There are subdisciplines that deal with how coders communicate."
+            ]
         }
     ]
 }

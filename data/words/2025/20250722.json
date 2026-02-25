@@ -1,122 +1,145 @@
 {
     "word": "mechanical",
     "date": "20250722",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "M5192500-1",
+            "id": "mechanical",
             "partOfSpeech": "adjective",
-            "text": "Of or relating to machines or tools.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "text": "of or relating to machinery or tools",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical",
             "examples": [
-                "mechanical skill."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "mechanical applications of science",
+                "a mechanical genius",
+                "mechanical aptitude",
+                "mechanical power",
+                "a mechanical refrigerator",
+                "a mechanical saw",
+                "the mechanical trades",
+                "… busy in a leisurely mechanical way.",
+                "… nor was any capacity shown for anything above a mechanical handling of the matter.",
+                "mechanical energy",
+                "mechanical pressure of wind on a tower",
+                "mechanical erosion of rock"
+            ]
         },
         {
-            "id": "M5192500-2",
+            "id": "mechanical",
             "partOfSpeech": "adjective",
-            "text": "Operated or produced by a mechanism or machine.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "text": "produced or operated by a machine or tool",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical",
             "examples": [
-                "a mechanical toy dog."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "mechanical applications of science",
+                "a mechanical genius",
+                "mechanical aptitude",
+                "mechanical power",
+                "a mechanical refrigerator",
+                "a mechanical saw",
+                "the mechanical trades",
+                "… busy in a leisurely mechanical way.",
+                "… nor was any capacity shown for anything above a mechanical handling of the matter.",
+                "mechanical energy",
+                "mechanical pressure of wind on a tower",
+                "mechanical erosion of rock"
+            ]
         },
         {
-            "id": "M5192500-3",
+            "id": "mechanical",
             "partOfSpeech": "adjective",
-            "text": "Of, relating to, or governed by mechanics.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5192500-4",
-            "partOfSpeech": "adjective",
-            "text": "Performed or performing in an impersonal or machinelike manner; automatic.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
+            "text": "of or relating to manual operations",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical",
             "examples": [
-                "a droning, mechanical delivery of the speech."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "mechanical applications of science",
+                "a mechanical genius",
+                "mechanical aptitude",
+                "mechanical power",
+                "a mechanical refrigerator",
+                "a mechanical saw",
+                "the mechanical trades",
+                "… busy in a leisurely mechanical way.",
+                "… nor was any capacity shown for anything above a mechanical handling of the matter.",
+                "mechanical energy",
+                "mechanical pressure of wind on a tower",
+                "mechanical erosion of rock"
+            ]
         },
         {
-            "id": "M5192500-5",
-            "partOfSpeech": "adjective",
-            "text": "Relating to, produced by, or dominated by physical forces.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
-            "examples": [
-                "the mechanical aspect of trumpet playing."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5192500-6",
-            "partOfSpeech": "adjective",
-            "text": "Interpreting and explaining the phenomena of the universe by referring to causally determined material forces; mechanistic.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5192500-7",
-            "partOfSpeech": "adjective",
-            "text": "Of or relating to manual labor, its tools, and its skills.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5192500-8",
+            "id": "mechanical",
             "partOfSpeech": "noun",
-            "text": "A layout consisting of type proofs, artwork, or both, exactly positioned and prepared for making an offset or other printing plate.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a piece of finished copy consisting typically of type proofs and artwork positioned and mounted for photomechanical reproduction",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
         },
         {
-            "text": "Pertaining to or exhibiting constructive power; of or pertaining to mechanism or machinery; also, dependent upon the use of mechanism; of the nature or character of a machine or machinery: as, <em>mechanical</em> inventions or contrivances; to do something by <em>mechanical</em> means.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "mechanical",
+            "partOfSpeech": "noun",
+            "text": "mechanic",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
         },
         {
-            "text": "Machine-like; acting or actuated by or as if by machinery, or by fixed routine; lacking spontaneity, spirit, individuality, etc.; as applied to actions, automatic, instinctive, unconscious, etc.: as, the <em>mechanical</em> action of the heart; a <em>mechanical</em> musician.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/mechanical",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "mechanical advantage",
+            "partOfSpeech": "noun",
+            "text": "the advantage gained by the use of a mechanism in transmitting force; specifically: the ratio of the force that performs the useful work of a machine to the force that is applied to the machine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
+        },
+        {
+            "id": "mechanical drawing",
+            "partOfSpeech": "noun",
+            "text": "drawing done with the aid of instruments",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
+        },
+        {
+            "id": "mechanical drawing",
+            "partOfSpeech": "noun",
+            "text": "a drawing made with instruments",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
+        },
+        {
+            "id": "mechanical engineering",
+            "partOfSpeech": "noun",
+            "text": "a branch of engineering concerned primarily with the industrial application of mechanics and with the production of tools, machinery, and their products",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
+        },
+        {
+            "id": "mechanical ventilation",
+            "partOfSpeech": "noun",
+            "text": "artificial respiration using a mechanical ventilator to support the delivery of oxygen to the lungs when breathing has ceased, is failing, or is inadequate",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
+        },
+        {
+            "id": "mechanical ventilator",
+            "partOfSpeech": "noun",
+            "text": "a mechanized device that enables the delivery or movement of air or oxygen into the lungs of a patient whose breathing has ceased, is failing, or is inadequate: an automated ventilator",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
+        },
+        {
+            "id": "quantum mechanics",
+            "partOfSpeech": "noun",
+            "text": "a theory of matter that is based on the concept of the possession of wave properties by elementary particles, that affords a mathematical interpretation of the structure and interactions of matter on the basis of these properties, and that incorporates within it quantum theory and the uncertainty principle —called also wave mechanics",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
         }
     ]
 }

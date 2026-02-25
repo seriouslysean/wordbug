@@ -1,123 +1,106 @@
 {
     "word": "gape",
     "date": "20251005",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "G5038900-1",
-            "partOfSpeech": "intransitive verb",
-            "text": "To open the mouth wide.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5038900-2",
-            "partOfSpeech": "intransitive verb",
-            "text": "To stare wonderingly or stupidly, often with the mouth open. <i>synonym</i>: <strong> gaze</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5038900-3",
-            "partOfSpeech": "intransitive verb",
-            "text": "To be or become open or wide.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "id": "gape",
+            "partOfSpeech": "verb",
+            "text": "to open the mouth wide",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gape",
             "examples": [
-                "Holes gaped in the ceiling."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "holes gaped in the pavement",
+                "gaped at the squabbling monkeys",
+                "The dull lecture made the students gape."
+            ]
         },
         {
-            "id": "G5038900-4",
-            "partOfSpeech": "noun",
-            "text": "The act or an instance of gaping.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "id": "gape",
+            "partOfSpeech": "verb",
+            "text": "to open or part widely",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gape",
             "examples": [
-                "a scoring move that elicited gapes from her teammates."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "holes gaped in the pavement",
+                "gaped at the squabbling monkeys",
+                "The dull lecture made the students gape."
+            ]
         },
         {
-            "id": "G5038900-5",
-            "partOfSpeech": "noun",
-            "text": "A large opening.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
+            "id": "gape",
+            "partOfSpeech": "verb",
+            "text": "to gaze stupidly or in open-mouthed surprise or wonder",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gape",
             "examples": [
-                "a gape in the sail."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "holes gaped in the pavement",
+                "gaped at the squabbling monkeys",
+                "The dull lecture made the students gape."
+            ]
         },
         {
-            "id": "G5038900-6",
+            "id": "gape",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an act or instance of opening the mouth wide or of keeping the mouth open wide —often used in combination; sometimes, specifically: yawn",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gape",
+            "examples": [
+                "her open-mouthed gape of surprise",
+                "One piranha, she discovered, went from wide-open gape to shut jaws in less than five milliseconds, far faster than the wink of an eye.",
+                "It seemed his mouth was always sort of hanging open in a stupid gape …",
+                "At first glance, the case seemed routine, and the suspects elicited no gapes =open-mouthed looks of surprise …",
+                "She was pushing an unwieldy shopping cart in the street, trying to keep out of the way of oncoming cars, ignoring the gapes of passersby.",
+                "… another hour of pleasure or of penance was to be sat out, another hour of music was to give delight or the gapes =a fit of yawning …",
+                "the bird's maximum gape",
+                "A hole, in whitewater parlance, is a recirculating maw of foam. … Its gape shows like a frothy smirk or, depending on viewpoint, a frown.",
+                "… gyratory crushers having a gape suitable for the coarsest crushing …",
+                "a case of gapes"
+            ]
         },
         {
-            "id": "G5038900-7",
+            "id": "gape",
             "partOfSpeech": "noun",
-            "text": "The mouth, especially when open.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the expanse of an open mouth: the opening formed by the open mouth of an animal (such as a bird, fish, or snake) —sometimes used in combination",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gape",
+            "examples": [
+                "her open-mouthed gape of surprise",
+                "One piranha, she discovered, went from wide-open gape to shut jaws in less than five milliseconds, far faster than the wink of an eye.",
+                "It seemed his mouth was always sort of hanging open in a stupid gape …",
+                "At first glance, the case seemed routine, and the suspects elicited no gapes =open-mouthed looks of surprise …",
+                "She was pushing an unwieldy shopping cart in the street, trying to keep out of the way of oncoming cars, ignoring the gapes of passersby.",
+                "… another hour of pleasure or of penance was to be sat out, another hour of music was to give delight or the gapes =a fit of yawning …",
+                "the bird's maximum gape",
+                "A hole, in whitewater parlance, is a recirculating maw of foam. … Its gape shows like a frothy smirk or, depending on viewpoint, a frown.",
+                "… gyratory crushers having a gape suitable for the coarsest crushing …",
+                "a case of gapes"
+            ]
         },
         {
-            "id": "G5038900-8",
+            "id": "gape",
             "partOfSpeech": "noun",
-            "text": "The width of the space between the open jaws or mandibles of a vertebrate.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5038900-9",
-            "partOfSpeech": "noun",
-            "text": "A disease of birds, especially young domesticated chickens and turkeys, caused by gapeworms and resulting in obstructed breathing.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "G5038900-10",
-            "partOfSpeech": "noun",
-            "text": "A fit of yawning.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/gape",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the line along which the mandibles of a bird close",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gape",
+            "examples": [
+                "her open-mouthed gape of surprise",
+                "One piranha, she discovered, went from wide-open gape to shut jaws in less than five milliseconds, far faster than the wink of an eye.",
+                "It seemed his mouth was always sort of hanging open in a stupid gape …",
+                "At first glance, the case seemed routine, and the suspects elicited no gapes =open-mouthed looks of surprise …",
+                "She was pushing an unwieldy shopping cart in the street, trying to keep out of the way of oncoming cars, ignoring the gapes of passersby.",
+                "… another hour of pleasure or of penance was to be sat out, another hour of music was to give delight or the gapes =a fit of yawning …",
+                "the bird's maximum gape",
+                "A hole, in whitewater parlance, is a recirculating maw of foam. … Its gape shows like a frothy smirk or, depending on viewpoint, a frown.",
+                "… gyratory crushers having a gape suitable for the coarsest crushing …",
+                "a case of gapes"
+            ]
         }
     ]
 }

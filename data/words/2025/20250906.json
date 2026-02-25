@@ -1,110 +1,82 @@
 {
     "word": "dew",
     "date": "20250906",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "D5185200-1",
+            "id": "dew",
             "partOfSpeech": "noun",
-            "text": "Water droplets condensed from the air, usually at night, onto cool surfaces.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "moisture condensed upon the surfaces of cool bodies especially at night",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew",
+            "examples": [
+                "wet with morning dew",
+                "… the golden dew of sleep …"
+            ]
         },
         {
-            "id": "D5185200-2",
+            "id": "dew",
             "partOfSpeech": "noun",
-            "text": "Something moist, fresh, pure, or renewing.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "something resembling dew in purity, freshness, or power to refresh",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew",
+            "examples": [
+                "wet with morning dew",
+                "… the golden dew of sleep …"
+            ]
         },
         {
-            "id": "D5185200-3",
+            "id": "dew",
             "partOfSpeech": "noun",
-            "text": "Moisture, as in the form of tears or perspiration, that appears in small drops.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "moisture especially when appearing in minute droplets: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew",
+            "examples": [
+                "wet with morning dew",
+                "… the golden dew of sleep …"
+            ]
         },
         {
-            "id": "D5185200-4",
-            "partOfSpeech": "transitive verb",
-            "text": "To wet with or as if with dew.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "DEW",
+            "text": "distant early warning",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew"
         },
         {
-            "text": "To wet with or as if with dew; moisten; bedew.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "daw",
+            "partOfSpeech": "verb",
+            "text": "dawn",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew"
         },
         {
-            "text": "An obsolete spelling of <internalXref urlencoded=\"due\">due</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "dew point",
             "partOfSpeech": "noun",
-            "text": "The aqueous vapor which is deposited from the atmosphere by condensation, especially during the night, in the form of small drops on the surface of bodies.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the temperature at which a vapor (such as water) begins or would begin to condense",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew"
         },
         {
+            "id": "dew worm",
             "partOfSpeech": "noun",
-            "text": "Something likened to dew: As falling lightly, or as serving to refresh.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "night crawler",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew"
         },
         {
+            "id": "mountain dew",
             "partOfSpeech": "noun",
-            "text": "As suggestive of the morning, and hence of freshness and youth.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Moisture standing in little drops on anything.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/dew",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "moonshine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dew"
         }
     ]
 }

@@ -1,69 +1,42 @@
 {
     "word": "epilepsy",
     "date": "20250330",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "E5182700-1",
+            "id": "epilepsy",
             "partOfSpeech": "noun",
-            "text": "Any of various neurological disorders marked by sudden recurring attacks of motor, sensory, or cognitive dysfunction, with or without convulsive seizures or loss of consciousness.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/epilepsy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of various disorders marked by abnormal electrical discharges in the brain and typically manifested by sudden brief episodes of altered or diminished consciousness, involuntary movements, or convulsions",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/epilepsy"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "A disease of the brain characterized by recurrent attacks of loss of consciousness with severe muscular spasm (<em>major attack</em>), or",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/epilepsy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "anti-epilepsy",
+            "partOfSpeech": "adjective",
+            "text": "used or tending to control epileptic seizures: antiepileptic",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/epilepsy",
+            "examples": [
+                "anti-epilepsy medication"
+            ]
         },
         {
+            "id": "grand mal",
             "partOfSpeech": "noun",
-            "text": "loss of consciousness attended with little or no muscular disturbance, or, rarely, slight muscular spasm without loss of consciousness (<em>minor attack</em>).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/epilepsy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "severe epilepsy characterized by seizures in which there is an abrupt loss of consciousness with initially prolonged tonic muscle contractions followed by clonic muscle spasms",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/epilepsy"
         },
         {
+            "id": "grand mal",
             "partOfSpeech": "noun",
-            "text": "The “falling sickness,” so called because the patient falls suddenly to the ground; a disease characterized by paroxysms (or fits) occurring at interval and attended by sudden loss of consciousness, and convulsive motions of the muscles.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/epilepsy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A medical <xref>condition</xref> in which the sufferer experiences <xref>seizures</xref> (or <xref>convulsions</xref>) and <xref>blackouts</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/epilepsy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a disorder of the central nervous system characterized by loss of consciousness and convulsions",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/epilepsy",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a seizure marked by abrupt loss of consciousness with initially prolonged tonic muscle contractions followed by clonic muscle spasms",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/epilepsy"
         }
     ]
 }

@@ -1,102 +1,29 @@
 {
     "word": "exuberance",
     "date": "20250331",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "E5315900-1",
+            "id": "exuberance",
             "partOfSpeech": "noun",
-            "text": "The quality or condition of being exuberant.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "E5315900-2",
-            "partOfSpeech": "noun",
-            "text": "An exuberant act, expression, or display.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The state of being exuberant; exceeding abundance; an overflowing supply; superabundance; luxuriance: as, <em>exuberance</em> of foliage or of fancy.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<strong>Synonyms</strong> <em>Abundance, Profusion</em>, etc. (see <internalXref urlencoded=\"plenty\">plenty</internalXref>); copiousness, plenitude, amplitude, overflow, superabundance.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The state of being exuberant; an overflowing quantity; a copious or excessive production or supply; superabundance; richness.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
+            "text": "the quality or state of being exuberant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/exuberance",
             "examples": [
-                "an <ex>exuberance</ex> of joy, of fancy, or of foliage"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "youthful exuberance"
+            ]
         },
         {
+            "id": "exuberance",
             "partOfSpeech": "noun",
-            "text": "The quality of being <xref>exuberant</xref>; <xref>cheerful</xref> or <xref>vigorous</xref> <xref>enthusiasm</xref>; <xref>liveliness</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An instance of exuberant <xref>behaviour</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "joyful enthusiasm",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "overflowing with eager enjoyment or approval",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/exuberance",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an exuberant act or expression",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/exuberance",
+            "examples": [
+                "youthful exuberance"
+            ]
         }
     ]
 }

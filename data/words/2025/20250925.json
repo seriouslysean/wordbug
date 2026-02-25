@@ -1,113 +1,31 @@
 {
     "word": "relic",
     "date": "20250925",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "R5151500-1",
+            "id": "relic",
             "partOfSpeech": "noun",
-            "text": "Something that has survived the passage of time, especially an object or custom whose original culture has disappeared.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an object esteemed and venerated because of association with a saint or martyr",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/relic"
         },
         {
-            "id": "R5151500-2",
+            "id": "relic",
             "partOfSpeech": "noun",
-            "text": "Something cherished for its age or historic interest.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "souvenir, memento",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/relic"
         },
         {
-            "id": "R5151500-3",
+            "id": "relic",
             "partOfSpeech": "noun",
-            "text": "An object kept for its association with the past; a memento.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "R5151500-4",
-            "partOfSpeech": "noun",
-            "text": "An object of religious veneration, especially a piece of the body or a personal item of a saint.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "R5151500-5",
-            "partOfSpeech": "noun",
-            "text": "A corpse; remains.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "That which remains; that which is left after the consumption, loss, or decay of the rest.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The body of a deceased person; a corpse, as deserted by the soul.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "That which is preserved in remembrance; a memento; a sonvenir; a keepsake.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An object held in reverence or affection because connected with some sacred or beloved person deceased; specifically, in the <em>Roman Catholic Church</em>, the <em>Gr. Ch.</em>, and some other churches, a saint's body or part of it, or an object supposed to have been connected with the life or body of Christ, of the Virgin Mary, or of some saint or martyr, and regarded therefore as a personal memorial worthy of religions veneration. ",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Something dear or precious.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/relic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "remains, corpse",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/relic"
         }
     ]
 }

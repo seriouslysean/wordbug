@@ -1,117 +1,31 @@
 {
     "word": "vicinity",
     "date": "20251111",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "V5094800-1",
+            "id": "vicinity",
             "partOfSpeech": "noun",
-            "text": "The state of being near in space or relationship; proximity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [
-                "two restaurants in close vicinity."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a surrounding area or district: neighborhood",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/vicinity"
         },
         {
-            "id": "V5094800-2",
+            "id": "vicinity",
             "partOfSpeech": "noun",
-            "text": "A nearby, surrounding, or adjoining region; a neighborhood.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "neighborhood",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/vicinity"
         },
         {
-            "id": "V5094800-3",
+            "id": "vicinity",
             "partOfSpeech": "noun",
-            "text": "An approximate degree or amount.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [
-                "houses priced in the vicinity of $200,000."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>geometric topics</em>, a place, A, is said to be in the vicinity of a place, B, within a place, C, which contains both A and B, and in a given respect, if, and only if, an object instantaneously filling A can by an ordinary motion move to B without ever leaving C, and without at any instant during its motion occupying any place which differs from A in the given respect.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The quality of being near; nearness in place; propinquity; proximity.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Neighborhood; surrounding or adjoining space, district, or country.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Nearness in intercourse; close relationship.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<strong>Synonyms</strong> <em>Proximity</em>, etc. See <internalXref urlencoded=\"neighborhood\">neighborhood</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The quality or state of being near, or not remote; nearness; propinquity; proximity.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [
-                "the value of the estate was increased by the <ex>vicinity</ex> of two country seats"
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "That which is near, or not remote; that which is adjacent to anything; adjoining space or country; neighborhood.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/vicinity",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the quality or state of being near: proximity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/vicinity"
         }
     ]
 }

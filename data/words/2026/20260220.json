@@ -1,120 +1,174 @@
 {
     "word": "collateral",
     "date": "20260220",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5497200-1",
-            "partOfSpeech": "adjective",
-            "text": "Situated or running side by side; parallel.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5497200-2",
-            "partOfSpeech": "adjective",
-            "text": "Coinciding in tendency or effect; concomitant or accompanying.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5497200-3",
-            "partOfSpeech": "adjective",
-            "text": "Serving to support or corroborate.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [
-                "collateral evidence."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5497200-4",
-            "partOfSpeech": "adjective",
-            "text": "Of a secondary nature; subordinate.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [
-                "collateral target damage from a bombing run."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5497200-5",
-            "partOfSpeech": "adjective",
-            "text": "Of, relating to, or guaranteed by a security pledged against the performance of an obligation.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [
-                "a collateral loan."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5497200-6",
-            "partOfSpeech": "adjective",
-            "text": "Having an ancestor in common but descended from a different line.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5497200-7",
+            "id": "collateral",
             "partOfSpeech": "noun",
-            "text": "Property acceptable as security for a loan or other obligation.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "property (such as securities) pledged by a borrower to protect the interests of the lender",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "A collateral inherited the estate.",
+                "Attendees can expect to make approximately 50 new business contacts and should … have an ample supply of business cards, marketing collateral and anything else to help potential leads remember them."
+            ]
         },
         {
-            "id": "C5497200-8",
+            "id": "collateral",
             "partOfSpeech": "noun",
-            "text": "A collateral relative.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a collateral relative",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "A collateral inherited the estate.",
+                "Attendees can expect to make approximately 50 new business contacts and should … have an ample supply of business cards, marketing collateral and anything else to help potential leads remember them."
+            ]
         },
         {
-            "text": "Situated at the side: belonging to the side or to what is at the side; hence, occupying a secondary or subordinate position.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "collateral",
+            "partOfSpeech": "noun",
+            "text": "a branch of a bodily part (such as a vein)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "A collateral inherited the estate.",
+                "Attendees can expect to make approximately 50 new business contacts and should … have an ample supply of business cards, marketing collateral and anything else to help potential leads remember them."
+            ]
         },
         {
-            "text": "Acting indirectly; acting through side channels.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/collateral",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "collateral",
+            "partOfSpeech": "adjective",
+            "text": "accompanying as secondary or subordinate: concomitant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "digress into collateral matters",
+                "no direct objection, but a few collateral ones",
+                "Collateral evidence was presented at the trial.",
+                "Brothers, cousins, uncles, and nephews are collateral kinsmen.",
+                "collateral states like Athens and Sparta",
+                "a collateral loan secured by stocks and bonds deposited with the lender"
+            ]
+        },
+        {
+            "id": "collateral",
+            "partOfSpeech": "adjective",
+            "text": "indirect",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "digress into collateral matters",
+                "no direct objection, but a few collateral ones",
+                "Collateral evidence was presented at the trial.",
+                "Brothers, cousins, uncles, and nephews are collateral kinsmen.",
+                "collateral states like Athens and Sparta",
+                "a collateral loan secured by stocks and bonds deposited with the lender"
+            ]
+        },
+        {
+            "id": "collateral",
+            "partOfSpeech": "adjective",
+            "text": "serving to support or reinforce: ancillary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "digress into collateral matters",
+                "no direct objection, but a few collateral ones",
+                "Collateral evidence was presented at the trial.",
+                "Brothers, cousins, uncles, and nephews are collateral kinsmen.",
+                "collateral states like Athens and Sparta",
+                "a collateral loan secured by stocks and bonds deposited with the lender"
+            ]
+        },
+        {
+            "id": "collateral damage",
+            "partOfSpeech": "noun",
+            "text": "injury inflicted on something other than an intended target; specifically: civilian casualties of a military operation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral"
+        },
+        {
+            "id": "medial collateral ligament",
+            "partOfSpeech": "noun",
+            "text": "a ligament of the inner knee that connects medial parts of the femur and tibia and helps to stabilize the knee joint —called also MCL",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "… Barry Sanders, sprained the medial collateral ligament in his left knee on Thanksgiving, but the reports of his demise have been greatly exaggerated.",
+                "… preliminary review of an MRI conducted yesterday on Williamson's injured right arm indicated he may have torn the reconstructed medial collateral ligament in his elbow …"
+            ]
+        },
+        {
+            "id": "medial collateral ligament",
+            "partOfSpeech": "noun",
+            "text": "ulnar collateral ligament —called also MCL",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "… Barry Sanders, sprained the medial collateral ligament in his left knee on Thanksgiving, but the reports of his demise have been greatly exaggerated.",
+                "… preliminary review of an MRI conducted yesterday on Williamson's injured right arm indicated he may have torn the reconstructed medial collateral ligament in his elbow …"
+            ]
+        },
+        {
+            "id": "ulnar collateral ligament",
+            "partOfSpeech": "noun",
+            "text": "a triangular ligament of the inner side of the elbow that connects the medial parts of the humerus with the ulna, helps to stabilize the elbow joint, and is often injured in sports (such as baseball) which involve repeated overhand throwing —called also UCL",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "… the preseason Atlantic Sun pitcher of the year, will miss the rest of the season after suffering ulnar collateral ligament damage on the inside of his throwing elbow.",
+                "Palpate to the end of the ulnar styloid, and notice the gap between it and the carpals. … With the wrist in radial deviation, the ulnar collateral ligament can be felt bridging this gap.",
+                "… skier's thumb, an ulnar collateral ligament sprain or injury to the thumb usually resulting from a fall."
+            ]
+        },
+        {
+            "id": "ulnar collateral ligament",
+            "partOfSpeech": "noun",
+            "text": "a ligament of the wrist on the little-finger side that connects the distal end of the ulna with bones in the wrist and helps to stabilize the wrist joint —called also UCL",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "… the preseason Atlantic Sun pitcher of the year, will miss the rest of the season after suffering ulnar collateral ligament damage on the inside of his throwing elbow.",
+                "Palpate to the end of the ulnar styloid, and notice the gap between it and the carpals. … With the wrist in radial deviation, the ulnar collateral ligament can be felt bridging this gap.",
+                "… skier's thumb, an ulnar collateral ligament sprain or injury to the thumb usually resulting from a fall."
+            ]
+        },
+        {
+            "id": "ulnar collateral ligament",
+            "partOfSpeech": "noun",
+            "text": "a ligament of the inner thumb that connects the two bones at the base of the thumb and helps to stabilize the thumb —called also UCL",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "… the preseason Atlantic Sun pitcher of the year, will miss the rest of the season after suffering ulnar collateral ligament damage on the inside of his throwing elbow.",
+                "Palpate to the end of the ulnar styloid, and notice the gap between it and the carpals. … With the wrist in radial deviation, the ulnar collateral ligament can be felt bridging this gap.",
+                "… skier's thumb, an ulnar collateral ligament sprain or injury to the thumb usually resulting from a fall."
+            ]
+        },
+        {
+            "id": "ulnar collateral ligament reconstruction",
+            "partOfSpeech": "noun",
+            "text": "a surgical procedure in which a torn ulnar collateral ligament of the elbow is replaced with a tendon graft typically obtained from a superficial muscle of the forearm: tommy john surgery",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/collateral",
+            "examples": [
+                "The usual recovery time for ulnar collateral ligament reconstruction is anywhere from nine to 18 months, Grizzlies trainer Richard Stark said.",
+                "And there is ulnar collateral ligament reconstruction, which nearly everyone has come to call Tommy John surgery."
+            ]
         }
     ]
 }

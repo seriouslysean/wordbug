@@ -1,125 +1,179 @@
 {
     "word": "fish",
     "date": "20180204",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "F5147800-1",
+            "id": "fish",
             "partOfSpeech": "noun",
-            "text": "Any of numerous cold-blooded aquatic vertebrates characteristically having fins, gills, and a streamlined body and including the bony fishes, such as catfishes and tunas, and the cartilaginous fishes, such as sharks and rays.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an aquatic animal —usually used in combination",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish",
+            "examples": [
+                "freshwater fish",
+                "tropical fish",
+                "We're having fish for dinner.",
+                "an odd fish",
+                "felt sorry for the poor fish",
+                "The submarine's fish hit the freighter."
+            ]
         },
         {
-            "id": "F5147800-2",
+            "id": "fish",
             "partOfSpeech": "noun",
-            "text": "Any of various jawless aquatic craniates, including the lampreys and hagfishes.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of numerous cold-blooded strictly aquatic craniate vertebrates that include the bony fishes and usually the cartilaginous and jawless fishes and that have typically an elongated somewhat spindle-shaped body terminating in a broad caudal fin, limbs in the form of fins when present at all, and a 2-chambered heart by which blood is sent through thoracic gills to be oxygenated",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish",
+            "examples": [
+                "freshwater fish",
+                "tropical fish",
+                "We're having fish for dinner.",
+                "an odd fish",
+                "felt sorry for the poor fish",
+                "The submarine's fish hit the freighter."
+            ]
         },
         {
-            "id": "F5147800-3",
+            "id": "fish",
             "partOfSpeech": "noun",
-            "text": "The flesh of such animals used as food.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the flesh of fish used as food",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish",
+            "examples": [
+                "freshwater fish",
+                "tropical fish",
+                "We're having fish for dinner.",
+                "an odd fish",
+                "felt sorry for the poor fish",
+                "The submarine's fish hit the freighter."
+            ]
         },
         {
-            "id": "F5147800-4",
+            "id": "fish",
+            "partOfSpeech": "verb",
+            "text": "to catch or attempt to catch fish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish",
+            "examples": [
+                "fishing for a compliment",
+                "fish for pearls",
+                "fishing around in her purse for her keys",
+                "fishing the stream",
+                "Fishing a fly … often produces a series of multiple hits …",
+                "fish salmon",
+                "fished the ball from under the car",
+                "fish wires through a conduit"
+            ]
+        },
+        {
+            "id": "fish",
+            "partOfSpeech": "verb",
+            "text": "to seek something by roundabout means",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish",
+            "examples": [
+                "fishing for a compliment",
+                "fish for pearls",
+                "fishing around in her purse for her keys",
+                "fishing the stream",
+                "Fishing a fly … often produces a series of multiple hits …",
+                "fish salmon",
+                "fished the ball from under the car",
+                "fish wires through a conduit"
+            ]
+        },
+        {
+            "id": "fish",
+            "partOfSpeech": "verb",
+            "text": "to search for something underwater",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish",
+            "examples": [
+                "fishing for a compliment",
+                "fish for pearls",
+                "fishing around in her purse for her keys",
+                "fishing the stream",
+                "Fishing a fly … often produces a series of multiple hits …",
+                "fish salmon",
+                "fished the ball from under the car",
+                "fish wires through a conduit"
+            ]
+        },
+        {
+            "id": "Fish:b",
+            "text": "Hamilton 1808—1893 American statesman",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
+        },
+        {
+            "id": "fish and chips",
+            "text": "fried fish and french fried potatoes",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
+        },
+        {
+            "id": "fish cake",
             "partOfSpeech": "noun",
-            "text": "A person, especially one considered deficient in something.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [
-                "a poor fish."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a round fried cake made of shredded fish and mashed potato",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         },
         {
-            "id": "F5147800-5",
-            "partOfSpeech": "intransitive verb",
-            "text": "To catch or try to catch fish.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "fish duck",
+            "partOfSpeech": "noun",
+            "text": "merganser",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         },
         {
-            "id": "F5147800-6",
-            "partOfSpeech": "intransitive verb",
-            "text": "To look for something by feeling one's way; grope.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [
-                "fished in both pockets for a coin."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "fish-eye",
+            "partOfSpeech": "adjective",
+            "text": "being, having, or produced by a wide-angle photographic lens that has a highly curved protruding front, that covers an angle of about 180 degrees, and that gives a circular image",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         },
         {
-            "id": "F5147800-7",
-            "partOfSpeech": "intransitive verb",
-            "text": "To seek something in a sly or indirect way.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [
-                "fish for compliments."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "fish farm",
+            "partOfSpeech": "noun",
+            "text": "a commercial facility for raising aquatic animals for human food",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         },
         {
-            "id": "F5147800-8",
-            "partOfSpeech": "intransitive verb",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "fish finger",
+            "partOfSpeech": "noun",
+            "text": "fish stick",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         },
         {
-            "id": "F5147800-9",
-            "partOfSpeech": "intransitive verb",
-            "text": "To catch or try to catch (fish).",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "fish fry",
+            "partOfSpeech": "noun",
+            "text": "a picnic or supper featuring fried fish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         },
         {
-            "id": "F5147800-10",
-            "partOfSpeech": "intransitive verb",
-            "text": "To catch or try to catch fish in.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/fish",
-            "examples": [
-                "fish mountain streams."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "fish fry",
+            "partOfSpeech": "noun",
+            "text": "fried fish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         }
     ]
 }

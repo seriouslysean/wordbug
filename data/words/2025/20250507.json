@@ -1,28 +1,23 @@
 {
     "word": "sapiens",
     "date": "20250507",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "partOfSpeech": "noun",
-            "text": "<xref>Homo sapiens</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sapiens",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "sapiens",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or being recent humans (Homo sapiens) as distinguished from various fossil hominids",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sapiens"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "of or relating to or characteristic of Homo sapiens",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/sapiens",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Homo sapiens",
+            "partOfSpeech": "noun",
+            "text": "humankind",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sapiens"
         }
     ]
 }

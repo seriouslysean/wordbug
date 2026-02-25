@@ -1,40 +1,31 @@
 {
     "word": "snakelike",
     "date": "20250720",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "partOfSpeech": "adjective",
-            "text": "<xref>Resembling</xref> a <xref>snake</xref>. Long, thin and flexible; <xref>waving</xref> about in a snake-like manner.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/snakelike",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "snake",
+            "partOfSpeech": "noun",
+            "text": "any of numerous limbless scaled reptiles (suborder Serpentes synonym Ophidia) with a long tapering body and with salivary glands often modified to produce venom which is injected through grooved or tubular fangs",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/snakelike"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "Like that of a <xref>snake</xref>; as, a snakelike tongue",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/snakelike",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "snake",
+            "partOfSpeech": "noun",
+            "text": "a worthless or treacherous fellow",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/snakelike"
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "resembling a serpent in form",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/snakelike",
-            "examples": [
-                "snaky ridges in the sand"
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "snake",
+            "partOfSpeech": "noun",
+            "text": "something (such as a plumber's snake) resembling a snake",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/snakelike"
         }
     ]
 }

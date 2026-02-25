@@ -1,18 +1,15 @@
 {
     "word": "reminiscing",
     "date": "20250511",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "reminisce",
             "partOfSpeech": "verb",
-            "text": "Present participle of <xref>reminisce</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/reminiscing",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "to indulge in reminiscence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/reminiscing"
         }
     ]
 }

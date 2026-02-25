@@ -1,116 +1,49 @@
 {
     "word": "interpret",
     "date": "20251110",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "I5216000-1",
-            "partOfSpeech": "intransitive verb",
-            "text": "To explain the meaning of: <i>synonym</i>: <strong> explain</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
+            "id": "interpret",
+            "partOfSpeech": "verb",
+            "text": "to explain or tell the meaning of: present in understandable terms",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/interpret",
             "examples": [
-                "The newspapers interpreted the ambassador's speech as an attempt at making peace."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "interpret dreams",
+                "needed help interpreting the results",
+                "interpret a contract",
+                "interprets a role"
+            ]
         },
         {
-            "id": "I5216000-2",
-            "partOfSpeech": "intransitive verb",
-            "text": "To understand the significance of; construe.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
+            "id": "interpret",
+            "partOfSpeech": "verb",
+            "text": "to conceive in the light of individual belief, judgment, or circumstance: construe",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/interpret",
             "examples": [
-                "interpreted his smile to be an agreement; interpreted the open door as an invitation."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "interpret dreams",
+                "needed help interpreting the results",
+                "interpret a contract",
+                "interprets a role"
+            ]
         },
         {
-            "id": "I5216000-3",
-            "partOfSpeech": "intransitive verb",
-            "text": "To present or conceptualize the meaning of by means of art or criticism.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
+            "id": "interpret",
+            "partOfSpeech": "verb",
+            "text": "to represent by means of art: bring to realization by performance or direction",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/interpret",
             "examples": [
-                "The actor interpreted the character with great subtlety."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "I5216000-4",
-            "partOfSpeech": "intransitive verb",
-            "text": "To translate from one language into another.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
-            "examples": [
-                "interpreted the ambassador's remarks for the assembly."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "I5216000-5",
-            "partOfSpeech": "intransitive verb",
-            "text": "To serve as an interpreter for speakers of different languages.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To expound the meaning or significance of, as by translation or explanation; elucidate or unfold, as foreign or obscure language, a mystery, etc.; make plain or intelligible.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To show the purport of; develop or make clear by representation: as, to <internalXref urlencoded=\"interpret\">interpret</internalXref> a drama or a character by action on the stage.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To construe; attribute a given meaning to: as, the company <em>interpreted</em> his silence unfavorably.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "<strong>Synonyms</strong> <em>Render, Construe</em>, etc. (see <internalXref urlencoded=\"translate\">translate</internalXref>); <em>Expound, Elucidate</em>, etc. (see <internalXref urlencoded=\"explain\">explain</internalXref>).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To practise interpretation; make an interpretation or explanation; tell or determine what something signifies.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/interpret",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+                "interpret dreams",
+                "needed help interpreting the results",
+                "interpret a contract",
+                "interprets a role"
+            ]
         }
     ]
 }

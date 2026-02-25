@@ -1,116 +1,70 @@
 {
     "word": "irrational",
     "date": "20250821",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "I5259900-1",
+            "id": "irrational",
             "partOfSpeech": "adjective",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "I5259900-2",
-            "partOfSpeech": "adjective",
-            "text": "Not endowed with reason.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "I5259900-3",
-            "partOfSpeech": "adjective",
-            "text": "Affected by loss of usual or normal mental clarity; incoherent, as from shock.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "I5259900-4",
-            "partOfSpeech": "adjective",
-            "text": "Marked by a lack of accord with reason or sound judgment.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
+            "text": "not rational: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/irrational",
             "examples": [
-                "an irrational dislike."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "irrational fears",
+                "an irrational root of an equation",
+                "a length that is irrational"
+            ]
         },
         {
-            "id": "I5259900-5",
+            "id": "irrational",
             "partOfSpeech": "adjective",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "lacking usual or normal mental clarity or coherence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/irrational",
+            "examples": [
+                "irrational fears",
+                "an irrational root of an equation",
+                "a length that is irrational"
+            ]
         },
         {
-            "id": "I5259900-6",
+            "id": "irrational",
             "partOfSpeech": "adjective",
-            "text": "Being a syllable in Greek and Latin prosody whose length does not fit the metric pattern.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "not endowed with reason or understanding",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/irrational",
+            "examples": [
+                "irrational fears",
+                "an irrational root of an equation",
+                "a length that is irrational"
+            ]
         },
         {
-            "id": "I5259900-7",
-            "partOfSpeech": "adjective",
-            "text": "Being a metric foot containing such a syllable.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "I5259900-8",
-            "partOfSpeech": "adjective",
-            "text": "Of or relating to an irrational number.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "I5259900-9",
+            "id": "irrational",
             "partOfSpeech": "noun",
-            "text": "An irrational number.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an irrational being",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/irrational"
         },
         {
-            "text": "Not rational; without the faculty of reason; void of understanding; unreasoning.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/irrational",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "irrational",
+            "partOfSpeech": "noun",
+            "text": "irrational number",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/irrational"
+        },
+        {
+            "id": "irrational number",
+            "partOfSpeech": "noun",
+            "text": "a number that can be expressed as an infinite decimal with no set of consecutive digits repeating itself indefinitely and that cannot be expressed as the quotient of two integers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/irrational"
         }
     ]
 }

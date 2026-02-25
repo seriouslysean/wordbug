@@ -1,18 +1,20 @@
 {
     "word": "mentorship",
     "date": "20250827",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "mentorship",
             "partOfSpeech": "noun",
-            "text": "<xref>state</xref> of being a <xref>mentor</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/mentorship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the influence, guidance, or direction given by a mentor",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/mentorship",
+            "examples": [
+                "Francie rides under the mentorship of Rodney Jenkins.",
+                "The solution, they decided, was a two-year program welcoming adolescents into the community with equal doses of mentorship, Scripture and recreation.",
+                "Senior Senate women intentionally cultivate a collaborative spirit through social events and mentorship."
+            ]
         }
     ]
 }

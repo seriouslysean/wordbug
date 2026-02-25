@@ -1,59 +1,31 @@
 {
     "word": "hypocrite",
     "date": "20250820",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "H5388700-1",
+            "id": "hypocrite",
             "partOfSpeech": "noun",
-            "text": "A person given to hypocrisy.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/hypocrite",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a person who puts on a false appearance of virtue or religion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hypocrite",
+            "examples": [
+                "… there are the hypocrites, who hurry to church on Sunday, but exhibit a whole spectrum of sins during the week.",
+                "The genuine hypocrite does or says one thing in public and another in private."
+            ]
         },
         {
+            "id": "hypocrite",
             "partOfSpeech": "noun",
-            "text": "One who assumes a false appearance; one who feigns to be what he is not, or to feel or believe what he does not actually feel or believe; especially, a false pretender to virtue or piety.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/hypocrite",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<strong>Synonyms</strong> <em>Dissembler, Hypocrite</em> (see <internalXref urlencoded=\"dissembler\">dissembler</internalXref>); Pharisee, formalist, cheat.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/hypocrite",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One who plays a part; especially, one who, for the purpose of winning approbation of favor, puts on a fair outside seeming; one who feigns to be other and better than he is; a false pretender to virtue or piety; one who simulates virtue or piety.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/hypocrite",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a person who professes beliefs and opinions that he or she does not hold in order to conceal his or her real feelings or motives",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/hypocrite",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a person whose behavior contradicts their stated beliefs or feelings",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/hypocrite",
+            "examples": [
+                "… there are the hypocrites, who hurry to church on Sunday, but exhibit a whole spectrum of sins during the week.",
+                "The genuine hypocrite does or says one thing in public and another in private."
+            ]
         }
     ]
 }

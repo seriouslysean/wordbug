@@ -1,122 +1,147 @@
 {
     "word": "superior",
     "date": "20250523",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5956150-1",
+            "id": "superior",
             "partOfSpeech": "adjective",
-            "text": "Higher than another in rank, station, or authority.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
+            "text": "situated higher up: upper",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior",
             "examples": [
-                "a superior officer."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "escaped by superior speed",
+                "her superior memory",
+                "a superior artery",
+                "a genus is superior to a species"
+            ]
         },
         {
-            "id": "S5956150-2",
+            "id": "superior",
             "partOfSpeech": "adjective",
-            "text": "Of a higher nature or kind.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5956150-3",
-            "partOfSpeech": "adjective",
-            "text": "Of great value or excellence; extraordinary.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5956150-4",
-            "partOfSpeech": "adjective",
-            "text": "Greater in number or amount than another.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
+            "text": "of higher rank, quality, or importance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior",
             "examples": [
-                "an army defeated by superior numbers of enemy troops."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "escaped by superior speed",
+                "her superior memory",
+                "a superior artery",
+                "a genus is superior to a species"
+            ]
         },
         {
-            "id": "S5956150-5",
+            "id": "superior",
             "partOfSpeech": "adjective",
-            "text": "Presuming to be or suggesting that one is morally or socially better than others; disdainful or supercilious.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "courageously or serenely indifferent (as to something painful or disheartening)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior",
+            "examples": [
+                "escaped by superior speed",
+                "her superior memory",
+                "a superior artery",
+                "a genus is superior to a species"
+            ]
         },
         {
-            "id": "S5956150-6",
-            "partOfSpeech": "adjective",
-            "text": "Above being affected or influenced; indifferent or immune.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "superior",
+            "partOfSpeech": "noun",
+            "text": "one who is above another in rank, station, or office; especially: the head of a religious house or order",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
         },
         {
-            "id": "S5956150-7",
-            "partOfSpeech": "adjective",
-            "text": "Located higher than another; upper.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "superior",
+            "partOfSpeech": "noun",
+            "text": "one that surpasses another in quality or merit",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
         },
         {
-            "id": "S5956150-8",
-            "partOfSpeech": "adjective",
-            "text": "Inserted or situated above the perianth. Used of an ovary.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "superior",
+            "partOfSpeech": "noun",
+            "text": "superscript",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
         },
         {
-            "id": "S5956150-9",
-            "partOfSpeech": "adjective",
-            "text": "Set above the main line of type.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Superior:g",
+            "text": "city and port on Lake Superior in northwestern Wisconsin population 27,244",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
         },
         {
-            "id": "S5956150-10",
-            "partOfSpeech": "adjective",
-            "text": "Of wider or more comprehensive application; generic. Used of a term or proposition.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/superior",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "superior conjunction",
+            "partOfSpeech": "noun",
+            "text": "a conjunction of a planet with the sun in which the sun is aligned between the earth and the planet",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
+        },
+        {
+            "id": "superior court",
+            "partOfSpeech": "noun",
+            "text": "a court of general jurisdiction intermediate between the inferior courts (such as a justice of the peace court) and the higher appellate courts",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
+        },
+        {
+            "id": "superior court",
+            "partOfSpeech": "noun",
+            "text": "a court with juries having original jurisdiction",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
+        },
+        {
+            "id": "superior general",
+            "partOfSpeech": "noun",
+            "text": "the superior of a religious order or congregation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
+        },
+        {
+            "id": "superior planet",
+            "partOfSpeech": "noun",
+            "text": "a planet (such as Jupiter) whose orbit lies outside that of Earth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
+        },
+        {
+            "id": "superior vena cava",
+            "partOfSpeech": "noun",
+            "text": "the branch of the vena cava of a vertebrate that brings blood back from the head and anterior part of the body to the heart",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
+        },
+        {
+            "id": "Superior, Lake:g",
+            "text": "lake in the U.S. (Minnesota, Wisconsin, and Michigan) and Canada (Ontario) area 31,800 square miles (82,362 square kilometers)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior"
+        },
+        {
+            "id": "highly superior autobiographical memory",
+            "partOfSpeech": "noun",
+            "text": "the uncommon ability that allows a person to spontaneously recall with great accuracy and detail a vast number of personal events or experiences and their associated dates: hyperthymesia",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superior",
+            "examples": [
+                "Highly superior autobiographical memory allows one to recall the day, date and year of any major celebrity death they took note of, to remember what they had for dinner and how the weather was on any given day of any month and year, and to list off the matchups of their favorite sports teams like anyone else could only do by reading off of Wikipedia.",
+                "People with an extremely rare condition called “highly superior autobiographical memory” have the ability to remember every single event in their lives from a certain date in their childhood onward. If you ask them about an event they can remember the exact date, the weather and what they ate for lunch that day—and they can visualize it as vividly as if it happened yesterday."
+            ]
         }
     ]
 }

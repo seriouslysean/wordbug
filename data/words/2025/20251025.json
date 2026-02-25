@@ -1,49 +1,23 @@
 {
     "word": "cichlid",
     "date": "20251025",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5368400-1",
+            "id": "cichlid",
             "partOfSpeech": "noun",
-            "text": "Any of numerous tropical and subtropical chiefly freshwater fishes of the family Cichlidae, which includes the tilapias and many species that are popular as aquarium fish.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cichlid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a family (Cichlidae) of mostly tropical spiny-finned usually freshwater fishes including several kept in tropical aquariums",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cichlid"
         },
         {
+            "id": "chameleon cichlid",
             "partOfSpeech": "noun",
-            "text": "A fish of the family <em>Cichlidæ.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/cichlid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Any of many tropical fish, of the family <xref>Cichlidae</xref>, popular as aquarium fish.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cichlid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "freshwater fishes of tropical America and Africa and Asia similar to American sunfishes; some are food fishes; many small ones are popular in aquariums",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/cichlid",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a freshwater cichlid fish (Australohero facetus synonym Cichlasoma facetum) of South America that is typically yellow to pale brown with dark vertical stripes, may reach a length of seven inches (18 centimeters), and is sometimes kept in aquariums —called also chanchito",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cichlid"
         }
     ]
 }

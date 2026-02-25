@@ -1,109 +1,47 @@
 {
     "word": "navigation",
     "date": "20250417",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "N5040400-1",
+            "id": "navigation",
             "partOfSpeech": "noun",
-            "text": "The theory and practice of navigating, especially the charting of a course for a ship or aircraft.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the act or practice of navigating",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/navigation"
         },
         {
-            "id": "N5040400-2",
+            "id": "navigation",
             "partOfSpeech": "noun",
-            "text": "Travel or traffic by vessels, especially commercial shipping.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the science of getting vehicles from place to place; especially: the method of determining position, course, and distance traveled",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/navigation"
         },
         {
+            "id": "navigation",
             "partOfSpeech": "noun",
-            "text": "The act of navigating; the act of moving on water in ships or other vessels; sailing: as, the <em>navigation</em> of the northern seas; also, by extension, the act of “sailing” through the air in a balloon (see <internalXref urlencoded=\"a%C3%ABrial%20navigation\">aërial navigation</internalXref>, below).",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "ship traffic or commerce",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/navigation"
         },
         {
+            "id": "celestial navigation",
             "partOfSpeech": "noun",
-            "text": "The science or art of directing the course of vessels as they sail from one part of the world to another.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "navigation by observation of the positions of celestial bodies",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/navigation"
         },
         {
+            "id": "inertial navigation",
             "partOfSpeech": "noun",
-            "text": "Ships in general; shipping.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An artificial waterway, or a part of a natural waterway that has been made navigable; a canal. Also <internalXref urlencoded=\"navvy\">navvy</internalXref>. See <internalXref urlencoded=\"navvy\">navvy</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The act of navigating; the act of passing on water in ships or other vessels; the state of being navigable.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The science or art of conducting ships or vessels from one place to another, including, more especially, the method of determining a ship's position, course, distance passed over, etc., on the surface of the globe, by the principles of geometry and astronomy.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The management of sails, rudder, etc.; the mechanics of traveling by water; seamanship.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/navigation",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "guidance (as of an aircraft or spacecraft) by means of self-contained automatically controlling devices that respond to inertial forces —called also inertial navigation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/navigation"
         }
     ]
 }

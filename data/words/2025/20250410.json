@@ -1,110 +1,31 @@
 {
     "word": "marsupial",
     "date": "20250410",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "M5130600-1",
+            "id": "marsupial",
             "partOfSpeech": "noun",
-            "text": "Any of various nonplacental mammals of the infraclass Metatheria, including kangaroos, opossums, bandicoots, and wombats, found principally in Australia and the Americas, and typically bearing young that suckle and develop after birth in the mother's pouch. These species were formerly placed in the order Marsupialia.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of an order (Marsupialia) of mammals comprising kangaroos, wombats, bandicoots, opossums, and related animals that do not develop a true placenta and that usually have a pouch on the abdomen of the female which covers the teats and serves to carry the young",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/marsupial"
         },
         {
-            "id": "M5130600-2",
+            "id": "marsupial",
             "partOfSpeech": "adjective",
-            "text": "Of or belonging to the infraclass Metatheria.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of, relating to, or being a marsupial",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/marsupial"
         },
         {
-            "id": "M5130600-3",
+            "id": "marsupial",
             "partOfSpeech": "adjective",
-            "text": "Relating to or having a marsupium.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Having the character of a bag, pouch, or marsupium; marsupiate.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Of or pertaining to a marsupium: as, <em>marsupial</em> bones.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Provided with a marsupium; specifically, pertaining to the <em>Marsupialia</em>, or having their characters.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A member of the order <em>Marsupialia</em>; any implacental didelphian mammal. Also called <internalXref urlencoded=\"marsupiate\">marsupiate</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having a pouch for carrying the immature young; of or pertaining to the Marsupialia.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Of or pertaining to a marsupium.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [
-                "the <ex>marsupial</ex> bones"
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "See <er>Nototrema</er>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/marsupial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of, relating to, or forming a marsupium",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/marsupial"
         }
     ]
 }

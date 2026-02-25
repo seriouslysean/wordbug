@@ -1,101 +1,23 @@
 {
     "word": "stupendous",
     "date": "20251129",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5897600-1",
+            "id": "stupendous",
             "partOfSpeech": "adjective",
-            "text": "So great in scope, degree, or importance as to amaze.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [
-                "a stupendous catastrophe."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "causing astonishment or wonder: awesome, marvelous",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/stupendous"
         },
         {
-            "id": "S5897600-2",
+            "id": "stupendous",
             "partOfSpeech": "adjective",
-            "text": "Extremely large in amount, extent, or size; enormous.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [
-                "stupendous wealth; a stupendous waterfall."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5897600-3",
-            "partOfSpeech": "adjective",
-            "text": "Remarkable; outstanding.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Causing stupor or astonishment; astounding; amazing; specifically, astonishing from greatness in extent or degree; of wonderful magnitude; immense; prodigious: as, a <em>stupendous</em> work of nature or art; a <em>stupendous</em> blunder.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Astonishing; wonderful; amazing; especially, astonishing in magnitude or elevation.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [
-                "a <ex>stupendous</ex> pile"
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "<xref>Astonishingly</xref> great or large; <xref>huge</xref>; <xref>enormous</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Of <xref>stunning</xref> <xref>volume</xref>, <xref>degree</xref>, or <xref>excellence</xref>; <xref>marvelous</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "so great in size or force or extent as to elicit awe",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/stupendous",
-            "examples": [
-                "stupendous demand",
-                "a stupendous field of grass",
-                "has a colossal nerve",
-                "a prodigious storm"
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "of amazing size or greatness: tremendous",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/stupendous"
         }
     ]
 }

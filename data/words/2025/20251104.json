@@ -1,69 +1,15 @@
 {
     "word": "cerebellum",
     "date": "20251104",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5216600-1",
+            "id": "cerebellum",
             "partOfSpeech": "noun",
-            "text": "The trilobed structure of the brain, lying posterior to the pons and medulla oblongata and inferior to the occipital lobes of the cerebral hemispheres, that is responsible for the regulation and coordination of complex voluntary muscular movement as well as the maintenance of posture and balance.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cerebellum",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The little brain or hind-brain of a vertebrate animal; a lobe of the brain developed on the dorsal side of the cerebrospinal axis, between the corpora quadrigemina in front and the medulla oblongata behind, and forming part of the roof of the fourth ventricle.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/cerebellum",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>Insecta</em>, the subesophageal ganglion, situated in the lower part of the head, and connected with the supra-esophageal ganglion or cerebrum by two nerve-chords surrounding the gullet",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/cerebellum",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The large lobe of the hind brain in front of and above the medulla; the little brain. It controls combined muscular action. See <xref urlencoded=\"brain\">brain</xref>.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/cerebellum",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Part of the <xref>hindbrain</xref> in <xref>vertebrates</xref>. In <xref>humans</xref> it lies between the <xref>brainstem</xref> and the <xref>cerebrum</xref>. It plays an important role in sensory perception, motor output, balance and posture.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cerebellum",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a major division of the vertebrate brain; situated above the medulla oblongata and beneath the cerebrum in humans",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/cerebellum",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a large dorsally projecting part of the brain concerned especially with the coordination of muscles and the maintenance of bodily equilibrium, situated between the brain stem and the back of the cerebrum, and formed in humans of two lateral lobes and a median lobe",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cerebellum"
         }
     ]
 }

@@ -1,113 +1,52 @@
 {
     "word": "motif",
     "date": "20251128",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "M5475000-1",
+            "id": "motif",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a usually recurring salient thematic element (as in the arts); especially: a dominant idea or central theme",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/motif",
+            "examples": [
+                "… the perfidy of men is a motif in several of the stories.",
+                "a decorative motif",
+                "Animals and flowers as well as trees decorate sixteenth- and seventeenth-century Chinese panels, and each motif had its own meaning.",
+                "These RNA molecules have an intriguing structural motif, absent in normal RNA, that recognizes an amino acid and chemically binds to it, forming a novel type of RNA enzyme, or ribozyme.",
+                "Only about half these genes have recognizable motifs, or DNA-sequence patterns, that suggest possible functions."
+            ]
         },
         {
-            "id": "M5475000-2",
+            "id": "motif",
             "partOfSpeech": "noun",
-            "text": "A recurrent thematic element in an artistic or literary work.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a single or repeated design or color",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/motif",
+            "examples": [
+                "… the perfidy of men is a motif in several of the stories.",
+                "a decorative motif",
+                "Animals and flowers as well as trees decorate sixteenth- and seventeenth-century Chinese panels, and each motif had its own meaning.",
+                "These RNA molecules have an intriguing structural motif, absent in normal RNA, that recognizes an amino acid and chemically binds to it, forming a novel type of RNA enzyme, or ribozyme.",
+                "Only about half these genes have recognizable motifs, or DNA-sequence patterns, that suggest possible functions."
+            ]
         },
         {
-            "id": "M5475000-3",
+            "id": "motif",
             "partOfSpeech": "noun",
-            "text": "A dominant theme or central idea.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5475000-4",
-            "partOfSpeech": "noun",
-            "text": "A short rhythmic or melodic passage that is repeated or evoked in various parts of a composition.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5475000-5",
-            "partOfSpeech": "noun",
-            "text": "A repeated figure or design in architecture or decoration. <i>synonym</i>: <strong> figure</strong>.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "M5475000-6",
-            "partOfSpeech": "noun",
-            "text": "A recurrent pattern either of molecular sequence, usually of nucleotides or amino acids in proteins, or of molecular structure that usually corresponds to specific biological activity.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A Middle English form of <internalXref urlencoded=\"motive\">motive</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "[F.] A datum, theme, or ground for intellectual action: used as French.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "[F.] In <em>music</em>:",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A figure.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/motif",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a distinctive, usually recurrent, molecular sequence (as of amino acids or base pairs) or structural element (as of secondary protein structures)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/motif",
+            "examples": [
+                "… the perfidy of men is a motif in several of the stories.",
+                "a decorative motif",
+                "Animals and flowers as well as trees decorate sixteenth- and seventeenth-century Chinese panels, and each motif had its own meaning.",
+                "These RNA molecules have an intriguing structural motif, absent in normal RNA, that recognizes an amino acid and chemically binds to it, forming a novel type of RNA enzyme, or ribozyme.",
+                "Only about half these genes have recognizable motifs, or DNA-sequence patterns, that suggest possible functions."
+            ]
         }
     ]
 }

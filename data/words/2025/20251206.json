@@ -1,121 +1,97 @@
 {
     "word": "sympathetic",
     "date": "20251206",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5988900-1",
+            "id": "sympathetic",
             "partOfSpeech": "adjective",
-            "text": "Of, expressing, feeling, or resulting from sympathy.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "text": "existing or operating through an affinity, interdependence, or mutual association",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic",
             "examples": [
-                "a sympathetic glance."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the biographer's approach was sympathetic",
+                "a sympathetic gesture",
+                "not sympathetic to the idea",
+                "a sympathetic role in the play"
+            ]
         },
         {
-            "id": "S5988900-2",
+            "id": "sympathetic",
             "partOfSpeech": "adjective",
-            "text": "Favorably inclined.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "text": "appropriate to one's mood, inclinations, or disposition",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic",
             "examples": [
-                "not at all sympathetic to her proposal."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the biographer's approach was sympathetic",
+                "a sympathetic gesture",
+                "not sympathetic to the idea",
+                "a sympathetic role in the play"
+            ]
         },
         {
-            "id": "S5988900-3",
+            "id": "sympathetic",
             "partOfSpeech": "adjective",
-            "text": "Agreeably suited to one's disposition or mood; congenial.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
+            "text": "marked by kindly or pleased appreciation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic",
             "examples": [
-                "sympathetic surroundings."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the biographer's approach was sympathetic",
+                "a sympathetic gesture",
+                "not sympathetic to the idea",
+                "a sympathetic role in the play"
+            ]
         },
         {
-            "id": "S5988900-4",
-            "partOfSpeech": "adjective",
-            "text": "Of, relating to, or acting on the sympathetic nervous system.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
-            "examples": [
-                "a sympathetic neuron; sympathetic stimulation."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "sympathetic",
+            "partOfSpeech": "noun",
+            "text": "a sympathetic structure; especially: sympathetic nervous system",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic"
         },
         {
-            "id": "S5988900-5",
-            "partOfSpeech": "adjective",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "sympathetic magic",
+            "partOfSpeech": "noun",
+            "text": "magic based on the assumption that a person or thing can be supernaturally affected through its name or an object representing it",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic"
         },
         {
-            "id": "S5988900-6",
-            "partOfSpeech": "adjective",
-            "text": "Relating to or being vibrations, especially musical tones, produced in one body by energy from a nearby vibrating body and having the same frequency as the vibration of the nearby body.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "sympathetic nervous system",
+            "partOfSpeech": "noun",
+            "text": "the part of the autonomic nervous system that contains chiefly adrenergic fibers and tends to depress secretion, decrease the tone and contractility of smooth muscle, and increase heart rate",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic"
         },
         {
-            "id": "S5988900-7",
-            "partOfSpeech": "adjective",
-            "text": "Emitting such vibrations.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
-            "examples": [
-                "sympathetic strings."
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "id": "sympathetic strike",
+            "partOfSpeech": "noun",
+            "text": "sympathy strike",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic"
         },
         {
-            "text": "Pertaining to, expressive of, proceeding from, or exhibiting sympathy, in any sense; attended with sympathy.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "sympathetic vibration",
+            "partOfSpeech": "noun",
+            "text": "a vibration produced in one body by the vibrations of exactly the same period in a neighboring body",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic"
         },
         {
-            "text": "Having sympathy or common feeling with another; susceptible of being affected by feelings like those of another, or of altruistic feelings which arise as a consequence of what another feels.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Harmonious; concordant; congenial.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sympathetic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "reflex sympathetic dystrophy",
+            "partOfSpeech": "noun",
+            "text": "a painful disorder that usually follows a localized injury, that is marked by burning pain, swelling, and motor and sensory disturbances especially of an extremity, and that is often considered a type of complex regional pain syndrome in which peripheral nerve injury has not been identified —abbreviation RSD",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic"
         }
     ]
 }

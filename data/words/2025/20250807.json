@@ -1,116 +1,40 @@
 {
     "word": "warmth",
     "date": "20250807",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "W5033200-1",
+            "id": "warmth",
             "partOfSpeech": "noun",
-            "text": "The state, sensation, or quality of producing or having a moderate degree of heat.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "text": "the quality or state of being warm in temperature",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/warmth",
             "examples": [
-                "an agreeable warmth in the house."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a child needing human warmth and family life"
+            ]
         },
         {
-            "id": "W5033200-2",
+            "id": "warmth",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "W5033200-3",
-            "partOfSpeech": "noun",
-            "text": "Friendliness, kindness, or affection.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
+            "text": "the quality or state of being warm in feeling",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/warmth",
             "examples": [
-                "human warmth."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "a child needing human warmth and family life"
+            ]
         },
         {
-            "id": "W5033200-4",
+            "id": "warmth",
             "partOfSpeech": "noun",
-            "text": "Excitement or intensity, especially of emotion.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "W5033200-5",
-            "partOfSpeech": "noun",
-            "text": "The glowing effect produced by using predominantly red or yellow hues.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The state of being warm; gentle heat: as, the <em>warmth</em> of the sun or of the blood; also, the sensation of moderate heat.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Cordiality; geniality; hearty kindness or good feeling.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A state of lively and excited feeling; ardor; zeal; fervor; earnestness, often approaching anger; intensity; enthusiasm.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>painting</em>, a glowing effect which arises from the use of warm colors (which see, under <internalXref urlencoded=\"warm\">warm</internalXref>), and also from the use of transparent colors in the process of glazing.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In other fine arts, freshness, vigor, and sympathetic treatment of material, as in fine sculpture.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/warmth",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a glowing effect produced by the use of warm colors",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/warmth",
+            "examples": [
+                "a child needing human warmth and family life"
+            ]
         }
     ]
 }

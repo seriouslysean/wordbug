@@ -1,18 +1,37 @@
 {
     "word": "alfredo",
     "date": "20250816",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "Alfredo sauce",
             "partOfSpeech": "noun",
-            "text": "Alternative spelling of <xref>Alfredo</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/alfredo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a rich pasta sauce made with butter, Parmesan cheese, and often cream",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/alfredo"
+        },
+        {
+            "id": "fettuccine Alfredo",
+            "partOfSpeech": "noun",
+            "text": "a dish consisting of fettuccine with butter, Parmesan cheese, cream, and seasonings",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/alfredo"
+        },
+        {
+            "id": "Cristiani:b",
+            "text": "Alfredo 1947— president of El Salvador (1989—94)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/alfredo"
+        },
+        {
+            "id": "Stroessner:b",
+            "text": "Alfredo 1912—2006 president of Paraguay (1954—89)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/alfredo"
         }
     ]
 }

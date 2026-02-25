@@ -1,67 +1,61 @@
 {
     "word": "nostalgic",
     "date": "20250911",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "text": "Relating to, characteristic of, or affected with nostalgia; homesick.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/nostalgic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "nostalgic",
             "partOfSpeech": "adjective",
-            "text": "Of or pertaining to nostalgia; affected with nostalgia.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/nostalgic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "feeling or inspiring nostalgia: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/nostalgic",
+            "examples": [
+                "As we drove through the French countryside, I couldn't help being not just nostalgic, but wistful, about how simple wine was 25 years ago.",
+                "The protest mostly featured the usual suspects—anti-capitalists, environmentalists, union types chanting \"Solidarity,\" and aging hippies nostalgic for their youth.",
+                "He loved good stories, especially nostalgic ones from his boyhood, and relished the telling.",
+                "He soon parlayed his nostalgic pictures into a business that would eventually include writing, antique collecting, museum operations, and reproduction-furniture making."
+            ]
         },
         {
+            "id": "nostalgic",
             "partOfSpeech": "adjective",
-            "text": "Of, having, or relating to <xref>nostalgia</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/nostalgic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "longing for or thinking fondly of a past time or condition",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/nostalgic",
+            "examples": [
+                "As we drove through the French countryside, I couldn't help being not just nostalgic, but wistful, about how simple wine was 25 years ago.",
+                "The protest mostly featured the usual suspects—anti-capitalists, environmentalists, union types chanting \"Solidarity,\" and aging hippies nostalgic for their youth.",
+                "He loved good stories, especially nostalgic ones from his boyhood, and relished the telling.",
+                "He soon parlayed his nostalgic pictures into a business that would eventually include writing, antique collecting, museum operations, and reproduction-furniture making."
+            ]
         },
         {
+            "id": "nostalgic",
             "partOfSpeech": "adjective",
-            "text": "Reminiscent of the speaker's <xref>childhood</xref> or younger years.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/nostalgic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "evocative of a longed-for past time or condition",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/nostalgic",
+            "examples": [
+                "As we drove through the French countryside, I couldn't help being not just nostalgic, but wistful, about how simple wine was 25 years ago.",
+                "The protest mostly featured the usual suspects—anti-capitalists, environmentalists, union types chanting \"Solidarity,\" and aging hippies nostalgic for their youth.",
+                "He loved good stories, especially nostalgic ones from his boyhood, and relished the telling.",
+                "He soon parlayed his nostalgic pictures into a business that would eventually include writing, antique collecting, museum operations, and reproduction-furniture making."
+            ]
         },
         {
+            "id": "nostalgic",
             "partOfSpeech": "noun",
-            "text": "A person who displays <xref>nostalgia</xref> for something.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/nostalgic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "unhappy about being away and longing for familiar things or persons",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/nostalgic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "someone who longs for a past time or condition: a person given to nostalgia",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/nostalgic",
+            "examples": [
+                "There are nostalgics on both sides who felt better with a predictably snarling standoff than with the uncertain paths now opening.",
+                "Eventually it would become an empty shell, a refuge for nostalgics unable to accept the challenge facing all organizations in a changing world; adapt or perish."
+            ]
         }
     ]
 }

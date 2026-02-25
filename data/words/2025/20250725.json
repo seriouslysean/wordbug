@@ -1,68 +1,15 @@
 {
     "word": "myriapod",
     "date": "20250725",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "M5556400-1",
+            "id": "myriapod",
             "partOfSpeech": "noun",
-            "text": "Any of numerous arthropods of the subphylum Myriapoda, having segmented bodies, one pair of antennae, and at least nine pairs of legs, and including the centipedes and millipedes.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/myriapod",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Having very numerous legs; specifically, pertaining to the <em>Myriapoda</em>, or having their characters.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/myriapod",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A member of the <em>Myriapoda;</em> a centiped or milleped. Also <internalXref urlencoded=\"myriapodan\">myriapodan</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/myriapod",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One of the Myriapoda.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/myriapod",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Any <xref>arthropod</xref> (such as <xref>centipedes</xref> and <xref>millipedes</xref>) of the subphylum <xref>Myriapoda</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/myriapod",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "general term for any terrestrial arthropod having an elongated body composed of many similar segments: e.g. centipedes and millipedes",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/myriapod",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a group (Myriapoda) of arthropods having the body made up of numerous similar segments nearly all of which bear true jointed legs and including the millipedes and centipedes",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/myriapod"
         }
     ]
 }

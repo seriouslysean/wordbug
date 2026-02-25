@@ -1,112 +1,92 @@
 {
     "word": "organism",
     "date": "20250831",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "O5129800-1",
+            "id": "organism",
             "partOfSpeech": "noun",
-            "text": "An individual form of life, such as a bacterium, protist, fungus, plant, or animal, composed of a single cell or a complex of cells in which organelles or organs work together to carry out the various processes of life.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "O5129800-2",
-            "partOfSpeech": "noun",
-            "text": "A system regarded as analogous in its structure or functions to a living body.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
+            "text": "a complex structure of interdependent and subordinate elements whose relations and properties are largely determined by their function in the whole",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism",
             "examples": [
-                "the social organism."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "The nation is not merely the sum of individual citizens at any given time, but it is a living organism, a mystical body … of which the individual is an ephemeral part …",
+                "a multicellular organism"
+            ]
         },
         {
+            "id": "organism",
             "partOfSpeech": "noun",
-            "text": "Organic structure; organization.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an individual constituted to carry on the activities of life by means of parts or organs more or less separate in function but mutually dependent: a living being",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism",
+            "examples": [
+                "The nation is not merely the sum of individual citizens at any given time, but it is a living organism, a mystical body … of which the individual is an ephemeral part …",
+                "a multicellular organism"
+            ]
         },
         {
+            "id": "genetically modified organism",
             "partOfSpeech": "noun",
-            "text": "A body exhibiting organization and organic life; a member of the animal or vegetable kingdom; an individual composed of a number of essential and mutually dependent parts, all of which partake of a common life.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a plant, animal, or microorganism whose DNA has been altered artificially through the insertion, deletion, or modification of one or more genes in order to express or suppress a targeted trait or traits: an organism manipulated by genetic modification for the purpose of changing one or more phenotypic characteristics —called also GMO",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism",
+            "examples": [
+                "Genetic engineering is one way to alter a rice plant's sensitivity to herbicides. This involves adding a gene for herbicide resistance from another organism. The resulting plant is termed a genetically modified organism … and any subsequent varieties developed from this plant that possess the introduced trait are GMOs as well.",
+                "The first release of genetically modified mosquitoes in the United States began this week in the Florida Keys—the culmination of a decade-long effort by local mosquito control authorities to see if a genetically modified organism is a viable alternative to spraying insecticides in the region.",
+                "It has been a pink pineapple summer in Omaha. The unusual blushing fruit—grown only in Costa Rica—has made its way to grocery stores. … It gets the pink color from lycopene, making the pineapple a genetically modified organism …"
+            ]
         },
         {
+            "id": "genetically modified organism",
             "partOfSpeech": "noun",
-            "text": "Anything that is organized or organic.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "something (such as a fruit) that is the product of an organism and especially a plant that has undergone genetic modification —called also GMO",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism",
+            "examples": [
+                "Genetic engineering is one way to alter a rice plant's sensitivity to herbicides. This involves adding a gene for herbicide resistance from another organism. The resulting plant is termed a genetically modified organism … and any subsequent varieties developed from this plant that possess the introduced trait are GMOs as well.",
+                "The first release of genetically modified mosquitoes in the United States began this week in the Florida Keys—the culmination of a decade-long effort by local mosquito control authorities to see if a genetically modified organism is a viable alternative to spraying insecticides in the region.",
+                "It has been a pink pineapple summer in Omaha. The unusual blushing fruit—grown only in Costa Rica—has made its way to grocery stores. … It gets the pink color from lycopene, making the pineapple a genetically modified organism …"
+            ]
         },
         {
+            "id": "mycoplasma-like organism",
             "partOfSpeech": "noun",
-            "text": "Organic structure; organization.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "phytoplasma",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism"
         },
         {
+            "id": "pleuropneumonia-like organism",
             "partOfSpeech": "noun",
-            "text": "An organized being; a living body, either vegetable or animal, composed of different organs or parts with functions which are separate, but mutually dependent, and essential to the life of the individual.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "mycoplasma",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism"
         },
         {
+            "id": "mycoplasma",
             "partOfSpeech": "noun",
-            "text": "A discrete and complete <xref>living</xref> thing, such as <xref>animal</xref>, <xref>plant</xref>, <xref>fungus</xref> or <xref>microorganism</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a genus (Mycoplasma of the family Mycoplasmataceae) of pleomorphic gram-negative chiefly nonmotile bacteria that lack a cell wall and are mostly parasitic usually in mammals —called also pleuropneumonia-like organism",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism"
         },
         {
+            "id": "phytoplasma",
             "partOfSpeech": "noun",
-            "text": "Any <xref>complex</xref> thing with properties normally associated with living things.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a living thing that has (or can develop) the ability to act or function independently",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/organism",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of a group of bacteria that are related to mycoplasmas, cause plant diseases (such as aster yellows or elm yellows) by infecting phloem tissue, and are transmitted especially by homopteran insect vectors —called also mycoplasma-like organism",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/organism",
+            "examples": [
+                "For almost half a century, plant pathologists thought phytoplasmas were viruses. To this day, the inability to grow these bacteria outside plants or insects hinders efforts to get a handle on their biology and genomes."
+            ]
         }
     ]
 }

@@ -1,18 +1,14 @@
 {
     "word": "sacré bleu",
     "date": "20250713",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "wiktionary",
     "data": [
         {
             "partOfSpeech": "interjection",
             "text": "An expression of surprise, exasperation, or dismay.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "attributionText": "from Wiktionary",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sacr%C3%A9%20bleu",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "sourceUrl": "https://en.wiktionary.org/wiki/sacr%C3%A9%20bleu"
         }
     ]
 }

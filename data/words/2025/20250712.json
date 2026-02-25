@@ -1,114 +1,76 @@
 {
     "word": "relationship",
     "date": "20250712",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "R5147300-1",
+            "id": "relationship",
             "partOfSpeech": "noun",
-            "text": "The condition or fact of being related; connection or association.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "R5147300-2",
-            "partOfSpeech": "noun",
-            "text": "Connection by blood or marriage; kinship.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "R5147300-3",
-            "partOfSpeech": "noun",
-            "text": "A particular type of connection existing between people related to or having dealings with each other.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
+            "text": "the way in which two or more things or people are connected: the state of being related or interrelated",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/relationship",
             "examples": [
-                "has a close relationship with his siblings."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the relationship between physical and mental health",
+                "studied the relationship between the variables",
+                "the doctor-patient relationship",
+                "had a good relationship with his family",
+                "The relationship between the two countries has improved.",
+                "She and her brother have a close relationship.",
+                "We have a great working relationship.",
+                "The two teammates have a love-hate relationship. =a mixture of love and hate for one another",
+                "raising kids to have a healthy relationship with food",
+                "I have a love-hate relationship with technology.",
+                "I am not interested in a relationship right now.",
+                "claimed a relationship with the deceased",
+                "a list of family relationships"
+            ]
         },
         {
-            "id": "R5147300-4",
+            "id": "relationship",
             "partOfSpeech": "noun",
-            "text": "A romantic or sexual involvement.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the way in which two or more people, groups, countries, etc., talk to, behave toward, and deal with each other",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/relationship",
+            "examples": [
+                "the relationship between physical and mental health",
+                "studied the relationship between the variables",
+                "the doctor-patient relationship",
+                "had a good relationship with his family",
+                "The relationship between the two countries has improved.",
+                "She and her brother have a close relationship.",
+                "We have a great working relationship.",
+                "The two teammates have a love-hate relationship. =a mixture of love and hate for one another",
+                "raising kids to have a healthy relationship with food",
+                "I have a love-hate relationship with technology.",
+                "I am not interested in a relationship right now.",
+                "claimed a relationship with the deceased",
+                "a list of family relationships"
+            ]
         },
         {
+            "id": "relationship",
             "partOfSpeech": "noun",
-            "text": "The state of being related by kindred, affinity, or other alliance.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "In <em>music</em>, same as <internalXref urlencoded=\"relation\">relation</internalXref>, 8. Also called <internalXref urlencoded=\"tone-relationship\">tone-relationship</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The state of being related by kindred, affinity, or other alliance.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<xref>Connection</xref> or <xref>association</xref>; the condition of being <xref>related</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "<xref>Kinship</xref>; being related by <xref>blood</xref> or <xref>marriage</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A <xref>romantic</xref> or <xref>sexual</xref> <xref>involvement</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/relationship",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "one's feelings or behavior towards something that one deals with regularly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/relationship",
+            "examples": [
+                "the relationship between physical and mental health",
+                "studied the relationship between the variables",
+                "the doctor-patient relationship",
+                "had a good relationship with his family",
+                "The relationship between the two countries has improved.",
+                "She and her brother have a close relationship.",
+                "We have a great working relationship.",
+                "The two teammates have a love-hate relationship. =a mixture of love and hate for one another",
+                "raising kids to have a healthy relationship with food",
+                "I have a love-hate relationship with technology.",
+                "I am not interested in a relationship right now.",
+                "claimed a relationship with the deceased",
+                "a list of family relationships"
+            ]
         }
     ]
 }

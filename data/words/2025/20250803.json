@@ -1,39 +1,23 @@
 {
     "word": "supernova",
     "date": "20250803",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5957350-1",
+            "id": "supernova",
             "partOfSpeech": "noun",
-            "text": "A rare celestial phenomenon involving the explosion of a star and resulting in an extremely bright, short-lived object that emits vast amounts of energy. Depending on the type of supernova, the explosion may completely destroy the star, or the stellar core may survive to become a neutron star.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/supernova",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the explosion of a star in which the star may reach a maximum intrinsic luminosity one billion times that of the sun",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/supernova"
         },
         {
+            "id": "supernova",
             "partOfSpeech": "noun",
-            "text": "A <xref>star</xref> which explodes, increasing its brightness to typically a billion times that of our <xref>sun</xref>, though attenuated by the great distance from our sun. Some leave only debris (Type I); others fade to <xref>invisibility</xref> as <xref>neutron stars</xref> (Type II).",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/supernova",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "a star that explodes and becomes extremely luminous in the process",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/supernova",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "one that explodes into prominence or popularity; also: superstar",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/supernova"
         }
     ]
 }

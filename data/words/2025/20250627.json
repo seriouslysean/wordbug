@@ -1,108 +1,67 @@
 {
     "word": "sentient",
     "date": "20250627",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5288600-1",
+            "id": "sentient",
             "partOfSpeech": "adjective",
-            "text": "Having sense perception; conscious.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5288600-2",
-            "partOfSpeech": "adjective",
-            "text": "Experiencing sensation or feeling.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Capable of sensation or of sense-perception; having the power of feeling.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Characterized by the exercise of sense or sense-perception.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "In <em>physiology</em>, noting those parts which on stimulation give rise to sensation.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "<strong>Synonyms</strong> <em>Sensitive</em>, etc. See <internalXref urlencoded=\"sensible\">sensible</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The mind as capable of feeling.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having a faculty, or faculties, of sensation and perception.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
+            "text": "capable of sensing or feeling: conscious of or responsive to the sensations of seeing, hearing, feeling, tasting, or smelling",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sentient",
             "examples": [
-                "the <ex>sentient</ex> extremities of nerves, which terminate in the various organs or tissues"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "sentient beings",
+                "One of the key questions here is whether insects are sentient and have the capacity to feel pain and suffer.",
+                "Because this is at its heart a sci-fi B-movie, the eclipse causes … alien sentient plant-life to arrive on earth, nestled among the zinnias.",
+                "Some among the group of potters … speak of the kiln as though it were sentient.",
+                "But the really intriguing question is a hypothetical one. What would Google's response be if it realised that it actually had a sentient machine on its hands?",
+                "But the terrible silence and emptiness seemed to symbolize her future—she felt as though the house, the street, the world were all empty, and she alone left sentient in a lifeless universe.",
+                "sentient of the danger posed by the approaching hurricane",
+                "But the strange thing is that a boy so sentient of his surroundings should have been so insensible to the real world about him.",
+                "a sentient author with beautiful prose",
+                "As every sentient diplomat knows, diplomacy uses the reputation of power to achieve what power itself often cannot achieve, or can achieve only at greater and sometimes excessive cost."
+            ]
         },
         {
-            "partOfSpeech": "noun",
-            "text": "One who has the faculty of perception; a sentient being.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "sentient",
             "partOfSpeech": "adjective",
-            "text": "<xref>Conscious</xref> or <xref>self-aware</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/sentient",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "aware",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sentient",
+            "examples": [
+                "sentient beings",
+                "One of the key questions here is whether insects are sentient and have the capacity to feel pain and suffer.",
+                "Because this is at its heart a sci-fi B-movie, the eclipse causes … alien sentient plant-life to arrive on earth, nestled among the zinnias.",
+                "Some among the group of potters … speak of the kiln as though it were sentient.",
+                "But the really intriguing question is a hypothetical one. What would Google's response be if it realised that it actually had a sentient machine on its hands?",
+                "But the terrible silence and emptiness seemed to symbolize her future—she felt as though the house, the street, the world were all empty, and she alone left sentient in a lifeless universe.",
+                "sentient of the danger posed by the approaching hurricane",
+                "But the strange thing is that a boy so sentient of his surroundings should have been so insensible to the real world about him.",
+                "a sentient author with beautiful prose",
+                "As every sentient diplomat knows, diplomacy uses the reputation of power to achieve what power itself often cannot achieve, or can achieve only at greater and sometimes excessive cost."
+            ]
+        },
+        {
+            "id": "sentient",
+            "partOfSpeech": "adjective",
+            "text": "finely sensitive in perception or feeling",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sentient",
+            "examples": [
+                "sentient beings",
+                "One of the key questions here is whether insects are sentient and have the capacity to feel pain and suffer.",
+                "Because this is at its heart a sci-fi B-movie, the eclipse causes … alien sentient plant-life to arrive on earth, nestled among the zinnias.",
+                "Some among the group of potters … speak of the kiln as though it were sentient.",
+                "But the really intriguing question is a hypothetical one. What would Google's response be if it realised that it actually had a sentient machine on its hands?",
+                "But the terrible silence and emptiness seemed to symbolize her future—she felt as though the house, the street, the world were all empty, and she alone left sentient in a lifeless universe.",
+                "sentient of the danger posed by the approaching hurricane",
+                "But the strange thing is that a boy so sentient of his surroundings should have been so insensible to the real world about him.",
+                "a sentient author with beautiful prose",
+                "As every sentient diplomat knows, diplomacy uses the reputation of power to achieve what power itself often cannot achieve, or can achieve only at greater and sometimes excessive cost."
+            ]
         }
     ]
 }

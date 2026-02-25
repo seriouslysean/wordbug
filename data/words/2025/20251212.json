@@ -1,86 +1,18 @@
 {
     "word": "anisotropic",
     "date": "20251212",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "A5328300-1",
+            "id": "anisotropic",
             "partOfSpeech": "adjective",
-            "text": "Not isotropic.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "A5328300-2",
-            "partOfSpeech": "adjective",
-            "text": "Having properties that differ based on the direction of measurement.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Having predetermined axes: opposed to <em>isotropic.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Not having the same properties in all directions; not isotropic; æolotropic. All crystals except those of the isometric system are anisotropic with respect to light.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "In <em>botany</em>, a term applied by Sachs to organs which respond differently or unequally to external influences.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Equivalent forms are <em>anisotropal, anisotrope</em>, and <em>anisotropous.</em>",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having <xref>properties</xref> that <xref>differ</xref> according to the <xref>direction</xref> of <xref>measurement</xref>; exhibiting <xref>anisotropy</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "not invariant with respect to direction",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/anisotropic",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "exhibiting properties with different values when measured in different directions",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/anisotropic",
+            "examples": [
+                "an anisotropic crystal"
+            ]
         }
     ]
 }

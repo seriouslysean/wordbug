@@ -1,114 +1,94 @@
 {
     "word": "buffalo",
     "date": "20251021",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "B5544800-1",
+            "id": "buffalo",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of several wild bovids: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
-            "id": "B5544800-2",
+            "id": "buffalo",
             "partOfSpeech": "noun",
-            "text": "Any of several large African and Asian ruminant mammals of the family Bovidae, such as the water buffalo and the African buffalo.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "water buffalo",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
-            "id": "B5544800-3",
+            "id": "buffalo",
             "partOfSpeech": "noun",
-            "text": "The North American bison.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "cape buffalo",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
-            "id": "B5544800-4",
+            "id": "buffalo",
+            "partOfSpeech": "verb",
+            "text": "bewilder, baffle; also: bamboozle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
+        },
+        {
+            "id": "Buffalo:g",
+            "text": "city and port on Lake Erie and the Niagara River in western New York population 261,310",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
+        },
+        {
+            "id": "buffalo berry",
             "partOfSpeech": "noun",
-            "text": "The flesh of the North American bison, used as food.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "either of two North American shrubs (Shepherdia argentea and S. canadensis) of the oleaster family with silvery foliage; also: their edible scarlet berry",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
-            "id": "B5544800-5",
+            "id": "buffalo gourd",
             "partOfSpeech": "noun",
-            "text": "Any of several North American suckers of the genus <em>Ictiobus,</em> having a dark body and an arched back.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a perennial foul-smelling cucurbit (Cucurbita foetidissima) of arid lands of the central and southwest U.S. and Mexico with a large starchy taproot and seeds rich in oil",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
-            "id": "B5544800-6",
-            "partOfSpeech": "transitive verb",
-            "text": "To intimidate or frighten, as by a display of authority.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "B5544800-7",
-            "partOfSpeech": "transitive verb",
-            "text": "To confuse or deceive.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "buffalo grass",
             "partOfSpeech": "noun",
-            "text": "See <internalXref urlencoded=\"buffalo-pea\">buffalo-pea</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a low-growing perennial grass (Buchloë dactyloides) native to the Great Plains that has curly grayish-green leaves; also: grama",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
+            "id": "buffalo plaid",
             "partOfSpeech": "noun",
-            "text": "A ruminant mammal of the family <em>Bovidæ</em>, the best-known species of which is the <em>Bubalus buffelus</em> or <em>Bos bubalus</em>, larger than the ox and with stouter limbs, originally from India, but now found in most of the warmer countries of the eastern hemisphere.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a broad checkered plaid pattern usually of two colors",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
+            "id": "buffalo soldier",
             "partOfSpeech": "noun",
-            "text": "A name given to various wild oxen, or <em>Bovinæ</em>, and particularly to the bison of North America, <em>Bison americanus.</em> See <internalXref urlencoded=\"bison\">bison</internalXref>.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/buffalo",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an African American soldier serving in the western U.S. after the Civil War",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
+        },
+        {
+            "id": "buffalo wing",
+            "partOfSpeech": "noun",
+            "text": "a deep-fried chicken wing coated with a spicy sauce and usually served with a blue cheese dressing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         }
     ]
 }

@@ -1,18 +1,46 @@
 {
     "word": "carcasses",
     "date": "20250418",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
+            "id": "carcass",
             "partOfSpeech": "noun",
-            "text": "Plural form of <xref>carcass</xref>.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/carcasses",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a dead body: corpse; especially: the dressed body of a meat animal",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/carcasses",
+            "examples": [
+                "Butchers trimmed the meat from the carcass.",
+                "It was nearly noon when he finally hauled his carcass out of bed.",
+                "the carcass of an abandoned automobile"
+            ]
+        },
+        {
+            "id": "carcass",
+            "partOfSpeech": "noun",
+            "text": "the living, material, or physical body",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/carcasses",
+            "examples": [
+                "Butchers trimmed the meat from the carcass.",
+                "It was nearly noon when he finally hauled his carcass out of bed.",
+                "the carcass of an abandoned automobile"
+            ]
+        },
+        {
+            "id": "carcass",
+            "partOfSpeech": "noun",
+            "text": "the decaying or worthless remains of a structure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/carcasses",
+            "examples": [
+                "Butchers trimmed the meat from the carcass.",
+                "It was nearly noon when he finally hauled his carcass out of bed.",
+                "the carcass of an abandoned automobile"
+            ]
         }
     ]
 }

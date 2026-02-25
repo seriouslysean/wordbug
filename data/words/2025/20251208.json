@@ -1,111 +1,15 @@
 {
     "word": "cardamom",
     "date": "20251208",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5109100-1",
+            "id": "cardamom",
             "partOfSpeech": "noun",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5109100-2",
-            "partOfSpeech": "noun",
-            "text": "A rhizomatous herb <em>(Elettaria cardamomum)</em> native to South Asia, having capsular fruits with aromatic seeds used as a spice or condiment.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5109100-3",
-            "partOfSpeech": "noun",
-            "text": "The capsules or seeds of this plant.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5109100-4",
-            "partOfSpeech": "noun",
-            "text": "Any of several plants of the related genus <em>Amomum,</em> used as a substitute for cardamom.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One of the capsules of different species of plants of the genera <em>Amomum</em> and <em>Elettaria</em>, natural order <em>Zingiberaceæ:</em> generally used in the plural.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The aromatic fruit, or capsule with its seeds, of several plants of the Ginger family growing in the East Indies and elsewhere, and much used as a condiment, and in medicine.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A rhizomatous herb which produces cardamoms, esp. <spn>Elettaria Cardamomum</spn> and several species of Amomum.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An Indian <xref>herb</xref>, Elettaria cardamomum",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The aromatic seed of this plant, used as a <xref>spice</xref>, baking, also in <xref>curry powder</xref> in Asian and Arabic cuisine, as well as in Northern Europe and in many parts of the world and cultures.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "aromatic seeds used as seasoning like cinnamon and cloves especially in pickles and barbecue sauces",
-            "attributionText": "from WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved.",
-            "sourceDictionary": "wordnet",
-            "sourceUrl": "https://www.wordnik.com/words/cardamom",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "the aromatic capsular fruit of an Indian herb (Elettaria cardamomum) of the ginger family with seeds used as a spice and in medicine; also: this plant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cardamom"
         }
     ]
 }

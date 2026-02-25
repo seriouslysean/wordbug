@@ -1,50 +1,54 @@
 {
     "word": "bluegrass",
     "date": "20250325",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "B5353900-1",
+            "id": "bluegrass",
             "partOfSpeech": "noun",
-            "text": "Any of various grasses of the genus <em>Poa,</em> having bluish spikelets, including species such as Kentucky bluegrass that are used for pastures and lawns and others that are considered weeds.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "any of several grasses (genus Poa) of which some have bluish-green culms; especially: kentucky bluegrass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bluegrass"
         },
         {
-            "id": "B5353900-2",
+            "id": "bluegrass",
             "partOfSpeech": "noun",
-            "text": "A type of country music that originated in the southern United States, typically played on acoustic stringed instruments and characterized by rapid tempos and jazzlike improvisation.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "country music characterized by the use of unamplified stringed instruments (such as banjo, fiddle, guitar, and mandolin), by free improvisation, and by close usually high-pitched harmony",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bluegrass"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "Kentucky bluegrass, Poa pretensis.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "Bluegrass:g",
+            "text": "region of central Kentucky where Kentucky bluegrass abounds that is noted for the breeding of fine horses",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bluegrass"
         },
         {
+            "id": "Kentucky bluegrass",
             "partOfSpeech": "noun",
-            "text": "A style of <xref>country music</xref> with roots in Scots-Irish Appalachian folk music, <xref>blues</xref>, and <xref>jazz</xref>. Characterized by <xref>banjos</xref>, <xref>fiddles</xref>, and <xref>mandolins</xref>, but containing no drums.",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/bluegrass",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "an Old World pasture and meadow grass (Poa pratensis) naturalized in North America and often used in lawns —called also bluegrass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bluegrass"
+        },
+        {
+            "id": "rough bluegrass",
+            "partOfSpeech": "noun",
+            "text": "a forage grass (Poa trivialis) of Eurasia and northern Africa that is naturalized in North America",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bluegrass"
+        },
+        {
+            "id": "blue-eyed grass",
+            "partOfSpeech": "noun",
+            "text": "any of a genus (Sisyrinchium) of New World herbs of the iris family having grasslike foliage and blue, yellow, or white flowers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bluegrass"
         }
     ]
 }

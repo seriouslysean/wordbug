@@ -1,111 +1,40 @@
 {
     "word": "surly",
     "date": "20260104",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "S5966600-1",
+            "id": "surly",
             "partOfSpeech": "adjective",
-            "text": "Sullenly ill-humored; gruff.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "S5966600-2",
-            "partOfSpeech": "adjective",
-            "text": "Threatening, as of weather conditions; ominous.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
+            "text": "menacing or threatening in appearance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/surly",
             "examples": [
-                "surly clouds filled the sky."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "surly weather"
+            ]
         },
         {
-            "id": "S5966600-3",
+            "id": "surly",
             "partOfSpeech": "adjective",
-            "text": "Arrogant; domineering.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Sour in nature or disposition; morose; crabbed; churlish; ill-natured; cross and rude: as, a <em>surly</em> fellow; a <em>surly</em> dog.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Arrogant; haughty.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Rough; dark; tempestuous; gloomy; dismal.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "<strong>Synonyms</strong> Cross, crusty, snappish, uncivil.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Arrogant; haughty.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Gloomily morose; ill-natured, abrupt, and rude; severe; sour; crabbed; rough; sullen; gloomy.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
+            "text": "arrogant, imperious",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/surly",
             "examples": [
-                "a <ex>surly</ex> groom; a <ex>surly</ex> dog; <ex>surly</ex> language; a <ex>surly</ex> look"
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "surly weather"
+            ]
         },
         {
+            "id": "surly",
             "partOfSpeech": "adjective",
-            "text": "Rough; dark; tempestuous.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/surly",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "irritably sullen and churlish in mood or manner: crabbed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/surly",
+            "examples": [
+                "surly weather"
+            ]
         }
     ]
 }

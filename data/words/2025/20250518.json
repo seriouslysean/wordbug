@@ -1,116 +1,63 @@
 {
     "word": "conglomerate",
     "date": "20250518",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5592300-1",
-            "partOfSpeech": "intransitive verb",
-            "text": "To form or gather into a mass or whole.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5592300-2",
-            "partOfSpeech": "intransitive verb",
-            "text": "To form into or merge with a corporate conglomerate.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5592300-3",
-            "partOfSpeech": "intransitive verb",
-            "text": "To cause to form into a mass or whole.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5592300-4",
-            "partOfSpeech": "noun",
-            "text": "A corporation made up of a number of different companies that operate in diversified fields.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5592300-5",
-            "partOfSpeech": "noun",
-            "text": "A collected heterogeneous mass; a cluster.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
+            "id": "conglomerate",
+            "partOfSpeech": "adjective",
+            "text": "made up of parts from various sources or of various kinds",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/conglomerate",
             "examples": [
-                "a conglomerate of color, passion, and artistry."
-            ],
-            "synonyms": [],
-            "antonyms": []
+                "the conglomerate peoples of New England",
+                "a conglomerate empire"
+            ]
         },
         {
-            "id": "C5592300-6",
+            "id": "conglomerate",
+            "partOfSpeech": "verb",
+            "text": "to gather into a mass or coherent whole",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/conglomerate",
+            "examples": [
+                "Infinite numbers of dull people conglomerated round her …"
+            ]
+        },
+        {
+            "id": "conglomerate",
+            "partOfSpeech": "verb",
+            "text": "accumulate",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/conglomerate",
+            "examples": [
+                "Infinite numbers of dull people conglomerated round her …"
+            ]
+        },
+        {
+            "id": "conglomerate",
             "partOfSpeech": "noun",
-            "text": "A coarse-grained sedimentary rock consisting of rounded to subangular rock fragments cemented together by hardened silt, clay, calcium carbonate, or similar material.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a composite mass or mixture; especially: rock composed of rounded fragments varying from small pebbles to large boulders in a cement (as of hardened clay)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/conglomerate",
+            "examples": [
+                "an international conglomerate of some 350 businesses"
+            ]
         },
         {
-            "id": "C5592300-7",
-            "partOfSpeech": "adjective",
-            "text": "Gathered into a mass; clustered.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5592300-8",
-            "partOfSpeech": "adjective",
-            "text": "Made up of loosely cemented heterogeneous material.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To gather into a ball or round body; collect into a round mass.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "To bring together into a mass or heap; collect and form into a whole, without regard to congruity or homogeneity; form a conglomeration of.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/conglomerate",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "id": "conglomerate",
+            "partOfSpeech": "noun",
+            "text": "a widely diversified corporation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/conglomerate",
+            "examples": [
+                "an international conglomerate of some 350 businesses"
+            ]
         }
     ]
 }

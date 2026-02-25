@@ -1,113 +1,15 @@
 {
     "word": "centennial",
     "date": "20250423",
-    "adapter": "wordnik",
-    "preserveCase": false,
+    "adapter": "merriam-webster",
     "data": [
         {
-            "id": "C5204400-1",
-            "partOfSpeech": "adjective",
-            "text": "Of or relating to an age or period of 100 years.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5204400-2",
-            "partOfSpeech": "adjective",
-            "text": "Occurring once every 100 years.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [
-                "a centennial commemoration."
-            ],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5204400-3",
-            "partOfSpeech": "adjective",
-            "text": "Of or relating to a 100th anniversary.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "id": "C5204400-4",
+            "id": "centennial",
             "partOfSpeech": "noun",
-            "text": "A 100th anniversary or a celebration of it.",
-            "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
-            "sourceDictionary": "ahd-5",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A dice game in which the object is to secure pips, or multiples of pips, which will make the figures from 1 to 12, and then from 12 to 1, in numerical order.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Consisting of or lasting a hundred years; completing a hundred years: as, a <em>centennial</em> epoch; the <em>centennial</em> year.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Existing for a century or more.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "text": "Happening every hundred years; relating to or marking a centenary: as, a <em>centennial</em> celebration.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The commemoration or celebration of an event which occurred a hundred years before: as, the <em>centennial</em> of American independence.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Relating to, or associated with, the commemoration of an event that happened a hundred years before.",
-            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
-            "sourceDictionary": "gcide",
-            "sourceUrl": "https://www.wordnik.com/words/centennial",
-            "examples": [
-                "a <ex>centennial</ex> ode"
-            ],
-            "synonyms": [],
-            "antonyms": []
+            "text": "a 100th anniversary or its celebration",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/centennial"
         }
     ]
 }
