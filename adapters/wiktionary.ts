@@ -5,6 +5,9 @@ import type {
 } from '#types';
 import {
   normalizePOS,
+  parseJsonResponse,
+  throwOnHttpError,
+  throwWordNotFound,
   transformToWordData,
   transformWordData,
 } from '#utils/adapter-utils';
@@ -25,24 +28,18 @@ export const wiktionaryAdapter: DictionaryAdapter = {
   async fetchWordData(word: string): Promise<DictionaryResponse> {
     const url = `${BASE_URL}/${encodeURIComponent(word)}`;
     const response = await fetch(url);
+    throwOnHttpError(response, word);
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
-      }
-      throw new Error(`Failed to fetch word data: ${response.statusText}`);
-    }
-
-    const data: unknown = await response.json();
+    const data = await parseJsonResponse(response, 'Wiktionary');
 
     if (!this.isValidResponse(data)) {
-      throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+      throwWordNotFound(word);
     }
 
     const entries = data as FreeDictionaryEntry[];
     const entry = entries[0];
     if (!entry) {
-      throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+      throwWordNotFound(word);
     }
     const sourceUrl = entry.sourceUrls?.[0] ?? '';
     const attribution = 'from Wiktionary';

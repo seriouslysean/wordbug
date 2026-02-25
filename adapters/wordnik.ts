@@ -8,6 +8,9 @@ import type {
 } from '#types';
 import {
   normalizePOS,
+  parseJsonResponse,
+  throwOnHttpError,
+  throwWordNotFound,
   transformToWordData,
   transformWordData,
 } from '#utils/adapter-utils';
@@ -46,19 +49,11 @@ export const CONFIG: WordnikConfig = {
  */
 async function fetchDefinitions(word: string, buildUrl: (w: string) => string): Promise<WordnikDefinition[]> {
   const response = await fetch(buildUrl(word));
-  if (response.status === 429) {
-    throw new Error('Rate limit exceeded. Please try again later.');
-  }
-  if (!response.ok) {
-    throw new Error(
-      response.status === 404
-        ? `Word "${word}" not found in dictionary. Please check the spelling.`
-        : `Failed to fetch word data: ${response.statusText}`,
-    );
-  }
-  const data: WordnikDefinition[] = await response.json();
+  throwOnHttpError(response, word);
+
+  const data = await parseJsonResponse(response, 'Wordnik') as WordnikDefinition[];
   if (data.length === 0) {
-    throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+    throwWordNotFound(word);
   }
   return data;
 }

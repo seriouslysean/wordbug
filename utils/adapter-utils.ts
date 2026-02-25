@@ -3,6 +3,43 @@ import { isBasePartOfSpeech } from '#constants/parts-of-speech';
 import { findValidDefinition } from '#utils/word-data-utils';
 
 /**
+ * Throws a structured error for non-OK HTTP responses.
+ * Handles 429 (rate limit), 404 (not found), and generic failures.
+ */
+export function throwOnHttpError(response: Response, word: string): void {
+  if (response.status === 429) {
+    throw new Error('Rate limit exceeded. Please try again later.');
+  }
+  if (!response.ok) {
+    throw new Error(
+      response.status === 404
+        ? `Word "${word}" not found in dictionary. Please check the spelling.`
+        : `Failed to fetch word data: ${response.statusText}`,
+    );
+  }
+}
+
+/**
+ * Parses a fetch response as JSON with defensive error handling.
+ * Surfaces the raw response text on parse failure for debugging.
+ */
+export async function parseJsonResponse(response: Response, apiName: string): Promise<unknown> {
+  try {
+    return await response.json();
+  } catch {
+    const text = await response.text();
+    throw new Error(`Invalid API response (not JSON) from ${apiName}. Response: ${text.slice(0, 200)}`);
+  }
+}
+
+/**
+ * Throws "word not found" with a consistent message.
+ */
+export function throwWordNotFound(word: string): never {
+  throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+}
+
+/**
  * Normalizes a raw POS string using the provided adapter-specific map.
  * Returns a base POS, a mapped POS, or undefined for unmappable values.
  */

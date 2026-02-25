@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
-import { normalizePOS, transformToWordData, transformWordData } from '#utils/adapter-utils';
+import {
+  normalizePOS,
+  parseJsonResponse,
+  throwOnHttpError,
+  throwWordNotFound,
+  transformToWordData,
+  transformWordData,
+} from '#utils/adapter-utils';
 
 const TEST_POS_MAP = {
   'transitive verb': 'verb',
@@ -106,6 +113,67 @@ describe('adapter-utils', () => {
       const result = transformWordData(wordData, 'default');
 
       expect(result.definition).toBe('raw text');
+    });
+  });
+
+  describe('throwOnHttpError', () => {
+    it('does nothing for ok responses', () => {
+      const response = { ok: true, status: 200 };
+      expect(() => throwOnHttpError(response, 'test')).not.toThrow();
+    });
+
+    it('throws rate limit error for 429', () => {
+      const response = { ok: false, status: 429 };
+      expect(() => throwOnHttpError(response, 'test')).toThrow('Rate limit exceeded');
+    });
+
+    it('throws word not found for 404', () => {
+      const response = { ok: false, status: 404 };
+      expect(() => throwOnHttpError(response, 'serendipity')).toThrow(
+        'Word "serendipity" not found in dictionary',
+      );
+    });
+
+    it('throws generic error with statusText for other failures', () => {
+      const response = { ok: false, status: 500, statusText: 'Internal Server Error' };
+      expect(() => throwOnHttpError(response, 'test')).toThrow(
+        'Failed to fetch word data: Internal Server Error',
+      );
+    });
+  });
+
+  describe('parseJsonResponse', () => {
+    it('parses valid JSON response', async () => {
+      const response = { json: () => Promise.resolve({ word: 'test' }) };
+      const result = await parseJsonResponse(response, 'TestAPI');
+      expect(result).toEqual({ word: 'test' });
+    });
+
+    it('throws with response text on parse failure', async () => {
+      const response = {
+        json: () => Promise.reject(new SyntaxError('Unexpected token')),
+        text: () => Promise.resolve('<html>Invalid API Key</html>'),
+      };
+      await expect(parseJsonResponse(response, 'TestAPI')).rejects.toThrow(
+        'Invalid API response (not JSON) from TestAPI',
+      );
+    });
+
+    it('truncates long error responses', async () => {
+      const response = {
+        json: () => Promise.reject(new SyntaxError()),
+        text: () => Promise.resolve('x'.repeat(500)),
+      };
+      const error = await parseJsonResponse(response, 'TestAPI').catch(e => e);
+      expect(error.message.length).toBeLessThan(300);
+    });
+  });
+
+  describe('throwWordNotFound', () => {
+    it('throws with consistent message format', () => {
+      expect(() => throwWordNotFound('serendipity')).toThrow(
+        'Word "serendipity" not found in dictionary. Please check the spelling.',
+      );
     });
   });
 });

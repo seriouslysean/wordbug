@@ -9,6 +9,9 @@ import type {
 } from '#types';
 import {
   normalizePOS,
+  parseJsonResponse,
+  throwOnHttpError,
+  throwWordNotFound,
   transformToWordData,
   transformWordData,
 } from '#utils/adapter-utils';
@@ -160,28 +163,12 @@ export const merriamWebsterAdapter: DictionaryAdapter = {
 
     const url = `${CONFIG.BASE_URL}/${CONFIG.DICTIONARY}/json/${encodeURIComponent(word)}?key=${apiKey}`;
     const response = await fetch(url);
+    throwOnHttpError(response, word);
 
-    if (response.status === 429) {
-      throw new Error('Rate limit exceeded. Please try again later.');
-    }
-    if (!response.ok) {
-      throw new Error(
-        response.status === 404
-          ? `Word "${word}" not found in dictionary. Please check the spelling.`
-          : `Failed to fetch word data: ${response.statusText}`,
-      );
-    }
-
-    let data: unknown;
-    try {
-      data = await response.json();
-    } catch {
-      const text = await response.text();
-      throw new Error(`Invalid API response (not JSON). Check your MERRIAM_WEBSTER_API_KEY. Response: ${text.slice(0, 200)}`);
-    }
+    const data = await parseJsonResponse(response, 'Merriam-Webster');
 
     if (!Array.isArray(data) || data.length === 0) {
-      throw new Error(`Word "${word}" not found in dictionary. Please check the spelling.`);
+      throwWordNotFound(word);
     }
 
     // String array = suggestions, not entries
