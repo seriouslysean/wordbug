@@ -253,6 +253,8 @@ Run all quality gates before committing. Stage specific files by name — avoid 
 | `.github/instructions/` | Scoped Copilot instructions (code review focus/exclusions) |
 | `.github/pull_request_template.md` | PR body template (used by GitHub UI and PR skill) |
 | `.agents/skills/` | Agent skills (validate, commit, pr) — tool-agnostic canonical location |
+| `.claude/hooks/` | Safety hooks: block destructive commands, guard main branch |
+| `.claude/settings.json` | Shared Claude Code config (hook registrations) |
 | `.claude/skills` | Symlink to `.agents/skills/` (Claude Code reads this) |
 | `docs/technical.md` | Architecture reference, file structure, environment details |
 | `docs/agents/cli-patterns.md` | CLI tool patterns for token-efficient agent workflows |

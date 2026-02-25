@@ -1,4 +1,5 @@
 ---
+name: validate
 description: Run the full quality gate pipeline and verify the project is in a healthy state. Use this after making code changes to catch issues early.
 allowed-tools: Bash(npm run lint:*), Bash(npm run lint\:fix:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npx vitest run:*), Bash(npm run build:*), Bash(npm run test\:e2e:*), Bash(npx playwright:*)
 ---

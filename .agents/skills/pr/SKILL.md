@@ -1,4 +1,5 @@
 ---
+name: pr
 description: Create a pull request for the current branch with validation and proper formatting
 disable-model-invocation: true
 allowed-tools: Bash(npm run lint:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npm run build:*), Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(gh pr create:*)
