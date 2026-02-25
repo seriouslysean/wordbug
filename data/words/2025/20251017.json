@@ -2,6 +2,7 @@
     "word": "loriciferan",
     "date": "20251017",
     "adapter": "wiktionary",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

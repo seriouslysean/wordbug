@@ -1,21 +1,38 @@
 {
     "word": "cuz",
     "date": "20250419",
-    "adapter": "wiktionary",
+    "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "adverb",
-            "text": "Because",
-            "attributionText": "from Wiktionary",
+            "text": "<xref>because</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/cuz"
+            "sourceUrl": "https://www.wordnik.com/words/cuz",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
         },
         {
             "partOfSpeech": "conjunction",
-            "text": "Because",
-            "attributionText": "from Wiktionary",
+            "text": "<xref>because</xref>",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/cuz"
+            "sourceUrl": "https://www.wordnik.com/words/cuz",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "<xref>cousin</xref> (usually as a term of address)",
+            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://www.wordnik.com/words/cuz",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
         }
     ]
 }

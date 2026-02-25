@@ -1,14 +1,18 @@
 {
     "word": "antidisestablishmentarianism",
     "date": "20250809",
-    "adapter": "wiktionary",
+    "adapter": "wordnik",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "A political philosophy opposed to the separation of a religious group (church) and a government (state), especially the belief held by those in 19th century England opposed to separating the Anglican church from the civil government or to refer to separation of church and state.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/antidisestablishmentarianism"
+            "text": "the doctrine or political position that opposes the withdrawal of state recognition of an established church; -- used especially concerning the Anglican Church in England. Opposed to <ant>disestablishmentarianism</ant>.",
+            "attributionText": "from the GNU version of the Collaborative International Dictionary of English.",
+            "sourceDictionary": "gcide",
+            "sourceUrl": "https://www.wordnik.com/words/antidisestablishmentarianism",
+            "examples": [],
+            "synonyms": [],
+            "antonyms": []
         }
     ]
 }

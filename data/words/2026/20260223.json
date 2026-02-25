@@ -1,0 +1,16 @@
+{
+    "word": "richter scale",
+    "date": "20260223",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "Richter scale",
+            "partOfSpeech": "noun",
+            "text": "an open-ended logarithmic scale for expressing the magnitude of a seismic disturbance (such as an earthquake) in terms of the energy dissipated in it with 1.5 indicating the smallest earthquake that can be felt, 4.5 an earthquake causing slight damage, and 8.5 a very devastating earthquake",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/richter%20scale"
+        }
+    ]
+}
