@@ -19,8 +19,7 @@ Known gaps and technical debt, organized by area.
 ### Error Handling Consistency
 
 - CLI tools use consistent exit patterns (`await exit()` in async handlers, `.catch()` on main calls)
-- Silent catch blocks in tools/utils.ts now log warnings
-- Shared HTTP error helpers in `utils/adapter-utils.ts` (`throwOnHttpError`, `parseJsonResponse`, `throwWordNotFound`) standardize adapter error paths
+- Adapter HTTP errors, JSON parsing, and word-not-found all use shared helpers from `utils/adapter-utils.ts`
 - Remaining: no standardized error types, mixed strategies in non-CLI code (throw, return null, log and continue)
 
 ### HTML/SEO

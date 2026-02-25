@@ -57,7 +57,7 @@ When you need shared logic, put the pure function in `utils/` and create a thin 
 
 External API adapters (`adapters/`) look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller decides `--preserve-case`, the adapter respects it without second-guessing.
 
-Three adapters exist: `merriam-webster` (primary), `wordnik`, and `wiktionary`. All share infrastructure from `utils/adapter-utils.ts` (POS normalization, response transforms, HTTP error handling). The adapter registry in `adapters/index.ts` maps names to implementations — no switch statements. `fetchWithFallback()` tries the primary adapter, then falls back through `DICTIONARY_FALLBACK` (comma-separated). See `tools/add-word.ts` and any adapter for the pattern.
+Three adapters: `merriam-webster.ts`, `wordnik.ts`, `wiktionary.ts`. Shared infrastructure in `utils/adapter-utils.ts` (HTTP error handling, JSON parsing, POS normalization, response transforms). The adapter registry in `adapters/index.ts` dispatches by name; `fetchWithFallback()` handles the fallback chain.
 
 ## The Boundary
 
