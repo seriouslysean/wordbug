@@ -225,7 +225,7 @@ These aren't enforced by tools, but the codebase follows them consistently:
 3. `npm version minor --no-git-tag-version` (bumps `package.json` without auto-committing)
 4. Commit: `chore: bump version to X.Y.0`
 5. Tag: `vX.Y.0`
-6. Push with tags: `git push && git push --tags`
+6. Push with tag: `git push && git push origin vX.Y.0`
 7. Create release: `gh release create vX.Y.0 --generate-notes --notes-start-tag vPREV`
 
 After releasing, sync downstream repos with `npm run tool:sync` (merge-based, no force push).
