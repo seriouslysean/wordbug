@@ -3,7 +3,7 @@
  * Generates breadcrumb navigation data from URL pathnames
  */
 
-import { getPageTitle } from './page-metadata-utils';
+import { getPageTitle } from '#utils/page-metadata-utils';
 
 export interface BreadcrumbItem {
   label: string;

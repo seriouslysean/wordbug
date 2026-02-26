@@ -1,4 +1,11 @@
 ---
+import {
+  COLOR_PRIMARY, COLOR_PRIMARY_LIGHT, COLOR_PRIMARY_DARK,
+  COLOR_DARK_PRIMARY, COLOR_DARK_PRIMARY_LIGHT, COLOR_DARK_PRIMARY_DARK,
+  COLOR_DARK_BACKGROUND, COLOR_DARK_BACKGROUND_LIGHT,
+  COLOR_DARK_TEXT, COLOR_DARK_TEXT_LIGHT, COLOR_DARK_BORDER,
+  SITE_TITLE, GA_ENABLED, GA_MEASUREMENT_ID,
+} from 'astro:env/client';
 import '#styles/global.css';
 import '#styles/theme.css';
 
@@ -56,12 +63,24 @@ ${asciiArt}
 
 -->` : '';
 
-// Generate color CSS variables using build-time constants
-const colorPrimary = __COLOR_PRIMARY__;
-const colorPrimaryLight = __COLOR_PRIMARY_LIGHT__;
-const colorPrimaryDark = __COLOR_PRIMARY_DARK__;
+const colorPrimary = COLOR_PRIMARY;
+const colorPrimaryLight = COLOR_PRIMARY_LIGHT;
+const colorPrimaryDark = COLOR_PRIMARY_DARK;
 
-const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark}; --color-white: #ffffff; --color-black: #000000; --color-text-primary: ${colorPrimary};`;
+const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark};`;
+
+const darkModeEnabled = !!COLOR_DARK_BACKGROUND;
+
+const darkColorOverrides = darkModeEnabled ? [
+  COLOR_DARK_BACKGROUND && `--color-background: ${COLOR_DARK_BACKGROUND}`,
+  COLOR_DARK_BACKGROUND_LIGHT && `--color-background-light: ${COLOR_DARK_BACKGROUND_LIGHT}`,
+  COLOR_DARK_PRIMARY && `--color-primary: ${COLOR_DARK_PRIMARY}`,
+  COLOR_DARK_PRIMARY_LIGHT && `--color-primary-light: ${COLOR_DARK_PRIMARY_LIGHT}`,
+  COLOR_DARK_PRIMARY_DARK && `--color-primary-dark: ${COLOR_DARK_PRIMARY_DARK}`,
+  COLOR_DARK_TEXT && `--color-text: ${COLOR_DARK_TEXT}`,
+  COLOR_DARK_TEXT_LIGHT && `--color-text-light: ${COLOR_DARK_TEXT_LIGHT}`,
+  COLOR_DARK_BORDER && `--color-border: ${COLOR_DARK_BORDER}`,
+].filter(Boolean).join('; ') : '';
 
 const wordSchemaData = word ? (() => {
   const { definition, partOfSpeech } = extractWordDefinition(word);
@@ -93,7 +112,10 @@ const wordSchemaData = word ? (() => {
 		<link rel="canonical" href={currentUrl} />
 
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="theme-color" content="#121212" />
+		<meta name="theme-color" content={colorPrimary} media="(prefers-color-scheme: light)" />
+		{darkModeEnabled && (
+			<meta name="theme-color" content={COLOR_DARK_BACKGROUND} media="(prefers-color-scheme: dark)" />
+		)}
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -105,18 +127,14 @@ const wordSchemaData = word ? (() => {
 		<meta name="education-level" content="all-ages" />
 		<meta name="resource-type" content="educational-website" />
 
-		<link rel="dns-prefetch" href="//api.wordnik.com" />
-
 		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')} />
 		<link rel="manifest" href={getUrl('/manifest.json')} />
 
 		<link type="text/plain" rel="author" href={getUrl('/humans.txt')} />
 		<link type="text/plain" rel="llms" href={getUrl('/llms.txt')} />
 
-		<link rel="alternate" type="application/rss+xml" title={__SITE_TITLE__} href={getUrl('/rss.xml')} />
+		<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={getUrl('/rss.xml')} />
 
-		<link rel="alternate" hreflang="en" href={currentUrl} />
-		<link rel="alternate" hreflang="x-default" href={currentUrl} />
 		<meta property="og:locale" content={seoConfig.locale} />
 		<meta http-equiv="content-language" content={seoConfig.locale.split('-')[0]} />
 
@@ -135,15 +153,15 @@ const wordSchemaData = word ? (() => {
 
 		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} />
 
-		{__GA_ENABLED__ && (
+		{GA_ENABLED && (
 			<Fragment set:html={`
 				<!-- Google tag (gtag.js) -->
-				<script async src="https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}"></script>
+				<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
 				<script>
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
-					gtag('config', '${__GA_MEASUREMENT_ID__}', {
+					gtag('config', '${GA_MEASUREMENT_ID}', {
 						send_page_view: true,
 						cookie_flags: 'SameSite=None;Secure',
 						allow_google_signals: false,
@@ -154,7 +172,10 @@ const wordSchemaData = word ? (() => {
 		)}
 
 		<style set:html={`:root { ${colorVariables} }`}></style>
-		
+		{darkModeEnabled && (
+			<style set:html={`@media (prefers-color-scheme: dark) { :root { color-scheme: light dark; ${darkColorOverrides} } }`}></style>
+		)}
+
 		<!-- Speculation Rules for prefetching internal links on hover -->
 		<script type="speculationrules" is:inline set:html={`{
 		  "prefetch": [
@@ -220,7 +241,7 @@ const wordSchemaData = word ? (() => {
 		top: -40px;
 		left: 6px;
 		background: var(--color-primary);
-		color: white;
+		color: var(--color-white);
 		padding: 8px;
 		text-decoration: none;
 		border-radius: 4px;

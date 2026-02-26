@@ -1,14 +1,12 @@
 ---
+import { SITE_AUTHOR_URL, SITE_AUTHOR, SITE_ATTRIBUTION_MESSAGE } from 'astro:env/client';
 import wordnikLogo from '#assets/wordnik-gearheart.png';
 import SiteLink from '#components/SiteLink.astro';
 import { getBrowseWordsUrl } from '#astro-utils/url-utils';
 import { t } from '#utils/i18n-utils';
 
 const currentYear = new Date().getFullYear();
-const attributionUrl = import.meta.env.SITE_AUTHOR_URL;
-const authorName = import.meta.env.SITE_AUTHOR;
-const attributionMessage = import.meta.env.SITE_ATTRIBUTION_MESSAGE;
-const showAttribution = attributionUrl && authorName && attributionMessage;
+const showAttribution = SITE_AUTHOR_URL && SITE_AUTHOR && SITE_ATTRIBUTION_MESSAGE;
 ---
 
 <footer class="footer" role="contentinfo">
@@ -29,10 +27,10 @@ const showAttribution = attributionUrl && authorName && attributionMessage;
       {showAttribution && (
         <li class="footer__item">
           <SiteLink
-            href={attributionUrl}
+            href={SITE_AUTHOR_URL}
             target="_blank"
           >
-            {attributionMessage}, {currentYear}
+            {SITE_ATTRIBUTION_MESSAGE}, {currentYear}
           </SiteLink>
         </li>
       )}

@@ -24,7 +24,8 @@ src/
   styles/                        # CSS files
   assets/                        # Static assets
 
-utils/                           # Pure Node.js utilities (12 files)
+utils/                           # Pure Node.js utilities (13 files)
+  adapter-utils.ts               # Shared adapter helpers (POS, transforms, HTTP)
   breadcrumb-utils.ts            # Breadcrumb navigation logic
   date-utils.ts                  # Date manipulation (YYYYMMDD format)
   i18n-utils.ts                  # Translation helpers (t(), tp())
@@ -48,8 +49,10 @@ tools/                           # CLI tools (Node.js only, no Astro deps)
   utils.ts                       # Shared tool utilities
 
 adapters/                        # Dictionary API adapters
-  index.ts                       # Adapter factory
-  wordnik.ts                     # Wordnik API implementation
+  index.ts                       # Adapter registry + fallback chain
+  merriam-webster.ts             # Merriam-Webster Collegiate API
+  wordnik.ts                     # Wordnik API
+  wiktionary.ts                  # Free Dictionary API (Wiktionary-sourced)
 
 config/
   paths.ts                       # Path configuration (SOURCE_DIR-based)
@@ -68,6 +71,8 @@ types/                           # Shared TypeScript definitions
   stats.ts                       # StatsDefinition, StatsSlug, SuffixKey
   schema.ts                      # JSON-LD schema types
   seo.ts                         # SEO metadata types
+  merriam-webster.ts             # MW API response types
+  wiktionary.ts                  # Free Dictionary API types
   wordnik.ts                     # Wordnik API response types
   vite.d.ts                      # Build-time global declarations
   window.d.ts                    # Browser window extensions
@@ -77,7 +82,7 @@ locales/
   en.json                        # English translations
 
 tests/
-  setup.js                       # Global mocks (astro:content, translations)
+  setup.js                       # Global mocks (astro:env/client, astro:content, translations)
   helpers/spawn.js               # CLI tool process spawner
   adapters/                      # Adapter tests (Vitest)
   architecture/                  # Import boundary enforcement (Vitest)
@@ -87,6 +92,20 @@ tests/
   src/                           # Astro component/utility tests (Vitest)
   tools/                         # CLI integration tests (Vitest)
   utils/                         # Pure utility tests (Vitest)
+
+.agents/                         # Agent skills (tool-agnostic)
+  skills/                        # validate, commit, pr workflows
+
+.claude/                         # Claude Code config
+  hooks/                         # Safety hooks (destructive commands, main branch guard)
+  settings.json                  # Shared permissions and hook registrations
+  skills -> ../.agents/skills/   # Symlink to agent skills
+
+.github/
+  workflows/                     # CI: lint, typecheck, test, build, e2e
+  copilot-instructions.md        # GitHub Copilot guidelines
+  instructions/                  # Scoped Copilot instructions (review focus)
+  pull_request_template.md       # PR body template
 ```
 
 ## Environment Configuration
@@ -107,7 +126,11 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `SOURCE_DIR` | `''` | Data source subdirectory (unset = root paths) |
-| `DICTIONARY_ADAPTER` | `wordnik` | Dictionary API to use |
+| `DICTIONARY_ADAPTER` | `wordnik` | Primary dictionary API (`merriam-webster`, `wordnik`, `wiktionary`) |
+| `DICTIONARY_FALLBACK` | `wiktionary` | Fallback chain, comma-separated (e.g. `wordnik,wiktionary`) |
+| `MERRIAM_WEBSTER_API_KEY` | — | Merriam-Webster API key |
+| `MERRIAM_WEBSTER_API_URL` | `https://dictionaryapi.com/api/v3/references` | MW API endpoint |
+| `MERRIAM_WEBSTER_DICTIONARY` | `collegiate` | MW dictionary edition |
 | `WORDNIK_API_KEY` | — | Wordnik API key |
 | `WORDNIK_API_URL` | `https://api.wordnik.com/v4` | Wordnik API endpoint |
 | `WORDNIK_WEBSITE_URL` | `https://www.wordnik.com` | Wordnik website (for cross-ref links) |
@@ -119,12 +142,35 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | `BASE_PATH` | `/` | Subdirectory for deployment |
 | `SITE_LOCALE` | `en-US` | Locale for i18n |
 
+### Site Metadata
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `SITE_AUTHOR` | `''` | Author name for attribution |
+| `SITE_AUTHOR_URL` | `''` | Author website URL |
+| `SITE_ATTRIBUTION_MESSAGE` | `''` | Custom attribution text |
+| `SITE_KEYWORDS` | `''` | SEO keywords (comma-separated) |
+
+### humans.txt
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `HUMANS_WORD_CURATOR` | `''` | Word curator name |
+| `HUMANS_DEVELOPER_NAME` | `''` | Developer name |
+| `HUMANS_DEVELOPER_CONTACT` | `''` | Developer contact |
+| `HUMANS_DEVELOPER_SITE` | `''` | Developer website |
+
 ### Feature Flags
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `SENTRY_ENABLED` | `false` | Error tracking |
 | `SENTRY_DSN` | — | Sentry data source name |
+| `SENTRY_ORG` | — | Sentry organization |
+| `SENTRY_PROJECT` | — | Sentry project name |
+| `SENTRY_AUTH_TOKEN` | — | Sentry auth token (sourcemap uploads) |
+| `SENTRY_ENVIRONMENT` | `development` | Sentry environment tag |
+| `SENTRY_RELEASE` | auto-generated | Release identifier (`name@version+hash`) |
 | `GA_ENABLED` | `false` | Google Analytics |
 | `GA_MEASUREMENT_ID` | — | GA measurement ID |
 
@@ -136,9 +182,35 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | `COLOR_PRIMARY_LIGHT` | `#c2410c` | Light variant |
 | `COLOR_PRIMARY_DARK` | `#7c2d12` | Dark variant |
 
-### Build-Time Globals
+### Dark Mode
 
-`astro.config.ts` injects 30+ globals via Vite `define`. These are compile-time constants (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`, `__RELEASE__`, `__COLOR_PRIMARY__`). They are declared in `types/vite.d.ts` for TypeScript.
+Opt-in via environment variables. Setting `COLOR_DARK_BACKGROUND` activates dark mode — it's the minimum viable dark palette. All other dark vars are optional; unset ones fall back to the light-mode value.
+
+| Variable | Maps to | Fallback |
+|----------|---------|----------|
+| `COLOR_DARK_BACKGROUND` | `--color-background` | *(enablement trigger)* |
+| `COLOR_DARK_BACKGROUND_LIGHT` | `--color-background-light` | light value |
+| `COLOR_DARK_PRIMARY` | `--color-primary` | light value |
+| `COLOR_DARK_PRIMARY_LIGHT` | `--color-primary-light` | light value |
+| `COLOR_DARK_PRIMARY_DARK` | `--color-primary-dark` | light value |
+| `COLOR_DARK_TEXT` | `--color-text` | light value |
+| `COLOR_DARK_TEXT_LIGHT` | `--color-text-light` | light value |
+| `COLOR_DARK_BORDER` | `--color-border` | light value |
+
+When enabled, `Layout.astro` emits a `@media (prefers-color-scheme: dark)` block with the configured overrides and a dark-variant `<meta name="theme-color">`. No JavaScript required — respects the user's system preference. When no dark vars are set, the site is light-only with no dark mode CSS emitted.
+
+### Environment Access
+
+Environment variables in `src/` code are accessed via Astro's type-safe `astro:env/client` module. The schema is defined in `astro.config.ts` using `envField` — this provides validation, defaults, and TypeScript types. All env vars use `context: 'client'` since this is a fully static site with no secrets.
+
+Four computed build-time constants remain as Vite `define` globals (declared in `types/vite.d.ts`):
+
+| Global | Purpose |
+|--------|---------|
+| `__VERSION__` | Package version from `package.json` |
+| `__RELEASE__` | Release identifier (`name@version+hash`) |
+| `__TIMESTAMP__` | Build timestamp (ISO 8601) |
+| `__WORD_DATA_PATH__` | Resolved word data directory path |
 
 ## Word Data
 
@@ -187,6 +259,10 @@ export const getWordsForYear = (year: string) => getWordsByYear(year, allWords);
 
 Statistics are computed once at build time, not recalculated per page.
 
+### i18n
+
+All user-facing strings go through `locales/en.json`. The `t(key)` function from `utils/i18n-utils.ts` returns the translation, and `tp(key, count)` handles pluralization. Translation keys use dot notation (`words.count`, `stats.title`). Components and utilities import `t()` directly -- no framework-level i18n integration. Adding a new string means adding the key to `en.json` and using `t('key')` at the call site.
+
 ### Validation Rules
 
 - Each word can only be used once across all dates (global uniqueness)
@@ -214,10 +290,12 @@ npm run tool:local tools/add-word.ts serendipity --overwrite
 Consolidated image generation (SVG templates, Sharp PNG conversion, 1200x630px OpenGraph).
 
 ```sh
-npm run tool:local tools/generate-images.ts serendipity    # Single word
-npm run tool:local tools/generate-images.ts --all          # All words
-npm run tool:local tools/generate-images.ts --generic      # Generic page images
-npm run tool:local tools/generate-images.ts --page stats   # Specific page
+npm run tool:local tools/generate-images.ts                      # All images
+npm run tool:local tools/generate-images.ts --word serendipity   # Single word
+npm run tool:local tools/generate-images.ts --words              # All word images
+npm run tool:local tools/generate-images.ts --generic            # Generic page images
+npm run tool:local tools/generate-images.ts --page stats         # Specific page
+npm run tool:local tools/generate-images.ts --force              # Regenerate existing
 ```
 
 ### `regenerate-all-words.ts`
@@ -484,6 +562,10 @@ SITE_URL="https://example.com" BASE_PATH="/vocab"
 SITE_URL="https://username.github.io" BASE_PATH="/repo"
 ```
 
+### Downstream Sync
+
+This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it and diverge only in word data, images, and favicons. `npm run tool:sync` merges upstream changes into a downstream repo via `git fetch upstream --no-tags && git merge upstream/main`. Merge-based (not rebase) so downstream can regular-push without force. Lockfile conflicts auto-resolve by accepting upstream's version and running `npm install`. The script no-ops in the upstream repo (no `upstream` remote).
+
 ## Constraints
 
 - **Static only**: All pages pre-rendered; changes require rebuild
@@ -494,6 +576,12 @@ SITE_URL="https://username.github.io" BASE_PATH="/repo"
 - **WCAG AA**: Accessibility compliance required
 
 ## Architecture History
+
+### February 2026 - Environment and Theming
+
+- `astro:env` migration: 21 Vite `define` globals replaced with Astro's type-safe env schema (`envField` in `astro.config.ts`, accessed via `astro:env/client`). Four computed build-time constants remain as Vite defines.
+- Environment-driven dark mode: opt-in via `COLOR_DARK_*` env vars, conditional `prefers-color-scheme` media query emitted only when configured.
+- SEO fixes: semantic `<nav>` in header, `itemCount` in CollectionPage structured data, redundant hreflang removal.
 
 ### February 2026 - Codebase Audit
 

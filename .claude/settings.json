@@ -1,0 +1,75 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git tag:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git ls-remote:*)",
+      "Bash(git merge-base:*)",
+      "Bash(git remote:*)",
+      "Bash(git show:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(node --version:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run lint\\:fix:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run test\\:e2e:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx vitest run:*)",
+      "Bash(npx playwright:*)",
+      "Bash(npx astro:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npm version:*)",
+      "Bash(npm install:*)",
+      "Bash(gh api:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh release:*)",
+      "Write",
+      "Edit",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout -b:*)",
+      "Bash(git switch:*)",
+      "Bash(git push:*)",
+      "Bash(git tag -a:*)",
+      "Bash(git tag v:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/git-block-destructive.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/git-guard-main-branch.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

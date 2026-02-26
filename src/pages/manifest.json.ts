@@ -1,3 +1,4 @@
+import { SITE_TITLE, SITE_ID, SITE_DESCRIPTION, COLOR_PRIMARY_DARK } from 'astro:env/client';
 import type { APIRoute } from 'astro';
 
 import { seoConfig } from '#astro-utils/seo-utils';
@@ -5,14 +6,14 @@ import { getUrl } from '#astro-utils/url-utils';
 
 export const GET: APIRoute = async () => {
   const manifest = {
-    name: __SITE_TITLE__,
-    short_name: __SITE_ID__,
-    description: __SITE_DESCRIPTION__,
+    name: SITE_TITLE,
+    short_name: SITE_ID,
+    description: SITE_DESCRIPTION,
     start_url: getUrl('/'),
     scope: getUrl('/'),
     display: "standalone",
-    background_color: __COLOR_PRIMARY_DARK__,
-    theme_color: __COLOR_PRIMARY_DARK__,
+    background_color: COLOR_PRIMARY_DARK,
+    theme_color: COLOR_PRIMARY_DARK,
     orientation: "portrait-primary",
     categories: seoConfig.keywords,
     lang: "en-US",

@@ -1,6 +1,45 @@
 import { vi } from 'vitest';
 import mockTranslations from '#tests/locales/en-us.fixtures.json';
 
+// Mock astro:env/client with mutable defaults for all tests
+// Individual tests can override via mockEnv.FIELD = 'value'
+export const mockEnv = {
+  SITE_TITLE: 'Test Site',
+  SITE_DESCRIPTION: 'Test Description',
+  SITE_ID: 'test-site',
+  SITE_URL: 'https://test.com',
+  SITE_LOCALE: 'en',
+  SITE_KEYWORDS: 'test,keywords',
+  SITE_AUTHOR: 'Test Author',
+  SITE_AUTHOR_URL: 'https://test.com',
+  SITE_ATTRIBUTION_MESSAGE: 'Test Attribution',
+  HUMANS_WORD_CURATOR: '',
+  HUMANS_DEVELOPER_NAME: '',
+  HUMANS_DEVELOPER_CONTACT: '',
+  HUMANS_DEVELOPER_SITE: '',
+  COLOR_PRIMARY: '#9a3412',
+  COLOR_PRIMARY_LIGHT: '#c2410c',
+  COLOR_PRIMARY_DARK: '#7c2d12',
+  COLOR_DARK_PRIMARY: undefined,
+  COLOR_DARK_PRIMARY_LIGHT: undefined,
+  COLOR_DARK_PRIMARY_DARK: undefined,
+  COLOR_DARK_BACKGROUND: undefined,
+  COLOR_DARK_BACKGROUND_LIGHT: undefined,
+  COLOR_DARK_TEXT: undefined,
+  COLOR_DARK_TEXT_LIGHT: undefined,
+  COLOR_DARK_BORDER: undefined,
+  GA_ENABLED: false,
+  GA_MEASUREMENT_ID: undefined,
+  SENTRY_ENABLED: false,
+  SENTRY_DSN: undefined,
+  BASE_PATH: '/',
+};
+
+vi.mock('astro:env/client', () => mockEnv);
+
+// Expose for tests that need to override env values
+global.mockEnv = mockEnv;
+
 // Mock fixture data for testing
 const mockWordData = [
   {

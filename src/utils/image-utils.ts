@@ -1,3 +1,4 @@
+import { BASE_PATH } from 'astro:env/client';
 import type { WordData } from '#types';
 
 /**
@@ -6,7 +7,7 @@ import type { WordData } from '#types';
  * @returns URL to the social image
  */
 export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wordData?: WordData | null }): string {
-  const basePath = import.meta.env.BASE_PATH || '/';
+  const basePath = BASE_PATH || '/';
   const cleanPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
   const sourceDir = import.meta.env.SOURCE_DIR;
   const sourcePath = sourceDir ? `${sourceDir}/` : '';

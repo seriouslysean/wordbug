@@ -30,7 +30,7 @@ const { words } = Astro.props;
 const monthGroups = groupWordsByMonth(year, words);
 ---
 
-<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST} itemCount={words.length}>
   <Heading level={1} text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
   {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (

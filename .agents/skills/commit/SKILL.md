@@ -1,4 +1,5 @@
 ---
+name: commit
 description: Commit changes following project conventions (runs validation, explicit staging, why-not-what messages)
 allowed-tools: Bash(npm run lint:*), Bash(npm run lint\:fix:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npx vitest run:*), Bash(npm run build:*), Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*)
 argument-hint: [optional commit message hint]

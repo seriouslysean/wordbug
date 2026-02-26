@@ -10,7 +10,7 @@ import { getUrl, getWordUrl } from '#astro-utils/url-utils';
 
 describe('WordLink Component Integration', () => {
   beforeEach(() => {
-    vi.stubGlobal('__BASE_URL__', '/');
+    mockEnv.BASE_PATH = '/';
   });
 
   describe('getWordUrl', () => {
@@ -40,7 +40,7 @@ describe('WordLink Component Integration', () => {
     });
 
     it('should prevent double BASE_PATH with subdirectory', () => {
-      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
+      mockEnv.BASE_PATH = '/occasional-wotd';
 
       const rawPath = getWordUrl('serendipity');
       const processedUrl = getUrl(rawPath);
@@ -51,7 +51,7 @@ describe('WordLink Component Integration', () => {
     });
 
     it('should handle multi-word phrases correctly', () => {
-      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
+      mockEnv.BASE_PATH = '/occasional-wotd';
 
       const rawPath = getWordUrl('ice cream');
       const processedUrl = getUrl(rawPath);
@@ -61,7 +61,7 @@ describe('WordLink Component Integration', () => {
     });
 
     it('should handle special characters in words', () => {
-      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
+      mockEnv.BASE_PATH = '/occasional-wotd';
 
       const rawPath = getWordUrl("don't");
       const processedUrl = getUrl(rawPath);
@@ -73,7 +73,7 @@ describe('WordLink Component Integration', () => {
 
   describe('Real-world GitHub Pages scenarios', () => {
     it('should generate correct URLs with subdirectory base path', () => {
-      vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
+      mockEnv.BASE_PATH = '/occasional-wotd';
 
       const testCases = [
         { input: 'serendipity', expected: '/occasional-wotd/word/serendipity' },

@@ -18,15 +18,13 @@ Known gaps and technical debt, organized by area.
 
 ### Error Handling Consistency
 
-- CLI tools now use consistent exit patterns (`await exit()` in async handlers, `.catch()` on main calls)
-- Silent catch blocks in tools/utils.ts now log warnings
+- CLI tools use consistent exit patterns (`await exit()` in async handlers, `.catch()` on main calls)
+- Adapter HTTP errors, JSON parsing, and word-not-found all use shared helpers from `utils/adapter-utils.ts`
 - Remaining: no standardized error types, mixed strategies in non-CLI code (throw, return null, log and continue)
 
 ### HTML/SEO
 
-- `src/layouts/Layout.astro` contains redundant hreflang tags
-- `src/components/StructuredData.astro` hardcodes `numberOfItems: 0`
-- `src/components/Header.astro` lacks semantic `<nav>` element
+- No known issues
 
 ## Documentation Gaps
 
@@ -44,7 +42,7 @@ Several env vars lack documentation in `docs/technical.md`:
 
 ## Test Coverage
 
-Coverage improved from 31.67% to ~84% (~405 tests across 5 layers: unit, component, architecture, CLI integration, E2E).
+~499 tests across 5 layers: unit, component, architecture, CLI integration, E2E. Coverage at ~84%.
 
 ### Remaining Gaps
 

@@ -22,7 +22,7 @@ npm run lint:fix                   # oxlint auto-fix
 
 # CLI tools:
 npm run tool:local tools/add-word.ts serendipity
-npm run tool:local tools/generate-images.ts --all
+npm run tool:local tools/generate-images.ts
 ```
 
 Pre-commit hooks (lefthook) run `oxlint --fix` and related tests on staged files.
@@ -55,7 +55,9 @@ When you need shared logic, put the pure function in `utils/` and create a thin 
 
 ### Adapters are pass-throughs
 
-External API adapters (`adapters/`) look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller decides `--preserve-case`, the adapter respects it without second-guessing. See `tools/add-word.ts` and `adapters/wordnik.ts` for the pattern.
+External API adapters (`adapters/`) look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller decides `--preserve-case`, the adapter respects it without second-guessing.
+
+Three adapters: `merriam-webster.ts`, `wordnik.ts`, `wiktionary.ts`. Shared infrastructure in `utils/adapter-utils.ts` (HTTP error handling, JSON parsing, POS normalization, response transforms). The adapter registry in `adapters/index.ts` dispatches by name; `fetchWithFallback()` handles the fallback chain.
 
 ## The Boundary
 
@@ -132,8 +134,8 @@ const ctx = rawContext as LogContext;
 
 Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs — use them:
 
-- `vi.stubEnv()` — environment variables (auto-restores)
-- `vi.stubGlobal()` — build-time globals (auto-restores)
+- `mockEnv.FIELD = value` — `astro:env/client` variables (mutable object from `tests/setup.js`)
+- `vi.stubGlobal()` — build-time Vite defines (auto-restores)
 - `vi.resetModules()` + dynamic `import()` — module re-evaluation
 - `vi.useFakeTimers()` / `vi.useRealTimers()` — time control
 - `vi.hoisted()` — values needed before `vi.mock()` runs
@@ -185,7 +187,7 @@ Node.js subpath imports (`#` prefix) in `package.json` — the single source of 
 
 ## Environment
 
-All config via environment variables validated in `astro.config.ts` (single source of truth). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Build-time globals (`__SITE_TITLE__`, `__BASE_URL__`, etc.) injected via Vite `define`. See `.env.example` for the full list.
+All config via environment variables validated in `astro.config.ts` (single source of truth). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Environment variables are accessed via `astro:env/client` in `src/` code. Four computed build-time constants (`__VERSION__`, `__RELEASE__`, `__TIMESTAMP__`, `__WORD_DATA_PATH__`) remain as Vite `define` globals. See `.env.example` for the full list.
 
 ## URL System
 
@@ -216,6 +218,18 @@ These aren't enforced by tools, but the codebase follows them consistently:
 - No log message prefixes (log levels are sufficient)
 - Don't commit planning docs, investigation notes, or temporary files
 
+## Releasing
+
+1. Run all quality gates
+2. Commit changes
+3. `npm version minor --no-git-tag-version` (bumps `package.json` without auto-committing)
+4. Commit: `chore: bump version to X.Y.0`
+5. Tag: `vX.Y.0`
+6. Push with tag: `git push && git push origin vX.Y.0`
+7. Create release: `gh release create vX.Y.0 --generate-notes --notes-start-tag vPREV`
+
+After releasing, sync downstream repos with `npm run tool:sync` (merge-based, no force push).
+
 ## Contributing via Git
 
 ### Commits
@@ -239,6 +253,8 @@ Run all quality gates before committing. Stage specific files by name — avoid 
 | `.github/instructions/` | Scoped Copilot instructions (code review focus/exclusions) |
 | `.github/pull_request_template.md` | PR body template (used by GitHub UI and PR skill) |
 | `.agents/skills/` | Agent skills (validate, commit, pr) — tool-agnostic canonical location |
+| `.claude/hooks/` | Safety hooks: block destructive commands, guard main branch |
+| `.claude/settings.json` | Shared Claude Code config (hook registrations) |
 | `.claude/skills` | Symlink to `.agents/skills/` (Claude Code reads this) |
 | `docs/technical.md` | Architecture reference, file structure, environment details |
 | `docs/agents/cli-patterns.md` | CLI tool patterns for token-efficient agent workflows |

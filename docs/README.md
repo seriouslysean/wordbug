@@ -23,7 +23,7 @@ A template for creating family word-of-the-day sites that provides a foundation 
 
 ## Features
 
-- **Rich Word Data**: Powered by Wordnik API with comprehensive definitions
+- **Rich Word Data**: Multi-adapter dictionary support (Merriam-Webster, Wordnik, Wiktionary) with automatic fallback
 - **Smart Statistics**: Letter patterns, word endings, reading streaks, and linguistic analysis
 - **Social Images**: Automated generation of beautiful, shareable word graphics
 - **Lightning Fast**: Static site generation with Astro for optimal performance
@@ -38,7 +38,7 @@ npm install
 
 # Set up environment
 cp .env.example .env
-# Add your Wordnik API key to .env
+# Add your dictionary API key to .env
 
 # Start development
 npm run dev
@@ -74,8 +74,8 @@ SITE_URL="https://my-word-site.com"
 SOURCE_DIR="words"                      # Data source (demo, words, etc.)
 
 # Dictionary Service
-DICTIONARY_ADAPTER="wordnik"
-WORDNIK_API_KEY="your-api-key-here"
+DICTIONARY_ADAPTER="merriam-webster"
+MERRIAM_WEBSTER_API_KEY="your-api-key-here"
 
 # Colors (optional)
 COLOR_PRIMARY="#9a3412"
@@ -151,7 +151,7 @@ See [Technical Guide - Testing](technical.md#testing) for details.
 ## Technology
 
 - **[Astro](https://astro.build/)** - Static site generator
-- **[Wordnik API](https://wordnik.com/)** - Dictionary definitions
+- **Dictionary APIs** - Merriam-Webster, Wordnik, Wiktionary (with fallback chain)
 - **[Sharp](https://sharp.pixelplumbing.com/)** - Image generation
 - **[Vitest](https://vitest.dev/)** - Testing framework
 - **[GitHub Pages](https://pages.github.com/)** - Hosting platform

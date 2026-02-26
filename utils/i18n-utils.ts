@@ -1,4 +1,4 @@
-import translations from '../locales/en.json';
+import translations from '#locales/en.json';
 
 export const defaultLang = 'en';
 

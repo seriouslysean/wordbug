@@ -27,7 +27,7 @@ if ! git remote get-url upstream &>/dev/null; then
 fi
 
 echo "Fetching upstream..."
-git fetch upstream
+git fetch upstream --no-tags
 
 # Check if we're already up to date
 UPSTREAM=$(git rev-parse upstream/main)

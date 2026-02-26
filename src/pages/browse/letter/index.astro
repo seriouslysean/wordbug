@@ -16,7 +16,7 @@ const letterGroups = Object.entries(groupWordsByLetter(allWords)).map(([letter, 
 }));
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
-<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST} itemCount={allWords.length}>
   <Heading text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
   {letterGroups.map(({ letter, words }) => (

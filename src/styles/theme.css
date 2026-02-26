@@ -28,11 +28,15 @@
   --content-width-large: min(1200px, 90vw);
   --content-width-full: 95vw;
 
-  /* Theme Colors (changeable) */
+  /* Theme Colors */
   --color-background: #fff;
   --color-background-light: #f8f9fa;
   --color-text: #333;
   --color-text-light: #666;
+  --color-border: #e5e7eb;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-text-primary: var(--color-primary);
 
   /* Design Tokens */
   --border-radius: 8px;
