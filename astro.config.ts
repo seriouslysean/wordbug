@@ -4,7 +4,7 @@ import { statSync } from 'node:fs';
 
 import sitemap from '@astrojs/sitemap';
 import sentry from '@sentry/astro';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 import pkg from './package.json' with { type: 'json' };
 
@@ -73,7 +73,6 @@ const sentryEnabled = process.env.SENTRY_ENABLED === 'true' && !!process.env.SEN
 if (process.env.SENTRY_ENABLED === 'true' && !process.env.SENTRY_DSN) {
   console.warn('SENTRY_ENABLED is true but SENTRY_DSN is not set — Sentry integration disabled');
 }
-const sentryEnvironment = process.env.SENTRY_ENVIRONMENT || 'development';
 const codeHash = getCodeHash();
 const version = pkg.version;
 const release = `${pkg.name}@${version}+${codeHash}`;
@@ -88,6 +87,31 @@ export default defineConfig({
   base,
   trailingSlash: 'never',
   devToolbar: { enabled: false },
+  env: {
+    schema: {
+      SITE_TITLE: envField.string({ context: 'client', access: 'public', default: defaults.SITE_TITLE }),
+      SITE_DESCRIPTION: envField.string({ context: 'client', access: 'public', default: defaults.SITE_DESCRIPTION }),
+      SITE_ID: envField.string({ context: 'client', access: 'public', default: defaults.SITE_ID }),
+      SITE_URL: envField.string({ context: 'client', access: 'public', default: defaults.SITE_URL }),
+      SITE_LOCALE: envField.string({ context: 'client', access: 'public', default: 'en-US' }),
+      SITE_KEYWORDS: envField.string({ context: 'client', access: 'public', default: '' }),
+      SITE_AUTHOR: envField.string({ context: 'client', access: 'public', default: '' }),
+      SITE_AUTHOR_URL: envField.string({ context: 'client', access: 'public', default: '' }),
+      SITE_ATTRIBUTION_MESSAGE: envField.string({ context: 'client', access: 'public', default: '' }),
+      HUMANS_WORD_CURATOR: envField.string({ context: 'client', access: 'public', default: '' }),
+      HUMANS_DEVELOPER_NAME: envField.string({ context: 'client', access: 'public', default: '' }),
+      HUMANS_DEVELOPER_CONTACT: envField.string({ context: 'client', access: 'public', default: '' }),
+      HUMANS_DEVELOPER_SITE: envField.string({ context: 'client', access: 'public', default: '' }),
+      COLOR_PRIMARY: envField.string({ context: 'client', access: 'public', default: '#9a3412' }),
+      COLOR_PRIMARY_LIGHT: envField.string({ context: 'client', access: 'public', default: '#c2410c' }),
+      COLOR_PRIMARY_DARK: envField.string({ context: 'client', access: 'public', default: '#7c2d12' }),
+      GA_MEASUREMENT_ID: envField.string({ context: 'client', access: 'public', optional: true }),
+      GA_ENABLED: envField.boolean({ context: 'client', access: 'public', default: false }),
+      SENTRY_ENABLED: envField.boolean({ context: 'client', access: 'public', default: false }),
+      SENTRY_DSN: envField.string({ context: 'client', access: 'public', optional: true }),
+      BASE_PATH: envField.string({ context: 'client', access: 'public', default: '/' }),
+    },
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -97,42 +121,13 @@ export default defineConfig({
   },
   vite: {
     define: {
-      __BASE_URL__: JSON.stringify(base || '/'),
       __VERSION__: JSON.stringify(pkg.version),
       __RELEASE__: JSON.stringify(release),
-      __SENTRY_ENABLED__: sentryEnabled,
-      __SENTRY_DSN__: JSON.stringify(process.env.SENTRY_DSN),
-      __SENTRY_ENVIRONMENT__: JSON.stringify(sentryEnvironment),
-      __SITE_ID__: JSON.stringify(process.env.SITE_ID),
-      __SITE_TITLE__: JSON.stringify(process.env.SITE_TITLE),
-      __SITE_DESCRIPTION__: JSON.stringify(process.env.SITE_DESCRIPTION),
-      __SITE_LOCALE__: JSON.stringify(process.env.SITE_LOCALE || 'en-US'),
-      __SITE_KEYWORDS__: JSON.stringify(process.env.SITE_KEYWORDS || ''),
-      __SITE_AUTHOR__: JSON.stringify(process.env.SITE_AUTHOR || ''),
-      __SITE_AUTHOR_URL__: JSON.stringify(process.env.SITE_AUTHOR_URL || ''),
-      __SITE_ATTRIBUTION_MESSAGE__: JSON.stringify(process.env.SITE_ATTRIBUTION_MESSAGE || ''),
-      __SITE_URL__: JSON.stringify(process.env.SITE_URL || ''),
       __TIMESTAMP__: JSON.stringify(timestamp),
-      __HUMANS_WORD_CURATOR__: JSON.stringify(process.env.HUMANS_WORD_CURATOR || ''),
-      __HUMANS_DEVELOPER_NAME__: JSON.stringify(process.env.HUMANS_DEVELOPER_NAME || ''),
-      __HUMANS_DEVELOPER_CONTACT__: JSON.stringify(process.env.HUMANS_DEVELOPER_CONTACT || ''),
-      __HUMANS_DEVELOPER_SITE__: JSON.stringify(process.env.HUMANS_DEVELOPER_SITE || ''),
-      __COLOR_PRIMARY__: JSON.stringify(process.env.COLOR_PRIMARY || '#9a3412'),
-      __COLOR_PRIMARY_LIGHT__: JSON.stringify(process.env.COLOR_PRIMARY_LIGHT || '#c2410c'),
-      __COLOR_PRIMARY_DARK__: JSON.stringify(process.env.COLOR_PRIMARY_DARK || '#7c2d12'),
-      __ENVIRONMENT__: JSON.stringify(process.env.NODE_ENV),
-      __GA_MEASUREMENT_ID__: JSON.stringify(process.env.GA_MEASUREMENT_ID),
-      __GA_ENABLED__: process.env.GA_ENABLED === 'true',
-      __SOURCE_DIR__: JSON.stringify(process.env.SOURCE_DIR || ''),
       __WORD_DATA_PATH__: JSON.stringify(
         process.env.SOURCE_DIR
           ? `data/${process.env.SOURCE_DIR}/words`
           : 'data/words',
-      ),
-      __SOCIAL_IMAGES_PATH__: JSON.stringify(
-        process.env.SOURCE_DIR
-          ? `public/${process.env.SOURCE_DIR}/images`
-          : 'public/images',
       ),
     },
     build: {

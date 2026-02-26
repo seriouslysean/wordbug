@@ -1,3 +1,7 @@
+import {
+  SITE_ID, SITE_TITLE, SITE_DESCRIPTION, SITE_URL,
+  HUMANS_WORD_CURATOR, HUMANS_DEVELOPER_NAME, HUMANS_DEVELOPER_CONTACT, HUMANS_DEVELOPER_SITE,
+} from 'astro:env/client';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -25,7 +29,7 @@ export const STATIC_FILES = [
  * @returns ASCII art string or null if not found
  */
 export function getAsciiArt(): string | null {
-  const siteId = __SITE_ID__;
+  const siteId = SITE_ID;
   const publicDir = join(process.cwd(), 'public');
 
   // Try site-specific file first, then default
@@ -53,8 +57,7 @@ export function getAsciiArt(): string | null {
  * @returns The content for robots.txt
  */
 export function generateRobotsTxt(siteUrl: string): string {
-  // Use injected __SITE_URL__ if available, else fallback to param, else fallback to localhost
-  const envUrl = typeof __SITE_URL__ !== 'undefined' ? __SITE_URL__ : '';
+  const envUrl = SITE_URL || '';
   const url = envUrl || siteUrl;
   const baseUrl = (url || 'http://localhost:4321').replace(/\/$/, '');
   return `User-agent: *
@@ -72,12 +75,10 @@ export function generateHumansTxt(): string {
   // Define static sections
   const teamSection = [
     '/* TEAM */',
-    // These will be replaced with actual values at build time via Vite's define
-    // If they're empty, they won't be included
-    __HUMANS_WORD_CURATOR__ && `Word Curator: ${__HUMANS_WORD_CURATOR__}`,
-    __HUMANS_DEVELOPER_NAME__ && `Developer: ${__HUMANS_DEVELOPER_NAME__}`,
-    __HUMANS_DEVELOPER_CONTACT__ && `Contact: ${__HUMANS_DEVELOPER_CONTACT__}`,
-    __HUMANS_DEVELOPER_SITE__ && `Site: ${__HUMANS_DEVELOPER_SITE__}`,
+    HUMANS_WORD_CURATOR && `Word Curator: ${HUMANS_WORD_CURATOR}`,
+    HUMANS_DEVELOPER_NAME && `Developer: ${HUMANS_DEVELOPER_NAME}`,
+    HUMANS_DEVELOPER_CONTACT && `Contact: ${HUMANS_DEVELOPER_CONTACT}`,
+    HUMANS_DEVELOPER_SITE && `Site: ${HUMANS_DEVELOPER_SITE}`,
     '',
   ].filter(Boolean).join('\n');
 
@@ -136,9 +137,9 @@ export function generateHealthTxt(words: WordData[]): string {
  * @returns The content for llms.txt or null if required data is missing
  */
 export function generateLlmsTxt(words: WordData[]): string | null {
-  const siteTitle = __SITE_TITLE__;
-  const siteDescription = __SITE_DESCRIPTION__;
-  const siteUrl = __SITE_URL__;
+  const siteTitle = SITE_TITLE;
+  const siteDescription = SITE_DESCRIPTION;
+  const siteUrl = SITE_URL;
 
   if (!siteTitle || !siteDescription || !siteUrl) {
     return null;
@@ -147,7 +148,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
   const recentWords = words.slice(-MAX_PAST_WORDS_DISPLAY);
 
-  const curatorInfo = __HUMANS_WORD_CURATOR__ ? ` Curated by ${__HUMANS_WORD_CURATOR__}.` : '';
+  const curatorInfo = HUMANS_WORD_CURATOR ? ` Curated by ${HUMANS_WORD_CURATOR}.` : '';
   const lastWord = words.length > 0 ? words[words.length - 1] : undefined;
   const lastUpdated = lastWord ? formatDate(lastWord.date) : null;
 

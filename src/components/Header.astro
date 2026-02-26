@@ -1,11 +1,12 @@
 ---
+import { SITE_TITLE } from 'astro:env/client';
 import SiteLink from '#components/SiteLink.astro';
 ---
 
 <header class="header">
   <nav class="header__nav">
     <SiteLink href="/" class="header__link">
-      <h2 class="header__title">{import.meta.env.SITE_TITLE}</h2>
+      <h2 class="header__title">{SITE_TITLE}</h2>
     </SiteLink>
   </nav>
 </header>

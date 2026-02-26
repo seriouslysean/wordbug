@@ -1,5 +1,5 @@
 import {
- beforeEach, describe, expect, it, vi,
+ beforeEach, describe, expect, it,
 } from 'vitest';
 
 import {
@@ -62,7 +62,7 @@ describe('utils', () => {
 
   describe('getUrl', () => {
     beforeEach(() => {
-      vi.stubGlobal('__BASE_URL__', '/');
+      mockEnv.BASE_PATH = '/';
     });
 
     it('handles paths with default base path', () => {
@@ -70,17 +70,17 @@ describe('utils', () => {
     });
 
     it('handles paths with custom base path', () => {
-      vi.stubGlobal('__BASE_URL__', '/blog');
+      mockEnv.BASE_PATH = '/blog';
       expect(getUrl('/20240319')).toBe('/blog/20240319');
     });
 
     it('handles paths with custom base path with trailing slash', () => {
-      vi.stubGlobal('__BASE_URL__', '/blog/');
+      mockEnv.BASE_PATH = '/blog/';
       expect(getUrl('/20240319')).toBe('/blog/20240319');
     });
 
     it('handles empty or undefined base path', () => {
-      vi.stubGlobal('__BASE_URL__', '');
+      mockEnv.BASE_PATH = '';
       expect(getUrl('/20240319')).toBe('/20240319');
     });
 
@@ -93,21 +93,21 @@ describe('utils', () => {
     });
 
     it('ignores SITE_URL when building relative URLs', () => {
-      vi.stubGlobal('__BASE_URL__', '/blog');
-      vi.stubGlobal('__SITE_URL__', 'https://example.com');
+      mockEnv.BASE_PATH = '/blog';
+      mockEnv.SITE_URL = 'https://example.com';
       expect(getUrl('/words/hello')).toBe('/blog/words/hello');
     });
 
     it('preserves case for base path and path', () => {
-      vi.stubGlobal('__BASE_URL__', '/Blog');
+      mockEnv.BASE_PATH = '/Blog';
       expect(getUrl('/ABC')).toBe('/Blog/ABC');
     });
   });
 
   describe('getFullUrl', () => {
     beforeEach(() => {
-      vi.stubGlobal('__BASE_URL__', '/');
-      vi.stubGlobal('__SITE_URL__', 'https://example.com');
+      mockEnv.BASE_PATH = '/';
+      mockEnv.SITE_URL = 'https://example.com';
     });
 
     it('combines SITE_URL with getUrl() result', () => {
@@ -115,7 +115,7 @@ describe('utils', () => {
     });
 
     it('handles subdirectory deployments correctly', () => {
-      vi.stubGlobal('__BASE_URL__', '/vocab');
+      mockEnv.BASE_PATH = '/vocab';
       expect(getFullUrl('/words/hello')).toBe('https://example.com/vocab/words/hello');
     });
 
@@ -124,17 +124,17 @@ describe('utils', () => {
     });
 
     it('throws when SITE_URL is missing', () => {
-      vi.stubGlobal('__SITE_URL__', '');
+      mockEnv.SITE_URL = '';
       expect(() => getFullUrl('/test')).toThrow('SITE_URL environment variable is required');
     });
 
     it('removes trailing slash from SITE_URL', () => {
-      vi.stubGlobal('__SITE_URL__', 'https://example.com/');
+      mockEnv.SITE_URL = 'https://example.com/';
       expect(getFullUrl('/test')).toBe('https://example.com/test');
     });
 
     it('uses default site URL when none provided', () => {
-      vi.stubGlobal('__SITE_URL__', '');
+      mockEnv.SITE_URL = '';
       expect(() => getFullUrl('/')).toThrow('SITE_URL environment variable is required');
     });
   });
@@ -195,22 +195,22 @@ describe('utils', () => {
 
   describe('getBasePath', () => {
     it('returns "/" when BASE_PATH is not set', () => {
-      vi.stubGlobal('__BASE_URL__', undefined);
+      mockEnv.BASE_PATH = undefined;
       expect(getBasePath()).toBe('/');
     });
 
     it('returns the BASE_PATH when set', () => {
-      vi.stubGlobal('__BASE_URL__', '/blog');
+      mockEnv.BASE_PATH = '/blog';
       expect(getBasePath()).toBe('/blog');
     });
 
     it('returns the BASE_PATH with trailing slash', () => {
-      vi.stubGlobal('__BASE_URL__', '/occasional-wotd/');
+      mockEnv.BASE_PATH = '/occasional-wotd/';
       expect(getBasePath()).toBe('/occasional-wotd/');
     });
 
     it('handles empty string BASE_PATH', () => {
-      vi.stubGlobal('__BASE_URL__', '');
+      mockEnv.BASE_PATH = '';
       expect(getBasePath()).toBe('/');
     });
   });
@@ -218,7 +218,7 @@ describe('utils', () => {
   describe('getPathname', () => {
     describe('without BASE_PATH', () => {
       beforeEach(() => {
-        vi.stubGlobal('__BASE_URL__', '/');
+        mockEnv.BASE_PATH = '/';
       });
 
       it('returns pathname as-is', () => {
@@ -234,7 +234,7 @@ describe('utils', () => {
 
     describe('with BASE_PATH=/occasional-wotd', () => {
       beforeEach(() => {
-        vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
+        mockEnv.BASE_PATH = '/occasional-wotd';
       });
 
       it('strips base path from pathname', () => {
@@ -257,7 +257,7 @@ describe('utils', () => {
 
     describe('with BASE_PATH=/blog/', () => {
       beforeEach(() => {
-        vi.stubGlobal('__BASE_URL__', '/blog/');
+        mockEnv.BASE_PATH = '/blog/';
       });
 
       it('strips base path with trailing slash', () => {
@@ -271,7 +271,7 @@ describe('utils', () => {
   describe('stripBasePath', () => {
     describe('without BASE_PATH', () => {
       beforeEach(() => {
-        vi.stubGlobal('__BASE_URL__', '/');
+        mockEnv.BASE_PATH = '/';
       });
 
       it('returns web standard paths with leading slashes', () => {
@@ -283,7 +283,7 @@ describe('utils', () => {
 
     describe('with BASE_PATH=/occasional-wotd', () => {
       beforeEach(() => {
-        vi.stubGlobal('__BASE_URL__', '/occasional-wotd');
+        mockEnv.BASE_PATH = '/occasional-wotd';
       });
 
       it('strips base path but keeps leading slashes', () => {

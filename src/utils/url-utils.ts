@@ -1,3 +1,4 @@
+import { BASE_PATH, SITE_URL } from 'astro:env/client';
 import { logger } from '#astro-utils/logger';
 
 // =====================================================
@@ -10,11 +11,10 @@ export { slugify } from '#utils/text-utils';
 /**
  * Get the configured base path, defaulting to '/'
  * Single source of truth for base path access
- * Uses Astro's calculated BASE_URL which respects trailingSlash configuration
  * @returns Base path with format determined by Astro's trailingSlash config
  */
 export const getBasePath = (): string => {
-  return __BASE_URL__ || '/';
+  return BASE_PATH || '/';
 };
 
 /**
@@ -76,16 +76,16 @@ export const getUrl = (path = '/'): string => {
  * @returns Absolute URL
  */
 export const getFullUrl = (path = '/'): string => {
-  if (!__SITE_URL__) {
+  if (!SITE_URL) {
     throw new Error('SITE_URL environment variable is required but missing');
   }
-  
+
   try {
     const relativePath = getUrl(path);
-    const url = new URL(relativePath, __SITE_URL__);
+    const url = new URL(relativePath, SITE_URL);
     return url.toString();
   } catch (error) {
-    logger.error('Failed to construct URL', { path, siteUrl: __SITE_URL__, error });
+    logger.error('Failed to construct URL', { path, siteUrl: SITE_URL, error });
     throw new Error(`Failed to construct URL for path: ${path}`);
   }
 };

@@ -1,3 +1,4 @@
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_LOCALE } from 'astro:env/client';
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
 import { getWordsFromCollection } from '#astro-utils/word-data-utils';
@@ -11,12 +12,12 @@ export async function GET(context: APIContext) {
 
   // Get the latest words for RSS feed (2 weeks worth if daily)
   const latestWords = allWords.slice(0, RSS_FEED_WORD_COUNT);
-  
+
   const rssUrl = getFullUrl('/rss.xml');
-  
+
   return rss({
-    title: __SITE_TITLE__,
-    description: __SITE_DESCRIPTION__,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     site: context.site || getFullUrl('/'),
     items: latestWords.map(word => {
       const { definition, partOfSpeech } = extractWordDefinition(word);
@@ -40,7 +41,7 @@ export async function GET(context: APIContext) {
         pubDate,
       };
     }),
-    customData: `<language>${__SITE_LOCALE__.toLowerCase()}</language>
+    customData: `<language>${SITE_LOCALE.toLowerCase()}</language>
 <atom:link href="${rssUrl}" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom"/>`,
   });
 }

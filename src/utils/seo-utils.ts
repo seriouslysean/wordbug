@@ -3,19 +3,22 @@
  * Centralized SEO config following Astro best practices
  */
 
+import {
+  SITE_TITLE, SITE_DESCRIPTION, SITE_ID, SITE_LOCALE,
+  SITE_AUTHOR, SITE_AUTHOR_URL, SITE_ATTRIBUTION_MESSAGE, SITE_KEYWORDS,
+} from 'astro:env/client';
 import type { SeoConfig, SeoMetadata, SeoMetadataOptions, SeoMetaDescriptionOptions } from '#types';
 import { getFullUrl } from '#astro-utils/url-utils';
 
-// SEO configuration using build-time defines
 export const seoConfig: SeoConfig = {
-  defaultTitle: __SITE_TITLE__,
-  defaultDescription: __SITE_DESCRIPTION__,
-  siteName: __SITE_ID__,
-  locale: __SITE_LOCALE__,
-  author: __SITE_AUTHOR__,
-  authorUrl: __SITE_AUTHOR_URL__,
-  attributionMessage: __SITE_ATTRIBUTION_MESSAGE__,
-  keywords: __SITE_KEYWORDS__.split(',').filter(Boolean),
+  defaultTitle: SITE_TITLE,
+  defaultDescription: SITE_DESCRIPTION,
+  siteName: SITE_ID,
+  locale: SITE_LOCALE,
+  author: SITE_AUTHOR,
+  authorUrl: SITE_AUTHOR_URL,
+  attributionMessage: SITE_ATTRIBUTION_MESSAGE,
+  keywords: SITE_KEYWORDS.split(',').filter(Boolean),
 };
 
 

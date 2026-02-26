@@ -1,4 +1,8 @@
 ---
+import {
+  COLOR_PRIMARY, COLOR_PRIMARY_LIGHT, COLOR_PRIMARY_DARK,
+  SITE_TITLE, GA_ENABLED, GA_MEASUREMENT_ID,
+} from 'astro:env/client';
 import '#styles/global.css';
 import '#styles/theme.css';
 
@@ -56,10 +60,9 @@ ${asciiArt}
 
 -->` : '';
 
-// Generate color CSS variables using build-time constants
-const colorPrimary = __COLOR_PRIMARY__;
-const colorPrimaryLight = __COLOR_PRIMARY_LIGHT__;
-const colorPrimaryDark = __COLOR_PRIMARY_DARK__;
+const colorPrimary = COLOR_PRIMARY;
+const colorPrimaryLight = COLOR_PRIMARY_LIGHT;
+const colorPrimaryDark = COLOR_PRIMARY_DARK;
 
 const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark}; --color-white: #ffffff; --color-black: #000000; --color-text-primary: ${colorPrimary};`;
 
@@ -105,15 +108,13 @@ const wordSchemaData = word ? (() => {
 		<meta name="education-level" content="all-ages" />
 		<meta name="resource-type" content="educational-website" />
 
-		<link rel="dns-prefetch" href="//api.wordnik.com" />
-
 		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')} />
 		<link rel="manifest" href={getUrl('/manifest.json')} />
 
 		<link type="text/plain" rel="author" href={getUrl('/humans.txt')} />
 		<link type="text/plain" rel="llms" href={getUrl('/llms.txt')} />
 
-		<link rel="alternate" type="application/rss+xml" title={__SITE_TITLE__} href={getUrl('/rss.xml')} />
+		<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={getUrl('/rss.xml')} />
 
 		<meta property="og:locale" content={seoConfig.locale} />
 		<meta http-equiv="content-language" content={seoConfig.locale.split('-')[0]} />
@@ -133,15 +134,15 @@ const wordSchemaData = word ? (() => {
 
 		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} />
 
-		{__GA_ENABLED__ && (
+		{GA_ENABLED && (
 			<Fragment set:html={`
 				<!-- Google tag (gtag.js) -->
-				<script async src="https://www.googletagmanager.com/gtag/js?id=${__GA_MEASUREMENT_ID__}"></script>
+				<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
 				<script>
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
-					gtag('config', '${__GA_MEASUREMENT_ID__}', {
+					gtag('config', '${GA_MEASUREMENT_ID}', {
 						send_page_view: true,
 						cookie_flags: 'SameSite=None;Secure',
 						allow_google_signals: false,
