@@ -53,4 +53,10 @@ const headingClass = preserveCase ? 'heading__text preserve-case' : 'heading__te
         font-weight: normal;
         margin-bottom: var(--spacing-small);
     }
+
+    @media (prefers-color-scheme: dark) {
+        .heading__text {
+            filter: none;
+        }
+    }
 </style>

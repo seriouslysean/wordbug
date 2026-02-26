@@ -64,7 +64,7 @@ const colorPrimary = COLOR_PRIMARY;
 const colorPrimaryLight = COLOR_PRIMARY_LIGHT;
 const colorPrimaryDark = COLOR_PRIMARY_DARK;
 
-const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark}; --color-white: #ffffff; --color-black: #000000; --color-text-primary: ${colorPrimary};`;
+const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark};`;
 
 const wordSchemaData = word ? (() => {
   const { definition, partOfSpeech } = extractWordDefinition(word);
@@ -96,7 +96,8 @@ const wordSchemaData = word ? (() => {
 		<link rel="canonical" href={currentUrl} />
 
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="theme-color" content="#121212" />
+		<meta name="theme-color" content={colorPrimary} media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -219,7 +220,7 @@ const wordSchemaData = word ? (() => {
 		top: -40px;
 		left: 6px;
 		background: var(--color-primary);
-		color: white;
+		color: var(--color-white);
 		padding: 8px;
 		text-decoration: none;
 		border-radius: 4px;
