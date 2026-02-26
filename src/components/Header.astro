@@ -3,9 +3,11 @@ import SiteLink from '#components/SiteLink.astro';
 ---
 
 <header class="header">
-  <SiteLink href="/" class="header__link">
-    <h2 class="header__title">{import.meta.env.SITE_TITLE}</h2>
-  </SiteLink>
+  <nav class="header__nav">
+    <SiteLink href="/" class="header__link">
+      <h2 class="header__title">{import.meta.env.SITE_TITLE}</h2>
+    </SiteLink>
+  </nav>
 </header>
 
 <style>

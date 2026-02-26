@@ -63,7 +63,7 @@ const gridSections = [
 ];
 ---
 
-<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST}>
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST} itemCount={allWords.length}>
   <Heading text={title} secondaryText={secondaryText} />
   
   {recentWords.length > 0 && (

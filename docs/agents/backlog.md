@@ -24,9 +24,7 @@ Known gaps and technical debt, organized by area.
 
 ### HTML/SEO
 
-- `src/layouts/Layout.astro` contains redundant hreflang tags
-- `src/components/StructuredData.astro` hardcodes `numberOfItems: 0`
-- `src/components/Header.astro` lacks semantic `<nav>` element
+- No known issues
 
 ## Documentation Gaps
 
