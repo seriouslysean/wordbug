@@ -134,8 +134,8 @@ const ctx = rawContext as LogContext;
 
 Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs — use them:
 
-- `vi.stubEnv()` — environment variables (auto-restores)
-- `vi.stubGlobal()` — build-time globals (auto-restores)
+- `mockEnv.FIELD = value` — `astro:env/client` variables (mutable object from `tests/setup.js`)
+- `vi.stubGlobal()` — build-time Vite defines (auto-restores)
 - `vi.resetModules()` + dynamic `import()` — module re-evaluation
 - `vi.useFakeTimers()` / `vi.useRealTimers()` — time control
 - `vi.hoisted()` — values needed before `vi.mock()` runs
@@ -187,7 +187,7 @@ Node.js subpath imports (`#` prefix) in `package.json` — the single source of 
 
 ## Environment
 
-All config via environment variables validated in `astro.config.ts` (single source of truth). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Build-time globals (`__SITE_TITLE__`, `__BASE_URL__`, etc.) injected via Vite `define`. See `.env.example` for the full list.
+All config via environment variables validated in `astro.config.ts` (single source of truth). Four required: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. Environment variables are accessed via `astro:env/client` in `src/` code. Four computed build-time constants (`__VERSION__`, `__RELEASE__`, `__TIMESTAMP__`, `__WORD_DATA_PATH__`) remain as Vite `define` globals. See `.env.example` for the full list.
 
 ## URL System
 

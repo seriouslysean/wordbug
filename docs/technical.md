@@ -82,7 +82,7 @@ locales/
   en.json                        # English translations
 
 tests/
-  setup.js                       # Global mocks (astro:content, translations)
+  setup.js                       # Global mocks (astro:env/client, astro:content, translations)
   helpers/spawn.js               # CLI tool process spawner
   adapters/                      # Adapter tests (Vitest)
   architecture/                  # Import boundary enforcement (Vitest)
@@ -182,9 +182,26 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | `COLOR_PRIMARY_LIGHT` | `#c2410c` | Light variant |
 | `COLOR_PRIMARY_DARK` | `#7c2d12` | Dark variant |
 
-### Build-Time Globals
+### Dark Mode
 
-`astro.config.ts` injects 30+ globals via Vite `define`. These are compile-time constants (e.g., `__SITE_TITLE__`, `__BASE_URL__`, `__VERSION__`, `__RELEASE__`, `__COLOR_PRIMARY__`). They are declared in `types/vite.d.ts` for TypeScript.
+CSS-only dark mode via `@media (prefers-color-scheme: dark)` in `src/styles/theme.css`. No JavaScript required — respects the user's system preference automatically.
+
+The dark mode overrides neutral colors (`--color-background`, `--color-text`, `--color-text-light`, `--color-border`) and uses `color-mix(in srgb, var(--color-primary-light), white 30%)` for `--color-text-primary` to ensure accessible contrast on dark backgrounds. Primary accent colors (`--color-primary`, `--color-primary-light`, `--color-primary-dark`) are unchanged — they're set per-site via environment variables and used for gradients, buttons, and focus outlines in both modes.
+
+Responsive `<meta name="theme-color">` tags match the browser chrome to the active color scheme.
+
+### Environment Access
+
+Environment variables in `src/` code are accessed via Astro's type-safe `astro:env/client` module. The schema is defined in `astro.config.ts` using `envField` — this provides validation, defaults, and TypeScript types. All env vars use `context: 'client'` since this is a fully static site with no secrets.
+
+Four computed build-time constants remain as Vite `define` globals (declared in `types/vite.d.ts`):
+
+| Global | Purpose |
+|--------|---------|
+| `__VERSION__` | Package version from `package.json` |
+| `__RELEASE__` | Release identifier (`name@version+hash`) |
+| `__TIMESTAMP__` | Build timestamp (ISO 8601) |
+| `__WORD_DATA_PATH__` | Resolved word data directory path |
 
 ## Word Data
 
@@ -550,6 +567,12 @@ This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it 
 - **WCAG AA**: Accessibility compliance required
 
 ## Architecture History
+
+### February 2026 - Environment and Theming
+
+- `astro:env` migration: 21 Vite `define` globals replaced with Astro's type-safe env schema (`envField` in `astro.config.ts`, accessed via `astro:env/client`). Four computed build-time constants remain as Vite defines.
+- CSS-only dark mode: `prefers-color-scheme` media query, `color-mix()` for accessible text, `color-scheme: light dark` for native form control styling.
+- SEO fixes: semantic `<nav>` in header, `itemCount` in CollectionPage structured data, redundant hreflang removal.
 
 ### February 2026 - Codebase Audit
 

@@ -67,7 +67,7 @@ Always use `#` aliases from `package.json` imports field. Never use relative pat
 
 Five test layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/src/`), architecture (`tests/architecture/`), CLI integration (`tests/tools/`), E2E (`tests/e2e/`). Vitest for the first four, Playwright for E2E.
 
-- Use `vi.stubEnv()` for env vars, `vi.stubGlobal()` for build-time globals.
+- Environment variables: mutate `mockEnv.FIELD` (from `tests/setup.js`) for `astro:env/client` mocks. Use `vi.stubGlobal()` only for the four remaining Vite defines (`__VERSION__`, `__RELEASE__`, `__TIMESTAMP__`, `__WORD_DATA_PATH__`).
 - `const` containers in tests: `const ctx = { spy: null }` with mutation in `beforeEach`.
 - Coverage thresholds: 80% across lines/functions/statements, 85% branches.
 - No overlapping tests. Each function tested at exactly one layer.
@@ -76,7 +76,7 @@ Five test layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/sr
 
 ## Environment
 
-Four required env vars: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. All validated in `astro.config.ts`.
+Four required env vars: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID`. Everything else has defaults. All validated in `astro.config.ts` via `astro:env` schema. Accessed in `src/` code via `import { VAR } from 'astro:env/client'`.
 
 ## Quality Gates
 
