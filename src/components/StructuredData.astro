@@ -1,4 +1,5 @@
 ---
+import { BASE_PATH } from 'astro:env/client';
 import type { CollectionPageSchema, DefinedTermSchema, WordSchemaData } from '#types';
 import {
   STRUCTURED_DATA_TYPE,
@@ -38,7 +39,7 @@ if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
   schemas.push(collectionSchema);
 }
 
-const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, import.meta.env.BASE_PATH);
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, BASE_PATH);
 const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs);
 if (breadcrumbSchema) {
   schemas.push(breadcrumbSchema);
