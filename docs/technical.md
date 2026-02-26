@@ -184,11 +184,20 @@ All environment variables are validated in `astro.config.ts` (single source of t
 
 ### Dark Mode
 
-CSS-only dark mode via `@media (prefers-color-scheme: dark)` in `src/styles/theme.css`. No JavaScript required — respects the user's system preference automatically.
+Opt-in via environment variables. Setting `COLOR_DARK_BACKGROUND` activates dark mode — it's the minimum viable dark palette. All other dark vars are optional; unset ones fall back to the light-mode value.
 
-The dark mode overrides neutral colors (`--color-background`, `--color-text`, `--color-text-light`, `--color-border`) and uses `color-mix(in srgb, var(--color-primary-light), white 30%)` for `--color-text-primary` to ensure accessible contrast on dark backgrounds. Primary accent colors (`--color-primary`, `--color-primary-light`, `--color-primary-dark`) are unchanged — they're set per-site via environment variables and used for gradients, buttons, and focus outlines in both modes.
+| Variable | Maps to | Fallback |
+|----------|---------|----------|
+| `COLOR_DARK_BACKGROUND` | `--color-background` | *(enablement trigger)* |
+| `COLOR_DARK_BACKGROUND_LIGHT` | `--color-background-light` | light value |
+| `COLOR_DARK_PRIMARY` | `--color-primary` | light value |
+| `COLOR_DARK_PRIMARY_LIGHT` | `--color-primary-light` | light value |
+| `COLOR_DARK_PRIMARY_DARK` | `--color-primary-dark` | light value |
+| `COLOR_DARK_TEXT` | `--color-text` | light value |
+| `COLOR_DARK_TEXT_LIGHT` | `--color-text-light` | light value |
+| `COLOR_DARK_BORDER` | `--color-border` | light value |
 
-Responsive `<meta name="theme-color">` tags match the browser chrome to the active color scheme.
+When enabled, `Layout.astro` emits a `@media (prefers-color-scheme: dark)` block with the configured overrides and a dark-variant `<meta name="theme-color">`. No JavaScript required — respects the user's system preference. When no dark vars are set, the site is light-only with no dark mode CSS emitted.
 
 ### Environment Access
 
@@ -571,7 +580,7 @@ This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it 
 ### February 2026 - Environment and Theming
 
 - `astro:env` migration: 21 Vite `define` globals replaced with Astro's type-safe env schema (`envField` in `astro.config.ts`, accessed via `astro:env/client`). Four computed build-time constants remain as Vite defines.
-- CSS-only dark mode: `prefers-color-scheme` media query, `color-mix()` for accessible text, `color-scheme: light dark` for native form control styling.
+- Environment-driven dark mode: opt-in via `COLOR_DARK_*` env vars, conditional `prefers-color-scheme` media query emitted only when configured.
 - SEO fixes: semantic `<nav>` in header, `itemCount` in CollectionPage structured data, redundant hreflang removal.
 
 ### February 2026 - Codebase Audit

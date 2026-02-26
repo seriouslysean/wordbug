@@ -1,7 +1,5 @@
 /* Global Design System - Base Values */
 :root {
-  color-scheme: light dark;
-
   /* Typography System - Using Arial to match Liberation Sans in images */
   --font-family-base: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   --font-weight-light: 300;
@@ -44,16 +42,4 @@
   --border-radius: 8px;
   --shadow-color: 186deg 47% 28%;
   --transition: 0.2s ease;
-}
-
-/* Dark mode: system preference detection */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #1a1a1a;
-    --color-background-light: #242424;
-    --color-text: #e0e0e0;
-    --color-text-light: #aaa;
-    --color-border: #333;
-    --color-text-primary: color-mix(in srgb, var(--color-primary-light), white 30%);
-  }
 }

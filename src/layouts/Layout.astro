@@ -1,6 +1,9 @@
 ---
 import {
   COLOR_PRIMARY, COLOR_PRIMARY_LIGHT, COLOR_PRIMARY_DARK,
+  COLOR_DARK_PRIMARY, COLOR_DARK_PRIMARY_LIGHT, COLOR_DARK_PRIMARY_DARK,
+  COLOR_DARK_BACKGROUND, COLOR_DARK_BACKGROUND_LIGHT,
+  COLOR_DARK_TEXT, COLOR_DARK_TEXT_LIGHT, COLOR_DARK_BORDER,
   SITE_TITLE, GA_ENABLED, GA_MEASUREMENT_ID,
 } from 'astro:env/client';
 import '#styles/global.css';
@@ -66,6 +69,19 @@ const colorPrimaryDark = COLOR_PRIMARY_DARK;
 
 const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark};`;
 
+const darkModeEnabled = !!COLOR_DARK_BACKGROUND;
+
+const darkColorOverrides = darkModeEnabled ? [
+  COLOR_DARK_BACKGROUND && `--color-background: ${COLOR_DARK_BACKGROUND}`,
+  COLOR_DARK_BACKGROUND_LIGHT && `--color-background-light: ${COLOR_DARK_BACKGROUND_LIGHT}`,
+  COLOR_DARK_PRIMARY && `--color-primary: ${COLOR_DARK_PRIMARY}`,
+  COLOR_DARK_PRIMARY_LIGHT && `--color-primary-light: ${COLOR_DARK_PRIMARY_LIGHT}`,
+  COLOR_DARK_PRIMARY_DARK && `--color-primary-dark: ${COLOR_DARK_PRIMARY_DARK}`,
+  COLOR_DARK_TEXT && `--color-text: ${COLOR_DARK_TEXT}`,
+  COLOR_DARK_TEXT_LIGHT && `--color-text-light: ${COLOR_DARK_TEXT_LIGHT}`,
+  COLOR_DARK_BORDER && `--color-border: ${COLOR_DARK_BORDER}`,
+].filter(Boolean).join('; ') : '';
+
 const wordSchemaData = word ? (() => {
   const { definition, partOfSpeech } = extractWordDefinition(word);
 
@@ -97,7 +113,9 @@ const wordSchemaData = word ? (() => {
 
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="theme-color" content={colorPrimary} media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		{darkModeEnabled && (
+			<meta name="theme-color" content={COLOR_DARK_BACKGROUND} media="(prefers-color-scheme: dark)" />
+		)}
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -154,7 +172,10 @@ const wordSchemaData = word ? (() => {
 		)}
 
 		<style set:html={`:root { ${colorVariables} }`}></style>
-		
+		{darkModeEnabled && (
+			<style set:html={`@media (prefers-color-scheme: dark) { :root { color-scheme: light dark; ${darkColorOverrides} } }`}></style>
+		)}
+
 		<!-- Speculation Rules for prefetching internal links on hover -->
 		<script type="speculationrules" is:inline set:html={`{
 		  "prefetch": [
