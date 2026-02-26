@@ -92,6 +92,20 @@ tests/
   src/                           # Astro component/utility tests (Vitest)
   tools/                         # CLI integration tests (Vitest)
   utils/                         # Pure utility tests (Vitest)
+
+.agents/                         # Agent skills (tool-agnostic)
+  skills/                        # validate, commit, pr workflows
+
+.claude/                         # Claude Code config
+  hooks/                         # Safety hooks (destructive commands, main branch guard)
+  settings.json                  # Shared permissions and hook registrations
+  skills -> ../.agents/skills/   # Symlink to agent skills
+
+.github/
+  workflows/                     # CI: lint, typecheck, test, build, e2e
+  copilot-instructions.md        # GitHub Copilot guidelines
+  instructions/                  # Scoped Copilot instructions (review focus)
+  pull_request_template.md       # PR body template
 ```
 
 ## Environment Configuration
@@ -128,12 +142,35 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | `BASE_PATH` | `/` | Subdirectory for deployment |
 | `SITE_LOCALE` | `en-US` | Locale for i18n |
 
+### Site Metadata
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `SITE_AUTHOR` | `''` | Author name for attribution |
+| `SITE_AUTHOR_URL` | `''` | Author website URL |
+| `SITE_ATTRIBUTION_MESSAGE` | `''` | Custom attribution text |
+| `SITE_KEYWORDS` | `''` | SEO keywords (comma-separated) |
+
+### humans.txt
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `HUMANS_WORD_CURATOR` | `''` | Word curator name |
+| `HUMANS_DEVELOPER_NAME` | `''` | Developer name |
+| `HUMANS_DEVELOPER_CONTACT` | `''` | Developer contact |
+| `HUMANS_DEVELOPER_SITE` | `''` | Developer website |
+
 ### Feature Flags
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `SENTRY_ENABLED` | `false` | Error tracking |
 | `SENTRY_DSN` | — | Sentry data source name |
+| `SENTRY_ORG` | — | Sentry organization |
+| `SENTRY_PROJECT` | — | Sentry project name |
+| `SENTRY_AUTH_TOKEN` | — | Sentry auth token (sourcemap uploads) |
+| `SENTRY_ENVIRONMENT` | `development` | Sentry environment tag |
+| `SENTRY_RELEASE` | auto-generated | Release identifier (`name@version+hash`) |
 | `GA_ENABLED` | `false` | Google Analytics |
 | `GA_MEASUREMENT_ID` | — | GA measurement ID |
 
@@ -195,6 +232,10 @@ export const getWordsForYear = (year: string) => getWordsByYear(year, allWords);
 ```
 
 Statistics are computed once at build time, not recalculated per page.
+
+### i18n
+
+All user-facing strings go through `locales/en.json`. The `t(key)` function from `utils/i18n-utils.ts` returns the translation, and `tp(key, count)` handles pluralization. Translation keys use dot notation (`words.count`, `stats.title`). Components and utilities import `t()` directly -- no framework-level i18n integration. Adding a new string means adding the key to `en.json` and using `t('key')` at the call site.
 
 ### Validation Rules
 
@@ -494,6 +535,10 @@ SITE_URL="https://example.com" BASE_PATH="/vocab"
 # GitHub Pages (username.github.io/repo/)
 SITE_URL="https://username.github.io" BASE_PATH="/repo"
 ```
+
+### Downstream Sync
+
+This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it and diverge only in word data, images, and favicons. `npm run tool:sync` merges upstream changes into a downstream repo via `git fetch upstream --no-tags && git merge upstream/main`. Merge-based (not rebase) so downstream can regular-push without force. Lockfile conflicts auto-resolve by accepting upstream's version and running `npm install`. The script no-ops in the upstream repo (no `upstream` remote).
 
 ## Constraints
 

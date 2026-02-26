@@ -44,7 +44,7 @@ Several env vars lack documentation in `docs/technical.md`:
 
 ## Test Coverage
 
-Coverage improved from 31.67% to ~84% (~499 tests across 5 layers: unit, component, architecture, CLI integration, E2E).
+~499 tests across 5 layers: unit, component, architecture, CLI integration, E2E. Coverage at ~84%.
 
 ### Remaining Gaps
 

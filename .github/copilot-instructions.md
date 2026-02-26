@@ -65,7 +65,7 @@ Always use `#` aliases from `package.json` imports field. Never use relative pat
 
 ## Testing
 
-Vitest with four layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/src/`), architecture (`tests/architecture/`), CLI integration (`tests/tools/`). Playwright for E2E (`tests/e2e/`).
+Five test layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/src/`), architecture (`tests/architecture/`), CLI integration (`tests/tools/`), E2E (`tests/e2e/`). Vitest for the first four, Playwright for E2E.
 
 - Use `vi.stubEnv()` for env vars, `vi.stubGlobal()` for build-time globals.
 - `const` containers in tests: `const ctx = { spy: null }` with mutation in `beforeEach`.
