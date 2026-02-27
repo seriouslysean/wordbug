@@ -24,7 +24,7 @@ export const collections = {
       date: z.string(),
       adapter: z.string(),
       preserveCase: z.boolean().default(false),
-      data: z.array(dictionaryDefinitionSchema),
+      data: z.array(dictionaryDefinitionSchema).min(1),
     }),
   }),
 };

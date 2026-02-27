@@ -44,7 +44,6 @@ tools/                           # CLI tools (Node.js only, no Astro deps)
   generate-images.ts             # Social image generation (consolidated)
   help-utils.ts                  # Shared help system
   migrate-preserve-case.ts       # Case preservation migration
-  ping-search-engines.ts         # SEO sitemap ping
   regenerate-all-words.ts        # Batch word data refresh
   utils.ts                       # Shared tool utilities
 
@@ -301,10 +300,6 @@ npm run tool:local tools/generate-images.ts --force              # Regenerate ex
 ### `regenerate-all-words.ts`
 
 Batch refresh of word data from the dictionary API. Supports dry-run mode and rate limiting.
-
-### `ping-search-engines.ts`
-
-Notifies Google and Bing of sitemap updates. Designed for GitHub Actions integration.
 
 ## URL System
 

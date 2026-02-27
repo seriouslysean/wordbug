@@ -10,10 +10,11 @@ interface Props {
     preserveCase?: boolean;
   };
   href?: string;
+  compact?: boolean;
   [key: string]: any;
 }
 
-const { word, href: overrideHref, class: className, ...attrs } = Astro.props;
+const { word, href: overrideHref, class: className, compact = false, ...attrs } = Astro.props;
 const formattedDate = formatDate(word.date);
 
 const href = overrideHref || getWordUrl(word.word);
@@ -22,7 +23,7 @@ const wordClass = word.preserveCase ? 'word-link__word preserve-case' : 'word-li
 
 <SiteLink
   href={href}
-  class:list={['word-link', className]}
+  class:list={['word-link', { 'word-link--compact': compact }, className]}
   {...attrs}
 >
   <span class={wordClass}>{word.word}</span>
@@ -49,6 +50,25 @@ const wordClass = word.preserveCase ? 'word-link__word preserve-case' : 'word-li
         font-size: 0.8rem;
         color: var(--color-text-light);
         font-weight: normal;
+    }
+
+    /* Compact: row layout at all breakpoints */
+    .word-link--compact {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+    }
+
+    .word-link--compact .word-link__word {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .word-link--compact .word-link__date {
+        margin-left: auto;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
 
     /* Desktop styles for screens > 1025px */

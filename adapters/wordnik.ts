@@ -7,6 +7,7 @@ import type {
   WordnikDefinition,
 } from '#types';
 import {
+  adapterFetch,
   normalizePOS,
   parseJsonResponse,
   throwOnHttpError,
@@ -48,7 +49,7 @@ export const CONFIG: WordnikConfig = {
  * Throws on rate-limit (429), server errors, 404, or empty results.
  */
 async function fetchDefinitions(word: string, buildUrl: (w: string) => string): Promise<WordnikDefinition[]> {
-  const response = await fetch(buildUrl(word));
+  const response = await adapterFetch(buildUrl(word), 'Wordnik');
   throwOnHttpError(response, word);
 
   const data = await parseJsonResponse(response, 'Wordnik') as WordnikDefinition[];

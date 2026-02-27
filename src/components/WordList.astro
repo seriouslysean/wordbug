@@ -7,6 +7,8 @@ interface Props {
   limit?: number;
   columns?: number;
   showEmpty?: boolean;
+  compact?: boolean;
+  narrow?: boolean;
 }
 
 const {
@@ -14,17 +16,19 @@ const {
   limit,
   columns = 1,
   showEmpty = true,
+  compact = false,
+  narrow = false,
 } = Astro.props;
 
 const displayWords = limit ? words.slice(0, limit) : words;
 ---
 
 {displayWords.length > 0 ? (
-  <div class:list={['word-list', { [`word-list--columns-${columns}`]: columns > 1 }]}>
+  <div class:list={['word-list', { [`word-list--columns-${columns}`]: columns > 1, 'word-list--narrow': narrow }]}>
     <ul class="word-list__list">
       {displayWords.map((word) => (
         <li class="word-list__item">
-          <WordLink word={word} />
+          <WordLink word={word} compact={compact} />
         </li>
       ))}
     </ul>
@@ -66,6 +70,11 @@ const displayWords = limit ? words.slice(0, limit) : words;
       grid-template-columns: repeat(3, 1fr);
       gap: 0.5rem 2rem;
     }
+  }
+
+  .word-list--narrow .word-list__list {
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .word-list__empty {

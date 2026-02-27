@@ -59,20 +59,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Get previous deployed hash
-        id: get_prev_hash
-        env:
-          SITE_URL: ${{ vars.SITE_URL }}
-        run: |
-          set -e
-          HASH=$(curl -sf "$SITE_URL/health.txt" | grep -E '^words_hash:' | awk '{print $2}' || true)
-          echo "PREVIOUS_DEPLOYED_HASH=$HASH" >> $GITHUB_OUTPUT
-
-      - name: Ping search engines
-        env:
-          SITE_URL: ${{ vars.SITE_URL }}
-        run: |
-          npm run tool:ping-search-engines -- \
-            --site-url "$SITE_URL" \
-            --deployed-hash "${{ steps.get_prev_hash.outputs.PREVIOUS_DEPLOYED_HASH }}"

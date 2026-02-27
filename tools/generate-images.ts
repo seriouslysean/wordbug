@@ -44,8 +44,11 @@ interface BulkItem {
   label: string;
 }
 
+const CONCURRENCY_LIMIT = 10;
+
 /**
- * Processes items in bulk with consistent logging and error tracking
+ * Processes items in batches with consistent logging and error tracking.
+ * Limits concurrency to avoid OOM/fd-exhaustion on large datasets.
  */
 async function bulkGenerate<T extends BulkItem>(
   items: T[],
@@ -54,17 +57,23 @@ async function bulkGenerate<T extends BulkItem>(
 ): Promise<void> {
   logger.info(`Starting ${category} generation`, { count: items.length });
 
-  const results = await Promise.allSettled(
-    items.map(async (item) => {
-      const generated = await generate(item);
-      if (generated) {
-        logger.info(`Generated ${category} image`, { label: item.label });
-      } else {
-        logger.info(`Skipped ${category} image (unchanged)`, { label: item.label });
-      }
-      return generated;
-    }),
-  );
+  const results: PromiseSettledResult<boolean>[] = [];
+
+  for (let i = 0; i < items.length; i += CONCURRENCY_LIMIT) {
+    const batch = items.slice(i, i + CONCURRENCY_LIMIT);
+    const batchResults = await Promise.allSettled(
+      batch.map(async (item) => {
+        const generated = await generate(item);
+        if (generated) {
+          logger.info(`Generated ${category} image`, { label: item.label });
+        } else {
+          logger.info(`Skipped ${category} image (unchanged)`, { label: item.label });
+        }
+        return generated;
+      }),
+    );
+    results.push(...batchResults);
+  }
 
   const failures = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
   failures.forEach(r => {

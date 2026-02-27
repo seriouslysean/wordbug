@@ -11,8 +11,8 @@ const { currentWord, wordsToShow = [], sectionTitle = '' } = Astro.props;
   {wordsToShow.length > 0 && (
     <section class="past-words">
       <div class="past-words__container">
-        <SectionHeading text={sectionTitle} />
-        <WordList words={wordsToShow} />
+        <SectionHeading text={sectionTitle} align="center" underline={false} />
+        <WordList words={wordsToShow} compact narrow />
       </div>
     </section>
   )}
@@ -38,55 +38,5 @@ const { currentWord, wordsToShow = [], sectionTitle = '' } = Astro.props;
         max-width: var(--content-width-small);
         margin: 0 auto;
         text-align: center;
-    }
-
-    /* Override section heading styles for the homepage */
-    .past-words :global(.section-heading) {
-        text-align: center;
-        border-bottom: none;
-    }
-
-    /* Homepage-specific word list styles */
-    .past-words :global(.word-list__list) {
-        display: block;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    /* Mobile-first: Always use flex layout with proper spacing */
-    .past-words :global(.word-link) {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: baseline;
-        width: 100%;
-        padding: 0.5rem 0;
-    }
-
-    .past-words :global(.word-link__word) {
-        text-align: left;
-        margin: 0;
-    }
-
-    .past-words :global(.word-link__date) {
-        margin: 0;
-        text-align: right;
-        color: var(--color-text-light);
-    }
-
-    /* Desktop styles for homepage word lists */
-    @media (min-width: 1025px) {
-        .past-words :global(.word-link) {
-            /* Already using flex in mobile, just ensure consistent spacing */
-            padding: 0.5rem 0;
-        }
-
-        .past-words :global(.word-link__word) {
-            /* Already left-aligned */
-        }
-
-        .past-words :global(.word-link__date) {
-            /* Already right-aligned */
-        }
     }
 </style>

@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "3.7.0",
+  "version": "3.8.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -27,7 +27,6 @@
     "tool:generate-images": "tsx tools/generate-images.ts",
     "tool:local": "tsx -r dotenv/config",
     "tool:migrate-preserve-case": "tsx tools/migrate-preserve-case.ts",
-    "tool:ping-search-engines": "tsx tools/ping-search-engines.ts",
     "tool:regenerate-all-words": "tsx tools/regenerate-all-words.ts",
     "tool:sync": "./tools/sync-upstream.sh",
     "test": "vitest run --coverage",
