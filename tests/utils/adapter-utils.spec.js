@@ -1,6 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+const originalFetch = globalThis.fetch;
 
 import {
+  adapterFetch,
   normalizePOS,
   parseJsonResponse,
   throwOnHttpError,
@@ -15,6 +18,36 @@ const TEST_POS_MAP = {
 };
 
 describe('adapter-utils', () => {
+  describe('adapterFetch', () => {
+    afterEach(() => {
+      globalThis.fetch = originalFetch;
+    });
+
+    it('returns the response on success', async () => {
+      const mockResponse = { ok: true, status: 200 };
+      globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
+
+      const result = await adapterFetch('https://example.com', 'TestAPI');
+
+      expect(result).toBe(mockResponse);
+      expect(globalThis.fetch).toHaveBeenCalledWith('https://example.com');
+    });
+
+    it('wraps TypeError from DNS/network failure with adapter context', async () => {
+      globalThis.fetch = vi.fn().mockRejectedValue(new TypeError('fetch failed'));
+
+      await expect(adapterFetch('https://bad.invalid', 'Merriam-Webster'))
+        .rejects.toThrow('Merriam-Webster network request failed: fetch failed');
+    });
+
+    it('wraps non-Error throws with adapter context', async () => {
+      globalThis.fetch = vi.fn().mockRejectedValue('connection reset');
+
+      await expect(adapterFetch('https://example.com', 'Wordnik'))
+        .rejects.toThrow('Wordnik network request failed: connection reset');
+    });
+  });
+
   describe('normalizePOS', () => {
     it('returns base POS unchanged', () => {
       expect(normalizePOS('noun', TEST_POS_MAP)).toBe('noun');

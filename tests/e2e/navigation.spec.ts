@@ -70,6 +70,39 @@ test.describe('user journeys', () => {
 		await expect(page.locator('#main-content')).toBeVisible();
 	});
 
+	test('oldest word has no previous navigation', async ({ page }) => {
+		await page.goto('/');
+
+		// Navigate to browse, find the earliest year, then its first word
+		await page.locator('footer a[href="/browse"]').click();
+		const earliestYear = page.locator('main a[href*="/browse/20"]').last();
+		await earliestYear.click();
+		const firstWord = page.locator('main a[href*="/word/"]').last();
+		await firstWord.click();
+
+		// Oldest word page has no previous link
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-nav__previous a')).toHaveCount(0);
+
+		// But next navigation still works
+		await expect(page.locator('.word-nav__next a.word-link')).toBeVisible();
+	});
+
+	test('newest word navigates home via next link', async ({ page }) => {
+		await page.goto('/');
+
+		// Click the first previous word from homepage
+		const previousWordLink = page.locator('.past-words a.word-link').first();
+		await previousWordLink.click();
+
+		// Navigate forward via next — should reach the homepage word
+		await page.locator('.word-nav__next a.word-link').click();
+
+		// Should be on the homepage (next link for the word before current resolves to /)
+		expect(page.url()).toMatch(/\/$/);
+		await expect(page.locator('.past-words')).toBeVisible();
+	});
+
 	test('non-existent route returns 404', async ({ page }) => {
 		const response = await page.goto('/this-page-does-not-exist');
 

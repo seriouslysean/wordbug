@@ -8,6 +8,7 @@ import type {
   MWVisTuple,
 } from '#types';
 import {
+  adapterFetch,
   normalizePOS,
   parseJsonResponse,
   throwOnHttpError,
@@ -162,7 +163,7 @@ export const merriamWebsterAdapter: DictionaryAdapter = {
     }
 
     const url = `${CONFIG.BASE_URL}/${CONFIG.DICTIONARY}/json/${encodeURIComponent(word)}?key=${apiKey}`;
-    const response = await fetch(url);
+    const response = await adapterFetch(url, 'Merriam-Webster');
     throwOnHttpError(response, word);
 
     const data = await parseJsonResponse(response, 'Merriam-Webster');
