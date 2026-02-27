@@ -4,6 +4,7 @@ import type {
   FreeDictionaryEntry,
 } from '#types';
 import {
+  adapterFetch,
   normalizePOS,
   parseJsonResponse,
   throwOnHttpError,
@@ -27,7 +28,7 @@ export const wiktionaryAdapter: DictionaryAdapter = {
 
   async fetchWordData(word: string): Promise<DictionaryResponse> {
     const url = `${BASE_URL}/${encodeURIComponent(word)}`;
-    const response = await fetch(url);
+    const response = await adapterFetch(url, 'Wiktionary');
     throwOnHttpError(response, word);
 
     const data = await parseJsonResponse(response, 'Wiktionary');

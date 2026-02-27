@@ -3,6 +3,21 @@ import { isBasePartOfSpeech } from '#constants/parts-of-speech';
 import { findValidDefinition } from '#utils/word-data-utils';
 
 /**
+ * Wraps fetch to convert network-level failures (DNS, connection refused,
+ * timeout) into descriptive errors with adapter context.
+ * fetch throws TypeError on network failures — this ensures callers get
+ * a meaningful message instead of a raw "fetch failed".
+ */
+export async function adapterFetch(url: string, adapterName: string): Promise<Response> {
+  try {
+    return await fetch(url);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`${adapterName} network request failed: ${message}`);
+  }
+}
+
+/**
  * Throws a structured error for non-OK HTTP responses.
  * Handles 429 (rate limit), 404 (not found), and generic failures.
  */
