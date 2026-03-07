@@ -3,10 +3,11 @@ import {
   init,
   replayIntegration,
 } from '@sentry/astro';
+import { SENTRY_DSN, SENTRY_ENVIRONMENT, SITE_ID } from 'astro:env/client';
 
 init({
-  dsn: __SENTRY_DSN__,
-  environment: __SENTRY_ENVIRONMENT__,
+  dsn: SENTRY_DSN,
+  environment: SENTRY_ENVIRONMENT,
   release: __RELEASE__,
   integrations: [
     browserTracingIntegration(),
@@ -25,7 +26,7 @@ init({
   maxBreadcrumbs: 30,
   initialScope: {
     tags: {
-      site: __SITE_ID__,
+      site: SITE_ID,
     },
   },
   // Filter browser noise from extensions and cross-browser quirks.

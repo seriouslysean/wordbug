@@ -117,6 +117,7 @@ export default defineConfig({
       GA_ENABLED: envField.boolean({ context: 'client', access: 'public', default: false }),
       SENTRY_ENABLED: envField.boolean({ context: 'client', access: 'public', default: false }),
       SENTRY_DSN: envField.string({ context: 'client', access: 'public', optional: true }),
+      SENTRY_ENVIRONMENT: envField.string({ context: 'client', access: 'public', default: 'development' }),
       BASE_PATH: envField.string({ context: 'client', access: 'public', default: '/' }),
     },
   },
