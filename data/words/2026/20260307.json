@@ -1,0 +1,22 @@
+{
+    "word": "stinky",
+    "date": "20260307",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "adjective",
+            "text": "Having a strong, unpleasant smell; stinking.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/stinky"
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Bad, undesirable.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/stinky"
+        }
+    ]
+}
