@@ -153,11 +153,10 @@ const wordSchemaData = word ? (() => {
 
 		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} />
 
-		{GA_ENABLED && (
-			<Fragment set:html={`
-				<!-- Google tag (gtag.js) -->
-				<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
-				<script>
+		{GA_ENABLED && GA_MEASUREMENT_ID && (
+			<>
+				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+				<script is:inline set:html={`
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
@@ -167,8 +166,8 @@ const wordSchemaData = word ? (() => {
 						allow_google_signals: false,
 						allow_ad_personalization_signals: false
 					});
-				</script>
-			`} />
+				`}></script>
+			</>
 		)}
 
 		<style set:html={`:root { ${colorVariables} }`}></style>
