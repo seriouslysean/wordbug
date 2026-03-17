@@ -151,6 +151,9 @@ export default defineConfig({
       },
     },
   },
+  experimental: {
+    rustCompiler: true,
+  },
   integrations: [
     ...(sentryEnabled ? [sentry({
       sourceMapsUploadOptions: {

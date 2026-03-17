@@ -21,34 +21,26 @@ const hasSlotContent = Astro.slots.has('default');
   {hasSlotContent ? (
     <slot />
   ) : (
-    items.map(({ label, value, href }) => {
-      const renderValue = () => {
-        if (valueType === 'word') {
-          return <WordLink word={value} />;
-        } else if (href) {
-          return (
-            <SiteLink href={href} class="definition-list__link">
-              {value}
-            </SiteLink>
-          );
-        } else {
-          return value;
-        }
-      };
-
-      return (
-        <div class="definition-list__item">
-          <dt class="definition-list__label">
-            <slot name="key">{label}</slot>
-          </dt>
-          <dd class="definition-list__value">
-            <slot name="value">
-              {renderValue()}
-            </slot>
-          </dd>
-        </div>
-      );
-    })
+    items.map(({ label, value, href }) => (
+      <div class="definition-list__item">
+        <dt class="definition-list__label">
+          <slot name="key">{label}</slot>
+        </dt>
+        <dd class="definition-list__value">
+          <slot name="value">
+            {valueType === 'word' ? (
+              <WordLink word={value} />
+            ) : href ? (
+              <SiteLink href={href} class="definition-list__link">
+                {value}
+              </SiteLink>
+            ) : (
+              value
+            )}
+          </slot>
+        </dd>
+      </div>
+    ))
   )}
 </dl>
 

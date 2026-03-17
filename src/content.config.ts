@@ -1,7 +1,8 @@
 import { glob } from 'astro/loaders';
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 
-const dictionaryDefinitionSchema = z.object({
+const dictionaryDefinitionSchema = z.looseObject({
   id: z.string().optional(),
   partOfSpeech: z.string().optional(),
   text: z.union([z.string(), z.array(z.string())]).optional(),
@@ -11,7 +12,7 @@ const dictionaryDefinitionSchema = z.object({
   examples: z.array(z.string()).optional(),
   synonyms: z.array(z.string()).optional(),
   antonyms: z.array(z.string()).optional(),
-}).passthrough();
+});
 
 export const collections = {
   words: defineCollection({

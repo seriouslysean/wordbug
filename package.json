@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -39,17 +39,18 @@
     "prepare": "lefthook install"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.15",
-    "astro": "^5.17.3",
+    "@astrojs/rss": "^4.0.17",
+    "astro": "^6.0.2",
     "date-fns": "^4.1.0",
     "entities": "^7.0.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/check": "^0.9.7",
+    "@astrojs/compiler-rs": "^0.1.4",
+    "@astrojs/sitemap": "^3.7.1",
     "@playwright/test": "^1.58.2",
-    "@sentry/astro": "^9.32.0",
-    "@sentry/node": "^9.32.0",
+    "@sentry/astro": "^10.43.0",
+    "@sentry/node": "^10.43.0",
     "@vitest/coverage-v8": "^4.0.18",
     "dotenv": "^17.0.0",
     "lefthook": "^2.1.0",
