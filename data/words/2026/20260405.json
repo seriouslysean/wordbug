@@ -1,0 +1,15 @@
+{
+    "word": "monosaccharide",
+    "date": "20260405",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "A simple sugar such as glucose, fructose or deoxyribose that has a single ring",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/monosaccharide"
+        }
+    ]
+}
