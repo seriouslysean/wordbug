@@ -1,0 +1,75 @@
+{
+    "word": "bass",
+    "date": "20260413",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "A low spectrum of sound tones.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
+            "examples": [
+                "Peter adjusted the equalizer on his audio equipment to emphasize the bass."
+            ]
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A section of musical group that produces low-pitched sound, lower than the baritone and tenor.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
+            "examples": [
+                "The conductor preferred to situate the bass in the middle rear, rather than to one side of the orchestra."
+            ]
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "One who sings in the bass range.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
+            "examples": [
+                "Halfway through middle school, Edgar morphed from a soprano to a bass, much to the amazement and amusement of his fellow choristers."
+            ]
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "An instrument that plays in the bass range, in particular a double bass, bass guitar, electric bass or bass synthesiser.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
+            "examples": [
+                "The musician swung the bass over his head like an axe and smashed it into the amplifier, creating a discordant howl of noise."
+            ]
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The clef sign that indicates that the pitch of the notes is below middle C; a bass clef.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
+            "examples": [
+                "The score had been written without the treble and bass, but it was easy to pick out which was which based on the location of the notes on the staff."
+            ]
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To sound in a deep tone.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/bass"
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Of sound, a voice or an instrument, low in pitch or frequency.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
+            "examples": [
+                "The giant spoke in a deep, bass, rumbling voice that shook me to my boots."
+            ]
+        }
+    ]
+}
