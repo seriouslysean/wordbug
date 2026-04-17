@@ -1,0 +1,61 @@
+{
+    "word": "sap",
+    "date": "20260417",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "The juice of plants of any kind, especially the ascending and descending juices or circulating fluid essential to nutrition.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The sapwood, or alburnum, of a tree.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Any juice.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Vitality.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A naive person; a simpleton",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/sap",
+            "synonyms": [
+                "milksop",
+                "saphead"
+            ]
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To drain, suck or absorb from (tree, etc.).",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To exhaust the vitality of.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+        }
+    ]
+}
