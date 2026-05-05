@@ -1,0 +1,70 @@
+{
+    "word": "pneumatic",
+    "date": "20260505",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "A vehicle, such as a bicycle, whose wheels are fitted with pneumatic tyres.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "(gnosticism) In the gnostic theologian Valentinus' triadic grouping of man, the highest type; a person focused on spiritual reality (the other two being hylic and psychic).",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Of, relating to, or resembling air or other gases",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Of or relating to pneumatics",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Powered by, or filled with, compressed air",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic",
+            "examples": [
+                "a pneumatic instrument or engine"
+            ]
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Having cavities filled with air",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic",
+            "examples": [
+                "pneumatic cells or bones"
+            ]
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "Spiritual; of or relating to the pneuma",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+        },
+        {
+            "partOfSpeech": "adjective",
+            "text": "(of a woman) well-rounded; full-breasted; bouncy",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+        }
+    ]
+}
