@@ -1,0 +1,108 @@
+{
+    "word": "image",
+    "date": "20260319",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "An optical or other representation of a real object; a graphic; a picture.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image",
+            "examples": [
+                "The Bible forbids the worship of graven images."
+            ]
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A mental picture of something not real or not present.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A statue or idol.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A file that contains all information needed to produce a live working copy. (See disk image and image copy.)",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image",
+            "examples": [
+                "Most game console emulators do not come with any ROM images for copyright reasons."
+            ]
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A characteristic of a person, group or company etc., style, manner of dress, how one is, or wishes to be, perceived by others.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Something mapped to by a function.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image",
+            "examples": [
+                "The number 6 is the image of 3 under f that is defined as f(x) = 2x."
+            ]
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The subset of a codomain comprising those elements that are images of something.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "A form of interference: a weaker \"copy\" of a strong signal that occurs at a different frequency.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "Show; appearance; cast.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To represent by an image or symbol; to portray.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To reflect, mirror.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To create an image of.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        },
+        {
+            "partOfSpeech": "verb",
+            "text": "To create a complete backup copy of a file system or other entity.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+        }
+    ]
+}
