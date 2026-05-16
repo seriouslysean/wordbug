@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import { fetchWithFallback } from '#adapters';
+import { isEntryPoint } from '#tools/entry';
 import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
 import { getWordFiles } from '#tools/utils';
 import type { WordData } from '#types';
@@ -215,40 +216,41 @@ const DEFAULTS = {
   batchTimeout: 60000,
 } as const;
 
-const { values } = parseArgs({
-  args: process.argv.slice(2),
-  options: {
-    help: { type: 'boolean', short: 'h', default: false },
-    'word-field': { type: 'string', default: DEFAULTS.wordField },
-    'date-field': { type: 'string', default: DEFAULTS.dateField },
-    'dry-run': { type: 'boolean', default: false },
-    force: { type: 'boolean', default: false },
-    timeout: { type: 'string', default: String(DEFAULTS.timeout) },
-    'rate-limit-timeout': { type: 'string', default: String(DEFAULTS.rateLimitTimeout) },
-    'batch-size': { type: 'string', default: String(DEFAULTS.batchSize) },
-    'batch-timeout': { type: 'string', default: String(DEFAULTS.batchTimeout) },
-  },
-  strict: true,
-});
+if (isEntryPoint(import.meta.url)) {
+  const { values } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      help: { type: 'boolean', short: 'h', default: false },
+      'word-field': { type: 'string', default: DEFAULTS.wordField },
+      'date-field': { type: 'string', default: DEFAULTS.dateField },
+      'dry-run': { type: 'boolean', default: false },
+      force: { type: 'boolean', default: false },
+      timeout: { type: 'string', default: String(DEFAULTS.timeout) },
+      'rate-limit-timeout': { type: 'string', default: String(DEFAULTS.rateLimitTimeout) },
+      'batch-size': { type: 'string', default: String(DEFAULTS.batchSize) },
+      'batch-timeout': { type: 'string', default: String(DEFAULTS.batchTimeout) },
+    },
+    strict: true,
+  });
 
-if (values.help || process.argv.length <= 2) {
-  showHelp(HELP_TEXT);
-  process.exit(0);
+  if (values.help || process.argv.length <= 2) {
+    showHelp(HELP_TEXT);
+    process.exit(0);
+  }
+
+  const options: RegenerateOptions = {
+    wordField: values['word-field'] ?? DEFAULTS.wordField,
+    dateField: values['date-field'] ?? DEFAULTS.dateField,
+    dryRun: !!values['dry-run'],
+    force: !!values.force,
+    timeout: parseInt(values.timeout ?? String(DEFAULTS.timeout), 10),
+    rateLimitTimeout: parseInt(values['rate-limit-timeout'] ?? String(DEFAULTS.rateLimitTimeout), 10),
+    batchSize: parseInt(values['batch-size'] ?? String(DEFAULTS.batchSize), 10),
+    batchTimeout: parseInt(values['batch-timeout'] ?? String(DEFAULTS.batchTimeout), 10),
+  };
+
+  regenerateAllWords(options).catch(async (error: unknown) => {
+    logger.error('Regeneration tool failed', { error: getErrorMessage(error) });
+    await exit(1);
+  });
 }
-
-const options: RegenerateOptions = {
-  wordField: values['word-field'] ?? DEFAULTS.wordField,
-  dateField: values['date-field'] ?? DEFAULTS.dateField,
-  dryRun: !!values['dry-run'],
-  force: !!values.force,
-  timeout: parseInt(values.timeout ?? String(DEFAULTS.timeout), 10),
-  rateLimitTimeout: parseInt(values['rate-limit-timeout'] ?? String(DEFAULTS.rateLimitTimeout), 10),
-  batchSize: parseInt(values['batch-size'] ?? String(DEFAULTS.batchSize), 10),
-  batchTimeout: parseInt(values['batch-timeout'] ?? String(DEFAULTS.batchTimeout), 10),
-};
-
-// Run the regeneration and write build data
-regenerateAllWords(options).catch(async (error: unknown) => {
-  logger.error('Regeneration tool failed', { error: getErrorMessage(error) });
-  await exit(1);
-});

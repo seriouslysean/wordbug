@@ -1,5 +1,6 @@
 import { BASE_PATH, SITE_URL } from 'astro:env/client';
 import { logger } from '#astro-utils/logger';
+import { BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
 
 // =====================================================
 // URL Slug Utilities
@@ -112,8 +113,6 @@ export const stripBasePath = (pathname: string): string => {
   }
   return cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
 };
-
-import { BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
 
 // =====================================================
 // Section URLs - Top-level navigation

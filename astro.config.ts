@@ -139,10 +139,14 @@ export default defineConfig({
           : 'data/words',
       ),
     },
+    css: {
+      transformer: 'lightningcss',
+    },
     build: {
       target: 'esnext',
       modulePreload: { polyfill: false },
       reportCompressedSize: false,
+      cssMinify: 'lightningcss',
       rollupOptions: {
         output: {
           chunkFileNames: '_astro/[name]-[hash].js',

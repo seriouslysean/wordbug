@@ -4,6 +4,17 @@ import {
 
 import { getAdapter, getAdapterByName } from '#adapters';
 
+const mockLogger = vi.hoisted(() => ({
+  info: vi.fn(),
+  error: vi.fn(),
+  warn: vi.fn(),
+  debug: vi.fn(),
+}));
+
+vi.mock('#utils/logger', () => ({
+  logger: mockLogger,
+}));
+
 describe('adapter factory', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -78,17 +89,6 @@ describe('adapter factory', () => {
     });
 
     it('logs adapter selection', async () => {
-      const mockLogger = vi.hoisted(() => ({
-        info: vi.fn(),
-        error: vi.fn(),
-        warn: vi.fn(),
-        debug: vi.fn(),
-      }));
-
-      vi.mock('#utils/logger', () => ({
-        logger: mockLogger,
-      }));
-
       vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
       vi.resetModules();
 

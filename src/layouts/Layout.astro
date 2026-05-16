@@ -16,6 +16,7 @@ import StructuredData from '#components/StructuredData.astro';
 import type { WordData } from '#types';
 import { getBuildData } from '#astro-utils/build-utils.ts';
 import { getSocialImageUrl } from '#astro-utils/image-utils';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
 import { getMetaDescription, seoConfig } from '#astro-utils/seo-utils.ts';
 import { getAsciiArt } from '#astro-utils/static-file-utils';
 import { getFullUrl,getUrl } from '#astro-utils/url-utils';
@@ -23,6 +24,8 @@ import { extractWordDefinition,getWordsFromCollection } from '#astro-utils/word-
 import { t } from '#utils/i18n-utils';
 
 const { title, word, description, structuredDataType, noindex, nofollow, itemCount } = Astro.props;
+
+const ogType = structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE ? 'article' : 'website';
 
 const currentUrl = getFullUrl(Astro.url.pathname);
 const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
@@ -140,7 +143,7 @@ const wordSchemaData = word ? (() => {
 
 		<meta property="og:title" content={finalTitle} />
 		<meta property="og:description" content={metaDescription} />
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={ogType} />
 		<meta property="og:url" content={currentUrl} />
 		<meta property="og:image" content={socialImageUrl} />
 		<meta property="og:site_name" content={seoConfig.siteName} />
@@ -186,7 +189,7 @@ const wordSchemaData = word ? (() => {
 			{
 			  "source": "list",
 			  "urls": ["/stats", "/word", "/browse"],
-			  "eagerness": "eager"
+			  "eagerness": "moderate"
 			}
 		  ]
 		}`}></script>

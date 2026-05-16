@@ -12,6 +12,7 @@ export interface WebSiteSchema {
   name: string;
   description: string;
   url: string;
+  inLanguage?: string;
   author?: {
     '@type': 'Person';
     name: string;
@@ -32,6 +33,7 @@ export interface DefinedTermSchema {
     '@type': 'DefinedTermSet';
     name: string;
   };
+  inLanguage?: string;
   url?: string;
 }
 
@@ -45,6 +47,7 @@ export interface CollectionPageSchema {
     '@type': 'ItemList';
     numberOfItems: number;
   };
+  inLanguage?: string;
   audience?: {
     '@type': 'EducationalAudience';
     educationalRole: string;

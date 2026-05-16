@@ -5,6 +5,7 @@ vi.mock('#astro-utils/seo-utils', () => ({
     siteName: 'Test Site',
     defaultDescription: 'Test description',
     author: 'Test Author',
+    locale: 'en-US',
   },
 }));
 
@@ -53,6 +54,10 @@ describe('schema-utils', () => {
       expect(schema.audience).toBeDefined();
       expect(schema.audience['@type']).toBe('EducationalAudience');
       expect(schema.audience.educationalRole).toBe('student');
+    });
+
+    it('includes inLanguage from configured locale', () => {
+      expect(getWebsiteSchemaData().inLanguage).toBe('en-US');
     });
   });
 
@@ -115,6 +120,11 @@ describe('schema-utils', () => {
       expect(getWordSchemaData({})).toBeNull();
       expect(getWordSchemaData({ definition: 'No word' })).toBeNull();
     });
+
+    it('includes inLanguage from configured locale', () => {
+      const schema = getWordSchemaData({ word: 'test', definition: 'a test' });
+      expect(schema.inLanguage).toBe('en-US');
+    });
   });
 
   describe('getCollectionSchemaData', () => {
@@ -147,6 +157,10 @@ describe('schema-utils', () => {
       const schema = getCollectionSchemaData('Empty Collection', 'No items', 0);
 
       expect(schema.mainEntity.numberOfItems).toBe(0);
+    });
+
+    it('includes inLanguage from configured locale', () => {
+      expect(getCollectionSchemaData('X', 'Y', 1).inLanguage).toBe('en-US');
     });
   });
 

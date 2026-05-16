@@ -157,11 +157,11 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
 
     <StatsSection title={t('stats.overview_heading')}>
       <DefinitionList items={basicStatsItems} />
-      <DefinitionList items={basicWordItems} valueType="word" />
+      <DefinitionList items={basicWordItems} valueType="word" reverseWord />
     </StatsSection>
 
     <StatsSection title={t('stats.word_facts_heading')} href={getWordFactsUrl()}>
-      <DefinitionList items={wordFactsWordItems} valueType="word" />
+      <DefinitionList items={wordFactsWordItems} valueType="word" reverseWord />
       <DefinitionList items={wordFactsRegularItems} />
     </StatsSection>
 

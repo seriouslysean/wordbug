@@ -79,7 +79,7 @@ type StaticPageMeta = {
   title: string;
   description: string;
   category: string;
-  secondaryText?: string | ((data?: any) => string);
+  secondaryText?: string | ((count: number) => string);
   partOfSpeech?: string;
 };
 
@@ -88,7 +88,7 @@ type HomepageMeta = {
   title: string;
   description: (currentWord: string) => string;
   category: string;
-  secondaryText?: string | ((data?: any) => string);
+  secondaryText?: string | ((count: number) => string);
 };
 
 type StatsPageMeta = {

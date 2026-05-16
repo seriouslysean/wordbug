@@ -18,9 +18,15 @@ interface Props {
     wordLength: number;
     firstLetter: string;
     partOfSpeech?: string;
+    year?: string;
     lengthCount: number;
     letterCount: number;
     partOfSpeechCount?: number;
+    yearCount?: number;
+    relatedByLength?: WordData[];
+    relatedByLetter?: WordData[];
+    relatedByPartOfSpeech?: WordData[];
+    relatedByYear?: WordData[];
   };
 }
 
@@ -51,9 +57,15 @@ const pageDescription = getMetaDescription({
         wordLength={contextData.wordLength}
         firstLetter={contextData.firstLetter}
         partOfSpeech={contextData.partOfSpeech}
+        year={contextData.year}
         lengthCount={contextData.lengthCount}
         letterCount={contextData.letterCount}
         partOfSpeechCount={contextData.partOfSpeechCount}
+        yearCount={contextData.yearCount}
+        relatedByLength={contextData.relatedByLength}
+        relatedByLetter={contextData.relatedByLetter}
+        relatedByPartOfSpeech={contextData.relatedByPartOfSpeech}
+        relatedByYear={contextData.relatedByYear}
       />
     )}
     <WordNav

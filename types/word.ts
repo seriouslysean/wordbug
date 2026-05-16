@@ -24,25 +24,12 @@ export interface WordData {
 }
 
 // Word statistics types
-export interface WordLengthStat {
-  word: string;
-  length: number;
-}
-
 export interface WordStatsResult {
   longest: WordData | null;
   shortest: WordData | null;
   longestPalindrome: WordData | null;
   shortestPalindrome: WordData | null;
   letterFrequency: Record<string, number>;
-}
-
-export type WordLetterStatsResult = Array<[string, number]>;
-
-export interface WordMilestoneResult {
-  25: WordData | null;
-  50: WordData | null;
-  100: WordData | null;
 }
 
 export interface WordPatternStatsResult {
@@ -81,21 +68,15 @@ export interface WordAdjacentResult {
   nextWord: WordData | null;
 }
 
-export interface WordGroupByYearResult {
-  [year: string]: WordData[];
-}
+/**
+ * Generic grouping of words keyed by some attribute (year, length, POS, letter).
+ * Single shape replaces three near-identical aliases that diverged in name only.
+ */
+export type WordGrouping<K extends string | number> = Record<K, WordData[]>;
 
-export interface WordGroupByLengthResult {
-  [length: number]: WordData[];
-}
-
-export interface WordGroupByPartOfSpeechResult {
-  [partOfSpeech: string]: WordData[];
-}
-
-export interface WordFileGlobImport {
-  [path: string]: WordData | WordData[];
-}
+export type WordGroupByYearResult = WordGrouping<string>;
+export type WordGroupByLengthResult = WordGrouping<number>;
+export type WordGroupByPartOfSpeechResult = WordGrouping<string>;
 
 export interface WordMilestoneItem extends WordData {
   label: string;

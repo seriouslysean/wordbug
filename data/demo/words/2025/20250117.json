@@ -107,6 +107,14 @@
             ]
         },
         {
+            "id": "day camp",
+            "partOfSpeech": "noun",
+            "text": "a camp for children or adolescents that operates during the daytime only and usually during the summer",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
+        },
+        {
             "id": "day care",
             "partOfSpeech": "noun",
             "text": "supervision of and care for children or physically or mentally disabled adults that is provided during the day by a person or organization —often used before another noun",
@@ -149,14 +157,6 @@
             "id": "day job",
             "partOfSpeech": "noun",
             "text": "one's regular employment as contrasted with an occasional, secondary, or coveted job",
-            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
-            "sourceDictionary": "collegiate",
-            "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
-        },
-        {
-            "id": "day laborer",
-            "partOfSpeech": "noun",
-            "text": "one who works for daily wages especially as an unskilled laborer",
             "attributionText": "from Merriam-Webster's Collegiate Dictionary",
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/day"

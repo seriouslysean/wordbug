@@ -1,49 +1,96 @@
 ---
 import SectionHeading from '#components/SectionHeading.astro';
 import SiteLink from '#components/SiteLink.astro';
-import { getLengthUrl, getLetterUrl, getPartOfSpeechUrl } from '#astro-utils/url-utils';
+import WordList from '#components/WordList.astro';
+import { getLengthUrl, getLetterUrl, getPartOfSpeechUrl, getWordsYearUrl } from '#astro-utils/url-utils';
 import { t } from '#utils/i18n-utils';
+import type { WordData } from '#types';
 
 interface Props {
   wordLength: number;
   firstLetter: string;
   partOfSpeech?: string;
+  year?: string;
   lengthCount: number;
   letterCount: number;
   partOfSpeechCount?: number;
+  yearCount?: number;
+  relatedByLength?: WordData[];
+  relatedByLetter?: WordData[];
+  relatedByPartOfSpeech?: WordData[];
+  relatedByYear?: WordData[];
 }
 
-const { wordLength, firstLetter, partOfSpeech, lengthCount, letterCount, partOfSpeechCount } = Astro.props;
+const {
+  wordLength,
+  firstLetter,
+  partOfSpeech,
+  year,
+  lengthCount,
+  letterCount,
+  partOfSpeechCount,
+  yearCount,
+  relatedByLength = [],
+  relatedByLetter = [],
+  relatedByPartOfSpeech = [],
+  relatedByYear = [],
+} = Astro.props;
 ---
 
 <section class="word-context">
   <SectionHeading text={t('word.related_words')} />
   <div class="word-context__grid">
-    <SiteLink
-      href={getLengthUrl(wordLength)}
-      variant="primary"
-      class="word-context__item"
-      title={t('common.title_with_length', { count: lengthCount, value: wordLength })}
-    >
-      {t('word.length_label', { length: wordLength })}
-    </SiteLink>
-    <SiteLink
-      href={getLetterUrl(firstLetter)}
-      variant="primary"
-      class="word-context__item"
-      title={t('common.title_starting_with', { count: letterCount, value: firstLetter.toUpperCase() })}
-    >
-      {t('word.letter_words', { letter: firstLetter.toUpperCase() })}
-    </SiteLink>
-    {partOfSpeech && partOfSpeechCount && (
-      <SiteLink
-        href={getPartOfSpeechUrl(partOfSpeech)}
-        variant="primary"
-        class="word-context__item"
-        title={t('common.title_with_part_of_speech', { count: partOfSpeechCount, value: partOfSpeech })}
-      >
-        {t(`parts_of_speech.${partOfSpeech}`)}
-      </SiteLink>
+    {relatedByLength.length > 0 && (
+      <div class="word-context__cell">
+        <SiteLink
+          href={getLengthUrl(wordLength)}
+          variant="primary"
+          class="word-context__item"
+          title={t('common.title_with_length', { count: lengthCount, value: wordLength })}
+        >
+          {t('word.length_label', { length: wordLength })}
+        </SiteLink>
+        <WordList words={relatedByLength} limit={3} compact />
+      </div>
+    )}
+    {relatedByLetter.length > 0 && (
+      <div class="word-context__cell">
+        <SiteLink
+          href={getLetterUrl(firstLetter)}
+          variant="primary"
+          class="word-context__item"
+          title={t('common.title_starting_with', { count: letterCount, value: firstLetter.toUpperCase() })}
+        >
+          {t('word.letter_words', { letter: firstLetter.toUpperCase() })}
+        </SiteLink>
+        <WordList words={relatedByLetter} limit={3} compact />
+      </div>
+    )}
+    {partOfSpeech && partOfSpeechCount && relatedByPartOfSpeech.length > 0 && (
+      <div class="word-context__cell">
+        <SiteLink
+          href={getPartOfSpeechUrl(partOfSpeech)}
+          variant="primary"
+          class="word-context__item"
+          title={t('common.title_with_part_of_speech', { count: partOfSpeechCount, value: partOfSpeech })}
+        >
+          {t(`parts_of_speech.${partOfSpeech}`)}
+        </SiteLink>
+        <WordList words={relatedByPartOfSpeech} limit={3} compact />
+      </div>
+    )}
+    {year && relatedByYear.length > 0 && (
+      <div class="word-context__cell">
+        <SiteLink
+          href={getWordsYearUrl(year)}
+          variant="primary"
+          class="word-context__item"
+          title={t('common.title_from_context', { count: yearCount ?? relatedByYear.length, value: year })}
+        >
+          {year}
+        </SiteLink>
+        <WordList words={relatedByYear} limit={3} compact />
+      </div>
     )}
   </div>
 </section>
@@ -51,16 +98,26 @@ const { wordLength, firstLetter, partOfSpeech, lengthCount, letterCount, partOfS
 <style>
   .word-context {
     width: 100%;
-    max-width: var(--content-width-small);
+    max-width: var(--content-width-medium);
     margin: var(--spacing-large) auto calc(var(--spacing-large) * 2);
     padding: 0 var(--spacing-base);
   }
 
   .word-context__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     margin: 1rem 0;
+  }
+
+  .word-context__cell {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+
+  .word-context__cell :global(.word-list) {
+    margin: 0;
   }
 
   .word-context__item {
@@ -69,9 +126,10 @@ const { wordLength, firstLetter, partOfSpeech, lengthCount, letterCount, partOfS
     text-decoration: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1025px) {
     .word-context__grid {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem 2rem;
     }
   }
 </style>

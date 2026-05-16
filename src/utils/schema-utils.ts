@@ -25,6 +25,7 @@ export function getWebsiteSchemaData(): WebSiteSchema {
     name: seoConfig.siteName,
     description: seoConfig.defaultDescription,
     url: getFullUrl('/'),
+    inLanguage: seoConfig.locale,
     author: {
       '@type': 'Person',
       name: seoConfig.author,
@@ -56,6 +57,7 @@ export function getWordSchemaData(wordData: WordSchemaData): DefinedTermSchema |
       '@type': 'DefinedTermSet',
       name: seoConfig.siteName,
     },
+    inLanguage: seoConfig.locale,
   };
 
   if (wordData.meta?.sourceUrl) {
@@ -82,6 +84,7 @@ export function getCollectionSchemaData(name: string, description: string, itemC
       '@type': 'ItemList',
       numberOfItems: itemCount,
     },
+    inLanguage: seoConfig.locale,
     audience: {
       '@type': 'EducationalAudience',
       educationalRole: 'student',

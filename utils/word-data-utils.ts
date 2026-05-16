@@ -1,4 +1,4 @@
-import type { WordData } from '#types';
+import type { DictionaryDefinition, WordData, WordGrouping } from '#types';
 import { isBasePartOfSpeech } from '#constants/parts-of-speech';
 
 /**
@@ -9,18 +9,16 @@ import { isBasePartOfSpeech } from '#constants/parts-of-speech';
  * @param definitions - Array of dictionary definitions
  * @returns First valid definition or null if none found
  */
-export function findValidDefinition(definitions: any[]): { text: string; partOfSpeech: string } | null {
+export function findValidDefinition(definitions: DictionaryDefinition[]): { text: string; partOfSpeech: string } | null {
   if (!definitions || !Array.isArray(definitions) || definitions.length === 0) {
     return null;
   }
 
   for (const item of definitions) {
-    // Skip definitions without a part of speech
     if (!item.partOfSpeech) {
       continue;
     }
 
-    // Handle text as either string or array (Wordnik API inconsistency)
     const textValue = Array.isArray(item.text) ? item.text.join(' ') : item.text;
 
     if (textValue && typeof textValue === 'string' && textValue.trim()) {
@@ -185,4 +183,49 @@ export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[]):
       definition.partOfSpeech && normalizePartOfSpeech(definition.partOfSpeech) === normalizedPartOfSpeech
     );
   });
+};
+
+/**
+ * Group all words by length in a single pass. Caller looks up by `groups[length]`.
+ * Avoids the O(n^2) build-time cost of calling getWordsByLength once per word.
+ */
+export const groupWordsByLength = (words: WordData[]): WordGrouping<number> =>
+  Object.groupBy(words, word => word.word.length) as WordGrouping<number>;
+
+/**
+ * Group all words by first letter (lowercase) in a single pass.
+ */
+export const groupWordsByLetter = (words: WordData[]): WordGrouping<string> =>
+  Object.groupBy(words, word => word.word.charAt(0).toLowerCase()) as WordGrouping<string>;
+
+/**
+ * Group all words by year (YYYY from word.date) in a single pass.
+ */
+export const groupWordsByYear = (words: WordData[]): WordGrouping<string> =>
+  Object.groupBy(words, word => word.date.substring(0, 4)) as WordGrouping<string>;
+
+/**
+ * Group words by every normalized part of speech they carry. A word appears in
+ * every bucket whose POS it has a definition for.
+ */
+export const groupWordsByPartOfSpeech = (words: WordData[]): WordGrouping<string> => {
+  const groups: WordGrouping<string> = {};
+  for (const word of words) {
+    if (!Array.isArray(word.data)) {
+      continue;
+    }
+    const seen = new Set<string>();
+    for (const def of word.data) {
+      if (!def.partOfSpeech) {
+        continue;
+      }
+      const normalized = normalizePartOfSpeech(def.partOfSpeech);
+      if (seen.has(normalized)) {
+        continue;
+      }
+      seen.add(normalized);
+      (groups[normalized] ??= []).push(word);
+    }
+  }
+  return groups;
 };

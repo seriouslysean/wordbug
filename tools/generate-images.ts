@@ -1,5 +1,6 @@
 import { parseArgs } from 'node:util';
 
+import { isEntryPoint } from '#tools/entry';
 import { showHelp } from '#tools/help-utils';
 import { findExistingWord, generateGenericShareImage, generateShareImage, getAllWords } from '#tools/utils';
 import { getAllPageMetadata } from '#utils/page-metadata-utils';
@@ -200,7 +201,9 @@ async function main(): Promise<void> {
   await exit(0);
 }
 
-main().catch(async (error) => {
-  logger.error('Tool execution failed', { error: getErrorMessage(error) });
-  await exit(1);
-});
+if (isEntryPoint(import.meta.url)) {
+  main().catch(async (error) => {
+    logger.error('Tool execution failed', { error: getErrorMessage(error) });
+    await exit(1);
+  });
+}

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { paths } from '#config/paths';
+import { isEntryPoint } from '#tools/entry';
 import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
 import { createWordEntry, findExistingWord } from '#tools/utils';
 import type { WordData } from '#types';
@@ -57,10 +58,8 @@ interface AddWordOptions {
  */
 async function addWord(input: string, options: AddWordOptions = {}): Promise<void> {
   const { date, overwrite = false, preserveCase = false } = options;
+  const word = input?.trim();
   try {
-    const word = input?.trim();
-
-    // Validate inputs
     if (!word) {
       logger.error('Word is required', { providedInput: input });
       await exit(1);
@@ -156,36 +155,38 @@ ${COMMON_ENV_DOCS}
 // Parse command line arguments
 import { parseArgs } from 'node:util';
 
-const { values, positionals } = parseArgs({
-  args: process.argv.slice(2),
-  options: {
-    help: { type: 'boolean', short: 'h', default: false },
-    overwrite: { type: 'boolean', short: 'o', default: false },
-    'preserve-case': { type: 'boolean', short: 'p', default: false },
-  },
-  allowPositionals: true,
-  strict: true,
-});
+if (isEntryPoint(import.meta.url)) {
+  const { values, positionals } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      help: { type: 'boolean', short: 'h', default: false },
+      overwrite: { type: 'boolean', short: 'o', default: false },
+      'preserve-case': { type: 'boolean', short: 'p', default: false },
+    },
+    allowPositionals: true,
+    strict: true,
+  });
 
-if (values.help || positionals.length === 0) {
-  showHelp(HELP_TEXT);
-  process.exit(0);
+  if (values.help || positionals.length === 0) {
+    showHelp(HELP_TEXT);
+    process.exit(0);
+  }
+
+  const [word, date] = positionals;
+
+  if (!word) {
+    logger.error('Word is required', { word });
+    showHelp(HELP_TEXT);
+    process.exit(1);
+  }
+
+  logger.info('Add word tool starting...');
+  addWord(word, {
+    date,
+    overwrite: values.overwrite,
+    preserveCase: values['preserve-case'],
+  }).catch(async (error: unknown) => {
+    logger.error('Add word tool failed', { error: getErrorMessage(error) });
+    await exit(1);
+  });
 }
-
-const [word, date] = positionals;
-
-if (!word) {
-  logger.error('Word is required', { word });
-  showHelp(HELP_TEXT);
-  process.exit(1);
-}
-
-logger.info('Add word tool starting...');
-addWord(word, {
-  date,
-  overwrite: values.overwrite,
-  preserveCase: values['preserve-case'],
-}).catch(async (error: unknown) => {
-  logger.error('Add word tool failed', { error: getErrorMessage(error) });
-  await exit(1);
-});

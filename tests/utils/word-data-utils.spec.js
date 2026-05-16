@@ -558,3 +558,53 @@ describe('word-data-utils', () => {
     });
   });
 });
+
+describe('pure groupWords* helpers (utils/word-data-utils)', () => {
+  const data = [
+    { word: 'apple',  date: '20240105', data: [{ partOfSpeech: 'noun',      text: 'fruit' }] },
+    { word: 'amber',  date: '20240107', data: [{ partOfSpeech: 'noun',      text: 'color' }] },
+    { word: 'run',    date: '20240310', data: [{ partOfSpeech: 'verb',      text: 'move' }] },
+    { word: 'fast',   date: '20250120', data: [{ partOfSpeech: 'adjective', text: 'quick' }, { partOfSpeech: 'adverb', text: 'quickly' }] },
+    { word: 'older',  date: '20231215', data: [{ partOfSpeech: 'adjective', text: 'aged' }] },
+  ];
+
+  it('groupWordsByLength buckets by character length', async () => {
+    const { groupWordsByLength: pure } = await import('#utils/word-data-utils');
+    const result = pure(data);
+    expect(Object.keys(result).map(Number).sort((a, b) => a - b)).toEqual([3, 4, 5]);
+    expect(result[3].map(w => w.word)).toEqual(['run']);
+    expect(result[5].map(w => w.word).sort()).toEqual(['amber', 'apple', 'older']);
+  });
+
+  it('groupWordsByLetter buckets by first letter, lowercased', async () => {
+    const { groupWordsByLetter: pure } = await import('#utils/word-data-utils');
+    const result = pure(data);
+    expect(result.a.map(w => w.word).sort()).toEqual(['amber', 'apple']);
+    expect(result.r).toHaveLength(1);
+  });
+
+  it('groupWordsByYear buckets by YYYY prefix of date', async () => {
+    const { groupWordsByYear: pure } = await import('#utils/word-data-utils');
+    const result = pure(data);
+    expect(result['2024']).toHaveLength(3);
+    expect(result['2025']).toHaveLength(1);
+    expect(result['2023']).toHaveLength(1);
+  });
+
+  it('groupWordsByPartOfSpeech places multi-POS words in every bucket exactly once', async () => {
+    const { groupWordsByPartOfSpeech: pure } = await import('#utils/word-data-utils');
+    const result = pure(data);
+    expect(result.adjective.map(w => w.word).sort()).toEqual(['fast', 'older']);
+    expect(result.adverb.map(w => w.word)).toEqual(['fast']);
+    expect(result.noun.map(w => w.word).sort()).toEqual(['amber', 'apple']);
+    expect(result.verb.map(w => w.word)).toEqual(['run']);
+  });
+
+  it('group helpers return empty objects for empty input', async () => {
+    const { groupWordsByLength: gl, groupWordsByLetter: gle, groupWordsByYear: gy, groupWordsByPartOfSpeech: gp } = await import('#utils/word-data-utils');
+    expect(gl([])).toEqual({});
+    expect(gle([])).toEqual({});
+    expect(gy([])).toEqual({});
+    expect(gp([])).toEqual({});
+  });
+});

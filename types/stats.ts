@@ -69,10 +69,3 @@ export type StatsSlug =
  */
 export type SuffixStatsSlug = `words-ending-${SuffixKey}`;
 
-/**
- * Type aliases for backward compatibility
- */
-export type SuffixDefinition = StatsDefinition;
-export type LetterPatternDefinition = StatsDefinition;
-export type PatternDefinition = StatsDefinition;
-

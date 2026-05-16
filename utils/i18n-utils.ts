@@ -9,8 +9,10 @@ export const defaultLang = 'en';
  * @returns Translated string with interpolated variables
  */
 export const t = (key: string, vars?: Record<string, string | number>): string => {
-  // Navigate to nested key (e.g., 'nav.home')
-  const value: unknown = key.split('.').reduce((obj: any, k) => obj?.[k], translations);
+  const value: unknown = key.split('.').reduce<unknown>(
+    (obj, k) => (obj != null && typeof obj === 'object' ? (obj as Record<string, unknown>)[k] : undefined),
+    translations as unknown,
+  );
 
   if (typeof value !== 'string') {
     throw new Error(`Translation missing for key: ${key}`);
@@ -51,9 +53,9 @@ export const t = (key: string, vars?: Record<string, string | number>): string =
  * @returns Translated string with proper pluralization
  */
 export const tp = (
-  baseKey: string, 
-  count: number | string, 
-  additionalValues: Record<string, any> = {}
+  baseKey: string,
+  count: number | string,
+  additionalValues: Record<string, string | number> = {},
 ): string => {
   if (count == null) {
     throw new Error(`Count is required for pluralization key: ${baseKey}`);

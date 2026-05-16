@@ -103,6 +103,25 @@ test.describe('user journeys', () => {
 		await expect(page.locator('.past-words')).toBeVisible();
 	});
 
+	test('related word in WordContext cell navigates to that word page', async ({ page }) => {
+		await page.goto('/');
+
+		// Open a word page first
+		await page.locator('.past-words a.word-link').first().click();
+		await expect(page.locator('#word-title')).toBeVisible();
+		const originUrl = page.url();
+
+		// Click a preview word inside any WordContext cell
+		const cellWordLink = page.locator('.word-context .word-context__cell .word-list a.word-link').first();
+		await expect(cellWordLink).toBeVisible();
+		await cellWordLink.click();
+
+		// Lands on a different word page that rendered fully
+		expect(page.url()).not.toBe(originUrl);
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-description')).toBeVisible();
+	});
+
 	test('non-existent route returns 404', async ({ page }) => {
 		const response = await page.goto('/this-page-does-not-exist');
 
