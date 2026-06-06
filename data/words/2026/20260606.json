@@ -1,0 +1,15 @@
+{
+    "word": "endorphin",
+    "date": "20260606",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "Any of a group of peptide hormones found in the brain that act as neurotransmitters and have properties similar to morphine.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/endorphin"
+        }
+    ]
+}
