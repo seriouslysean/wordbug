@@ -1,0 +1,22 @@
+{
+    "word": "valedictorian",
+    "date": "20260605",
+    "adapter": "wiktionary",
+    "preserveCase": false,
+    "data": [
+        {
+            "partOfSpeech": "noun",
+            "text": "(properly) The individual in a graduating class who delivers the farewell or valedictory address, often the person who graduates with the highest grades.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/valedictorian"
+        },
+        {
+            "partOfSpeech": "noun",
+            "text": "The individual in a graduating class who graduates with the highest grades.",
+            "attributionText": "from Wiktionary",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/valedictorian"
+        }
+    ]
+}
