@@ -155,8 +155,9 @@ export default defineConfig({
       },
     },
   },
-  experimental: {
-    rustCompiler: true,
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
   },
   integrations: [
     ...(sentryEnabled ? [sentry({

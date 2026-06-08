@@ -38,7 +38,7 @@ async function getRandomWord() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('astro:page-load', () => {
   const button = document.getElementById('random-word-button');
 
   if (button) {

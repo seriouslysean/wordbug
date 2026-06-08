@@ -95,11 +95,15 @@ test.describe('user journeys', () => {
 		const previousWordLink = page.locator('.past-words a.word-link').first();
 		await previousWordLink.click();
 
-		// Navigate forward via next — should reach the homepage word
-		await page.locator('.word-nav__next a.word-link').click();
+		// Navigate forward via next — should reach the homepage word.
+		// waitForURL is required for SPA navigation (ClientRouter) so Playwright
+		// waits for the history.pushState before asserting on the new page.
+		await Promise.all([
+			page.waitForURL(/\/$/),
+			page.locator('.word-nav__next a.word-link').click(),
+		]);
 
 		// Should be on the homepage (next link for the word before current resolves to /)
-		expect(page.url()).toMatch(/\/$/);
 		await expect(page.locator('.past-words')).toBeVisible();
 	});
 
