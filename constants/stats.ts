@@ -140,14 +140,14 @@ export const PATTERN_DEFINITIONS: Record<string, StatsDefinition> = {
 export const DYNAMIC_STATS_DEFINITIONS: Record<string, StatsDefinition> = {
   [STATS_SLUGS.MOST_COMMON_LETTER]: {
     title: 'Most Common Letter',
-    pageDescription: (letter: string) => `Words containing the letter "${letter}" (appears in multiple words).`,
-    metaDescription: (count: number, letter: string) => `The most common letter is "${letter}" and has ${tp('common.words', count)}.`,
+    pageDescription: (arg?: string | number) => `Words containing the letter "${arg}" (appears in multiple words).`,
+    metaDescription: (count: number, arg?: string | number) => `The most common letter is "${arg}" and has ${tp('common.words', count)}.`,
     category: 'stats',
   },
   [STATS_SLUGS.LEAST_COMMON_LETTER]: {
     title: 'Least Common Letter',
-    pageDescription: (letter: string) => `Words containing the letter "${letter}" (appears in multiple words).`,
-    metaDescription: (count: number, letter: string) => `The least common letter is "${letter}" and has ${tp('common.words', count)}.`,
+    pageDescription: (arg?: string | number) => `Words containing the letter "${arg}" (appears in multiple words).`,
+    metaDescription: (count: number, arg?: string | number) => `The least common letter is "${arg}" and has ${tp('common.words', count)}.`,
     category: 'stats',
   },
   [STATS_SLUGS.MILESTONE_WORDS]: {
@@ -158,13 +158,13 @@ export const DYNAMIC_STATS_DEFINITIONS: Record<string, StatsDefinition> = {
   },
   [STATS_SLUGS.CURRENT_STREAK]: {
     title: 'Current Streak',
-    pageDescription: (streakLength: number) => `Words from the current ${streakLength}-word streak.`,
+    pageDescription: (arg?: string | number) => `Words from the current ${arg}-word streak.`,
     metaDescription: (count: number) => `${tp('common.words', count)} from the current word streak.`,
     category: 'stats',
   },
   [STATS_SLUGS.LONGEST_STREAK]: {
     title: 'Longest Streak',
-    pageDescription: (streakLength: number) => `Words from the longest ${streakLength}-word streak.`,
+    pageDescription: (arg?: string | number) => `Words from the longest ${arg}-word streak.`,
     metaDescription: (count: number) => `${tp('common.words', count)} from the longest word streak.`,
     category: 'stats',
   },
