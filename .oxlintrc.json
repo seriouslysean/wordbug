@@ -8,10 +8,17 @@
   "rules": {
     "curly": "error",
     "no-nested-ternary": "error",
-    "no-await-in-loop": "off",
     "no-map-spread": "off",
     "no-underscore-dangle": ["warn", {
       "allow": ["__dirname", "__filename", "__VERSION__", "__RELEASE__", "__TIMESTAMP__", "__WORD_DATA_PATH__"]
     }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["adapters/**", "tools/**", "tests/**"],
+      "rules": {
+        "no-await-in-loop": "off"
+      }
+    }
+  ]
 }
