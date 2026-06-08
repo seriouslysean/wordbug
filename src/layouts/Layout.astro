@@ -38,7 +38,7 @@ const socialImageUrl = getSocialImageUrl({
   wordData,
 });
 
-const formatPageTitle = (pageTitle: string, currentWord: WordData) => {
+const formatPageTitle = (baseTitle: string, currentWord: WordData) => {
   const today = new Date();
   const date = today.toLocaleDateString('en-US', {
 	month: 'short',
@@ -47,10 +47,10 @@ const formatPageTitle = (pageTitle: string, currentWord: WordData) => {
   });
 
   if (currentWord?.word) {
-	return `${currentWord.word}, ${date} - ${pageTitle}`;
+	return `${currentWord.word}, ${date} - ${baseTitle}`;
   }
 
-  return pageTitle;
+  return baseTitle;
 };
 
 const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;

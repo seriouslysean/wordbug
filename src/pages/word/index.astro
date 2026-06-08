@@ -16,7 +16,7 @@ const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
 
 // Sort years in reverse chronological order
-const sortedYearEntries = Object.entries(wordsByYear).reverse();
+const sortedYearEntries = Object.entries(wordsByYear).toReversed();
 
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---

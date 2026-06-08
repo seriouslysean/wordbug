@@ -54,7 +54,7 @@ describe('CLI Tools: Import & Execution', () => {
           if (error.message.includes("astro:")) {
             throw new Error(
               `${toolFile} has astro: protocol dependency: ${error.message}\n` +
-              `This breaks CLI tools. Check for imports from #astro-utils/* in utils/ files.`
+              `This breaks CLI tools. Check for imports from #astro-utils/* in utils/ files.`, { cause: error }
             );
           }
 
@@ -114,7 +114,7 @@ describe('CLI Tools: Import & Execution', () => {
       if (error.message.includes('astro:')) {
         throw new Error(
           'tools/utils.ts has astro: dependency - this broke CLI tools.\n' +
-          'Check for imports from utils/page-metadata-utils or other files that import #astro-utils'
+          'Check for imports from utils/page-metadata-utils or other files that import #astro-utils', { cause: error }
         );
       }
       throw error;
@@ -145,7 +145,7 @@ describe('CLI Tools: Import & Execution', () => {
           throw new Error(
             `${utilPath} has astro: dependency which breaks CLI tools.\n` +
             `Error: ${error.message}\n` +
-            `utils/ files must not import from #astro-utils/* or astro: modules.`
+            `utils/ files must not import from #astro-utils/* or astro: modules.`, { cause: error }
           );
         }
 
@@ -222,7 +222,7 @@ describe('CLI Tools: Basic Functionality', () => {
         throw new Error(
           'constants/urls.ts has astro: dependency.\n' +
           'This was fixed by moving slugify to utils/text-utils.ts.\n' +
-          'Check if the fix was reverted or a new astro dependency was added.'
+          'Check if the fix was reverted or a new astro dependency was added.', { cause: error }
         );
       }
       throw error;

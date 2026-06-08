@@ -104,10 +104,10 @@ After running this migration in all downstream repos, this script can be safely 
 `;
 
 // Get command line arguments
-const args = process.argv.slice(2);
+const args = new Set(process.argv.slice(2));
 
 // Check for help flag
-if (args.includes('--help') || args.includes('-h')) {
+if (args.has('--help') || args.has('-h')) {
   showHelp(HELP_TEXT);
   process.exit(0);
 }

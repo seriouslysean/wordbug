@@ -55,7 +55,7 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
   const letterStats = getLetterStatsFromFrequency(getWordStats(words).letterFrequency);
   const mostCommon = letterStats[0];
   const leastCommon = letterStats[letterStats.length - 1];
-  const streakStats = getCurrentStreakStats([...words].sort((a, b) => b.date.localeCompare(a.date)));
+  const streakStats = getCurrentStreakStats([...words].toSorted((a, b) => b.date.localeCompare(a.date)));
 
   return [
     // Pattern stats
@@ -96,8 +96,8 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
     // Milestone stats
     {
       slug: STATS_SLUGS.MILESTONE_WORDS,
-      data: getChronologicalMilestones([...words].sort((a, b) => a.date.localeCompare(b.date)))
-        .reverse()
+      data: getChronologicalMilestones([...words].toSorted((a, b) => a.date.localeCompare(b.date)))
+        .toReversed()
         .map(w => ({ ...w.word, label: `${ordinal(w.milestone)} Word` })),
       definition: getDefinition(DYNAMIC_STATS_DEFINITIONS, STATS_SLUGS.MILESTONE_WORDS),
       template: TEMPLATE.MILESTONE,
@@ -111,13 +111,13 @@ const createStatsConfig = (words: WordData[]): StatsConfig[] => {
           return [];
         }
         return [...words]
-          .sort((a, b) => b.date.localeCompare(a.date))
+          .toSorted((a, b) => b.date.localeCompare(a.date))
           .slice(0, streakStats.currentStreak)
           .map((w, i) => ({
             ...w,
             label: `${ordinal(i + 1)} Day`,
           }))
-          .reverse();
+          .toReversed();
       })(),
       definition: getDefinition(DYNAMIC_STATS_DEFINITIONS, STATS_SLUGS.CURRENT_STREAK),
       template: TEMPLATE.MILESTONE,

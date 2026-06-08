@@ -153,7 +153,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   const lastUpdated = lastWord ? formatDate(lastWord.date) : null;
 
   const recentWordSection = recentWords.length > 0
-    ? [...recentWords].reverse()
+    ? [...recentWords].toReversed()
         .map(word => `- [${word.word}](${baseUrl}${getWordUrl(word.word)}): ${formatDate(word.date)}`)
         .join('\n')
     : '';
@@ -162,14 +162,14 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   const allWordsPage = allPages.find(p => p.path === BASE_PATHS.WORD);
   const yearPages = allPages
     .filter(p => URL_PATTERNS.YEAR_PAGE.test(p.path))
-    .sort((a, b) => b.path.localeCompare(a.path));
+    .toSorted((a, b) => b.path.localeCompare(a.path));
   const monthPages = allPages
     .filter(p => URL_PATTERNS.MONTH_PAGE.test(p.path))
-    .sort((a, b) => b.path.localeCompare(a.path));
+    .toSorted((a, b) => b.path.localeCompare(a.path));
   const lengthIndexPage = allPages.find(p => p.path === BROWSE_PATHS.LENGTH);
   const lengthPages = allPages
     .filter(p => URL_PATTERNS.LENGTH_PAGE.test(p.path))
-    .sort((a, b) => {
+    .toSorted((a, b) => {
       const aMatch = a.path.match(URL_PATTERNS.LENGTH_PAGE);
       const bMatch = b.path.match(URL_PATTERNS.LENGTH_PAGE);
       if (aMatch && bMatch) {
@@ -187,7 +187,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   const statsPage = allPages.find(p => p.path === BASE_PATHS.STATS);
   const statsSubpages = allPages
     .filter(p => URL_PATTERNS.STATS_PAGE.test(p.path))
-    .sort((a, b) => a.title.localeCompare(b.title));
+    .toSorted((a, b) => a.title.localeCompare(b.title));
 
   // Build Pages section
   const pagesLinks = [

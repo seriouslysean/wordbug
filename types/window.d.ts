@@ -3,4 +3,4 @@ declare global {
     app: Record<string, unknown>;
   }
 }
-export {};
+

@@ -87,7 +87,7 @@ export const getFullUrl = (path = '/'): string => {
     return url.toString();
   } catch (error) {
     logger.error('Failed to construct URL', { path, siteUrl: SITE_URL, error });
-    throw new Error(`Failed to construct URL for path: ${path}`);
+    throw new Error(`Failed to construct URL for path: ${path}`, { cause: error });
   }
 };
 

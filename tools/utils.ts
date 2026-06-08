@@ -126,7 +126,7 @@ export const getWordFiles = (): WordFileInfo[] => {
   });
 
   // Sort by date (newest first) for consistency
-  return files.sort((a, b) => b.date.localeCompare(a.date));
+  return files.toSorted((a, b) => b.date.localeCompare(a.date));
 };
 
 /**

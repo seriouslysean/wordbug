@@ -16,7 +16,7 @@ function getCodeHash() {
     .trim()
     .split('\n')
     .filter(file => file.length > 0)
-    .sort();
+    .toSorted();
 
   srcFiles.forEach(file => {
     try {

@@ -326,7 +326,7 @@ describe('word-data-utils', () => {
 
     it('groups words by length', () => {
       const result = groupWordsByLength(mockWordData);
-      expect(Object.keys(result).map(Number).sort((a, b) => a - b)).toEqual([5, 6, 7, 8, 9]);
+      expect(Object.keys(result).map(Number).toSorted((a, b) => a - b)).toEqual([5, 6, 7, 8, 9]);
       expect(result[8]).toHaveLength(2); // year2024=8, year2023=8 (yesterday=9)
     });
   });
@@ -344,7 +344,7 @@ describe('word-data-utils', () => {
       
       const resultY = getWordsByLetter('Y', mockWordData); // test case insensitive
       expect(resultY).toHaveLength(3);
-      expect(resultY.map(w => w.word).sort()).toEqual(['year2023', 'year2024', 'yesterday']);
+      expect(resultY.map(w => w.word).toSorted()).toEqual(['year2023', 'year2024', 'yesterday']);
     });
 
     it('groups words by starting letter', () => {
@@ -503,11 +503,11 @@ describe('word-data-utils', () => {
     it('filters words by part of speech', () => {
       const nouns = getWordsByPartOfSpeech('noun', mockWordDataWithComplexPartOfSpeech);
       expect(nouns).toHaveLength(2); // 'run' and 'indices'
-      expect(nouns.map(w => w.word).sort()).toEqual(['indices', 'run']);
+      expect(nouns.map(w => w.word).toSorted()).toEqual(['indices', 'run']);
 
       const verbs = getWordsByPartOfSpeech('verb', mockWordDataWithComplexPartOfSpeech);
       expect(verbs).toHaveLength(3); // 'run', 'help', 'have'
-      expect(verbs.map(w => w.word).sort()).toEqual(['have', 'help', 'run']);
+      expect(verbs.map(w => w.word).toSorted()).toEqual(['have', 'help', 'run']);
     });
 
     it('groups words by part of speech', () => {
@@ -571,15 +571,15 @@ describe('pure groupWords* helpers (utils/word-data-utils)', () => {
   it('groupWordsByLength buckets by character length', async () => {
     const { groupWordsByLength: pure } = await import('#utils/word-data-utils');
     const result = pure(data);
-    expect(Object.keys(result).map(Number).sort((a, b) => a - b)).toEqual([3, 4, 5]);
+    expect(Object.keys(result).map(Number).toSorted((a, b) => a - b)).toEqual([3, 4, 5]);
     expect(result[3].map(w => w.word)).toEqual(['run']);
-    expect(result[5].map(w => w.word).sort()).toEqual(['amber', 'apple', 'older']);
+    expect(result[5].map(w => w.word).toSorted()).toEqual(['amber', 'apple', 'older']);
   });
 
   it('groupWordsByLetter buckets by first letter, lowercased', async () => {
     const { groupWordsByLetter: pure } = await import('#utils/word-data-utils');
     const result = pure(data);
-    expect(result.a.map(w => w.word).sort()).toEqual(['amber', 'apple']);
+    expect(result.a.map(w => w.word).toSorted()).toEqual(['amber', 'apple']);
     expect(result.r).toHaveLength(1);
   });
 
@@ -594,9 +594,9 @@ describe('pure groupWords* helpers (utils/word-data-utils)', () => {
   it('groupWordsByPartOfSpeech places multi-POS words in every bucket exactly once', async () => {
     const { groupWordsByPartOfSpeech: pure } = await import('#utils/word-data-utils');
     const result = pure(data);
-    expect(result.adjective.map(w => w.word).sort()).toEqual(['fast', 'older']);
+    expect(result.adjective.map(w => w.word).toSorted()).toEqual(['fast', 'older']);
     expect(result.adverb.map(w => w.word)).toEqual(['fast']);
-    expect(result.noun.map(w => w.word).sort()).toEqual(['amber', 'apple']);
+    expect(result.noun.map(w => w.word).toSorted()).toEqual(['amber', 'apple']);
     expect(result.verb.map(w => w.word)).toEqual(['run']);
   });
 

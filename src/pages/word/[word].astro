@@ -18,11 +18,11 @@ export async function getStaticPaths() {
   const byPartOfSpeech = groupWordsByPartOfSpeech(allWords);
   const byYear = groupWordsByYear(allWords);
 
+  // oxlint-disable-next-line consistent-function-scoping
   const pickRecent = (pool: WordData[], currentDate: string) =>
     pool
       .filter(w => w.date !== currentDate)
-      .slice()
-      .sort((a, b) => b.date.localeCompare(a.date))
+      .toSorted((a, b) => b.date.localeCompare(a.date))
       .slice(0, 3);
 
   const paths = allWords.map(wordData => {

@@ -644,7 +644,7 @@ export function getAllPageMetadata(words: WordData[]) {
   // Get static pages (excluding root '/')
   const staticPages = Object.keys(PAGE_METADATA)
     .filter(path => path !== '/')
-    .map(path => ({ path, ...getPageMetadata(path, words) }));
+    .map(path => (Object.assign({ path }, getPageMetadata(path, words))));
 
   // Get dynamic year pages
   const years = getAvailableYears(words);
@@ -668,19 +668,19 @@ export function getAllPageMetadata(words: WordData[]) {
   // Get dynamic word length pages
   const lengthPages = getAvailableLengths(words).map(length => {
     const path = getLengthUrl(length);
-    return { path, ...getPageMetadata(path, words) };
+    return Object.assign({ path }, getPageMetadata(path, words));
   });
 
   // Get dynamic word letter pages  
   const letterPages = getAvailableLetters(words).map(letter => {
     const path = getLetterUrl(letter);
-    return { path, ...getPageMetadata(path, words) };
+    return Object.assign({ path }, getPageMetadata(path, words));
   });
 
   // Get dynamic part-of-speech pages  
   const partOfSpeechPages = getAvailablePartsOfSpeech(words).map(partOfSpeech => {
     const path = getPartOfSpeechUrl(partOfSpeech);
-    return { path, ...getPageMetadata(path, words) };
+    return Object.assign({ path }, getPageMetadata(path, words));
   });
 
   return [...staticPages, ...yearPages, ...monthPages, ...lengthPages, ...letterPages, ...partOfSpeechPages];

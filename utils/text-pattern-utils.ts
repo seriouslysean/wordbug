@@ -100,7 +100,7 @@ export const isPalindrome = (word: string): boolean => {
     return false;
   }
   const normalized = word.toLowerCase();
-  return normalized === normalized.split('').reverse().join('');
+  return normalized === normalized.split('').toReversed().join('');
 };
 
 /**

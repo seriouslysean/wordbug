@@ -13,7 +13,7 @@ export async function adapterFetch(url: string, adapterName: string): Promise<Re
   try {
     return await fetch(url);
   } catch (error) {
-    throw new Error(`${adapterName} network request failed: ${getErrorMessage(error)}`);
+    throw new Error(`${adapterName} network request failed: ${getErrorMessage(error)}`, { cause: error });
   }
 }
 

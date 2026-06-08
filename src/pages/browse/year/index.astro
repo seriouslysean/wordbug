@@ -10,7 +10,7 @@ import { getWordsFromCollection, groupWordsByYear } from '#astro-utils/word-data
 
 const allWords = await getWordsFromCollection();
 const yearGroups = Object.entries(groupWordsByYear(allWords))
-  .reverse()
+  .toReversed()
   .map(([year, words]) => ({
     year,
     words,

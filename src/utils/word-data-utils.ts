@@ -55,7 +55,7 @@ export async function getWordsFromCollection(): Promise<WordData[]> {
       };
       return wordData;
     })
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .toSorted((a, b) => b.date.localeCompare(a.date));
 }
 
 /**
@@ -334,7 +334,7 @@ export const groupWordsByMonth = (year: string, words: WordData[] = allWords): {
  * @returns {string} SHA-256 hash in hexadecimal format
  */
 export const generateWordDataHash = (words: string[]): string => {
-  const sorted = [...words].sort();
+  const sorted = [...words].toSorted();
   const input = `${sorted.length}:${sorted.join(',')}`;
   return crypto.createHash('sha256').update(input).digest('hex');
 };
@@ -365,7 +365,7 @@ export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult =
   const groups = groupWordsByLengthPure(words);
   return Object.fromEntries(
     Object.entries(groups)
-      .sort(([a], [b]) => Number(a) - Number(b))
+      .toSorted(([a], [b]) => Number(a) - Number(b))
       .map(([key, value]) => [key, value ?? []]),
   );
 };
@@ -392,8 +392,8 @@ export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]
   const groups = groupWordsByLetterPure(alphabeticWords);
   return Object.fromEntries(
     Object.entries(groups)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([letter, letterWords]) => [letter, (letterWords ?? []).sort((a, b) => a.word.localeCompare(b.word))])
+      .toSorted(([a], [b]) => a.localeCompare(b))
+      .map(([letter, letterWords]) => [letter, (letterWords ?? []).toSorted((a, b) => a.word.localeCompare(b.word))])
   );
 };
 
@@ -429,8 +429,8 @@ export const groupWordsByPartOfSpeech = (words: WordData[]): WordGroupByPartOfSp
   }
   return Object.fromEntries(
     Object.entries(groups)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([pos, posWords]) => [pos, posWords.sort((a, b) => a.word.localeCompare(b.word))])
+      .toSorted(([a], [b]) => a.localeCompare(b))
+      .map(([pos, posWords]) => [pos, posWords.toSorted((a, b) => a.word.localeCompare(b.word))])
   );
 };
 

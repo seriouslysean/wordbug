@@ -107,7 +107,7 @@ export const getLetterStats = (words: WordData[]) => {
 
   const sortedLetters = Object.entries(letterFrequency)
     .filter(([letter]) => TEXT_PATTERNS.LETTER_ONLY.test(letter))
-    .sort(([, a], [, b]) => b - a);
+    .toSorted(([, a], [, b]) => b - a);
 
   const [mostCommonEntry] = sortedLetters;
   const leastCommonEntry = sortedLetters[sortedLetters.length - 1];
@@ -162,7 +162,7 @@ export function getCurrentStreakWords(words: WordData[]): WordData[] {
     return [];
   }
 
-  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+  const sortedWords = [...words].toSorted((a, b) => b.date.localeCompare(a.date));
   const today = new Date();
   const todayString = dateToYYYYMMDD(today);
   const yesterdayDate = new Date(today);
@@ -196,19 +196,19 @@ export function getLongestStreakWords(words: WordData[]): WordData[] {
     return words;
   }
 
-  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+  const sortedWords = [...words].toSorted((a, b) => b.date.localeCompare(a.date));
   const firstWord = sortedWords[0];
   if (!firstWord) {
     return [];
   }
 
   const { longestStreak } = sortedWords.slice(1).reduce(
-    ({ longestStreak, currentStreak, previousWord }, word) => {
+    ({ longestStreak: accumLongest, currentStreak, previousWord }, word) => {
       const isConsecutive = areConsecutiveDays(word.date, previousWord.date);
       const newCurrentStreak = isConsecutive ? [...currentStreak, word] : [word];
-      const newLongestStreak = newCurrentStreak.length > longestStreak.length
+      const newLongestStreak = newCurrentStreak.length > accumLongest.length
         ? newCurrentStreak
-        : longestStreak;
+        : accumLongest;
 
       return {
         longestStreak: newLongestStreak,
@@ -223,7 +223,7 @@ export function getLongestStreakWords(words: WordData[]): WordData[] {
     },
   );
 
-  return longestStreak.reverse();
+  return longestStreak.toReversed();
 }
 
 /**
@@ -345,7 +345,7 @@ export const getLetterStatsFromFrequency = (letterFrequency: Record<string, numb
   }
   return Object.entries(letterFrequency)
     .filter(([letter]) => TEXT_PATTERNS.LETTER_ONLY.test(letter))
-    .sort(([, a], [, b]) => b - a);
+    .toSorted(([, a], [, b]) => b - a);
 };
 
 /**
@@ -360,7 +360,7 @@ export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult 
     };
   }
 
-  const sortedWords = [...words].sort((a, b) => b.date.localeCompare(a.date));
+  const sortedWords = [...words].toSorted((a, b) => b.date.localeCompare(a.date));
   const today = new Date();
   const todayString = dateToYYYYMMDD(today);
   const yesterdayDate = new Date(today);
@@ -445,7 +445,7 @@ export const getAntiStreakStats = (words: WordData[]): WordAntiStreakStatsResult
     return emptyResult;
   }
 
-  const sortedWords = [...words].sort((a, b) => a.date.localeCompare(b.date));
+  const sortedWords = [...words].toSorted((a, b) => a.date.localeCompare(b.date));
 
   let longestGap = 0;
   let gapStartWord: WordData | null = null;

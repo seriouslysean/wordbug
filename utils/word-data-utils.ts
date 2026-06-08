@@ -48,7 +48,7 @@ export const getAvailableMonths = (year: string, words: WordData[]): string[] =>
       .filter(word => word.date.startsWith(year))
       .map(word => word.date.substring(4, 6))
   );
-  return Array.from(months).sort();
+  return Array.from(months).toSorted();
 };
 
 /**
@@ -56,7 +56,7 @@ export const getAvailableMonths = (year: string, words: WordData[]): string[] =>
  */
 export const getAvailableYears = (words: WordData[]): string[] => {
   const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
-  return years.sort((a, b) => b.localeCompare(a));
+  return years.toSorted((a, b) => b.localeCompare(a));
 };
 
 /**
@@ -64,7 +64,7 @@ export const getAvailableYears = (words: WordData[]): string[] => {
  */
 export const getAvailableLengths = (words: WordData[]): number[] => {
   const lengths = [...new Set(words.map(word => word.word.length))];
-  return lengths.sort((a, b) => a - b);
+  return lengths.toSorted((a, b) => a - b);
 };
 
 /**
@@ -76,7 +76,7 @@ export const getAvailableLetters = (words: WordData[]): string[] => {
       .map(word => word.word.charAt(0).toLowerCase())
       .filter(letter => letter.match(/[a-z]/))
   )];
-  return letters.sort();
+  return letters.toSorted();
 };
 
 /**
@@ -149,7 +149,7 @@ export const getAvailablePartsOfSpeech = (words: WordData[]): string[] => {
     }
   });
 
-  return Array.from(partsOfSpeech).sort();
+  return Array.from(partsOfSpeech).toSorted();
 };
 
 /**
