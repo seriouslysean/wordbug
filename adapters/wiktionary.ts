@@ -5,6 +5,7 @@ import type {
 } from '#types';
 import {
   adapterFetch,
+  buildDictionaryResponse,
   normalizePOS,
   parseJsonResponse,
   throwOnHttpError,
@@ -59,15 +60,7 @@ export const wiktionaryAdapter: DictionaryAdapter = {
       }));
     });
 
-    return {
-      word: word.toLowerCase(),
-      definitions,
-      meta: {
-        source: 'Wiktionary',
-        attribution,
-        url: sourceUrl,
-      },
-    };
+    return buildDictionaryResponse(word, definitions, 'Wiktionary', attribution, sourceUrl);
   },
 
   transformToWordData(response: DictionaryResponse, date: string) {

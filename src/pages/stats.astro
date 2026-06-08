@@ -31,7 +31,7 @@ import {
   getWordEndingsUrl
 } from '#astro-utils/url-utils';
 import {
-  getLetterStats,
+  getLetterStatsFromFrequency,
   getLetterTypeStats,
   getPatternStats,
   getSyllableStats,
@@ -57,7 +57,7 @@ const latestWord = totalWords > 0 ? allWords[0] : null;
 const lengthCount = availableLengths.length;
 
 
-const letterStats = getLetterStats(wordStats.letterFrequency);
+const letterStats = getLetterStatsFromFrequency(wordStats.letterFrequency);
 
 const { mostSyllables, leastSyllables } = getSyllableStats(allWords);
 const { mostVowels, mostConsonants } = getLetterTypeStats(allWords);

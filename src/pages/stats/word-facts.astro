@@ -5,7 +5,7 @@ import StatsSection from '#components/StatsSection.astro';
 import { getPageMetadata } from '#astro-utils/page-metadata.ts';
 import { getWordsLengthUrl } from '#astro-utils/url-utils';
 import {
-  getLetterStats,
+  getLetterStatsFromFrequency,
   getLetterTypeStats,
   getPatternStats,
   getSyllableStats,
@@ -23,7 +23,7 @@ import { t } from '#utils/i18n-utils';
 
 const lengthCount = availableLengths.length;
 
-const letterStats = getLetterStats(wordStats.letterFrequency);
+const letterStats = getLetterStatsFromFrequency(wordStats.letterFrequency);
 const { mostSyllables, leastSyllables } = getSyllableStats(allWords);
 const { mostVowels, mostConsonants } = getLetterTypeStats(allWords);
 const { allVowels, allConsonants, palindromes } = getPatternStats(allWords);

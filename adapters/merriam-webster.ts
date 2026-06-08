@@ -9,6 +9,7 @@ import type {
 } from '#types';
 import {
   adapterFetch,
+  buildDictionaryResponse,
   normalizePOS,
   parseJsonResponse,
   throwOnHttpError,
@@ -205,15 +206,7 @@ export const merriamWebsterAdapter: DictionaryAdapter = {
       }));
     });
 
-    return {
-      word: word.toLowerCase(),
-      definitions,
-      meta: {
-        source: 'Merriam-Webster',
-        attribution,
-        url: sourceUrl,
-      },
-    };
+    return buildDictionaryResponse(word, definitions, 'Merriam-Webster', attribution, sourceUrl);
   },
 
   transformToWordData(response: DictionaryResponse, date: string) {

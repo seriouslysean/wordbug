@@ -13,5 +13,4 @@ export {
   findWordDate,
 } from '#utils/word-stats-utils';
 
-// Re-export getLetterStatsFromFrequency under its original Astro-layer name
-export { getLetterStatsFromFrequency as getLetterStats } from '#utils/word-stats-utils';
+export { getLetterStatsFromFrequency } from '#utils/word-stats-utils';

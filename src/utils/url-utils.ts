@@ -176,29 +176,8 @@ export const getWordsYearUrl = (year?: string): string =>
 // Specific Browsing URLs - Filtered lists
 // =====================================================
 
-/**
- * Get URL for words of a specific length
- * @param {number | string} length - Word length
- * @returns {string} Length-filtered words URL
- */
-export const getLengthUrl = (length: number | string): string => 
-  ROUTES.LENGTH(Number(length));
-
-/**
- * Get URL for words starting with a specific letter
- * @param {string} letter - Starting letter (normalized to lowercase)
- * @returns {string} Letter-filtered words URL
- */
-export const getLetterUrl = (letter: string): string => 
-  ROUTES.LETTER(letter);
-
-/**
- * Get URL for words with a specific part of speech
- * @param {string} partOfSpeech - Part of speech (normalized to lowercase)
- * @returns {string} Part-of-speech-filtered words URL
- */
-export const getPartOfSpeechUrl = (partOfSpeech: string): string => 
-  ROUTES.PART_OF_SPEECH(partOfSpeech);
+// Re-export filtering URL helpers from shared utils (single source of truth)
+export { getLengthUrl, getLetterUrl, getPartOfSpeechUrl } from '#utils/url-utils';
 
 /**
  * Get URL for words from a specific month/year

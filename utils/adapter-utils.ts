@@ -1,4 +1,4 @@
-import type { DictionaryResponse, WordData, WordProcessedData } from '#types';
+import type { DictionaryDefinition, DictionaryResponse, WordData, WordProcessedData } from '#types';
 import { isBasePartOfSpeech } from '#constants/parts-of-speech';
 import { getErrorMessage } from '#utils/text-utils';
 import { findValidDefinition } from '#utils/word-data-utils';
@@ -64,6 +64,24 @@ export function normalizePOS(raw: string, posMap: Record<string, string>): strin
     return cleaned;
   }
   return posMap[cleaned];
+}
+
+/**
+ * Assembles the standard DictionaryResponse envelope used by all adapters.
+ * Normalises word to lowercase; all other fields are caller-supplied.
+ */
+export function buildDictionaryResponse(
+  word: string,
+  definitions: DictionaryDefinition[],
+  source: string,
+  attribution: string,
+  url: string,
+): DictionaryResponse {
+  return {
+    word: word.toLowerCase(),
+    definitions,
+    meta: { source, attribution, url },
+  };
 }
 
 /**

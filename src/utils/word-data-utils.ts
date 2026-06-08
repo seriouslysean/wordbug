@@ -23,6 +23,9 @@ import {
   getWordsByLength as getWordsByLengthPure,
   getWordsByLetter as getWordsByLetterPure,
   getWordsByPartOfSpeech as getWordsByPartOfSpeechPure,
+  groupWordsByYear as groupWordsByYearPure,
+  groupWordsByLength as groupWordsByLengthPure,
+  groupWordsByLetter as groupWordsByLetterPure,
 } from '#utils/word-data-utils';
 import { getErrorMessage } from '#utils/text-utils';
 import {
@@ -344,12 +347,11 @@ export const generateWordDataHash = (words: string[]): string => {
  * @returns {WordGroupByYearResult} Object with years as keys and word arrays as values
  */
 export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
-  const groups = Object.groupBy(words, word => word.date.substring(0, 4));
+  const groups = groupWordsByYearPure(words);
   return Object.fromEntries(
     Object.entries(groups).map(([key, value]) => [key, value ?? []]),
   );
 };
-
 
 /**
  * Groups an array of word data by length.
@@ -360,8 +362,7 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
  * @returns {WordGroupByLengthResult} Object with lengths as keys and word arrays as values, sorted by length
  */
 export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult => {
-  const groups = Object.groupBy(words, word => word.word.length);
-
+  const groups = groupWordsByLengthPure(words);
   return Object.fromEntries(
     Object.entries(groups)
       .sort(([a], [b]) => Number(a) - Number(b))
@@ -388,8 +389,7 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
  */
 export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]> => {
   const alphabeticWords = words.filter(word => /^[a-z]/i.test(word.word));
-  const groups = Object.groupBy(alphabeticWords, word => word.word.charAt(0).toLowerCase());
-
+  const groups = groupWordsByLetterPure(alphabeticWords);
   return Object.fromEntries(
     Object.entries(groups)
       .sort(([a], [b]) => a.localeCompare(b))
@@ -415,37 +415,22 @@ export const getWordsByLetter = (letter: string, words: WordData[] = allWords): 
  * @returns {WordGroupByPartOfSpeechResult} Object with part of speech keys and word arrays
  */
 export const groupWordsByPartOfSpeech = (words: WordData[]): WordGroupByPartOfSpeechResult => {
-  const groups = words.reduce<Record<string, WordData[]>>((acc, word) => {
-    if (word.data && Array.isArray(word.data)) {
-      // Get all unique normalized parts of speech for this word
-      const partsOfSpeech = new Set<string>();
-      word.data.forEach(definition => {
-        if (definition.partOfSpeech) {
-          const normalized = normalizeToBasePOS(definition.partOfSpeech);
-          if (normalized) {
-            partsOfSpeech.add(normalized);
-          }
-        }
-      });
-
-      // Add word to each part of speech group
-      partsOfSpeech.forEach(partOfSpeech => {
-        acc[partOfSpeech] = acc[partOfSpeech] || [];
-        // Only add if not already present (avoid duplicates)
-        if (!acc[partOfSpeech].some(existing => existing.date === word.date)) {
-          acc[partOfSpeech].push(word);
-        }
-      });
+  const groups: Record<string, WordData[]> = {};
+  for (const word of words) {
+    if (!Array.isArray(word.data)) { continue; }
+    const seen = new Set<string>();
+    for (const def of word.data) {
+      if (!def.partOfSpeech) { continue; }
+      const normalized = normalizeToBasePOS(def.partOfSpeech);
+      if (!normalized || seen.has(normalized)) { continue; }
+      seen.add(normalized);
+      (groups[normalized] ??= []).push(word);
     }
-
-    return acc;
-  }, {});
-
-  // Sort parts of speech alphabetically and sort words within each group by word name
+  }
   return Object.fromEntries(
     Object.entries(groups)
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([partOfSpeech, words]) => [partOfSpeech, words.sort((a, b) => a.word.localeCompare(b.word))])
+      .map(([pos, posWords]) => [pos, posWords.sort((a, b) => a.word.localeCompare(b.word))])
   );
 };
 

@@ -8,6 +8,7 @@ import type {
 } from '#types';
 import {
   adapterFetch,
+  buildDictionaryResponse,
   normalizePOS,
   parseJsonResponse,
   throwOnHttpError,
@@ -91,25 +92,24 @@ export const wordnikAdapter: DictionaryAdapter = {
     if (!this.isValidResponse(data)) {
       throw new Error('No word data found');
     }
-    return {
-      word: word.toLowerCase(),
-      definitions: data.map((def) => ({
-        id: def.id,
-        partOfSpeech: def.partOfSpeech ? normalizePOS(def.partOfSpeech, POS_MAP) : undefined,
-        text: def.text,
-        attributionText: def.attributionText,
-        sourceDictionary: def.sourceDictionary,
-        sourceUrl: def.wordnikUrl || def.attributionUrl || '',
-        examples: def.exampleUses?.map(e => e.text),
-        synonyms: def.relatedWords,
-        antonyms: [], // Wordnik API doesn't include antonyms in definition responses
-      })),
-      meta: {
-        source: 'Wordnik',
-        attribution: data[0]?.attributionText || '',
-        url: data[0]?.wordnikUrl || '',
-      },
-    };
+    const definitions = data.map((def) => ({
+      id: def.id,
+      partOfSpeech: def.partOfSpeech ? normalizePOS(def.partOfSpeech, POS_MAP) : undefined,
+      text: def.text,
+      attributionText: def.attributionText,
+      sourceDictionary: def.sourceDictionary,
+      sourceUrl: def.wordnikUrl || def.attributionUrl || '',
+      examples: def.exampleUses?.map(e => e.text),
+      synonyms: def.relatedWords,
+      antonyms: [], // Wordnik API doesn't include antonyms in definition responses
+    }));
+    return buildDictionaryResponse(
+      word,
+      definitions,
+      'Wordnik',
+      data[0]?.attributionText || '',
+      data[0]?.wordnikUrl || '',
+    );
   },
 
   transformToWordData(response: DictionaryResponse, date: string) {
