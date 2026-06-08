@@ -6,6 +6,14 @@
  */
 
 /**
+ * Extracts a message string from an unknown thrown value.
+ * Centralised here so it's importable by pure utils, Astro wrappers,
+ * and CLI loggers without creating cross-boundary dependencies.
+ */
+export const getErrorMessage = (error: unknown): string =>
+  error instanceof Error ? error.message : String(error);
+
+/**
  * Convert any string to a URL-safe slug
  * @param str - String to convert to slug format
  * @returns URL-safe slug (lowercase, hyphenated, alphanumeric)

@@ -1,5 +1,6 @@
 import type { DictionaryResponse, WordData, WordProcessedData } from '#types';
 import { isBasePartOfSpeech } from '#constants/parts-of-speech';
+import { getErrorMessage } from '#utils/text-utils';
 import { findValidDefinition } from '#utils/word-data-utils';
 
 /**
@@ -12,8 +13,7 @@ export async function adapterFetch(url: string, adapterName: string): Promise<Re
   try {
     return await fetch(url);
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    throw new Error(`${adapterName} network request failed: ${message}`);
+    throw new Error(`${adapterName} network request failed: ${getErrorMessage(error)}`);
   }
 }
 

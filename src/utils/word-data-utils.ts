@@ -24,6 +24,7 @@ import {
   getWordsByLetter as getWordsByLetterPure,
   getWordsByPartOfSpeech as getWordsByPartOfSpeechPure,
 } from '#utils/word-data-utils';
+import { getErrorMessage } from '#utils/text-utils';
 import {
   getWordStats,
   getLetterPatternStats,
@@ -86,7 +87,7 @@ async function getAllWords(): Promise<WordData[]> {
       wordCache.value = await getWordsFromCollection();
       logger.info('Loaded words successfully', { count: wordCache.value.length });
     } catch (error) {
-      logger.error('Failed to load words', { error: error instanceof Error ? error.message : String(error) });
+      logger.error('Failed to load words', { error: getErrorMessage(error) });
       wordCache.value = [];
     }
   }

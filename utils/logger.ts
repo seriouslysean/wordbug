@@ -8,6 +8,7 @@ import * as Sentry from '@sentry/node';
 
 import { createLogger } from '#utils/logger-core';
 import type { SentryBridge } from '#utils/logger-core';
+import { getErrorMessage } from '#utils/text-utils';
 
 const isEnabled = process.env.SENTRY_ENABLED === 'true' && !!process.env.SENTRY_DSN;
 
@@ -55,11 +56,7 @@ const sentryBridge: SentryBridge = {
 export const flush = (): Promise<boolean> =>
   initialized ? Sentry.flush(2000) : Promise.resolve(true);
 
-/**
- * Extracts a message string from an unknown thrown value.
- */
-export const getErrorMessage = (error: unknown): string =>
-  error instanceof Error ? error.message : String(error);
+export { getErrorMessage };
 
 /**
  * Flushes pending Sentry events and terminates the process. Use this instead

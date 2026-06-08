@@ -5,10 +5,10 @@ import {
 } from '@sentry/astro';
 import { SENTRY_DSN, SENTRY_ENVIRONMENT, SITE_ID } from 'astro:env/client';
 
+import { sharedSentryOptions } from './sentry.config.shared.js';
+
 init({
-  dsn: SENTRY_DSN,
-  environment: SENTRY_ENVIRONMENT,
-  release: __RELEASE__,
+  ...sharedSentryOptions(SENTRY_DSN, SENTRY_ENVIRONMENT, __RELEASE__, SITE_ID),
   integrations: [
     browserTracingIntegration(),
     replayIntegration({
@@ -24,11 +24,6 @@ init({
   replaysSessionSampleRate: 0,
   replaysOnErrorSampleRate: 1.0,
   maxBreadcrumbs: 30,
-  initialScope: {
-    tags: {
-      site: SITE_ID,
-    },
-  },
   // Filter browser noise from extensions and cross-browser quirks.
   // Even with zero client JS, extensions inject scripts into every page.
   ignoreErrors: [

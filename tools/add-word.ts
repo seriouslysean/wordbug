@@ -177,16 +177,16 @@ if (isEntryPoint(import.meta.url)) {
   if (!word) {
     logger.error('Word is required', { word });
     showHelp(HELP_TEXT);
-    process.exit(1);
-  }
-
-  logger.info('Add word tool starting...');
-  addWord(word, {
-    date,
-    overwrite: values.overwrite,
-    preserveCase: values['preserve-case'],
-  }).catch(async (error: unknown) => {
-    logger.error('Add word tool failed', { error: getErrorMessage(error) });
     await exit(1);
-  });
+  } else {
+    logger.info('Add word tool starting...');
+    addWord(word, {
+      date,
+      overwrite: values.overwrite,
+      preserveCase: values['preserve-case'],
+    }).catch(async (error: unknown) => {
+      logger.error('Add word tool failed', { error: getErrorMessage(error) });
+      await exit(1);
+    });
+  }
 }
