@@ -1,5 +1,3 @@
-import { format } from 'date-fns';
-
 import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
 
 import type { WordData } from '#types';
@@ -473,7 +471,8 @@ export function getPageTitle(path: string): string {
   if (monthMatch && monthMatch[2]) {
     const monthNumber = monthSlugToNumber(monthMatch[2]);
     if (monthNumber) {
-      return format(new Date(2000, monthNumber - 1), 'MMMM');
+      const name = MONTH_NAMES[monthNumber - 1];
+      return name ? name.charAt(0).toUpperCase() + name.slice(1) : '';
     }
   }
 
@@ -535,7 +534,8 @@ export function getPageMetadata(path: string, words: WordData[] = []): PageMetad
     const year = monthMatch[1];
     const monthNumber = monthSlugToNumber(monthMatch[2]);
     if (monthNumber) {
-      const monthName = format(new Date(2000, monthNumber - 1), 'MMMM');
+      const rawName = MONTH_NAMES[monthNumber - 1];
+      const monthName = rawName ? rawName.charAt(0).toUpperCase() + rawName.slice(1) : '';
       return {
         title: monthName,
         description: `Words from ${monthName} ${year}.`,
