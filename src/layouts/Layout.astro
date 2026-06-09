@@ -176,7 +176,9 @@ const wordSchemaData = word ? (() => {
 	.content {
 		flex: 1;
 		width: 100%;
-		max-width: var(--content-width-large);
+		/* Full width (minus the padding margin) on phones and tablets;
+		   the centered max-width column kicks in at the desktop breakpoint. */
+		max-width: 100%;
 		margin: 0 auto;
 		padding: 1rem var(--spacing-base);
 	}
@@ -207,6 +209,7 @@ const wordSchemaData = word ? (() => {
 
 	@media (min-width: 1025px) {
 		.content {
+			max-width: var(--content-width-large);
 			padding: 2rem var(--spacing-base);
 		}
 	}
