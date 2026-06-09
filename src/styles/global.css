@@ -2,6 +2,22 @@
 @import './reset.css';
 /* Theme variables are now generated dynamically in Layout.astro */
 
+/* Native cross-document view transitions (replaces ClientRouter, ships no JS).
+   Same-origin navigations cross-fade in supporting browsers; others navigate
+   normally. */
+@view-transition {
+    navigation: auto;
+}
+
+/* Honor reduced-motion: skip the transition animation */
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+
 /* Body text transformation - moved from reset */
 body {
     text-transform: lowercase;

@@ -42,8 +42,9 @@ const PNG_OPTIONS = {
 } as const;
 
 // Load fonts - using Liberation Sans for better web compatibility
-const regularFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Regular.ttf'));
-const boldFont = opentype.loadSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Bold.ttf'));
+// opentype.js v2 removed loadSync; parse a read buffer instead
+const regularFont = opentype.parse(fs.readFileSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Regular.ttf')));
+const boldFont = opentype.parse(fs.readFileSync(path.join(paths.fonts, 'liberation-sans', 'LiberationSans-Bold.ttf')));
 
 const SOCIAL_BASE_DIR = path.join(paths.images, 'social');
 const SETTINGS_HASH_FILENAME = '.image-settings-hash';

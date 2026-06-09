@@ -121,13 +121,6 @@ export default defineConfig({
       BASE_PATH: envField.string({ context: 'client', access: 'public', default: '/' }),
     },
   },
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-    routing: {
-      prefixDefaultLocale: false,
-    },
-  },
   vite: {
     define: {
       __VERSION__: JSON.stringify(pkg.version),
@@ -158,6 +151,29 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'hover',
+  },
+  markdown: {
+    // No markdown content; disable Shiki, whose inline styles are
+    // incompatible with the CSP below (Astro warns otherwise).
+    syntaxHighlight: false,
+  },
+  security: {
+    csp: {
+      // Astro auto-hashes its own bundled scripts and processed styles.
+      // Dynamic content is served from same-origin endpoints (theme.css,
+      // ga-init.js) covered by 'self'. The only external script is Google's
+      // gtag.js loader. connect-src/img-src are intentionally left
+      // unrestricted so GA and Sentry beacons are not enumerated per site.
+      scriptDirective: {
+        resources: ["'self'", 'https://www.googletagmanager.com'],
+      },
+      directives: [
+        "object-src 'none'",
+        "base-uri 'self'",
+        // Sentry Session Replay compresses data in a blob-URL web worker
+        "worker-src 'self' blob:",
+      ],
+    },
   },
   integrations: [
     ...(sentryEnabled ? [sentry({

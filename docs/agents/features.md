@@ -324,7 +324,8 @@ reads `import.meta.env.SOURCE_DIR` directly.
 7. Audit speculation rules `eagerness` against a long browse page; tune
    if prefetch volume is excessive.
 
-**Out-of-scope:** Astro DB, SSR adapters, server islands, View Transitions,
+**Out-of-scope:** Astro DB, SSR adapters, server islands, Astro ClientRouter
+(JS-based; removed — native CSS view transitions are implemented),
 migrating CLI-side `utils/logger.ts` env access (boundary), re-encoding
 pre-generated social PNGs through `astro:assets`, SVG favicon to `<Image>`.
 
@@ -373,7 +374,10 @@ histograms, curated common endings.
 ### Theme Switching (Dark/Light Mode)
 
 System preference detection with manual toggle. CSS custom properties with
-JS toggle. Tradeoff: the site is currently zero-JS by default.
+JS toggle. Tradeoff: the site ships zero application JavaScript by default
+(no UI framework or hydration); the only client-side JS is Astro's prefetch
+runtime and small progressive enhancements — native CSS view transitions
+ship no JS.
 
 ### Word Bookmarking
 

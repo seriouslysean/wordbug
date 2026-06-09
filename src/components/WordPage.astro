@@ -32,10 +32,6 @@ interface Props {
 
 const { wordData, previousWord, nextWord, structuredDataType = STRUCTURED_DATA_TYPE.WORD_SINGLE, contextData } = Astro.props;
 
-if (!wordData) {
-  return Astro.redirect('/404');
-}
-
 // Extract definition using shared utility
 const { definition } = extractWordDefinition(wordData);
 const pageDescription = getMetaDescription({

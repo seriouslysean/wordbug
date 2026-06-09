@@ -198,4 +198,34 @@ describe('utils/logger (CLI logger with Sentry)', () => {
       expect(exitSpy).toHaveBeenCalledWith(0);
     });
   });
+
+  describe('beforeExit hook', () => {
+    it('registers a beforeExit handler that flushes Sentry', async () => {
+      vi.stubEnv('SENTRY_ENABLED', 'true');
+      vi.stubEnv('SENTRY_DSN', 'https://test@sentry.io/123');
+      // Capture the handler without registering it on the real test process
+      const onSpy = vi.spyOn(process, 'on').mockImplementation(() => process);
+      const { logger } = await import('#utils/logger');
+      const Sentry = await import('@sentry/node');
+
+      logger.error('trigger init');
+
+      const beforeExitCall = onSpy.mock.calls.find(([event]) => event === 'beforeExit');
+      expect(beforeExitCall).toBeDefined();
+
+      beforeExitCall[1]();
+      expect(Sentry.flush).toHaveBeenCalledWith(2000);
+    });
+
+    it('does not register a beforeExit handler when Sentry is disabled', async () => {
+      vi.stubEnv('SENTRY_ENABLED', 'false');
+      const onSpy = vi.spyOn(process, 'on').mockImplementation(() => process);
+      const { logger } = await import('#utils/logger');
+
+      logger.error('no init');
+
+      const beforeExitCall = onSpy.mock.calls.find(([event]) => event === 'beforeExit');
+      expect(beforeExitCall).toBeUndefined();
+    });
+  });
 });

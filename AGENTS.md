@@ -4,7 +4,7 @@ Guidance for AI agents working in this repository. This is the canonical source 
 
 ## Project Overview
 
-Static site generator (Astro) for word-of-the-day websites. Powers multiple child sites via environment-driven configuration. All pages pre-rendered at build time with zero client-side JavaScript by default.
+Static site generator (Astro) for word-of-the-day websites. Powers multiple child sites via environment-driven configuration. All pages pre-rendered at build time with zero application JavaScript by default — no UI framework, no hydration. The only client-side JS is Astro's prefetch runtime and small progressive enhancements (e.g. the random-word button); view transitions use the browser-native CSS API and ship no JS.
 
 ## Setup & Commands
 
@@ -43,6 +43,7 @@ Every piece of knowledge lives in exactly one place:
 
 - **Import aliases** — `package.json` `imports` field (TypeScript and Vite follow it)
 - **Environment validation** — `astro.config.ts` (don't duplicate elsewhere)
+- **CSP** — `astro.config.ts` (`security.csp`). Dynamic inline content that can't be auto-hashed goes in a same-origin endpoint (`src/pages/theme.css.ts`, `src/pages/ga-init.js.ts`), not inline `<style set:html>`, `<script is:inline>`, or `define:vars`.
 - **Business logic** — `utils/` pure functions (Astro wrappers in `src/utils/` delegate, never duplicate)
 - **Stats definitions** — `constants/stats.ts`
 - **URL patterns** — `constants/urls.ts`

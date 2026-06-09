@@ -4,7 +4,7 @@ Coding guidelines for GitHub Copilot. For the full philosophy and architecture, 
 
 ## Project
 
-Astro static site generator for word-of-the-day websites. Zero client-side JavaScript by default. TypeScript throughout. Node.js 24+.
+Astro static site generator for word-of-the-day websites. Zero application JavaScript by default (no UI framework or hydration); only Astro's prefetch runtime and minor progressive enhancements. Native CSS `@view-transition` for page transitions — no JS, no `<ClientRouter />`. TypeScript throughout. Node.js 24+.
 
 ## Code Style
 

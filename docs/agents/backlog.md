@@ -74,21 +74,6 @@ the build process itself; the others are real gaps.
   `src/utils/image-utils.ts:12` still reads from `import.meta.env`.
 - See Tier 1 "Astro Best Practices" in [features.md](features.md).
 
-## Deferred Dependency Majors
-
-These are intentionally held back from the latest dep-bump pass; revisit
-each when its blocker resolves.
-
-- **TypeScript 5.9.3 → 6.0.x.** Holding at 5.9. TS 6 is a major language
-  release; `@astrojs/check`'s language-server chain pulls in `yaml-language-
-  server` which has its own TS peer-dep range. Wait until the Astro
-  ecosystem signals compatibility.
-- **entities 7 → 8.** Major bump. Used by `@astrojs/rss` indirectly. Verify
-  RSS feed output before adopting.
-- **opentype.js 1 → 2.** Used by `tools/generate-images.ts` for font path
-  rendering. v2 API changes likely. Test image generation end-to-end before
-  adopting; non-trivial validation.
-
 ## Local Development Notes
 
 - E2E suite uses `localhost:4321`. If another Astro project (e.g. a sibling

@@ -1,10 +1,6 @@
 ---
-import { ClientRouter } from 'astro:transitions';
 import {
-  COLOR_PRIMARY, COLOR_PRIMARY_LIGHT, COLOR_PRIMARY_DARK,
-  COLOR_DARK_PRIMARY, COLOR_DARK_PRIMARY_LIGHT, COLOR_DARK_PRIMARY_DARK,
-  COLOR_DARK_BACKGROUND, COLOR_DARK_BACKGROUND_LIGHT,
-  COLOR_DARK_TEXT, COLOR_DARK_TEXT_LIGHT, COLOR_DARK_BORDER,
+  COLOR_PRIMARY, COLOR_DARK_BACKGROUND,
   SITE_TITLE, GA_ENABLED, GA_MEASUREMENT_ID,
 } from 'astro:env/client';
 import '#styles/global.css';
@@ -15,13 +11,12 @@ import Header from '#components/Header.astro';
 import SiteBreadcrumbs from '#components/SiteBreadcrumbs.astro';
 import StructuredData from '#components/StructuredData.astro';
 import type { WordData } from '#types';
-import { getBuildData } from '#astro-utils/build-utils.ts';
 import { getSocialImageUrl } from '#astro-utils/image-utils';
 import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
 import { getMetaDescription, seoConfig } from '#astro-utils/seo-utils.ts';
 import { getAsciiArt } from '#astro-utils/static-file-utils';
 import { getFullUrl,getUrl } from '#astro-utils/url-utils';
-import { extractWordDefinition,getWordsFromCollection } from '#astro-utils/word-data-utils';
+import { extractWordDefinition } from '#astro-utils/word-data-utils';
 import { t } from '#utils/i18n-utils';
 
 const { title, word, description, structuredDataType, noindex, nofollow, itemCount } = Astro.props;
@@ -55,10 +50,6 @@ const formatPageTitle = (baseTitle: string, currentWord: WordData) => {
 
 const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
 
-// Get all words for build data using shared utility
-const allWords = await getWordsFromCollection();
-const buildData = getBuildData(allWords);
-
 // Get ASCII art for HTML comment
 const asciiArt = getAsciiArt();
 const asciiComment = asciiArt ? `<!--
@@ -67,24 +58,7 @@ ${asciiArt}
 
 -->` : '';
 
-const colorPrimary = COLOR_PRIMARY;
-const colorPrimaryLight = COLOR_PRIMARY_LIGHT;
-const colorPrimaryDark = COLOR_PRIMARY_DARK;
-
-const colorVariables = `--color-primary: ${colorPrimary}; --color-primary-light: ${colorPrimaryLight}; --color-primary-dark: ${colorPrimaryDark};`;
-
 const darkModeEnabled = !!COLOR_DARK_BACKGROUND;
-
-const darkColorOverrides = darkModeEnabled ? [
-  COLOR_DARK_BACKGROUND && `--color-background: ${COLOR_DARK_BACKGROUND}`,
-  COLOR_DARK_BACKGROUND_LIGHT && `--color-background-light: ${COLOR_DARK_BACKGROUND_LIGHT}`,
-  COLOR_DARK_PRIMARY && `--color-primary: ${COLOR_DARK_PRIMARY}`,
-  COLOR_DARK_PRIMARY_LIGHT && `--color-primary-light: ${COLOR_DARK_PRIMARY_LIGHT}`,
-  COLOR_DARK_PRIMARY_DARK && `--color-primary-dark: ${COLOR_DARK_PRIMARY_DARK}`,
-  COLOR_DARK_TEXT && `--color-text: ${COLOR_DARK_TEXT}`,
-  COLOR_DARK_TEXT_LIGHT && `--color-text-light: ${COLOR_DARK_TEXT_LIGHT}`,
-  COLOR_DARK_BORDER && `--color-border: ${COLOR_DARK_BORDER}`,
-].filter(Boolean).join('; ') : '';
 
 const wordSchemaData = word ? (() => {
   const { definition, partOfSpeech } = extractWordDefinition(word);
@@ -101,11 +75,13 @@ const wordSchemaData = word ? (() => {
 <!doctype html>
 <html lang={seoConfig.locale}>
   <head>
-	<ClientRouter />
 	<Fragment set:html={asciiComment} />
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
 	<meta name="generator" content={Astro.generator} />
+	{GA_ENABLED && GA_MEASUREMENT_ID && (
+		<link rel="preconnect" href="https://www.googletagmanager.com" />
+	)}
 
 		<title>{finalTitle}</title>
 		<meta name="description" content={metaDescription} />
@@ -117,7 +93,7 @@ const wordSchemaData = word ? (() => {
 		<link rel="canonical" href={currentUrl} />
 
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="theme-color" content={colorPrimary} media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content={COLOR_PRIMARY} media="(prefers-color-scheme: light)" />
 		{darkModeEnabled && (
 			<meta name="theme-color" content={COLOR_DARK_BACKGROUND} media="(prefers-color-scheme: dark)" />
 		)}
@@ -161,30 +137,11 @@ const wordSchemaData = word ? (() => {
 		{GA_ENABLED && GA_MEASUREMENT_ID && (
 			<>
 				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-				<script is:inline set:html={`
-					window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
-					gtag('config', '${GA_MEASUREMENT_ID}', {
-						send_page_view: false,
-						cookie_flags: 'SameSite=None;Secure',
-						allow_google_signals: false,
-						allow_ad_personalization_signals: false
-					});
-					document.addEventListener('astro:page-load', function() {
-						gtag('event', 'page_view', {
-							page_path: window.location.pathname,
-							page_title: document.title
-						});
-					});
-				`}></script>
+				<script is:inline async src={getUrl('/ga-init.js')}></script>
 			</>
 		)}
 
-		<style set:html={`:root { ${colorVariables} }`}></style>
-		{darkModeEnabled && (
-			<style set:html={`@media (prefers-color-scheme: dark) { :root { color-scheme: light dark; ${darkColorOverrides} } }`}></style>
-		)}
+		<link rel="stylesheet" href={getUrl('/theme.css')} />
 
   </head>
   <body class="layout">
@@ -195,11 +152,6 @@ const wordSchemaData = word ? (() => {
 	</main>
 	<SiteBreadcrumbs />
 	<Footer />
-	<script define:vars={{ buildData }} is:inline>
-	  if (typeof window !== 'undefined' && !window.app) {
-		window.app = buildData;
-	  }
-	</script>
   </body>
 </html>
 

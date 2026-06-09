@@ -4,7 +4,7 @@ Architecture reference for the occasional-wotd project. For philosophy, principl
 
 ## Framework & Stack
 
-- **[Astro](https://astro.build/)** - Static site generator, zero client-side JS by default
+- **[Astro](https://astro.build/)** - Static site generator; zero application JavaScript by default — no UI framework or hydration; only Astro's prefetch runtime and small progressive enhancements ship; native CSS view transitions ship no JS
 - **TypeScript** - Strict mode (`strictNullChecks`, `noUncheckedIndexedAccess`)
 - **Node.js 24+** - Runtime (`.nvmrc` provided)
 - **[Vitest](https://vitest.dev/)** - Unit, component, and integration testing
@@ -20,7 +20,7 @@ src/
   components/                    # Reusable Astro components
   layouts/                       # Page layout templates
   pages/                         # Route definitions
-  utils/                         # Astro-specific utilities (11 files)
+  utils/                         # Astro-specific utilities (10 files)
   styles/                        # CSS files
   assets/                        # Static assets
 
@@ -74,7 +74,6 @@ types/                           # Shared TypeScript definitions
   wiktionary.ts                  # Free Dictionary API types
   wordnik.ts                     # Wordnik API response types
   vite.d.ts                      # Build-time global declarations
-  window.d.ts                    # Browser window extensions
   opentype.js.d.ts               # OpenType.js type shim
 
 locales/
@@ -491,7 +490,6 @@ See [AGENTS.md - The Boundary](../AGENTS.md#the-boundary) for the principle and 
 
 | File | Purpose |
 |------|---------|
-| `build-utils.ts` | Build metadata (version, hash, timestamp) |
 | `image-utils.ts` | Social image URL generation |
 | `logger.ts` | Astro Proxy logger with @sentry/astro |
 | `page-metadata.ts` | Page metadata with BASE_PATH |
@@ -561,6 +559,21 @@ SITE_URL="https://username.github.io" BASE_PATH="/repo"
 
 This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it and diverge only in word data, images, and favicons. `npm run tool:sync` merges upstream changes into a downstream repo via `git fetch upstream --no-tags && git merge upstream/main`. Merge-based (not rebase) so downstream can regular-push without force. Lockfile conflicts auto-resolve by accepting upstream's version and running `npm install`. The script no-ops in the upstream repo (no `upstream` remote).
 
+### Content Security Policy
+
+CSP is enabled via `security.csp` in `astro.config.ts`. Astro auto-hashes its bundled scripts and processed component styles. Dynamic per-site content that cannot be auto-hashed is served from same-origin endpoints:
+
+| Endpoint | Role |
+|----------|------|
+| `src/pages/theme.css.ts` | Theme color custom properties (replaces inline `<style>`) |
+| `src/pages/ga-init.js.ts` | GA bootstrap (replaces inline `<script>`) |
+
+Only external script source: `https://www.googletagmanager.com` (gtag.js loader). Hardening: `object-src 'none'`, `base-uri 'self'`. `worker-src 'self' blob:` allows Sentry Session Replay's compression worker. `connect-src`/`img-src` intentionally unrestricted (GA/Sentry beacons).
+
+**Pattern**: Dynamic inline content must become a same-origin endpoint. Neither `<style set:html>` nor `<script is:inline>` is auto-hashed. `define:vars` produces CSP-blocked inline style attributes.
+
+Markdown syntax highlighting is disabled (`markdown.syntaxHighlight: false`): Shiki's inline styles are CSP-incompatible and the site renders no markdown.
+
 ## Constraints
 
 - **Static only**: All pages pre-rendered; changes require rebuild
@@ -571,6 +584,12 @@ This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it 
 - **WCAG AA**: Accessibility compliance required
 
 ## Architecture History
+
+### June 2026 - CSP and Progressive Enhancement
+
+- Native CSS view transitions: `<ClientRouter />` removed; `@view-transition { navigation: auto }` added to `src/styles/global.css` with `prefers-reduced-motion` guard. Ships zero JS; cross-fades same-origin navigations (Chromium/Safari; Firefox partial); plain navigation elsewhere. Reason: Astro dropped CSP support for `ClientRouter`.
+- CSP enabled via `security.csp` in `astro.config.ts`; dynamic inline content migrated to same-origin endpoints (`src/pages/theme.css.ts`, `src/pages/ga-init.js.ts`).
+- Removed: `src/utils/build-utils.ts` and `types/window.d.ts` (with `window.app` debug global).
 
 ### February 2026 - Environment and Theming
 

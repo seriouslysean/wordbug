@@ -1,5 +1,6 @@
 ---
 import { SITE_AUTHOR_URL, SITE_AUTHOR, SITE_ATTRIBUTION_MESSAGE } from 'astro:env/client';
+import { Image } from 'astro:assets';
 import wordnikLogo from '#assets/wordnik-gearheart.png';
 import SiteLink from '#components/SiteLink.astro';
 import { getBrowseWordsUrl } from '#astro-utils/url-utils';
@@ -41,7 +42,7 @@ const showAttribution = SITE_AUTHOR_URL && SITE_AUTHOR && SITE_ATTRIBUTION_MESSA
           class="footer__wordnik"
           title={t('footer.powered_by')}
         >
-          <img src={wordnikLogo.src} alt="Wordnik" width="16" height="16" />
+          <Image src={wordnikLogo} alt="Wordnik" width={16} height={16} />
         </SiteLink>
       </li>
     </ul>

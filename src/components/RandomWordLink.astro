@@ -38,12 +38,10 @@ async function getRandomWord() {
   }
 }
 
-document.addEventListener('astro:page-load', () => {
-  const button = document.getElementById('random-word-button');
+const button = document.getElementById('random-word-button');
 
-  if (button) {
-    button.addEventListener('click', getRandomWord);
-  }
-});
+if (button) {
+  button.addEventListener('click', getRandomWord);
+}
 </script>
 
