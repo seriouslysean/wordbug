@@ -124,6 +124,19 @@ document.addEventListener('keydown', event => {
     toggle?.focus();
   }
 });
+
+// Tapping or clicking anywhere outside the search (toggle, field, results)
+// dismisses the open panel. Clicks inside keep it open; the toggle's own
+// handler manages reopening. No refocus -- the pointer already moved away.
+document.addEventListener('click', event => {
+  if (panel?.hidden) {
+    return;
+  }
+  const target = event.target as Element | null;
+  if (!target?.closest('.site-search')) {
+    closePanel();
+  }
+});
 </script>
 
 <style>

@@ -37,6 +37,18 @@ test.describe('header search', () => {
     await expect(page.locator('#site-search-results a')).toHaveCount(0);
   });
 
+  test('closes when clicking outside the search', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#site-search-toggle').click();
+
+    const input = page.locator('#site-search-input');
+    await expect(input).toBeVisible();
+
+    // A click outside the search container (the footer) dismisses the panel.
+    await page.locator('footer').click();
+    await expect(input).toBeHidden();
+  });
+
   test('the search icon is hidden without JavaScript', async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
