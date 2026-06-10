@@ -1,0 +1,85 @@
+{
+    "word": "shrewd",
+    "date": "20241010",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "shrewd",
+            "partOfSpeech": "adjective",
+            "text": "having or showing the insight, intelligence, and understanding to make good judgments about practical matters (as in business or finance); also: wily, cunning",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/shrewd",
+            "examples": [
+                "a shrewd investor",
+                "made some shrewd business moves",
+                "a coach with a shrewd eye for talent",
+                "… a shrewd operator who transported arms for years and was finally undone by a … crackdown …",
+                "… I got some shrewd knocks over it, but I did win this much.",
+                "Touch it if you will, it gives out shrewd galvanic shocks …",
+                "a shrewd wind",
+                "… the first shrewd gust of a storm pressed the craft against the bank."
+            ]
+        },
+        {
+            "id": "shrewd",
+            "partOfSpeech": "adjective",
+            "text": "severe, hard",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/shrewd",
+            "examples": [
+                "a shrewd investor",
+                "made some shrewd business moves",
+                "a coach with a shrewd eye for talent",
+                "… a shrewd operator who transported arms for years and was finally undone by a … crackdown …",
+                "… I got some shrewd knocks over it, but I did win this much.",
+                "Touch it if you will, it gives out shrewd galvanic shocks …",
+                "a shrewd wind",
+                "… the first shrewd gust of a storm pressed the craft against the bank."
+            ]
+        },
+        {
+            "id": "shrewd",
+            "partOfSpeech": "adjective",
+            "text": "sharp, piercing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/shrewd",
+            "examples": [
+                "a shrewd investor",
+                "made some shrewd business moves",
+                "a coach with a shrewd eye for talent",
+                "… a shrewd operator who transported arms for years and was finally undone by a … crackdown …",
+                "… I got some shrewd knocks over it, but I did win this much.",
+                "Touch it if you will, it gives out shrewd galvanic shocks …",
+                "a shrewd wind",
+                "… the first shrewd gust of a storm pressed the craft against the bank."
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈshrüd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/shrewd01.mp3",
+        "etymology": "Middle English shrewed, from shrewe + ",
+        "synonyms": [
+            "astute",
+            "sharp",
+            "smart",
+            "calculating",
+            "calculative",
+            "conniving",
+            "scheming",
+            "hard"
+        ],
+        "related": [
+            "shrewdness",
+            "astuteness",
+            "acuteness",
+            "acuity",
+            "forecast",
+            "calculate"
+        ]
+    }
+}

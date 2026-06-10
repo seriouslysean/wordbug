@@ -11,69 +11,220 @@ const { graph } = Astro.props;
 ---
 
 {graph.nodes.length > 0 && (
-  <div class="word-graph">
-    {/* role="group" (not "img") so the node links stay in the accessibility tree */}
-    <svg
-      class="word-graph__svg"
-      viewBox={`0 0 ${graph.size} ${graph.size}`}
-      role="group"
-      aria-label={t('stats.connections_aria')}
-    >
-      {graph.edges.map(edge => {
-        const from = graph.nodes[edge.from];
-        const to = graph.nodes[edge.to];
-        return from && to
-          ? <line class="word-graph__edge" x1={from.x} y1={from.y} x2={to.x} y2={to.y} />
-          : null;
-      })}
-      {graph.nodes.map(node => (
-        <a href={getUrl(getWordUrl(node.word))} class="word-graph__node" aria-label={node.word}>
-          <circle cx={node.x} cy={node.y} r="9" class="word-graph__dot" />
-          <text x={node.x} y={node.y - 15} text-anchor="middle" class="word-graph__label">{node.word}</text>
-        </a>
-      ))}
-    </svg>
+  <div class="word-graph" data-word-graph>
+    <div class="word-graph__canvas">
+      {/* Edges carry their endpoint indices; the client script reads structure
+          from these and the node list, lays the graph out against the live
+          container, and sets coordinates. */}
+      <svg class="word-graph__edges" aria-hidden="true" preserveAspectRatio="none">
+        {graph.edges.map(edge => (
+          <line class="word-graph__edge" data-from={edge.from} data-to={edge.to} />
+        ))}
+      </svg>
+      <ul class="word-graph__nodes" aria-label={t('stats.connections_aria')}>
+        {graph.nodes.map((node, index) => (
+          <li id={`wg-node-${index}`} class="word-graph__node">
+            <a href={getUrl(getWordUrl(node.word))} class="word-graph__link" aria-label={node.word}>
+              <span class="word-graph__dot" aria-hidden="true"></span>
+              <span class="word-graph__label">{node.word}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 )}
 
+<script>
+  import { layoutGraph, placeLabels, resolveCollisions, type LabelSide } from '#utils/force-layout';
+
+  // Labels hug their dot (just clear of it) so the word reads as attached to the
+  // dot, not as a separate node. Shared so the layout and CSS transform agree.
+  const DOT_RADIUS = 6;
+  const LABEL_GAP = 0;
+  const OFFSET = DOT_RADIUS + LABEL_GAP;
+
+  const LABEL_TRANSFORMS: Record<LabelSide, string> = {
+    above: `translate(-50%, calc(-100% - ${OFFSET}px))`,
+    below: `translate(-50%, ${OFFSET}px)`,
+    left: `translate(calc(-100% - ${OFFSET}px), -50%)`,
+    right: `translate(${OFFSET}px, -50%)`,
+  };
+
+  const root = document.querySelector<HTMLElement>('[data-word-graph]');
+  const canvas = root?.querySelector<HTMLElement>('.word-graph__canvas');
+  const svg = canvas?.querySelector<SVGSVGElement>('.word-graph__edges');
+
+  if (root && canvas && svg) {
+    const nodeEls = [...root.querySelectorAll<HTMLElement>('.word-graph__node')];
+    const labelEls = nodeEls.map(el => el.querySelector<HTMLElement>('.word-graph__label'));
+    const lineEls = [...svg.querySelectorAll<SVGLineElement>('.word-graph__edge')];
+    const edges = lineEls.map(line => ({
+      from: Number(line.dataset.from),
+      to: Number(line.dataset.to),
+    }));
+
+    const render = (): void => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      if (!width || !height) {
+        return;
+      }
+      // Measure each label once.
+      const labelBoxes = labelEls.map(el => {
+        const rect = el?.getBoundingClientRect();
+        return { width: rect ? rect.width : 40, height: rect ? rect.height : 14 };
+      });
+      // Spread dots so a label footprint fits beside each with breathing room,
+      // then pick the best free side per label.
+      const spacingBoxes = labelBoxes.map(box => ({ width: box.width + 28, height: box.height + 32 }));
+
+      const points = layoutGraph(nodeEls.length, edges, width, height, { padding: 16 });
+      resolveCollisions(points, spacingBoxes, width, height);
+      const sides = placeLabels(points, labelBoxes, width, height, DOT_RADIUS, LABEL_GAP);
+
+      nodeEls.forEach((el, index) => {
+        const point = points[index];
+        const side = sides[index] ?? 'above';
+        if (point) {
+          el.style.left = `${point.x}px`;
+          el.style.top = `${point.y}px`;
+        }
+        const label = labelEls[index];
+        if (label) {
+          label.style.transform = LABEL_TRANSFORMS[side];
+        }
+      });
+
+      lineEls.forEach(line => {
+        const from = points[Number(line.dataset.from)];
+        const to = points[Number(line.dataset.to)];
+        if (from && to) {
+          line.setAttribute('x1', String(from.x));
+          line.setAttribute('y1', String(from.y));
+          line.setAttribute('x2', String(to.x));
+          line.setAttribute('y2', String(to.y));
+        }
+      });
+
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      root.classList.add('is-ready');
+    };
+
+    render();
+
+    // Re-lay out on resize so labels never crowd at a new width; debounced to
+    // avoid thrashing, and the seeded layout keeps the result stable.
+    let timer = 0;
+    const observer = new ResizeObserver(() => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(render, 150);
+    });
+    observer.observe(canvas);
+  }
+</script>
+
 <style>
+  /* Full-bleed: break out of the centered content column so the web runs edge
+     to edge. Hidden until the script positions the nodes (progressive
+     enhancement), then faded in to avoid a flash of stacked nodes. */
   .word-graph {
-    width: 100%;
-    max-width: var(--content-width-small);
-    margin: 0 auto;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: var(--spacing-large);
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.2s ease;
   }
 
-  .word-graph__svg {
+  .word-graph.is-ready {
+    opacity: 1;
+  }
+
+  /* Phones get a tall, bounded canvas (constant-size labels need vertical room
+     to de-overlap on a narrow width); desktop is a wide aspect. The script lays
+     out against whatever size this resolves to. */
+  .word-graph__canvas {
+    position: relative;
     width: 100%;
-    height: auto;
+    height: clamp(480px, 80vh, 720px);
+  }
+
+  @media (min-width: 768px) {
+    .word-graph__canvas {
+      height: auto;
+      aspect-ratio: 5 / 2;
+    }
+  }
+
+  .word-graph__edges {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .word-graph__edge {
     stroke: var(--color-border);
-    stroke-width: 2;
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .word-graph__nodes {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* The script sets left/top to the node point; the dot is centred on it and
+     the label floats just above. */
+  .word-graph__node {
+    position: absolute;
+  }
+
+  .word-graph__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-decoration: none;
   }
 
   .word-graph__dot {
-    fill: var(--color-primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 11px;
+    height: 11px;
+    margin: -5.5px 0 0 -5.5px;
+    border-radius: 50%;
+    background: var(--color-primary);
     transition: var(--transition);
   }
 
   .word-graph__label {
-    fill: var(--color-text-light);
-    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, calc(-100% - 8px));
+    white-space: nowrap;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    transition: var(--transition);
   }
 
-  .word-graph__node:hover .word-graph__dot,
-  .word-graph__node:focus-visible .word-graph__dot {
-    fill: var(--color-text-primary);
+  .word-graph__link:hover .word-graph__dot,
+  .word-graph__link:focus-visible .word-graph__dot {
+    background: var(--color-text-primary);
   }
 
-  .word-graph__node:hover .word-graph__label,
-  .word-graph__node:focus-visible .word-graph__label {
-    fill: var(--color-text-primary);
+  .word-graph__link:hover .word-graph__label,
+  .word-graph__link:focus-visible .word-graph__label {
+    color: var(--color-text-primary);
   }
 
-  .word-graph__node:focus-visible {
+  .word-graph__link:focus-visible .word-graph__dot {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }

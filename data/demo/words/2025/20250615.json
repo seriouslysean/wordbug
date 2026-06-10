@@ -1,0 +1,218 @@
+{
+    "word": "wonder",
+    "date": "20250615",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "wonder",
+            "partOfSpeech": "noun",
+            "text": "a cause of astonishment or admiration: marvel",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "it's a wonder you weren't killed",
+                "the pyramid is a wonder to behold"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "noun",
+            "text": "miracle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "it's a wonder you weren't killed",
+                "the pyramid is a wonder to behold"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "noun",
+            "text": "the quality of exciting amazed admiration",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "it's a wonder you weren't killed",
+                "the pyramid is a wonder to behold"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "verb",
+            "text": "to be in a state of wonder",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "wondering about the future",
+                "wonders why birds sing"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "verb",
+            "text": "to feel surprise",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "wondering about the future",
+                "wonders why birds sing"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "verb",
+            "text": "to feel curiosity or doubt",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "wondering about the future",
+                "wonders why birds sing"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "adjective",
+            "text": "wondrous, wonderful: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "wonder toys",
+                "a wonder fabric"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "adjective",
+            "text": "exciting amazement or admiration",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "wonder toys",
+                "a wonder fabric"
+            ]
+        },
+        {
+            "id": "wonder",
+            "partOfSpeech": "adjective",
+            "text": "effective or efficient far beyond anything previously known or anticipated",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "wonder toys",
+                "a wonder fabric"
+            ]
+        },
+        {
+            "id": "Wonder:b",
+            "text": "Stevie 1950— born Stevland Hardaway Judkins American singer, songwriter and instrumentalist",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder"
+        },
+        {
+            "id": "wonder drug",
+            "partOfSpeech": "noun",
+            "text": "a drug usually newly discovered that elicits a dramatic positive response in a patient's condition: miracle drug",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "So far, Prozac is acting as something of a wonder drug; it is highly effective, causes few dangerous side effects, and is already the most widely prescribed antidepressant after just 4 years on the market.",
+                "Stodgy old aspirin suddenly appears to be a wonder drug. But as often happens in medicine, the news hype may have overreached in search of hope."
+            ]
+        },
+        {
+            "id": "wonder-worker",
+            "partOfSpeech": "noun",
+            "text": "one that performs wonders",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder"
+        },
+        {
+            "id": "wonder-working",
+            "partOfSpeech": "adjective",
+            "text": "producing wonders",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder"
+        },
+        {
+            "id": "boy wonder",
+            "partOfSpeech": "noun",
+            "text": "a young man of noteworthy achievements",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder"
+        },
+        {
+            "id": "nine days' wonder",
+            "partOfSpeech": "noun",
+            "text": "something or someone that creates a short-lived sensation —called also nine day wonder",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder"
+        },
+        {
+            "id": "one-hit wonder",
+            "partOfSpeech": "noun",
+            "text": "a musical group that has achieved recognition on the basis of only one widely popular song; also: the widely popular song of a one-hit wonder",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "Such folks as John Lennon, the Byrds, Lou Rawls, the Hollies, Cyndi Lauper and one-hit wonder Peter McCann will entertain you via a radio played at an unobtrusive level.",
+                "Their 1994 hit “Macarena” has often been voted as the top one-hit-wonder of all time.",
+                "But without Pat Croce or Maurice Cheeks to mediate the Larry Brown-Allen Iverson relationship, the Sixers could easily be a one-hit wonder.",
+                "Years later, [Steve] Jobs famously described how devastated he felt, only to realize that getting fired from Apple helped him develop the sustained creativity that turned him from a one-hit wonder into a great business leader.",
+                "For readers who aren't as head-over-heels for poetry as I am, The Bell Jar might seem like writer Sylvia Plath's one hit wonder."
+            ]
+        },
+        {
+            "id": "one-hit wonder",
+            "partOfSpeech": "noun",
+            "text": "a person, group, or organization that is known only for a single notable event, product, etc.; also: the notable event, product, etc. of a one-hit wonder",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wonder",
+            "examples": [
+                "Such folks as John Lennon, the Byrds, Lou Rawls, the Hollies, Cyndi Lauper and one-hit wonder Peter McCann will entertain you via a radio played at an unobtrusive level.",
+                "Their 1994 hit “Macarena” has often been voted as the top one-hit-wonder of all time.",
+                "But without Pat Croce or Maurice Cheeks to mediate the Larry Brown-Allen Iverson relationship, the Sixers could easily be a one-hit wonder.",
+                "Years later, [Steve] Jobs famously described how devastated he felt, only to realize that getting fired from Apple helped him develop the sustained creativity that turned him from a one-hit wonder into a great business leader.",
+                "For readers who aren't as head-over-heels for poetry as I am, The Bell Jar might seem like writer Sylvia Plath's one hit wonder."
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈwən-dər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/w/wonder01.mp3",
+        "etymology": "Middle English, from Old English wundor; akin to Old High German wuntar wonder",
+        "synonyms": [
+            "wonderment",
+            "admiration",
+            "marvel"
+        ],
+        "related": [
+            "astonishment",
+            "amazement",
+            "awe",
+            "happening",
+            "occurrence",
+            "marvelous",
+            "marvellous",
+            "fantastic",
+            "grand"
+        ]
+    }
+}

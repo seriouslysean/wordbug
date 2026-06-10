@@ -1,0 +1,122 @@
+{
+    "word": "terror",
+    "date": "20250525",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "terror",
+            "partOfSpeech": "noun",
+            "text": "a state of intense or overwhelming fear",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/terror",
+            "examples": [
+                "overcome by terror",
+                "people fleeing the scene in terror",
+                "He lived in terror of being caught.",
+                "a regime that rules by terror",
+                "an act of terror",
+                "the war on terror",
+                "the terrors of war",
+                "I stood before fierce Mrs. Mabel Johnston, his secretary and the terror of the office.",
+                "Before rifles were available to Eskimo hunters, bears were truly the terror of their existence.",
+                "The kid is a little terror."
+            ]
+        },
+        {
+            "id": "terror",
+            "partOfSpeech": "noun",
+            "text": "violence or the threat of violence used as a weapon of intimidation or coercion; especially: violent or destructive acts (such as bombing) committed by groups in order to intimidate a population or government into granting their demands —sometimes used before another noun",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/terror",
+            "examples": [
+                "overcome by terror",
+                "people fleeing the scene in terror",
+                "He lived in terror of being caught.",
+                "a regime that rules by terror",
+                "an act of terror",
+                "the war on terror",
+                "the terrors of war",
+                "I stood before fierce Mrs. Mabel Johnston, his secretary and the terror of the office.",
+                "Before rifles were available to Eskimo hunters, bears were truly the terror of their existence.",
+                "The kid is a little terror."
+            ]
+        },
+        {
+            "id": "terror",
+            "partOfSpeech": "noun",
+            "text": "a very frightening or terrifying aspect",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/terror",
+            "examples": [
+                "overcome by terror",
+                "people fleeing the scene in terror",
+                "He lived in terror of being caught.",
+                "a regime that rules by terror",
+                "an act of terror",
+                "the war on terror",
+                "the terrors of war",
+                "I stood before fierce Mrs. Mabel Johnston, his secretary and the terror of the office.",
+                "Before rifles were available to Eskimo hunters, bears were truly the terror of their existence.",
+                "The kid is a little terror."
+            ]
+        },
+        {
+            "id": "night terror",
+            "partOfSpeech": "noun",
+            "text": "a sudden awakening in dazed terror that occurs in children during slow-wave sleep, is often preceded by a sudden shrill cry uttered in sleep, and is not remembered when the child awakes —usually used in plural",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/terror"
+        },
+        {
+            "id": "reign of terror",
+            "partOfSpeech": "noun",
+            "text": "a state or a period of time marked by violence often committed by those in power that produces widespread terror",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/terror"
+        },
+        {
+            "id": "counterterror",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or being measures taken to combat or prevent terrorism: counterterrorist",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/terror",
+            "examples": [
+                "counter-terror measures/operations",
+                "a counter-terror expert"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈter-ər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/terror01.mp3",
+        "etymology": "Middle English, from Anglo-French terrour, from Latin terror, from terrēre to frighten; akin to Greek trein to be afraid, flee, tremein to tremble ",
+        "synonyms": [
+            "panic",
+            "affright",
+            "scourge",
+            "threat"
+        ],
+        "related": [
+            "fear",
+            "fearfulness",
+            "frighten",
+            "fright",
+            "terrorist",
+            "terrorize",
+            "terrorise",
+            "terrify",
+            "panicky",
+            "panicked",
+            "swivet",
+            "person",
+            "individual"
+        ]
+    }
+}

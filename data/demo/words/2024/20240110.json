@@ -1,0 +1,112 @@
+{
+    "word": "calm",
+    "date": "20240110",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "calm",
+            "partOfSpeech": "noun",
+            "text": "a period or condition of freedom from storms, high winds, or rough activity of water",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/calm",
+            "examples": [
+                "a sailing ship motionless in the calm",
+                "At dusk a quiet calm settled over the town."
+            ]
+        },
+        {
+            "id": "calm",
+            "partOfSpeech": "noun",
+            "text": "complete absence of wind or presence of wind having a speed no greater than one mile (1.6 kilometers) per hour",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/calm",
+            "examples": [
+                "a sailing ship motionless in the calm",
+                "At dusk a quiet calm settled over the town."
+            ]
+        },
+        {
+            "id": "calm",
+            "partOfSpeech": "noun",
+            "text": "a state of tranquility",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/calm",
+            "examples": [
+                "a sailing ship motionless in the calm",
+                "At dusk a quiet calm settled over the town."
+            ]
+        },
+        {
+            "id": "calm",
+            "partOfSpeech": "verb",
+            "text": "to become calm —usually used with down",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/calm"
+        },
+        {
+            "id": "calm",
+            "partOfSpeech": "verb",
+            "text": "to make calm —often used with down",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/calm"
+        },
+        {
+            "id": "calm",
+            "partOfSpeech": "adjective",
+            "text": "marked by calm: still",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/calm",
+            "examples": [
+                "a calm sea"
+            ]
+        },
+        {
+            "id": "calm",
+            "partOfSpeech": "adjective",
+            "text": "free from agitation, excitement, or disturbance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/calm",
+            "examples": [
+                "a calm sea"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkäm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/calm0001.mp3",
+        "etymology": "Middle English calme, probably ultimately from Old Spanish calma, from Late Latin cauma heat, from Greek kauma, from kaiein to burn",
+        "synonyms": [
+            "composure",
+            "calmness",
+            "equanimity",
+            "calm air"
+        ],
+        "antonyms": [
+            "discomposure"
+        ],
+        "related": [
+            "disposition",
+            "temperament",
+            "collected",
+            "equanimous",
+            "unagitated",
+            "calm down",
+            "sedate",
+            "compose",
+            "aplomb",
+            "assuredness",
+            "repose",
+            "quiet",
+            "wind",
+            "air current"
+        ]
+    }
+}

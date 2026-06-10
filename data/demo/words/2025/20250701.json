@@ -1,0 +1,74 @@
+{
+    "word": "marvel",
+    "date": "20250701",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "marvel",
+            "partOfSpeech": "noun",
+            "text": "one that causes wonder or astonishment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/marvel",
+            "examples": [
+                "her talent is a marvel to behold",
+                "… with that marvel of architecture before our eyes …",
+                "… his voice filled with marvel …"
+            ]
+        },
+        {
+            "id": "marvel",
+            "partOfSpeech": "noun",
+            "text": "intense surprise or interest: astonishment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/marvel",
+            "examples": [
+                "her talent is a marvel to behold",
+                "… with that marvel of architecture before our eyes …",
+                "… his voice filled with marvel …"
+            ]
+        },
+        {
+            "id": "marvel",
+            "partOfSpeech": "verb",
+            "text": "to become filled with surprise, wonder, or amazed curiosity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/marvel",
+            "examples": [
+                "marveled at the magician's skill",
+                "marveled that they had escaped"
+            ]
+        },
+        {
+            "id": "marvel",
+            "partOfSpeech": "verb",
+            "text": "to feel astonishment or perplexity at or about",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/marvel",
+            "examples": [
+                "marveled at the magician's skill",
+                "marveled that they had escaped"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈmär-vəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/marvel01.mp3",
+        "etymology": "Middle English merveile, mervayle \"something causing astonishment, miracle,\" borrowed from Anglo-French merveille, going back to Gallo-Romance *merevelia, altered from Latin mīrābilia, noun derivative from neuter plural of mīrābilis \"causing wonder, remarkable,\" from mīrārī \"to be surprised, look with wonder at\" + -bilis \"capable of (acting or being acted upon)\" , ",
+        "synonyms": [
+            "wonder"
+        ],
+        "related": [
+            "happening",
+            "occurrence",
+            "marvelous",
+            "marvellous",
+            "fantastic",
+            "grand"
+        ]
+    }
+}

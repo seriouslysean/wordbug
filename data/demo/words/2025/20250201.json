@@ -1,0 +1,57 @@
+{
+    "word": "insight",
+    "date": "20250201",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "in sight",
+            "text": "at or within a reasonable distance or time",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/insight"
+        },
+        {
+            "id": "insight",
+            "partOfSpeech": "noun",
+            "text": "the ability to understand people and situations in a very clear way: the ability to discern deeply and acutely",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/insight",
+            "examples": [
+                "a leader of great insight",
+                "The author analyzes the problem with remarkable insight.",
+                "Her book provides us with fresh new insights into this behavior.",
+                "The past four games gave us great insight into strengths and weaknesses."
+            ]
+        },
+        {
+            "id": "insight",
+            "partOfSpeech": "noun",
+            "text": "the act or result of apprehending the inner nature of things or of seeing intuitively",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/insight",
+            "examples": [
+                "a leader of great insight",
+                "The author analyzes the problem with remarkable insight.",
+                "Her book provides us with fresh new insights into this behavior.",
+                "The past four games gave us great insight into strengths and weaknesses."
+            ]
+        }
+    ],
+    "enrichment": {
+        "synonyms": [
+            "penetration",
+            "perceptiveness",
+            "perceptivity"
+        ],
+        "related": [
+            "perception",
+            "penetrate",
+            "fathom",
+            "sensibility",
+            "perceptive"
+        ]
+    }
+}

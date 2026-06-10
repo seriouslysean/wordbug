@@ -1,0 +1,40 @@
+{
+    "word": "astute",
+    "date": "20240910",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "astute",
+            "partOfSpeech": "adjective",
+            "text": "having or showing shrewdness and an ability to notice and understand things clearly: mentally sharp or clever; also: clever in the use of subtlety or strategy: crafty, wily",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/astute",
+            "examples": [
+                "an astute observer",
+                "an astute observation",
+                "astute remarks",
+                "an astute politician",
+                "astute diplomacy",
+                "… a very astute move to increase … chances of re-election …"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ə-ˈstüt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/astute01.mp3",
+        "etymology": "Latin astutus, from astus craft",
+        "synonyms": [
+            "sharp",
+            "shrewd",
+            "smart"
+        ],
+        "related": [
+            "shrewdness",
+            "astuteness",
+            "acuteness",
+            "acuity"
+        ]
+    }
+}

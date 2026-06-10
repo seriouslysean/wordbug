@@ -1,0 +1,124 @@
+{
+    "word": "glad",
+    "date": "20230215",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "glad",
+            "partOfSpeech": "adjective",
+            "text": "experiencing pleasure, joy, or delight: made happy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad",
+            "examples": [
+                "glad to do it",
+                "a glad shout",
+                "glad tidings",
+                "a glad spring morning"
+            ]
+        },
+        {
+            "id": "glad",
+            "partOfSpeech": "adjective",
+            "text": "very willing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad",
+            "examples": [
+                "glad to do it",
+                "a glad shout",
+                "glad tidings",
+                "a glad spring morning"
+            ]
+        },
+        {
+            "id": "glad",
+            "partOfSpeech": "adjective",
+            "text": "made pleased, satisfied, or grateful —often used with of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad",
+            "examples": [
+                "glad to do it",
+                "a glad shout",
+                "glad tidings",
+                "a glad spring morning"
+            ]
+        },
+        {
+            "id": "glad",
+            "partOfSpeech": "verb",
+            "text": "gladden",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad"
+        },
+        {
+            "id": "glad",
+            "partOfSpeech": "noun",
+            "text": "gladiolus",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad"
+        },
+        {
+            "id": "glad-hand",
+            "partOfSpeech": "verb",
+            "text": "to extend a glad hand to",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad",
+            "examples": [
+                "candidates glad-handing everyone they meet",
+                "glad-handing as if he were running for mayor"
+            ]
+        },
+        {
+            "id": "glad-hand",
+            "partOfSpeech": "verb",
+            "text": "to extend a glad hand",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad",
+            "examples": [
+                "candidates glad-handing everyone they meet",
+                "glad-handing as if he were running for mayor"
+            ]
+        },
+        {
+            "id": "glad hand",
+            "partOfSpeech": "noun",
+            "text": "a warm welcome or greeting often prompted by ulterior reasons",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad"
+        },
+        {
+            "id": "glad rags",
+            "partOfSpeech": "noun",
+            "text": "dressy clothes",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/glad"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈglad",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/g/glad0001.mp3",
+        "etymology": "Middle English, shining, glad, from Old English glæd; akin to Old High German glat shining, smooth, Latin glaber smooth, bald",
+        "synonyms": [
+            "gladsome",
+            "happy",
+            "willing"
+        ],
+        "antonyms": [
+            "sad"
+        ],
+        "related": [
+            "cheerful",
+            "gladness",
+            "gladfulness"
+        ]
+    }
+}

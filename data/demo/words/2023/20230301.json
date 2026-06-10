@@ -1,0 +1,73 @@
+{
+    "word": "cheerful",
+    "date": "20230301",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "cheerful",
+            "partOfSpeech": "adjective",
+            "text": "full of good spirits: merry",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheerful",
+            "examples": [
+                "a cheerful host",
+                "cheerful obedience",
+                "sunny cheerful room"
+            ]
+        },
+        {
+            "id": "cheerful",
+            "partOfSpeech": "adjective",
+            "text": "ungrudging",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheerful",
+            "examples": [
+                "a cheerful host",
+                "cheerful obedience",
+                "sunny cheerful room"
+            ]
+        },
+        {
+            "id": "cheerful",
+            "partOfSpeech": "adjective",
+            "text": "conducive to cheer: likely to dispel gloom or worry",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheerful",
+            "examples": [
+                "a cheerful host",
+                "cheerful obedience",
+                "sunny cheerful room"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈchir-fəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cheerf01.mp3",
+        "etymology": "see cheer:1",
+        "synonyms": [
+            "beaming",
+            "beamish",
+            "blithe",
+            "buoyant",
+            "cheery",
+            "chipper",
+            "pollyannaish",
+            "upbeat",
+            "optimistic"
+        ],
+        "antonyms": [
+            "depressing"
+        ],
+        "related": [
+            "glad",
+            "happy",
+            "cheerfulness",
+            "cheer",
+            "blitheness"
+        ]
+    }
+}

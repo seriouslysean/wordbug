@@ -1,0 +1,105 @@
+{
+    "word": "brisk",
+    "date": "20250405",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "brisk",
+            "partOfSpeech": "adjective",
+            "text": "keenly alert: lively",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brisk",
+            "examples": [
+                "… a brisk old lady with no nonsense about her …",
+                "brisk tea",
+                "a brisk autumn day",
+                "was very brisk on the phone",
+                "took a brisk walk",
+                "at a brisk pace",
+                "business was brisk"
+            ]
+        },
+        {
+            "id": "brisk",
+            "partOfSpeech": "adjective",
+            "text": "pleasingly tangy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brisk",
+            "examples": [
+                "… a brisk old lady with no nonsense about her …",
+                "brisk tea",
+                "a brisk autumn day",
+                "was very brisk on the phone",
+                "took a brisk walk",
+                "at a brisk pace",
+                "business was brisk"
+            ]
+        },
+        {
+            "id": "brisk",
+            "partOfSpeech": "adjective",
+            "text": "fresh, invigorating",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brisk",
+            "examples": [
+                "… a brisk old lady with no nonsense about her …",
+                "brisk tea",
+                "a brisk autumn day",
+                "was very brisk on the phone",
+                "took a brisk walk",
+                "at a brisk pace",
+                "business was brisk"
+            ]
+        },
+        {
+            "id": "brisk",
+            "partOfSpeech": "verb",
+            "text": "to make animated, energetic, or marked by much activity: to make brisk",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brisk"
+        },
+        {
+            "id": "brisk",
+            "partOfSpeech": "verb",
+            "text": "to become brisk —usually used with up",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brisk"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbrisk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/brisk001.mp3",
+        "etymology": "probably modification of Middle French brusque",
+        "synonyms": [
+            "alert",
+            "lively",
+            "merry",
+            "rattling",
+            "snappy",
+            "spanking",
+            "zippy",
+            "energetic",
+            "bracing",
+            "fresh",
+            "refreshing",
+            "refreshful",
+            "tonic",
+            "invigorating"
+        ],
+        "related": [
+            "energy",
+            "vigor",
+            "liveliness",
+            "life",
+            "alacrity",
+            "briskness",
+            "freshness"
+        ]
+    }
+}

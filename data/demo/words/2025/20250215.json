@@ -1,0 +1,77 @@
+{
+    "word": "brilliant",
+    "date": "20250215",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "brilliant",
+            "partOfSpeech": "adjective",
+            "text": "very bright: glittering",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brilliant",
+            "examples": [
+                "a brilliant light",
+                "a brilliant example",
+                "brilliant scientists"
+            ]
+        },
+        {
+            "id": "brilliant",
+            "partOfSpeech": "adjective",
+            "text": "striking, distinctive",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brilliant",
+            "examples": [
+                "a brilliant light",
+                "a brilliant example",
+                "brilliant scientists"
+            ]
+        },
+        {
+            "id": "brilliant",
+            "partOfSpeech": "adjective",
+            "text": "distinguished by unusual mental keenness or alertness",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brilliant",
+            "examples": [
+                "a brilliant light",
+                "a brilliant example",
+                "brilliant scientists"
+            ]
+        },
+        {
+            "id": "brilliant",
+            "partOfSpeech": "noun",
+            "text": "a gem (such as a diamond) cut in a particular form with numerous facets so as to have special brightness or brilliance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/brilliant"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbril-yənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/brilli03.mp3",
+        "etymology": "French brillant, present participle of briller to shine, from Italian brillare",
+        "synonyms": [
+            "superb",
+            "superior",
+            "brainy",
+            "smart as a whip",
+            "intelligent"
+        ],
+        "related": [
+            "luster",
+            "lustre",
+            "magnificence",
+            "brilliance",
+            "genius",
+            "mastermind",
+            "brain",
+            "brainpower"
+        ]
+    }
+}

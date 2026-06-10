@@ -1,0 +1,123 @@
+{
+    "word": "swift",
+    "date": "20250301",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "swift",
+            "partOfSpeech": "adjective",
+            "text": "moving or capable of moving with great speed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift",
+            "examples": [
+                "a swift runner",
+                "a swift transition"
+            ]
+        },
+        {
+            "id": "swift",
+            "partOfSpeech": "adjective",
+            "text": "occurring suddenly or within a very short time",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift",
+            "examples": [
+                "a swift runner",
+                "a swift transition"
+            ]
+        },
+        {
+            "id": "swift",
+            "partOfSpeech": "adjective",
+            "text": "quick to respond: ready",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift",
+            "examples": [
+                "a swift runner",
+                "a swift transition"
+            ]
+        },
+        {
+            "id": "swift",
+            "partOfSpeech": "adverb",
+            "text": "swiftly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift",
+            "examples": [
+                "swift-flowing"
+            ]
+        },
+        {
+            "id": "swift",
+            "partOfSpeech": "noun",
+            "text": "any of several lizards (especially of the genus Sceloporus) that run swiftly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift"
+        },
+        {
+            "id": "swift",
+            "partOfSpeech": "noun",
+            "text": "a reel for winding yarn or thread",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift"
+        },
+        {
+            "id": "swift",
+            "partOfSpeech": "noun",
+            "text": "any of numerous small plainly colored birds (family Apodidae) that are related to the hummingbirds but superficially much resemble swallows",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift"
+        },
+        {
+            "id": "Swift:b1",
+            "text": "Gustavus Franklin 1839—1903 American meatpacker",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift"
+        },
+        {
+            "id": "Swift:b2",
+            "text": "Jonathan 1667—1745 English (Irish-born) satirist",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift"
+        },
+        {
+            "id": "swift fox",
+            "partOfSpeech": "noun",
+            "text": "a small fox (Vulpes velox) with large ears that occurs on the plains of western North America",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift"
+        },
+        {
+            "id": "chimney swift",
+            "partOfSpeech": "noun",
+            "text": "a small sooty-gray swift (Chaetura pelagica) with long narrow wings that often builds its nest inside an unused chimney —called also chimney swallow",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/swift"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈswift",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/swift001.mp3",
+        "etymology": "Middle English, from Old English; akin to Old English swīfan to revolve ",
+        "synonyms": [
+            "fleet",
+            "fast"
+        ],
+        "related": [
+            "speed",
+            "swiftness",
+            "fleetness"
+        ]
+    }
+}

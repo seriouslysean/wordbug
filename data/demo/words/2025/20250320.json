@@ -1,0 +1,105 @@
+{
+    "word": "rapid",
+    "date": "20250320",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "rapid",
+            "partOfSpeech": "adjective",
+            "text": "marked by a fast rate of motion, activity, succession, or occurrence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid"
+        },
+        {
+            "id": "rapid",
+            "partOfSpeech": "noun",
+            "text": "a part of a river where the current is fast and the surface is usually broken by obstructions —usually used in plural but singular or plural in construction",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid"
+        },
+        {
+            "id": "rapid eye movement",
+            "partOfSpeech": "noun",
+            "text": "a rapid conjugate movement of the eyes associated especially with REM sleep",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid"
+        },
+        {
+            "id": "rapid eye movement sleep",
+            "partOfSpeech": "noun",
+            "text": "rem sleep",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid"
+        },
+        {
+            "id": "rapid-fire",
+            "partOfSpeech": "adjective",
+            "text": "firing or adapted for firing shots in rapid succession",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid",
+            "examples": [
+                "a comedian with a rapid-fire delivery"
+            ]
+        },
+        {
+            "id": "rapid-fire",
+            "partOfSpeech": "adjective",
+            "text": "marked by rapidity, liveliness, or sharpness",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid",
+            "examples": [
+                "a comedian with a rapid-fire delivery"
+            ]
+        },
+        {
+            "id": "rapid transit",
+            "partOfSpeech": "noun",
+            "text": "fast passenger transportation (as by subway) in urban areas",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid"
+        },
+        {
+            "id": "Rapid City:g",
+            "text": "city in western South Dakota in the Black Hills population 67,956",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid"
+        },
+        {
+            "id": "REM sleep",
+            "partOfSpeech": "noun",
+            "text": "a state of sleep that recurs cyclically with non-REM sleep several times during a normal period of sleep, is characterized especially by greatly depressed muscle tone, dreaming with vivid imagery, rapid eye movements, and increased neuronal activity in certain brain regions (such as the pons), and typically comprises up to 25% of time spent in sleep —called also paradoxical sleep, rapid eye movement sleep",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/rapid",
+            "examples": [
+                "REM sleep, it soon became apparent, occurs in intervals throughout the night, usually four to six times, each lasting from ten minutes to an hour.",
+                "People awakened during REM sleep usually report dreams with visual images and storylike narratives."
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈra-pəd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/rapid001.mp3",
+        "etymology": "borrowed from French & Latin; French rapide, going back to Middle French, borrowed from Latin rapidus \"(of water) flowing violently enough to sweep anything along in its path, swiftly moving, quick,\" from rapere \"to seize and carry off, carry or sweep along\" + -idus, adjective suffix; rapere perhaps going back to pre-Latin *rep-, secondary zero-grade from presumed *erp-, going back to Indo-European *h1rp-, zero-grade of a base *h1rep- \"seize, pluck,\" whence also Lithuanian aprė́piu, aprė́pti \"to surround, include,\" Albanian rjep \"removes, robs,\" Greek ereptómenos \"feeding on, devouring\"",
+        "synonyms": [
+            "fast",
+            "speedy"
+        ],
+        "related": [
+            "celerity",
+            "quickness",
+            "speed",
+            "velocity",
+            "speeding"
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "word": "gleeful",
+    "date": "20230815",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "gleeful",
+            "partOfSpeech": "adjective",
+            "text": "full of glee: merry",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/gleeful",
+            "examples": [
+                "gleeful laughter"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈglē-fəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/g/gleefu01.mp3",
+        "synonyms": [
+            "elated",
+            "joyful",
+            "jubilant",
+            "joyous"
+        ],
+        "related": [
+            "exultation",
+            "jubilance",
+            "exuberate",
+            "exult",
+            "joy",
+            "joyousness",
+            "hilarity",
+            "mirth"
+        ]
+    }
+}

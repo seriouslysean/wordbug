@@ -1,0 +1,125 @@
+{
+    "word": "delight",
+    "date": "20231201",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "delight",
+            "partOfSpeech": "noun",
+            "text": "a high degree of gratification or pleasure: joy; also: extreme satisfaction",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight",
+            "examples": [
+                "children squealing in delight",
+                "seems to take delight in the misfortunes of others",
+                "Her performance was a delight.",
+                "… of more delight than hawks or horses be …"
+            ]
+        },
+        {
+            "id": "delight",
+            "partOfSpeech": "noun",
+            "text": "something that gives great pleasure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight",
+            "examples": [
+                "children squealing in delight",
+                "seems to take delight in the misfortunes of others",
+                "Her performance was a delight.",
+                "… of more delight than hawks or horses be …"
+            ]
+        },
+        {
+            "id": "delight",
+            "partOfSpeech": "noun",
+            "text": "the power of affording pleasure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight",
+            "examples": [
+                "children squealing in delight",
+                "seems to take delight in the misfortunes of others",
+                "Her performance was a delight.",
+                "… of more delight than hawks or horses be …"
+            ]
+        },
+        {
+            "id": "delight",
+            "partOfSpeech": "verb",
+            "text": "to take great pleasure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight",
+            "examples": [
+                "delighted in playing the guitar",
+                "a book certain to delight",
+                "Her books delight readers of all ages."
+            ]
+        },
+        {
+            "id": "delight",
+            "partOfSpeech": "verb",
+            "text": "to give keen enjoyment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight",
+            "examples": [
+                "delighted in playing the guitar",
+                "a book certain to delight",
+                "Her books delight readers of all ages."
+            ]
+        },
+        {
+            "id": "delight",
+            "partOfSpeech": "verb",
+            "text": "to give joy or satisfaction to",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight",
+            "examples": [
+                "delighted in playing the guitar",
+                "a book certain to delight",
+                "Her books delight readers of all ages."
+            ]
+        },
+        {
+            "id": "Turkish delight",
+            "partOfSpeech": "noun",
+            "text": "a jellylike or gummy confection usually cut in cubes and dusted with sugar —called also Turkish paste",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight"
+        },
+        {
+            "id": "Jones:b5",
+            "text": "Quincy 1933—2024 American composer, bandleader, and producer",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/delight"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "di-ˈlīt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/deligh01.mp3",
+        "etymology": "Middle English delit, delite, borrowed from Anglo-French delit, noun derivative of deliter \"to \"",
+        "synonyms": [
+            "delectation",
+            "joy",
+            "pleasure"
+        ],
+        "related": [
+            "pleasance",
+            "enjoy",
+            "please",
+            "entrancement",
+            "ravishment",
+            "amusement",
+            "Schadenfreude",
+            "positive stimulus",
+            "gladden"
+        ]
+    }
+}

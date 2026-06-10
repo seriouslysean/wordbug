@@ -132,7 +132,7 @@
     "activity_heading": "Publishing Activity",
     "activity_aria": "Words published in {{year}}",
     "connections_heading": "Word Connections",
-    "connections_description": "Two words are linked when one names the other as a synonym or related term. Select a word to open it.",
+    "connections_description": "Words that name one another as synonyms or related terms.",
     "connections_aria": "Graph of related words in the collection",
     "year_summary_heading": "{{year}} Summary"
   },

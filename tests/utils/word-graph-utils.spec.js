@@ -24,19 +24,6 @@ describe('word-graph-utils', () => {
       expect(graph.edges).toHaveLength(2);
     });
 
-    it('lays nodes out deterministically within the viewBox', () => {
-      const graph = buildWordGraph(words, { size: 600 });
-      expect(graph.size).toBe(600);
-      for (const node of graph.nodes) {
-        expect(node.x).toBeGreaterThanOrEqual(0);
-        expect(node.x).toBeLessThanOrEqual(600);
-        expect(node.y).toBeGreaterThanOrEqual(0);
-        expect(node.y).toBeLessThanOrEqual(600);
-      }
-      // Same input -> identical layout
-      expect(buildWordGraph(words, { size: 600 })).toEqual(graph);
-    });
-
     it('returns an empty graph when there are no in-corpus relationships', () => {
       const graph = buildWordGraph([word('alone', { related: ['absent'] }), word('solo')]);
       expect(graph.nodes).toEqual([]);

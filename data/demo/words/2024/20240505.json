@@ -1,0 +1,56 @@
+{
+    "word": "placid",
+    "date": "20240505",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "placid",
+            "partOfSpeech": "adjective",
+            "text": "serenely free of interruption or disturbance; also: complacent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/placid",
+            "examples": [
+                "placid skies",
+                "a placid disposition"
+            ]
+        },
+        {
+            "id": "Placid, Lake:g",
+            "text": "lake 5 miles (8 kilometers) long in the Adirondack Mountains of northeastern New York",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/placid"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈpla-səd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/placid01.mp3",
+        "etymology": "Latin placidus, from placēre to please ",
+        "synonyms": [
+            "quiet",
+            "still",
+            "tranquil",
+            "smooth",
+            "unruffled",
+            "calm",
+            "equable",
+            "even-tempered",
+            "good-tempered",
+            "good-natured"
+        ],
+        "related": [
+            "smoothness",
+            "tranquillity",
+            "tranquility",
+            "stillness",
+            "windlessness",
+            "placidity",
+            "placidness",
+            "repose",
+            "good-temperedness",
+            "good-humoredness"
+        ]
+    }
+}

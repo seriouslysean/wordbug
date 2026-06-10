@@ -10,13 +10,13 @@ test.describe('stats visualizations', () => {
     // CSS-grid publishing-activity heatmap is present.
     await expect(page.locator('.heatmap__grid').first()).toBeVisible();
 
-    // The connections graph is present (demo corpus is above the threshold),
-    // and a node links to a word page.
-    const graph = page.locator('.word-graph__svg');
-    await expect(graph).toBeVisible();
-    // Click the node's dot (a solid, hittable target; the anchor's bbox center
-    // is empty SVG space) — it links to that word's page.
-    await graph.locator('a.word-graph__node circle').first().click();
+    // The connections graph is present (demo corpus is above the threshold). The
+    // client script lays the nodes out and reveals the graph (is-ready), then a
+    // node links to a word page.
+    const graph = page.locator('.word-graph');
+    await expect(page.locator('.word-graph.is-ready')).toBeAttached();
+    // Click a node's label (the hittable word text) — it links to that word.
+    await graph.locator('.word-graph__node .word-graph__label').first().click();
     await expect(page.locator('#word-title')).toBeVisible();
   });
 

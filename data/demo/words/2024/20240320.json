@@ -1,0 +1,71 @@
+{
+    "word": "tranquil",
+    "date": "20240320",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "tranquil",
+            "partOfSpeech": "adjective",
+            "text": "free from agitation of mind or spirit",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tranquil",
+            "examples": [
+                "a tranquil self-assurance",
+                "a tranquil scene"
+            ]
+        },
+        {
+            "id": "tranquil",
+            "partOfSpeech": "adjective",
+            "text": "free from disturbance or turmoil",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tranquil",
+            "examples": [
+                "a tranquil self-assurance",
+                "a tranquil scene"
+            ]
+        },
+        {
+            "id": "tranquil",
+            "partOfSpeech": "adjective",
+            "text": "unvarying in aspect: steady, stable",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tranquil",
+            "examples": [
+                "a tranquil self-assurance",
+                "a tranquil scene"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtraŋ-kwəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/tranqu01.mp3",
+        "etymology": "Middle English tranquill, from Latin tranquillus",
+        "synonyms": [
+            "placid",
+            "quiet",
+            "still",
+            "smooth",
+            "unruffled",
+            "calm",
+            "unagitated",
+            "serene",
+            "composed"
+        ],
+        "related": [
+            "smoothness",
+            "tranquillity",
+            "tranquility",
+            "stillness",
+            "windlessness",
+            "placidity",
+            "placidness",
+            "composure",
+            "calmness"
+        ]
+    }
+}

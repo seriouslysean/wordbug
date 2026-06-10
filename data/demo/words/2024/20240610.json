@@ -1,0 +1,35 @@
+{
+    "word": "quietude",
+    "date": "20240610",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "quietude",
+            "partOfSpeech": "noun",
+            "text": "a quiet state: repose",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/quietude"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkwī-ə-ˌtüd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/q/quietu01.mp3",
+        "etymology": "borrowed from Middle French, borrowed from Medieval Latin quiētūdō, from Latin quiētus  + -tūdō, suffix of abstract nouns",
+        "synonyms": [
+            "tranquillity",
+            "tranquility",
+            "quietness"
+        ],
+        "related": [
+            "calmness",
+            "placid",
+            "quiet",
+            "peace",
+            "peacefulness",
+            "easiness",
+            "relaxation"
+        ]
+    }
+}

@@ -1,0 +1,90 @@
+{
+    "word": "fright",
+    "date": "20250601",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "fright",
+            "partOfSpeech": "noun",
+            "text": "fear excited by sudden danger: alarm",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fright",
+            "examples": [
+                "gave me quite a fright",
+                "Do something with your hair. It looks a fright."
+            ]
+        },
+        {
+            "id": "fright",
+            "partOfSpeech": "noun",
+            "text": "something strange, ugly, or shocking",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fright",
+            "examples": [
+                "gave me quite a fright",
+                "Do something with your hair. It looks a fright."
+            ]
+        },
+        {
+            "id": "fright",
+            "partOfSpeech": "verb",
+            "text": "to alarm suddenly: frighten",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fright"
+        },
+        {
+            "id": "fright wig",
+            "partOfSpeech": "noun",
+            "text": "a wig with hair that stands out from the head",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fright"
+        },
+        {
+            "id": "stage fright",
+            "partOfSpeech": "noun",
+            "text": "nervousness felt at appearing before an audience",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fright"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfrīt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/fright01.mp3",
+        "etymology": "Middle English, going back to Old English fyrhtu, fyrtho, fryhto (Northumbrian) \"fear, dread, source of dread,\" going back to Germanic *furhtīn- (whence also Gothic faurhtei), noun derivative of *furhta- \"frightened, fearful\" (whence Old English forht \"frightened,\" Old Saxon foraht, foroht, Old High German forht, foraht, Gothic faurhts), probably going back to Indo-European *pr̥k-to-, adjective from a verbal base *pr̥k-, whence also Tocharian A & B pärsk- \"be afraid\" (going back to *pr̥k-sk-)",
+        "synonyms": [
+            "fear",
+            "fearfulness"
+        ],
+        "antonyms": [
+            "fearlessness"
+        ],
+        "related": [
+            "emotion",
+            "frighten",
+            "fearful",
+            "dread",
+            "afraid",
+            "unafraid",
+            "fearless",
+            "alarm",
+            "dismay",
+            "creeps",
+            "frisson",
+            "shiver",
+            "horror",
+            "hysteria",
+            "panic",
+            "terror",
+            "scare",
+            "panic attack",
+            "stage fright",
+            "apprehension"
+        ]
+    }
+}

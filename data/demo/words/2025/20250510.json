@@ -1,0 +1,139 @@
+{
+    "word": "dread",
+    "date": "20250510",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "dread",
+            "partOfSpeech": "verb",
+            "text": "to fear greatly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "can't swim and dreads the water",
+                "a dreaded disease",
+                "dread the future",
+                "dreaded telling him the truth",
+                "dread the thought of speaking in public",
+                "dread not"
+            ]
+        },
+        {
+            "id": "dread",
+            "partOfSpeech": "verb",
+            "text": "to regard with awe",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "can't swim and dreads the water",
+                "a dreaded disease",
+                "dread the future",
+                "dreaded telling him the truth",
+                "dread the thought of speaking in public",
+                "dread not"
+            ]
+        },
+        {
+            "id": "dread",
+            "partOfSpeech": "verb",
+            "text": "to feel extreme reluctance to meet or face",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "can't swim and dreads the water",
+                "a dreaded disease",
+                "dread the future",
+                "dreaded telling him the truth",
+                "dread the thought of speaking in public",
+                "dread not"
+            ]
+        },
+        {
+            "id": "dread",
+            "partOfSpeech": "noun",
+            "text": "great fear especially in the face of impending evil",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "were filled with dread by reports of another terrorist attack",
+                "dread of a social blunder",
+                "… the days of wooden ships and wooden homes, when fire was an omnipresent dread.",
+                "trimming each dread",
+                "looked great in dreads"
+            ]
+        },
+        {
+            "id": "dread",
+            "partOfSpeech": "noun",
+            "text": "extreme uneasiness in the face of a disagreeable prospect",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "were filled with dread by reports of another terrorist attack",
+                "dread of a social blunder",
+                "… the days of wooden ships and wooden homes, when fire was an omnipresent dread.",
+                "trimming each dread",
+                "looked great in dreads"
+            ]
+        },
+        {
+            "id": "dread",
+            "partOfSpeech": "noun",
+            "text": "awe",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "were filled with dread by reports of another terrorist attack",
+                "dread of a social blunder",
+                "… the days of wooden ships and wooden homes, when fire was an omnipresent dread.",
+                "trimming each dread",
+                "looked great in dreads"
+            ]
+        },
+        {
+            "id": "dread",
+            "partOfSpeech": "adjective",
+            "text": "causing great fear or anxiety",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "dread diseases",
+                "our dread king"
+            ]
+        },
+        {
+            "id": "dread",
+            "partOfSpeech": "adjective",
+            "text": "inspiring awe",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dread",
+            "examples": [
+                "dread diseases",
+                "our dread king"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdred",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/dread001.mp3",
+        "etymology": "Middle English dreden, from Old English drǣdan",
+        "synonyms": [
+            "fear"
+        ],
+        "related": [
+            "apprehension",
+            "apprehensiveness",
+            "fearfulness",
+            "panic"
+        ]
+    }
+}

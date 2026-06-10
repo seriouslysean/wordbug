@@ -4,8 +4,6 @@ import { corpusRelationMatch } from '#utils/word-data-utils';
 
 export interface GraphNode {
   word: string;
-  x: number;
-  y: number;
 }
 
 export interface GraphEdge {
@@ -16,15 +14,7 @@ export interface GraphEdge {
 export interface WordGraph {
   nodes: GraphNode[];
   edges: GraphEdge[];
-  size: number;
 }
-
-interface BuildOptions {
-  size?: number;
-}
-
-/** Inset (px) from the viewBox edge, leaving room for node labels. */
-const LAYOUT_PADDING = 70;
 
 interface Adjacency {
   /** Lowercase word -> set of lowercase connected words (connected words only). */
@@ -34,9 +24,9 @@ interface Adjacency {
 }
 
 /**
- * Builds the undirected corpus adjacency the graph is laid out from: an edge
- * joins two words when one lists the other (synonym or related term) AND that
- * term resolves to a corpus headword via {@link corpusRelationMatch} (exact or
+ * Builds the undirected corpus adjacency the graph is drawn from: an edge joins
+ * two words when one lists the other (synonym or related term) AND that term
+ * resolves to a corpus headword via {@link corpusRelationMatch} (exact or
  * derivational, e.g. `joyful` -> `joy`). Page relation chips share the same
  * matcher, so links stay consistent.
  *
@@ -73,30 +63,18 @@ const buildAdjacency = (words: WordData[]): Adjacency => {
 };
 
 /**
- * Lays the corpus adjacency out as a node-link graph: words on a circle (sorted
- * by word) with one edge per relationship. The deterministic layout keeps the SVG
- * stable across builds with no physics simulation or dependencies. Empty graph
- * when there are no in-corpus relationships, so the caller can self-hide.
+ * Builds the corpus connections graph: nodes are words with at least one
+ * in-corpus relationship, edges join related words. Positions are deliberately
+ * not computed here — the /stats client script lays the graph out against the
+ * live viewport so constant-size labels never collide at any width. Empty graph
+ * when nothing connects, so the caller can self-hide.
  */
-export const buildWordGraph = (words: WordData[], options: BuildOptions = {}): WordGraph => {
-  const size = options.size ?? 600;
-  const radius = size / 2 - LAYOUT_PADDING;
-  const center = size / 2;
-
+export const buildWordGraph = (words: WordData[]): WordGraph => {
   const { adjacency, display } = buildAdjacency(words);
 
   const connectedWords = [...adjacency.keys()].toSorted();
   const indexOf = new Map(connectedWords.map((word, index) => [word, index]));
-  const count = connectedWords.length;
-
-  const nodes: GraphNode[] = connectedWords.map((word, index) => {
-    const angle = (2 * Math.PI * index) / count - Math.PI / 2;
-    return {
-      word: display.get(word) ?? word,
-      x: Math.round((center + radius * Math.cos(angle)) * 100) / 100,
-      y: Math.round((center + radius * Math.sin(angle)) * 100) / 100,
-    };
-  });
+  const nodes: GraphNode[] = connectedWords.map(word => ({ word: display.get(word) ?? word }));
 
   const seen = new Set<string>();
   const edges: GraphEdge[] = [];
@@ -116,5 +94,5 @@ export const buildWordGraph = (words: WordData[], options: BuildOptions = {}): W
     }
   }
 
-  return { nodes, edges, size };
+  return { nodes, edges };
 };

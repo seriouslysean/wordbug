@@ -1,0 +1,77 @@
+{
+    "word": "peaceful",
+    "date": "20240520",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "peaceful",
+            "partOfSpeech": "adjective",
+            "text": "peaceable",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/peaceful",
+            "examples": [
+                "They are a peaceful people.",
+                "… the feeling … that we as neighbors could settle any disputes in peaceful fashion.",
+                "… the feasibility of creating a peaceful world order.",
+                "The opposing groups used peaceful tactics."
+            ]
+        },
+        {
+            "id": "peaceful",
+            "partOfSpeech": "adjective",
+            "text": "untroubled by conflict, agitation, or commotion: quiet, tranquil",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/peaceful",
+            "examples": [
+                "They are a peaceful people.",
+                "… the feeling … that we as neighbors could settle any disputes in peaceful fashion.",
+                "… the feasibility of creating a peaceful world order.",
+                "The opposing groups used peaceful tactics."
+            ]
+        },
+        {
+            "id": "peaceful",
+            "partOfSpeech": "adjective",
+            "text": "of or relating to a state or time of peace",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/peaceful",
+            "examples": [
+                "They are a peaceful people.",
+                "… the feeling … that we as neighbors could settle any disputes in peaceful fashion.",
+                "… the feasibility of creating a peaceful world order.",
+                "The opposing groups used peaceful tactics."
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈpēs-fəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/peacef01.mp3",
+        "synonyms": [
+            "peaceable",
+            "halcyon",
+            "irenic",
+            "nonbelligerent",
+            "pacific",
+            "pacifist",
+            "passive",
+            "nonviolent"
+        ],
+        "antonyms": [
+            "unpeaceful"
+        ],
+        "related": [
+            "amicable",
+            "quiet",
+            "unaggressive",
+            "nonaggressive",
+            "peaceableness",
+            "peacefulness",
+            "passivity",
+            "passiveness"
+        ]
+    }
+}

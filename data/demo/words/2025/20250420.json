@@ -1,0 +1,116 @@
+{
+    "word": "fleet",
+    "date": "20250420",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "fleet",
+            "partOfSpeech": "noun",
+            "text": "a number of warships under a single command; specifically: an organization of ships and aircraft under the command of a flag officer",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        },
+        {
+            "id": "fleet",
+            "partOfSpeech": "noun",
+            "text": "group; especially: a group (as of ships, planes, or trucks) operated under unified control",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        },
+        {
+            "id": "fleet",
+            "partOfSpeech": "adjective",
+            "text": "swift in motion: nimble",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        },
+        {
+            "id": "fleet",
+            "partOfSpeech": "adjective",
+            "text": "fleeting",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        },
+        {
+            "id": "fleet",
+            "partOfSpeech": "verb",
+            "text": "to fade away: vanish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet",
+            "examples": [
+                "clouds fleeting across the sky",
+                "… many young gentlemen … fleet the time carelessly …"
+            ]
+        },
+        {
+            "id": "fleet",
+            "partOfSpeech": "verb",
+            "text": "flow",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet",
+            "examples": [
+                "clouds fleeting across the sky",
+                "… many young gentlemen … fleet the time carelessly …"
+            ]
+        },
+        {
+            "id": "fleet",
+            "partOfSpeech": "verb",
+            "text": "to fly swiftly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet",
+            "examples": [
+                "clouds fleeting across the sky",
+                "… many young gentlemen … fleet the time carelessly …"
+            ]
+        },
+        {
+            "id": "fleet admiral",
+            "partOfSpeech": "noun",
+            "text": "an admiral of the highest rank in the navy whose insignia is five stars",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        },
+        {
+            "id": "fleet-footed",
+            "partOfSpeech": "adjective",
+            "text": "able to run fast",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        },
+        {
+            "id": "Fleet Street",
+            "partOfSpeech": "noun",
+            "text": "the London press",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        },
+        {
+            "id": "admiral of the fleet",
+            "partOfSpeech": "noun",
+            "text": "the highest-ranking officer of the British navy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fleet"
+        }
+    ],
+    "enrichment": {
+        "etymology": "Middle English flete, from Old English flēot ship, from flēotan",
+        "related": [
+            "collection",
+            "aggregation",
+            "motor pool"
+        ]
+    }
+}
