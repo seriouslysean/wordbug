@@ -2,6 +2,7 @@
     "word": "first",
     "date": "20241205",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "first",
@@ -248,5 +249,30 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/first"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfərst",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/first001.mp3",
+        "etymology": "Middle English, from Old English fyrst; akin to Old High German furist first, Old English faran to go ",
+        "synonyms": [
+            "archetypal",
+            "basic",
+            "initial",
+            "firstborn",
+            "freshman",
+            "original",
+            "premier",
+            "prime",
+            "1st",
+            "ordinal"
+        ],
+        "antonyms": [
+            "last"
+        ],
+        "related": [
+            "early",
+            "front",
+            "primary"
+        ]
+    }
 }

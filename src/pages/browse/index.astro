@@ -104,23 +104,11 @@ const gridSections = [
     margin-bottom: var(--spacing-large);
   }
 
+  /* auto-fill keeps this fluid at every width -- no breakpoint needed. */
   .browse__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 0.5rem;
     margin: 1rem 0;
   }
-
-  .browse__grid-item {
-    padding: 0.5rem 1rem;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  @media (min-width: 768px) {
-    .browse__grid {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-  }
-
 </style>

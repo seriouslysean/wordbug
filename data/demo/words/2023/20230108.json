@@ -2,6 +2,7 @@
     "word": "they",
     "date": "20230108",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "they",
@@ -140,5 +141,10 @@
                 "the mouth of a bottle"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈt͟hā",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/they0001.mp3",
+        "etymology": "Middle English, from Old Norse their, masculine plural demonstrative & personal pronoun; akin to Old English thæt that"
+    }
 }

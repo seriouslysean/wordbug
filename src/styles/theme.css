@@ -27,6 +27,9 @@
   --content-width-medium: min(800px, 90vw);
   --content-width-large: min(1200px, 90vw);
   --content-width-full: 95vw;
+  /* Approximate rendered header height (margin + padding + title row). Used to
+     size the word-page hero so it fills ~the first viewport below the header. */
+  --header-height: 5rem;
 
   /* Theme Colors */
   --color-background: #fff;

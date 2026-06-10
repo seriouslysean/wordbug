@@ -10,7 +10,7 @@ test.describe('user journeys', () => {
 
 		// Homepage shows the featured word with its definition
 		await expect(page.locator('#word-title')).toBeVisible();
-		await expect(page.locator('.word-description')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
 
 		// Click a word from the "Previous Words" section
 		const previousWordLink = page.locator('.past-words a.word-link').first();
@@ -19,7 +19,7 @@ test.describe('user journeys', () => {
 
 		// Word page shows content and navigation
 		await expect(page.locator('#word-title')).toBeVisible();
-		await expect(page.locator('.word-description')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
 		const firstWordUrl = page.url();
 
 		// Navigate to the previous word
@@ -47,7 +47,7 @@ test.describe('user journeys', () => {
 
 		// Word page renders with content
 		await expect(page.locator('#word-title')).toBeVisible();
-		await expect(page.locator('.word-description')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
 	});
 
 	test('footer provides navigation to all main sections', async ({ page }) => {
@@ -123,7 +123,19 @@ test.describe('user journeys', () => {
 		// Lands on a different word page that rendered fully
 		expect(page.url()).not.toBe(originUrl);
 		await expect(page.locator('#word-title')).toBeVisible();
-		await expect(page.locator('.word-description')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
+	});
+
+	test('word page surfaces the senses slider and meta line', async ({ page }) => {
+		await page.goto('/');
+		await page.locator('.past-words a.word-link').first().click();
+		await expect(page.locator('#word-title')).toBeVisible();
+
+		// Pronunciation / syllable / rarity meta line renders for a real word
+		await expect(page.locator('.word-meta__facts')).toBeVisible();
+
+		// Senses slider renders the definition(s)
+		await expect(page.locator('.word-senses')).toBeVisible();
 	});
 
 	test('non-existent route returns 404', async ({ page }) => {

@@ -1,6 +1,7 @@
 ---
 import DefinitionList from '#components/DefinitionList.astro';
 import DescriptionText from '#components/DescriptionText.astro';
+import StatsSection from '#components/StatsSection.astro';
 import { getPageMetadata } from '#astro-utils/page-metadata.ts';
 import Heading from '#components/Heading.astro';
 import Layout from '#layouts/Layout.astro';
@@ -32,14 +33,13 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     <DescriptionText text={description} />
 
     {letterPatternItems.length && (
-      <section class="letter-patterns__section">
-        <h2 class="letter-patterns__heading">{t('stats.categories_heading')}</h2>
+      <StatsSection title={t('stats.categories_heading')}>
         <DefinitionList items={letterPatternItems.map(item => ({
           label: item.label,
           value: item.count,
           href: item.href
         }))} />
-      </section>
+      </StatsSection>
     )}
   </main>
 </Layout>
@@ -48,17 +48,5 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     .letter-patterns {
         max-width: var(--content-width-medium);
         margin: 0 auto;
-    }
-
-    .letter-patterns__section {
-        margin-bottom: var(--spacing-large);
-    }
-
-    .letter-patterns__heading {
-        font-size: var(--font-size-base);
-        margin-bottom: var(--spacing-base);
-        color: var(--color-text-primary);
-        border-bottom: 1px solid var(--color-text-primary);
-        padding-bottom: 0.5rem;
     }
 </style>

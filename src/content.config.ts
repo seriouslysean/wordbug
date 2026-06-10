@@ -26,6 +26,18 @@ export const collections = {
       adapter: z.string(),
       preserveCase: z.boolean().default(false),
       data: z.array(dictionaryDefinitionSchema).min(1),
+      // Optional word-level enrichment. z.object strips unknown keys, so this
+      // MUST be declared or stored enrichment never reaches render.
+      enrichment: z
+        .object({
+          synonyms: z.array(z.string()).optional(),
+          antonyms: z.array(z.string()).optional(),
+          related: z.array(z.string()).optional(),
+          pronunciation: z.string().optional(),
+          audio: z.string().optional(),
+          etymology: z.string().optional(),
+        })
+        .optional(),
     }),
   }),
 };

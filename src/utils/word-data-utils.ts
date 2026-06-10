@@ -120,6 +120,12 @@ export const availableLetters = getAvailableLetters(allWords);
 export const availablePartsOfSpeech = getAvailablePartsOfSpeech(allWords);
 
 /**
+ * Lowercased set of every word in the collection, for O(1) "do we have a page
+ * for this word?" checks (e.g. linking enrichment synonyms to their own pages).
+ */
+export const corpusWordSet = new Set(allWords.map(word => word.word.toLowerCase()));
+
+/**
  * Get words from a specific year using the loaded collection
  */
 export const getWordsForYear = (year: string): WordData[] => getWordsByYear(year, allWords);

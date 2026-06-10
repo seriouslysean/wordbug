@@ -3,6 +3,40 @@
 Quality and architectural improvements, prioritized by impact. Status markers:
 ✅ shipped, 🟡 partial, ⬜ open.
 
+## ✅ Shipped: Word Enrichment Bucket
+
+One bucket PR surfacing data the site already had, plus offline/capture-time
+enrichment, search, and build-time visualizations. All code is site-agnostic
+(ships downstream on sync); enrichment *data* is regenerated per site via
+`npm run tool:regenerate-all-words --force` (each site's keys + corpus).
+
+- **Word-page surfacing.** Example sentences; all definitions via a CSS
+  scroll-snap slider (one sense at a time with arrows + dots, compound entries
+  excluded by headword id with a fallback); a pronunciation/syllable/rarity meta
+  line; self-hiding synonym/antonym/associated-word and etymology blocks.
+  Components: `WordSenses`, `WordMeta`, `WordSynonyms`, `WordEtymology`.
+- **Offline build-time enrichment.** SUBTLEX rarity band (`word-frequency-utils`)
+  and CMU pronunciation/IPA + authoritative syllable count (`pronunciation-utils`),
+  computed at build from the word string, never stored. Pinned ISC datasets in
+  devDependencies. Syllable counting consolidated to one source
+  (`getSyllableCount`) across word pages and stats.
+- **Capture-time enrichment.** Optional word-level `enrichment` object (schema +
+  type) populated at add-word/regenerate time: WordNet synonyms/antonyms/related
+  terms (`adapters/wordnet.ts`, local lookup via `wordpos`/`wordnet-db`,
+  offline, POS-filtered + sense-capped, best-effort) plus Merriam-Webster/Wordnik
+  pronunciation, audio URL, and etymology from existing responses. Shared
+  `buildWordData` keeps add-word and the backfill in sync; backfill preserves
+  `preserveCase`. WordNet credited in `CREDITS.md` (no UI attribution required).
+- **Static search.** Zero-dependency search behind a header magnifying-glass
+  icon — a starts-with filter over the existing `/words.json`. CSP-clean
+  processed script, XSS-safe rendering, hidden until JS reveals it; the All Words
+  page is the no-JS fallback. Chosen over MiniSearch for simplicity.
+- **Build-time visualizations** (sections on `/stats` and `/browse/[year]`): a
+  CSS-Grid publishing-activity heatmap, a deterministic hand-rolled SVG
+  word-connections graph gated behind `WORD_GRAPH_MIN_WORDS` (and self-hiding
+  with no edges), and a per-year summary. Word cloud deferred (no weight axis on
+  an equal-weight corpus).
+
 ## Tier 1: High Impact
 
 ### ✅ Cross-Page Internal Linking — SHIPPED
@@ -347,10 +381,11 @@ new stats.
 Standardize error patterns (throw vs null vs log) with proper error types.
 See [backlog.md](backlog.md).
 
-### Client-Side Search
+### ✅ Client-Side Search — SHIPPED
 
-Lightweight fuzzy search using the existing `/words.json` endpoint. Vanilla
-JS, no heavy dependencies, graceful degradation without JS.
+Zero-dependency starts-with search behind a header magnifying-glass icon, over
+the existing `/words.json`. Progressive enhancement with a no-JS fallback (the
+All Words page). See the Word Enrichment Bucket above.
 
 ## Tier 3: Lower Impact
 

@@ -2,6 +2,7 @@
     "word": "awe",
     "date": "20230710",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "awe",
@@ -50,5 +51,24 @@
                 "We were awed by the beauty of the mountains."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈȯ",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/awe00001.mp3",
+        "etymology": "Middle English aw, awe, ahe \"terror, dread, extreme reverence, veneration, something to be feared, danger,\" borrowed from Old Norse agi, accusative aga \"terror, uproar,\" n-stem derivative from a Germanic base *ag- seen in the s-stem noun *agaz (whence Old English ege \"fear, terror\" [with assimilation to i-stems], Gothic agis) and a verbal derivative *agisōjan- (whence Old High German egisōn \"to fear,\" Middle Dutch eisen) and a corresponding noun derivative *agisan- (whence Old English egesa, egsa \"fear, terror,\" Old Saxon egiso, Old High German agiso, egiso); Germanic *agaz perhaps going back to Indo-European *h2egh-os, whence also Greek áchos \"pain, distress\"",
+        "synonyms": [
+            "fear",
+            "reverence",
+            "veneration"
+        ],
+        "related": [
+            "wonder",
+            "wonderment",
+            "emotion",
+            "respectful",
+            "reverential",
+            "godly",
+            "reverent"
+        ]
+    }
 }

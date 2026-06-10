@@ -2,6 +2,7 @@
     "word": "level",
     "date": "20230920",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "level",
@@ -200,5 +201,37 @@
                 "Companies coax helpers to participate by offering points for useful answers, connecting total points to specific achievement levels, and encouraging users to level up, for even greater prestige."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈle-vəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/level001.mp3",
+        "etymology": "Middle English, plumb line, from Anglo-French livel, from Vulgar Latin *libellum, alteration of Latin libella, from diminutive of libra weight, balance",
+        "synonyms": [
+            "degree",
+            "grade",
+            "tier"
+        ],
+        "related": [
+            "property",
+            "high",
+            "low",
+            "mild",
+            "intense",
+            "quality",
+            "caliber",
+            "intensity",
+            "intensiveness",
+            "grind",
+            "depth",
+            "highness",
+            "lowness",
+            "extreme",
+            "amplitude level",
+            "moderation",
+            "moderateness",
+            "immoderation",
+            "immoderateness",
+            "sun protection factor"
+        ]
+    }
 }

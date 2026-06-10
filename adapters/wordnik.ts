@@ -103,12 +103,14 @@ export const wordnikAdapter: DictionaryAdapter = {
       synonyms: def.relatedWords,
       antonyms: [], // Wordnik API doesn't include antonyms in definition responses
     }));
+    const headword = { pronunciation: data[0]?.textProns?.[0] };
     return buildDictionaryResponse(
       word,
       definitions,
       'Wordnik',
       data[0]?.attributionText || '',
       data[0]?.wordnikUrl || '',
+      headword,
     );
   },
 

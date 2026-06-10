@@ -3,10 +3,20 @@ import fs from 'fs';
 import { fetchWithFallback } from '#adapters';
 import { isEntryPoint } from '#tools/entry';
 import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
-import { getWordFiles } from '#tools/utils';
-import type { WordData } from '#types';
+import { buildWordData, getWordFiles, primaryPartOfSpeech, tryFetchRelations } from '#tools/utils';
 import { exit, getErrorMessage, logger } from '#utils/logger';
 import { isValidDictionaryData } from '#utils/word-validation';
+
+/**
+ * Reads the preserveCase flag from an existing word file so a backfill keeps it.
+ */
+function readPreserveCase(filePath: string): boolean {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8')).preserveCase === true;
+  } catch {
+    return false;
+  }
+}
 
 interface RegenerateOptions {
   wordField: string;
@@ -44,12 +54,17 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
       return false;
     }
 
-    const wordData: WordData = {
-      word: word.toLowerCase(),
+    const relations = await tryFetchRelations(word, primaryPartOfSpeech(response.definitions));
+    const preserveCase = readPreserveCase(originalPath);
+    const wordData = buildWordData({
+      // Keep original casing for preserveCase words; backfill must not lowercase them.
+      word: preserveCase ? word : word.toLowerCase(),
       date,
-      adapter: adapterName,
-      data,
-    };
+      adapterName,
+      response,
+      relations,
+      preserveCase,
+    });
 
     fs.writeFileSync(originalPath, JSON.stringify(wordData, null, 4));
     return true;

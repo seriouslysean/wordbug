@@ -20,6 +20,19 @@ export const MIN_ALPHABETICAL_SEQUENCE_LENGTH = 3;
 export const MAX_PAST_WORDS_DISPLAY = 5;
 
 /**
+ * Maximum number of example sentences to display per sense (one slide) on a
+ * word page. Examples render inside the senses slider, under each definition.
+ */
+export const MAX_SENSE_EXAMPLES = 2;
+
+/**
+ * Minimum corpus size before the word-connections graph is shown. Below this the
+ * graph is too sparse to be meaningful, so small sites hide it; larger corpora
+ * (e.g. mature downstream sites) surface it.
+ */
+export const WORD_GRAPH_MIN_WORDS = 25;
+
+/**
  * Number of recent words to include in RSS feed.
  */
 export const RSS_FEED_WORD_COUNT = 14;

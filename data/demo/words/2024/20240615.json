@@ -2,6 +2,7 @@
     "word": "ice cream",
     "date": "20240615",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ice-cream",
@@ -64,5 +65,9 @@
                 "On the sweet side, area eateries have plenty of tempting treats to help you keep your cool—like the \"Unicorn Junior,\" a tasty, quirky take on the traditional ice cream sundae made with cotton candy ice cream, marshmallow sauce and a magical scoop of Lucky Charms."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌīs-ˈkrēm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/icecre01.mp3"
+    }
 }

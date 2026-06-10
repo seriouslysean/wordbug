@@ -2,6 +2,7 @@
     "word": "an",
     "date": "20230112",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "an",
@@ -141,5 +142,16 @@
                 "asexual"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ən",
+        "etymology": "Middle English, from Old English ān one ",
+        "synonyms": [
+            "Associate in Nursing"
+        ],
+        "related": [
+            "associate degree",
+            "associate"
+        ]
+    }
 }

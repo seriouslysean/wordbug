@@ -1,0 +1,220 @@
+{
+    "word": "happy",
+    "date": "20250101",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "happy",
+            "partOfSpeech": "adjective",
+            "text": "enjoying or characterized by well-being and contentment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy",
+            "examples": [
+                "She is the happiest person I know.",
+                "one big happy family",
+                "a happy ending",
+                "remembering happier times",
+                "had a happy childhood",
+                "I'm happy to meet you.",
+                "They were not happy with how the project turned out.",
+                "I'd be happy to assist you.",
+                "a happy environment",
+                "a happy community",
+                "a series of happy accidents",
+                "a happy coincidence",
+                "a happy choice of words",
+                "a punch-happy boxer",
+                "trigger-happy",
+                "… the most pass-happy team in the league …",
+                "… education-conscious and statistic-happy …"
+            ]
+        },
+        {
+            "id": "happy",
+            "partOfSpeech": "adjective",
+            "text": "expressing, reflecting, or suggestive of happiness",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy",
+            "examples": [
+                "She is the happiest person I know.",
+                "one big happy family",
+                "a happy ending",
+                "remembering happier times",
+                "had a happy childhood",
+                "I'm happy to meet you.",
+                "They were not happy with how the project turned out.",
+                "I'd be happy to assist you.",
+                "a happy environment",
+                "a happy community",
+                "a series of happy accidents",
+                "a happy coincidence",
+                "a happy choice of words",
+                "a punch-happy boxer",
+                "trigger-happy",
+                "… the most pass-happy team in the league …",
+                "… education-conscious and statistic-happy …"
+            ]
+        },
+        {
+            "id": "happy",
+            "partOfSpeech": "adjective",
+            "text": "glad, pleased",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy",
+            "examples": [
+                "She is the happiest person I know.",
+                "one big happy family",
+                "a happy ending",
+                "remembering happier times",
+                "had a happy childhood",
+                "I'm happy to meet you.",
+                "They were not happy with how the project turned out.",
+                "I'd be happy to assist you.",
+                "a happy environment",
+                "a happy community",
+                "a series of happy accidents",
+                "a happy coincidence",
+                "a happy choice of words",
+                "a punch-happy boxer",
+                "trigger-happy",
+                "… the most pass-happy team in the league …",
+                "… education-conscious and statistic-happy …"
+            ]
+        },
+        {
+            "id": "happy camper",
+            "partOfSpeech": "noun",
+            "text": "one who is content",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy",
+            "examples": [
+                "As long as there's good food, he's a happy camper."
+            ]
+        },
+        {
+            "id": "happy-go-lucky",
+            "partOfSpeech": "adjective",
+            "text": "blithely unconcerned: carefree",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy"
+        },
+        {
+            "id": "happy hour",
+            "partOfSpeech": "noun",
+            "text": "a period of time during which the price of drinks (as at a bar) is reduced or hors d'oeuvres are served free",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy"
+        },
+        {
+            "id": "happy hunting ground",
+            "partOfSpeech": "noun",
+            "text": "a favorable or profitable area of activity or exploitation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy",
+            "examples": [
+                "Some mantises … now seem to view hummingbird feeders as happy hunting grounds."
+            ]
+        },
+        {
+            "id": "happy hunting ground",
+            "partOfSpeech": "noun",
+            "text": "—used usually by non-Indigenous people to refer to a paradisiacal afterlife in allusions to or characterizations of North American Indigenous beliefs",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy",
+            "examples": [
+                "Some mantises … now seem to view hummingbird feeders as happy hunting grounds."
+            ]
+        },
+        {
+            "id": "happy place",
+            "partOfSpeech": "noun",
+            "text": "something (such as an activity, experience, or environment) that provides comfort, joy, or fulfillment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy",
+            "examples": [
+                "Dancing is my happy place and even just thinking about it lifts me up.",
+                "The ice cream shop, she said, is her \"happy place\"."
+            ]
+        },
+        {
+            "id": "happy talk",
+            "partOfSpeech": "noun",
+            "text": "informal talk among the participants in a television news broadcast; also: a broadcast format featuring such talk",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy"
+        },
+        {
+            "id": "happy talk",
+            "partOfSpeech": "noun",
+            "text": "optimistic talk",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy"
+        },
+        {
+            "id": "trigger-happy",
+            "partOfSpeech": "adjective",
+            "text": "irresponsible in the use of firearms; especially: inclined to shoot before clearly identifying the target",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy"
+        },
+        {
+            "id": "trigger-happy",
+            "partOfSpeech": "adjective",
+            "text": "inclined to be irresponsible in matters that might precipitate war",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy"
+        },
+        {
+            "id": "trigger-happy",
+            "partOfSpeech": "adjective",
+            "text": "aggressively belligerent in attitude",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/happy"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈha-pē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/happy001.mp3",
+        "etymology": "Middle English, from hap",
+        "synonyms": [
+            "blessed",
+            "blissful",
+            "bright",
+            "golden",
+            "laughing",
+            "felicitous",
+            "fortunate"
+        ],
+        "antonyms": [
+            "unhappy"
+        ],
+        "related": [
+            "cheerful",
+            "contented",
+            "content",
+            "glad",
+            "elated",
+            "euphoric",
+            "joyful",
+            "joyous",
+            "happiness",
+            "felicity",
+            "felicitousness"
+        ]
+    }
+}

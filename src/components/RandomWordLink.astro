@@ -12,7 +12,7 @@ const { class: className, ...attrs } = Astro.props;
 <script>
 import { getUrl, getWordUrl, getWordsUrl } from '#astro-utils/url-utils';
 
-const wordListCache = { data: null as string[] | null };
+const wordListCache = { data: null as { word: string; date: string }[] | null };
 
 async function getRandomWord() {
   try {
@@ -31,7 +31,7 @@ async function getRandomWord() {
     const randomWord = wordListCache.data[Math.floor(Math.random() * wordListCache.data.length)];
     // Fallback to words page if no word selected
     window.location.href = randomWord
-      ? getUrl(getWordUrl(randomWord))
+      ? getUrl(getWordUrl(randomWord.word))
       : getUrl(getWordsUrl());
   } catch {
     window.location.href = getUrl(getWordsUrl());

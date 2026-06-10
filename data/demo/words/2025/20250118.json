@@ -2,6 +2,7 @@
     "word": "the",
     "date": "20250118",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "the",
@@ -169,5 +170,10 @@
                 "… a fantastic celebration the likes of which had never been seen before …"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "t͟hə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/the00001.mp3",
+        "etymology": "Middle English, from Old English thē, masculine demonstrative pronoun & definite article, alteration (influenced by oblique cases — as thæs, genitive — & neuter, thæt) of sē; akin to Greek ho, masculine demonstrative pronoun & definite article "
+    }
 }

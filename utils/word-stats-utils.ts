@@ -19,8 +19,8 @@ import {
   isPalindrome,
   getVowelCount,
   getConsonantCount,
-  countSyllables,
 } from '#utils/text-utils';
+import { getSyllableCount } from '#utils/pronunciation-utils';
 
 /**
  * Analyzes words for various letter patterns
@@ -279,13 +279,13 @@ export const getSyllableStats = (words: WordData[]): { mostSyllables: WordData |
   }
 
   return words.reduce<{ mostSyllables: WordData | null; leastSyllables: WordData | null }>((acc, word) => {
-    const syllables = countSyllables(word.word);
+    const syllables = getSyllableCount(word.word);
 
-    if (!acc.mostSyllables || syllables > countSyllables(acc.mostSyllables.word)) {
+    if (!acc.mostSyllables || syllables > getSyllableCount(acc.mostSyllables.word)) {
       acc.mostSyllables = word;
     }
 
-    if (!acc.leastSyllables || syllables < countSyllables(acc.leastSyllables.word)) {
+    if (!acc.leastSyllables || syllables < getSyllableCount(acc.leastSyllables.word)) {
       acc.leastSyllables = word;
     }
 

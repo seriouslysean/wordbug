@@ -2,6 +2,7 @@
     "word": "endless",
     "date": "20250114",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "endless",
@@ -42,5 +43,19 @@
                 "an endless chain"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈen(d)-ləs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/endles01.mp3",
+        "synonyms": [
+            "eternal",
+            "interminable",
+            "long",
+            "infinite"
+        ],
+        "related": [
+            "eternity",
+            "endlessness"
+        ]
+    }
 }

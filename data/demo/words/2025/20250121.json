@@ -2,6 +2,7 @@
     "word": "occasional",
     "date": "20250121",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "occasional",
@@ -66,5 +67,15 @@
                 "occasional furniture"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ə-ˈkā-zh(ə-)nəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/occasi03.mp3",
+        "etymology": "Middle English occasyonal \"occurring at intervals,\" borrowed from Medieval Latin occāsiōnālis \"opportune, incidental,\" from occāsiōn-, occāsiō  + Latin -ālis ",
+        "synonyms": [
+            "infrequent",
+            "episodic",
+            "unpredictable"
+        ]
+    }
 }

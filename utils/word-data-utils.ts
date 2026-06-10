@@ -1,5 +1,7 @@
-import type { DictionaryDefinition, WordData, WordGrouping } from '#types';
+import type { DictionaryDefinition, WordData, WordGrouping, WordSense } from '#types';
 import { isBasePartOfSpeech } from '#constants/parts-of-speech';
+import { MAX_SENSE_EXAMPLES } from '#constants/text-patterns';
+import { slugify } from '#utils/text-utils';
 
 /**
  * Finds the first valid definition with a part of speech from word data.
@@ -229,3 +231,144 @@ export const groupWordsByPartOfSpeech = (words: WordData[]): WordGrouping<string
   }
   return groups;
 };
+
+/**
+ * Normalized definition text: joins array text (Wordnik inconsistency) and trims.
+ */
+const getDefinitionText = (def: DictionaryDefinition): string => {
+  const text = Array.isArray(def.text) ? def.text.join(' ') : def.text;
+  return typeof text === 'string' ? text.trim() : '';
+};
+
+/**
+ * True when a definition has a part of speech and non-empty text.
+ */
+export const isValidDefinition = (def: DictionaryDefinition): boolean =>
+  Boolean(def.partOfSpeech) && getDefinitionText(def).length > 0;
+
+/**
+ * Returns every displayable sense of a word for the senses slider. Excludes
+ * compound/derived entries (MW stores e.g. "reading desk" under the "reading"
+ * lookup; its `id` differs from the headword) while keeping homographs (same
+ * `id`). Each sense carries up to MAX_SENSE_EXAMPLES of its own examples,
+ * de-duplicated across the whole word so MW's habit of repeating one example on
+ * every shortdef shows each sentence once, on the first sense that carries it.
+ * Falls back to the single best definition when the id filter matches nothing,
+ * so a word never shows fewer senses than the legacy single display.
+ */
+export const getWordSenses = (wordData: WordData): WordSense[] => {
+  if (!wordData?.data || !Array.isArray(wordData.data)) {
+    return [];
+  }
+
+  const wordSlug = slugify(wordData.word);
+  // Shared across senses so a repeated example is claimed by the first slide.
+  const seenExamples = new Set<string>();
+  const collectSenseExamples = (def: DictionaryDefinition): string[] => {
+    if (!Array.isArray(def.examples)) {
+      return [];
+    }
+    const examples: string[] = [];
+    for (const example of def.examples) {
+      const trimmed = example.trim();
+      const key = trimmed.toLowerCase();
+      if (trimmed && !seenExamples.has(key)) {
+        seenExamples.add(key);
+        examples.push(trimmed);
+        if (examples.length >= MAX_SENSE_EXAMPLES) {
+          break;
+        }
+      }
+    }
+    return examples;
+  };
+
+  const senses = wordData.data
+    .filter(def => isValidDefinition(def) && (!def.id || slugify(def.id) === wordSlug))
+    .map(def => ({
+      partOfSpeech: normalizeToBasePOS(def.partOfSpeech ?? ''),
+      text: getDefinitionText(def),
+      examples: collectSenseExamples(def),
+    }));
+
+  if (senses.length > 0) {
+    return senses;
+  }
+
+  const fallback = findValidDefinition(wordData.data);
+  return fallback
+    ? [{ partOfSpeech: normalizeToBasePOS(fallback.partOfSpeech), text: fallback.text, examples: [] }]
+    : [];
+};
+
+/**
+ * Derivational suffixes used to match a relation term to a corpus headword that
+ * is a derivational form of it (or vice versa) -- e.g. `joyful` -> `joy`,
+ * `knowledgeability` -> `knowledge`, `reading` -> `read`. Prefix + suffix (not a
+ * lossy stemmer) keeps false positives low: a match requires one string to equal
+ * the other plus exactly one of these suffixes.
+ */
+const DERIVATIONAL_SUFFIXES = new Set([
+  's', 'es', 'ed', 'ing', 'er', 'ly', 'y', 'ful', 'less', 'ness',
+  'ity', 'ous', 'al', 'ic', 'ical', 'ment', 'tion', 'ation', 'ability',
+]);
+
+/**
+ * Minimum base length for a derivational match, so demo function words
+ * (`a`, `of`, `the`) don't mis-link off a short base + common suffix.
+ */
+const MIN_DERIVATION_BASE = 3;
+
+/** True when `derived` is `base` plus exactly one recognized derivational suffix. */
+const isDerivedForm = (base: string, derived: string): boolean => {
+  if (base.length < MIN_DERIVATION_BASE || derived.length <= base.length || !derived.startsWith(base)) {
+    return false;
+  }
+  return DERIVATIONAL_SUFFIXES.has(derived.slice(base.length));
+};
+
+/**
+ * Matches a relation term to a corpus headword, returning the matched headword
+ * (lowercased) or null. Exact match wins outright -- checked against the whole
+ * set before any suffix scan -- so `they` resolves to itself, never `the` + -y.
+ * Failing exact, a bidirectional derivational match links `term` to a headword
+ * when either is the other plus a recognized suffix.
+ */
+export const corpusRelationMatch = (term: string, corpus: Set<string>): string | null => {
+  const lower = term.toLowerCase();
+  if (corpus.has(lower)) {
+    return lower;
+  }
+  for (const headword of corpus) {
+    if (isDerivedForm(headword, lower) || isDerivedForm(lower, headword)) {
+      return headword;
+    }
+  }
+  return null;
+};
+
+/**
+ * Resolves relation terms to the corpus headwords they link to: maps each term
+ * through {@link corpusRelationMatch}, drops non-matches, drops self-links to
+ * `source` (e.g. the joy page's own `joyful`/`joyous`), and dedupes. Returns
+ * lowercased corpus headwords ready to display and link.
+ */
+export const corpusRelations = (
+  source: string,
+  terms: string[],
+  corpus: Set<string>,
+): string[] => {
+  const sourceLower = source.toLowerCase();
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const term of terms) {
+    const match = corpusRelationMatch(term, corpus);
+    if (!match || match === sourceLower || seen.has(match)) {
+      continue;
+    }
+    seen.add(match);
+    result.push(match);
+  }
+  return result;
+};
+

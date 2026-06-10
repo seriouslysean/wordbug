@@ -2,6 +2,7 @@
     "word": "coffee",
     "date": "20241025",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "coffee",
@@ -119,5 +120,36 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkȯ-fē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/coffee01.mp3",
+        "etymology": "Italian & Turkish; Italian caffè, from Turkish kahve, from Arabic qahwa",
+        "synonyms": [
+            "java",
+            "coffee tree"
+        ],
+        "related": [
+            "beverage",
+            "drink",
+            "coffee substitute",
+            "Irish coffee",
+            "cafe au lait",
+            "cafe noir",
+            "demitasse",
+            "decaffeinated coffee",
+            "decaf",
+            "drip coffee",
+            "espresso",
+            "cappuccino",
+            "cappuccino coffee",
+            "iced coffee",
+            "ice coffee",
+            "instant coffee",
+            "mocha",
+            "mocha coffee",
+            "Turkish coffee",
+            "cafe royale"
+        ]
+    }
 }

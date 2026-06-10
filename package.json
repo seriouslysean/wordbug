@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "3.14.0",
+  "version": "3.15.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -50,15 +50,18 @@
     "@sentry/astro": "^10.53.1",
     "@sentry/node": "^10.53.1",
     "@vitest/coverage-v8": "^4.1.8",
+    "cmu-pronouncing-dictionary": "3.0.0",
     "dotenv": "^17.4.2",
     "lefthook": "^2.1.6",
     "lightningcss": "^1.32.0",
     "opentype.js": "^2.0.0",
     "oxlint": "^1.65.0",
     "sharp": "^0.34.5",
+    "subtlex-word-frequencies": "2.0.0",
     "tsx": "^4.22.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.8",
+    "wordpos": "^2.1.0"
   },
   "imports": {
     "#components/*": "./src/components/*",

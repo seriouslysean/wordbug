@@ -2,6 +2,7 @@
     "word": "diva",
     "date": "20241120",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "diva",
@@ -45,5 +46,17 @@
                 "The original diva and Queen Of Soul, Aretha Franklin, appears to have brought US President Barack Obama to tears (and then to his feet) with a stellar performance of (You Make Me Feel Like) A Natural Woman …"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdē-və",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/diva0001.mp3",
+        "etymology": "Italian, literally, goddess, from Latin, feminine of divus divine, god ",
+        "synonyms": [
+            "prima donna"
+        ],
+        "related": [
+            "opera star",
+            "operatic star"
+        ]
+    }
 }

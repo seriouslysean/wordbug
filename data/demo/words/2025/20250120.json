@@ -2,6 +2,7 @@
     "word": "word",
     "date": "20250120",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "word",
@@ -205,5 +206,32 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/word"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈwərd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/w/word0001.mp3",
+        "etymology": "Middle English, from Old English; akin to Old High German wort word, Latin verbum, Greek eirein to say, speak, Hittite weriya- to call, name",
+        "related": [
+            "language unit",
+            "linguistic unit",
+            "give voice",
+            "formulate",
+            "anagram",
+            "anaphor",
+            "antonym",
+            "opposite word",
+            "paronym",
+            "back-formation",
+            "charade",
+            "cognate",
+            "cognate word",
+            "content word",
+            "open-class word",
+            "contraction",
+            "deictic",
+            "deictic word",
+            "derivative",
+            "diminutive"
+        ]
+    }
 }

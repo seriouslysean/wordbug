@@ -2,6 +2,7 @@
     "word": "book",
     "date": "20250108",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "book",
@@ -226,5 +227,35 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/book"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbu̇k",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/book0001.mp3",
+        "etymology": "Middle English, from Old English bōc; akin to Old High German buoh book, Goth boka letter",
+        "synonyms": [
+            "volume"
+        ],
+        "related": [
+            "publication",
+            "booklet",
+            "brochure",
+            "authority",
+            "curiosa",
+            "formulary",
+            "pharmacopeia",
+            "trade book",
+            "trade edition",
+            "bestiary",
+            "catechism",
+            "pop-up book",
+            "pop-up",
+            "storybook",
+            "tome",
+            "textbook",
+            "text",
+            "workbook",
+            "copybook",
+            "appointment book"
+        ]
+    }
 }

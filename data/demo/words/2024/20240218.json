@@ -2,6 +2,7 @@
     "word": "buddy",
     "date": "20240218",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "buddy",
@@ -62,5 +63,25 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/buddy"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbə-dē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/buddy001.mp3",
+        "etymology": "probably baby talk alteration of brother",
+        "synonyms": [
+            "brother",
+            "chum",
+            "crony",
+            "pal",
+            "sidekick"
+        ],
+        "related": [
+            "friend",
+            "pal up",
+            "chummy",
+            "matey",
+            "buddy-buddy",
+            "cobber"
+        ]
+    }
 }

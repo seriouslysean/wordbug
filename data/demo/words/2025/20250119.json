@@ -2,6 +2,7 @@
     "word": "of",
     "date": "20250119",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "of",
@@ -145,5 +146,9 @@
                 "further changes will occur of necessity"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "əv",
+        "etymology": "Middle English, off, of, from Old English, adverb & preposition; akin to Old High German aba off, away, Latin ab from, away, Greek apo"
+    }
 }

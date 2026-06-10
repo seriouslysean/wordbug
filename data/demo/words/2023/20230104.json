@@ -2,6 +2,7 @@
     "word": "zoom",
     "date": "20230104",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "zoom",
@@ -84,5 +85,21 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈzüm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/z/zoom0001.mp3",
+        "etymology": "imitative",
+        "synonyms": [
+            "zoom along",
+            "whizz",
+            "whizz along"
+        ],
+        "related": [
+            "travel rapidly",
+            "speed",
+            "travel",
+            "go"
+        ]
+    }
 }

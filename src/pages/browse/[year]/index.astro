@@ -1,13 +1,17 @@
 ---
 
+import DefinitionList from '#components/DefinitionList.astro';
 import DescriptionText from '#components/DescriptionText.astro';
 import Heading from '#components/Heading.astro';
+import StatsSection from '#components/StatsSection.astro';
 import WordSection from '#components/WordSection.astro';
 import Layout from '#layouts/Layout.astro';
 import { getMonthNameFromDate } from '#utils/date-utils';
 import { getPageMetadata } from '#astro-utils/page-metadata.ts';
 import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
 import { getMonthUrl } from '#astro-utils/url-utils';
+import { getWordStats } from '#utils/word-stats-utils';
+import { t } from '#utils/i18n-utils';
 import {
   availableYears,
   getWordsForYear,
@@ -28,11 +32,24 @@ export async function getStaticPaths() {
 const { year } = Astro.params;
 const { words } = Astro.props;
 const monthGroups = groupWordsByMonth(year, words);
+
+const yearStats = getWordStats(words);
+const summaryCountItems = [{ label: t('stats.total_words'), value: words.length }];
+const summaryWordItems = [
+  ...(yearStats.longest ? [{ label: t('stats.longest', { length: yearStats.longest.word.length }), value: yearStats.longest }] : []),
+  ...(yearStats.shortest ? [{ label: t('stats.shortest', { length: yearStats.shortest.word.length }), value: yearStats.shortest }] : []),
+];
 ---
 
 <Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST} itemCount={words.length}>
   <Heading level={1} text={title} secondaryText={secondaryText} />
   <DescriptionText text={description} />
+
+  <StatsSection title={t('stats.year_summary_heading', { year })}>
+    <DefinitionList items={summaryCountItems} />
+    <DefinitionList items={summaryWordItems} valueType="word" reverseWord />
+  </StatsSection>
+
   {Object.entries(monthGroups).map(([monthSlug, monthWords]) => (
     <WordSection
       title={monthWords[0] ? getMonthNameFromDate(monthWords[0].date) : monthSlug}

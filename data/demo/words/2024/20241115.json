@@ -2,6 +2,7 @@
     "word": "speed",
     "date": "20241115",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "speed",
@@ -139,5 +140,37 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/speed"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈspēd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/speed001.mp3",
+        "etymology": "Middle English sped, speede, spede \"luck, fortune, good fortune, success, assistance, benefit, rate of motion or progress,\" going back to Old English spēd \"luck, success, riches, opportunity, power,\" spēdum (dative plural used adverbially) \"swiftly,\" going back to West Germanic *spōdi- (whence also Old Saxon spōd \"success, advantage,\" Middle Dutch spoed \"prosperity, progress, haste,\" Old High German spuot \"quickness, velocity\"), derivative with the abstract noun suffix -ti- from the base of *spōan- \"to succeed\" (whence Old English spōwan \"to succeed, thrive\" [Class VII strong verb], Middle Dutch spoen \"to strive,\" Old High German spuoen \"to succeed\"), going back to an o-grade derivative of the Indo-European verbal base *speh1- \"thrive, prosper,\" whence also Old Church Slavic spějǫ, spěti \"to have success,\" Lithuanian spė́ju, spė́ti \"to manage (to do something),\" Sanskrit sphā́yate \"(s/he) grows fat, increases,\" Hittite išpāi \"(s/he) gets full, is satiated\"; as nominal derivatives Latin spēs \"hope\" (< *speh1-), Latin prosperus \"agreeable to one's wishes, successful, ,\" Old Russian sporŭ \"abundant,\" Sanskrit sphiráḥ \"fat\" (< *sph1-ró-)",
+        "synonyms": [
+            "velocity",
+            "swiftness",
+            "fastness"
+        ],
+        "related": [
+            "rate",
+            "rapid",
+            "speedy",
+            "travel rapidly",
+            "accelerate",
+            "rush",
+            "hotfoot",
+            "speed up",
+            "angular velocity",
+            "airspeed",
+            "escape velocity",
+            "groundspeed",
+            "hypervelocity",
+            "muzzle velocity",
+            "peculiar velocity",
+            "radial velocity",
+            "speed of light",
+            "light speed",
+            "steerageway",
+            "terminal velocity"
+        ]
+    }
 }

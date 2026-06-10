@@ -2,6 +2,7 @@
     "word": "over",
     "date": "20230110",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "over",
@@ -301,5 +302,10 @@
                 "eggs over easy"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈō-vər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/over0001.mp3",
+        "etymology": "Middle English, adverb & preposition, from Old English ofer; akin to Old High German ubar (preposition) above, beyond, over, Latin super, Greek hyper"
+    }
 }

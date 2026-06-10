@@ -2,6 +2,7 @@
     "word": "gym",
     "date": "20240805",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "gym",
@@ -35,5 +36,15 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/gym"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈjim",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/g/gym00001.mp3",
+        "synonyms": [
+            "gymnasium"
+        ],
+        "related": [
+            "athletic facility"
+        ]
+    }
 }

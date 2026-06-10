@@ -2,6 +2,7 @@
     "word": "anemones",
     "date": "20240412",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "anemone",
@@ -43,5 +44,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/anemones"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ə-ˈne-mə-nē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/anemon01.mp3",
+        "etymology": "Latin, from Greek anemōnē"
+    }
 }

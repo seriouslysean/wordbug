@@ -76,11 +76,13 @@ export function buildDictionaryResponse(
   source: string,
   attribution: string,
   url: string,
+  headword?: DictionaryResponse['headword'],
 ): DictionaryResponse {
   return {
     word: word.toLowerCase(),
     definitions,
     meta: { source, attribution, url },
+    ...(headword && Object.values(headword).some(Boolean) ? { headword } : {}),
   };
 }
 

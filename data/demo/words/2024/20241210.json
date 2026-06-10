@@ -1,0 +1,158 @@
+{
+    "word": "music",
+    "date": "20241210",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "music",
+            "partOfSpeech": "noun",
+            "text": "vocal, instrumental, or mechanical sounds having rhythm, melody, or harmony",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music",
+            "examples": [
+                "choral music",
+                "piano music",
+                "recorded music",
+                "… there is a music for everybody.",
+                "rock music",
+                "jazz music",
+                "classical music",
+                "a play set to music",
+                "leafing through the music",
+                "the music of verse",
+                "the music of lovingly orchestrated words",
+                "Her voice was music to my ears.",
+                "the music of a nightingale"
+            ]
+        },
+        {
+            "id": "music",
+            "partOfSpeech": "noun",
+            "text": "the science or art of ordering tones or sounds in succession, in combination, and in temporal relationships to produce a composition having unity and continuity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music",
+            "examples": [
+                "choral music",
+                "piano music",
+                "recorded music",
+                "… there is a music for everybody.",
+                "rock music",
+                "jazz music",
+                "classical music",
+                "a play set to music",
+                "leafing through the music",
+                "the music of verse",
+                "the music of lovingly orchestrated words",
+                "Her voice was music to my ears.",
+                "the music of a nightingale"
+            ]
+        },
+        {
+            "id": "music",
+            "partOfSpeech": "noun",
+            "text": "a distinctive type or category of music",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music",
+            "examples": [
+                "choral music",
+                "piano music",
+                "recorded music",
+                "… there is a music for everybody.",
+                "rock music",
+                "jazz music",
+                "classical music",
+                "a play set to music",
+                "leafing through the music",
+                "the music of verse",
+                "the music of lovingly orchestrated words",
+                "Her voice was music to my ears.",
+                "the music of a nightingale"
+            ]
+        },
+        {
+            "id": "music box",
+            "partOfSpeech": "noun",
+            "text": "a container enclosing an apparatus that reproduces music mechanically when activated by a clockwork",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music"
+        },
+        {
+            "id": "music drama",
+            "partOfSpeech": "noun",
+            "text": "an opera in which the action is not interrupted by formal song divisions (such as recitatives or arias) and the music is determined solely by dramatic appropriateness",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music"
+        },
+        {
+            "id": "music hall",
+            "partOfSpeech": "noun",
+            "text": "a vaudeville theater; also: vaudeville",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music"
+        },
+        {
+            "id": "music of the spheres",
+            "partOfSpeech": "noun",
+            "text": "an ethereal harmony thought by the Pythagoreans to be produced by the vibration of the celestial spheres",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music"
+        },
+        {
+            "id": "music therapy",
+            "partOfSpeech": "noun",
+            "text": "therapy based on engagement in musical activities: the therapeutic use of music (as to reduce anxiety, improve cognitive functioning, promote physical rehabilitation, or enhance interpersonal communication) that typically involves listening to music, singing, playing musical instruments, or composing music",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music",
+            "examples": [
+                "In 1992, the National Institutes of Health created an Office of Alternative Medicine … to evaluate therapies ranging from homeopathy and music therapy to acupuncture."
+            ]
+        },
+        {
+            "id": "alternative music",
+            "partOfSpeech": "noun",
+            "text": "music that is produced by performers who are outside the musical mainstream, that is typically regarded as more eclectic, original, or challenging than most popular music (such as conventional rock, pop, or country), and that is often distributed by independent record labels",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/music"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈmyü-zik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/music001.mp3",
+        "etymology": "Middle English musik, from Anglo-French musike, from Latin musica, from Greek mousikē any art presided over by the Muses, especially music, from feminine of mousikos of the Muses, from Mousa Muse",
+        "synonyms": [
+            "euphony"
+        ],
+        "related": [
+            "auditory communication",
+            "musician",
+            "instrumentalist",
+            "section",
+            "subdivision",
+            "pizzicato",
+            "monophony",
+            "monophonic music",
+            "polyphony",
+            "polyphonic music",
+            "polytonality",
+            "polytonalism",
+            "popularism",
+            "rhapsody",
+            "harmony",
+            "musical harmony",
+            "tune",
+            "melody",
+            "part music",
+            "musical composition"
+        ]
+    }
+}

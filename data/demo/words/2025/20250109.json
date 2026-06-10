@@ -2,6 +2,7 @@
     "word": "noon",
     "date": "20250109",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "noon",
@@ -84,5 +85,21 @@
                 "… those people who long for a simpler time of pre-noon drinks, fedoras, and cocktail dresses."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈnün",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/n/noon0001.mp3",
+        "etymology": "Middle English, from Old English nōn ninth hour from sunrise, from Latin nona, from feminine of nonus ninth; akin to Latin novem nine ",
+        "synonyms": [
+            "twelve noon",
+            "high noon",
+            "midday",
+            "noonday",
+            "noontide"
+        ],
+        "related": [
+            "hour",
+            "time of day"
+        ]
+    }
 }

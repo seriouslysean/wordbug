@@ -2,6 +2,7 @@
     "word": "knowledge",
     "date": "20250115",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "knowledge",
@@ -85,5 +86,36 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/knowledge"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈnä-lij",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/k/knowle01.mp3",
+        "etymology": "Middle English knowlege, from knowlechen to acknowledge, irregular from knowen",
+        "synonyms": [
+            "cognition",
+            "noesis"
+        ],
+        "related": [
+            "psychological feature",
+            "intellectual",
+            "rational",
+            "mind",
+            "head",
+            "place",
+            "public knowledge",
+            "general knowledge",
+            "episteme",
+            "ability",
+            "power",
+            "inability",
+            "lexis",
+            "vocabulary",
+            "lexicon",
+            "practice",
+            "cognitive factor",
+            "equivalent",
+            "process",
+            "cognitive process"
+        ]
+    }
 }

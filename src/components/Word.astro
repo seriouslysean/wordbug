@@ -1,9 +1,13 @@
 ---
 import Heading from '#components/Heading.astro';
-import WordDescription from '#components/WordDescription.astro';
+import WordEtymology from '#components/WordEtymology.astro';
+import WordMeta from '#components/WordMeta.astro';
+import WordSenses from '#components/WordSenses.astro';
+import WordSynonyms from '#components/WordSynonyms.astro';
 import type { WordData } from '#types';
 import { formatDate, formatISODate } from '#utils/date-utils';
-import { getWordDetails } from '#astro-utils/word-data-utils';
+import { getWordSenses } from '#utils/word-data-utils';
+import { corpusWordSet, getWordDetails } from '#astro-utils/word-data-utils';
 
 interface Props {
   word: WordData | null;
@@ -16,17 +20,30 @@ if (!word) {
   throw new Error('Word not found');
 }
 
-const { partOfSpeech, definition, meta } = getWordDetails(word);
+const { meta } = getWordDetails(word);
+const senses = getWordSenses(word);
+const enrichment = word.enrichment ?? null;
 ---
 
 <article class="word">
-  <time class="word__date" datetime={formatISODate(word.date)} title={formatDate(word.date)}>{formatDate(word.date) || '\u00A0'}</time>
-  <Heading level={1} text={word.word} id="word-title" preserveCase={word.preserveCase} />
-  <WordDescription
-    partOfSpeech={partOfSpeech}
-    definition={definition}
-    meta={meta}
-  />
+  <div class="word__hero">
+    <div class="word__title">
+      <time class="word__date" datetime={formatISODate(word.date)} title={formatDate(word.date)}>{formatDate(word.date) || ' '}</time>
+      <Heading level={1} text={word.word} id="word-title" preserveCase={word.preserveCase} />
+    </div>
+    {word.date && <WordMeta word={word.word} enrichment={enrichment} />}
+    <WordSenses senses={senses} meta={meta} />
+  </div>
+  <div class="word__details">
+    <WordEtymology etymology={enrichment?.etymology} />
+    <WordSynonyms
+      word={word.word}
+      synonyms={enrichment?.synonyms}
+      antonyms={enrichment?.antonyms}
+      related={enrichment?.related}
+      knownWords={corpusWordSet}
+    />
+  </div>
 </article>
 
 <style>
@@ -37,11 +54,31 @@ const { partOfSpeech, definition, meta } = getWordDetails(word);
         margin: 0 auto;
     }
 
+    /* Hero: word + meta + senses fill ~the first viewport, vertically centered.
+       min-height (never height) lets a long sense list grow and push the details
+       below the fold rather than clipping the top of the hero. The gap spaces the
+       title group, meta, and senses on one even rhythm. */
+    .word__hero {
+        min-height: calc(100svh - var(--header-height));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--spacing-large);
+    }
+
+    /* Date is a tight eyebrow grouped with the word; the hero gap handles the
+       spacing below the title. Zero the shared component margins so the gap is
+       the single source of vertical rhythm. */
     .word__date {
         display: block;
         font-size: var(--font-size-xs, 0.75rem);
         color: var(--color-text-light);
         margin-bottom: var(--spacing-small);
+    }
+
+    .word__hero :global(.heading),
+    .word__hero :global(.word-meta) {
+        margin-bottom: 0;
     }
 
 </style>

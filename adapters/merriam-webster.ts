@@ -138,6 +138,29 @@ function buildSourceUrl(word: string): string {
   return `https://www.merriam-webster.com/dictionary/${encodeURIComponent(word)}`;
 }
 
+/**
+ * Constructs the MW media URL for a pronunciation audio file. Subdirectory rule
+ * (from the MW API docs): a 'bix'/'gg' prefix maps to itself, a leading number
+ * or punctuation maps to 'number', otherwise the first character of the filename.
+ */
+export function buildMwAudioUrl(audio: string | undefined): string | undefined {
+  if (!audio) {
+    return undefined;
+  }
+  const first = audio[0];
+  let subdir: string;
+  if (audio.startsWith('bix')) {
+    subdir = 'bix';
+  } else if (audio.startsWith('gg')) {
+    subdir = 'gg';
+  } else if (first && /[a-zA-Z]/.test(first)) {
+    subdir = first;
+  } else {
+    subdir = 'number';
+  }
+  return `https://media.merriam-webster.com/audio/prons/en/us/mp3/${subdir}/${audio}.mp3`;
+}
+
 const DICTIONARY_LABELS: Record<string, string> = {
   collegiate: 'Collegiate Dictionary',
   medical: 'Medical Dictionary',
@@ -206,7 +229,16 @@ export const merriamWebsterAdapter: DictionaryAdapter = {
       }));
     });
 
-    return buildDictionaryResponse(word, definitions, 'Merriam-Webster', attribution, sourceUrl);
+    // Capture per-headword data from the first matching entry (zero extra calls).
+    const firstEntry = entries[0];
+    const etymologyText = firstEntry?.et?.[0]?.[1];
+    const headword = {
+      pronunciation: firstEntry?.hwi?.prs?.[0]?.mw,
+      audio: buildMwAudioUrl(firstEntry?.hwi?.prs?.[0]?.sound?.audio),
+      etymology: etymologyText ? stripMarkup(etymologyText) : undefined,
+    };
+
+    return buildDictionaryResponse(word, definitions, 'Merriam-Webster', attribution, sourceUrl, headword);
   },
 
   transformToWordData(response: DictionaryResponse, date: string) {

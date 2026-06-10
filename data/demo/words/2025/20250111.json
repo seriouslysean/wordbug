@@ -2,6 +2,7 @@
     "word": "reading",
     "date": "20250111",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "reading",
@@ -201,5 +202,23 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/reading"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈrē-diŋ",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/read0003.mp3",
+        "related": [
+            "linguistic process",
+            "language",
+            "read",
+            "speed-reading",
+            "perusal",
+            "perusing",
+            "browse",
+            "browsing",
+            "skim",
+            "skimming",
+            "interpretation",
+            "take"
+        ]
+    }
 }

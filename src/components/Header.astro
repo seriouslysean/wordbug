@@ -1,5 +1,6 @@
 ---
 import { SITE_TITLE } from 'astro:env/client';
+import HeaderSearch from '#components/HeaderSearch.astro';
 import SiteLink from '#components/SiteLink.astro';
 ---
 
@@ -9,10 +10,12 @@ import SiteLink from '#components/SiteLink.astro';
       <h2 class="header__title">{SITE_TITLE}</h2>
     </SiteLink>
   </nav>
+  <HeaderSearch />
 </header>
 
 <style>
     .header {
+        position: relative;
         text-align: center;
         padding: var(--spacing-base);
         margin-top: 1rem;

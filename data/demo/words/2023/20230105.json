@@ -2,6 +2,7 @@
     "word": "giggle",
     "date": "20230105",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "giggle",
@@ -35,5 +36,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/giggle"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈgi-gəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/g/giggle01.mp3",
+        "etymology": "imitative",
+        "synonyms": [
+            "titter"
+        ],
+        "related": [
+            "laugh",
+            "express joy",
+            "titterer",
+            "giggler"
+        ]
+    }
 }

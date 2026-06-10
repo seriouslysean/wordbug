@@ -2,6 +2,7 @@
     "word": "absolute",
     "date": "20240315",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "absolute",
@@ -199,5 +200,28 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/absolute"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈab-sə-ˌlüt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/absolu02.mp3",
+        "etymology": "Middle English absolut, borrowed from Latin absolūtus, from past participle of absolvere \"to set free, acquit, finish, complete\" ",
+        "synonyms": [
+            "direct",
+            "implicit",
+            "infinite",
+            "living",
+            "downright",
+            "out-and-out",
+            "rank",
+            "right-down",
+            "sheer",
+            "complete"
+        ],
+        "antonyms": [
+            "relative"
+        ],
+        "related": [
+            "absoluteness"
+        ]
+    }
 }

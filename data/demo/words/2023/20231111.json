@@ -2,6 +2,7 @@
     "word": "wish",
     "date": "20231111",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "wish",
@@ -124,5 +125,23 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/wish"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈwish",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/w/wish0001.mp3",
+        "etymology": "Middle English wisshen, from Old English wȳscan; akin to Old High German wunsken to wish, Sanskrit vāñchati he wishes, vanoti he strives for ",
+        "synonyms": [
+            "care",
+            "like"
+        ],
+        "related": [
+            "desire",
+            "want",
+            "wishing",
+            "indirect request",
+            "hope",
+            "trust",
+            "please"
+        ]
+    }
 }

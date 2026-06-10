@@ -1,0 +1,80 @@
+---
+import { getUrl, getWordUrl } from '#astro-utils/url-utils';
+import type { WordGraph } from '#utils/word-graph-utils';
+import { t } from '#utils/i18n-utils';
+
+interface Props {
+  graph: WordGraph;
+}
+
+const { graph } = Astro.props;
+---
+
+{graph.nodes.length > 0 && (
+  <div class="word-graph">
+    {/* role="group" (not "img") so the node links stay in the accessibility tree */}
+    <svg
+      class="word-graph__svg"
+      viewBox={`0 0 ${graph.size} ${graph.size}`}
+      role="group"
+      aria-label={t('stats.connections_aria')}
+    >
+      {graph.edges.map(edge => {
+        const from = graph.nodes[edge.from];
+        const to = graph.nodes[edge.to];
+        return from && to
+          ? <line class="word-graph__edge" x1={from.x} y1={from.y} x2={to.x} y2={to.y} />
+          : null;
+      })}
+      {graph.nodes.map(node => (
+        <a href={getUrl(getWordUrl(node.word))} class="word-graph__node" aria-label={node.word}>
+          <circle cx={node.x} cy={node.y} r="9" class="word-graph__dot" />
+          <text x={node.x} y={node.y - 15} text-anchor="middle" class="word-graph__label">{node.word}</text>
+        </a>
+      ))}
+    </svg>
+  </div>
+)}
+
+<style>
+  .word-graph {
+    width: 100%;
+    max-width: var(--content-width-small);
+    margin: 0 auto;
+  }
+
+  .word-graph__svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .word-graph__edge {
+    stroke: var(--color-border);
+    stroke-width: 2;
+  }
+
+  .word-graph__dot {
+    fill: var(--color-primary);
+    transition: var(--transition);
+  }
+
+  .word-graph__label {
+    fill: var(--color-text-light);
+    font-size: 1rem;
+  }
+
+  .word-graph__node:hover .word-graph__dot,
+  .word-graph__node:focus-visible .word-graph__dot {
+    fill: var(--color-text-primary);
+  }
+
+  .word-graph__node:hover .word-graph__label,
+  .word-graph__node:focus-visible .word-graph__label {
+    fill: var(--color-text-primary);
+  }
+
+  .word-graph__node:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+</style>

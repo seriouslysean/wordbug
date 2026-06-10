@@ -22,6 +22,10 @@
     "random_word": "Random Word",
     "random_word_title": "Go to a random word page"
   },
+  "search": {
+    "label": "Search words",
+    "placeholder": "Search words"
+  },
   "home": {
     "heading": "Word of the Day",
     "description": "Today's word is \"{{word}}\".",
@@ -124,7 +128,13 @@
     "composition_heading": "Letter Composition",
     "frequency_heading": "Letter Frequency",
     "special_heading": "Special Words",
-    "overview_heading": "Overview"
+    "overview_heading": "Overview",
+    "activity_heading": "Publishing Activity",
+    "activity_aria": "Words published in {{year}}",
+    "connections_heading": "Word Connections",
+    "connections_description": "Two words are linked when one names the other as a synonym or related term. Select a word to open it.",
+    "connections_aria": "Graph of related words in the collection",
+    "year_summary_heading": "{{year}} Summary"
   },
   "error": {
     "heading": "404",
@@ -138,7 +148,24 @@
     "source": "Source",
     "related_words": "Related Words",
     "letter_words": "{{letter}} Words",
-    "length_label": "{{length}}-Letter Words"
+    "length_label": "{{length}}-Letter Words",
+    "senses_label": "Definitions",
+    "prev_sense": "Previous definition",
+    "next_sense": "Next definition",
+    "play_pronunciation": "Play pronunciation",
+    "stop_pronunciation": "Stop pronunciation",
+    "synonyms_heading": "Synonyms",
+    "antonyms_heading": "Antonyms",
+    "related_terms_heading": "Associated Words",
+    "etymology_heading": "Origin",
+    "syllables_one": "{{count}} syllable",
+    "syllables_other": "{{count}} syllables",
+    "rarity": {
+      "common": "common",
+      "uncommon": "uncommon",
+      "rare": "rare",
+      "very-rare": "very rare"
+    }
   },
   "parts_of_speech": {
     "adjective": "Adjective",

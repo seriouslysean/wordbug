@@ -1,0 +1,187 @@
+{
+    "word": "fear",
+    "date": "20250104",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "fear",
+            "partOfSpeech": "noun",
+            "text": "an unpleasant often strong emotion caused by anticipation or awareness of danger",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear",
+            "examples": [
+                "trembling with fear",
+                "a tale that inspired fear = a tale that struck fear into our hearts",
+                "a fear of heights",
+                "… the preschool years, when fear of the dark is common.",
+                "wouldn't speak out for fear of retaliation",
+                "were in fear for =afraid of losing their lives",
+                "… went into hiding … out of fear for herself and family …",
+                "living in fear",
+                "fear of God",
+                "He was a fighter … who would put the fear of God into opponents. =make opponents very afraid",
+                "Starvation is still a real fear for many people around the world."
+            ]
+        },
+        {
+            "id": "fear",
+            "partOfSpeech": "noun",
+            "text": "a particular instance or category of this emotion —often used in plural",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear",
+            "examples": [
+                "trembling with fear",
+                "a tale that inspired fear = a tale that struck fear into our hearts",
+                "a fear of heights",
+                "… the preschool years, when fear of the dark is common.",
+                "wouldn't speak out for fear of retaliation",
+                "were in fear for =afraid of losing their lives",
+                "… went into hiding … out of fear for herself and family …",
+                "living in fear",
+                "fear of God",
+                "He was a fighter … who would put the fear of God into opponents. =make opponents very afraid",
+                "Starvation is still a real fear for many people around the world."
+            ]
+        },
+        {
+            "id": "fear",
+            "partOfSpeech": "noun",
+            "text": "a state marked by this emotion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear",
+            "examples": [
+                "trembling with fear",
+                "a tale that inspired fear = a tale that struck fear into our hearts",
+                "a fear of heights",
+                "… the preschool years, when fear of the dark is common.",
+                "wouldn't speak out for fear of retaliation",
+                "were in fear for =afraid of losing their lives",
+                "… went into hiding … out of fear for herself and family …",
+                "living in fear",
+                "fear of God",
+                "He was a fighter … who would put the fear of God into opponents. =make opponents very afraid",
+                "Starvation is still a real fear for many people around the world."
+            ]
+        },
+        {
+            "id": "fear",
+            "partOfSpeech": "verb",
+            "text": "to be afraid of: expect with alarm",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear",
+            "examples": [
+                "fear the worst",
+                "Don't fear change—embrace it.",
+                "There's nothing to fear.",
+                "a ruler who was hated and feared",
+                "They feared that he was dead. = They feared him (to be) dead. = He was feared (to be) dead.",
+                "It was much less difficult than we had feared (it might be).",
+                "I fear that we have no choice.",
+                "fear God",
+                "feared for their lives/safety",
+                "Never fear =don't worry—we're here to help.",
+                "There's no need to fear; you'll do fine.",
+                "Fear not! I will protect you."
+            ]
+        },
+        {
+            "id": "fear",
+            "partOfSpeech": "verb",
+            "text": "to be filled with concern or regret over an unwanted situation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear",
+            "examples": [
+                "fear the worst",
+                "Don't fear change—embrace it.",
+                "There's nothing to fear.",
+                "a ruler who was hated and feared",
+                "They feared that he was dead. = They feared him (to be) dead. = He was feared (to be) dead.",
+                "It was much less difficult than we had feared (it might be).",
+                "I fear that we have no choice.",
+                "fear God",
+                "feared for their lives/safety",
+                "Never fear =don't worry—we're here to help.",
+                "There's no need to fear; you'll do fine.",
+                "Fear not! I will protect you."
+            ]
+        },
+        {
+            "id": "fear",
+            "partOfSpeech": "verb",
+            "text": "to have a reverential awe of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear",
+            "examples": [
+                "fear the worst",
+                "Don't fear change—embrace it.",
+                "There's nothing to fear.",
+                "a ruler who was hated and feared",
+                "They feared that he was dead. = They feared him (to be) dead. = He was feared (to be) dead.",
+                "It was much less difficult than we had feared (it might be).",
+                "I fear that we have no choice.",
+                "fear God",
+                "feared for their lives/safety",
+                "Never fear =don't worry—we're here to help.",
+                "There's no need to fear; you'll do fine.",
+                "Fear not! I will protect you."
+            ]
+        },
+        {
+            "id": "Fear, Cape:g",
+            "text": "cape on the Atlantic at the mouth of the Cape Fear River in southernmost North Carolina",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear"
+        },
+        {
+            "id": "Cape Fear:g",
+            "text": "river 202 miles (325 kilometers) long in central and southeastern North Carolina flowing southeast into the Atlantic",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/fear"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfir",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/fear0001.mp3",
+        "etymology": "Middle English fer, going back to Old English fǣr, fēr \"unexpected danger, peril,\" going back to Germanic *fēra- or *fēran- (whence also Old Saxon fār \"lurking danger,\" Old High German fāra \"ambush, danger,\" Old Norse fár \"evil, mischief, plague\"), perhaps going back to a lengthened-grade nominal derivative of a proposed Indo-European verbal base *per- \"test, risk\" ",
+        "synonyms": [
+            "fearfulness",
+            "fright",
+            "concern",
+            "care"
+        ],
+        "antonyms": [
+            "fearlessness"
+        ],
+        "related": [
+            "emotion",
+            "frighten",
+            "fearful",
+            "dread",
+            "afraid",
+            "unafraid",
+            "fearless",
+            "alarm",
+            "dismay",
+            "creeps",
+            "frisson",
+            "shiver",
+            "horror",
+            "hysteria",
+            "panic",
+            "terror",
+            "scare",
+            "panic attack",
+            "stage fright",
+            "apprehension"
+        ]
+    }
+}

@@ -2,6 +2,7 @@
     "word": "a",
     "date": "20230115",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "a",
@@ -235,5 +236,24 @@
                 "magnesia"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈā",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/a0000001.mp3",
+        "synonyms": [
+            "angstrom",
+            "angstrom unit",
+            "vitamin A",
+            "antiophthalmic factor",
+            "axerophthol"
+        ],
+        "related": [
+            "metric linear unit",
+            "fat-soluble vitamin",
+            "vitamin A1",
+            "retinol",
+            "vitamin A2",
+            "dehydroretinol"
+        ]
+    }
 }

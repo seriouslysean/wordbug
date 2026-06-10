@@ -2,6 +2,7 @@
     "word": "some",
     "date": "20230113",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "some",
@@ -163,5 +164,24 @@
                 "autosome"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsəm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/some0001.mp3",
+        "etymology": "Middle English som, adjective & pronoun, from Old English sum; akin to Old High German sum some, Greek hamē somehow, homos same ",
+        "synonyms": [
+            "any",
+            "both",
+            "several",
+            "much"
+        ],
+        "antonyms": [
+            "no",
+            "all"
+        ],
+        "related": [
+            "few",
+            "many"
+        ]
+    }
 }

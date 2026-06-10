@@ -2,6 +2,7 @@
     "word": "day",
     "date": "20250117",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "day",
@@ -161,5 +162,34 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/day"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdā",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/day00001.mp3",
+        "etymology": "Middle English, from Old English dæg; akin to Old High German tag day",
+        "synonyms": [
+            "twenty-four hours",
+            "twenty-four hour period",
+            "24-hour interval",
+            "solar day",
+            "mean solar day"
+        ],
+        "related": [
+            "time unit",
+            "unit of time",
+            "daily",
+            "day-to-day",
+            "tomorrow",
+            "today",
+            "yesterday",
+            "morrow",
+            "eve",
+            "date",
+            "day of the month",
+            "time",
+            "Judgment Day",
+            "Judgement Day",
+            "off-day"
+        ]
+    }
 }

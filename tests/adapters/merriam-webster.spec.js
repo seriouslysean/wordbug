@@ -184,6 +184,31 @@ describe('merriam-webster adapter', () => {
     });
   });
 
+  describe('buildMwAudioUrl', () => {
+    it('uses the first letter as the subdirectory', async () => {
+      const { buildMwAudioUrl } = await import('#adapters/merriam-webster');
+      expect(buildMwAudioUrl('serend01')).toBe('https://media.merriam-webster.com/audio/prons/en/us/mp3/s/serend01.mp3');
+    });
+
+    it('uses bix and gg subdirectories for those prefixes', async () => {
+      const { buildMwAudioUrl } = await import('#adapters/merriam-webster');
+      expect(buildMwAudioUrl('bixxx01')).toContain('/mp3/bix/bixxx01.mp3');
+      expect(buildMwAudioUrl('ggword')).toContain('/mp3/gg/ggword.mp3');
+    });
+
+    it('uses the number subdirectory for a leading digit or punctuation', async () => {
+      const { buildMwAudioUrl } = await import('#adapters/merriam-webster');
+      expect(buildMwAudioUrl('3abc')).toContain('/mp3/number/3abc.mp3');
+      expect(buildMwAudioUrl('_abc')).toContain('/mp3/number/_abc.mp3');
+    });
+
+    it('returns undefined for missing audio', async () => {
+      const { buildMwAudioUrl } = await import('#adapters/merriam-webster');
+      expect(buildMwAudioUrl(undefined)).toBeUndefined();
+      expect(buildMwAudioUrl('')).toBeUndefined();
+    });
+  });
+
   describe('fetchWordData', () => {
     beforeEach(() => {
       vi.stubEnv('MERRIAM_WEBSTER_API_KEY', 'test-key');
@@ -200,6 +225,34 @@ describe('merriam-webster adapter', () => {
       expect(result.definitions[0].partOfSpeech).toBe('noun');
       expect(result.definitions[0].text).toContain('finding valuable or agreeable things');
       expect(result.meta.source).toBe('Merriam-Webster');
+    });
+
+    it('captures headword pronunciation, audio URL, and etymology', async () => {
+      const { merriamWebsterAdapter } = await import('#adapters/merriam-webster');
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, loadFixture('serendipity')));
+
+      const result = await merriamWebsterAdapter.fetchWordData('serendipity');
+      expect(result.headword?.pronunciation).toBe('ˌser-ən-ˈdi-pə-tē');
+      expect(result.headword?.audio).toBe('https://media.merriam-webster.com/audio/prons/en/us/mp3/s/serend01.mp3');
+      expect(result.headword?.etymology).toBeTruthy();
+    });
+
+    it('captures pronunciation but omits absent audio and etymology', async () => {
+      const { merriamWebsterAdapter } = await import('#adapters/merriam-webster');
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, loadFixture('learned')));
+
+      const result = await merriamWebsterAdapter.fetchWordData('learned');
+      expect(result.headword?.pronunciation).toBe('ˈlər-nəd');
+      expect(result.headword?.audio).toBeUndefined();
+      expect(result.headword?.etymology).toBeUndefined();
+    });
+
+    it('omits the headword entirely when no capture fields exist', async () => {
+      const { merriamWebsterAdapter } = await import('#adapters/merriam-webster');
+      globalThis.fetch.mockResolvedValueOnce(mockResponse(200, loadFixture('hot-dog')));
+
+      const result = await merriamWebsterAdapter.fetchWordData('hot dog');
+      expect(result.headword).toBeUndefined();
     });
 
     it('handles multi-word phrases', async () => {

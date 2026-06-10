@@ -2,6 +2,7 @@
     "word": "cheese",
     "date": "20230111",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cheese",
@@ -115,5 +116,38 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈchēz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cheese01.mp3",
+        "etymology": "Middle English chese, from Old English cēse, from Latin caseus cheese",
+        "synonyms": [
+            "tall mallow",
+            "high mallow",
+            "cheeseflower",
+            "Malva sylvestris"
+        ],
+        "related": [
+            "dairy product",
+            "food",
+            "solid food",
+            "cream cheese",
+            "triple cream",
+            "triple creme",
+            "cottage cheese",
+            "pot cheese",
+            "process cheese",
+            "processed cheese",
+            "bleu",
+            "blue cheese",
+            "Brie",
+            "brick cheese",
+            "Camembert",
+            "cheddar",
+            "cheddar cheese",
+            "Cheshire cheese",
+            "double Gloucester",
+            "Edam"
+        ]
+    }
 }

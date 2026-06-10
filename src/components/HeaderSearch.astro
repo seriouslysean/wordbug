@@ -1,0 +1,249 @@
+---
+import { t } from '#utils/i18n-utils';
+---
+
+<div class="site-search">
+  <button
+    type="button"
+    class="site-search__toggle"
+    id="site-search-toggle"
+    aria-label={t('search.label')}
+    aria-expanded="false"
+    aria-controls="site-search-panel"
+    hidden
+  >
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="11" cy="11" r="7"></circle>
+      <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+    </svg>
+  </button>
+
+  <div class="site-search__panel" id="site-search-panel" hidden>
+    <input
+      type="search"
+      id="site-search-input"
+      class="site-search__input"
+      placeholder={t('search.placeholder')}
+      autocomplete="off"
+      enterkeyhint="search"
+    />
+    <ul class="site-search__results" id="site-search-results" aria-live="polite"></ul>
+  </div>
+</div>
+
+<script>
+import { getUrl, getWordUrl } from '#astro-utils/url-utils';
+
+const toggle = document.getElementById('site-search-toggle');
+const panel = document.getElementById('site-search-panel');
+const input = document.getElementById('site-search-input') as HTMLInputElement | null;
+const results = document.getElementById('site-search-results');
+
+type SearchWord = { word: string; date: string };
+const cache = { data: null as SearchWord[] | null };
+
+// Progressive enhancement: reveal the icon only when JS can drive it.
+if (toggle) {
+  toggle.hidden = false;
+}
+
+async function loadWords(): Promise<SearchWord[]> {
+  if (cache.data) {
+    return cache.data;
+  }
+  const response = await fetch(getUrl('/words.json'));
+  cache.data = response.ok ? await response.json() : [];
+  return cache.data ?? [];
+}
+
+function closePanel(): void {
+  if (panel) {
+    panel.hidden = true;
+  }
+  toggle?.setAttribute('aria-expanded', 'false');
+  if (results) {
+    results.replaceChildren();
+  }
+}
+
+function openPanel(): void {
+  if (panel) {
+    panel.hidden = false;
+  }
+  toggle?.setAttribute('aria-expanded', 'true');
+  void loadWords();
+  input?.focus();
+}
+
+toggle?.addEventListener('click', () => {
+  if (panel?.hidden) {
+    openPanel();
+  } else {
+    closePanel();
+  }
+});
+
+async function onInput(): Promise<void> {
+  if (!input || !results) {
+    return;
+  }
+  const query = input.value.trim().toLowerCase();
+  results.replaceChildren();
+  // Empty query: no dropdown.
+  if (!query) {
+    return;
+  }
+  const words = await loadWords();
+  // Starts-with match, sorted alphabetically so results read predictably as you type.
+  const matches = words
+    .filter(entry => entry.word.toLowerCase().startsWith(query))
+    .toSorted((a, b) => a.word.toLowerCase().localeCompare(b.word.toLowerCase()))
+    .slice(0, 30);
+  for (const entry of matches) {
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = getUrl(getWordUrl(entry.word));
+    link.className = 'site-search__result';
+    const word = document.createElement('span');
+    word.className = 'site-search__result-word';
+    word.textContent = entry.word;
+    const date = document.createElement('time');
+    date.className = 'site-search__result-date';
+    date.textContent = entry.date;
+    link.append(word, date);
+    item.appendChild(link);
+    results.appendChild(item);
+  }
+}
+
+input?.addEventListener('input', onInput);
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && panel && !panel.hidden) {
+    closePanel();
+    toggle?.focus();
+  }
+});
+</script>
+
+<style>
+  .site-search {
+    position: absolute;
+    top: var(--spacing-base);
+    right: var(--spacing-base);
+  }
+
+  .site-search__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xs);
+    border: none;
+    background: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: color var(--transition);
+  }
+
+  /* The class sets display:flex, which would otherwise beat the hidden
+     attribute's UA display:none — keep it hidden until JS reveals it. */
+  .site-search__toggle[hidden] {
+    display: none;
+  }
+
+  .site-search__toggle:hover,
+  .site-search__toggle[aria-expanded='true'] {
+    color: var(--color-text-primary);
+  }
+
+  .site-search__toggle:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .site-search__panel {
+    position: absolute;
+    top: calc(100% + var(--spacing-small));
+    right: 0;
+    width: min(340px, 85vw);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-base);
+    box-shadow: 0 4px 16px hsl(var(--shadow-color) / 0.12);
+    z-index: 1000;
+    /* The header centers its contents; the field and results read left-aligned. */
+    text-align: left;
+  }
+
+  .site-search__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--spacing-small) var(--spacing-base);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+  }
+
+  .site-search__input::placeholder {
+    color: var(--color-text-light);
+  }
+
+  .site-search__input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+  }
+
+  /* Results sit below the field with their own breathing room; only present
+     once there are matches, so the gap collapses on an empty query. */
+  .site-search__results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .site-search__results:not(:empty) {
+    margin-top: var(--spacing-base);
+  }
+
+  /* Result rows are created client-side, so they carry no scope attribute --
+     style them via :global, anchored under the (scoped) results list so the
+     rules stay contained. Word-list-style rows: word left, featured date right,
+     with a >=44px touch target (WCAG); long words shrink/wrap, the date stays
+     on one line. */
+  .site-search__results :global(.site-search__result) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-base);
+    min-height: 2.75rem;
+    padding: var(--spacing-xs) var(--spacing-base);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: background var(--transition);
+  }
+
+  .site-search__results :global(.site-search__result:hover) {
+    background: var(--color-background-light);
+  }
+
+  .site-search__results :global(.site-search__result-word) {
+    min-width: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    word-break: break-word;
+  }
+
+  .site-search__results :global(.site-search__result-date) {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    white-space: nowrap;
+  }
+</style>

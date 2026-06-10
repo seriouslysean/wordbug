@@ -9,12 +9,11 @@ Known gaps and technical debt, organized by area.
 Word pages link to other words by length, part of speech, and year via
 `WordRelated.astro`. See [features.md](features.md) for detail.
 
-### Client-Side Search
+### ✅ Client-Side Search — SHIPPED
 
-- `src/pages/words.json.ts` endpoint exists but nothing consumes it
-- No search component, no fuzzy matching
-- Opportunity: lightweight client-side search using the existing JSON
-  endpoint
+Zero-dependency starts-with search behind a header magnifying-glass icon, over
+the existing `/words.json` (shared with the random-word button). Progressive
+enhancement; the All Words page is the no-JS fallback.
 
 ### Error Handling Consistency
 

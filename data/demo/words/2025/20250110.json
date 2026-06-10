@@ -2,6 +2,7 @@
     "word": "awareness",
     "date": "20250110",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "awareness",
@@ -37,5 +38,37 @@
                 "Many have egos nourished by that terrain, which feeds a hyperawareness of status, a persistent jockeying for position."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ə-ˈwer-nəs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/awareness_1.mp3",
+        "synonyms": [
+            "consciousness",
+            "cognizance",
+            "cognisance",
+            "knowingness",
+            "sentience"
+        ],
+        "antonyms": [
+            "incognizance"
+        ],
+        "related": [
+            "knowing",
+            "knowledgeable",
+            "wise",
+            "aware",
+            "cognizant",
+            "know",
+            "cognize",
+            "conscious",
+            "mindful",
+            "unaware",
+            "incognizant",
+            "self-awareness",
+            "feel",
+            "sense",
+            "sentient",
+            "animate"
+        ]
+    }
 }

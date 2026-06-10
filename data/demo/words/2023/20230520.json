@@ -2,6 +2,7 @@
     "word": "ludicrous",
     "date": "20230520",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ludicrous",
@@ -19,5 +20,32 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/ludicrous"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈlü-də-krəs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/ludicr01.mp3",
+        "etymology": "earlier, \"characterized by play or amusement, joking, not serious,\" borrowed from Latin lūdicr- (a presumed nominative *lūdicer is unattested) \"marked by sport, undertaken in fun, playful,\" derivative of lūdicrum \"source of amusement, plaything, public entertainment\" (from lūdere \"to play, take part in public entertainment, amuse oneself\" + -crum, instrumental suffix, dissimilated from -c(u)lum, going back to Indo-European *-tlom) + ; lūdere perhaps going back to Indo-European *loi̯d-, iterative of *lei̯d- \"let go, release,\" whence also, with varying ablaut, Middle Irish laídid \"(s/he) exhorts, incites,\" Old Lithuanian léidmi \"(I) let go, set in motion,\" dialectal Lithuanian láidžiu, láisti \"to let go,\" Greek lízei \"(s/he) plays\" (attested only by the grammarian Hesychius)",
+        "synonyms": [
+            "farcical",
+            "ridiculous",
+            "humorous",
+            "absurd",
+            "cockeyed",
+            "derisory",
+            "idiotic",
+            "laughable",
+            "nonsensical",
+            "preposterous",
+            "foolish"
+        ],
+        "related": [
+            "ridicule",
+            "absurdity",
+            "absurdness",
+            "farce",
+            "farce comedy",
+            "deride",
+            "fatuity"
+        ]
+    }
 }

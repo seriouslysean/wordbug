@@ -1,0 +1,120 @@
+{
+    "word": "joy",
+    "date": "20250102",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "joy",
+            "partOfSpeech": "noun",
+            "text": "a feeling of great happiness or pleasure: delight",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/joy",
+            "examples": [
+                "Seeing you happy gives me such joy.",
+                "They were shouting/jumping for joy. =they shouted/jumped because they were very happy",
+                "a gathering full of joy and laughter",
+                "wishes of love, joy, and peace for all",
+                "The sun is the joy and the sorrow of the people. It destroys their crops while it warms them with the heat they could not live without.",
+                "Discovering something new is one of the great joys of eating out.",
+                "The old boat was his pride and joy.",
+                "The baby is a little bundle of joy."
+            ]
+        },
+        {
+            "id": "joy",
+            "partOfSpeech": "noun",
+            "text": "the expression or exhibition of such emotion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/joy",
+            "examples": [
+                "Seeing you happy gives me such joy.",
+                "They were shouting/jumping for joy. =they shouted/jumped because they were very happy",
+                "a gathering full of joy and laughter",
+                "wishes of love, joy, and peace for all",
+                "The sun is the joy and the sorrow of the people. It destroys their crops while it warms them with the heat they could not live without.",
+                "Discovering something new is one of the great joys of eating out.",
+                "The old boat was his pride and joy.",
+                "The baby is a little bundle of joy."
+            ]
+        },
+        {
+            "id": "joy",
+            "partOfSpeech": "noun",
+            "text": "a state of great happiness: bliss",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/joy",
+            "examples": [
+                "Seeing you happy gives me such joy.",
+                "They were shouting/jumping for joy. =they shouted/jumped because they were very happy",
+                "a gathering full of joy and laughter",
+                "wishes of love, joy, and peace for all",
+                "The sun is the joy and the sorrow of the people. It destroys their crops while it warms them with the heat they could not live without.",
+                "Discovering something new is one of the great joys of eating out.",
+                "The old boat was his pride and joy.",
+                "The baby is a little bundle of joy."
+            ]
+        },
+        {
+            "id": "joy",
+            "partOfSpeech": "verb",
+            "text": "to experience great pleasure or delight: rejoice",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/joy"
+        },
+        {
+            "id": "joy",
+            "partOfSpeech": "verb",
+            "text": "gladden",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/joy"
+        },
+        {
+            "id": "joy",
+            "partOfSpeech": "verb",
+            "text": "enjoy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/joy"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈjȯi",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/j/joy00001.mp3",
+        "etymology": "Middle English, from Anglo-French joie, from Latin gaudia, plural of gaudium, from gaudēre to rejoice; probably akin to Greek gēthein to rejoice",
+        "synonyms": [
+            "joyousness",
+            "joyfulness",
+            "delight",
+            "pleasure"
+        ],
+        "antonyms": [
+            "sorrow"
+        ],
+        "related": [
+            "emotion",
+            "elated",
+            "gleeful",
+            "joyful",
+            "joyous",
+            "gladden",
+            "rejoice",
+            "rhapsody",
+            "elation",
+            "high spirits",
+            "exultation",
+            "jubilance",
+            "exhilaration",
+            "excitement",
+            "exuberance",
+            "positive stimulus",
+            "please",
+            "enjoy"
+        ]
+    }
+}

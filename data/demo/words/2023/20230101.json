@@ -2,6 +2,7 @@
     "word": "japan",
     "date": "20230101",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "japan",
@@ -73,5 +74,9 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/japan"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "jə-ˈpan",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/j/japan001.mp3"
+    }
 }

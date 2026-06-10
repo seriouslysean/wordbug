@@ -1,0 +1,141 @@
+---
+import type { WordEnrichment } from '#types';
+import { countSyllables } from '#utils/text-utils';
+import { t, tp } from '#utils/i18n-utils';
+import { getPronunciation } from '#utils/pronunciation-utils';
+import { getFrequencyBand } from '#utils/word-frequency-utils';
+
+interface Props {
+  word: string;
+  enrichment?: WordEnrichment | null;
+}
+
+const { word, enrichment = null } = Astro.props;
+
+// Single CMU lookup drives both the IPA and the syllable count, so the line is
+// internally consistent. Prefer the captured dictionary respelling; fall back to
+// derived IPA (wrapped in slashes to read as a pronunciation).
+const pron = getPronunciation(word);
+const pronunciation = enrichment?.pronunciation ?? (pron ? `/${pron.ipa}/` : '');
+const audio = enrichment?.audio;
+const syllables = pron?.syllableCount ?? countSyllables(word);
+const { band } = getFrequencyBand(word);
+---
+
+<div class="word-meta">
+  <p class="word-meta__facts">
+    {pronunciation && (
+      <span class="word-meta__pronunciation">
+        {pronunciation}
+        {audio && (
+          <button type="button" class="word-meta__audio-btn" aria-label={t('word.play_pronunciation')} data-stop-label={t('word.stop_pronunciation')} hidden>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          </button>
+        )}
+      </span>
+    )}
+    <span>{tp('word.syllables', syllables)}</span>
+    <span class="word-meta__rarity">{t(`word.rarity.${band}`)}</span>
+  </p>
+  {audio && (
+    <audio class="word-meta__audio" preload="none" src={audio}></audio>
+  )}
+</div>
+
+<script>
+// Progressive enhancement: the speaker stays hidden until JS can play the clip.
+// No-ops on pages without audio (the button and audio element are absent).
+const button = document.querySelector<HTMLButtonElement>('.word-meta__audio-btn');
+const audio = document.querySelector<HTMLAudioElement>('.word-meta__audio');
+if (button && audio) {
+  button.hidden = false;
+  const playLabel = button.getAttribute('aria-label') ?? '';
+  const stopLabel = button.dataset.stopLabel ?? playLabel;
+  // Toggle play/stop: short clips just flash the active state, long ones can be
+  // interrupted mid-play. Playback events drive the icon state, so it stays in
+  // sync whether the clip is stopped by click or runs to its end.
+  button.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.currentTime = 0;
+      void audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+  audio.addEventListener('play', () => {
+    button.classList.add('word-meta__audio-btn--playing');
+    button.setAttribute('aria-label', stopLabel);
+  });
+  const reset = () => {
+    button.classList.remove('word-meta__audio-btn--playing');
+    button.setAttribute('aria-label', playLabel);
+  };
+  audio.addEventListener('pause', reset);
+  audio.addEventListener('ended', reset);
+}
+</script>
+
+<style>
+  .word-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--spacing-base);
+  }
+
+  .word-meta__facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: var(--spacing-small);
+    margin: 0;
+    padding: 0 var(--spacing-base);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+  }
+
+  /* Middot separator between facts (gap handles the leading space). The speaker
+     lives inside the pronunciation, so it never gets its own separator. */
+  .word-meta__facts > * + *::before {
+    content: '·';
+    margin-right: var(--spacing-small);
+    color: var(--color-text-light);
+  }
+
+  .word-meta__pronunciation {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    font-style: italic;
+  }
+
+  /* Inline speaker: plays the pronunciation clip, no player chrome. Hidden
+     until JS wires it up so no-JS users never see a dead control. */
+  .word-meta__audio-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: color var(--transition);
+  }
+
+  .word-meta__audio-btn[hidden] {
+    display: none;
+  }
+
+  .word-meta__audio-btn:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* Active while the clip plays; reverts on stop or when it ends. */
+  .word-meta__audio-btn--playing {
+    color: var(--color-text-primary);
+  }
+</style>

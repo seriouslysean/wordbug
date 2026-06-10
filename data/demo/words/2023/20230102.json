@@ -2,6 +2,7 @@
     "word": "pb&j",
     "date": "20230102",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "PB+J",

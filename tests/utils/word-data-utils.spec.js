@@ -32,6 +32,10 @@ import {
   getAvailablePartsOfSpeech,
   normalizePartOfSpeech,
   findValidDefinition,
+  isValidDefinition,
+  getWordSenses,
+  corpusRelationMatch,
+  corpusRelations,
 } from '#utils/word-data-utils';
 import {
   extractWordDefinition,
@@ -607,4 +611,127 @@ describe('pure groupWords* helpers (utils/word-data-utils)', () => {
     expect(gy([])).toEqual({});
     expect(gp([])).toEqual({});
   });
+});
+
+describe('word-page surfacing helpers (utils/word-data-utils)', () => {
+  describe('isValidDefinition', () => {
+    it('requires a part of speech and non-empty text', () => {
+      expect(isValidDefinition({ partOfSpeech: 'noun', text: 'a thing' })).toBe(true);
+      expect(isValidDefinition({ text: 'a thing' })).toBe(false);
+      expect(isValidDefinition({ partOfSpeech: 'noun', text: '   ' })).toBe(false);
+      expect(isValidDefinition({ partOfSpeech: 'noun' })).toBe(false);
+    });
+
+    it('joins array text (Wordnik inconsistency)', () => {
+      expect(isValidDefinition({ partOfSpeech: 'noun', text: ['a', 'thing'] })).toBe(true);
+    });
+  });
+
+  describe('getWordSenses', () => {
+    const reading = {
+      word: 'reading',
+      date: '20250101',
+      adapter: 'merriam-webster',
+      data: [
+        { id: 'reading', partOfSpeech: 'noun', text: 'the act of reading' },
+        { id: 'reading', partOfSpeech: 'verb', text: 'to read aloud' },
+        { id: 'reading desk', partOfSpeech: 'noun', text: 'a desk for reading' },
+        { id: 'reading', text: 'no part of speech' },
+      ],
+    };
+
+    it('returns every valid headword sense and excludes compound entries', () => {
+      const senses = getWordSenses(reading);
+      expect(senses).toEqual([
+        { partOfSpeech: 'noun', text: 'the act of reading', examples: [] },
+        { partOfSpeech: 'verb', text: 'to read aloud', examples: [] },
+      ]);
+    });
+
+    it('falls back to the single best definition when the id filter matches nothing', () => {
+      const word = {
+        word: 'xyz',
+        date: '20250101',
+        adapter: 'wordnik',
+        data: [{ id: 'unrelated', partOfSpeech: 'noun', text: 'a definition' }],
+      };
+      expect(getWordSenses(word)).toEqual([{ partOfSpeech: 'noun', text: 'a definition', examples: [] }]);
+    });
+
+    it('returns an empty array for missing or invalid data', () => {
+      expect(getWordSenses({ word: 'x', date: '1', adapter: 'a', data: [] })).toEqual([]);
+      expect(getWordSenses(null)).toEqual([]);
+    });
+
+    it('attaches per-sense examples: capped, de-duplicated across slides, compounds excluded', () => {
+      const word = {
+        word: 'reading',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [
+          // 'she loves reading.' is a case-insensitive dup; the 4th example exceeds the cap.
+          { id: 'reading', partOfSpeech: 'noun', text: 'a', examples: ['She loves reading.', 'she loves reading.', 'A quiet reading.', 'Reading is fun.'] },
+          // 'She loves reading.' was already claimed by the noun slide, so only the new one shows.
+          { id: 'reading', partOfSpeech: 'verb', text: 'b', examples: ['She loves reading.', 'Keep reading.'] },
+          { id: 'reading desk', partOfSpeech: 'noun', text: 'c', examples: ['Compound example, excluded.'] },
+        ],
+      };
+      const senses = getWordSenses(word);
+      expect(senses).toHaveLength(2);
+      expect(senses[0].examples).toEqual(['She loves reading.', 'A quiet reading.']);
+      expect(senses[1].examples).toEqual(['Keep reading.']);
+      expect(senses.flatMap(sense => sense.examples)).not.toContain('Compound example, excluded.');
+    });
+  });
+
+  describe('corpusRelationMatch', () => {
+    const corpus = new Set(['joy', 'knowledge', 'reading', 'the', 'they', 'day']);
+
+    it('returns the lowercased headword on a case-insensitive exact match', () => {
+      expect(corpusRelationMatch('Joy', corpus)).toBe('joy');
+    });
+
+    it('resolves a term that is a corpus headword plus a derivational suffix', () => {
+      expect(corpusRelationMatch('joyful', corpus)).toBe('joy');
+      expect(corpusRelationMatch('knowledgeability', corpus)).toBe('knowledge');
+    });
+
+    it('resolves a term whose derivational form is the corpus headword', () => {
+      // `read` -> corpus headword `reading` (read + -ing)
+      expect(corpusRelationMatch('read', corpus)).toBe('reading');
+    });
+
+    it('prefers an exact match over a derivational one so `they` never becomes `the`', () => {
+      expect(corpusRelationMatch('they', corpus)).toBe('they');
+    });
+
+    it('rejects a derivational base shorter than three characters', () => {
+      // `an` + nothing recognized, and no 2-char base may seed a suffix match
+      expect(corpusRelationMatch('any', new Set(['an']))).toBeNull();
+      expect(corpusRelationMatch('ofs', new Set(['of']))).toBeNull();
+    });
+
+    it('returns null when nothing matches', () => {
+      expect(corpusRelationMatch('pizzicato', corpus)).toBeNull();
+    });
+  });
+
+  describe('corpusRelations', () => {
+    const corpus = new Set(['joy', 'happy', 'knowledge']);
+
+    it('maps terms to corpus headwords, dropping non-matches', () => {
+      expect(corpusRelations('happy', ['joyful', 'pizzicato', 'knowledge'], corpus))
+        .toEqual(['joy', 'knowledge']);
+    });
+
+    it('drops self-links back to the source word', () => {
+      // joy page lists its own derivational forms; they must not link to joy
+      expect(corpusRelations('joy', ['joyful', 'joyous'], corpus)).toEqual([]);
+    });
+
+    it('dedupes when several terms resolve to the same headword', () => {
+      expect(corpusRelations('happy', ['joyful', 'joyous'], corpus)).toEqual(['joy']);
+    });
+  });
+
 });

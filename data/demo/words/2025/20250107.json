@@ -2,6 +2,7 @@
     "word": "daily",
     "date": "20250107",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "daily",
@@ -180,5 +181,24 @@
                 "concepts that form the basis of the country's economic policies"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdā-lē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/daily001.mp3",
+        "synonyms": [
+            "day-to-day",
+            "day-by-day",
+            "day-after-day",
+            "periodic",
+            "casual",
+            "everyday",
+            "informal"
+        ],
+        "related": [
+            "day",
+            "twenty-four hours",
+            "casualness",
+            "familiarity"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "yay",
     "date": "20230103",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "yay",
@@ -11,5 +12,12 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/yay"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈyā",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/y/yea00001.mp3",
+        "related": [
+            "Tai"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "indices",
     "date": "20230107",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "index",

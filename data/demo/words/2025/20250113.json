@@ -2,6 +2,7 @@
     "word": "helpful",
     "date": "20250113",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "helpful",
@@ -16,5 +17,36 @@
                 "just trying to be helpful"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈhelp-fəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/helpfu01.mp3",
+        "etymology": "see help:1",
+        "synonyms": [
+            "accommodating",
+            "adjuvant",
+            "assistive",
+            "face-saving",
+            "facilitative",
+            "facilitatory",
+            "implemental",
+            "laborsaving",
+            "ministrant",
+            "reformative",
+            "right-hand",
+            "stabilizing",
+            "steadying"
+        ],
+        "antonyms": [
+            "unhelpful"
+        ],
+        "related": [
+            "accommodative",
+            "cooperative",
+            "encouraging",
+            "useful",
+            "utile",
+            "helpfulness"
+        ]
+    }
 }

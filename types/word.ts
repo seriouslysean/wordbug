@@ -11,16 +11,72 @@ export interface WordProcessedData {
   meta: SourceMeta | null;
 }
 
+/**
+ * Word-level enrichment fetched or derived at add-word time and stored in the
+ * committed word JSON. Distinct from per-definition adapter data: every field
+ * applies to the headword as a whole, is optional, and self-hides when absent.
+ * Related-word lists hold word strings only (no scores). See buildWordData.
+ */
+export interface WordEnrichment {
+  synonyms?: string[];
+  antonyms?: string[];
+  related?: string[];
+  // Headword pronunciation respelling captured from the dictionary adapter
+  pronunciation?: string;
+  // Fully-constructed audio file URL for a native <audio> element
+  audio?: string;
+  // Etymology / origin text, markup stripped
+  etymology?: string;
+}
+
+/** A single displayable sense of a word (one slide in the senses slider). */
+export interface WordSense {
+  partOfSpeech: string;
+  text: string;
+  // Up to MAX_SENSE_EXAMPLES example sentences for this sense (may be empty).
+  examples: string[];
+}
+
 // Our main word file structure (adapter-agnostic)
 export interface WordData {
   word: string;
   date: string; // YYYYMMDD format
   adapter: string; // Which dictionary adapter was used
   data: DictionaryDefinition[];
+  // Optional word-level enrichment (WordNet relations + adapter headword capture)
+  enrichment?: WordEnrichment;
   // Optionally store the raw API response for debugging or migration
   rawData?: unknown;
   // Flag to indicate if the word's capitalization should be preserved in display
   preserveCase?: boolean;
+}
+
+/**
+ * Result of a build-time word-frequency lookup (SUBTLEX). Computed per build
+ * from the word string, never stored. `zipf`/`count` are null when out of
+ * dataset; OOV words fall into the rarest band.
+ */
+export interface FrequencyResult {
+  band: 'common' | 'uncommon' | 'rare' | 'very-rare';
+  zipf: number | null;
+  count: number | null;
+  inDataset: boolean;
+}
+
+/**
+ * Result of a build-time pronunciation lookup (CMU Pronouncing Dictionary).
+ * Computed per build from the word string, never stored. Null when the word is
+ * not in the dictionary.
+ */
+export interface PronunciationResult {
+  // Primary ARPABET transcription, e.g. "K AE1 T"
+  arpabet: string;
+  // IPA rendering with primary stress mark, e.g. "ˈkæt"
+  ipa: string;
+  // Per-syllable stress digits, e.g. "1" or "2-0-1-0-0"
+  stress: string;
+  // Authoritative syllable count (stress-bearing vowel phonemes)
+  syllableCount: number;
 }
 
 // Word statistics types

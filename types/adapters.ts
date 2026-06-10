@@ -12,6 +12,13 @@ export interface DictionaryResponse {
     attribution: string;
     url: string;
   };
+  // Optional per-headword capture (pronunciation/audio/etymology) folded into
+  // WordEnrichment by buildWordData. Absent for adapters that don't supply it.
+  headword?: {
+    pronunciation?: string;
+    audio?: string;
+    etymology?: string;
+  };
 }
 
 export interface DictionaryAdapter {

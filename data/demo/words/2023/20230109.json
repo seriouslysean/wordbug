@@ -2,6 +2,7 @@
     "word": "because",
     "date": "20230109",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "because",
@@ -46,5 +47,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/because"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "bi-ˈkȯz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/becaus02.mp3",
+        "etymology": "Middle English because that, because, from by cause that"
+    }
 }

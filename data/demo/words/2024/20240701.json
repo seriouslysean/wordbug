@@ -2,6 +2,7 @@
     "word": "pneumonoultramicroscopicsilicovolcanoconiosis",
     "date": "20240701",
     "adapter": "wiktionary",
+    "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",

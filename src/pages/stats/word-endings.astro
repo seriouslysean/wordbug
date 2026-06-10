@@ -1,6 +1,7 @@
 ---
 import DefinitionList from '#components/DefinitionList.astro';
 import DescriptionText from '#components/DescriptionText.astro';
+import StatsSection from '#components/StatsSection.astro';
 import { getPageMetadata } from '#astro-utils/page-metadata.ts';
 import Heading from '#components/Heading.astro';
 import Layout from '#layouts/Layout.astro';
@@ -26,14 +27,13 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     <DescriptionText text={description} />
 
     {wordEndingItems.length && (
-      <section class="word-endings__section">
-        <h2 class="word-endings__heading">{t('stats.suffix_heading')}</h2>
+      <StatsSection title={t('stats.suffix_heading')}>
         <DefinitionList items={wordEndingItems.map(item => ({
           label: item.label,
           value: item.count,
           href: item.href
         }))} />
-      </section>
+      </StatsSection>
     )}
   </main>
 </Layout>
@@ -42,17 +42,5 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     .word-endings {
         max-width: var(--content-width-medium);
         margin: 0 auto;
-    }
-
-    .word-endings__section {
-        margin-bottom: var(--spacing-large);
-    }
-
-    .word-endings__heading {
-        font-size: var(--font-size-base);
-        margin-bottom: var(--spacing-base);
-        color: var(--color-text-primary);
-        border-bottom: 1px solid var(--color-text-primary);
-        padding-bottom: 0.5rem;
     }
 </style>

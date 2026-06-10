@@ -2,6 +2,7 @@
     "word": "anniversary",
     "date": "20241026",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "anniversary",
@@ -27,5 +28,35 @@
                 "the 6-month anniversary of the accident"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌa-nə-ˈvərs-rē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/annive01.mp3",
+        "etymology": "Middle English anniversarie, from Medieval Latin anniversarium, from Latin, neuter of anniversarius returning annually, from annus year + versus, past participle of vertere to turn , ",
+        "synonyms": [
+            "day of remembrance"
+        ],
+        "related": [
+            "day",
+            "birthday",
+            "jubilee",
+            "wedding anniversary",
+            "semicentennial",
+            "semicentenary",
+            "centennial",
+            "centenary",
+            "sesquicentennial",
+            "bicentennial",
+            "bicentenary",
+            "tercentennial",
+            "tercentenary",
+            "quatercentennial",
+            "quatercentenary",
+            "quincentennial",
+            "quincentenary",
+            "millennium",
+            "millenary",
+            "bimillennium"
+        ]
+    }
 }
