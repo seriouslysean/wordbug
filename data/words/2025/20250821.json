@@ -2,6 +2,7 @@
     "word": "irrational",
     "date": "20250821",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "irrational",
@@ -66,5 +67,27 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/irrational"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "i-ˈra-sh(ə-)nəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/irrati01.mp3",
+        "etymology": "Middle English, from Latin irrationalis, from in- + rationalis rational",
+        "synonyms": [
+            "blind",
+            "reasonless",
+            "nonrational",
+            "superstitious"
+        ],
+        "antonyms": [
+            "rational"
+        ],
+        "related": [
+            "illogical",
+            "unlogical",
+            "incoherent",
+            "unreasonable",
+            "irrationality",
+            "unreason"
+        ]
+    }
 }

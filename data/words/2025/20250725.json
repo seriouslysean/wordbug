@@ -2,6 +2,7 @@
     "word": "myriapod",
     "date": "20250725",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "myriapod",
@@ -11,5 +12,13 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/myriapod"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈmir-ē-ə-ˌpäd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/myriap01.mp3",
+        "etymology": "ultimately from Greek myrioi + pod-, pous foot ",
+        "related": [
+            "arthropod"
+        ]
+    }
 }

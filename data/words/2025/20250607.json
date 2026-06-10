@@ -2,6 +2,7 @@
     "word": "catholic",
     "date": "20250607",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "catholic",
@@ -133,5 +134,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/catholic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkath-lik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cathol01.mp3",
+        "etymology": "Middle English catholik, from Middle French & Late Latin; Middle French catholique, from Late Latin catholicus, from Greek katholikos universal, general, from katholou in general, from kata by + holos whole , ",
+        "synonyms": [
+            "broad-minded"
+        ],
+        "related": [
+            "Catholicism",
+            "Catholicity",
+            "universality",
+            "catholicity"
+        ]
+    }
 }

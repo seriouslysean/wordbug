@@ -2,6 +2,7 @@
     "word": "copious",
     "date": "20250815",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "copious",
@@ -54,5 +55,32 @@
                 "copious food and drink"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkō-pē-əs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/copiou01.mp3",
+        "etymology": "Middle English, from Latin copiosus, from copia abundance, from co- + ops wealth ",
+        "synonyms": [
+            "voluminous",
+            "abundant",
+            "ample",
+            "plenteous",
+            "plentiful",
+            "rich"
+        ],
+        "related": [
+            "fullness",
+            "voluminosity",
+            "abundance",
+            "copiousness",
+            "voluminously",
+            "profusion",
+            "profuseness",
+            "plenty",
+            "plentifulness",
+            "batch",
+            "deal",
+            "ampleness"
+        ]
+    }
 }

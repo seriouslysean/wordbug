@@ -2,6 +2,7 @@
     "word": "navigation",
     "date": "20250417",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "navigation",
@@ -43,5 +44,30 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/navigation"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌna-və-ˈgā-shən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/n/naviga05.mp3",
+        "synonyms": [
+            "pilotage",
+            "piloting"
+        ],
+        "related": [
+            "steering",
+            "guidance",
+            "navigate",
+            "pilot",
+            "fly",
+            "aviate",
+            "navigational",
+            "instrument flying",
+            "celestial navigation",
+            "astronavigation",
+            "dead reckoning",
+            "transportation",
+            "shipping",
+            "voyage",
+            "sail"
+        ]
+    }
 }

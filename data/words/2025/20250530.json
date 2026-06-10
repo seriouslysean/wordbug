@@ -2,6 +2,7 @@
     "word": "hydroponic",
     "date": "20250530",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "hydroponics",
@@ -11,5 +12,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/hydroponic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌhī-drə-ˈpä-niks",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/hydrop14.mp3",
+        "etymology": " + -ponics, in geoponics \"agriculture,\" borrowed from New Latin geōponica (with  for -ica), borrowed from Middle Greek Geōponiká (title of a 10th-century Byzantine compilation of agricultural knowledge), from neuter plural of Greek geōponikós \"pertaining to agriculture,\" from geōpónos (earlier gāpónos) \"person tilling the land, farmer\" (from geō-  + -ponos, o-grade agentive derivative from the base of pénomai, pénesthai \"to busy oneself, work, toil,\" of uncertain origin) + ikos "
+    }
 }

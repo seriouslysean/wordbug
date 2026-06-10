@@ -2,6 +2,7 @@
     "word": "reminiscing",
     "date": "20250511",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "reminisce",
@@ -11,5 +12,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/reminiscing"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌre-mə-ˈnis",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/remini01.mp3",
+        "etymology": "back-formation from reminiscence"
+    }
 }

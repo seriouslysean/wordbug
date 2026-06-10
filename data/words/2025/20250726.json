@@ -2,6 +2,7 @@
     "word": "contradiction",
     "date": "20250726",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "contradiction",
@@ -58,5 +59,22 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/contradiction"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌkän-trə-ˈdik-shən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/contra31.mp3",
+        "etymology": "Middle English contradiccioun \"objection, opposition, contradiction in logic\" borrowed from Anglo-French & Latin; Anglo-French contradiction, borrowed from Latin contrādictiōn-, contrādictiō \"act of speaking in opposition, counterargument\" (Late Latin also \"contradiction in logic,\" after Greek antíphasis), from contrādic-, variant stem of contrādīcere \"to speak against, object to\" + -tiōn-, -tiō, suffix of verbal action ",
+        "synonyms": [
+            "contradiction in terms"
+        ],
+        "related": [
+            "opposition",
+            "oppositeness",
+            "dialectic",
+            "falsehood",
+            "falsity",
+            "antinomy",
+            "paradox"
+        ]
+    }
 }

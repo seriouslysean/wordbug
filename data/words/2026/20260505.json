@@ -1,70 +1,37 @@
 {
     "word": "pneumatic",
     "date": "20260505",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
-            "partOfSpeech": "noun",
-            "text": "A vehicle, such as a bicycle, whose wheels are fitted with pneumatic tyres.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "(gnosticism) In the gnostic theologian Valentinus' triadic grouping of man, the highest type; a person focused on spiritual reality (the other two being hylic and psychic).",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
-        },
-        {
+            "id": "pneumatic",
             "partOfSpeech": "adjective",
-            "text": "Of, relating to, or resembling air or other gases",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+            "text": "of, relating to, or using gas (such as air or wind):",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/pneumatic"
         },
         {
+            "id": "pneumatic",
             "partOfSpeech": "adjective",
-            "text": "Of or relating to pneumatics",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+            "text": "moved or worked by air pressure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/pneumatic"
         },
         {
+            "id": "pneumatic",
             "partOfSpeech": "adjective",
-            "text": "Powered by, or filled with, compressed air",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic",
-            "examples": [
-                "a pneumatic instrument or engine"
-            ]
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Having cavities filled with air",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic",
-            "examples": [
-                "pneumatic cells or bones"
-            ]
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "Spiritual; of or relating to the pneuma",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
-        },
-        {
-            "partOfSpeech": "adjective",
-            "text": "(of a woman) well-rounded; full-breasted; bouncy",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/pneumatic"
+            "text": "adapted for holding or inflated with compressed air",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/pneumatic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "nu̇-ˈma-tik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pneuma02.mp3",
+        "etymology": "Latin pneumaticus, from Greek pneumatikos, from pneumat-, pneuma air, breath, spirit, from pnein to breathe "
+    }
 }

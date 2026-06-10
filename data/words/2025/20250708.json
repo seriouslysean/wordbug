@@ -2,6 +2,7 @@
     "word": "myrrh",
     "date": "20250708",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "myrrh",
@@ -11,5 +12,17 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/myrrh"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈmər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/myrrh001.mp3",
+        "etymology": "Middle English myrre, from Old English, from Latin myrrha, from Greek, of Semitic origin; akin to Arabic murr myrrh",
+        "synonyms": [
+            "gum myrrh",
+            "sweet cicely"
+        ],
+        "related": [
+            "gum resin"
+        ]
+    }
 }

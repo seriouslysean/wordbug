@@ -1,15 +1,49 @@
 {
     "word": "subterranean",
     "date": "20260331",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
+            "id": "subterranean",
             "partOfSpeech": "adjective",
-            "text": "Below ground, under the earth, underground",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/subterranean"
+            "text": "being, lying, or operating under the surface of the earth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/subterranean",
+            "examples": [
+                "a subterranean network of criminals"
+            ]
+        },
+        {
+            "id": "subterranean",
+            "partOfSpeech": "adjective",
+            "text": "existing or working in secret: hidden",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/subterranean",
+            "examples": [
+                "a subterranean network of criminals"
+            ]
+        },
+        {
+            "id": "Formosan termite",
+            "partOfSpeech": "noun",
+            "text": "a large termite (Coptotermes formosanus of the family Rhinotermitidae) native to Taiwan and southern China that forms very large, usually underground colonies and has been introduced into Hawaii and the southern U.S. where it is a destructive pest of wooden structures —called also Formosan subterranean termite",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/subterranean"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌsəb-tə-ˈrā-nē-ən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/subter03.mp3",
+        "etymology": "Latin subterraneus, from sub- + terra earth ",
+        "synonyms": [
+            "subterraneous",
+            "subsurface",
+            "ulterior",
+            "covert"
+        ]
+    }
 }

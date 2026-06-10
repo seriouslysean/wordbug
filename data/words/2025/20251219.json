@@ -2,6 +2,7 @@
     "word": "silicon",
     "date": "20251219",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "silicon",
@@ -42,5 +43,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/silicon"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsi-li-kən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/silico01.mp3",
+        "etymology": "New Latin silica + English -on (as in carbon)",
+        "synonyms": [
+            "Si",
+            "atomic number 14"
+        ],
+        "related": [
+            "chemical element",
+            "element",
+            "semiconductor",
+            "semiconducting material"
+        ]
+    }
 }

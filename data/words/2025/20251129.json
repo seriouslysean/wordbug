@@ -2,6 +2,7 @@
     "word": "stupendous",
     "date": "20251129",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "stupendous",
@@ -19,5 +20,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/stupendous"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "stu̇-ˈpen-dəs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/stupen01.mp3",
+        "etymology": "Latin stupendus, gerundive of stupēre",
+        "synonyms": [
+            "colossal",
+            "prodigious",
+            "large"
+        ],
+        "related": [
+            "prodigy",
+            "giant",
+            "goliath"
+        ]
+    }
 }

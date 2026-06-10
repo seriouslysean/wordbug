@@ -2,6 +2,7 @@
     "word": "confined",
     "date": "20250422",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "confined",
@@ -84,5 +85,27 @@
                 "will confine my remarks to one subject"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "kən-ˈfīnd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/confin03.mp3",
+        "etymology": "from past participle of ",
+        "synonyms": [
+            "claustrophobic",
+            "close",
+            "homebound",
+            "pent",
+            "snowbound",
+            "stormbound",
+            "weather-bound"
+        ],
+        "antonyms": [
+            "invasive",
+            "unconfined"
+        ],
+        "related": [
+            "restricted",
+            "unfree"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "highfalutin",
     "date": "20251105",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "highfalutin",
@@ -51,5 +52,22 @@
                 "giving a highfalutin speech"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌhī-fə-ˈlü-tᵊn",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/highfa01.mp3",
+        "etymology": "perhaps from  + alteration of fluting, present participle of flute",
+        "synonyms": [
+            "grandiose",
+            "hifalutin",
+            "highfaluting",
+            "hoity-toity",
+            "la-di-da",
+            "pretentious"
+        ],
+        "related": [
+            "grandiosity",
+            "magniloquence"
+        ]
+    }
 }

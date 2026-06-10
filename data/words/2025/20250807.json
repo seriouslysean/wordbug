@@ -2,6 +2,7 @@
     "word": "warmth",
     "date": "20250807",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "warmth",
@@ -36,5 +37,21 @@
                 "a child needing human warmth and family life"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈwȯrm(p)th",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/w/warmth01.mp3",
+        "synonyms": [
+            "heat",
+            "warmheartedness"
+        ],
+        "related": [
+            "temperature",
+            "hot up",
+            "heat up",
+            "lovingness",
+            "caring",
+            "warmhearted"
+        ]
+    }
 }

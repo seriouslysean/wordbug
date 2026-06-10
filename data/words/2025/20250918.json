@@ -2,6 +2,7 @@
     "word": "chronological",
     "date": "20250918",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "chronological",
@@ -16,5 +17,13 @@
                 "chronological age"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌkrä-nə-ˈlä-ji-kəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/chrono10.mp3",
+        "etymology": "chronological from chronologic +  or from  + ; chronologic from  + , probably after French chronologique or New Latin chronologicus",
+        "related": [
+            "chronology"
+        ]
+    }
 }

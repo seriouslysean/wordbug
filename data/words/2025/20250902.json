@@ -2,6 +2,7 @@
     "word": "ottoman",
     "date": "20250902",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ottoman",
@@ -42,5 +43,18 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/ottoman"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈä-tə-mən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/ottoma01.mp3",
+        "synonyms": [
+            "Ottoman Turk",
+            "Osmanli",
+            "Ottoman dynasty"
+        ],
+        "related": [
+            "Turk",
+            "dynasty"
+        ]
+    }
 }

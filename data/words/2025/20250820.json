@@ -2,6 +2,7 @@
     "word": "hypocrite",
     "date": "20250820",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "hypocrite",
@@ -27,5 +28,31 @@
                 "The genuine hypocrite does or says one thing in public and another in private."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈhi-pə-ˌkrit",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/hypocr02.mp3",
+        "etymology": "Middle English ypocrite, borrowed from Anglo-French ipocrite, borrowed from Late Latin hypocrita, borrowed from Greek hypokritḗs \"answerer, actor on a stage, pretender,\" from hypokri-, variant stem of hypokrī́nomai, hypokrī́nesthai \"to reply, make an answer, speak in dialogue, play a part on the stage, feign\" + -tēs, agent suffix ",
+        "synonyms": [
+            "dissembler",
+            "dissimulator",
+            "phony",
+            "phoney",
+            "pretender"
+        ],
+        "related": [
+            "deceiver",
+            "cheat",
+            "bogus",
+            "fake",
+            "feign",
+            "sham",
+            "smoothie",
+            "smoothy",
+            "Tartuffe",
+            "Tartufe",
+            "whited sepulcher",
+            "whited sepulchre"
+        ]
+    }
 }

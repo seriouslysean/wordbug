@@ -2,6 +2,7 @@
     "word": "abruptly",
     "date": "20250804",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "abruptly",
@@ -17,5 +18,14 @@
                 "The small, rocky Anacapa Island [California] has steep cliffs which rise abruptly from the ocean on almost every side …"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ə-ˈbrəp(t)-lē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/abrupt02.mp3",
+        "synonyms": [
+            "suddenly",
+            "short",
+            "dead"
+        ]
+    }
 }

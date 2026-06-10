@@ -2,6 +2,7 @@
     "word": "mentorship",
     "date": "20250827",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "mentorship",
@@ -16,5 +17,10 @@
                 "Senior Senate women intentionally cultivate a collaborative spirit through social events and mentorship."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈmen-ˌtȯr-ˌship",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/mentor02.mp3",
+        "etymology": " + "
+    }
 }

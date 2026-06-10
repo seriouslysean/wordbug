@@ -2,6 +2,7 @@
     "word": "chromatic",
     "date": "20250503",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "chromatic",
@@ -51,5 +52,13 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/chromatic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "krō-ˈma-tik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/chroma04.mp3",
+        "etymology": "borrowed from Medieval Latin chrōmaticus, borrowed from Greek chrōmatikós \"of color (in rhetoric), of the chromatic scale,\" from chrōmat-, chrôma \"skin, complexion, color, the chromatic scale\" + -ikos  ",
+        "antonyms": [
+            "diatonic"
+        ]
+    }
 }

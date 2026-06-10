@@ -2,6 +2,7 @@
     "word": "dilemma",
     "date": "20250512",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "dilemma",
@@ -48,5 +49,17 @@
                 "Unemployment … the great central dilemma of our advancing technology."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "də-ˈle-mə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/dilemm01.mp3",
+        "etymology": "Late Latin, from Late Greek dilēmmat-, dilēmma, probably back-formation from Greek dilēmmatos involving two assumptions, from di- + lēmmat-, lēmma assumption ",
+        "synonyms": [
+            "quandary"
+        ],
+        "related": [
+            "perplexity",
+            "double bind"
+        ]
+    }
 }

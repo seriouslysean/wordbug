@@ -2,6 +2,7 @@
     "word": "twelfth",
     "date": "20250411",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "twelve",
@@ -43,5 +44,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/twelfth"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtwelv",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/twelve01.mp3",
+        "etymology": "Middle English, from Old English twelf; akin to Old High German zwelif twelve, Old English twā two, -leofan (as in endleofan eleven) , ",
+        "synonyms": [
+            "one-twelfth",
+            "twelfth part",
+            "duodecimal"
+        ],
+        "related": [
+            "rank",
+            "common fraction",
+            "simple fraction"
+        ]
+    }
 }

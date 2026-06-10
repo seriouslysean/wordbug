@@ -2,6 +2,7 @@
     "word": "paranoia",
     "date": "20251003",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "paranoia",
@@ -27,5 +28,13 @@
                 "… Arthur Miller dramatized the ways that a society's paranoia and fear during periods of uncertainty and change can turn into a witch hunt."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌper-ə-ˈnȯi-ə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/parano01.mp3",
+        "etymology": "New Latin, from Greek, madness, from paranous demented, from para- + nous mind",
+        "related": [
+            "psychosis"
+        ]
+    }
 }

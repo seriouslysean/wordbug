@@ -2,6 +2,7 @@
     "word": "wallaby",
     "date": "20250805",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "wallaby",
@@ -19,5 +20,28 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/wallaby"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈwä-lə-bē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/w/wallab01.mp3",
+        "etymology": "Dharuk (Australian aboriginal language of the Port Jackson area) walabi, waliba",
+        "synonyms": [
+            "brush kangaroo"
+        ],
+        "related": [
+            "kangaroo",
+            "common wallaby",
+            "Macropus agiles",
+            "hare wallaby",
+            "kangaroo hare",
+            "nail-tailed wallaby",
+            "nail-tailed kangaroo",
+            "rock wallaby",
+            "rock kangaroo",
+            "pademelon",
+            "paddymelon",
+            "tree wallaby",
+            "tree kangaroo"
+        ]
+    }
 }

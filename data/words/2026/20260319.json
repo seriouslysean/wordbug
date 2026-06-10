@@ -1,108 +1,220 @@
 {
     "word": "image",
     "date": "20260319",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
+            "id": "image",
             "partOfSpeech": "noun",
-            "text": "An optical or other representation of a real object; a graphic; a picture.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image",
+            "text": "a visual representation of something: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
             "examples": [
-                "The Bible forbids the worship of graven images."
+                "couldn't get that image out of my head",
+                "had a negative body image of herself",
+                "… a disorderly courtroom can seriously tarnish a community's image of justice.",
+                "trying to improve his image",
+                "… promoting a corporate image of brotherly love and concern …",
+                "God created man in his own image",
+                "she is the image of her mother",
+                "the image of filial devotion",
+                "religious images"
             ]
         },
         {
+            "id": "image",
             "partOfSpeech": "noun",
-            "text": "A mental picture of something not real or not present.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A statue or idol.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "A file that contains all information needed to produce a live working copy. (See disk image and image copy.)",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image",
+            "text": "a likeness of an object produced on a photographic material",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
             "examples": [
-                "Most game console emulators do not come with any ROM images for copyright reasons."
+                "couldn't get that image out of my head",
+                "had a negative body image of herself",
+                "… a disorderly courtroom can seriously tarnish a community's image of justice.",
+                "trying to improve his image",
+                "… promoting a corporate image of brotherly love and concern …",
+                "God created man in his own image",
+                "she is the image of her mother",
+                "the image of filial devotion",
+                "religious images"
             ]
         },
         {
+            "id": "image",
             "partOfSpeech": "noun",
-            "text": "A characteristic of a person, group or company etc., style, manner of dress, how one is, or wishes to be, perceived by others.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "Something mapped to by a function.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image",
+            "text": "a picture produced on an electronic display (such as a television or computer screen)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
             "examples": [
-                "The number 6 is the image of 3 under f that is defined as f(x) = 2x."
+                "couldn't get that image out of my head",
+                "had a negative body image of herself",
+                "… a disorderly courtroom can seriously tarnish a community's image of justice.",
+                "trying to improve his image",
+                "… promoting a corporate image of brotherly love and concern …",
+                "God created man in his own image",
+                "she is the image of her mother",
+                "the image of filial devotion",
+                "religious images"
             ]
         },
         {
+            "id": "image",
+            "partOfSpeech": "verb",
+            "text": "to create a representation of; also: to form an image of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
+            "examples": [
+                "imaged Jupiter's rings",
+                "image the bone using X-rays",
+                "imaging herself at the college",
+                "Many computer forensics programs now include the option of imaging a suspect drive."
+            ]
+        },
+        {
+            "id": "image",
+            "partOfSpeech": "verb",
+            "text": "to represent symbolically",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
+            "examples": [
+                "imaged Jupiter's rings",
+                "image the bone using X-rays",
+                "imaging herself at the college",
+                "Many computer forensics programs now include the option of imaging a suspect drive."
+            ]
+        },
+        {
+            "id": "image",
+            "partOfSpeech": "verb",
+            "text": "to call up a mental picture of: imagine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
+            "examples": [
+                "imaged Jupiter's rings",
+                "image the bone using X-rays",
+                "imaging herself at the college",
+                "Many computer forensics programs now include the option of imaging a suspect drive."
+            ]
+        },
+        {
+            "id": "image tube",
             "partOfSpeech": "noun",
-            "text": "The subset of a codomain comprising those elements that are images of something.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+            "text": "an electron tube in which incident electromagnetic radiation (such as light or infrared) produces a visible image on its fluorescent screen duplicating the original pattern of radiation —called also image converter",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
         },
         {
+            "id": "disk image",
             "partOfSpeech": "noun",
-            "text": "A form of interference: a weaker \"copy\" of a strong signal that occurs at a different frequency.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+            "text": "a compressed copy of the contents (such as installed programs, settings, and other data) of an optical disc, hard drive, or other digital storage device",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
+            "examples": [
+                "By developing and using a standard disk image, information technology managers don't have to separately install all of a PC's programs. The disk image is copied onto each new PC's disk drive, and it's ready to go."
+            ]
         },
         {
+            "id": "father image",
             "partOfSpeech": "noun",
-            "text": "Show; appearance; cast.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+            "text": "an idealization of one's father often projected onto someone to whom one looks for guidance and protection",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
         },
         {
-            "partOfSpeech": "verb",
-            "text": "To represent by an image or symbol; to portray.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+            "id": "graven image",
+            "partOfSpeech": "noun",
+            "text": "an object of worship carved usually from wood or stone: idol",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
         },
         {
-            "partOfSpeech": "verb",
-            "text": "To reflect, mirror.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+            "id": "mirror image",
+            "partOfSpeech": "noun",
+            "text": "something that has its parts reversely arranged in comparison with another similar thing or that is reversed with reference to an intervening axis or plane",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
         },
         {
-            "partOfSpeech": "verb",
-            "text": "To create an image of.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+            "id": "mirror image",
+            "partOfSpeech": "noun",
+            "text": "the direct opposite",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
         },
         {
-            "partOfSpeech": "verb",
-            "text": "To create a complete backup copy of a file system or other entity.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/image"
+            "id": "mirror image",
+            "partOfSpeech": "noun",
+            "text": "image",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
+        },
+        {
+            "id": "real image",
+            "partOfSpeech": "noun",
+            "text": "an optical image formed of real foci",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
+        },
+        {
+            "id": "self-image",
+            "partOfSpeech": "noun",
+            "text": "one's conception of oneself or of one's role",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image"
+        },
+        {
+            "id": "spitting image",
+            "partOfSpeech": "noun",
+            "text": "someone or something that looks very much like someone or something else —usually singular",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/image",
+            "examples": [
+                "Father then and son later are spitting images of each other."
+            ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈi-mij",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/image001.mp3",
+        "etymology": "Middle English, \"effigy, figure, mental impression of something observed, reflection, resemblance,\" borrowed from Anglo-French, shortened from imagene, borrowed from Latin imāgin-, imāgō \"representation, reflection, apparition, semblance, copy, visible form,\" from imā- (probably the stem of an otherwise unattested verb *imārī with the same base as imitārī \"to follow as a pattern, copy\") + -gin-, -gō, denominal or deverbal noun suffix ",
+        "synonyms": [
+            "mental image",
+            "persona"
+        ],
+        "related": [
+            "representation",
+            "mental representation",
+            "visualize",
+            "visualise",
+            "imagination image",
+            "thought-image",
+            "memory image",
+            "visual image",
+            "visualization",
+            "mental picture",
+            "picture",
+            "auditory image",
+            "appearance",
+            "visual aspect",
+            "embody",
+            "be"
+        ]
+    }
 }

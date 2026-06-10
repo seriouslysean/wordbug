@@ -2,6 +2,7 @@
     "word": "antibody",
     "date": "20250403",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "antibody",
@@ -24,5 +25,27 @@
                 "The drug, which would be given by intravenous infusion every four weeks, is a monoclonal antibody that tamps down the immune system …"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈan-ti-ˌbä-dē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/antibo01.mp3",
+        "related": [
+            "protein",
+            "autoantibody",
+            "precipitin",
+            "ABO antibodies",
+            "Rh antibody",
+            "antitoxin",
+            "agglutinin",
+            "heterophil antibody",
+            "heterophile antibody",
+            "isoantibody",
+            "alloantibody",
+            "monoclonal antibody",
+            "monoclonal",
+            "opsonin",
+            "immunoglobulin",
+            "Ig"
+        ]
+    }
 }

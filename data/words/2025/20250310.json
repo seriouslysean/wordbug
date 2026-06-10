@@ -2,6 +2,7 @@
     "word": "phantom",
     "date": "20250310",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "phantom",
@@ -69,5 +70,34 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/phantom"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfan-təm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/phanto01.mp3",
+        "etymology": "Middle English fantesme, fantosme, fantome, fantom \"what only seems to have reality or value, vanity, illusion, apparition, falsehood,\" borrowed from Anglo-French fantosme, fantasme ",
+        "synonyms": [
+            "apparition",
+            "phantasm",
+            "phantasma",
+            "fantasm",
+            "specter",
+            "spectre",
+            "shadow"
+        ],
+        "related": [
+            "spirit",
+            "disembodied spirit",
+            "apparitional",
+            "ghostlike",
+            "Flying Dutchman",
+            "illusion",
+            "semblance",
+            "shadowy",
+            "wraithlike",
+            "unidentified flying object",
+            "UFO",
+            "ghost",
+            "shade"
+        ]
+    }
 }

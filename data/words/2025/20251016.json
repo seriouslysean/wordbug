@@ -2,6 +2,7 @@
     "word": "reptilian",
     "date": "20251016",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "reptilian",
@@ -44,5 +45,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/reptilian"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "rep-ˈti-lē-ən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/reptil02.mp3",
+        "related": [
+            "reptile",
+            "Reptilia",
+            "class Reptilia"
+        ]
+    }
 }

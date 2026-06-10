@@ -2,6 +2,7 @@
     "word": "cheese",
     "date": "20180424",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cheese",
@@ -53,6 +54,18 @@
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
         },
         {
+            "id": "cheese board",
+            "partOfSpeech": "noun",
+            "text": "a selection of cheeses accompanied by other foods (such as crackers, nuts, vegetables, fruits, olives, cured meats, condiments, etc.) and served on a platter or board (such as a cutting board); also: the platter or board used for serving a cheese board",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese",
+            "examples": [
+                "Looking to build out a showstopping cheese board for your holiday guests? Grab the biggest board you've got … track down some baguettes, crackers, pickled vegetables, olives, jam and edible flowers. Then whip up these two dip recipes … to elevate the spread.",
+                "The San Diego Fine Woodworkers Association has you covered with its upcoming holiday gift sale. … Shoppers can find cheese boards, pepper mills, serving trays and lathe-turned bowls for dining needs …"
+            ]
+        },
+        {
             "id": "cheese it",
             "text": "—used in the imperative as a warning of danger",
             "attributionText": "from Merriam-Webster's Collegiate Dictionary",
@@ -102,14 +115,39 @@
             "attributionText": "from Merriam-Webster's Collegiate Dictionary",
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
-        },
-        {
-            "id": "cook cheese",
-            "partOfSpeech": "noun",
-            "text": "an unripened cheese made from curd that has been cooked to a soft consistency —called also cooked cheese",
-            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
-            "sourceDictionary": "collegiate",
-            "sourceUrl": "https://www.merriam-webster.com/dictionary/cheese"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈchēz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cheese01.mp3",
+        "etymology": "Middle English chese, from Old English cēse, from Latin caseus cheese",
+        "synonyms": [
+            "tall mallow",
+            "high mallow",
+            "cheeseflower",
+            "Malva sylvestris"
+        ],
+        "related": [
+            "dairy product",
+            "food",
+            "solid food",
+            "cream cheese",
+            "triple cream",
+            "triple creme",
+            "cottage cheese",
+            "pot cheese",
+            "process cheese",
+            "processed cheese",
+            "bleu",
+            "blue cheese",
+            "Brie",
+            "brick cheese",
+            "Camembert",
+            "cheddar",
+            "cheddar cheese",
+            "Cheshire cheese",
+            "double Gloucester",
+            "Edam"
+        ]
+    }
 }

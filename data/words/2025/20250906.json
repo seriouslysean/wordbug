@@ -2,6 +2,7 @@
     "word": "dew",
     "date": "20250906",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "dew",
@@ -78,5 +79,16 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/dew"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdü",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/dew00001.mp3",
+        "etymology": "Middle English, from Old English dēaw; akin to Old High German tou dew, Greek thein to run",
+        "related": [
+            "condensation",
+            "condensate",
+            "bedewed",
+            "dewy"
+        ]
+    }
 }

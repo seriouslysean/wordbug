@@ -2,6 +2,7 @@
     "word": "buckminsterfullerene",
     "date": "20250405",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "buckminsterfullerene",
@@ -11,5 +12,16 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/buckminsterfullerene"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbək-(ˌ)min-stər-ˌfu̇-lə-ˈrēn",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/buckmi01.mp3",
+        "etymology": "R. Buckminster Fuller",
+        "synonyms": [
+            "buckyball"
+        ],
+        "related": [
+            "fullerene"
+        ]
+    }
 }

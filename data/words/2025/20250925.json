@@ -2,6 +2,7 @@
     "word": "relic",
     "date": "20250925",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "relic",
@@ -27,5 +28,25 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/relic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈre-lik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/relic001.mp3",
+        "etymology": "Middle English relik, from Anglo-French relike, from Medieval Latin reliquia, from Late Latin reliquiae, plural, remains of a martyr, from Latin, remains, from relinquere to leave behind ",
+        "synonyms": [
+            "keepsake",
+            "souvenir",
+            "token"
+        ],
+        "related": [
+            "antiquity",
+            "archeological remains",
+            "remains",
+            "object",
+            "physical object",
+            "love-token",
+            "party favor",
+            "party favour"
+        ]
+    }
 }

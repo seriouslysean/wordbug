@@ -2,6 +2,7 @@
     "word": "portmanteau",
     "date": "20250528",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "portmanteau",
@@ -43,5 +44,22 @@
                 "The new work from Wes Anderson, “The French Dispatch,” is a portmanteau film. That is to say, it contains a number of narratives—in this instance, four—that are neatly packed together, as if inside a suitcase."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "pȯrt-ˈman-(ˌ)tō",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/portma01.mp3",
+        "etymology": "Middle French portemanteau, from porter to carry + manteau mantle, from Latin mantellum ",
+        "synonyms": [
+            "blend",
+            "portmanteau word",
+            "Gladstone",
+            "Gladstone bag"
+        ],
+        "related": [
+            "neologism",
+            "neology",
+            "bag",
+            "traveling bag"
+        ]
+    }
 }

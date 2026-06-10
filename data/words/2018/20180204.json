@@ -2,6 +2,7 @@
     "word": "fish",
     "date": "20180204",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "fish",
@@ -114,6 +115,7 @@
         },
         {
             "id": "fish and chips",
+            "partOfSpeech": "noun",
             "text": "fried fish and french fried potatoes",
             "attributionText": "from Merriam-Webster's Collegiate Dictionary",
             "sourceDictionary": "collegiate",
@@ -175,5 +177,32 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/fish"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfish",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/fish0001.mp3",
+        "etymology": "Middle English, from Old English fisc; akin to Old High German fisc fish, Latin piscis",
+        "related": [
+            "aquatic vertebrate",
+            "fishy",
+            "angle",
+            "bottom-feeder",
+            "bottom-dweller",
+            "bottom lurkers",
+            "cartilaginous fish",
+            "chondrichthian",
+            "fingerling",
+            "game fish",
+            "sport fish",
+            "food fish",
+            "rough fish",
+            "young fish",
+            "mouthbreeder",
+            "spawner",
+            "northern snakehead",
+            "bony fish",
+            "climbing perch",
+            "Anabas testudineus"
+        ]
+    }
 }

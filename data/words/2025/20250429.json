@@ -2,6 +2,7 @@
     "word": "scolding",
     "date": "20250429",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "scolding",
@@ -49,5 +50,24 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/scolding"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈskōl-diŋ",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/scold01v.mp3",
+        "synonyms": [
+            "chiding",
+            "objurgation",
+            "tongue-lashing"
+        ],
+        "related": [
+            "rebuke",
+            "reproof",
+            "chastise",
+            "castigate",
+            "call on the carpet",
+            "take to task",
+            "wig",
+            "wigging"
+        ]
+    }
 }

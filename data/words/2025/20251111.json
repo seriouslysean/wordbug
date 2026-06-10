@@ -2,6 +2,7 @@
     "word": "vicinity",
     "date": "20251111",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "vicinity",
@@ -27,5 +28,28 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/vicinity"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "və-ˈsi-nə-tē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/vicini01.mp3",
+        "etymology": "Middle French vicinité, from Latin vicinitat-, vicinitas, from vicinus neighboring, from vicus row of houses, village; akin to Goth weihs village, Old Church Slavic vĭsĭ, Greek oikos, oikia house",
+        "synonyms": [
+            "locality",
+            "neighborhood",
+            "neighbourhood",
+            "neck of the woods"
+        ],
+        "related": [
+            "section",
+            "neighbor",
+            "neighbour",
+            "local",
+            "vicinal",
+            "gold coast",
+            "'hood",
+            "place",
+            "proximity",
+            "scenery"
+        ]
+    }
 }

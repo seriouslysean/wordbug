@@ -2,6 +2,7 @@
     "word": "filament",
     "date": "20250609",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "filament",
@@ -27,5 +28,31 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/filament"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfi-lə-mənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/filame01.mp3",
+        "etymology": "Middle French, from Medieval Latin filamentum, from Late Latin filare to spin ",
+        "synonyms": [
+            "fibril",
+            "strand"
+        ],
+        "related": [
+            "fiber",
+            "fibre",
+            "filamentous",
+            "filiform",
+            "barb",
+            "cobweb",
+            "gossamer",
+            "chromatid",
+            "myofibril",
+            "myofibrilla",
+            "rhizoid",
+            "hypha",
+            "paraphysis",
+            "stalk",
+            "stem"
+        ]
+    }
 }

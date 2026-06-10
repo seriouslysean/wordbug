@@ -2,6 +2,7 @@
     "word": "sarsaparilla",
     "date": "20251205",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sarsaparilla",
@@ -35,5 +36,16 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/sarsaparilla"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌsa-spə-ˈri-lə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sarsap01.mp3",
+        "etymology": "Spanish zarzaparrilla, from zarza bush + parrilla, diminutive of parra vine",
+        "related": [
+            "vine",
+            "rough bindweed",
+            "Smilax aspera",
+            "soft drink"
+        ]
+    }
 }

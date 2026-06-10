@@ -2,6 +2,7 @@
     "word": "bask",
     "date": "20250910",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "bask",
@@ -42,5 +43,25 @@
                 "… basks at the fire his hairy strength …"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbask",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/bask0001.mp3",
+        "etymology": "Middle English, probably from Old Norse bathask, reflexive of batha to bathe; akin to Old English bæth bath",
+        "synonyms": [
+            "enjoy",
+            "relish",
+            "savor",
+            "savour"
+        ],
+        "related": [
+            "gusto",
+            "enjoyment",
+            "delectation",
+            "enjoyer",
+            "feast one's eyes",
+            "devour",
+            "lie"
+        ]
+    }
 }

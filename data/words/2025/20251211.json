@@ -2,6 +2,7 @@
     "word": "turmoil",
     "date": "20251211",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "turmoil",
@@ -11,5 +12,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/turmoil"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtər-ˌmȯi(-ə)l",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/turmoi01.mp3",
+        "etymology": "origin unknown",
+        "synonyms": [
+            "convulsion",
+            "upheaval",
+            "tumult"
+        ],
+        "related": [
+            "disturbance",
+            "disruption",
+            "agitation"
+        ]
+    }
 }

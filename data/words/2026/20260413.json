@@ -1,75 +1,164 @@
 {
     "word": "bass",
     "date": "20260413",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
+            "id": "bass",
             "partOfSpeech": "noun",
-            "text": "A low spectrum of sound tones.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
-            "examples": [
-                "Peter adjusted the equalizer on his audio equipment to emphasize the bass."
-            ]
+            "text": "any of numerous edible marine or freshwater bony fishes (especially families Centrarchidae, Serranidae, and Percichthyidae of the order Perciformes)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "A section of musical group that produces low-pitched sound, lower than the baritone and tenor.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
-            "examples": [
-                "The conductor preferred to situate the bass in the middle rear, rather than to one side of the orchestra."
-            ]
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "One who sings in the bass range.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
-            "examples": [
-                "Halfway through middle school, Edgar morphed from a soprano to a bass, much to the amazement and amusement of his fellow choristers."
-            ]
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "An instrument that plays in the bass range, in particular a double bass, bass guitar, electric bass or bass synthesiser.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
-            "examples": [
-                "The musician swung the bass over his head like an axe and smashed it into the amplifier, creating a discordant howl of noise."
-            ]
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The clef sign that indicates that the pitch of the notes is below middle C; a bass clef.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
-            "examples": [
-                "The score had been written without the treble and bass, but it was easy to pick out which was which based on the location of the notes on the staff."
-            ]
-        },
-        {
-            "partOfSpeech": "verb",
-            "text": "To sound in a deep tone.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/bass"
-        },
-        {
+            "id": "bass",
             "partOfSpeech": "adjective",
-            "text": "Of sound, a voice or an instrument, low in pitch or frequency.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/bass",
+            "text": "deep or grave in tone",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass",
+            "partOfSpeech": "adjective",
+            "text": "of low pitch",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass",
+            "partOfSpeech": "adjective",
+            "text": "relating to or having the range or part of a bass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass",
+            "partOfSpeech": "noun",
+            "text": "the lowest voice part in a 4-part chorus",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass",
+            "partOfSpeech": "noun",
+            "text": "the lower half of the whole vocal or instrumental tonal range",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass",
+            "partOfSpeech": "noun",
+            "text": "the lowest adult male singing voice; also: a person having this voice",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass",
+            "partOfSpeech": "noun",
+            "text": "basswood",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass",
+            "partOfSpeech": "noun",
+            "text": "a coarse tough fiber from palms",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass clef",
+            "partOfSpeech": "noun",
+            "text": "a clef placing the F below middle C on the fourth line of the staff",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass clef",
+            "partOfSpeech": "noun",
+            "text": "the bass staff",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass drum",
+            "partOfSpeech": "noun",
+            "text": "a large drum that has two heads and produces a booming sound of low indefinite pitch",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass",
             "examples": [
-                "The giant spoke in a deep, bass, rumbling voice that shook me to my boots."
+                "[The Beatles'] 18-year-old engineer Geoff Emerick transformed their sound by stuffing a sweater in Ringo's bass drum.",
+                "Thunderous bass drums and tom-toms predominate, delivering an oscillating groove over which the composer's voice floats …"
             ]
+        },
+        {
+            "id": "bass fiddle",
+            "partOfSpeech": "noun",
+            "text": "double bass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass guitar",
+            "partOfSpeech": "noun",
+            "text": "the lowest pitched type of guitar that typically has four to six heavy strings and a relatively long neck and is commonly electrically amplified —called also bass, electric bass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass horn",
+            "partOfSpeech": "noun",
+            "text": "an obsolete wind instrument shaped like a bassoon but with a cup-shaped mouthpiece",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass viol",
+            "partOfSpeech": "noun",
+            "text": "viola da gamba",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
+        },
+        {
+            "id": "bass viol",
+            "partOfSpeech": "noun",
+            "text": "double bass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/bass"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbas",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/bass0001.mp3",
+        "etymology": "Middle English base, bærs, from Old English bærs; akin to Old High German bersich perch",
+        "synonyms": [
+            "bass part"
+        ],
+        "related": [
+            "pitch",
+            "part",
+            "voice",
+            "ground bass",
+            "figured bass",
+            "basso continuo"
+        ]
+    }
 }

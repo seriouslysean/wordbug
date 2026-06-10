@@ -2,6 +2,7 @@
     "word": "linty",
     "date": "20250630",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "lint",
@@ -27,5 +28,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/linty"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈlint",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/lint0001.mp3",
+        "etymology": "Middle English"
+    }
 }

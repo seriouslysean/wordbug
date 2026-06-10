@@ -2,6 +2,7 @@
     "word": "escalator",
     "date": "20250415",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "escalator",
@@ -47,5 +48,21 @@
                 "… an escalator arrangement tying the base pay … to living costs …"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈe-skə-ˌlā-tər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/escala07.mp3",
+        "etymology": "from Escalator, a trademark",
+        "synonyms": [
+            "escalator clause",
+            "moving staircase",
+            "moving stairway"
+        ],
+        "related": [
+            "article",
+            "clause",
+            "stairway",
+            "staircase"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "tempo",
     "date": "20250601",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "tempo",
@@ -38,5 +39,26 @@
                 "an aggressive up-tempo style of basketball"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtem-(ˌ)pō",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/tempo001.mp3",
+        "etymology": "borrowed from Italian, \"time, rate of speed (in music),\" going back to Latin tempor-, tempus \"time, period of time, season,\" of uncertain origin",
+        "synonyms": [
+            "pacing",
+            "pace"
+        ],
+        "related": [
+            "musical time",
+            "accelerando",
+            "allegretto",
+            "allegro",
+            "andante",
+            "meno mosso",
+            "rubato",
+            "rate",
+            "beats per minute",
+            "bpm"
+        ]
+    }
 }

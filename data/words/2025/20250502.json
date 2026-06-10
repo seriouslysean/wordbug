@@ -2,6 +2,7 @@
     "word": "jetstream",
     "date": "20250502",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "jet stream",

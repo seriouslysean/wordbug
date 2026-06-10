@@ -2,6 +2,7 @@
     "word": "flabbergasted",
     "date": "20250408",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "flabbergasted",
@@ -27,5 +28,18 @@
                 "We were flabbergasted by the news that he had won the lottery."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfla-bər-ˌga-stəd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/flabbergasted_1.mp3",
+        "synonyms": [
+            "dumbfounded",
+            "dumfounded",
+            "stupefied",
+            "thunderstruck",
+            "dumbstruck",
+            "dumbstricken",
+            "surprised"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "lunatic",
     "date": "20250619",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "lunatic",
@@ -66,5 +67,35 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/lunatic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈlü-nə-ˌtik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/lunati01.mp3",
+        "etymology": "Middle English lunatik, borrowed from Anglo-French lunatic, borrowed from Late Latin lūnāticus, noun derivative of Latin lūnāticus \"suffering from a mental or neurological disorder allegedly affected by the phases of the moon\" ",
+        "synonyms": [
+            "madman",
+            "maniac",
+            "daredevil",
+            "madcap",
+            "hothead",
+            "swashbuckler",
+            "harum-scarum"
+        ],
+        "related": [
+            "sick person",
+            "diseased person",
+            "maniacal",
+            "crazy",
+            "loony",
+            "bedlamite",
+            "pyromaniac",
+            "madwoman",
+            "adventurer",
+            "venturer",
+            "carefree",
+            "devil-may-care",
+            "temerarious",
+            "tearaway"
+        ]
+    }
 }

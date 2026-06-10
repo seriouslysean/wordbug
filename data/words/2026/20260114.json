@@ -2,6 +2,7 @@
     "word": "enticing",
     "date": "20260114",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "enticing",
@@ -26,5 +27,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/enticing"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "in-ˈtī-siŋ",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/enticing_1.mp3",
+        "synonyms": [
+            "alluring",
+            "beguiling",
+            "tempting",
+            "seductive"
+        ],
+        "related": [
+            "allure",
+            "allurement"
+        ]
+    }
 }

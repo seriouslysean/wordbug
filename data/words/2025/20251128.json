@@ -2,6 +2,7 @@
     "word": "motif",
     "date": "20251128",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "motif",
@@ -48,5 +49,21 @@
                 "Only about half these genes have recognizable motifs, or DNA-sequence patterns, that suggest possible functions."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "mō-ˈtēf",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/motif001.mp3",
+        "etymology": "French, motive, motif, from Middle French ",
+        "synonyms": [
+            "motive"
+        ],
+        "related": [
+            "design",
+            "pattern",
+            "theme",
+            "melodic theme",
+            "obbligato",
+            "obligato"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "abundant",
     "date": "20251123",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "abundant",
@@ -45,5 +46,37 @@
                 "an area abundant with bird life"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ə-ˈbən-dənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/abunda02.mp3",
+        "etymology": "Middle English abundaunt, habundaunt, borrowed from Anglo-French abundant, habundant, borrowed from Latin abundant-, abundans, present participle of abundāre \"to \"",
+        "synonyms": [
+            "abounding",
+            "ample",
+            "copious",
+            "easy",
+            "exuberant",
+            "thick",
+            "long",
+            "overabundant",
+            "plentiful",
+            "rampant",
+            "rank",
+            "superabundant",
+            "teeming",
+            "torrential",
+            "verdant"
+        ],
+        "antonyms": [
+            "scarce"
+        ],
+        "related": [
+            "rich",
+            "quantity",
+            "abound",
+            "abundance",
+            "copiousness"
+        ]
+    }
 }

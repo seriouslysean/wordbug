@@ -2,6 +2,7 @@
     "word": "nostalgic",
     "date": "20250911",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "nostalgic",
@@ -57,5 +58,16 @@
                 "Eventually it would become an empty shell, a refuge for nostalgics unable to accept the challenge facing all organizations in a changing world; adapt or perish."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "nä-ˈstal-jik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/n/nostal02.mp3",
+        "etymology": " + ",
+        "synonyms": [
+            "desirous"
+        ],
+        "related": [
+            "nostalgia"
+        ]
+    }
 }

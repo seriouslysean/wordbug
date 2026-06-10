@@ -2,6 +2,7 @@
     "word": "teeming",
     "date": "20250703",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "teem",
@@ -38,5 +39,10 @@
                 "teem molten metal into a mold"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtēm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/teem0001.mp3",
+        "etymology": "Middle English temen, from Old English tīman, tǣman; akin to Old English tēam offspring "
+    }
 }

@@ -2,6 +2,7 @@
     "word": "detritivore",
     "date": "20250901",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "detritivore",
@@ -11,5 +12,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/detritivore"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "di-ˈtrī-tə-ˌvȯr",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/detri01v.mp3",
+        "etymology": "probably borrowed from French détritivore, from détritus  + -i-  + -vore \"one feeding on,\" noun derivative of -vore "
+    }
 }

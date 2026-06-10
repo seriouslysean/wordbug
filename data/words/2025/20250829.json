@@ -2,6 +2,7 @@
     "word": "thingamajig",
     "date": "20250829",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "thingamajig",
@@ -11,5 +12,32 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/thingamajig"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈthiŋ-ə-mə-ˌjig",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/thinga02.mp3",
+        "etymology": "alteration of earlier thingum, from thing",
+        "synonyms": [
+            "doodad",
+            "doohickey",
+            "doojigger",
+            "gimmick",
+            "gizmo",
+            "gismo",
+            "gubbins",
+            "thingamabob",
+            "thingumabob",
+            "thingmabob",
+            "thingumajig",
+            "thingmajig",
+            "thingummy",
+            "whatchamacallit",
+            "whatchamacallum",
+            "whatsis",
+            "widget"
+        ],
+        "related": [
+            "stuff"
+        ]
+    }
 }

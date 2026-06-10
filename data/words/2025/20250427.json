@@ -2,6 +2,7 @@
     "word": "feces",
     "date": "20250427",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "feces",
@@ -11,5 +12,33 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/feces"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfē-(ˌ)sēz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/feces001.mp3",
+        "etymology": "Middle English fece \"sediment, dregs,\" fecis, fecez (plural) \"excrement,\" borrowed from Latin faec-, faex, fēx (singular) \"wine lees, tartar, dregs, dross\" (Medieval Latin also \"excrement\"), of obscure origin",
+        "synonyms": [
+            "fecal matter",
+            "faecal matter",
+            "faeces",
+            "BM",
+            "stool",
+            "ordure",
+            "dejection"
+        ],
+        "related": [
+            "body waste",
+            "excretion",
+            "defecate",
+            "dog shit",
+            "dog do",
+            "crap",
+            "dirt",
+            "droppings",
+            "dung",
+            "meconium",
+            "melena",
+            "melaena"
+        ]
+    }
 }

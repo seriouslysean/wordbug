@@ -2,6 +2,7 @@
     "word": "buggy",
     "date": "20250623",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "buggy",
@@ -115,5 +116,41 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/buggy"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbə-gē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/buggy001.mp3",
+        "synonyms": [
+            "balmy",
+            "barmy",
+            "bats",
+            "batty",
+            "bonkers",
+            "cracked",
+            "crackers",
+            "daft",
+            "dotty",
+            "fruity",
+            "haywire",
+            "kooky",
+            "kookie",
+            "loco",
+            "loony",
+            "loopy",
+            "nuts",
+            "nutty",
+            "round the bend",
+            "around the bend"
+        ],
+        "related": [
+            "addle-head",
+            "addlehead",
+            "kook",
+            "odd fellow",
+            "craziness",
+            "daftness",
+            "bug",
+            "bugginess"
+        ]
+    }
 }

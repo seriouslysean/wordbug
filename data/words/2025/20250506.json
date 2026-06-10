@@ -2,6 +2,7 @@
     "word": "taboo",
     "date": "20250506",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "taboo",
@@ -91,5 +92,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/taboo"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "tə-ˈbü",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/taboo101.mp3",
+        "etymology": "Tongan tabu",
+        "synonyms": [
+            "forbidden",
+            "out",
+            "prohibited",
+            "proscribed",
+            "tabu",
+            "verboten",
+            "impermissible",
+            "sacred"
+        ]
+    }
 }

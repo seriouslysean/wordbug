@@ -2,6 +2,7 @@
     "word": "oddball",
     "date": "20251108",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "oddball",
@@ -11,5 +12,23 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/oddball"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈäd-ˌbȯl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/oddbal01.mp3",
+        "synonyms": [
+            "eccentric",
+            "eccentric person",
+            "flake",
+            "geek"
+        ],
+        "related": [
+            "person",
+            "individual",
+            "crackpot",
+            "crank",
+            "nutter",
+            "wacko"
+        ]
+    }
 }

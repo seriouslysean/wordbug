@@ -2,6 +2,7 @@
     "word": "surly",
     "date": "20260104",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "surly",
@@ -36,5 +37,18 @@
                 "surly weather"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsər-lē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/surly001.mp3",
+        "etymology": "alteration of Middle English serreli lordly, imperious, probably from sire, ser sire",
+        "synonyms": [
+            "ugly",
+            "ill-natured"
+        ],
+        "related": [
+            "temper",
+            "biliousness"
+        ]
+    }
 }

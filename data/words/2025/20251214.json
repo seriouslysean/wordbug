@@ -2,6 +2,7 @@
     "word": "pectoral",
     "date": "20251214",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "pectoral",
@@ -75,5 +76,26 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/pectoral"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈpek-t(ə-)rəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pector01.mp3",
+        "synonyms": [
+            "pectoral muscle",
+            "pectoralis",
+            "musculus pectoralis",
+            "pecs",
+            "pectoral medallion"
+        ],
+        "related": [
+            "skeletal muscle",
+            "striated muscle",
+            "thoracic",
+            "pectoralis major",
+            "musculus pectoralis major",
+            "pectoralis minor",
+            "musculus pectoralis minor",
+            "adornment"
+        ]
+    }
 }

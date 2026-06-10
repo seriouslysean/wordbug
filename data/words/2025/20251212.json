@@ -2,6 +2,7 @@
     "word": "anisotropic",
     "date": "20251212",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "anisotropic",
@@ -14,5 +15,19 @@
                 "an anisotropic crystal"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌa-ˌnī-sə-ˈträ-pik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/anisot01.mp3",
+        "etymology": " + , probably after German anisotropisch",
+        "synonyms": [
+            "aeolotropic"
+        ],
+        "antonyms": [
+            "isotropic"
+        ],
+        "related": [
+            "anisotropy"
+        ]
+    }
 }

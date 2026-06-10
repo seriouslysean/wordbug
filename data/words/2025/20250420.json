@@ -2,6 +2,7 @@
     "word": "ethereal",
     "date": "20250420",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ethereal",
@@ -66,5 +67,22 @@
                 "an ethereal solution"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "i-ˈthir-ē-əl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/ethere01.mp3",
+        "synonyms": [
+            "aeriform",
+            "aerial",
+            "airy",
+            "aery",
+            "insubstantial"
+        ],
+        "related": [
+            "airiness",
+            "buoyancy",
+            "ether",
+            "ethoxyethane"
+        ]
+    }
 }

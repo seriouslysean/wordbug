@@ -2,6 +2,7 @@
     "word": "rhododendron",
     "date": "20250323",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "rhododendron",
@@ -43,5 +44,21 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/rhododendron"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌrō-də-ˈden-drən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/rhodod01.mp3",
+        "etymology": "borrowed from New Latin (), going back to Latin, \"oleander, a plant of the Black Sea region described by Pliny whose honey is toxic (probably Rhododendron ponticum),\" borrowed from Greek rhodódendron, from rhodo-  + déndron \"tree\" ",
+        "related": [
+            "shrub",
+            "bush",
+            "coast rhododendron",
+            "Rhododendron californicum",
+            "rosebay",
+            "Rhododendron maxima",
+            "swamp azalea",
+            "swamp honeysuckle",
+            "azalea"
+        ]
+    }
 }

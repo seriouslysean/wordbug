@@ -2,6 +2,7 @@
     "word": "riffraff",
     "date": "20250907",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "riffraff",
@@ -27,5 +28,21 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/riffraff"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈrif-ˌraf",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/riffra01.mp3",
+        "etymology": "Middle English ryffe raffe, from rif and raf every single one, from Anglo-French rif e raf altogether",
+        "synonyms": [
+            "rabble",
+            "ragtag",
+            "ragtag and bobtail"
+        ],
+        "related": [
+            "folk",
+            "folks",
+            "trash",
+            "scum"
+        ]
+    }
 }

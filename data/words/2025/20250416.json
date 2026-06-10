@@ -2,6 +2,7 @@
     "word": "subatomic",
     "date": "20250416",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "subatomic",
@@ -19,5 +20,12 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/subatomic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌsəb-ə-ˈtä-mik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/subato01.mp3",
+        "synonyms": [
+            "small"
+        ]
+    }
 }

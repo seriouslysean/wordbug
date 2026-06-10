@@ -2,6 +2,7 @@
     "word": "latrine",
     "date": "20250719",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "latrine",
@@ -19,5 +20,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/latrine"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "lə-ˈtrēn",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/latrin01.mp3",
+        "etymology": "French, from Latin latrina, contraction of lavatrina, from lavare to wash ",
+        "related": [
+            "public toilet",
+            "comfort station"
+        ]
+    }
 }

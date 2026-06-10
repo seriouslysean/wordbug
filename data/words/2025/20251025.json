@@ -2,6 +2,7 @@
     "word": "cichlid",
     "date": "20251025",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cichlid",
@@ -19,5 +20,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cichlid"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsi-kləd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cichli01.mp3",
+        "etymology": "from the base of New Latin Cichlidae, family name, from Cichla, a genus in the family (borrowed from Greek kíchlē \"thrush, a species of wrasse,\" probably of pre-Greek substratal origin) + -idae ",
+        "synonyms": [
+            "cichlid fish"
+        ],
+        "related": [
+            "percoid fish",
+            "percoid",
+            "bolti",
+            "Tilapia nilotica"
+        ]
+    }
 }

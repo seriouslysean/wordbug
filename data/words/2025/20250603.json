@@ -2,6 +2,7 @@
     "word": "sophisticated",
     "date": "20250603",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sophisticated",
@@ -69,5 +70,31 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/sophisticated"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "sə-ˈfi-stə-ˌkā-təd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sophis09.mp3",
+        "etymology": "Medieval Latin sophisticatus",
+        "synonyms": [
+            "blase",
+            "intelligent",
+            "polished",
+            "worldly-wise",
+            "advanced",
+            "high-tech"
+        ],
+        "antonyms": [
+            "naive"
+        ],
+        "related": [
+            "cosmopolitan",
+            "widely distributed",
+            "disenchanted",
+            "elegant",
+            "informed",
+            "literate",
+            "worldly",
+            "secular"
+        ]
+    }
 }

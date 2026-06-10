@@ -2,6 +2,7 @@
     "word": "perennial",
     "date": "20251106",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "perennial",
@@ -48,5 +49,17 @@
                 "death is a perennial literary theme"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "pə-ˈre-nē-əl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/perenn04.mp3",
+        "etymology": "Latin perennis, from per- throughout + annus year , ",
+        "synonyms": [
+            "long"
+        ],
+        "antonyms": [
+            "annual",
+            "biennial"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "metalloid",
     "date": "20250409",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "metalloid",
@@ -35,5 +36,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/metalloid"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈme-tə-ˌlȯid",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/metall10.mp3",
+        "etymology": "metall-, form in derivation of  + , after German Metalloide & French métalloïde"
+    }
 }

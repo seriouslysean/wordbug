@@ -2,6 +2,7 @@
     "word": "elm",
     "date": "20250723",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "elm",
@@ -99,5 +100,36 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/elm"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈelm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/elm00001.mp3",
+        "etymology": "Middle English, from Old English; akin to Old High German elme elm, Latin ulmus",
+        "synonyms": [
+            "elm tree",
+            "elmwood"
+        ],
+        "related": [
+            "tree",
+            "winged elm",
+            "wing elm",
+            "American elm",
+            "white elm",
+            "smooth-leaved elm",
+            "European field elm",
+            "cedar elm",
+            "Ulmus crassifolia",
+            "witch elm",
+            "wych elm",
+            "Dutch elm",
+            "Ulmus hollandica",
+            "Huntingdon elm",
+            "Ulmus hollandica vegetata",
+            "water elm",
+            "Ulmus laevis",
+            "Chinese elm",
+            "Ulmus parvifolia",
+            "English elm"
+        ]
+    }
 }

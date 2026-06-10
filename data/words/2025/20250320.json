@@ -2,6 +2,7 @@
     "word": "talented",
     "date": "20250320",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "talent",
@@ -27,5 +28,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/talented"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈta-lənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/talent01.mp3",
+        "etymology": "Middle English, from Old English talente, from Latin talenta, plural of talentum unit of weight or money, from Greek talanton pan of a scale, weight; akin to Greek tlēnai to bear; in senses 3–5, from the parable of the talents in Matthew 25:14–30 "
+    }
 }

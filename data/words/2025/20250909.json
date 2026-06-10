@@ -2,6 +2,7 @@
     "word": "dank",
     "date": "20250909",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "dank",
@@ -14,5 +15,18 @@
                 "a dank basement"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdaŋk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/dank0001.mp3",
+        "etymology": "Middle English danke",
+        "synonyms": [
+            "clammy",
+            "wet"
+        ],
+        "related": [
+            "dankness",
+            "clamminess"
+        ]
+    }
 }

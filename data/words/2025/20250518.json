@@ -2,6 +2,7 @@
     "word": "conglomerate",
     "date": "20250518",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "conglomerate",
@@ -59,5 +60,17 @@
                 "an international conglomerate of some 350 businesses"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "kən-ˈglä-mə-rət",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/conglo04.mp3",
+        "etymology": "Latin conglomeratus, past participle of conglomerare to roll together, from com- + glomerare to wind into a ball, from glomer-, glomus ball ",
+        "synonyms": [
+            "combined"
+        ],
+        "related": [
+            "pudding stone",
+            "empire"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "carcasses",
     "date": "20250418",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "carcass",
@@ -42,5 +43,10 @@
                 "the carcass of an abandoned automobile"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkär-kəs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/carcas01.mp3",
+        "etymology": "Middle English carcays, from Anglo-French carcas, carkeis"
+    }
 }

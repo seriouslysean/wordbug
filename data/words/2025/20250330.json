@@ -2,6 +2,7 @@
     "word": "epilepsy",
     "date": "20250330",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "epilepsy",
@@ -38,5 +39,32 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/epilepsy"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈe-pə-ˌlep-sē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/epilep01.mp3",
+        "etymology": "Middle English epilencie, from Anglo-French & Latin; Anglo-French epelempsie, modification of Late Latin epilepsia, from Greek epilēpsia, from epilambanein to seize, from epi- + lambanein to take, seize ",
+        "related": [
+            "brain disorder",
+            "encephalopathy",
+            "epileptic",
+            "akinetic epilepsy",
+            "cortical epilepsy",
+            "focal epilepsy",
+            "grand mal epilepsy",
+            "grand mal",
+            "myoclonus epilepsy",
+            "Lafora's disease",
+            "petit mal epilepsy",
+            "petit mal",
+            "posttraumatic epilepsy",
+            "traumatic epilepsy",
+            "procursive epilepsy",
+            "psychomotor epilepsy",
+            "temporal lobe epilepsy",
+            "reflex epilepsy",
+            "status epilepticus",
+            "tonic epilepsy"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "pagoda",
     "date": "20250608",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "pagoda",
@@ -11,5 +12,13 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/pagoda"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "pə-ˈgō-də",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pagoda01.mp3",
+        "etymology": "Portuguese pagode statue of a deity, Hindu or Buddhist temple",
+        "related": [
+            "temple"
+        ]
+    }
 }

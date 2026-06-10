@@ -2,6 +2,7 @@
     "word": "sapiens",
     "date": "20250507",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sapiens",
@@ -19,5 +20,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/sapiens"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsa-pē-ənz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sapien02.mp3",
+        "etymology": "New Latin (specific epithet of Homo sapiens), from Latin, present participle of sapere"
+    }
 }

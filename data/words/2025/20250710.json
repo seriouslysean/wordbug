@@ -2,6 +2,7 @@
     "word": "penicillin",
     "date": "20250710",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "penicillin",
@@ -19,5 +20,30 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/penicillin"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌpe-nə-ˈsi-lən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/penici03.mp3",
+        "etymology": "New Latin Penicillium",
+        "related": [
+            "antibiotic",
+            "antibiotic drug",
+            "amoxicillin",
+            "Amoxil",
+            "ampicillin",
+            "Principen",
+            "griseofulvin",
+            "Fulvicin",
+            "methicillin",
+            "penicillinase-resistant antibiotic",
+            "penicillin F",
+            "penicillin G",
+            "benzylpenicillin",
+            "penicillin O",
+            "penicillin V",
+            "phenoxymethyl penicillin",
+            "piperacillin",
+            "Pipracil"
+        ]
+    }
 }

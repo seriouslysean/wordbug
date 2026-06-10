@@ -2,6 +2,7 @@
     "word": "karma",
     "date": "20251120",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "karma",
@@ -33,5 +34,14 @@
                 "Graffiti on the walls of trains or subway stations create bad karma."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkär-mə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/k/karma001.mp3",
+        "etymology": "Sanskrit karma fate, work",
+        "related": [
+            "destiny",
+            "fate"
+        ]
+    }
 }

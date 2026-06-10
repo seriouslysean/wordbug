@@ -2,6 +2,7 @@
     "word": "drool",
     "date": "20250817",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "drool",
@@ -64,5 +65,25 @@
                 "wipe the drool from his chin"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdrül",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/drool001.mp3",
+        "etymology": "perhaps alteration of drivel",
+        "synonyms": [
+            "salivate",
+            "drivel",
+            "slabber",
+            "slaver",
+            "slobber",
+            "dribble"
+        ],
+        "related": [
+            "covet",
+            "dribbler",
+            "driveller",
+            "drool over",
+            "slobber over"
+        ]
+    }
 }

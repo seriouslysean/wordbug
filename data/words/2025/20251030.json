@@ -2,6 +2,7 @@
     "word": "radula",
     "date": "20251030",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "radula",
@@ -11,5 +12,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/radula"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈra-jə-lə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/radula01.mp3",
+        "etymology": "adaptation (as translation of German Reibplatte) of Latin rādula “scraper,” from rādere “to scrape, scratch, pare away, shave” + -ula, deverbal suffix of adjectives and nouns "
+    }
 }

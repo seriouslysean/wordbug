@@ -2,6 +2,7 @@
     "word": "therapeutic",
     "date": "20251112",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "therapeutic",
@@ -79,5 +80,25 @@
                 "Farm animals are the target of nearly half the antibiotics produced in the United States, mostly in the form of low or subtherapeutic doses aimed at preventing disease or promoting growth."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌther-ə-ˈpyü-tik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/therap02.mp3",
+        "etymology": "Greek therapeutikos, from therapeuein to attend, treat, from theraps attendant",
+        "synonyms": [
+            "curative",
+            "healing",
+            "alterative",
+            "remedial",
+            "sanative",
+            "healthful",
+            "therapeutical"
+        ],
+        "related": [
+            "remedy",
+            "bring around",
+            "cure",
+            "therapy"
+        ]
+    }
 }

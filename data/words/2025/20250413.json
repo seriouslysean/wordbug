@@ -2,6 +2,7 @@
     "word": "vainglorious",
     "date": "20250413",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "vainglorious",
@@ -11,5 +12,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/vainglorious"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌvān-ˈglȯr-ē-əs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/vaingl01.mp3",
+        "etymology": "Middle English vaynegloryous, from vaynglorie  + -ous , after Middle French vaneglorious and Medieval Latin vāniglōrius",
+        "synonyms": [
+            "big",
+            "swelled",
+            "proud"
+        ],
+        "related": [
+            "boastfulness",
+            "vainglory"
+        ]
+    }
 }

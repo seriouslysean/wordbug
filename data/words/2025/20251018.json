@@ -2,6 +2,7 @@
     "word": "hypotenuse",
     "date": "20251018",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "hypotenuse",
@@ -19,5 +20,13 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/hypotenuse"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "hī-ˈpä-tə-ˌnüs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/hypote03.mp3",
+        "etymology": "earlier hypothenusa, hypothenuse, borrowed from Latin hypotēnūsa, borrowed from Greek hypoteínousa, noun derivative (with grammḗ \"line\" or pleurá \"side\" understood) from feminine of hypoteínōn, present participle of hypoteínein \"to stretch under, put under, subtend,\" from hypo-  + teínein \"to stretch, extend\" ",
+        "related": [
+            "flank"
+        ]
+    }
 }

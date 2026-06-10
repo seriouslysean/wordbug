@@ -2,6 +2,7 @@
     "word": "integumentary",
     "date": "20251103",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "integumentary",
@@ -16,5 +17,15 @@
                 "an integumentary tumor"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "in-ˌte-gyə-ˈmen-t(ə-)rē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/integu02.mp3",
+        "synonyms": [
+            "integumental"
+        ],
+        "related": [
+            "integument"
+        ]
+    }
 }

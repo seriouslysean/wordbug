@@ -2,6 +2,7 @@
     "word": "relationship",
     "date": "20250712",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "relationship",
@@ -71,6 +72,39 @@
                 "claimed a relationship with the deceased",
                 "a list of family relationships"
             ]
+        },
+        {
+            "id": "parasocial",
+            "partOfSpeech": "adjective",
+            "text": "relating to or involving a one-sided emotional connection with someone (especially a celebrity or fictional character) whom one does not know personally",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/relationship",
+            "examples": [
+                "… parasocial …—a term coined in 1956 to describe the connection between television viewers and a new class of entertainment personalities, including announcers, game-show hosts and anyone else who spoke in direct address to the camera.",
+                "“Most of these relationships originate when someone is admired at a distance,” says Gayle Stever, Ph.D., a professor of psychology at Empire State College/State University of New York who researches parasocial attachment. “Lack of reciprocity is a defining feature.” Most occur through media, but they may also form in other settings, like with a professor, pastor, or someone you see around campus, she notes.",
+                "… we all partake in parasocial interactions. We mentally interact with characters we watch on TV, or the characters in books we're reading, or podcasts we listen to.",
+                "Platforms like Twitter have transformed the nature of parasocial relationships, both intensifying them and making them harder to define, as more celebrities actively interact with fans and share personal information."
+            ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ri-ˈlā-shən-ˌship",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/relati03.mp3",
+        "synonyms": [
+            "human relationship"
+        ],
+        "related": [
+            "relation",
+            "relative",
+            "partnership",
+            "personal relation",
+            "personal relationship",
+            "state",
+            "anaclisis",
+            "love affair",
+            "romance",
+            "sexual relationship"
+        ]
+    }
 }

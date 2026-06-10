@@ -2,6 +2,7 @@
     "word": "buffalo",
     "date": "20251021",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "buffalo",
@@ -75,6 +76,19 @@
             "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         },
         {
+            "id": "buffalo sauce",
+            "partOfSpeech": "noun",
+            "text": "a tangy spicy sauce that typically contains hot sauce and butter often with other ingredients (such as vinegar, Worcestershire sauce, and garlic) and that is used especially as a dressing for buffalo wings",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo",
+            "examples": [
+                "Transfer the hot cooked wings to the large bowl and toss with the buffalo sauce.",
+                "Conventional Buffalo sauce is comprised of some combination of butter and hot sauce.",
+                "… pizza with buffalo sauce, chopped chicken, and bleu cheese."
+            ]
+        },
+        {
             "id": "buffalo soldier",
             "partOfSpeech": "noun",
             "text": "an African American soldier serving in the western U.S. after the Civil War",
@@ -90,5 +104,18 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/buffalo"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbə-fə-ˌlō",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/buffal01.mp3",
+        "etymology": "Italian bufalo & Spanish búfalo, from Late Latin bufalus, alteration of Latin bubalus, from Greek boubalos African gazelle",
+        "synonyms": [
+            "American bison",
+            "American buffalo",
+            "Bison bison"
+        ],
+        "related": [
+            "bison"
+        ]
+    }
 }

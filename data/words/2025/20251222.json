@@ -2,6 +2,7 @@
     "word": "versatile",
     "date": "20251222",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "versatile",
@@ -61,5 +62,18 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/versatile"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈvər-sə-tᵊl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/versat02.mp3",
+        "etymology": "borrowed from Latin versātilis \"able to turn, operated by turning, capable of turning to different tasks,\" from versāre \"to keep turning\" (frequentative of vertere \"to turn\") + -tilis, suffix with the sense \"characterized by, obtained by\" ",
+        "synonyms": [
+            "various",
+            "varied",
+            "variable"
+        ],
+        "related": [
+            "versatility"
+        ]
+    }
 }

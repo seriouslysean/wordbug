@@ -2,6 +2,7 @@
     "word": "velocity",
     "date": "20250421",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "velocity",
@@ -64,5 +65,35 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/velocity"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "və-ˈlä-sə-tē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/veloci03.mp3",
+        "etymology": "Middle English velocite, borrowed from Anglo-French & Latin; Anglo-French veloceté, borrowed from Latin vēlōcitāt-, vēlōcitās, from vēlōc-, vēlōx \"swift, rapid\" (of uncertain origin) + -itāt-, -itās  ",
+        "synonyms": [
+            "speed"
+        ],
+        "related": [
+            "rate",
+            "rapid",
+            "speedy",
+            "travel rapidly",
+            "accelerate",
+            "rush",
+            "hotfoot",
+            "speed up",
+            "angular velocity",
+            "airspeed",
+            "escape velocity",
+            "groundspeed",
+            "hypervelocity",
+            "muzzle velocity",
+            "peculiar velocity",
+            "radial velocity",
+            "speed of light",
+            "light speed",
+            "steerageway",
+            "terminal velocity"
+        ]
+    }
 }

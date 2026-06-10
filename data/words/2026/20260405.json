@@ -1,15 +1,35 @@
 {
     "word": "monosaccharide",
     "date": "20260405",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
+            "id": "monosaccharide",
             "partOfSpeech": "noun",
-            "text": "A simple sugar such as glucose, fructose or deoxyribose that has a single ring",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/monosaccharide"
+            "text": "a sugar that is not decomposable into simpler sugars by hydrolysis, is classed as either an aldose or ketose, and contains one or more hydroxyl groups per molecule —called also simple sugar",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/monosaccharide"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌmä-nə-ˈsa-kə-ˌrīd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/monosa01.mp3",
+        "etymology": "International Scientific Vocabulary",
+        "synonyms": [
+            "monosaccharose",
+            "simple sugar"
+        ],
+        "related": [
+            "carbohydrate",
+            "saccharide",
+            "triose",
+            "tetrose",
+            "pentose",
+            "hexose",
+            "aldose",
+            "ketose"
+        ]
+    }
 }

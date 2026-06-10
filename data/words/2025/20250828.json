@@ -2,6 +2,7 @@
     "word": "triskaidekaphobia",
     "date": "20250828",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "triskaidekaphobia",
@@ -11,5 +12,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/triskaidekaphobia"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌtri-ˌskī-ˌde-kə-ˈfō-bē-ə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/triska02.mp3",
+        "etymology": "New Latin, from Greek treiskaideka thirteen (from treis three + kai and + deka ten) + New Latin phobia , ",
+        "related": [
+            "simple phobia",
+            "triskaidekaphobic"
+        ]
+    }
 }

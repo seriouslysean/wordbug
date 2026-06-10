@@ -2,6 +2,7 @@
     "word": "cardamom",
     "date": "20251208",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cardamom",
@@ -11,5 +12,21 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cardamom"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkär-də-məm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cardam01.mp3",
+        "etymology": "Latin cardamomum, from Greek kardamōmon, blend of kardamon peppergrass and amōmon, an Indian spice plant",
+        "synonyms": [
+            "cardamon",
+            "Elettaria cardamomum",
+            "cardamum"
+        ],
+        "related": [
+            "herb",
+            "herbaceous plant",
+            "flavorer",
+            "flavourer"
+        ]
+    }
 }

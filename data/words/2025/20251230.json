@@ -2,6 +2,7 @@
     "word": "anthropomorphization",
     "date": "20251230",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "anthropomorphize",
@@ -19,5 +20,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/anthropomorphization"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌan(t)-thrə-pə-ˈmȯr-ˌfīz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/anthro20.mp3",
+        "etymology": " or  + "
+    }
 }

@@ -2,6 +2,7 @@
     "word": "sulk",
     "date": "20250818",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sulk",
@@ -33,5 +34,20 @@
                 "in a sulk"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsəlk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sulk0001.mp3",
+        "etymology": "back-formation from sulky",
+        "synonyms": [
+            "pout",
+            "brood"
+        ],
+        "related": [
+            "sourpuss",
+            "picklepuss",
+            "sulkiness",
+            "grizzle"
+        ]
+    }
 }

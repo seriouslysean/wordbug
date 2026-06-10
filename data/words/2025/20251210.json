@@ -2,6 +2,7 @@
     "word": "eau",
     "date": "20251210",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "eau de cologne",
@@ -42,5 +43,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/eau"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌō-də-kə-ˈlōn",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/eau_de01.mp3",
+        "etymology": "French, literally, Cologne water, from Cologne, Germany"
+    }
 }

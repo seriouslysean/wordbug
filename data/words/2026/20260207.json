@@ -2,6 +2,7 @@
     "word": "soprano",
     "date": "20260207",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "soprano",
@@ -43,5 +44,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/soprano"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "sə-ˈpra-(ˌ)nō",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sopran03.mp3",
+        "etymology": "Italian, adjective & noun, from sopra above, from Latin supra ",
+        "synonyms": [
+            "treble",
+            "high"
+        ]
+    }
 }

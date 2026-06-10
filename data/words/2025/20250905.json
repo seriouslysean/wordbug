@@ -2,6 +2,7 @@
     "word": "semicircular",
     "date": "20250905",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "semicircle",
@@ -27,5 +28,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/semicircular"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈse-mē-ˌsər-kəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/semici01.mp3",
+        "etymology": "Latin semicirculus, from semi- + circulus circle"
+    }
 }

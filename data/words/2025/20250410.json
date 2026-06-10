@@ -2,6 +2,7 @@
     "word": "marsupial",
     "date": "20250410",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "marsupial",
@@ -27,5 +28,27 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/marsupial"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "mär-ˈsü-pē-əl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/marsup01.mp3",
+        "etymology": "from the base of New Latin Marsupialia, order name, from neuter plural of marsūpiālis \"of a pouch,\" from marsūpium \"pouch, \" + -ālis ",
+        "synonyms": [
+            "pouched mammal"
+        ],
+        "related": [
+            "metatherian",
+            "opossum",
+            "possum",
+            "opossum rat",
+            "bandicoot",
+            "kangaroo",
+            "phalanger",
+            "wombat",
+            "dasyurid marsupial",
+            "dasyurid",
+            "pouched mole",
+            "marsupial mole"
+        ]
+    }
 }

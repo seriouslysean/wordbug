@@ -2,6 +2,7 @@
     "word": "centennial",
     "date": "20250423",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "centennial",
@@ -11,5 +12,17 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/centennial"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "sen-ˈte-nē-əl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/centen04.mp3",
+        "etymology": "Latin centum + English -ennial (as in biennial)",
+        "synonyms": [
+            "centenary"
+        ],
+        "related": [
+            "anniversary",
+            "day of remembrance"
+        ]
+    }
 }

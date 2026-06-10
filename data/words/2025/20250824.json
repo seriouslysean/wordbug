@@ -2,6 +2,7 @@
     "word": "hyacinth",
     "date": "20250824",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "hyacinth",
@@ -91,5 +92,24 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/hyacinth"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈhī-ə-(ˌ)sin(t)th",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/hyacin01.mp3",
+        "etymology": "Latin hyacinthus, a precious stone, a flowering plant, from Greek hyakinthos",
+        "synonyms": [
+            "jacinth"
+        ],
+        "related": [
+            "zircon",
+            "zirconium silicate",
+            "liliaceous plant",
+            "common hyacinth",
+            "Hyacinthus orientalis",
+            "Roman hyacinth",
+            "Hyacinthus orientalis albulus",
+            "summer hyacinth",
+            "cape hyacinth"
+        ]
+    }
 }

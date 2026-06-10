@@ -2,6 +2,7 @@
     "word": "ballista",
     "date": "20251231",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ballista",
@@ -11,5 +12,25 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/ballista"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "bə-ˈli-stə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/ballis01.mp3",
+        "etymology": "Middle English baliste \"crossbow, ballista,\" borrowed from Latin ballista, bālista \"ballista,\" borrowed from Greek ballistḗs, presumably \"thrower, military engine\" (attested only as the name of a constellation in an astrological manuscript), agent derivative of ballízein \"to throw, hurl\" ",
+        "synonyms": [
+            "catapult",
+            "arbalest",
+            "arbalist",
+            "bricole",
+            "mangonel",
+            "onager",
+            "trebuchet",
+            "trebucket"
+        ],
+        "related": [
+            "engine",
+            "catapultic",
+            "catapultian"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "mechanical",
     "date": "20250722",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "mechanical",
@@ -141,5 +142,25 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/mechanical"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "mi-ˈka-ni-kəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/mechan02.mp3",
+        "synonyms": [
+            "automatic",
+            "mechanic",
+            "mechanistic",
+            "mechanized",
+            "windup",
+            "mechanically skillful",
+            "technical"
+        ],
+        "antonyms": [
+            "nonmechanical"
+        ],
+        "related": [
+            "mechanism",
+            "mechanics"
+        ]
+    }
 }

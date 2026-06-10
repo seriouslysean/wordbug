@@ -2,6 +2,7 @@
     "word": "isosceles",
     "date": "20251202",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "isosceles",
@@ -19,5 +20,13 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/isosceles"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ī-ˈsä-sə-ˌlēz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/isosce01.mp3",
+        "etymology": "borrowed from Late Latin isoscelēs, borrowed from Greek isoskelḗs \"having equal legs, (of a triangle) having two equal sides, (of numbers) divisible into equal parts, even,\" from iso-  + -skelēs, adjective derivative of skélos (neuter s-stem) \"leg,\" going back to an Indo-European base *skel- \"bent,\" whence also Armenian šeł \"slanting, crooked\"; with o-grade, Greek skoliós \"bent, crooked, askew, devious\"; perhaps with a velar extension Germanic *skelga-/*skelha-, whence Old English sceolh \"oblique, wry,\" Old Frisian skilich \"squinting,\" Old High German skelah \"crooked, oblique,\" Old Icelandic skjalgr \"wry, oblique\"",
+        "synonyms": [
+            "symmetrical"
+        ]
+    }
 }

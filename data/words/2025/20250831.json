@@ -2,6 +2,7 @@
     "word": "organism",
     "date": "20250831",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "organism",
@@ -88,5 +89,34 @@
                 "For almost half a century, plant pathologists thought phytoplasmas were viruses. To this day, the inability to grow these bacteria outside plants or insects hinders efforts to get a handle on their biology and genomes."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈȯr-gə-ˌni-zəm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/organi06.mp3",
+        "synonyms": [
+            "being"
+        ],
+        "related": [
+            "living thing",
+            "animate thing",
+            "be",
+            "live",
+            "organismal",
+            "organismic",
+            "organic",
+            "benthos",
+            "dwarf",
+            "heterotroph",
+            "parent",
+            "person",
+            "individual",
+            "animal",
+            "animate being",
+            "plant",
+            "flora",
+            "native",
+            "recombinant",
+            "conspecific"
+        ]
+    }
 }

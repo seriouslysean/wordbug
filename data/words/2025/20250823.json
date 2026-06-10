@@ -2,6 +2,7 @@
     "word": "enthusiastic",
     "date": "20250823",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "enthusiastic",
@@ -15,5 +16,27 @@
                 "an enthusiastic recommendation"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "in-ˌthü-zē-ˈa-stik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/enthus04.mp3",
+        "etymology": "borrowed from New Latin & Greek; New Latin enthūsiasticus, borrowed from Greek enthousiastikós \"inspired, excited,\" from enthousiastḗs \"person inspired by a god\" + -ikos  ",
+        "synonyms": [
+            "ardent",
+            "avid",
+            "crazy",
+            "evangelical",
+            "glowing",
+            "gung ho",
+            "overenthusiastic"
+        ],
+        "antonyms": [
+            "unenthusiastic"
+        ],
+        "related": [
+            "passionate",
+            "spirited",
+            "enthusiasm"
+        ]
+    }
 }

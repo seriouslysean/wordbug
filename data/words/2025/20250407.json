@@ -2,6 +2,7 @@
     "word": "onomatopoeia",
     "date": "20250407",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "onomatopoeia",
@@ -27,5 +28,17 @@
                 "a study of the poet's onomatopoeia"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌä-nə-ˌmä-tə-ˈpē-ə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/onomat03.mp3",
+        "etymology": "Late Latin, from Greek onomatopoiia, from onomat-, onoma name + poiein to make ",
+        "related": [
+            "rhetorical device",
+            "onomatopoeic",
+            "onomatopoetic",
+            "echoic",
+            "imitative"
+        ]
+    }
 }

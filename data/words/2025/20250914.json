@@ -2,6 +2,7 @@
     "word": "interlocutor",
     "date": "20250914",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "interlocutor",
@@ -19,5 +20,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/interlocutor"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌin-tər-ˈlä-kyə-tər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/interl16.mp3",
+        "etymology": "Latin interloqui to speak between, issue an interlocutory decree, from inter- + loqui to speak",
+        "synonyms": [
+            "middleman",
+            "conversational partner"
+        ],
+        "related": [
+            "minstrel",
+            "conversationalist",
+            "conversationist"
+        ]
+    }
 }

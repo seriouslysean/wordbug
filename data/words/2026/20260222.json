@@ -2,6 +2,7 @@
     "word": "legionnaire",
     "date": "20260222",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "legionnaire",
@@ -19,5 +20,18 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/legionnaire"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌlē-jə-ˈner",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/legion03.mp3",
+        "etymology": "French légionnaire, from Latin legionarius",
+        "synonyms": [
+            "legionary"
+        ],
+        "related": [
+            "veteran",
+            "vet",
+            "soldier"
+        ]
+    }
 }

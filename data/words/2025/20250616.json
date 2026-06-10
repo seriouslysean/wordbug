@@ -2,6 +2,7 @@
     "word": "metropolitan",
     "date": "20250616",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "metropolitan",
@@ -51,5 +52,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/metropolitan"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌme-trə-ˈpä-lə-tən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/metrop02.mp3",
+        "related": [
+            "archbishop",
+            "resident",
+            "occupant"
+        ]
+    }
 }

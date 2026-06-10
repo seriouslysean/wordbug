@@ -2,6 +2,7 @@
     "word": "polecat",
     "date": "20250812",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "polecat",
@@ -19,5 +20,31 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/polecat"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈpōl-ˌkat",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/poleca01.mp3",
+        "etymology": "Middle English polcat, probably from Middle French poul, pol cock + Middle English cat; probably from its preying on poultry ",
+        "synonyms": [
+            "skunk",
+            "wood pussy",
+            "fitch",
+            "foulmart",
+            "foumart",
+            "Mustela putorius"
+        ],
+        "related": [
+            "musteline mammal",
+            "mustelid",
+            "striped skunk",
+            "Mephitis mephitis",
+            "hooded skunk",
+            "Mephitis macroura",
+            "hog-nosed skunk",
+            "hognosed skunk",
+            "spotted skunk",
+            "little spotted skunk",
+            "ferret"
+        ]
+    }
 }

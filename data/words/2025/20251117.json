@@ -2,6 +2,7 @@
     "word": "cuspid",
     "date": "20251117",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cuspid",
@@ -11,5 +12,24 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cuspid"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkə-spəd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cuspid01.mp3",
+        "etymology": "bicuspid",
+        "synonyms": [
+            "canine",
+            "canine tooth",
+            "eyetooth",
+            "eye tooth",
+            "dogtooth"
+        ],
+        "related": [
+            "tooth",
+            "cuspate",
+            "cuspated",
+            "laniary",
+            "fang"
+        ]
+    }
 }

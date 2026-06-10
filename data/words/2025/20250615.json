@@ -2,6 +2,7 @@
     "word": "aglet",
     "date": "20250615",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "aglet",
@@ -19,5 +20,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/aglet"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈa-glət",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/aglet001.mp3",
+        "etymology": "Middle English agglot, aglet, borrowed from Middle French aguillette, diminutive of aguille \"needle, pin,\" going back to Old French, going back to Gallo-Latin acūcula, alteration (with ū from Latin acūtus \"pointed\") of Late Latin acucula \"ornamental pin, pine needle,\" diminutive of Latin acus \"needle, pin\" ",
+        "synonyms": [
+            "aiglet",
+            "aiguilette"
+        ],
+        "related": [
+            "sheath",
+            "braid",
+            "gold braid"
+        ]
+    }
 }

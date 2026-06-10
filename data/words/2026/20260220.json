@@ -2,6 +2,7 @@
     "word": "collateral",
     "date": "20260220",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "collateral",
@@ -170,5 +171,16 @@
                 "And there is ulnar collateral ligament reconstruction, which nearly everyone has come to call Tommy John surgery."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "kə-ˈla-t(ə-)rəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/collat03.mp3",
+        "etymology": "derivative of , in sense 1 as short for collateral security",
+        "related": [
+            "security interest",
+            "confirmative",
+            "guarantee",
+            "guaranty"
+        ]
+    }
 }

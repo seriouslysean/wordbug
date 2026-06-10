@@ -2,6 +2,7 @@
     "word": "oscillated",
     "date": "20250326",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "oscillate",
@@ -45,5 +46,10 @@
                 "Bank rate oscillates between 2 and 6 percent."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈä-sə-ˌlāt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/oscill01.mp3",
+        "etymology": "Latin oscillatus, past participle of oscillare to swing, from oscillum swing"
+    }
 }

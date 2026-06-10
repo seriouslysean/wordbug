@@ -1,38 +1,63 @@
 {
     "word": "cuz",
     "date": "20250419",
-    "adapter": "wordnik",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
-            "partOfSpeech": "adverb",
-            "text": "<xref>because</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cuz",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
-            "partOfSpeech": "conjunction",
-            "text": "<xref>because</xref>",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cuz",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
-        },
-        {
+            "id": "cuz",
             "partOfSpeech": "noun",
-            "text": "<xref>cousin</xref> (usually as a term of address)",
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/cuz",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "text": "cousin",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cuz",
+            "examples": [
+                "… Robyne is my cuz, part of that ever-growing Fambro clan.",
+                "… a laughing group of cousins are gathered at Jan's home (\"Hi, cuzzes!\" says one, upon entering) …",
+                "Now [Triston] McKenzie refers to [CC] Sabathia as his “cuz,” one who returned to Cleveland to watch his mentee's first playoff start …"
+            ]
+        },
+        {
+            "id": "cuz",
+            "partOfSpeech": "noun",
+            "text": "a friend or acquaintance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cuz",
+            "examples": [
+                "… Robyne is my cuz, part of that ever-growing Fambro clan.",
+                "… a laughing group of cousins are gathered at Jan's home (\"Hi, cuzzes!\" says one, upon entering) …",
+                "Now [Triston] McKenzie refers to [CC] Sabathia as his “cuz,” one who returned to Cleveland to watch his mentee's first playoff start …"
+            ]
+        },
+        {
+            "id": "cuz",
+            "partOfSpeech": "noun",
+            "text": "—used as a friendly way of addressing someone and especially a man or boy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cuz",
+            "examples": [
+                "… Robyne is my cuz, part of that ever-growing Fambro clan.",
+                "… a laughing group of cousins are gathered at Jan's home (\"Hi, cuzzes!\" says one, upon entering) …",
+                "Now [Triston] McKenzie refers to [CC] Sabathia as his “cuz,” one who returned to Cleveland to watch his mentee's first playoff start …"
+            ]
+        },
+        {
+            "id": "cuz",
+            "partOfSpeech": "conjunction",
+            "text": "because",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cuz",
+            "examples": [
+                "“Why aren't you at work now?” “Cuz I got laid off, man!”"
+            ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkəz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/coz00001.mp3",
+        "etymology": "shortening and respelling of "
+    }
 }

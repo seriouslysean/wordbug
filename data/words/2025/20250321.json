@@ -2,6 +2,7 @@
     "word": "erosion",
     "date": "20250321",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "erosion",
@@ -35,5 +36,31 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/erosion"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "i-ˈrō-zhən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/erosio01.mp3",
+        "synonyms": [
+            "eroding",
+            "eating away",
+            "wearing",
+            "wearing away"
+        ],
+        "related": [
+            "geological process",
+            "geologic process",
+            "erode",
+            "gnaw",
+            "eat away",
+            "chatter mark",
+            "ablation",
+            "abrasion",
+            "attrition",
+            "beach erosion",
+            "deflation",
+            "planation",
+            "soil erosion",
+            "environmental condition"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "delirious",
     "date": "20250524",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "delirious",
@@ -29,5 +30,25 @@
                 "delirious fans"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "di-ˈlir-ē-əs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/deliri01.mp3",
+        "etymology": "see delirium",
+        "synonyms": [
+            "hallucinating",
+            "ill",
+            "excited",
+            "frantic",
+            "mad",
+            "unrestrained",
+            "wild"
+        ],
+        "related": [
+            "craze",
+            "delirium",
+            "madness",
+            "rabidity"
+        ]
+    }
 }

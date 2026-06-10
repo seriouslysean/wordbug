@@ -2,6 +2,7 @@
     "word": "pareidolia",
     "date": "20250505",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "pareidolia",
@@ -14,5 +15,10 @@
                 "The scientific explanation for some people is pareidolia, or the human ability to see shapes or make pictures out of randomness. Think of the Rorschach inkblot test."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌper-ˌī-ˈdō-lē-ə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pareidolia_1.mp3",
+        "etymology": "borrowed from German Pareidolie, from Greek par-  + eídōlon \"image, reflection\" + German -ie  "
+    }
 }

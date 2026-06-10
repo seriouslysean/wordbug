@@ -2,6 +2,7 @@
     "word": "ricocheted",
     "date": "20250716",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ricochet",

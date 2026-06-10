@@ -2,6 +2,7 @@
     "word": "locomotion",
     "date": "20250504",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "locomotion",
@@ -25,5 +26,37 @@
                 "… interest in free locomotion and choice of occupation."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌlō-kə-ˈmō-shən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/locomo02.mp3",
+        "etymology": "Latin locus + English motion",
+        "synonyms": [
+            "motive power",
+            "motivity",
+            "travel"
+        ],
+        "related": [
+            "mobility",
+            "motive",
+            "motor",
+            "locomotive",
+            "locomotor",
+            "go",
+            "motion",
+            "movement",
+            "brachiation",
+            "walk",
+            "walking",
+            "step",
+            "gait",
+            "run",
+            "running",
+            "jog",
+            "trot",
+            "crawl",
+            "crawling",
+            "lap"
+        ]
+    }
 }

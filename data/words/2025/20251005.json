@@ -2,6 +2,7 @@
     "word": "gape",
     "date": "20251005",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "gape",
@@ -102,5 +103,21 @@
                 "a case of gapes"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈgāp",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/g/gape0001.mp3",
+        "etymology": "Middle English gapen, borrowed from Old Norse gapa, going back to Germanic *gapōn- (whence Middle Dutch gapen \"to gaze stupidly,\" Middle High German gaffen), perhaps of phonesthemic origin",
+        "synonyms": [
+            "goggle",
+            "gawp",
+            "gawk",
+            "yawn",
+            "yaw"
+        ],
+        "related": [
+            "look",
+            "be"
+        ]
+    }
 }

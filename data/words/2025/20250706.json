@@ -2,6 +2,7 @@
     "word": "flunk",
     "date": "20250706",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "flunk",
@@ -66,5 +67,22 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/flunk"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfləŋk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/flunk001.mp3",
+        "etymology": "perhaps blend of flinch and funk",
+        "synonyms": [
+            "fail",
+            "bomb",
+            "flush it"
+        ],
+        "antonyms": [
+            "pass"
+        ],
+        "related": [
+            "turkey",
+            "failing"
+        ]
+    }
 }

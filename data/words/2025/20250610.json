@@ -2,6 +2,7 @@
     "word": "discipline",
     "date": "20250610",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "discipline",
@@ -141,5 +142,41 @@
                 "The management of programmers is a discipline unto itself. There are subdisciplines that deal with how coders communicate."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdi-sə-plən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/discip09.mp3",
+        "etymology": "Middle English, \"chastisement, system of ordered conduct, instruction, branch of learning,\" borrowed from Anglo-French & Latin; Anglo-French, borrowed from Latin disciplīna \"teaching, instruction, branch of study, orderly conduct based on moral training\" (Medieval Latin, \"chastisement, scourging\"), from discipulus \"pupil, learner\" + -īna, suffix denoting a place or practice (from noun derivative of feminine of -īnus ) ",
+        "synonyms": [
+            "subject",
+            "subject area",
+            "subject field",
+            "field",
+            "field of study",
+            "study",
+            "bailiwick"
+        ],
+        "related": [
+            "knowledge domain",
+            "knowledge base",
+            "learn",
+            "disciplinary",
+            "occultism",
+            "communications",
+            "communication theory",
+            "major",
+            "frontier",
+            "genealogy",
+            "allometry",
+            "bibliotics",
+            "ology",
+            "science",
+            "scientific discipline",
+            "architecture",
+            "landscape architecture",
+            "engineering",
+            "engineering science",
+            "futurology"
+        ]
+    }
 }

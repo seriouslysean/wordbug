@@ -2,6 +2,7 @@
     "word": "interpret",
     "date": "20251110",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "interpret",
@@ -45,5 +46,37 @@
                 "interprets a role"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "in-ˈtər-prət",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/interp19.mp3",
+        "etymology": "Middle English, from Anglo-French & Latin; Anglo-French interpreter, from Latin interpretari, from interpret-, interpres agent, negotiator, interpreter",
+        "synonyms": [
+            "construe",
+            "see",
+            "rede"
+        ],
+        "related": [
+            "understand",
+            "construal",
+            "collocate with",
+            "construe with",
+            "interpretation",
+            "reading",
+            "interpreting",
+            "misconstrue",
+            "misinterpret",
+            "read between the lines",
+            "mythicize",
+            "mythicise",
+            "literalize",
+            "literalise",
+            "spiritualize",
+            "spiritualise",
+            "reinterpret",
+            "allegorize",
+            "allegorise",
+            "take"
+        ]
+    }
 }

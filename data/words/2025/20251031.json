@@ -2,6 +2,7 @@
     "word": "sarcophagus",
     "date": "20251031",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sarcophagus",
@@ -11,5 +12,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/sarcophagus"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "sär-ˈkä-fə-gəs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sarcop01.mp3",
+        "etymology": "borrowed from Latin, after lapis sarcophagus \"kind of stone with caustic properties used for coffins,\" partial translation of Greek líthos sarkóphagos, literally, \"flesh-eating stone\"; sarkóphagos from sarko-  + -phagos ",
+        "related": [
+            "coffin",
+            "casket"
+        ]
+    }
 }

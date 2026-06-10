@@ -2,6 +2,7 @@
     "word": "anticlimactic",
     "date": "20251215",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "anticlimactic",
@@ -11,5 +12,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/anticlimactic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌan-tē-klī-ˈmak-tik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/anticlimactic.mp3",
+        "synonyms": [
+            "anticlimactical"
+        ],
+        "antonyms": [
+            "climactic"
+        ],
+        "related": [
+            "anticlimax",
+            "bathos"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "pedantic",
     "date": "20251227",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "pedantic",
@@ -57,5 +58,20 @@
                 "There is a reason books about architecture are not more popular; most of them are dull, pedantic, just plain bad."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "pi-ˈdan-tik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pedant02.mp3",
+        "etymology": "see pedant",
+        "synonyms": [
+            "academic",
+            "donnish",
+            "scholarly"
+        ],
+        "related": [
+            "pedantry",
+            "pedant",
+            "bookworm"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "parenthesis",
     "date": "20250705",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "parenthesis",
@@ -45,5 +46,26 @@
                 "The plant's common name is followed by its Latin name in parentheses."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "pə-ˈren(t)-thə-səs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/parent08.mp3",
+        "etymology": "Late Latin, from Greek, literally, act of inserting, from parentithenai to insert, from para- + en- en- + tithenai to place ",
+        "synonyms": [
+            "digression",
+            "aside",
+            "excursus",
+            "divagation"
+        ],
+        "related": [
+            "punctuation",
+            "punctuation mark",
+            "message",
+            "content",
+            "parenthetic",
+            "parenthetical",
+            "digress",
+            "stray"
+        ]
+    }
 }

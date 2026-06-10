@@ -2,6 +2,7 @@
     "word": "bureaucracy",
     "date": "20250926",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "bureaucracy",
@@ -45,5 +46,21 @@
                 "But the patchwork of remedies has been complicated by state laws, politics and bureaucracy."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "byu̇-ˈrä-krə-sē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/bureau03.mp3",
+        "etymology": "borrowed from French bureaucratie, from bureau  + -cratie ",
+        "synonyms": [
+            "bureaucratism"
+        ],
+        "related": [
+            "government officials",
+            "officialdom",
+            "bureaucratic",
+            "Pentagon",
+            "government",
+            "authorities"
+        ]
+    }
 }

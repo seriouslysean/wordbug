@@ -2,6 +2,7 @@
     "word": "peculiar",
     "date": "20250711",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "peculiar",
@@ -53,5 +54,35 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/peculiar"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "pi-ˈkyül-yər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/peculi01.mp3",
+        "etymology": "Middle English peculier, from Latin peculiaris of private property, special, from peculium private property, from pecu cattle; akin to Latin pecus cattle ",
+        "synonyms": [
+            "curious",
+            "funny",
+            "odd",
+            "queer",
+            "rum",
+            "rummy",
+            "singular",
+            "strange",
+            "particular",
+            "special",
+            "specific"
+        ],
+        "related": [
+            "singularity",
+            "oddity",
+            "queerness",
+            "curio",
+            "curiosity",
+            "foreignness",
+            "strangeness",
+            "peculiarity",
+            "specialness",
+            "particularity"
+        ]
+    }
 }

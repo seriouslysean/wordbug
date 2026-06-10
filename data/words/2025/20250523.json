@@ -2,6 +2,7 @@
     "word": "superior",
     "date": "20250523",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "superior",
@@ -143,5 +144,45 @@
                 "People with an extremely rare condition called “highly superior autobiographical memory” have the ability to remember every single event in their lives from a certain date in their childhood onward. If you ask them about an event they can remember the exact date, the weather and what they ate for lunch that day—and they can visualize it as vividly as if it happened yesterday."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "su̇-ˈpir-ē-ər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/superi14.mp3",
+        "etymology": "Middle English, from Middle French, from Latin, comparative of superus upper, from super over, above ",
+        "synonyms": [
+            "ace",
+            "banner",
+            "blue-ribbon",
+            "boss",
+            "brilliant",
+            "capital",
+            "choice",
+            "excellent",
+            "gilt-edged",
+            "greatest",
+            "high-performance",
+            "outstanding",
+            "classic",
+            "out of the ordinary",
+            "premium",
+            "pukka",
+            "shining",
+            "spiffing",
+            "supreme",
+            "top-flight"
+        ],
+        "antonyms": [
+            "inferior"
+        ],
+        "related": [
+            "best",
+            "quality",
+            "caliber",
+            "superiority",
+            "high quality",
+            "dominant",
+            "high",
+            "favorable position"
+        ]
+    }
 }

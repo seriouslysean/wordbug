@@ -2,6 +2,7 @@
     "word": "timpani",
     "date": "20250514",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "timpani",
@@ -18,5 +19,23 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/timpani"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtim-pə-nē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/timpan01.mp3",
+        "etymology": "Italian, plural of timpano kettledrum, from Latin tympanum drum ",
+        "synonyms": [
+            "kettle",
+            "kettledrum",
+            "tympanum",
+            "tympani"
+        ],
+        "related": [
+            "percussion instrument",
+            "percussive instrument",
+            "tympanist",
+            "timpanist",
+            "tympanic"
+        ]
+    }
 }

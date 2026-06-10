@@ -2,6 +2,7 @@
     "word": "empanada",
     "date": "20250802",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "empanada",
@@ -11,5 +12,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/empanada"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌem-pə-ˈnä-də",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/empana01.mp3",
+        "etymology": "American Spanish, from Spanish, feminine of empanado, past participle of empanar to bread, from em- (from Latin in-) + pan bread, from Latin panis "
+    }
 }

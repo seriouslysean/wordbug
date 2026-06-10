@@ -1,32 +1,21 @@
 {
     "word": "spelunking",
     "date": "20260401",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
-            "partOfSpeech": "verb",
-            "text": "To explore caves.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/spelunk"
-        },
-        {
-            "partOfSpeech": "verb",
-            "text": "To explore a system in depth.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/spelunk"
-        },
-        {
+            "id": "spelunking",
             "partOfSpeech": "noun",
-            "text": "The practice or hobby of exploring underground caverns.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/spelunk",
-            "synonyms": [
-                "caving"
-            ]
+            "text": "the hobby or practice of exploring caves",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/spelunking"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "spi-ˈləŋ-kiŋ",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/spelun02.mp3",
+        "etymology": " + "
+    }
 }

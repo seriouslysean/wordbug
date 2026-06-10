@@ -2,6 +2,7 @@
     "word": "bluegrass",
     "date": "20250325",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "bluegrass",
@@ -50,5 +51,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/bluegrass"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈblü-ˌgras",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/bluegr01.mp3",
+        "synonyms": [
+            "blue grass",
+            "Bluegrass Country",
+            "Bluegrass Region"
+        ],
+        "related": [
+            "grass",
+            "Kentucky bluegrass",
+            "Kentucky blue"
+        ]
+    }
 }

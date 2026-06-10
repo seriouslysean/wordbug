@@ -2,6 +2,7 @@
     "word": "jersey",
     "date": "20250501",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "jersey",
@@ -103,5 +104,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/jersey"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈjər-zē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/j/jersey01.mp3",
+        "etymology": "Jersey, one of the Channel Islands",
+        "synonyms": [
+            "New Jersey",
+            "Garden State",
+            "NJ",
+            "N.J.",
+            "island of Jersey"
+        ],
+        "related": [
+            "Channel Island"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "photosensitivity",
     "date": "20251115",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "photosensitive",
@@ -27,5 +28,9 @@
                 "photosensitive rashes"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌfō-tō-ˈsen(t)-s(ə-)tiv",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/photos01.mp3"
+    }
 }

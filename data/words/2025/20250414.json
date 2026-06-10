@@ -2,6 +2,7 @@
     "word": "phlebotomy",
     "date": "20250414",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "phlebotomy",
@@ -15,5 +16,21 @@
                 "While scientists struggle to understand the molecular subtleties of hemochromatosis, the clinical treatment of the disorder remains remarkably primitive: serial phlebotomy. That is, weekly bloodletting."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "fli-ˈbä-tə-mē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/phlebo06.mp3",
+        "etymology": "Middle English fleobotomie, from Middle French flebothomie, from Late Latin phlebotomia, from Greek, from phleb- + -tomia -tomy",
+        "synonyms": [
+            "venesection"
+        ],
+        "related": [
+            "incision",
+            "section",
+            "bloodletting",
+            "bleed",
+            "leech",
+            "venesect"
+        ]
+    }
 }

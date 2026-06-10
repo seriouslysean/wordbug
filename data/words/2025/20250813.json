@@ -2,6 +2,7 @@
     "word": "municipal",
     "date": "20250813",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "municipal",
@@ -89,5 +90,16 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/municipal"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "myu̇-ˈni-s(ə-)pəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/munici01.mp3",
+        "etymology": "Latin municipalis of a municipality, from municip-, municeps inhabitant of a municipality, from munus duty, service + capere to take , ",
+        "synonyms": [
+            "domestic"
+        ],
+        "related": [
+            "municipality"
+        ]
+    }
 }

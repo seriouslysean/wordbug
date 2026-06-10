@@ -2,6 +2,7 @@
     "word": "cyclops",
     "date": "20250527",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cyclops",
@@ -19,5 +20,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cyclops"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsī-ˌkläps",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cyclop08.mp3",
+        "etymology": "Latin, from Greek Kyklōps, from kykl- cycl- + ōps eye",
+        "synonyms": [
+            "water flea"
+        ],
+        "related": [
+            "giant",
+            "cyclopean",
+            "copepod",
+            "copepod crustacean"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "rotund",
     "date": "20251010",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "rotund",
@@ -36,5 +37,23 @@
                 "a master of rotund diction"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "rō-ˈtənd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/rotund01.mp3",
+        "etymology": "Latin rotundus, probably alteration of Old Latin *retundus; akin to Latin rota wheel ",
+        "synonyms": [
+            "rounded",
+            "orotund",
+            "round",
+            "pear-shaped",
+            "full"
+        ],
+        "related": [
+            "sphericity",
+            "sphericalness",
+            "roundness",
+            "rotundity"
+        ]
+    }
 }

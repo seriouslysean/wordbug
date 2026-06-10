@@ -2,6 +2,7 @@
     "word": "aggro",
     "date": "20250808",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "aggro",
@@ -27,5 +28,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/aggro"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈa-(ˌ)grō",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/aggro001.mp3",
+        "etymology": "perhaps originally from  or  + , though influenced in meaning by association with ",
+        "related": [
+            "aggravation",
+            "irritation"
+        ]
+    }
 }

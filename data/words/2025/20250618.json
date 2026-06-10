@@ -2,6 +2,7 @@
     "word": "amp",
     "date": "20250618",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "amp",
@@ -101,5 +102,21 @@
                 "The goal was to assemble a transportable machine that would pick up the specific nuclear signatures associated with materials used in nuclear weapons while screening out materials that might trigger a similar reading, a lab spokesman said. … The systems' parts, though not all available from Radio Shack, came from components on hand at the lab … including a hand-held computer, a pre-amp, an amplifier and a solid-state detector."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈamp",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/amp00001.mp3",
+        "etymology": "by shortening",
+        "synonyms": [
+            "ampere",
+            "A",
+            "adenosine monophosphate",
+            "adenylic acid"
+        ],
+        "related": [
+            "current unit",
+            "nucleotide",
+            "base"
+        ]
+    }
 }

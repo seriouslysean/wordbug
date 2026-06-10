@@ -2,6 +2,7 @@
     "word": "cool",
     "date": "20180415",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cool",
@@ -199,5 +200,30 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cool"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkül",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cool_101.mp3",
+        "etymology": "Middle English col, going back to Old English cōl, going back to West Germanic *kōlu- (whence also Middle Dutch coele \"moderately cold\" and, from a variant *kōlja-, Old High German kuoli), lengthened-grade derivative from the base of *kalan- \"to be cold\" ",
+        "synonyms": [
+            "air-conditioned",
+            "air-cooled",
+            "caller",
+            "precooled",
+            "water-cooled",
+            "coolheaded",
+            "nerveless",
+            "composed"
+        ],
+        "antonyms": [
+            "warm"
+        ],
+        "related": [
+            "cold",
+            "temperature",
+            "chilliness",
+            "coolness",
+            "nervelessness"
+        ]
+    }
 }

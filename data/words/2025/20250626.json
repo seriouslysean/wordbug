@@ -2,6 +2,7 @@
     "word": "perimenopause",
     "date": "20250626",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "perimenopause",
@@ -11,5 +12,9 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/perimenopause"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌper-ē-ˈme-nə-ˌpȯz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/perim02m.mp3"
+    }
 }

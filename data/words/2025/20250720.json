@@ -2,6 +2,7 @@
     "word": "snakelike",
     "date": "20250720",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "snake",
@@ -27,5 +28,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/snakelike"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsnāk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/snake001.mp3",
+        "etymology": "Middle English, from Old English snaca; akin to Old Norse snakr snake, Old High German snahhan to crawl"
+    }
 }

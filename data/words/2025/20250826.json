@@ -2,6 +2,7 @@
     "word": "plunge",
     "date": "20250826",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "plunge",
@@ -68,5 +69,37 @@
                 "If you've considered buying an e-reader but haven't yet taken the plunge, there's no longer a need to wait."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈplənj",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/plunge01.mp3",
+        "etymology": "Middle English, from Anglo-French plunger, from Vulgar Latin *plumbicare, from Latin plumbum lead",
+        "synonyms": [
+            "immerse",
+            "dive",
+            "plunk"
+        ],
+        "related": [
+            "penetrate",
+            "perforate",
+            "dip",
+            "diver",
+            "plunger",
+            "plumber's helper",
+            "piston",
+            "dunk",
+            "submerge",
+            "submerse",
+            "soak",
+            "sheathe",
+            "descend",
+            "fall",
+            "power-dive",
+            "nosedive",
+            "duck",
+            "crash-dive",
+            "chute",
+            "parachute"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "kiln",
     "date": "20250806",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "kiln",
@@ -11,5 +12,18 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/kiln"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkiln",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/k/kiln0002.mp3",
+        "etymology": "Middle English kilne, from Old English cyln, from Latin culina kitchen, from coquere to cook ",
+        "related": [
+            "furnace",
+            "brickkiln",
+            "dry kiln",
+            "limekiln",
+            "muffle",
+            "oast"
+        ]
+    }
 }

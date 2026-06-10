@@ -2,6 +2,7 @@
     "word": "albino",
     "date": "20250324",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "albino",
@@ -23,5 +24,16 @@
                 "The Draize test commonly uses six rabbits (preferably of the albino strain because of the clarity of their red eyes) to test a substance for eye irritancy."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "al-ˈbī-(ˌ)nō",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/albino01.mp3",
+        "etymology": "borrowed from Spanish & Portuguese; Portuguese albino, borrowed from Spanish, noun derivative of albino, adjective, \"lacking in pigment,\" from albo \"white\" (borrowed from Latin albus) + -ino  ",
+        "related": [
+            "person",
+            "individual",
+            "albinal",
+            "albinotic"
+        ]
+    }
 }

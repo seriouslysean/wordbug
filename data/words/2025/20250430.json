@@ -2,6 +2,7 @@
     "word": "reiki",
     "date": "20250430",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "Reiki",
@@ -11,5 +12,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/reiki"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈrā-ˌkē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/reiki01m.mp3",
+        "etymology": "Japanese, literally, spirit, from rei spirit, soul + ki vital force, mind"
+    }
 }

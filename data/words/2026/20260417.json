@@ -1,61 +1,178 @@
 {
     "word": "sap",
     "date": "20260417",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
+            "id": "sap",
             "partOfSpeech": "noun",
-            "text": "The juice of plants of any kind, especially the ascending and descending juices or circulating fluid essential to nutrition.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+            "text": "the fluid part of a plant; specifically: a watery solution that circulates through a plant's vascular system",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
         },
         {
+            "id": "sap",
             "partOfSpeech": "noun",
-            "text": "The sapwood, or alburnum, of a tree.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+            "text": "a body fluid (such as blood) essential to life, health, or vigor",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
         },
         {
+            "id": "sap",
             "partOfSpeech": "noun",
-            "text": "Any juice.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+            "text": "bodily health and vigor",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "Vitality.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+            "id": "sap",
+            "partOfSpeech": "verb",
+            "text": "to drain or deprive of sap",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
         },
         {
-            "partOfSpeech": "noun",
-            "text": "A naive person; a simpleton",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/sap",
-            "synonyms": [
-                "milksop",
-                "saphead"
+            "id": "sap",
+            "partOfSpeech": "verb",
+            "text": "to knock out with a sap",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "sap",
+            "partOfSpeech": "verb",
+            "text": "to proceed by digging a sap",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap",
+            "examples": [
+                "sapped her patience",
+                "the illness sapped him of his stamina"
             ]
         },
         {
+            "id": "sap",
             "partOfSpeech": "verb",
-            "text": "To drain, suck or absorb from (tree, etc.).",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+            "text": "to subvert by digging or eroding the substratum or foundation: undermine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap",
+            "examples": [
+                "sapped her patience",
+                "the illness sapped him of his stamina"
+            ]
         },
         {
+            "id": "sap",
             "partOfSpeech": "verb",
-            "text": "To exhaust the vitality of.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/sap"
+            "text": "to gradually diminish the supply or intensity of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap",
+            "examples": [
+                "sapped her patience",
+                "the illness sapped him of his stamina"
+            ]
+        },
+        {
+            "id": "sap",
+            "partOfSpeech": "noun",
+            "text": "the extension of a trench to a point beneath an enemy's fortifications",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "sap green",
+            "partOfSpeech": "noun",
+            "text": "a strong yellow green",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "cell sap",
+            "partOfSpeech": "noun",
+            "text": "the liquid contents of a plant cell vacuole",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "cell sap",
+            "partOfSpeech": "noun",
+            "text": "cytosol",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "nuclear sap",
+            "partOfSpeech": "noun",
+            "text": "the clear homogeneous ground substance of a cell nucleus",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "verb sap",
+            "text": "verbum sap",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "verbum sap",
+            "text": "enough said —used to indicate that something left unsaid may or should be inferred",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
+        },
+        {
+            "id": "Tonle Sap:g",
+            "text": "lake 87 miles (140 kilometers) long in western Cambodia",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sap"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsap",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sap00001.mp3",
+        "etymology": "Middle English, from Old English sæp; akin to Old High German saf sap",
+        "synonyms": [
+            "fool",
+            "saphead",
+            "muggins",
+            "tomfool"
+        ],
+        "related": [
+            "solution",
+            "sappy",
+            "manna",
+            "simpleton",
+            "simple",
+            "gull",
+            "dupe",
+            "ass",
+            "clown",
+            "buffoon",
+            "flibbertigibbet",
+            "foolish woman",
+            "fucker",
+            "fathead",
+            "goof",
+            "meshuggeneh",
+            "meshuggener",
+            "morosoph",
+            "putz",
+            "wally"
+        ]
+    }
 }

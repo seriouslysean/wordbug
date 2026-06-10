@@ -2,6 +2,7 @@
     "word": "kale",
     "date": "20251113",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "kale",
@@ -35,5 +36,39 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/kale"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkāl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/k/kale0001.mp3",
+        "etymology": "Scots, from Middle English (northern) cal, from Old English cāl ",
+        "synonyms": [
+            "boodle",
+            "bread",
+            "cabbage",
+            "clams",
+            "dinero",
+            "dough",
+            "gelt",
+            "lettuce",
+            "lolly",
+            "lucre",
+            "loot",
+            "moolah",
+            "pelf",
+            "scratch",
+            "shekels",
+            "simoleons",
+            "sugar",
+            "wampum",
+            "kail",
+            "cole"
+        ],
+        "related": [
+            "money",
+            "pilfer",
+            "crucifer",
+            "cruciferous plant",
+            "collard"
+        ]
+    }
 }

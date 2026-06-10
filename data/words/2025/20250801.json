@@ -2,6 +2,7 @@
     "word": "ophthalmoscope",
     "date": "20250801",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ophthalmoscope",
@@ -11,5 +12,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/ophthalmoscope"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "äf-ˈthal-mə-ˌskōp",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/ophtha08.mp3",
+        "etymology": "borrowed from French, from ophthalmo-  + -scope , after ophthalmoscopie \"examination of the eye\"",
+        "related": [
+            "medical instrument",
+            "orthoscope"
+        ]
+    }
 }

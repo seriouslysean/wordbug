@@ -2,6 +2,7 @@
     "word": "supernova",
     "date": "20250803",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "supernova",
@@ -19,5 +20,13 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/supernova"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌsü-pər-ˈnō-və",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/supern13.mp3",
+        "etymology": "New Latin",
+        "related": [
+            "star"
+        ]
+    }
 }

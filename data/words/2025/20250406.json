@@ -2,6 +2,7 @@
     "word": "crepe",
     "date": "20250406",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "crepe",
@@ -68,5 +69,21 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/crepe"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkrāp",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/crepe001.mp3",
+        "etymology": "French crêpe ",
+        "synonyms": [
+            "crepe paper",
+            "crape",
+            "French pancake"
+        ],
+        "related": [
+            "paper",
+            "pancake",
+            "battercake",
+            "crepe Suzette"
+        ]
+    }
 }

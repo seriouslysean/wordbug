@@ -2,6 +2,7 @@
     "word": "car",
     "date": "20180323",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "car",
@@ -110,5 +111,41 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/car"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkär",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/car00001.mp3",
+        "etymology": "Middle English carre \"cart, wagon, small cartload,\" borrowed from Anglo-French carre, charre, going back to Late Latin carra, plural of carrum \"vehicle, cart,\" going back to Latin, neuter variant of carrus \"a kind of Gaulish wagon,\" borrowed from the Gaulish outcome of Celtic *kr̥s-o-, whence also Old Irish carr \"cart, wagon,\" Welsh car \"vehicle\" ",
+        "synonyms": [
+            "auto",
+            "automobile",
+            "machine",
+            "motorcar",
+            "railcar",
+            "railway car",
+            "railroad car"
+        ],
+        "related": [
+            "motor vehicle",
+            "automotive vehicle",
+            "machinist",
+            "mechanic",
+            "motorist",
+            "automobilist",
+            "ambulance",
+            "beach wagon",
+            "station wagon",
+            "bus",
+            "jalopy",
+            "cab",
+            "hack",
+            "compact",
+            "compact car",
+            "convertible",
+            "coupe",
+            "cruiser",
+            "police cruiser",
+            "electric"
+        ]
+    }
 }

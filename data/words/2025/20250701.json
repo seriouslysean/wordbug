@@ -2,6 +2,7 @@
     "word": "carbine",
     "date": "20250701",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "carbine",
@@ -19,5 +20,15 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/carbine"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkär-ˌbēn",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/carbin01.mp3",
+        "etymology": "borrowed from Middle French charabine, carabine, feminine derivative of carabin \"lightly armed cavalryman,\" perhaps a jocular designation altered from escarrabin, scarrabin \"grave digger for plague victims,\" probably alteration by suffix substitution of escarbot \"dung beetle,\" going back to Old French escharbot, from escharb- (going back to the base of Latin scarabaeus \"beetle\") + -ot, noun suffix (going back to Vulgar Latin *-ottus, diminutive suffix) ",
+        "related": [
+            "rifle",
+            "carbineer",
+            "carabineer"
+        ]
+    }
 }

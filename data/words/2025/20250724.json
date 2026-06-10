@@ -2,6 +2,7 @@
     "word": "entomology",
     "date": "20250724",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "entomology",
@@ -11,5 +12,23 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/entomology"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌen-tə-ˈmä-lə-jē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/entomo02.mp3",
+        "etymology": "French entomologie, from Greek entomon insect (from neuter of entomos cut up, from en- + temnein to cut) + French -logie -logy ",
+        "synonyms": [
+            "bugology"
+        ],
+        "related": [
+            "zoology",
+            "zoological science",
+            "entomological",
+            "entomologic",
+            "entomologist",
+            "bugologist",
+            "lepidopterology",
+            "lepidoptery"
+        ]
+    }
 }

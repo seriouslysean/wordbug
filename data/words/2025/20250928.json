@@ -2,6 +2,7 @@
     "word": "elixir",
     "date": "20250928",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "elixir",
@@ -27,5 +28,18 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/elixir"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "i-ˈlik-sər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/elixir01.mp3",
+        "etymology": "Middle English, from Medieval Latin, from Arabic al-iksīr the elixir, from al the + iksīr elixir, probably from Greek xērion desiccative powder, from xēros dry",
+        "synonyms": [
+            "philosopher's stone",
+            "philosophers' stone"
+        ],
+        "related": [
+            "liquid",
+            "substance"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "sentient",
     "date": "20250627",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sentient",
@@ -63,5 +64,26 @@
                 "As every sentient diplomat knows, diplomacy uses the reputation of power to achieve what power itself often cannot achieve, or can achieve only at greater and sometimes excessive cost."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsen(t)-sh(ē-)ənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sentie02.mp3",
+        "etymology": "Latin sentient-, sentiens, present participle of sentire to perceive, feel",
+        "synonyms": [
+            "animate",
+            "sensate",
+            "conscious"
+        ],
+        "antonyms": [
+            "insentient"
+        ],
+        "related": [
+            "sentience",
+            "animateness",
+            "aliveness",
+            "awareness",
+            "sense",
+            "sensation"
+        ]
+    }
 }

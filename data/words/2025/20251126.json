@@ -2,6 +2,7 @@
     "word": "redundant",
     "date": "20251126",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "redundant",
@@ -36,5 +37,32 @@
                 "a group of particularly redundant brick buildings"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ri-ˈdən-dənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/redund02.mp3",
+        "etymology": "Latin redundant-, redundans, present participle of redundare to overflow ",
+        "synonyms": [
+            "excess",
+            "extra",
+            "spare",
+            "supererogatory",
+            "superfluous",
+            "supernumerary",
+            "surplus",
+            "unnecessary",
+            "pleonastic",
+            "tautologic",
+            "tautological",
+            "prolix"
+        ],
+        "related": [
+            "overplus",
+            "plethora",
+            "redundancy",
+            "redundance",
+            "tautology",
+            "pleonasm"
+        ]
+    }
 }

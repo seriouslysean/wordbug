@@ -2,6 +2,7 @@
     "word": "transparency",
     "date": "20250614",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "transparency",
@@ -19,5 +20,28 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/transparency"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "tran(t)s-ˈper-ən(t)-sē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/transp03.mp3",
+        "synonyms": [
+            "transparence",
+            "transparentness"
+        ],
+        "antonyms": [
+            "opacity"
+        ],
+        "related": [
+            "physical phenomenon",
+            "crystalline",
+            "crystal clear",
+            "diaphanous",
+            "filmy",
+            "clearness",
+            "clarity",
+            "transparent",
+            "pellucidness",
+            "pellucidity"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "daddy",
     "date": "20180205",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "daddy",
@@ -15,6 +16,14 @@
             "id": "daddy",
             "partOfSpeech": "noun",
             "text": "granddaddy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
+        },
+        {
+            "id": "daddy",
+            "partOfSpeech": "noun",
+            "text": "a male lover",
             "attributionText": "from Merriam-Webster's Collegiate Dictionary",
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
@@ -86,5 +95,21 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/daddy"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈda-dē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/daddy001.mp3",
+        "synonyms": [
+            "dad",
+            "dada",
+            "pa",
+            "papa",
+            "pappa",
+            "pop"
+        ],
+        "related": [
+            "father",
+            "male parent"
+        ]
+    }
 }

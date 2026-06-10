@@ -2,6 +2,7 @@
     "word": "nefarious",
     "date": "20250707",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "nefarious",
@@ -16,5 +17,22 @@
                 "The town itself is a classic of the genre, full of scheming locals, buried secrets and nefarious elites trying to make a quick buck."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ni-ˈfer-ē-əs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/n/nefari01.mp3",
+        "etymology": "Latin nefarius, from nefas crime, from ne- not + fas right, divine law; perhaps akin to Greek themis law, tithenai to place ",
+        "synonyms": [
+            "villainous",
+            "wicked"
+        ],
+        "related": [
+            "villain",
+            "scoundrel",
+            "villainy",
+            "villainousness",
+            "nefariousness",
+            "wickedness"
+        ]
+    }
 }

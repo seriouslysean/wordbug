@@ -2,6 +2,7 @@
     "word": "simpleton",
     "date": "20250727",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "simpleton",
@@ -11,5 +12,35 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/simpleton"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsim-pəl-tən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/simple06.mp3",
+        "etymology": " + -ton (as in surnames such as Washington)",
+        "synonyms": [
+            "simple"
+        ],
+        "related": [
+            "person",
+            "individual",
+            "airhead",
+            "dimwit",
+            "nitwit",
+            "dingbat",
+            "dumbbell",
+            "dummy",
+            "fool",
+            "sap",
+            "idiot",
+            "imbecile",
+            "idiot savant",
+            "nebbish",
+            "nebbech",
+            "nincompoop",
+            "poop",
+            "scatterbrain",
+            "forgetful person",
+            "schlemiel"
+        ]
+    }
 }

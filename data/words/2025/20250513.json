@@ -2,6 +2,7 @@
     "word": "extraterrestrial",
     "date": "20250513",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "extraterrestrial",
@@ -22,5 +23,12 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/extraterrestrial"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌek-strə-tə-ˈre-strē-əl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/extrat01.mp3",
+        "related": [
+            "extraterrestrial being"
+        ]
+    }
 }

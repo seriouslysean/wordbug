@@ -2,6 +2,7 @@
     "word": "valor",
     "date": "20250814",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "valor",
@@ -18,5 +19,24 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/valor"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈva-lər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/valor001.mp3",
+        "etymology": "Middle English valour \"worth, worthiness, bravery,\" borrowed from Anglo-French valor, valur, inherited or borrowed from early Medieval Latin valor, from Latin val- (stem of validus \"in good health, robust, having legal authority,\" valēre \"to be well, have strength\") + -or, noun suffix , ",
+        "synonyms": [
+            "heroism",
+            "gallantry",
+            "valour",
+            "valorousness",
+            "valiance",
+            "valiancy"
+        ],
+        "related": [
+            "courage",
+            "courageousness",
+            "valiant",
+            "valorous"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "sympathetic",
     "date": "20251206",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sympathetic",
@@ -93,5 +94,26 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/sympathetic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌsim-pə-ˈthe-tik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sympat03.mp3",
+        "etymology": "New Latin sympatheticus, from Latin sympathia sympathy",
+        "synonyms": [
+            "commiserative",
+            "condolent",
+            "empathic"
+        ],
+        "antonyms": [
+            "unsympathetic"
+        ],
+        "related": [
+            "compassionate",
+            "congenial",
+            "kind",
+            "sympathy",
+            "fellow feeling",
+            "understanding"
+        ]
+    }
 }

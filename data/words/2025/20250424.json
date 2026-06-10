@@ -2,6 +2,7 @@
     "word": "okapi",
     "date": "20250424",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "okapi",
@@ -11,5 +12,17 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/okapi"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ō-ˈkä-pē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/okapi001.mp3",
+        "etymology": "Mvuba (language spoken west of Lake Edward, Democratic Republic of the Congo)",
+        "synonyms": [
+            "Okapia johnstoni"
+        ],
+        "related": [
+            "giraffe",
+            "camelopard"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "obsequious",
     "date": "20251130",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "obsequious",
@@ -16,5 +17,24 @@
                 "Not pleasing others enough amounts to surliness, pleasing too much makes one obsequious …"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "əb-ˈsē-kwē-əs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/obsequ01.mp3",
+        "etymology": "Middle English, compliant, from Latin obsequiosus, from obsequium compliance, from obsequi to comply, from ob- toward + sequi to follow , ",
+        "synonyms": [
+            "bootlicking",
+            "fawning",
+            "sycophantic",
+            "toadyish",
+            "insincere",
+            "servile"
+        ],
+        "related": [
+            "sycophant",
+            "toady",
+            "obsequiousness",
+            "servility"
+        ]
+    }
 }

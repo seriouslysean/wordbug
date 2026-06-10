@@ -2,6 +2,7 @@
     "word": "secondhand",
     "date": "20250617",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "secondhand",
@@ -98,5 +99,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/secondhand"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈse-kən(d)-ˈhand",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/second08.mp3",
+        "synonyms": [
+            "secondary",
+            "used",
+            "old"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "block",
     "date": "20180416",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "block",
@@ -297,5 +298,35 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/block"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈbläk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/bloc0001.mp3",
+        "etymology": "Middle English blok, from Middle French & Middle Dutch; Middle French bloc, from Middle Dutch blok; akin to Old High German bloh block",
+        "synonyms": [
+            "city block"
+        ],
+        "related": [
+            "artifact",
+            "artefact",
+            "blockish",
+            "blocky",
+            "anvil",
+            "briquette",
+            "briquet",
+            "cake",
+            "bar",
+            "chock",
+            "wedge",
+            "chopping block",
+            "crosshead",
+            "cube",
+            "square block",
+            "domino",
+            "ingot",
+            "nog",
+            "nut",
+            "pad"
+        ]
+    }
 }

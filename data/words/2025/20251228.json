@@ -2,6 +2,7 @@
     "word": "petrification",
     "date": "20251228",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "petrification",
@@ -11,5 +12,19 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/petrification"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌpe-trə-fə-ˈkā-shən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/petrif02.mp3",
+        "etymology": "borrowed from Middle French & Medieval Latin; Middle French, borrowed from Medieval Latin petrificātiōn-, petrificātiō ",
+        "synonyms": [
+            "petrifaction"
+        ],
+        "related": [
+            "fossilization",
+            "fossilisation",
+            "lapidify",
+            "petrify"
+        ]
+    }
 }

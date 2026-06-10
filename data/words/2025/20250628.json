@@ -2,6 +2,7 @@
     "word": "darned",
     "date": "20250628",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "darn",
@@ -35,5 +36,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/darned"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdärn",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/darn0001.mp3",
+        "etymology": "perhaps from French dialect darner"
+    }
 }

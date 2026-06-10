@@ -2,6 +2,7 @@
     "word": "alfredo",
     "date": "20250816",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "Alfredo sauce",
@@ -33,5 +34,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/alfredo"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "(ˌ)al-ˈfrā-(ˌ)dō-",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/alfredo_1.mp3",
+        "etymology": "after "
+    }
 }

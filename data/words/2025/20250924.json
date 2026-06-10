@@ -2,6 +2,7 @@
     "word": "ghastly",
     "date": "20250924",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "ghastly",
@@ -42,5 +43,25 @@
                 "a ghastly mistake"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈgast-lē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/g/ghastl01.mp3",
+        "etymology": "Middle English gastly, from gasten to terrify ",
+        "synonyms": [
+            "grim",
+            "grisly",
+            "gruesome",
+            "macabre",
+            "sick",
+            "alarming",
+            "charnel",
+            "sepulchral",
+            "offensive"
+        ],
+        "related": [
+            "ghastliness",
+            "grimness"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "penalized",
     "date": "20250702",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "penalize",
@@ -19,5 +20,9 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/penalized"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈpē-nə-ˌlīz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/penali02.mp3"
+    }
 }

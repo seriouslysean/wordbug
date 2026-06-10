@@ -2,6 +2,7 @@
     "word": "xenon",
     "date": "20250811",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "xenon",
@@ -11,5 +12,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/xenon"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈzē-ˌnän",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/x/xenon002.mp3",
+        "etymology": "borrowed from Greek xénon, neuter of xénos \"foreign, strange,\" as noun, \"foreigner, stranger, visitor\"",
+        "synonyms": [
+            "Xe",
+            "atomic number 54"
+        ],
+        "related": [
+            "chemical element",
+            "element",
+            "noble gas",
+            "inert gas"
+        ]
+    }
 }

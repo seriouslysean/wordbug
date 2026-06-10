@@ -2,6 +2,7 @@
     "word": "cerebellum",
     "date": "20251104",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "cerebellum",
@@ -11,5 +12,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/cerebellum"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌser-ə-ˈbe-ləm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cerebe01.mp3",
+        "etymology": "Medieval Latin, from Latin, diminutive of cerebrum",
+        "related": [
+            "neural structure",
+            "cerebellar"
+        ]
+    }
 }

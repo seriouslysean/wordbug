@@ -2,6 +2,7 @@
     "word": "serendipity",
     "date": "20250715",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "serendipity",
@@ -18,5 +19,15 @@
                 "For most of his life, he has been blessed with good fortune, tinged with a bit of serendipity."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌser-ən-ˈdi-pə-tē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/serend02.mp3",
+        "etymology": "Serendip, variant of Sarandīb, Persian and Arabic name for Sri Lanka + ; from its possession by the heroes of the Persian fairy tale The Three Princes of Serendip",
+        "related": [
+            "good luck",
+            "fluke",
+            "serendipitous"
+        ]
+    }
 }

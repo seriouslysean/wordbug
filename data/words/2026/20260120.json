@@ -2,6 +2,7 @@
     "word": "fluorite",
     "date": "20260120",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "fluorite",
@@ -11,5 +12,17 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/fluorite"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈflu̇r-ˌīt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/fluori09.mp3",
+        "etymology": "Italian, from New Latin fluor",
+        "synonyms": [
+            "fluorspar",
+            "fluor"
+        ],
+        "related": [
+            "mineral"
+        ]
+    }
 }

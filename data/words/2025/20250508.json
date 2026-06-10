@@ -2,6 +2,7 @@
     "word": "zed",
     "date": "20250508",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "zed",
@@ -11,5 +12,21 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/zed"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈzed",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/z/zed00001.mp3",
+        "etymology": "Middle English, from Middle French zede, from Late Latin zeta zeta, from Greek zēta",
+        "synonyms": [
+            "Z",
+            "z",
+            "zee",
+            "ezed",
+            "izzard"
+        ],
+        "related": [
+            "letter",
+            "letter of the alphabet"
+        ]
+    }
 }

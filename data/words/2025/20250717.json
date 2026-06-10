@@ -2,6 +2,7 @@
     "word": "inflammation",
     "date": "20250717",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "inflammation",
@@ -32,5 +33,39 @@
                 "an anti-inflammation diet"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌin-flə-ˈmā-shən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/inflam06.mp3",
+        "synonyms": [
+            "redness",
+            "rubor",
+            "excitement",
+            "excitation",
+            "fervor",
+            "fervour"
+        ],
+        "related": [
+            "symptom",
+            "crimson",
+            "red",
+            "inflame",
+            "adenitis",
+            "alveolitis",
+            "dry socket",
+            "angiitis",
+            "aortitis",
+            "appendicitis",
+            "arteritis",
+            "balanitis",
+            "balanoposthitis",
+            "blepharitis",
+            "bursitis",
+            "carditis",
+            "catarrh",
+            "cellulitis",
+            "cervicitis",
+            "cheilitis"
+        ]
+    }
 }

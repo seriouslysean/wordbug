@@ -2,6 +2,7 @@
     "word": "tamper",
     "date": "20250510",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "tamper",
@@ -48,5 +49,25 @@
                 "After each truckload of earth fell onto the cobblestones of the Piazza's perimeter, a steamroller flattened it, and five relaxed-looking workmen … patted it smooth with shovels and wooden tampers, and hosed it down."
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtam-pər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/tamper01.mp3",
+        "etymology": "probably from Middle French temprer to temper, mix, meddle ",
+        "synonyms": [
+            "fiddle",
+            "monkey",
+            "meddle"
+        ],
+        "related": [
+            "manipulate",
+            "imp",
+            "scamp",
+            "intervene",
+            "step in",
+            "meddling",
+            "tampering",
+            "meddler"
+        ]
+    }
 }

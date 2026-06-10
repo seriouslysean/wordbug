@@ -2,6 +2,7 @@
     "word": "hypersonic",
     "date": "20250602",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "hypersonic",
@@ -25,5 +26,10 @@
                 "hypersonic wind tunnel"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌhī-pər-ˈsä-nik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/hypers05.mp3",
+        "etymology": "International Scientific Vocabulary"
+    }
 }

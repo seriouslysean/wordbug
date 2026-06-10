@@ -2,6 +2,7 @@
     "word": "sriracha",
     "date": "20250426",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sriracha",
@@ -11,5 +12,10 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/sriracha"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "sə-ˈrä-chə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sriracha_1.mp3",
+        "etymology": "borrowed from Thai sriracha (Royal Thai Institute Romanization), sǐ:rá:tɕhá: (phonetic), after Si Racha (Sri Racha, Sri Raja), town in Chonburi Province, Thailand, where the sauce was allegedly first made"
+    }
 }

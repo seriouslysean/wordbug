@@ -2,6 +2,7 @@
     "word": "delinquent",
     "date": "20251002",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "delinquent",
@@ -94,5 +95,17 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/delinquent"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "di-ˈliŋ-kwənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/delinq02.mp3",
+        "etymology": "earlier, \"person failing in a duty, offender,\" borrowed from Middle French delinquant, noun derivative from present participle of delinquer \"to commit an offense,\" borrowed from Latin dēlinquere \"to be lacking, fall short of an approved standard, misbehave, commit (an offense)\" ",
+        "synonyms": [
+            "juvenile delinquent"
+        ],
+        "related": [
+            "wrongdoer",
+            "offender"
+        ]
+    }
 }

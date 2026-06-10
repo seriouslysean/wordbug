@@ -2,6 +2,7 @@
     "word": "regurgitate",
     "date": "20250612",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "regurgitate",
@@ -27,5 +28,16 @@
                 "memorized facts to regurgitate on the exam"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "(ˌ)rē-ˈgər-jə-ˌtāt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/regurg01.mp3",
+        "etymology": "Medieval Latin regurgitatus, past participle of regurgitare, from Latin re- + Late Latin gurgitare to engulf, from Latin gurgit-, gurges whirlpool ",
+        "related": [
+            "pour",
+            "regurgitation",
+            "feed",
+            "give"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "tomboyish",
     "date": "20250917",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "tomboy",
@@ -11,5 +12,9 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/tomboyish"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈtäm-ˌbȯi",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/tomboy01.mp3"
+    }
 }

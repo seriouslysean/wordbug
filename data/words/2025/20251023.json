@@ -2,13 +2,14 @@
     "word": "pb&j",
     "date": "20251023",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "PB+J",
             "text": "peanut butter and jelly",
             "attributionText": "from Merriam-Webster's Collegiate Dictionary",
             "sourceDictionary": "collegiate",
-            "sourceUrl": "https://www.merriam-webster.com/dictionary/PB%26J"
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/pb%26j"
         }
     ]
 }

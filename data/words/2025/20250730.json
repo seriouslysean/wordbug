@@ -2,6 +2,7 @@
     "word": "semiaquatic",
     "date": "20250730",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "semiaquatic",
@@ -11,5 +12,15 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/semiaquatic"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌse-mē-ə-ˈkwä-tik",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/semiaq01.mp3",
+        "synonyms": [
+            "amphibiotic",
+            "amphibious",
+            "subaquatic",
+            "aquatic"
+        ]
+    }
 }

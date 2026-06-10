@@ -2,6 +2,7 @@
     "word": "exuberance",
     "date": "20250331",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "exuberance",
@@ -25,5 +26,26 @@
                 "youthful exuberance"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ig-ˈzü-b(ə-)rən(t)s",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/exuber01.mp3",
+        "synonyms": [
+            "enthusiasm",
+            "ebullience"
+        ],
+        "related": [
+            "joy",
+            "joyousness",
+            "ebullient",
+            "exuberant",
+            "exuberate",
+            "exult",
+            "liveliness",
+            "life",
+            "lyricism",
+            "madness",
+            "rabidity"
+        ]
+    }
 }

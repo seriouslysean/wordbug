@@ -12,5 +12,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/richter%20scale"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈrik-tər-",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/r/richte01.mp3",
+        "etymology": "Charles F. Richter",
+        "related": [
+            "scale",
+            "scale of measurement"
+        ]
+    }
 }

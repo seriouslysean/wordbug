@@ -2,6 +2,7 @@
     "word": "pyrotechnics",
     "date": "20250531",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "pyrotechnics",
@@ -63,5 +64,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/pyrotechnics"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌpī-rə-ˈtek-niks",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pyrote04.mp3",
+        "synonyms": [
+            "pyrotechny"
+        ],
+        "related": [
+            "brilliance",
+            "genius",
+            "trade",
+            "craft",
+            "pyrotechnic",
+            "pyrotechnical"
+        ]
+    }
 }

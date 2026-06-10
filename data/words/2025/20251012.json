@@ -2,6 +2,7 @@
     "word": "sphygmomanometer",
     "date": "20251012",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "sphygmomanometer",
@@ -11,5 +12,14 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/sphygmomanometer"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌsfig-mō-mə-ˈnä-mə-tər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sphygm02.mp3",
+        "etymology": "Greek sphygmos pulse (from sphyzein to throb) + International Scientific Vocabulary manometer",
+        "related": [
+            "pressure gauge",
+            "pressure gage"
+        ]
+    }
 }

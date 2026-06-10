@@ -2,6 +2,7 @@
     "word": "fanciful",
     "date": "20251107",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "fanciful",
@@ -48,5 +49,16 @@
                 "gave their children fanciful names"
             ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈfan(t)-si-fəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/fancif01.mp3",
+        "etymology": " + ",
+        "synonyms": [
+            "notional",
+            "creative",
+            "imaginary",
+            "unreal"
+        ]
+    }
 }

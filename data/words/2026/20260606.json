@@ -1,15 +1,35 @@
 {
     "word": "endorphin",
     "date": "20260606",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
+            "id": "endorphin",
             "partOfSpeech": "noun",
-            "text": "Any of a group of peptide hormones found in the brain that act as neurotransmitters and have properties similar to morphine.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/endorphin"
+            "text": "any of a group of endogenous peptides (such as enkephalin) found especially in the brain that bind chiefly to opiate receptors and produce some pharmacological effects (such as pain relief) like those of opiates; specifically: beta-endorphin",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/endorphin"
+        },
+        {
+            "id": "beta-endorphin",
+            "partOfSpeech": "noun",
+            "text": "an endorphin of the pituitary gland having a much greater analgesic potency than morphine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/endorphin"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "en-ˈdȯr-fən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/endorp01.mp3",
+        "etymology": "International Scientific Vocabulary endogenous + morphine",
+        "related": [
+            "neurochemical",
+            "peptide",
+            "beta endorphin",
+            "enkephalin"
+        ]
+    }
 }

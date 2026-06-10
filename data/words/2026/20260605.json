@@ -1,22 +1,28 @@
 {
     "word": "valedictorian",
     "date": "20260605",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
+            "id": "valedictorian",
             "partOfSpeech": "noun",
-            "text": "(properly) The individual in a graduating class who delivers the farewell or valedictory address, often the person who graduates with the highest grades.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/valedictorian"
-        },
-        {
-            "partOfSpeech": "noun",
-            "text": "The individual in a graduating class who graduates with the highest grades.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/valedictorian"
+            "text": "the student usually having the highest rank in a graduating class who delivers the valedictory address at the commencement exercises",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/valedictorian"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˌva-lə-ˌdik-ˈtȯr-ē-ən",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/valedi02.mp3",
+        "etymology": " + ",
+        "synonyms": [
+            "valedictory speaker"
+        ],
+        "related": [
+            "scholar",
+            "scholarly person"
+        ]
+    }
 }

@@ -2,6 +2,7 @@
     "word": "azure",
     "date": "20250825",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "azure",
@@ -27,5 +28,20 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/azure"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈa-zhər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/azure001.mp3",
+        "etymology": "Middle English asur, from Anglo-French azeure, probably from Old Spanish, modification of Arabic lāzaward, from Persian lāzhuward",
+        "synonyms": [
+            "cerulean",
+            "sapphire",
+            "lazuline",
+            "sky-blue"
+        ],
+        "related": [
+            "blue",
+            "blueness"
+        ]
+    }
 }

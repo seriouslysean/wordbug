@@ -1,22 +1,58 @@
 {
     "word": "stinky",
     "date": "20260307",
-    "adapter": "wiktionary",
+    "adapter": "merriam-webster",
     "preserveCase": false,
     "data": [
         {
-            "partOfSpeech": "adjective",
-            "text": "Having a strong, unpleasant smell; stinking.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/stinky"
+            "id": "stink",
+            "partOfSpeech": "verb",
+            "text": "to emit a strong offensive odor",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/stinky",
+            "examples": [
+                "stank of urine",
+                "the election stank of corruption",
+                "stinking with wealth",
+                "the performance stank",
+                "that news really stinks"
+            ]
         },
         {
-            "partOfSpeech": "adjective",
-            "text": "Bad, undesirable.",
-            "attributionText": "from Wiktionary",
-            "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://en.wiktionary.org/wiki/stinky"
+            "id": "stink",
+            "partOfSpeech": "verb",
+            "text": "to be offensive; also: to be in bad repute",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/stinky",
+            "examples": [
+                "stank of urine",
+                "the election stank of corruption",
+                "stinking with wealth",
+                "the performance stank",
+                "that news really stinks"
+            ]
+        },
+        {
+            "id": "stink",
+            "partOfSpeech": "verb",
+            "text": "to possess something to an offensive degree",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/stinky",
+            "examples": [
+                "stank of urine",
+                "the election stank of corruption",
+                "stinking with wealth",
+                "the performance stank",
+                "that news really stinks"
+            ]
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈstiŋk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/stink001.mp3",
+        "etymology": "Middle English, from Old English stincan; akin to Old High German stinkan to emit a smell"
+    }
 }

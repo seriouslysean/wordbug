@@ -2,6 +2,7 @@
     "word": "grasp",
     "date": "20250908",
     "adapter": "merriam-webster",
+    "preserveCase": false,
     "data": [
         {
             "id": "grasp",
@@ -101,5 +102,42 @@
             "sourceDictionary": "collegiate",
             "sourceUrl": "https://www.merriam-webster.com/dictionary/grasp"
         }
-    ]
+    ],
+    "enrichment": {
+        "pronunciation": "ˈgrasp",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/g/grasp001.mp3",
+        "etymology": "Middle English graspen",
+        "synonyms": [
+            "hold on",
+            "grok",
+            "get the picture",
+            "comprehend",
+            "savvy",
+            "dig",
+            "compass",
+            "apprehend"
+        ],
+        "related": [
+            "hold",
+            "take hold",
+            "clasp",
+            "clench",
+            "grasping",
+            "taking hold",
+            "latch on",
+            "cling",
+            "hang",
+            "understand",
+            "apprehensible",
+            "intelligible",
+            "apprehensive",
+            "discerning",
+            "understanding",
+            "apprehension",
+            "knower",
+            "apprehender",
+            "appreciation",
+            "comprehensible"
+        ]
+    }
 }
