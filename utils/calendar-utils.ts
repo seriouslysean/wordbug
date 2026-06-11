@@ -36,8 +36,10 @@ export const buildActivityCalendar = (dates: string[]): YearActivity[] => {
     const cells: ActivityCell[] = [];
     const yearNum = Number(year);
 
-    // Pad so Jan 1 lands on its real weekday (0 = Sunday) in the first column.
-    const leadingDays = new Date(yearNum, 0, 1).getDay();
+    // Monday-first week: pad so Jan 1 lands on its weekday. getDay() is
+    // 0 = Sunday, so remap to Monday = 0 .. Sunday = 6 (a Sunday Jan 1 gets 6
+    // leading padding cells, landing it on the last row).
+    const leadingDays = (new Date(yearNum, 0, 1).getDay() + 6) % 7;
     for (let i = 0; i < leadingDays; i++) {
       cells.push({ date: null, active: false });
     }

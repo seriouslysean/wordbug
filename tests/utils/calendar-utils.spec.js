@@ -17,10 +17,15 @@ describe('calendar-utils', () => {
       expect(year2023.cells.filter(cell => cell.date).length).toBe(365);
     });
 
-    it('pads leading cells so Jan 1 lands on its weekday', () => {
+    it('pads leading cells so Jan 1 lands on its weekday (Monday-first week)', () => {
+      // Jan 1 2023 is a Sunday -> 6 leading cells (Mon-Sat) before it.
+      const [year2023] = buildActivityCalendar(['20230101']);
+      const leading2023 = year2023.cells.filter((cell, index) => cell.date === null && index < 7).length;
+      expect(leading2023).toBe(6);
+      // Jan 1 2024 is a Monday -> it lands on the first row, no leading cells.
       const [year2024] = buildActivityCalendar(['20240101']);
-      const leading = year2024.cells.filter((cell, index) => cell.date === null && index < 7).length;
-      expect(leading).toBe(new Date(2024, 0, 1).getDay());
+      const leading2024 = year2024.cells.filter((cell, index) => cell.date === null && index < 7).length;
+      expect(leading2024).toBe(0);
     });
 
     it('marks active days and totals them', () => {

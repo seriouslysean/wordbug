@@ -49,7 +49,7 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
               )
               : (
                 <span
-                  class="heatmap__cell"
+                  class:list={['heatmap__cell', { 'heatmap__cell--padding': !cell.date }]}
                   title={cell.date ? formatDate(cell.date) : undefined}
                 ></span>
               );
@@ -98,12 +98,18 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
     aspect-ratio: 54 / 7;
   }
 
-  /* Non-active cells (empty in-year days and leading/trailing padding) are faint
-     squares; active days fill solid and link to that day's word. */
+  /* Empty in-year days are faint filled squares; leading/trailing padding (cells
+     outside the year) is the same grey but outlined, not filled, so it reads as
+     "not part of this year"; active days fill solid and link out. */
   .heatmap__cell {
     border-radius: 2px;
     background: var(--color-border);
     opacity: 0.5;
+  }
+
+  .heatmap__cell--padding {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-border);
   }
 
   .heatmap__cell--active {
@@ -114,8 +120,11 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
     transition: var(--transition);
   }
 
+  /* Fade the square to ~50% on hover via a transparent background, not opacity:
+     element opacity would also fade the tooltip (a child of this cell), since
+     group opacity applies to the whole subtree. color-mix fades just the fill. */
   .heatmap__cell--active:hover {
-    opacity: 0.7;
+    background: color-mix(in srgb, var(--color-primary) 50%, transparent);
   }
 
   .heatmap__cell--active:focus-visible {
