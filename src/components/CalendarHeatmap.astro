@@ -144,10 +144,9 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
       border-radius: 4px;
       box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
       white-space: nowrap;
-      opacity: 0;
-      transform: translateX(-50%) translateY(2px);
+      transform: translateX(-50%);
+      visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.12s ease, transform 0.12s ease;
       z-index: 2;
     }
 
@@ -158,8 +157,7 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
 
     .heatmap__cell--active:hover .heatmap__tooltip,
     .heatmap__cell--active:focus-visible .heatmap__tooltip {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      visibility: visible;
     }
   }
 
