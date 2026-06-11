@@ -20,6 +20,13 @@ test.describe('stats visualizations', () => {
     await expect(page.locator('#word-title')).toBeVisible();
   });
 
+  test('activity heatmap days link to their word page', async ({ page }) => {
+    await page.goto('/stats');
+    // An active day is a link to that day's word; clicking it lands on the word.
+    await page.locator('a.heatmap__cell--active').first().click();
+    await expect(page.locator('#word-title')).toBeVisible();
+  });
+
   test('shows a per-year summary on a year page', async ({ page }) => {
     await page.goto('/browse');
     await page.locator('main a[href*="/browse/20"]').first().click();

@@ -32,7 +32,8 @@ import {
   getWordFactsUrl,
   getStreaksUrl,
   getLetterPatternsUrl,
-  getWordEndingsUrl
+  getWordEndingsUrl,
+  getWordUrl
 } from '#astro-utils/url-utils';
 import {
   getLetterStatsFromFrequency,
@@ -191,7 +192,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
 
     {totalWords > 0 && (
       <StatsSection title={t('stats.activity_heading')}>
-        <CalendarHeatmap dates={allWords.map(word => word.date)} />
+        <CalendarHeatmap entries={allWords.map(word => ({ date: word.date, word: word.word, url: getWordUrl(word.word) }))} />
       </StatsSection>
     )}
 

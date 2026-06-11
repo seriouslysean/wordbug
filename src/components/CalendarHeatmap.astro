@@ -3,12 +3,19 @@ import { buildActivityCalendar } from '#utils/calendar-utils';
 import { formatDate } from '#utils/date-utils';
 import { t, tp } from '#utils/i18n-utils';
 
-interface Props {
-  dates: string[];
+interface HeatmapEntry {
+  date: string;
+  word: string;
+  url: string;
 }
 
-const { dates } = Astro.props;
-const calendars = buildActivityCalendar(dates).toReversed();
+interface Props {
+  entries: HeatmapEntry[];
+}
+
+const { entries } = Astro.props;
+const byDate = new Map(entries.map(entry => [entry.date, entry]));
+const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReversed();
 ---
 
 {calendars.length > 0 && (
@@ -16,21 +23,37 @@ const calendars = buildActivityCalendar(dates).toReversed();
     {calendars.map(calendar => (
       <figure class="heatmap__year">
         <figcaption class="heatmap__caption">{calendar.year} · {tp('common.words', calendar.total)}</figcaption>
+        {/* No role="img": active days are links, so the grid must expose its
+            children to assistive tech. Each link is labelled with its word and
+            date; the figcaption names the year. */}
         <div
           class:list={['heatmap__grid', `heatmap__grid--cols-${calendar.columns}`]}
-          role="img"
           aria-label={t('stats.activity_aria', { year: calendar.year })}
         >
-          {calendar.cells.map(cell => (
-            cell.date
+          {calendar.cells.map(cell => {
+            const entry = cell.date ? byDate.get(cell.date) : undefined;
+            return entry
               ? (
-                <span
-                  class:list={['heatmap__cell', { 'heatmap__cell--active': cell.active }]}
-                  title={cell.active ? `${formatDate(cell.date)} · ${tp('common.words', 1)}` : formatDate(cell.date)}
-                ></span>
+                <a
+                  href={entry.url}
+                  class="heatmap__cell heatmap__cell--active"
+                  aria-label={`${formatDate(entry.date)}, ${entry.word}`}
+                >
+                  {/* Hover-only enhancement (desktop); aria-label covers AT.
+                      Date leads as the calendar context, word is the payload. */}
+                  <span class="heatmap__tooltip" aria-hidden="true">
+                    <span class="heatmap__tooltip-date">{formatDate(entry.date)}</span>
+                    <span class="heatmap__tooltip-word">{entry.word}</span>
+                  </span>
+                </a>
               )
-              : <span class="heatmap__cell"></span>
-          ))}
+              : (
+                <span
+                  class="heatmap__cell"
+                  title={cell.date ? formatDate(cell.date) : undefined}
+                ></span>
+              );
+          })}
         </div>
       </figure>
     ))}
@@ -76,7 +99,7 @@ const calendars = buildActivityCalendar(dates).toReversed();
   }
 
   /* Non-active cells (empty in-year days and leading/trailing padding) are faint
-     squares; active days fill solid. */
+     squares; active days fill solid and link to that day's word. */
   .heatmap__cell {
     border-radius: 2px;
     background: var(--color-border);
@@ -84,7 +107,70 @@ const calendars = buildActivityCalendar(dates).toReversed();
   }
 
   .heatmap__cell--active {
+    display: block;
+    position: relative;
     background: var(--color-primary);
     opacity: 1;
+    transition: var(--transition);
+  }
+
+  .heatmap__cell--active:hover {
+    opacity: 0.7;
+  }
+
+  .heatmap__cell--active:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+  }
+
+  /* Tooltip: word-over-date card, matching WordLink. Hidden by default; shown
+     only on hover-capable pointers (desktop), so touch devices just navigate. */
+  .heatmap__tooltip {
+    display: none;
+  }
+
+  @media (hover: hover) {
+    .heatmap__tooltip {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      padding: 0.3rem 0.6rem;
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(-50%) translateY(2px);
+      pointer-events: none;
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      z-index: 2;
+    }
+
+    .heatmap__cell--active:hover,
+    .heatmap__cell--active:focus-visible {
+      z-index: 3;
+    }
+
+    .heatmap__cell--active:hover .heatmap__tooltip,
+    .heatmap__cell--active:focus-visible .heatmap__tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .heatmap__tooltip-word {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .heatmap__tooltip-date {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
   }
 </style>
