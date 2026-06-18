@@ -1,0 +1,79 @@
+{
+    "word": "superlative",
+    "date": "20260618",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "superlative",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or constituting the degree of grammatical comparison that denotes an extreme or unsurpassed level or extent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superlative",
+            "examples": [
+                "superlative work"
+            ]
+        },
+        {
+            "id": "superlative",
+            "partOfSpeech": "adjective",
+            "text": "surpassing all others: supreme",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superlative",
+            "examples": [
+                "superlative work"
+            ]
+        },
+        {
+            "id": "superlative",
+            "partOfSpeech": "adjective",
+            "text": "of very high quality: excellent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superlative",
+            "examples": [
+                "superlative work"
+            ]
+        },
+        {
+            "id": "superlative",
+            "partOfSpeech": "noun",
+            "text": "the superlative degree of comparison in a language",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superlative"
+        },
+        {
+            "id": "superlative",
+            "partOfSpeech": "noun",
+            "text": "a superlative form of an adjective or adverb",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superlative"
+        },
+        {
+            "id": "superlative",
+            "partOfSpeech": "noun",
+            "text": "the superlative or utmost degree of something: acme",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/superlative"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "su̇-ˈpər-lə-tiv",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/superl01.mp3",
+        "etymology": "Middle English superlatif, from Anglo-French, from Late Latin superlativus, from Latin superlatus (past participle of superferre to carry over, raise high), from super- + latus, past participle of ferre to carry , ",
+        "synonyms": [
+            "greatest",
+            "sterling",
+            "superior"
+        ],
+        "related": [
+            "acme",
+            "height"
+        ]
+    }
+}
