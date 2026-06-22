@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { afterEach, vi } from 'vitest';
 import mockTranslations from '#tests/locales/en-us.fixtures.json';
 
 // Mock astro:env/client with mutable defaults for all tests
@@ -39,6 +39,15 @@ vi.mock('astro:env/client', () => mockEnv);
 
 // Expose for tests that need to override env values
 global.mockEnv = mockEnv;
+
+// vitest runs with `isolate: false`, so test files share this mockEnv object
+// and the module registry. Tests that override BASE_PATH (url-utils,
+// WordLink, the page-metadata wrapper) would otherwise leak the value into
+// whichever file runs next, causing order-dependent failures. Restore the
+// default after every test so each starts from a clean BASE_PATH.
+afterEach(() => {
+  mockEnv.BASE_PATH = '/';
+});
 
 // Mock fixture data for testing
 const mockWordData = [

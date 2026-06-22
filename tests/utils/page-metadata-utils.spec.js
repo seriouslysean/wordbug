@@ -33,7 +33,12 @@ vi.mock('#utils/i18n-utils', () => ({
   tp: vi.fn((baseKey, count) => `${count} Mock Items`)
 }));
 
-import { getAllPageMetadata, getPageMetadata } from '#utils/page-metadata-utils';
+import {
+  getAllPageMetadata,
+  getDefinition,
+  getPageMetadata,
+  getPageTitle,
+} from '#utils/page-metadata-utils';
 
 // Clean up mock after this test file to prevent leakage to other tests
 afterAll(() => {
@@ -197,6 +202,9 @@ describe('page-metadata-utils', () => {
   describe('getPageMetadata wrapper', () => {
     it('handles BASE_PATH prefixes', async () => {
       mockEnv.BASE_PATH = '/vocab';
+      // Reset modules so the wrapper re-reads BASE_PATH instead of a value
+      // cached by an earlier test file (the suite runs files in parallel).
+      vi.resetModules();
       const { getPageMetadata: getPageMetadataWrapper } = await import(
         '#astro-utils/page-metadata'
       );
@@ -221,6 +229,95 @@ describe('page-metadata-utils', () => {
         description: 'Mock stats description',
         category: 'pages',
         secondaryText: 'Mock Stats Subheading',
+      });
+    });
+  });
+
+  describe('getDefinition', () => {
+    it('returns the value for an existing key', () => {
+      expect(getDefinition({ a: 1, b: 2 }, 'b')).toBe(2);
+    });
+
+    it('throws for a missing key', () => {
+      expect(() => getDefinition({ a: 1 }, 'missing')).toThrow(
+        'Missing definition for key: missing',
+      );
+    });
+  });
+
+  describe('getPageTitle', () => {
+    it('returns Unknown Page for an empty path', () => {
+      expect(getPageTitle('')).toBe('Unknown Page');
+    });
+
+    it('returns the static title for a known path', () => {
+      expect(getPageTitle('/word')).toBe('Mock Words Heading');
+    });
+
+    it('returns the word for a word-detail path', () => {
+      expect(getPageTitle('/word/example')).toBe('example');
+    });
+
+    it('returns the year for a year path', () => {
+      expect(getPageTitle('/browse/2024')).toBe('2024');
+    });
+
+    it('returns the capitalized month name for a month path', () => {
+      expect(getPageTitle('/browse/2024/january')).toBe('January');
+    });
+
+    it('returns the length-words title for a length path', () => {
+      expect(getPageTitle('/browse/length/5')).toBe('5-Letter Words');
+    });
+
+    it('returns the uppercased letter for a letter path', () => {
+      expect(getPageTitle('/browse/letter/a')).toBe('A');
+    });
+
+    it('returns the part-of-speech name for a part-of-speech path', () => {
+      expect(getPageTitle('/browse/part-of-speech/noun')).toBe('Noun');
+    });
+
+    it('returns Unknown Page for a month path with an unknown month slug', () => {
+      expect(getPageTitle('/browse/2024/notamonth')).toBe('Unknown Page');
+    });
+
+    it('returns Unknown Page for an unrecognized path', () => {
+      expect(getPageTitle('/totally/unknown')).toBe('Unknown Page');
+    });
+  });
+
+  describe('getPageMetadata dynamic paths', () => {
+    it('returns metadata for a word-detail page', () => {
+      expect(getPageMetadata('/word/example', mockWords)).toEqual({
+        title: 'example',
+        description: 'Definition and meaning of example.',
+        category: 'pages',
+      });
+    });
+
+    it('returns metadata for a part-of-speech page', () => {
+      const metadata = getPageMetadata('/browse/part-of-speech/noun', mockWords);
+      expect(metadata.title).toBe('Noun');
+      expect(metadata.category).toBe('pages');
+      expect(metadata.description).toContain('noun');
+      expect(metadata.secondaryText).toBe('0 Mock Items');
+    });
+
+    it('returns home metadata for the root path', () => {
+      const metadata = getPageMetadata('/', mockWords);
+      expect(metadata.title).toBe('Mock Home Heading');
+      expect(metadata.category).toBe('pages');
+      expect(typeof metadata.description).toBe('string');
+      expect(metadata.secondaryText).toBeUndefined();
+    });
+
+    it('falls back to Unknown Page for a month path with an unknown month slug', () => {
+      expect(getPageMetadata('/browse/2024/notamonth', mockWords)).toEqual({
+        title: 'Unknown Page',
+        description: '',
+        category: 'unknown',
+        secondaryText: undefined,
       });
     });
   });

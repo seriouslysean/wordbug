@@ -19,6 +19,7 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { spawnTool } from '#tests/helpers/spawn';
 
@@ -188,16 +189,30 @@ describe('CLI Tools: Basic Functionality', () => {
     const wordData = JSON.parse(fs.readFileSync(firstWordFile, 'utf-8'));
     const testWord = wordData.word;
 
+    // Redirect output to a throwaway temp dir so generation never overwrites
+    // the tracked demo social cards under public/.
+    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wotd-images-'));
+
     spawnTool(
       ['tools/generate-images.ts', '--word', testWord, '--force'],
-      { env: DEMO_ENV, timeout: 30000 },
+      { env: { ...DEMO_ENV, IMAGES_OUTPUT_DIR: outputDir }, timeout: 30000 },
       ({ stdout, stderr, code }) => {
-        expect(code).toBe(0);
-        expect(stdout).toContain('Generate images tool starting');
-        expect(stdout).toContain(`Generated image for word`);
-        expect(stderr).not.toContain('astro:');
-        expect(stderr).not.toContain('Only URLs with a scheme in: file, data, and node');
-        done();
+        try {
+          expect(code).toBe(0);
+          expect(stdout).toContain('Generate images tool starting');
+          expect(stdout).toContain(`Generated image for word`);
+          expect(stderr).not.toContain('astro:');
+          expect(stderr).not.toContain('Only URLs with a scheme in: file, data, and node');
+          // The card landed in the temp dir, not the tracked public/ tree.
+          const generated = fs.readdirSync(outputDir, { recursive: true })
+            .filter(entry => String(entry).endsWith('.png'));
+          expect(generated.length).toBeGreaterThan(0);
+          done();
+        } catch (error) {
+          done(error);
+        } finally {
+          fs.rmSync(outputDir, { recursive: true, force: true });
+        }
       },
     );
   }, 35000);

@@ -1,13 +1,22 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  findWordDate,
+  getAntiStreakStats,
   getChronologicalMilestones,
+  getCurrentStreakStats,
+  getCurrentStreakWords,
   getLetterPatternStats,
   getLetterStats,
+  getLetterStatsFromFrequency,
+  getLetterTypeStats,
+  getLongestStreakWords,
   getPatternStats,
+  getSyllableStats,
   getWordEndingStats,
+  getWordStats,
 } from '#utils/word-stats-utils';
-import { areConsecutiveDays } from '#utils/date-utils';
+import { areConsecutiveDays, dateToYYYYMMDD } from '#utils/date-utils';
 
 const sampleWords = [
   { word: 'hello', date: '20240101' },
@@ -169,6 +178,231 @@ describe('word-stats-utils', () => {
       expect(milestones.find(m => m.milestone === 75)).toBeDefined();
       expect(milestones.find(m => m.milestone === 100)).toBeDefined();
       expect(milestones.find(m => m.milestone === 200)).toBeDefined();
+    });
+  });
+
+  describe('getLetterPatternStats triple letters', () => {
+    it('captures words with three consecutive identical letters', () => {
+      const patterns = getLetterPatternStats([{ word: 'aaah', date: '20240101' }]);
+      expect(patterns.tripleLetters).toContainEqual({ word: 'aaah', date: '20240101' });
+    });
+  });
+
+  describe('getWordStats', () => {
+    it('returns empty stats for an empty array', () => {
+      expect(getWordStats([])).toEqual({
+        longest: null,
+        shortest: null,
+        longestPalindrome: null,
+        shortestPalindrome: null,
+        letterFrequency: {},
+      });
+    });
+
+    it('finds the longest, shortest, and palindrome extremes', () => {
+      const words = [
+        { word: 'cat', date: '20240101' },
+        { word: 'elephant', date: '20240102' },
+        { word: 'deed', date: '20240103' },
+        { word: 'level', date: '20240104' },
+        { word: 'a', date: '20240105' },
+      ];
+      const stats = getWordStats(words);
+      expect(stats.longest.word).toBe('elephant');
+      expect(stats.shortest.word).toBe('a');
+      expect(stats.longestPalindrome.word).toBe('level');
+      expect(stats.shortestPalindrome.word).toBe('a');
+      expect(stats.letterFrequency.e).toBeGreaterThan(0);
+    });
+  });
+
+  describe('getSyllableStats', () => {
+    it('returns null extremes for an empty array', () => {
+      expect(getSyllableStats([])).toEqual({ mostSyllables: null, leastSyllables: null });
+    });
+
+    it('finds the words with the most and least syllables', () => {
+      const words = [
+        { word: 'monkey', date: '20240101' },
+        { word: 'banana', date: '20240102' },
+        { word: 'cat', date: '20240103' },
+      ];
+      const stats = getSyllableStats(words);
+      expect(stats.mostSyllables.word).toBe('banana');
+      expect(stats.leastSyllables.word).toBe('cat');
+    });
+  });
+
+  describe('getLetterTypeStats', () => {
+    it('returns null extremes for an empty array', () => {
+      expect(getLetterTypeStats([])).toEqual({ mostVowels: null, mostConsonants: null });
+    });
+
+    it('finds the words with the most vowels and most consonants', () => {
+      const words = [
+        { word: 'cat', date: '20240101' },
+        { word: 'aeiou', date: '20240102' },
+        { word: 'strength', date: '20240103' },
+      ];
+      const stats = getLetterTypeStats(words);
+      expect(stats.mostVowels.word).toBe('aeiou');
+      expect(stats.mostConsonants.word).toBe('strength');
+    });
+  });
+
+  describe('findWordDate', () => {
+    const words = [
+      { word: 'cat', date: '20240101' },
+      { word: 'dog', date: '20240102' },
+    ];
+
+    it('returns undefined for an empty target', () => {
+      expect(findWordDate(words, '')).toBeUndefined();
+    });
+
+    it('returns the date for a matching word', () => {
+      expect(findWordDate(words, 'dog')).toBe('20240102');
+    });
+
+    it('returns undefined when the word is not present', () => {
+      expect(findWordDate(words, 'fish')).toBeUndefined();
+    });
+  });
+
+  describe('getLetterStatsFromFrequency', () => {
+    it('returns an empty array for an empty frequency map', () => {
+      expect(getLetterStatsFromFrequency({})).toEqual([]);
+    });
+
+    it('returns letter entries sorted by descending count, filtering non-letters', () => {
+      const sorted = getLetterStatsFromFrequency({ a: 5, b: 3, '1': 9 });
+      expect(sorted).toEqual([['a', 5], ['b', 3]]);
+    });
+  });
+
+  describe('getLongestStreakWords', () => {
+    it('returns the input unchanged for length <= 1', () => {
+      expect(getLongestStreakWords([])).toEqual([]);
+      const one = [{ word: 'solo', date: '20240101' }];
+      expect(getLongestStreakWords(one)).toEqual(one);
+    });
+
+    it('returns the longest consecutive run in chronological order', () => {
+      const words = [
+        { word: 'a', date: '20240101' },
+        { word: 'b', date: '20240102' },
+        { word: 'c', date: '20240103' },
+        { word: 'gap', date: '20240110' },
+        { word: 'd', date: '20240111' },
+      ];
+      expect(getLongestStreakWords(words).map(w => w.word)).toEqual(['a', 'b', 'c']);
+    });
+  });
+
+  describe('getAntiStreakStats', () => {
+    it('returns an empty result for <= 1 word', () => {
+      expect(getAntiStreakStats([])).toEqual({
+        longestGap: 0,
+        gapStartWord: null,
+        gapEndWord: null,
+        gapStartDate: null,
+        gapEndDate: null,
+      });
+      expect(getAntiStreakStats([{ word: 'solo', date: '20240101' }]).longestGap).toBe(0);
+    });
+
+    it('finds the longest gap between consecutive word dates', () => {
+      const words = [
+        { word: 'a', date: '20240101' },
+        { word: 'b', date: '20240103' },
+        { word: 'c', date: '20240110' },
+      ];
+      const result = getAntiStreakStats(words);
+      expect(result.longestGap).toBe(6);
+      expect(result.gapStartWord.word).toBe('b');
+      expect(result.gapEndWord.word).toBe('c');
+      expect(result.gapStartDate).toBe('20240103');
+      expect(result.gapEndDate).toBe('20240110');
+    });
+  });
+
+  describe('streak helpers (time-sensitive)', () => {
+    const BASE = new Date('2024-06-15T12:00:00Z');
+    const offset = (n) => {
+      const d = new Date(BASE);
+      d.setDate(d.getDate() + n);
+      return dateToYYYYMMDD(d);
+    };
+
+    beforeEach(() => {
+      vi.useFakeTimers();
+      vi.setSystemTime(BASE);
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    describe('getCurrentStreakWords', () => {
+      it('returns [] for an empty array', () => {
+        expect(getCurrentStreakWords([])).toEqual([]);
+      });
+
+      it('returns [] when the most recent word is neither today nor yesterday', () => {
+        expect(getCurrentStreakWords([{ word: 'old', date: offset(-10) }])).toEqual([]);
+      });
+
+      it('collects consecutive words ending today, stopping at the first gap', () => {
+        const words = [
+          { word: 'd0', date: offset(0) },
+          { word: 'd1', date: offset(-1) },
+          { word: 'd2', date: offset(-2) },
+          { word: 'gap', date: offset(-5) },
+        ];
+        expect(getCurrentStreakWords(words).map(w => w.word)).toEqual(['d0', 'd1', 'd2']);
+      });
+    });
+
+    describe('getCurrentStreakStats', () => {
+      it('returns zeros for an empty array', () => {
+        expect(getCurrentStreakStats([])).toEqual({
+          currentStreak: 0,
+          longestStreak: 0,
+          isActive: false,
+        });
+      });
+
+      it('reports a single active word', () => {
+        expect(getCurrentStreakStats([{ word: 'solo', date: offset(0) }])).toEqual({
+          currentStreak: 1,
+          longestStreak: 1,
+          isActive: true,
+        });
+      });
+
+      it('computes current and longest streaks across a gap', () => {
+        const words = [
+          { word: 'd0', date: offset(0) },
+          { word: 'd1', date: offset(-1) },
+          { word: 'gap', date: offset(-4) },
+          { word: 'g1', date: offset(-5) },
+          { word: 'g2', date: offset(-6) },
+        ];
+        const stats = getCurrentStreakStats(words);
+        expect(stats.isActive).toBe(true);
+        expect(stats.currentStreak).toBe(2);
+        expect(stats.longestStreak).toBe(3);
+      });
+
+      it('reports inactive with no current streak when the most recent word is stale', () => {
+        const stats = getCurrentStreakStats([
+          { word: 'old', date: offset(-10) },
+          { word: 'older', date: offset(-11) },
+        ]);
+        expect(stats.isActive).toBe(false);
+        expect(stats.currentStreak).toBe(0);
+        expect(stats.longestStreak).toBe(2);
+      });
     });
   });
 });

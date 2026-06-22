@@ -46,8 +46,8 @@ if (breadcrumbSchema) {
 }
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline></script>
 
 {schemas.map(schema => (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
 ))}

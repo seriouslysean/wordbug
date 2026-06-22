@@ -30,12 +30,10 @@ export default defineConfig({
       ],
       thresholds: {
         autoUpdate: false,
-        global: {
-          branches: 85,
-          functions: 80,
-          lines: 80,
-          statements: 80,
-        },
+        branches: 85,
+        functions: 80,
+        lines: 80,
+        statements: 80,
       },
     },
   },

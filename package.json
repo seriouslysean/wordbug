@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "3.21.0",
+  "version": "3.22.0",
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -40,15 +40,15 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
-    "astro": "^6.3.3",
+    "astro": "^7.0.0",
     "entities": "^8.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.2",
     "@playwright/test": "^1.60.0",
-    "@sentry/astro": "^10.53.1",
-    "@sentry/node": "^10.53.1",
+    "@sentry/astro": "^10.59.0",
+    "@sentry/node": "^10.59.0",
     "@vitest/coverage-v8": "^4.1.8",
     "cmu-pronouncing-dictionary": "3.0.0",
     "dotenv": "^17.4.2",

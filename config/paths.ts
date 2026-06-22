@@ -18,6 +18,13 @@ const getWordsPath = (): string => {
 };
 
 const getImagesPath = (): string => {
+  // Redirect generated-image output when set (tests point this at a temp dir
+  // so image generation never overwrites tracked social cards under public/).
+  const outputOverride = process.env.IMAGES_OUTPUT_DIR;
+  if (outputOverride) {
+    return outputOverride;
+  }
+
   const sourceDir = process.env.SOURCE_DIR;
   return sourceDir
     ? path.join(ROOT, 'public', sourceDir, 'images')

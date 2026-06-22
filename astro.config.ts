@@ -86,6 +86,10 @@ export default defineConfig({
   site,
   base,
   trailingSlash: 'never',
+  // v7 changes the compressHTML default from `true` to `'jsx'` (collapses
+  // whitespace between inline elements). Pin the v6 behavior to keep build
+  // output byte-stable across the upgrade.
+  compressHTML: true,
   devToolbar: { enabled: false },
   env: {
     schema: {
