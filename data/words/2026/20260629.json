@@ -1,0 +1,82 @@
+{
+    "word": "aboriginal",
+    "date": "20260629",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "aboriginal",
+            "partOfSpeech": "adjective",
+            "text": "being the first or earliest known of its kind present in a region: indigenous, native",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aboriginal",
+            "examples": [
+                "aboriginal forests",
+                "aboriginal rocks",
+                "aboriginal languages",
+                "aboriginal tribes/customs/art",
+                "Aboriginal diversity",
+                "Aboriginal and Torres Strait Islander peoples"
+            ]
+        },
+        {
+            "id": "aboriginal",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or descended from the earliest known inhabitants of a place and especially of a place that was colonized: indigenous; specifically Aboriginalor less commonly aboriginal: of, relating to, or descended from a group of peoples who along with the Torres Strait Islander peoples are the earliest known inhabitants of Australia",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aboriginal",
+            "examples": [
+                "aboriginal forests",
+                "aboriginal rocks",
+                "aboriginal languages",
+                "aboriginal tribes/customs/art",
+                "Aboriginal diversity",
+                "Aboriginal and Torres Strait Islander peoples"
+            ]
+        },
+        {
+            "id": "aboriginal",
+            "partOfSpeech": "noun",
+            "text": "aborigine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aboriginal",
+            "examples": [
+                "New World aboriginals"
+            ]
+        },
+        {
+            "id": "aboriginal",
+            "partOfSpeech": "noun",
+            "text": "aborigine",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aboriginal",
+            "examples": [
+                "New World aboriginals"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˌa-bə-ˈri-jə-nᵊl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/aborig01.mp3",
+        "etymology": " + ",
+        "synonyms": [
+            "native",
+            "primal",
+            "primeval",
+            "primaeval",
+            "primordial",
+            "early"
+        ],
+        "antonyms": [
+            "nonnative"
+        ],
+        "related": [
+            "indigen",
+            "nativeness"
+        ]
+    }
+}
