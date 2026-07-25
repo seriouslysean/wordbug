@@ -1,0 +1,89 @@
+{
+    "word": "adolescent",
+    "date": "20260725",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "adolescent",
+            "partOfSpeech": "noun",
+            "text": "a young person who is developing into an adult: one who is in the state of adolescence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/adolescent"
+        },
+        {
+            "id": "adolescent",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or being in adolescence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/adolescent",
+            "examples": [
+                "adolescent growth",
+                "adolescent boys and girls",
+                "did not appreciate her husband's adolescent high jinks"
+            ]
+        },
+        {
+            "id": "adolescent",
+            "partOfSpeech": "adjective",
+            "text": "emotionally or intellectually immature",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/adolescent",
+            "examples": [
+                "adolescent growth",
+                "adolescent boys and girls",
+                "did not appreciate her husband's adolescent high jinks"
+            ]
+        },
+        {
+            "id": "subadolescent",
+            "partOfSpeech": "adjective",
+            "text": "nearly adolescent: almost in the period of adolescence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/adolescent",
+            "examples": [
+                "subadolescent boys",
+                "subadolescent humor"
+            ]
+        },
+        {
+            "id": "subadolescent",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or characteristic of a subadolescent child",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/adolescent",
+            "examples": [
+                "subadolescent boys",
+                "subadolescent humor"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˌa-də-ˈle-sᵊnt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/adoles02.mp3",
+        "etymology": "Middle English, borrowed from Middle French & Latin; Middle French, borrowed from Latin adolēscent-, adolēscens \"young man or woman, youth,\" noun derivative of adolēscens ",
+        "synonyms": [
+            "stripling",
+            "teenager",
+            "teen"
+        ],
+        "related": [
+            "juvenile",
+            "juvenile person",
+            "adolesce",
+            "chebab",
+            "mod",
+            "pachuco",
+            "punk rocker",
+            "punk",
+            "rocker",
+            "young buck",
+            "young man"
+        ]
+    }
+}
