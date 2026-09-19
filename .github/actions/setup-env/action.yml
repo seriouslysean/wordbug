@@ -1,5 +1,5 @@
 name: 'Setup Environment Variables'
-description: 'Sets up all environment variables needed for build and deploy'
+description: 'Sets up all environment variables needed to build, deploy and add words'
 inputs:
   vars-json:
     description: 'Repository variables as JSON'
@@ -7,6 +7,8 @@ inputs:
   secrets-json:
     description: 'Repository secrets as JSON'
     required: true
+  # Unused: a step cannot overwrite GITHUB_SHA, so the action no longer
+  # writes it. Declared still because the build workflow passes it.
   github-sha:
     description: 'GitHub SHA for the build'
     required: false
@@ -21,20 +23,32 @@ runs:
         SECRETS_JSON: ${{ inputs.secrets-json }}
         VAR_NAMES: |
           BASE_PATH
+          COLOR_DARK_BACKGROUND
+          COLOR_DARK_BACKGROUND_LIGHT
+          COLOR_DARK_BORDER
+          COLOR_DARK_PRIMARY
+          COLOR_DARK_PRIMARY_DARK
+          COLOR_DARK_PRIMARY_LIGHT
+          COLOR_DARK_TEXT
+          COLOR_DARK_TEXT_LIGHT
           COLOR_PRIMARY
           COLOR_PRIMARY_DARK
           COLOR_PRIMARY_LIGHT
           DICTIONARY_ADAPTER
+          DICTIONARY_FALLBACK
           HUMANS_DEVELOPER_CONTACT
           HUMANS_DEVELOPER_NAME
           HUMANS_DEVELOPER_SITE
           HUMANS_WORD_CURATOR
+          MERRIAM_WEBSTER_API_URL
+          MERRIAM_WEBSTER_DICTIONARY
           SITE_ATTRIBUTION_MESSAGE
           SITE_AUTHOR
           SITE_AUTHOR_URL
           SITE_DESCRIPTION
           SITE_ID
           SITE_KEYWORDS
+          SITE_LOCALE
           SITE_TITLE
           SITE_URL
           SOURCE_DIR
@@ -43,6 +57,7 @@ runs:
         SECRET_NAMES: |
           GA_ENABLED
           GA_MEASUREMENT_ID
+          MERRIAM_WEBSTER_API_KEY
           SENTRY_AUTH_TOKEN
           SENTRY_DSN
           SENTRY_ENABLED
@@ -50,23 +65,52 @@ runs:
           SENTRY_PROJECT
           WORDNIK_API_KEY
       run: |
-        echo "CI=true" >> $GITHUB_ENV
-        echo "SENTRY_ENVIRONMENT=production" >> $GITHUB_ENV
-        echo "TZ=$(echo "$VARS_JSON" | jq -r '.SITE_TZ // "America/New_York"')" >> $GITHUB_ENV
-        echo "GITHUB_SHA=${{ inputs.github-sha }}" >> $GITHUB_ENV
-        
+        # In name=value form a line break in a value starts a new entry, so a
+        # two-line SITE_DESCRIPTION fails the step and one with a second
+        # NAME=... line sets that variable too. The name<<delimiter form keeps
+        # every line of the value, and a delimiter drawn at random for each
+        # value cannot be closed early by anything the value contains.
+        put_env() {
+          local delimiter
+          delimiter="EOF_$(openssl rand -hex 16)"
+          printf '%s<<%s\n%s\n%s\n' "$1" "$delimiter" "$2" "$delimiter" >> "$GITHUB_ENV"
+        }
+
+        # GitHub masks the secrets a job is given, but a called workflow is
+        # given only the site-secrets envelope, and a value taken out of it
+        # is not masked: an adapter's key in a logged request URL would show.
+        # The runner matches the log a line at a time and a command is one
+        # line, so each line of a value is masked on its own, a carriage
+        # return ending a line as it does for the runner. The runner reads %25
+        # in command data as %, so % is escaped. A blank mask only draws a
+        # warning from the runner, so blank lines are skipped.
+        mask() {
+          local line
+          while IFS= read -r line; do
+            if [[ "$line" == *[![:space:]]* ]]; then
+              printf '::add-mask::%s\n' "${line//%/%25}"
+            fi
+          done <<< "${1//$'\r'/$'\n'}"
+        }
+
+        put_env CI true
+        put_env SENTRY_ENVIRONMENT production
+        value=$(echo "$VARS_JSON" | jq -r '.SITE_TZ // "America/New_York"')
+        put_env TZ "$value"
+
         # Set variables (avoid subshell with while loop)
         while IFS= read -r var; do
           if [[ -n "$var" ]]; then
             value=$(echo "$VARS_JSON" | jq -r ".$var // \"\"")
-            echo "$var=$value" >> $GITHUB_ENV
+            put_env "$var" "$value"
           fi
         done <<< "$VAR_NAMES"
-        
+
         # Set secrets (avoid subshell with while loop)
         while IFS= read -r secret; do
           if [[ -n "$secret" ]]; then
             value=$(echo "$SECRETS_JSON" | jq -r ".$secret // \"\"")
-            echo "$secret=$value" >> $GITHUB_ENV
+            mask "$value"
+            put_env "$secret" "$value"
           fi
         done <<< "$SECRET_NAMES"

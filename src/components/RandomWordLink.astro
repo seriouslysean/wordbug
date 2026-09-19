@@ -10,9 +10,11 @@ const { class: className, ...attrs } = Astro.props;
 </SiteButton>
 
 <script>
+import type { WordIndexEntry } from '#types';
 import { getUrl, getWordUrl, getWordsUrl } from '#astro-utils/url-utils';
+import { isWordIndex } from '#utils/word-validation';
 
-const wordListCache = { data: null as { word: string; date: string }[] | null };
+const wordListCache: { data: WordIndexEntry[] | null } = { data: null };
 
 async function getRandomWord() {
   try {
@@ -21,7 +23,11 @@ async function getRandomWord() {
       if (!response.ok) {
         throw new Error('Failed to fetch words');
       }
-      wordListCache.data = await response.json();
+      const data: unknown = await response.json();
+      if (!isWordIndex(data)) {
+        throw new Error('Malformed word list');
+      }
+      wordListCache.data = data;
     }
 
     if (!wordListCache.data || wordListCache.data.length === 0) {
@@ -40,8 +46,6 @@ async function getRandomWord() {
 
 const button = document.getElementById('random-word-button');
 
-if (button) {
-  button.addEventListener('click', getRandomWord);
-}
+button?.addEventListener('click', getRandomWord);
 </script>
 

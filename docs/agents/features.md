@@ -8,7 +8,7 @@ Quality and architectural improvements, prioritized by impact. Status markers:
 One bucket PR surfacing data the site already had, plus offline/capture-time
 enrichment, search, and build-time visualizations. All code is site-agnostic
 (ships downstream on sync); enrichment *data* is regenerated per site via
-`npm run tool:regenerate-all-words --force` (each site's keys + corpus).
+`npm run tool:regenerate-all-words -- --force` (each site's keys + corpus).
 
 - **Word-page surfacing.** Example sentences; all definitions via a CSS
   scroll-snap slider (one sense at a time with arrows + dots, compound entries
@@ -240,7 +240,7 @@ files with divergent semantics:
 | `groupWordsByLength` | L192-193: raw `Object.groupBy`, keys unsorted | L361-369: sorts keys ascending, coerces `undefined` buckets to `[]` |
 | `groupWordsByLetter` | L198-199: raw on `charAt(0).toLowerCase()`, all words | L388-397: pre-filters `/^[a-z]/i`, sorts keys, sorts each bucket by `localeCompare` |
 | `groupWordsByYear` | L204-205: raw `Object.groupBy` | L345-350: coerces `undefined` buckets to `[]`, no sort |
-| `groupWordsByPartOfSpeech` | L211-231: per-word `Set` dedup by normalized POS | L416-449: dedups within bucket by `word.date`, sorts keys + words, uses `normalizeToBasePOS` (drops non-base) |
+| `groupWordsByPartOfSpeech` | groups each word under the normalized POS of its displayable definitions (`getDisplayableDefinitions`), once per POS | delegates to the pure function, then drops non-base keys and sorts keys + words |
 
 **Consolidation strategy.** Pure `utils/` becomes the single owner. Pure
 functions gain alphabetical key sort, per-bucket `localeCompare` sort,
@@ -273,7 +273,7 @@ helpers that do real work: `getBasePath`, `getPathname`, `getUrl`,
 2. Update unit tests to cover sorted keys, sorted buckets, alphabetic-only
    letter filter, base-POS-only filter.
 3. Replace wrapper bodies with one-line delegators.
-4. Extend `tests/architecture/utils-boundary.spec.js` to include the four
+4. Extend `tests/architecture/utils-boundary.spec.ts` to include the four
    `groupWordsBy*` names.
 5. Delete the 23 zero-arg `STATS_SLUGS`/`BASE_PATHS`/`BROWSE_PATHS`
    wrappers in `src/utils/url-utils.ts`.
@@ -316,8 +316,8 @@ adapters/logger/stats-math changes.
 
 Pairs the Astro 6.x image component rollout with finishing the `astro:env`
 migration. The type-safe env API is already partially adopted —
-`src/utils/seo-utils.ts` imports from `astro:env/client`. One file still
-reads `import.meta.env.SOURCE_DIR` directly.
+`src/utils/seo-utils.ts` and `src/utils/image-utils.ts` import from
+`astro:env/client`, and `SOURCE_DIR` is in the schema.
 
 **Responsive image inventory:**
 - `src/components/Footer.astro:44` — Wordnik logo, imported as
@@ -329,9 +329,6 @@ reads `import.meta.env.SOURCE_DIR` directly.
   needed.
 
 **astro:env adoption gaps:**
-- `src/utils/image-utils.ts:12` — `import.meta.env.SOURCE_DIR`. Add
-  `SOURCE_DIR: envField.string({ context: 'client', access: 'public',
-  default: '' })` to schema and migrate.
 - `astro.config.ts:46,137-138` — `WORDNIK_WEBSITE_URL` declared in
   `defaults` but never schemaed. Add the entry.
 - `src/utils/logger.ts:12,34` — `import.meta.env.DEV` and
@@ -342,20 +339,18 @@ reads `import.meta.env.SOURCE_DIR` directly.
 **Acceptance criteria:**
 - Footer Wordnik logo renders via `<Image>`; build output shows hashed,
   optimized asset; visual diff identical at 16x16.
-- `astro:env/client` schema includes `SOURCE_DIR`, `WORDNIK_WEBSITE_URL`.
-- No `import.meta.env.SOURCE_DIR` references remain in `src/`.
+- `astro:env/client` schema includes `WORDNIK_WEBSITE_URL`.
 - Boundary tests still green.
 - Lighthouse on `/` and a word page: no regression on LCP/CLS.
 
 **Step sequence:**
-1. Add `SOURCE_DIR` and `WORDNIK_WEBSITE_URL` to env schema.
-2. Migrate `src/utils/image-utils.ts:12` to `astro:env/client`.
-3. Replace `<img>` in `src/components/Footer.astro` with `<Image>`.
-4. Verify `:global(.footer__wordnik)` grayscale/opacity styles still
+1. Add `WORDNIK_WEBSITE_URL` to env schema.
+2. Replace `<img>` in `src/components/Footer.astro` with `<Image>`.
+3. Verify `:global(.footer__wordnik)` grayscale/opacity styles still
    target the new wrapper.
-5. Run typecheck, build, inspect `dist/` for hashed image output.
-6. Run unit + E2E suites.
-7. Audit speculation rules `eagerness` against a long browse page; tune
+4. Run typecheck, build, inspect `dist/` for hashed image output.
+5. Run unit + E2E suites.
+6. Audit speculation rules `eagerness` against a long browse page; tune
    if prefetch volume is excessive.
 
 **Out-of-scope:** Astro DB, SSR adapters, server islands, Astro ClientRouter

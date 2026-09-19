@@ -8,9 +8,10 @@ import {
   getCollectionSchemaData,
   getWebsiteSchemaData,
   getWordSchemaData
-} from '#astro-utils/schema-utils.ts';
-import { seoConfig } from '#astro-utils/seo-utils.ts';
+} from '#astro-utils/schema-utils';
+import { seoConfig } from '#astro-utils/seo-utils';
 import { generateBreadcrumbs } from '#utils/breadcrumb-utils';
+import { serializeJsonLd } from '#utils/text-utils';
 
 interface Props {
   word?: WordSchemaData;
@@ -46,8 +47,8 @@ if (breadcrumbSchema) {
 }
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline></script>
+<script type="application/ld+json" set:html={serializeJsonLd(websiteSchema)} is:inline></script>
 
 {schemas.map(schema => (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline></script>
+  <script type="application/ld+json" set:html={serializeJsonLd(schema)} is:inline></script>
 ))}

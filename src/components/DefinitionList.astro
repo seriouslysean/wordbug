@@ -1,10 +1,13 @@
 ---
+import type { ComponentProps } from 'astro/types';
+
 import SiteLink from '#components/SiteLink.astro';
 import WordLink from '#components/WordLink.astro';
 
 interface DefinitionItem {
   label: string;
-  value: string | number | any; // Allow word objects for valueType="word"
+  // A word object when valueType="word", rendered as a WordLink
+  value: string | number | ComponentProps<typeof WordLink>['word'];
   href?: string;
 }
 
@@ -29,7 +32,7 @@ const hasSlotContent = Astro.slots.has('default');
         </dt>
         <dd class="definition-list__value">
           <slot name="value">
-            {valueType === 'word' ? (
+            {valueType === 'word' && typeof value === 'object' ? (
               <WordLink word={value} reverse={reverseWord} />
             ) : href ? (
               <SiteLink href={href} class="definition-list__link">

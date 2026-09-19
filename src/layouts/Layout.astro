@@ -10,21 +10,20 @@ import Footer from '#components/Footer.astro';
 import Header from '#components/Header.astro';
 import SiteBreadcrumbs from '#components/SiteBreadcrumbs.astro';
 import StructuredData from '#components/StructuredData.astro';
-import type { WordData } from '#types';
 import { getSocialImageUrl } from '#astro-utils/image-utils';
-import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
-import { getMetaDescription, seoConfig } from '#astro-utils/seo-utils.ts';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
+import { getMetaDescription, seoConfig } from '#astro-utils/seo-utils';
 import { getAsciiArt } from '#astro-utils/static-file-utils';
 import { getFullUrl,getUrl } from '#astro-utils/url-utils';
 import { extractWordDefinition } from '#astro-utils/word-data-utils';
 import { t } from '#utils/i18n-utils';
+import { formatPageTitle } from '#utils/page-title-utils';
 
 const { title, word, description, structuredDataType, noindex, nofollow, itemCount } = Astro.props;
 
 const ogType = structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE ? 'article' : 'website';
 
 const currentUrl = getFullUrl(Astro.url.pathname);
-const pageTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.defaultTitle;
 const metaDescription = description || getMetaDescription();
 
 const wordData = word || null;
@@ -33,22 +32,7 @@ const socialImageUrl = getSocialImageUrl({
   wordData,
 });
 
-const formatPageTitle = (baseTitle: string, currentWord: WordData) => {
-  const today = new Date();
-  const date = today.toLocaleDateString('en-US', {
-	month: 'short',
-	day: 'numeric',
-	year: 'numeric',
-  });
-
-  if (currentWord?.word) {
-	return `${currentWord.word}, ${date} - ${baseTitle}`;
-  }
-
-  return baseTitle;
-};
-
-const finalTitle = word ? formatPageTitle(pageTitle, word) : pageTitle;
+const finalTitle = formatPageTitle(title, word, seoConfig.defaultTitle, seoConfig.siteName);
 
 // Get ASCII art for HTML comment
 const asciiArt = getAsciiArt();

@@ -1,9 +1,11 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 import SiteLink from '#components/SiteLink.astro';
 import { formatDate, formatISODate } from '#utils/date-utils';
 import { getWordUrl } from '#astro-utils/url-utils';
 
-interface Props {
+interface Props extends HTMLAttributes<'a'> {
   word: {
     word: string;
     date: string;
@@ -12,7 +14,6 @@ interface Props {
   href?: string;
   compact?: boolean;
   reverse?: boolean;
-  [key: string]: any;
 }
 
 const { word, href: overrideHref, class: className, compact = false, reverse = false, ...attrs } = Astro.props;

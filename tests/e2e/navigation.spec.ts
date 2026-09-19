@@ -50,6 +50,25 @@ test.describe('user journeys', () => {
 		await expect(page.locator('.word-senses')).toBeVisible();
 	});
 
+	test('browse index reaches every browse route family', async ({ page }) => {
+		const families = [
+			{ index: '/browse/letter', detail: '/browse/letter/' },
+			{ index: '/browse/length', detail: '/browse/length/' },
+			{ index: '/browse/part-of-speech', detail: '/browse/part-of-speech/' },
+		];
+
+		for (const family of families) {
+			await page.goto('/browse');
+			await page.locator(`main a[href="${family.index}"]`).click();
+			await expect(page.locator('#main-content')).toBeVisible();
+
+			const detail = page.locator(`main a[href^="${family.detail}"]`).first();
+			await expect(detail).toBeVisible();
+			await detail.click();
+			await expect(page.locator('#main-content')).toBeVisible();
+		}
+	});
+
 	test('footer provides navigation to all main sections', async ({ page }) => {
 		await page.goto('/');
 

@@ -24,8 +24,8 @@ export const seoConfig: SeoConfig = {
 
 /**
  * Generate page-specific meta description
- * @param {SeoMetaDescriptionOptions} [options={}] - Description options
- * @returns {string} Generated meta description
+ * @param [options={}] - Description options
+ * @returns Generated meta description
  */
 export function getMetaDescription(options: SeoMetaDescriptionOptions = {}): string {
   const { word, definition, custom } = options;
@@ -36,7 +36,7 @@ return custom;
   if (word && definition) {
     // Truncate definition to ~150 chars for meta description (2025 best practice)
     const shortDef = definition.length > 100
-      ? definition.substring(0, 100).trim() + '...'
+      ? definition.slice(0, 100).trim() + '...'
       : definition;
     return `${word}: ${shortDef} | ${seoConfig.siteName}`;
   }
@@ -46,8 +46,8 @@ return custom;
 
 /**
  * Generate basic SEO metadata for a page
- * @param {SeoMetadataOptions} param0 - Metadata options
- * @returns {SeoMetadata} SEO metadata object
+ * @param param0 - Metadata options
+ * @returns SEO metadata object
  */
 export function generateSeoMetadata({ title, description, pathname, keywords = [] }: SeoMetadataOptions): SeoMetadata {
   const pageTitle = title ? `${title} - ${seoConfig.siteName}` : seoConfig.defaultTitle;

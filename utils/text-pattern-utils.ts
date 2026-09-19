@@ -16,7 +16,7 @@ import { TEXT_PATTERNS, COMMON_WORD_ENDINGS, MIN_ALPHABETICAL_SEQUENCE_LENGTH } 
  */
 export const isStartEndSame = (word: string): boolean => {
   const first = word[0];
-  const last = word[word.length - 1];
+  const last = word.at(-1);
   return word.length > 1 && first !== undefined && last !== undefined && first.toLowerCase() === last.toLowerCase();
 };
 

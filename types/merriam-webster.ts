@@ -1,29 +1,34 @@
 /**
  * Merriam-Webster Collegiate Dictionary API types
  * Only fields we access are typed; the full response is preserved in rawData.
+ * Required fields are exactly the ones the adapter's entry guard verifies.
  */
 
 export interface MWMeta {
   id: string;
-  uuid: string;
   src: string;
-  section: string;
-  stems: string[];
-  offensive: boolean;
 }
 
 export interface MWHeadwordInfo {
-  hw: string;
   prs?: Array<{
     mw?: string;
-    sound?: { audio: string; ref: string; stat: string };
+    sound?: { audio?: string };
   }>;
 }
 
 export interface MWVisTuple {
   t: string;
-  aq?: { auth?: string; source?: string };
 }
+
+/**
+ * One element of a defining-text (`dt`) array, discriminated by its tag.
+ * Tags per the MW JSON reference (dictionaryapi.com/products/json, "dt").
+ * Only `vis` payloads are read; the rest stay `unknown`. A `[string, unknown]`
+ * catch-all would overlap 'vis' and defeat narrowing on the tag.
+ */
+export type MWDefiningText =
+  | ['vis', MWVisTuple[]]
+  | ['text' | 'bnw' | 'ca' | 'ri' | 'snote' | 'uns', unknown];
 
 /**
  * A single sense within a definition sequence.
@@ -37,10 +42,11 @@ export type MWSenseItem =
 
 export interface MWSenseData {
   sn?: string;
-  dt: Array<['text', string] | ['vis', MWVisTuple[]] | ['uns', Array<Array<['text', string] | ['vis', MWVisTuple[]]>>] | [string, unknown]>;
+  // Absent on truncated senses (`sen`), which carry labels but no defining text
+  dt?: MWDefiningText[];
   sdsense?: {
-    sd: string;
-    dt: Array<['text', string] | ['vis', MWVisTuple[]] | [string, unknown]>;
+    sd?: string;
+    dt?: MWDefiningText[];
   };
 }
 
@@ -52,17 +58,12 @@ export interface MWDefinition {
 
 export interface MWEntry {
   meta: MWMeta;
-  hwi: MWHeadwordInfo;
-  hom?: number;
+  hwi?: MWHeadwordInfo;
   fl?: string;
   def?: MWDefinition[];
-  shortdef: string[];
-  et?: Array<['text', string]>;
-  date?: string;
-  quotes?: Array<{
-    t: string;
-    aq: { auth?: string; source?: string; aqdate?: string };
-  }>;
+  // Present only when the entry has definitions to abridge
+  shortdef?: string[];
+  et?: Array<['text', string] | ['et_snote', unknown]>;
 }
 
 export interface MWConfig {

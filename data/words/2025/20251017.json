@@ -6,13 +6,27 @@
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "Any of several <xref>marine</xref> <xref>animals</xref> of the phylum <xref>Loricifera</xref>",
+            "text": "Any of several marine animals of the phylum Loricifera",
+            "references": [
+                {
+                    "start": 15,
+                    "end": 21,
+                    "url": "https://www.wordnik.com/words/marine"
+                },
+                {
+                    "start": 22,
+                    "end": 29,
+                    "url": "https://www.wordnik.com/words/animals"
+                },
+                {
+                    "start": 44,
+                    "end": 54,
+                    "url": "https://www.wordnik.com/words/loricifera"
+                }
+            ],
             "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/loriciferan",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "sourceUrl": "https://www.wordnik.com/words/loriciferan"
         }
     ]
 }

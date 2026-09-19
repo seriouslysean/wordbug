@@ -1,0 +1,27 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ['main']
+  workflow_run:
+    workflows: ['Add Word']
+    branches: ['main']
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@vX.Y.Z
+    secrets:
+      site-secrets: ${{ toJSON(secrets) }}

@@ -1,4 +1,4 @@
-import subtlexData from 'subtlex-word-frequencies';
+import subtlexData from 'subtlex-word-frequencies' with { type: 'json' };
 
 import type { FrequencyResult } from '#types';
 

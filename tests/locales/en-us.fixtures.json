@@ -11,7 +11,10 @@
     "definitions_other": "{{count}} definitions",
     "syllables_zero": "No syllables",
     "syllables_one": "1 syllable", 
-    "syllables_other": "{{count}} syllables"
+    "syllables_other": "{{count}} syllables",
+    "title_with_part_of_speech_zero": "No {{value}} words",
+    "title_with_part_of_speech_one": "1 {{value}} word",
+    "title_with_part_of_speech_other": "{{count}} {{value}} words"
   },
   "test": {
     "vocabulary_zero": "No words in {{category}} vocabulary",

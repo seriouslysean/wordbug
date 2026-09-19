@@ -95,5 +95,5 @@ gh api repos/OWNER/REPO/actions/runs --jq '.workflow_runs[:3] | .[].conclusion'
 npm run lint && npm run typecheck && npm test && npm run build
 
 # Run a specific test file (faster than full suite during iteration)
-npx vitest run tests/utils/date-utils.spec.js
+npx vitest run tests/utils/date-utils.spec.ts
 ```

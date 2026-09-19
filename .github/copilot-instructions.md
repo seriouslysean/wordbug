@@ -4,7 +4,7 @@ Coding guidelines for GitHub Copilot. For the full philosophy and architecture, 
 
 ## Project
 
-Astro static site generator for word-of-the-day websites. Zero application JavaScript by default (no UI framework or hydration); only Astro's prefetch runtime and minor progressive enhancements. Native CSS `@view-transition` for page transitions — no JS, no `<ClientRouter />`. TypeScript throughout. Node.js 24+.
+Astro static site generator for word-of-the-day websites. Zero application JavaScript by default (no UI framework or hydration); only Astro's prefetch runtime and minor progressive enhancements. Native CSS `@view-transition` for page transitions — no JS, no `<ClientRouter />`. TypeScript throughout. Node.js 26+.
 
 ## Code Style
 
@@ -15,6 +15,7 @@ Astro static site generator for word-of-the-day websites. Zero application JavaS
 - Comments above the line they describe, never inline.
 - No emojis anywhere in the codebase.
 - Structured logging: `logger.error('message', { key: value })`. No log prefixes.
+- CSS: one width breakpoint (`min-width: 768px`), fluid (`clamp()`, `auto-fill`/`minmax()`) otherwise. Shared link styles are scoped components, not global classes; client-created DOM needs `:global()` under a scoped parent.
 
 ## TypeScript
 
@@ -44,14 +45,24 @@ export const allWords = await getAllWords();
 export const getWordsByLength = (length: number, words = allWords) => pure(length, words);
 ```
 
+## Adapters
+
+- Adapters own vocabulary, not behaviour. Each translates its partner's terms into the canonical contract (`DictionaryResponse`, `DictionaryDefinition`): a vocabulary part of speech or the raw term as `label`, text as one plain string with cross-references as `references` ranges, empty optional fields omitted. An adapter only fetches: pages render stored records without it. Retries, query case, fallback and input handling belong with the caller; an adapter looks up exactly the word it is given.
+- The contract is enforced, not trusted: `fetchWithFallback()` checks every answer with `isCanonicalResponse()` (`utils/adapter-utils.ts`) and refuses a broken one whole, so the chain moves on and the fault is reported. Of the responses adapters return, only one whose definition list the partner sent empty is not found; every other is held to the guard. An answer listing only blank definitions, or lacking a documented field on every entry, is an unexpected shape.
+- `tests/adapters/contract.spec.ts` holds every registered adapter to the same guard: a fixture directory `tests/adapters/fixtures/<adapter name>/` with at least one successful response, each coming out canonical with a displayable definition.
+- Shared translation lives in `utils/adapter-utils.ts` (`buildDefinition()`, `buildDictionaryResponse()`); the registry in `adapters/index.ts` dispatches by name.
+
 ## Import Aliases
 
 Always use `#` aliases from `package.json` imports field. Never use relative paths.
+
+TypeScript aliases (`#utils`, `#astro-utils`, `#types`, `#constants`, `#config`, `#adapters`, `#tools`) are written without an extension; the `imports` target adds `.ts`. All other aliases include the extension (`.astro`, `.json`, `.css`, `.js`). JSON imports take `with { type: 'json' }`. No `paths` in `tsconfig.json`.
 
 - `#utils/*` -> `utils/*` (pure Node.js, safe everywhere)
 - `#astro-utils/*` -> `src/utils/*` (Astro only)
 - `#components/*` -> `src/components/*`
 - `#layouts/*` -> `src/layouts/*`
+- `#pages/*` -> `src/pages/*`
 - `#types` / `#types/*` -> `types/`
 - `#constants/*` -> `constants/*`
 - `#config/*` -> `config/*`
@@ -67,7 +78,7 @@ Always use `#` aliases from `package.json` imports field. Never use relative pat
 
 Five test layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/src/`), architecture (`tests/architecture/`), CLI integration (`tests/tools/`), E2E (`tests/e2e/`). Vitest for the first four, Playwright for E2E.
 
-- Environment variables: mutate `mockEnv.FIELD` (from `tests/setup.js`) for `astro:env/client` mocks. Use `vi.stubGlobal()` only for the four remaining Vite defines (`__VERSION__`, `__RELEASE__`, `__TIMESTAMP__`, `__WORD_DATA_PATH__`).
+- Environment variables: mutate `mockEnv.FIELD` (from `tests/setup.ts`) for `astro:env/client` mocks. Use `vi.stubGlobal()` only for the four remaining Vite defines (`__VERSION__`, `__RELEASE__`, `__TIMESTAMP__`, `__WORD_DATA_PATH__`).
 - `const` containers in tests: `const ctx = { spy: null }` with mutation in `beforeEach`.
 - Coverage thresholds: 80% across lines/functions/statements, 85% branches.
 - No overlapping tests. Each function tested at exactly one layer.

@@ -69,17 +69,25 @@ the build process itself; the others are real gaps.
 
 - Astro responsive image component not yet utilized; one `<img>` in
   `Footer.astro`.
-- Astro type-safe environment variables API: ~95% adopted. `SOURCE_DIR` in
-  `src/utils/image-utils.ts:12` still reads from `import.meta.env`.
+- Astro type-safe environment variables API: `SOURCE_DIR` is in the schema
+  and read through `astro:env/client`. `WORDNIK_WEBSITE_URL` still has a
+  default in `astro.config.ts` but no schema entry.
 - See Tier 1 "Astro Best Practices" in [features.md](features.md).
 
 ## Local Development Notes
 
-- E2E suite uses `localhost:4321`. If another Astro project (e.g. a sibling
-  template based on this one) is running its own `dev`/`preview` on the
-  same port, Playwright reuses that server and tests fail with mismatched
-  content. Stop the other server, or override via `playwright.config.ts`
-  `webServer.url` for parallel work.
+- E2E suite starts its own `astro preview --ignore-lock` on port 4517
+  (`PORT` in `playwright.config.ts`) with `reuseExistingServer: false`, so it
+  always serves this repo's current `dist/` and ignores anything on Astro's
+  default 4321. `--ignore-lock` keeps the preview in the foreground when
+  Astro detects a coding agent and does not claim the `.astro/preview.json`
+  lock, so a separately running `astro dev`/`astro preview` keeps running
+  (Astro still reads the lock and removes a stale one). If something else
+  holds 4517 the run fails one of two ways: "http://localhost:4517 is
+  already used" when the holder answers HTTP at `/`, or "Timed out waiting
+  60000ms from config.webServer" when it does not (the preview then binds
+  the next free port while Playwright keeps polling 4517). `lsof -i :4517`
+  finds the holder in both cases.
 
 ## Performance
 

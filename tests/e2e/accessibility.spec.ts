@@ -18,6 +18,13 @@ test.describe('accessibility', () => {
 		// Skip link targets main content
 		const href = await skipLink.getAttribute('href');
 		expect(href).toBe('#main-content');
+
+		await page.keyboard.press('Enter');
+		const main = page.locator('#main-content');
+		await expect(page).toHaveURL(/#main-content$/);
+		await expect.poll(() => main.evaluate(element =>
+			document.activeElement === element || element.matches(':target'))).toBe(true);
+		await expect(main).toBeInViewport();
 	});
 
 	test('document has lang and viewport attributes', async ({ page }) => {
@@ -57,5 +64,36 @@ test.describe('accessibility', () => {
 			const ariaLabel = await links.nth(i).getAttribute('aria-label');
 			expect(text?.trim() || ariaLabel).toBeTruthy();
 		}
+	});
+
+	test('page families expose one heading and one main landmark', async ({ page }) => {
+		const expectPageLandmarks = async () => {
+			await expect(page.locator('h1')).toHaveCount(1);
+			await expect(page.locator('main')).toHaveCount(1);
+		};
+		const visitLink = async (locator: ReturnType<typeof page.locator>) => {
+			await expect(locator).toHaveCount(1);
+			await locator.click();
+			await expectPageLandmarks();
+		};
+
+		await page.goto('/');
+		await expectPageLandmarks();
+
+		await visitLink(page.locator('footer a').filter({ hasText: 'Browse Words' }));
+
+		await visitLink(page.locator('footer a').filter({ hasText: 'Stats' }));
+		await visitLink(page.locator('main a[href^="/stats/"]').first());
+
+		await page.goto('/browse/year');
+		await expectPageLandmarks();
+		await visitLink(page.locator('main a[href^="/browse/"]').first());
+		await visitLink(page.locator('main a[href^="/browse/"]').first());
+
+		await page.goto('/');
+		await visitLink(page.locator('.past-words a[href^="/word/"]').first());
+
+		await page.goto('/404');
+		await expectPageLandmarks();
 	});
 });

@@ -34,7 +34,7 @@ export const STATS_SLUGS = {
   STREAKS: 'streaks',
   LETTER_PATTERNS: 'letter-patterns',
   WORD_ENDINGS: 'word-endings',
-} as const satisfies Record<string, StatsSlug>;
+} as const;
 
 // Word ending definitions
 export const SUFFIX_DEFINITIONS: Record<SuffixKey, StatsDefinition> = {

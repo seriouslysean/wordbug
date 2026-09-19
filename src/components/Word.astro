@@ -6,8 +6,8 @@ import WordSenses from '#components/WordSenses.astro';
 import WordSynonyms from '#components/WordSynonyms.astro';
 import type { WordData } from '#types';
 import { formatDate, formatISODate } from '#utils/date-utils';
-import { getWordSenses } from '#utils/word-data-utils';
-import { corpusWordSet, getWordDetails } from '#astro-utils/word-data-utils';
+import { getWordDetails, getWordSenses } from '#utils/word-data-utils';
+import { corpusWordSet } from '#astro-utils/word-data-utils';
 
 interface Props {
   word: WordData | null;

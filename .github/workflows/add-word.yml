@@ -30,92 +30,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # The demo site adds words through the same workflow every site calls,
+  # from this commit
   add-word:
-    runs-on: ubuntu-latest
-    env:
-      COLOR_PRIMARY: ${{ vars.COLOR_PRIMARY }}
-      COLOR_PRIMARY_DARK: ${{ vars.COLOR_PRIMARY_DARK }}
-      COLOR_PRIMARY_LIGHT: ${{ vars.COLOR_PRIMARY_LIGHT }}
-      DICTIONARY_ADAPTER: ${{ vars.DICTIONARY_ADAPTER }}
-      DICTIONARY_FALLBACK: ${{ vars.DICTIONARY_FALLBACK }}
-      MERRIAM_WEBSTER_API_KEY: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
-      MERRIAM_WEBSTER_API_URL: ${{ vars.MERRIAM_WEBSTER_API_URL }}
-      MERRIAM_WEBSTER_DICTIONARY: ${{ vars.MERRIAM_WEBSTER_DICTIONARY }}
-      SITE_AUTHOR: ${{ vars.SITE_AUTHOR }}
-      SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
-      SITE_ID: ${{ vars.SITE_ID }}
-      SITE_TITLE: ${{ vars.SITE_TITLE }}
-      SITE_URL: ${{ vars.SITE_URL }}
-      TZ: America/New_York
-      WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
-      WORDNIK_API_URL: ${{ vars.WORDNIK_API_URL }}
-    steps:
-      - name: Validate API key
-        run: |
-          if [ -z "$WORDNIK_API_KEY" ]; then
-            echo "::error::WORDNIK_API_KEY is not set. Please add it to your repository secrets."
-            exit 1
-          fi
-
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Set up Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Add word
-        id: add_word
-        run: |
-          # Sanitize and trim inputs
-          WORD="${{ inputs.word }}"
-          WORD=$(echo "$WORD" | xargs)
-
-          DATE="${{ inputs.date }}"
-          DATE=$(echo "$DATE" | xargs)
-
-          # Validate word is not empty after trimming
-          if [ -z "$WORD" ]; then
-            echo "::error::Word cannot be empty or whitespace only"
-            exit 1
-          fi
-
-          # Build flags array to avoid quoting issues
-          FLAGS=()
-          if [[ "${{ inputs.overwrite }}" == "true" ]]; then
-            FLAGS+=(--overwrite)
-          fi
-          if [[ "${{ inputs.preserve_case }}" == "true" ]]; then
-            FLAGS+=(--preserve-case)
-          fi
-
-          # Run the add-word tool
-          if npm run tool:add-word -- "$WORD" "$DATE" "${FLAGS[@]}"; then
-            echo "word_added=1" >> $GITHUB_OUTPUT
-            echo "word=$WORD" >> $GITHUB_OUTPUT
-
-            # Generate social image for the new word
-            npm run tool:generate-images -- --word "$WORD"
-          else
-            echo "::error::Failed to add word: $WORD"
-            echo "word_added=0" >> $GITHUB_OUTPUT
-            exit 1
-          fi
-
-      - name: Configure Git
-        if: steps.add_word.outputs.word_added == '1'
-        run: |
-          git config --local user.email "${{ github.repository_owner }}@users.noreply.github.com"
-          git config --local user.name "${{ github.repository_owner }}"
-
-      - name: Commit and push changes
-        if: steps.add_word.outputs.word_added == '1'
-        run: |
-          git add data/ public/
-          git commit -m "Add word: ${{ steps.add_word.outputs.word }}"
-          git push origin ${{ github.ref }}
+    uses: ./.github/workflows/site-add-word.yml
+    with:
+      word: ${{ inputs.word }}
+      date: ${{ inputs.date }}
+      overwrite: ${{ inputs.overwrite }}
+      preserve_case: ${{ inputs.preserve_case }}
+    secrets:
+      site-secrets: ${{ toJSON(secrets) }}

@@ -20,9 +20,10 @@ export interface FreeDictionaryMeaning {
   definitions: FreeDictionaryDefinition[];
 }
 
+// Required fields are exactly the ones the adapter's entry guard verifies.
 export interface FreeDictionaryEntry {
-  word: string;
-  phonetics: FreeDictionaryPhonetic[];
+  word?: string;
+  phonetics?: FreeDictionaryPhonetic[];
   meanings: FreeDictionaryMeaning[];
-  sourceUrls: string[];
+  sourceUrls?: string[];
 }

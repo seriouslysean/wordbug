@@ -1,0 +1,283 @@
+name: Site Add Word
+
+# Adds a word to a site and commits it with its social cards: a site
+# repository's Add Word workflow calls this at a pinned release, and this
+# repository's own Add Word calls it with ./ for the demo site, as does a
+# fork's until it moves to a thin site.
+#
+#   jobs:
+#     add-word:
+#       uses: seriouslysean/occasional-wotd/.github/workflows/site-add-word.yml@vX.Y.Z
+#       with:
+#         word: ${{ inputs.word }}
+#         date: ${{ inputs.date }}
+#         overwrite: ${{ inputs.overwrite }}
+#         preserve_case: ${{ inputs.preserve_case }}
+#       secrets:
+#         site-secrets: ${{ toJSON(secrets) }}
+#
+# The word is added and the images generated in engine/, then only the word
+# files, cards and cache marker are copied back into site/ and pushed with
+# the caller's GITHUB_TOKEN.
+
+on:
+  workflow_call:
+    inputs:
+      word:
+        description: 'The word to add'
+        type: string
+        required: true
+      date:
+        description: 'Date to add the word to (YYYYMMDD). Empty for today.'
+        type: string
+        required: false
+        default: ''
+      overwrite:
+        description: 'Overwrite existing word if one exists for the date'
+        type: boolean
+        required: false
+        default: false
+      preserve_case:
+        description: 'Keep original capitalization'
+        type: boolean
+        required: false
+        default: false
+    secrets:
+      site-secrets:
+        description: "The caller's toJSON(secrets), which setup-env reads by name"
+        required: true
+
+permissions:
+  contents: write
+
+# The repository that builds the demo site. Not job.workflow_repository,
+# which a fork's ./ call makes the fork itself.
+env:
+  ENGINE_REPOSITORY: seriouslysean/occasional-wotd
+
+jobs:
+  add-word:
+    runs-on: ubuntu-latest
+    steps:
+      # job.workflow_* name the repository and commit this workflow runs
+      # from, so the code is the commit the caller's uses: pins, whatever
+      # else the caller passes. A ./ call runs the workflow from the caller's
+      # own commit: this repository for the demo site, or a fork of it that
+      # has not moved to a thin site.
+      - name: Checkout engine
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
+          path: engine
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: 'npm'
+          cache-dependency-path: engine/package-lock.json
+
+      # Before the site checkout and setup-env, so no dependency's install
+      # script can read the token that pushes to the site or see the secrets
+      - name: Install dependencies
+        working-directory: engine
+        run: npm ci
+
+      # The branch tip rather than github.sha, so a run that waited behind
+      # another in the add-word group starts from the commit that run pushed.
+      # This checkout keeps the credentials the push below uses, where any
+      # later process in the job can read them, so it comes after the install.
+      - name: Checkout site
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref }}
+          path: site
+
+      # The same variables, SOURCE_DIR and timezone as the build, so the word
+      # lands in the tree the site reads and "today" is the site's today
+      - name: Setup environment variables
+        uses: ./engine/.github/actions/setup-env
+        with:
+          vars-json: ${{ toJSON(vars) }}
+          secrets-json: ${{ secrets.site-secrets }}
+
+      # The site's data/ and public/ replace the engine's, so the tools see
+      # the site's words and cards and none of the demo content. A fork's
+      # site/ is the branch tip and engine/ the dispatched commit, so for a
+      # fork the copy brings in only content pushed since the dispatch.
+      - name: Overlay site content
+        run: |
+          # This repository builds the demo site and every other repository
+          # builds its own, so a wrong SOURCE_DIR would publish the other
+          if [[ "$GITHUB_REPOSITORY" == "$ENGINE_REPOSITORY" ]]; then
+            EXPECTED=demo
+          else
+            EXPECTED=
+          fi
+          if [[ "$SOURCE_DIR" != "$EXPECTED" ]]; then
+            echo "::error::SOURCE_DIR must be '$EXPECTED' in $GITHUB_REPOSITORY. Set or clear it in the repository variables."
+            exit 1
+          fi
+
+          # rsync --delete from a missing directory would empty the engine's
+          WORDS_DIR="data/${SOURCE_DIR:+$SOURCE_DIR/}words"
+          if [[ ! -d "site/$WORDS_DIR" || ! -d site/public ]]; then
+            echo "::error::The site needs $WORDS_DIR and public."
+            exit 1
+          fi
+
+          # rsync -a copies a link as a link, so the tools would write through
+          # it, and the build read through it, outside engine/
+          LINKS=$(find site/data site/public -type l)
+          if [[ -n "$LINKS" ]]; then
+            while IFS= read -r link; do
+              echo "::error::${link#site/} is a symbolic link. A site's data and public hold only files and directories."
+            done <<< "$LINKS"
+            exit 1
+          fi
+
+          # --checksum compares content: two checkouts made in the same second
+          # can hold a same-size file that rsync's size and time check skips
+          rsync -a --checksum --delete site/data/ engine/data/
+          rsync -a --checksum --delete --filter='P /favicon.svg' site/public/ engine/public/
+
+      # The fallback chain logs a failed adapter as a warning and moves on, so
+      # a missing key would otherwise pass as a word defined by another source
+      # and a misspelt fallback would go unnoticed until the primary failed.
+      # Adapter names are the ones adapters/index.ts registers, in any case,
+      # and a DICTIONARY_FALLBACK of none (any case) means no fallback; empty
+      # selects the default Wiktionary fallback.
+      - name: Validate dictionary adapters and API keys
+        run: |
+          shopt -s nocasematch
+          VALID="wordnik, merriam-webster, wiktionary"
+
+          # tools/utils.ts refuses to add a word without it
+          if [[ -z "$DICTIONARY_ADAPTER" ]]; then
+            echo "::error::DICTIONARY_ADAPTER is not set. Add it to your repository variables as one of: $VALID."
+            exit 1
+          fi
+
+          # setup-env keeps line breaks, but read below sees only the first
+          # line, so a two-line list would pass here and fail in the tool
+          if [[ "$DICTIONARY_ADAPTER$DICTIONARY_FALLBACK" == *$'\n'* ]]; then
+            echo "::error::DICTIONARY_ADAPTER and DICTIONARY_FALLBACK must each be a single line."
+            exit 1
+          fi
+
+          ADAPTERS=("$DICTIONARY_ADAPTER")
+          if [[ "$DICTIONARY_FALLBACK" != none ]]; then
+            IFS=',' read -ra ENTRIES <<< "$DICTIONARY_FALLBACK"
+            for entry in "${ENTRIES[@]}"; do
+              # read trims the spaces around each entry
+              read -r entry <<< "$entry"
+              if [[ -n "$entry" ]]; then
+                ADAPTERS+=("$entry")
+              fi
+            done
+          fi
+
+          for adapter in "${ADAPTERS[@]}"; do
+            case "$adapter" in
+              wordnik) KEY_NAME=WORDNIK_API_KEY ;;
+              merriam-webster) KEY_NAME=MERRIAM_WEBSTER_API_KEY ;;
+              wiktionary) continue ;;
+              *)
+                echo "::error::Unknown dictionary adapter '$adapter'. Valid adapters are $VALID."
+                exit 1
+                ;;
+            esac
+            if [[ -z "${!KEY_NAME}" ]]; then
+              echo "::error::The $adapter adapter is configured but $KEY_NAME is not set. Add it to your repository secrets."
+              exit 1
+            fi
+          done
+
+      - name: Add word
+        id: add_word
+        working-directory: engine
+        env:
+          WORD: ${{ inputs.word }}
+          DATE: ${{ inputs.date }}
+          OVERWRITE: ${{ inputs.overwrite }}
+          PRESERVE_CASE: ${{ inputs.preserve_case }}
+        run: |
+          # Parameter expansion only: xargs would read the apostrophe in
+          # "don't" as an opening quote
+          trim() {
+            local value="$1"
+            value="${value#"${value%%[![:space:]]*}"}"
+            value="${value%"${value##*[![:space:]]}"}"
+            printf '%s' "$value"
+          }
+          WORD=$(trim "$WORD")
+          DATE=$(trim "$DATE")
+
+          # A line break would let the word write extra step outputs below
+          if [[ -z "$WORD" || "$WORD" == *$'\n'* ]]; then
+            echo "::error::Word cannot be empty, whitespace only, or span lines"
+            exit 1
+          fi
+
+          # Build flags array to avoid quoting issues
+          FLAGS=()
+          if [[ "$OVERWRITE" == "true" ]]; then
+            FLAGS+=(--overwrite)
+          fi
+          if [[ "$PRESERVE_CASE" == "true" ]]; then
+            FLAGS+=(--preserve-case)
+          fi
+
+          # The first -- ends npm's options and the second ends the tool's, so
+          # a word that starts with a dash is still read as the word
+          if npm run tool:add-word -- "${FLAGS[@]}" -- "$WORD" "$DATE"; then
+            echo "word_added=1" >> "$GITHUB_OUTPUT"
+            echo "word=$WORD" >> "$GITHUB_OUTPUT"
+
+            # Complete generation: renders the new word, skips every image that
+            # is already current, and is the only run that certifies the cache
+            npm run tool:generate-images
+          else
+            echo "::error::Failed to add word: $WORD"
+            echo "word_added=0" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Configure Git
+        if: steps.add_word.outputs.word_added == '1'
+        working-directory: site
+        run: |
+          git config --local user.email "$GITHUB_REPOSITORY_OWNER@users.noreply.github.com"
+          git config --local user.name "$GITHUB_REPOSITORY_OWNER"
+
+      - name: Commit and push changes
+        if: steps.add_word.outputs.word_added == '1'
+        working-directory: site
+        env:
+          WORD: ${{ steps.add_word.outputs.word }}
+        run: |
+          # Only what the run writes (config/paths.ts, tools/utils.ts): word
+          # files, social cards and the cache marker. Copying never deletes,
+          # and compares content, since the marker keeps its size. The
+          # pathspec * crosses directories, so a first complete generation
+          # stages every card.
+          WORDS_DIR="data/${SOURCE_DIR:+$SOURCE_DIR/}words"
+          SOCIAL_DIR="public/${SOURCE_DIR:+$SOURCE_DIR/}images/social"
+          mkdir -p "$SOCIAL_DIR"
+          rsync -a --checksum -m --include='*/' --include='*.json' --exclude='*' \
+            "../engine/$WORDS_DIR/" "$WORDS_DIR/"
+          rsync -a --checksum -m --include='*/' --include='*.png' --include='.image-settings-hash' --exclude='*' \
+            "../engine/$SOCIAL_DIR/" "$SOCIAL_DIR/"
+          git add -- "$WORDS_DIR/*.json" "$SOCIAL_DIR/*.png" "$SOCIAL_DIR/.image-settings-hash"
+
+          if git diff --cached --quiet; then
+            echo "::notice::Nothing changed, so there is nothing to commit"
+            exit 0
+          fi
+
+          # A push that is not a fast-forward fails the run; rerun it on the
+          # new tip rather than force anything
+          git commit -m "Add word: $WORD"
+          git push origin "$GITHUB_REF"

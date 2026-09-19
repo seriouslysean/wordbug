@@ -33,16 +33,13 @@ export const buildActivityCalendar = (dates: string[]): YearActivity[] => {
 
   // First pass: build each year's leading-padded day cells.
   const grids = years.map(year => {
-    const cells: ActivityCell[] = [];
     const yearNum = Number(year);
 
     // Monday-first week: pad so Jan 1 lands on its weekday. getDay() is
     // 0 = Sunday, so remap to Monday = 0 .. Sunday = 6 (a Sunday Jan 1 gets 6
     // leading padding cells, landing it on the last row).
     const leadingDays = (new Date(yearNum, 0, 1).getDay() + 6) % 7;
-    for (let i = 0; i < leadingDays; i++) {
-      cells.push({ date: null, active: false });
-    }
+    const cells: ActivityCell[] = Array.from({ length: leadingDays }, () => ({ date: null, active: false }));
 
     // Day 0 = Jan 1; advancing the day index rolls months automatically. Stop
     // once the date crosses into the next year (handles 365 vs 366).
@@ -67,10 +64,7 @@ export const buildActivityCalendar = (dates: string[]): YearActivity[] => {
 
   return grids.map(({ year, cells }) => {
     const total = cells.filter(cell => cell.active).length;
-    const padded = [...cells];
-    while (padded.length < columns * 7) {
-      padded.push({ date: null, active: false });
-    }
-    return { year, total, columns, cells: padded };
+    const padding: ActivityCell[] = Array.from({ length: columns * 7 - cells.length }, () => ({ date: null, active: false }));
+    return { year, total, columns, cells: [...cells, ...padding] };
   });
 };

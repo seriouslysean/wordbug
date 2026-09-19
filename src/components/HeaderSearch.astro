@@ -32,28 +32,51 @@ import { t } from '#utils/i18n-utils';
 </div>
 
 <script>
+import type { WordIndexEntry } from '#types';
 import { getUrl, getWordUrl } from '#astro-utils/url-utils';
+import { isWordIndex } from '#utils/word-validation';
 
 const toggle = document.getElementById('site-search-toggle');
 const panel = document.getElementById('site-search-panel');
-const input = document.getElementById('site-search-input') as HTMLInputElement | null;
+const inputElement = document.getElementById('site-search-input');
+const input = inputElement instanceof HTMLInputElement ? inputElement : null;
 const results = document.getElementById('site-search-results');
 
-type SearchWord = { word: string; date: string };
-const cache = { data: null as SearchWord[] | null };
+const cache: { data: WordIndexEntry[] | null; request: Promise<WordIndexEntry[]> | null } = {
+  data: null,
+  request: null,
+};
 
 // Progressive enhancement: reveal the icon only when JS can drive it.
 if (toggle) {
   toggle.hidden = false;
 }
 
-async function loadWords(): Promise<SearchWord[]> {
+function loadWords(): Promise<WordIndexEntry[]> {
   if (cache.data) {
-    return cache.data;
+    return Promise.resolve(cache.data);
   }
-  const response = await fetch(getUrl('/words.json'));
-  cache.data = response.ok ? await response.json() : [];
-  return cache.data ?? [];
+  if (cache.request) {
+    return cache.request;
+  }
+
+  cache.request = fetch(getUrl('/words.json'))
+    .then(async response => {
+      if (!response.ok) {
+        throw new Error(`Word index request failed: ${response.status}`);
+      }
+      const data: unknown = await response.json();
+      if (!isWordIndex(data)) {
+        throw new Error('Word index response has an invalid shape');
+      }
+      cache.data = data;
+      return data;
+    })
+    .catch(() => [])
+    .finally(() => {
+      cache.request = null;
+    });
+  return cache.request;
 }
 
 function closePanel(): void {
@@ -61,9 +84,7 @@ function closePanel(): void {
     panel.hidden = true;
   }
   toggle?.setAttribute('aria-expanded', 'false');
-  if (results) {
-    results.replaceChildren();
-  }
+  results?.replaceChildren();
 }
 
 function openPanel(): void {
@@ -94,6 +115,9 @@ async function onInput(): Promise<void> {
     return;
   }
   const words = await loadWords();
+  if (input.value.trim().toLowerCase() !== query) {
+    return;
+  }
   // Starts-with match, sorted alphabetically so results read predictably as you type.
   const matches = words
     .filter(entry => entry.word.toLowerCase().startsWith(query))
@@ -111,8 +135,8 @@ async function onInput(): Promise<void> {
     date.className = 'site-search__result-date';
     date.textContent = entry.date;
     link.append(word, date);
-    item.appendChild(link);
-    results.appendChild(item);
+    item.append(link);
+    results.append(item);
   }
 }
 
@@ -132,8 +156,8 @@ document.addEventListener('click', event => {
   if (panel?.hidden) {
     return;
   }
-  const target = event.target as Element | null;
-  if (!target?.closest('.site-search')) {
+  const { target } = event;
+  if (!(target instanceof Element) || !target.closest('.site-search')) {
     closePanel();
   }
 });

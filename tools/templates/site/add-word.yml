@@ -1,0 +1,41 @@
+name: Add Word
+
+on:
+  workflow_dispatch:
+    inputs:
+      word:
+        description: 'The word to add'
+        required: true
+        type: string
+      date:
+        description: 'Date to add the word to (YYYYMMDD). Leave empty for today.'
+        required: false
+        type: string
+      overwrite:
+        description: 'Overwrite existing word if one exists for the date'
+        required: false
+        type: boolean
+        default: false
+      preserve_case:
+        description: 'Keep original capitalization'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: add-word
+  cancel-in-progress: false
+
+jobs:
+  add-word:
+    uses: seriouslysean/occasional-wotd/.github/workflows/site-add-word.yml@vX.Y.Z
+    with:
+      word: ${{ inputs.word }}
+      date: ${{ inputs.date }}
+      overwrite: ${{ inputs.overwrite }}
+      preserve_case: ${{ inputs.preserve_case }}
+    secrets:
+      site-secrets: ${{ toJSON(secrets) }}

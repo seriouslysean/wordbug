@@ -1,38 +1,27 @@
-import type { DictionaryDefinition, WordData, WordGrouping, WordSense } from '#types';
-import { isBasePartOfSpeech } from '#constants/parts-of-speech';
+import type {
+  DefinitionSegment, DictionaryDefinition, WordData, WordEnrichment, WordGrouping, WordProcessedData, WordSense,
+} from '#types';
+import type { BasePartOfSpeech } from '#constants/parts-of-speech';
+import { BASE_PARTS_OF_SPEECH, isBasePartOfSpeech } from '#constants/parts-of-speech';
 import { MAX_SENSE_EXAMPLES } from '#constants/text-patterns';
+import { toDefinitionSegments } from '#utils/definition-text';
 import { slugify } from '#utils/text-utils';
 
 /**
- * Finds the first valid definition with a part of speech from word data.
- * Skips definitions without partOfSpeech for cleaner educational content.
- * Handles text as either string or array (Wordnik API inconsistency).
- *
- * @param definitions - Array of dictionary definitions
- * @returns First valid definition or null if none found
+ * The word a site shows as today's: the newest word dated on or before
+ * `today`, or the oldest word when every word is dated later.
+ * Words are expected newest first.
  */
-export function findValidDefinition(definitions: DictionaryDefinition[]): { text: string; partOfSpeech: string } | null {
-  if (!definitions || !Array.isArray(definitions) || definitions.length === 0) {
-    return null;
-  }
+export const findCurrentWord = (words: WordData[], today: string): WordData | null =>
+  words.find(word => word.date <= today) ?? words.at(-1) ?? null;
 
-  for (const item of definitions) {
-    if (!item.partOfSpeech) {
-      continue;
-    }
-
-    const textValue = Array.isArray(item.text) ? item.text.join(' ') : item.text;
-
-    if (textValue && typeof textValue === 'string' && textValue.trim()) {
-      return {
-        text: textValue,
-        partOfSpeech: item.partOfSpeech,
-      };
-    }
-  }
-
-  return null;
-}
+/**
+ * The words listed below the current word on the homepage: the newest words
+ * dated before it, so a word dated later is never shown as previous.
+ * Words are expected newest first.
+ */
+export const getPreviousWords = (words: WordData[], currentWord: WordData | null, count: number): WordData[] =>
+  currentWord ? words.filter(word => word.date < currentWord.date).slice(0, count) : [];
 
 /**
  * Get words from a specific year
@@ -48,7 +37,7 @@ export const getAvailableMonths = (year: string, words: WordData[]): string[] =>
   const months = new Set(
     words
       .filter(word => word.date.startsWith(year))
-      .map(word => word.date.substring(4, 6))
+      .map(word => word.date.slice(4, 6))
   );
   return Array.from(months).toSorted();
 };
@@ -57,7 +46,7 @@ export const getAvailableMonths = (year: string, words: WordData[]): string[] =>
  * Get all available years from word data
  */
 export const getAvailableYears = (words: WordData[]): string[] => {
-  const years = [...new Set(words.map(word => word.date.substring(0, 4)))];
+  const years = [...new Set(words.map(word => word.date.slice(0, 4)))];
   return years.toSorted((a, b) => b.localeCompare(a));
 };
 
@@ -81,75 +70,119 @@ export const getAvailableLetters = (words: WordData[]): string[] => {
   return letters.toSorted();
 };
 
-/**
- * Backward-compat map for stored data that pre-dates adapter-level POS normalization.
- * Once all data has been re-fetched, this map becomes a no-op.
- */
-const LEGACY_POS_MAP: Record<string, string> = {
-  'auxiliary verb': 'verb',
-  'intransitive verb': 'verb',
-  'transitive verb': 'verb',
-  'phrasal verb': 'verb',
-  'proper noun': 'noun',
-  'noun plural': 'noun',
-  'plural noun': 'noun',
-  'noun phrase': 'noun',
-  'noun suffix': 'noun',
-  'noun combining form': 'noun',
-  'combining form': 'noun',
-  'prefix': 'noun',
-  'proper-noun': 'noun',
-  'noun-plural': 'noun',
-  'adjective suffix': 'adjective',
-  'definite article': 'article',
-  'indefinite article': 'article',
-  'auxiliary-verb': 'verb',
-  'exclamation': 'interjection',
-};
+/** A definition the site can show: it has a part of speech and text. */
+type DisplayableDefinition = DictionaryDefinition & { partOfSpeech: BasePartOfSpeech };
+
+const hasPartOfSpeechAndText = (def: DictionaryDefinition): def is DisplayableDefinition =>
+  typeof def?.partOfSpeech === 'string'
+  && isBasePartOfSpeech(def.partOfSpeech)
+  && typeof def.text === 'string'
+  && def.text.trim().length > 0;
+
+const isAbbreviation = (def: DisplayableDefinition): boolean =>
+  def.partOfSpeech === BASE_PARTS_OF_SPEECH.ABBREVIATION;
 
 /**
- * Cleans and normalizes a part-of-speech string. Adapters normalize variant POS
- * at fetch time; this is a read-time compat layer for old stored data that maps
- * known variants to base types. Unknown variants pass through unchanged.
+ * A displayable definition as a page shows it (see toDefinitionSegments).
  */
-export const normalizePartOfSpeech = (partOfSpeech: string): string => {
-  const cleaned = partOfSpeech.toLowerCase().trim().replace(/[.,;!?]+$/, '');
-  if (isBasePartOfSpeech(cleaned)) {
-    return cleaned;
+const getDefinitionSegments = (def: DisplayableDefinition): DefinitionSegment[] =>
+  toDefinitionSegments({
+    text: def.text,
+    ...(def.references ? { references: def.references } : {}),
+  });
+
+/**
+ * A displayable definition as a page shows it, as plain text: a
+ * cross-reference is kept as the words it links.
+ */
+const getDefinitionPlainText = (def: DisplayableDefinition): string =>
+  getDefinitionSegments(def).map(segment => segment.text).join('');
+
+/**
+ * The one displayability rule. Everything that shows, counts, groups or accepts
+ * a word's definitions goes through it, so those answers cannot disagree.
+ *
+ * A definition is displayable when it has a part of speech and non-empty text.
+ * Abbreviation-labelled definitions are displayable only when the word has no
+ * displayable grammatical definition, because a dictionary lookup returns the
+ * abbreviations that share a headword's spelling: "sad" comes back with the
+ * adjective and with SAD, "seasonal affective disorder", and the page for the
+ * adjective must not gain that sense or be listed under abbreviations. "pb&j"
+ * comes back with nothing but "peanut butter and jelly", labelled abbreviation,
+ * so that is its definition and its part of speech.
+ */
+export const getDisplayableDefinitions = (definitions: DictionaryDefinition[]): DisplayableDefinition[] => {
+  if (!Array.isArray(definitions)) {
+    return [];
   }
-  return LEGACY_POS_MAP[cleaned] ?? cleaned;
+  const displayable = definitions.filter(hasPartOfSpeechAndText);
+  const grammatical = displayable.filter(def => !isAbbreviation(def));
+  return grammatical.length > 0 ? grammatical : displayable;
 };
 
 /**
- * Normalizes a POS string and returns it only if it resolves to a base type.
- * Returns empty string for unmappable or non-base values, so translation keys
- * and display labels never receive unexpected POS strings.
+ * Add-time acceptance: dictionary data is valid when at least one definition is
+ * displayable, so a record is never stored that its own word page could not
+ * show. Lives here rather than in the stored-data guard so the rule remains
+ * alongside the display logic it delegates to.
+ *
+ * @param data - Array of dictionary definitions to validate
+ * @returns True if the data contains at least one displayable definition
  */
-export const normalizeToBasePOS = (raw: string): string => {
-  const normalized = normalizePartOfSpeech(raw);
-  return isBasePartOfSpeech(normalized) ? normalized : '';
+export const isValidDictionaryData = (data: DictionaryDefinition[]): boolean =>
+  getDisplayableDefinitions(data).length > 0;
+
+/**
+ * Finds a word's first displayable definition. Its text is what a page shows,
+ * as plain text: a cross-reference is kept as the words it links, with no
+ * whitespace around the whole. Meta descriptions,
+ * JSON-LD and the RSS feed use it as it is.
+ *
+ * @param definitions - Array of dictionary definitions
+ * @returns First displayable definition or null if none found
+ */
+export function findValidDefinition(definitions: DictionaryDefinition[]): { text: string; partOfSpeech: string } | null {
+  const [definition] = getDisplayableDefinitions(definitions);
+  if (!definition) {
+    return null;
+  }
+
+  return { text: getDefinitionPlainText(definition), partOfSpeech: definition.partOfSpeech };
+}
+
+/**
+ * A word's first displayable definition, its part of speech, and the source
+ * the definition came from, read from the stored record alone: which adapter
+ * wrote the record does not matter. Empty when nothing is displayable, as for
+ * a word without data.
+ */
+export const getWordDetails = (wordData: WordData): WordProcessedData => {
+  const [definition] = getDisplayableDefinitions(wordData?.data ?? []);
+  if (!definition) {
+    return { partOfSpeech: '', definition: '', meta: null };
+  }
+
+  const { attributionText, sourceDictionary, sourceUrl } = definition;
+  return {
+    partOfSpeech: definition.partOfSpeech,
+    definition: getDefinitionPlainText(definition),
+    meta: { attributionText, sourceDictionary, sourceUrl },
+  };
 };
+
+/**
+ * The parts of speech a word is displayed under, each listed once.
+ */
+const getWordPartsOfSpeech = (word: WordData): string[] => [
+  ...new Set(getDisplayableDefinitions(word.data).map(def => def.partOfSpeech)),
+];
 
 /**
  * Get all available parts of speech from word data.
- * Filters to base POS types only — variant values that survive normalization
- * (e.g. "abbreviation", "phrase") are excluded from browse pages.
+ * Filters to the canonical part-of-speech vocabulary.
  */
 export const getAvailablePartsOfSpeech = (words: WordData[]): string[] => {
-  const partsOfSpeech = new Set<string>();
-
-  words.forEach(word => {
-    if (word.data && Array.isArray(word.data)) {
-      word.data.forEach(definition => {
-        if (definition.partOfSpeech) {
-          const normalized = normalizePartOfSpeech(definition.partOfSpeech);
-          if (isBasePartOfSpeech(normalized)) {
-            partsOfSpeech.add(normalized);
-          }
-        }
-      });
-    }
-  });
+  const partsOfSpeech = new Set(words.flatMap(getWordPartsOfSpeech).filter(isBasePartOfSpeech));
 
   return Array.from(partsOfSpeech).toSorted();
 };
@@ -175,16 +208,10 @@ export const getWordsByLetter = (letter: string, words: WordData[]): WordData[] 
  * Get words with a specific part of speech
  */
 export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[]): WordData[] => {
-  const normalizedPartOfSpeech = normalizePartOfSpeech(partOfSpeech);
-  return words.filter(word => {
-    if (!word.data || !Array.isArray(word.data)) {
-      return false;
-    }
-
-    return word.data.some(definition =>
-      definition.partOfSpeech && normalizePartOfSpeech(definition.partOfSpeech) === normalizedPartOfSpeech
-    );
-  });
+  if (!isBasePartOfSpeech(partOfSpeech)) {
+    return [];
+  }
+  return words.filter(word => getWordPartsOfSpeech(word).includes(partOfSpeech));
 };
 
 /**
@@ -192,59 +219,33 @@ export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[]):
  * Avoids the O(n^2) build-time cost of calling getWordsByLength once per word.
  */
 export const groupWordsByLength = (words: WordData[]): WordGrouping<number> =>
-  Object.groupBy(words, word => word.word.length) as WordGrouping<number>;
+  Object.groupBy(words, word => word.word.length);
 
 /**
  * Group all words by first letter (lowercase) in a single pass.
  */
 export const groupWordsByLetter = (words: WordData[]): WordGrouping<string> =>
-  Object.groupBy(words, word => word.word.charAt(0).toLowerCase()) as WordGrouping<string>;
+  Object.groupBy(words, word => word.word.charAt(0).toLowerCase());
 
 /**
  * Group all words by year (YYYY from word.date) in a single pass.
  */
 export const groupWordsByYear = (words: WordData[]): WordGrouping<string> =>
-  Object.groupBy(words, word => word.date.substring(0, 4)) as WordGrouping<string>;
+  Object.groupBy(words, word => word.date.slice(0, 4));
 
 /**
- * Group words by every normalized part of speech they carry. A word appears in
- * every bucket whose POS it has a definition for.
+ * Group words by every part of speech they are displayed under. A
+ * word appears in every bucket whose POS it has a displayable definition for.
  */
 export const groupWordsByPartOfSpeech = (words: WordData[]): WordGrouping<string> => {
   const groups: WordGrouping<string> = {};
   for (const word of words) {
-    if (!Array.isArray(word.data)) {
-      continue;
-    }
-    const seen = new Set<string>();
-    for (const def of word.data) {
-      if (!def.partOfSpeech) {
-        continue;
-      }
-      const normalized = normalizePartOfSpeech(def.partOfSpeech);
-      if (seen.has(normalized)) {
-        continue;
-      }
-      seen.add(normalized);
-      (groups[normalized] ??= []).push(word);
+    for (const partOfSpeech of getWordPartsOfSpeech(word)) {
+      (groups[partOfSpeech] ??= []).push(word);
     }
   }
   return groups;
 };
-
-/**
- * Normalized definition text: joins array text (Wordnik inconsistency) and trims.
- */
-const getDefinitionText = (def: DictionaryDefinition): string => {
-  const text = Array.isArray(def.text) ? def.text.join(' ') : def.text;
-  return typeof text === 'string' ? text.trim() : '';
-};
-
-/**
- * True when a definition has a part of speech and non-empty text.
- */
-export const isValidDefinition = (def: DictionaryDefinition): boolean =>
-  Boolean(def.partOfSpeech) && getDefinitionText(def).length > 0;
 
 /**
  * Returns every displayable sense of a word for the senses slider. Excludes
@@ -283,11 +284,12 @@ export const getWordSenses = (wordData: WordData): WordSense[] => {
     return examples;
   };
 
-  const senses = wordData.data
-    .filter(def => isValidDefinition(def) && (!def.id || slugify(def.id) === wordSlug))
+  const displayable = getDisplayableDefinitions(wordData.data);
+  const senses = displayable
+    .filter(def => !def.id || slugify(def.id) === wordSlug)
     .map(def => ({
-      partOfSpeech: normalizeToBasePOS(def.partOfSpeech ?? ''),
-      text: getDefinitionText(def),
+      partOfSpeech: def.partOfSpeech,
+      segments: getDefinitionSegments(def),
       examples: collectSenseExamples(def),
     }));
 
@@ -295,9 +297,9 @@ export const getWordSenses = (wordData: WordData): WordSense[] => {
     return senses;
   }
 
-  const fallback = findValidDefinition(wordData.data);
+  const [fallback] = displayable;
   return fallback
-    ? [{ partOfSpeech: normalizeToBasePOS(fallback.partOfSpeech), text: fallback.text, examples: [] }]
+    ? [{ partOfSpeech: fallback.partOfSpeech, segments: getDefinitionSegments(fallback), examples: [] }]
     : [];
 };
 
@@ -372,3 +374,37 @@ export const corpusRelations = (
   return result;
 };
 
+// Stored key order for enrichment, shared by every writer so a refresh that
+// changes nothing produces no diff.
+const ENRICHMENT_TEXT_FIELDS = ['pronunciation', 'audio', 'etymology'] as const;
+const ENRICHMENT_LIST_FIELDS = ['synonyms', 'antonyms', 'related'] as const;
+
+/**
+ * Merges refreshed enrichment over what a word file already stores. A field
+ * the refresh supplies replaces the stored value; a field it does not supply
+ * (absent, empty string, empty list) keeps the stored value, so a fallback
+ * adapter or a failed WordNet lookup cannot erase earlier enrichment.
+ * Returns undefined when neither side has anything to store.
+ */
+export const mergeEnrichment = (
+  stored: WordEnrichment | undefined,
+  refreshed: WordEnrichment | undefined,
+): WordEnrichment | undefined => {
+  const merged: WordEnrichment = {};
+
+  for (const field of ENRICHMENT_TEXT_FIELDS) {
+    const value = refreshed?.[field] || stored?.[field];
+    if (value) {
+      merged[field] = value;
+    }
+  }
+
+  for (const field of ENRICHMENT_LIST_FIELDS) {
+    const value = refreshed?.[field]?.length ? refreshed[field] : stored?.[field];
+    if (value?.length) {
+      merged[field] = value;
+    }
+  }
+
+  return Object.keys(merged).length > 0 ? merged : undefined;
+};

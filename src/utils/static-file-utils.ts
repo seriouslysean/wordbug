@@ -9,7 +9,7 @@ import type { WordData } from '#types';
 import { formatDate } from '#utils/date-utils';
 import { getAllPageMetadata } from '#utils/page-metadata-utils';
 import { generateWordDataHash } from '#astro-utils/word-data-utils';
-import { getWordUrl } from '#astro-utils/url-utils';
+import { getUrl, getWordUrl } from '#astro-utils/url-utils';
 import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS } from '#constants/urls';
 import { MAX_PAST_WORDS_DISPLAY } from '#constants/text-patterns';
 
@@ -62,7 +62,7 @@ export function generateRobotsTxt(siteUrl: string): string {
   const baseUrl = (url || 'http://localhost:4321').replace(/\/$/, '');
   return `User-agent: *
 Allow: /
-Sitemap: ${baseUrl}/sitemap-index.xml
+Sitemap: ${baseUrl}${getUrl('/sitemap-index.xml')}
 `;
 }
 
@@ -105,7 +105,7 @@ export function generateHumansTxt(): string {
 /**
  * Generates health.txt content
  *
- * @param {WordData[]} [words=allWords] - Array of word data to use for stats
+ * @param [words=allWords] - Array of word data to use for stats
  * @returns The content for health.txt
  */
 export function generateHealthTxt(words: WordData[]): string {
@@ -133,7 +133,7 @@ export function generateHealthTxt(words: WordData[]): string {
 /**
  * Generates llms.txt content with recent words and key site links
  *
- * @param {WordData[]} [words=allWords] - Array of word data to use for stats
+ * @param [words=allWords] - Array of word data to use for stats
  * @returns The content for llms.txt or null if required data is missing
  */
 export function generateLlmsTxt(words: WordData[]): string | null {
@@ -146,15 +146,16 @@ export function generateLlmsTxt(words: WordData[]): string | null {
   }
 
   const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
-  const recentWords = words.slice(-MAX_PAST_WORDS_DISPLAY);
+  const recentWords = words.slice(0, MAX_PAST_WORDS_DISPLAY);
+  const pageUrl = (path: string): string => `${baseUrl}${getUrl(path)}`;
 
   const curatorInfo = HUMANS_WORD_CURATOR ? ` Curated by ${HUMANS_WORD_CURATOR}.` : '';
-  const lastWord = words.length > 0 ? words[words.length - 1] : undefined;
+  const lastWord = words.at(0);
   const lastUpdated = lastWord ? formatDate(lastWord.date) : null;
 
   const recentWordSection = recentWords.length > 0
-    ? [...recentWords].toReversed()
-        .map(word => `- [${word.word}](${baseUrl}${getWordUrl(word.word)}): ${formatDate(word.date)}`)
+    ? recentWords
+        .map(word => `- [${word.word}](${pageUrl(getWordUrl(word.word))}): ${formatDate(word.date)}`)
         .join('\n')
     : '';
 
@@ -191,32 +192,32 @@ export function generateLlmsTxt(words: WordData[]): string | null {
 
   // Build Pages section
   const pagesLinks = [
-    allWordsPage && `- [${allWordsPage.title}](${baseUrl}${allWordsPage.path}): ${allWordsPage.description}`,
+    allWordsPage && `- [${allWordsPage.title}](${pageUrl(allWordsPage.path)}): ${allWordsPage.description}`,
     yearPages.length > 0 && [
       '### Year Archives',
-      ...yearPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
+      ...yearPages.map(page => `- [${page.title}](${pageUrl(page.path)}): ${page.description}`),
     ],
     monthPages.length > 0 && [
       '### Month Archives',
-      ...monthPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
+      ...monthPages.map(page => `- [${page.title}](${pageUrl(page.path)}): ${page.description}`),
     ],
-    lengthIndexPage && `- [${lengthIndexPage.title}](${baseUrl}${lengthIndexPage.path}): ${lengthIndexPage.description}`,
+    lengthIndexPage && `- [${lengthIndexPage.title}](${pageUrl(lengthIndexPage.path)}): ${lengthIndexPage.description}`,
     lengthPages.length > 0 && [
       '### Word Length Pages',
-      ...lengthPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
+      ...lengthPages.map(page => `- [${page.title}](${pageUrl(page.path)}): ${page.description}`),
     ],
     staticPages.length > 0 && [
       '### Other Pages',
-      ...staticPages.map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`),
+      ...staticPages.map(page => `- [${page.title}](${pageUrl(page.path)}): ${page.description}`),
     ],
-    statsPage && `- [${statsPage.title}](${baseUrl}${statsPage.path}): ${statsPage.description}`,
+    statsPage && `- [${statsPage.title}](${pageUrl(statsPage.path)}): ${statsPage.description}`,
   ]
     .flat()
     .filter(Boolean)
     .join('\n');
 
   const statsLinks = statsSubpages
-    .map(page => `- [${page.title}](${baseUrl}${page.path}): ${page.description}`)
+    .map(page => `- [${page.title}](${pageUrl(page.path)}): ${page.description}`)
     .join('\n');
 
   return [
@@ -252,7 +253,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
  */
 export function getStaticFileContent(pathname: string, words: WordData[], siteUrl?: string): string | null {
   // Remove leading slash if present
-  const filename = pathname.startsWith('/') ? pathname.substring(1) : pathname;
+  const filename = pathname.startsWith('/') ? pathname.slice(1) : pathname;
 
   // Only return content for the files we support
   if (!STATIC_FILES.includes(filename)) {

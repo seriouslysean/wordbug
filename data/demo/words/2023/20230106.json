@@ -6,13 +6,27 @@
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "A taxonomic <xref>order</xref> within the <xref>class</xref> <xref>Arachnida</xref> — the tailless whip scorpions/whip spiders.",
+            "text": "A taxonomic order within the class Arachnida — the tailless whip scorpions/whip spiders.",
+            "references": [
+                {
+                    "start": 12,
+                    "end": 17,
+                    "url": "https://www.wordnik.com/words/order"
+                },
+                {
+                    "start": 29,
+                    "end": 34,
+                    "url": "https://www.wordnik.com/words/class"
+                },
+                {
+                    "start": 35,
+                    "end": 44,
+                    "url": "https://www.wordnik.com/words/arachnida"
+                }
+            ],
             "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/Amblypygi",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "sourceUrl": "https://www.wordnik.com/words/Amblypygi"
         }
     ]
 }

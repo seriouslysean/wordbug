@@ -1,4 +1,5 @@
 import type {
+  LetterStats,
   WordData,
   WordEndingStatsResult,
   WordPatternStatsResult,
@@ -6,7 +7,7 @@ import type {
   WordAntiStreakStatsResult,
   WordStreakStatsResult,
 } from '#types';
-import { areConsecutiveDays, dateToYYYYMMDD, YYYYMMDDToDate } from '#utils/date-utils';
+import { areConsecutiveDays, dateToYYYYMMDD, getCalendarDaysBetween } from '#utils/date-utils';
 import { TEXT_PATTERNS, MILESTONES } from '#constants/text-patterns';
 import {
   isStartEndSame,
@@ -91,31 +92,28 @@ export const getPatternStats = (words: WordData[]) => {
 };
 
 /**
- * Analyzes letter frequency and returns most/least common letters
+ * The one definition of letter commonness, used for the stat value, the
+ * most/least common letter pages, their titles and descriptions, and the
+ * stats labels: a letter's count is the number of WORDS CONTAINING it
+ * (case-insensitive, a-z only, once per word), not its total occurrences.
+ * Every surface reports the count as "N words" and links to the list of those
+ * words, so the ranking, the count and the list always agree.
  */
-export const getLetterStats = (words: WordData[]) => {
-  const letterFrequency: Record<string, number> = {};
-
-  for (const wordObj of words) {
-    const word = wordObj.word.toLowerCase();
-    for (const letter of word) {
-      if (TEXT_PATTERNS.LETTER_ONLY.test(letter)) {
-        letterFrequency[letter] = (letterFrequency[letter] || 0) + 1;
-      }
-    }
-  }
-
-  const sortedLetters = Object.entries(letterFrequency)
-    .filter(([letter]) => TEXT_PATTERNS.LETTER_ONLY.test(letter))
-    .toSorted(([, a], [, b]) => b - a);
-
-  const [mostCommonEntry] = sortedLetters;
-  const leastCommonEntry = sortedLetters[sortedLetters.length - 1];
+export const getLetterStats = (words: WordData[]): LetterStats => {
+  const ranked = getLetterStatsFromFrequency(getWordStats(words).letterFrequency);
+  const [mostCommon = '', mostCommonCount = 0] = ranked[0] ?? [];
+  const [leastCommon = '', leastCommonCount = 0] = ranked.at(-1) ?? [];
+  const wordsContaining = (letter: string): WordData[] =>
+    letter ? words.filter(w => w.word.toLowerCase().includes(letter)) : [];
 
   return {
-    mostCommon: mostCommonEntry?.[0] || '',
-    leastCommon: leastCommonEntry?.[0] || '',
-    frequency: letterFrequency,
+    ranked,
+    mostCommon,
+    leastCommon,
+    mostCommonCount,
+    leastCommonCount,
+    wordsWithMostCommon: wordsContaining(mostCommon),
+    wordsWithLeastCommon: wordsContaining(leastCommon),
   };
 };
 
@@ -162,7 +160,7 @@ export function getCurrentStreakWords(words: WordData[]): WordData[] {
     return [];
   }
 
-  const sortedWords = [...words].toSorted((a, b) => b.date.localeCompare(a.date));
+  const sortedWords = words.toSorted((a, b) => b.date.localeCompare(a.date));
   const today = new Date();
   const todayString = dateToYYYYMMDD(today);
   const yesterdayDate = new Date(today);
@@ -196,7 +194,7 @@ export function getLongestStreakWords(words: WordData[]): WordData[] {
     return words;
   }
 
-  const sortedWords = [...words].toSorted((a, b) => b.date.localeCompare(a.date));
+  const sortedWords = words.toSorted((a, b) => b.date.localeCompare(a.date));
   const firstWord = sortedWords[0];
   if (!firstWord) {
     return [];
@@ -267,34 +265,39 @@ export const getWordStats = (words: WordData[]): WordStatsResult => {
   }, emptyStats);
 };
 
-/**
- * Finds words with the most and least syllables.
- */
-export const getSyllableStats = (words: WordData[]): { mostSyllables: WordData | null; leastSyllables: WordData | null } => {
-  if (words.length === 0) {
-    return {
-      mostSyllables: null,
-      leastSyllables: null,
-    };
-  }
+interface SyllableStats {
+  mostSyllables: WordData | null;
+  leastSyllables: WordData | null;
+  mostSyllablesCount: number;
+  leastSyllablesCount: number;
+}
 
-  return words.reduce<{ mostSyllables: WordData | null; leastSyllables: WordData | null }>((acc, word) => {
+/**
+ * Finds words with the most and least syllables, and reports the counts they
+ * were selected with (getSyllableCount: CMU pronunciation, heuristic fallback)
+ * so a label never recounts with a different method.
+ */
+export const getSyllableStats = (words: WordData[]): SyllableStats =>
+  words.reduce<SyllableStats>((acc, word) => {
     const syllables = getSyllableCount(word.word);
 
-    if (!acc.mostSyllables || syllables > getSyllableCount(acc.mostSyllables.word)) {
+    if (!acc.mostSyllables || syllables > acc.mostSyllablesCount) {
       acc.mostSyllables = word;
+      acc.mostSyllablesCount = syllables;
     }
 
-    if (!acc.leastSyllables || syllables < getSyllableCount(acc.leastSyllables.word)) {
+    if (!acc.leastSyllables || syllables < acc.leastSyllablesCount) {
       acc.leastSyllables = word;
+      acc.leastSyllablesCount = syllables;
     }
 
     return acc;
   }, {
     mostSyllables: null,
     leastSyllables: null,
+    mostSyllablesCount: 0,
+    leastSyllablesCount: 0,
   });
-};
 
 /**
  * Finds words with the most vowels and most consonants.
@@ -360,7 +363,7 @@ export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult 
     };
   }
 
-  const sortedWords = [...words].toSorted((a, b) => b.date.localeCompare(a.date));
+  const sortedWords = words.toSorted((a, b) => b.date.localeCompare(a.date));
   const today = new Date();
   const todayString = dateToYYYYMMDD(today);
   const yesterdayDate = new Date(today);
@@ -445,7 +448,7 @@ export const getAntiStreakStats = (words: WordData[]): WordAntiStreakStatsResult
     return emptyResult;
   }
 
-  const sortedWords = [...words].toSorted((a, b) => a.date.localeCompare(b.date));
+  const sortedWords = words.toSorted((a, b) => a.date.localeCompare(b.date));
 
   let longestGap = 0;
   let gapStartWord: WordData | null = null;
@@ -461,16 +464,13 @@ export const getAntiStreakStats = (words: WordData[]): WordAntiStreakStatsResult
       continue;
     }
 
-    const previousDate = YYYYMMDDToDate(prevWord.date);
-    const currentDate = YYYYMMDDToDate(currWord.date);
+    const diffDays = getCalendarDaysBetween(prevWord.date, currWord.date);
 
-    if (!previousDate || !currentDate) {
+    if (diffDays === null) {
       continue;
     }
 
-    const diffTime = currentDate.getTime() - previousDate.getTime();
-    const rawDiffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const gapDays = rawDiffDays - 1;
+    const gapDays = diffDays - 1;
 
     if (gapDays > 0 && gapDays > longestGap) {
       longestGap = gapDays;

@@ -1,6 +1,7 @@
 // Re-export pure functions from the shared layer (single source of truth)
 export {
   getWordStats,
+  getLetterStats,
   getLetterPatternStats,
   getWordEndingStats,
   getPatternStats,
@@ -12,5 +13,3 @@ export {
   getLetterTypeStats,
   findWordDate,
 } from '#utils/word-stats-utils';
-
-export { getLetterStatsFromFrequency } from '#utils/word-stats-utils';

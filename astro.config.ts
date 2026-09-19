@@ -1,39 +1,41 @@
 import { execSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
-import { statSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 
 import sitemap from '@astrojs/sitemap';
 import sentry from '@sentry/astro';
 import { defineConfig, envField } from 'astro/config';
 
 import pkg from './package.json' with { type: 'json' };
+import { DEFAULT_WORDNIK_WEBSITE_URL } from '#constants/defaults';
+import { isHexColor } from '#utils/color-utils';
+import { getCodeHash } from '#utils/code-hash';
 
-// Generate code hash for Sentry release version
-function getCodeHash() {
-  const hash = createHash('sha256');
+const colorFields = {
+  COLOR_PRIMARY: { default: '#9a3412' },
+  COLOR_PRIMARY_LIGHT: { default: '#c2410c' },
+  COLOR_PRIMARY_DARK: { default: '#7c2d12' },
+  COLOR_DARK_PRIMARY: { optional: true },
+  COLOR_DARK_PRIMARY_LIGHT: { optional: true },
+  COLOR_DARK_PRIMARY_DARK: { optional: true },
+  COLOR_DARK_BACKGROUND: { optional: true },
+  COLOR_DARK_BACKGROUND_LIGHT: { optional: true },
+  COLOR_DARK_TEXT: { optional: true },
+  COLOR_DARK_TEXT_LIGHT: { optional: true },
+  COLOR_DARK_BORDER: { optional: true },
+} as const;
 
-  const srcFiles = execSync('git ls-files src/', { encoding: 'utf8' })
-    .trim()
-    .split('\n')
-    .filter(file => file.length > 0)
-    .toSorted();
+const colorSchema = Object.fromEntries(
+  Object.entries(colorFields).map(([name, options]) => [name, envField.string({
+    context: 'client',
+    access: 'public',
+    ...options,
+  })]),
+);
 
-  srcFiles.forEach(file => {
-    try {
-      const { size } = statSync(file);
-      hash.update(`${file}:${size}`);
-    } catch {
-      // Skip files that don't exist (deleted but not yet committed)
-      // This ensures consistent fingerprints across downstream apps
-    }
-  });
-
-  return hash.digest('hex').substring(0, 8);
-}
-
-// Load .env locally, skip in CI (GitHub Actions etc)
-if (!process.env.CI) {
-  await import('dotenv/config');
+// Load .env locally when present, skip in CI (GitHub Actions etc).
+// Variables already set in the environment win over the file.
+if (!process.env.CI && existsSync('.env')) {
+  process.loadEnvFile();
 }
 
 // Environment variable defaults for development and PR builds
@@ -43,7 +45,7 @@ const defaults = {
   SITE_DESCRIPTION: 'A word-of-the-day site featuring interesting vocabulary',
   SITE_ID: 'occasional-wotd',
   SOURCE_DIR: '',
-  WORDNIK_WEBSITE_URL: 'https://www.wordnik.com',
+  WORDNIK_WEBSITE_URL: DEFAULT_WORDNIK_WEBSITE_URL,
 };
 
 // Apply defaults for missing environment variables
@@ -52,6 +54,22 @@ Object.entries(defaults).forEach(([key, value]) => {
     process.env[key] = value;
   }
 });
+
+for (const name of Object.keys(colorFields)) {
+  const value = process.env[name];
+  if (value === undefined) {
+    continue;
+  }
+  const normalizedValue = value.trim();
+  if (!normalizedValue) {
+    delete process.env[name];
+    continue;
+  }
+  if (!isHexColor(normalizedValue)) {
+    throw new Error(`${name} must be a hex color such as #9a3412, got ${JSON.stringify(value)}`);
+  }
+  process.env[name] = normalizedValue;
+}
 
 // Validate that we now have all required variables
 const requiredEnvVars = [
@@ -73,7 +91,11 @@ const sentryEnabled = process.env.SENTRY_ENABLED === 'true' && !!process.env.SEN
 if (process.env.SENTRY_ENABLED === 'true' && !process.env.SENTRY_DSN) {
   console.warn('SENTRY_ENABLED is true but SENTRY_DSN is not set — Sentry integration disabled');
 }
-const codeHash = getCodeHash();
+const srcFiles = execSync('git ls-files src/', { encoding: 'utf8' })
+  .trim()
+  .split('\n')
+  .filter(file => file.length > 0);
+const codeHash = getCodeHash(srcFiles);
 const version = pkg.version;
 const release = `${pkg.name}@${version}+${codeHash}`;
 const timestamp = new Date().toISOString();
@@ -106,23 +128,14 @@ export default defineConfig({
       HUMANS_DEVELOPER_NAME: envField.string({ context: 'client', access: 'public', default: '' }),
       HUMANS_DEVELOPER_CONTACT: envField.string({ context: 'client', access: 'public', default: '' }),
       HUMANS_DEVELOPER_SITE: envField.string({ context: 'client', access: 'public', default: '' }),
-      COLOR_PRIMARY: envField.string({ context: 'client', access: 'public', default: '#9a3412' }),
-      COLOR_PRIMARY_LIGHT: envField.string({ context: 'client', access: 'public', default: '#c2410c' }),
-      COLOR_PRIMARY_DARK: envField.string({ context: 'client', access: 'public', default: '#7c2d12' }),
-      COLOR_DARK_PRIMARY: envField.string({ context: 'client', access: 'public', optional: true }),
-      COLOR_DARK_PRIMARY_LIGHT: envField.string({ context: 'client', access: 'public', optional: true }),
-      COLOR_DARK_PRIMARY_DARK: envField.string({ context: 'client', access: 'public', optional: true }),
-      COLOR_DARK_BACKGROUND: envField.string({ context: 'client', access: 'public', optional: true }),
-      COLOR_DARK_BACKGROUND_LIGHT: envField.string({ context: 'client', access: 'public', optional: true }),
-      COLOR_DARK_TEXT: envField.string({ context: 'client', access: 'public', optional: true }),
-      COLOR_DARK_TEXT_LIGHT: envField.string({ context: 'client', access: 'public', optional: true }),
-      COLOR_DARK_BORDER: envField.string({ context: 'client', access: 'public', optional: true }),
+      ...colorSchema,
       GA_MEASUREMENT_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       GA_ENABLED: envField.boolean({ context: 'client', access: 'public', default: false }),
       SENTRY_ENABLED: envField.boolean({ context: 'client', access: 'public', default: false }),
       SENTRY_DSN: envField.string({ context: 'client', access: 'public', optional: true }),
       SENTRY_ENVIRONMENT: envField.string({ context: 'client', access: 'public', default: 'development' }),
       BASE_PATH: envField.string({ context: 'client', access: 'public', default: '/' }),
+      SOURCE_DIR: envField.string({ context: 'client', access: 'public', default: defaults.SOURCE_DIR }),
     },
   },
   vite: {
@@ -188,7 +201,6 @@ export default defineConfig({
       },
     })] : []),
     sitemap({
-      lastmod: new Date(),
       filter: (page) => !page.endsWith('.txt'),
     }),
   ],

@@ -47,7 +47,7 @@ const wordpos = new WordPOS();
 // WordNet joins multiword lemmas with underscores and appends syntactic-position
 // markers to some adjectives (e.g. "afraid(p)", "laughing(a)"); strip both.
 const clean = (lemma: string): string =>
-  lemma.replace(/_/g, ' ').replace(/\([a-z]+\)$/, '').trim();
+  lemma.replaceAll('_', ' ').replace(/\([a-z]+\)$/, '').trim();
 
 // Resolves a pointer's target synset to its first `limit` lemmas. Swallows
 // lookup errors so one bad pointer never blocks the whole word.
@@ -64,10 +64,14 @@ const resolveLemmas = async (offset: string, pos: string, limit: number): Promis
  * Looks up WordNet relations for a headword, filtered to its part of speech
  * (when known) and capped to the dominant senses. Returns empty lists for words
  * not in WordNet; the caller treats relations as best-effort enrichment.
+ * The word is looked up exactly as given; any case normalization is the
+ * caller's.
  */
 export async function getWordRelations(word: string, partOfSpeech?: string): Promise<WordRelations> {
+  const allSenses = await wordpos.lookup(word);
+  // Comparison key only: WordNet lemmas keep their own capitalization, so the
+  // headword is excluded from the lists case-insensitively.
   const headword = word.toLowerCase();
-  const allSenses = await wordpos.lookup(headword);
 
   const target = partOfSpeech ? POS_TO_WORDNET[partOfSpeech.toLowerCase()] : undefined;
   const inPos = (pos: string): boolean =>

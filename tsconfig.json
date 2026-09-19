@@ -3,26 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "noUncheckedIndexedAccess": true,
+    "erasableSyntaxOnly": true,
     "types": ["node"],
-    "typeRoots": ["./node_modules/@types", "./types"],
-    "paths": {
-      "#components/*": ["./src/components/*"],
-      "#layouts/*": ["./src/layouts/*"],
-      "#astro-utils/*": ["./src/utils/*"],
-      "#utils/*": ["./utils/*"],
-      "#types": ["./types/index.ts"],
-      "#types/*": ["./types/*"],
-      "#constants/*": ["./constants/*"],
-      "#config/*": ["./config/*"],
-      "#adapters": ["./adapters/index.ts"],
-      "#adapters/*": ["./adapters/*"],
-      "#data/*": ["./data/*"],
-      "#styles/*": ["./src/styles/*"],
-      "#assets/*": ["./src/assets/*"],
-      "#tools/*": ["./tools/*"],
-      "#locales/*": ["./locales/*"],
-      "#tests/*": ["./tests/*"]
-    }
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "exclude": [
     "coverage/**/*",

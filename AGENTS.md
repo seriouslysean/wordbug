@@ -8,7 +8,7 @@ Static site generator (Astro) for word-of-the-day websites. Powers multiple chil
 
 ## Setup & Commands
 
-Node.js 24+ required (`.nvmrc` provided). No `.env` needed — upstream sets `SOURCE_DIR=demo` via CI variables; downstream repos leave it unset to use root data paths.
+Node.js 26+ required (`.nvmrc` provided). No `.env` needed — upstream sets `SOURCE_DIR=demo` via CI variables; downstream repos leave it unset to use root data paths.
 
 ```sh
 nvm use && npm install             # Setup
@@ -23,6 +23,8 @@ npm run lint:fix                   # oxlint auto-fix
 # CLI tools:
 npm run tool:local tools/add-word.ts serendipity
 npm run tool:local tools/generate-images.ts
+npm run tool:local tools/add-word.ts -- --help   # Tool flags go after a bare --; npm keeps the rest
+npm run tool:create-site -- ../new-site --engine-ref vX.Y.Z --seed-file 20260918.json   # New site repository
 ```
 
 Pre-commit hooks (lefthook) run `oxlint --fix` and related tests on staged files.
@@ -56,9 +58,11 @@ When you need shared logic, put the pure function in `utils/` and create a thin 
 
 ### Adapters are pass-throughs
 
-External API adapters (`adapters/`) look up exactly what they're given and report exactly what they get back. Case normalization, retries, fallback strategies, and input sanitization belong with the **caller**, not the adapter. When the caller decides `--preserve-case`, the adapter respects it without second-guessing.
+External API adapters (`adapters/`) own vocabulary, not behaviour. An adapter translates its partner's terms into the canonical contract (`DictionaryResponse` in `types/adapters.ts`, `DictionaryDefinition` in `types/common.ts`): a part of speech from the vocabulary, or the partner's unmappable term kept as `label`; text as one plain string, with cross-references as `references` ranges rather than markup; an optional field omitted rather than left empty. An adapter only fetches: pages render stored records without it. Retries, the case of the query, fallback, and input handling belong with the **caller**. An adapter looks up exactly the word it is given and reports it back unchanged: when the caller decides `--preserve-case`, the adapter respects it without second-guessing.
 
-Three adapters: `merriam-webster.ts`, `wordnik.ts`, `wiktionary.ts`. Shared infrastructure in `utils/adapter-utils.ts` (HTTP error handling, JSON parsing, POS normalization, response transforms). The adapter registry in `adapters/index.ts` dispatches by name; `fetchWithFallback()` handles the fallback chain.
+The contract is enforced, not trusted. `isCanonicalResponse()` in `utils/adapter-utils.ts` is the one guard: `fetchWithFallback()` applies it to every adapter's answer, and a response that breaks it is refused whole, so the chain moves on and the fault is reported. Of the responses adapters return, only one whose definition list the partner sent empty is read as the word not being there (not found, before the guard); every other response is held to the guard. An answer that lists definitions with no text in any of them, or lacks on every entry a field the partner documents, never becomes that empty list: it is reported as an unexpected shape. `tests/adapters/contract.spec.ts` holds every registered adapter to the same guard: each needs a fixture directory under `tests/adapters/fixtures/` named after it, with at least one successful response, and every such response must come out canonical, with at least one definition a page can display.
+
+Three adapters: `merriam-webster.ts`, `wordnik.ts`, `wiktionary.ts`. Shared infrastructure in `utils/adapter-utils.ts` (HTTP error handling, JSON parsing, POS classification, definition and response builders, the canonical guard); Wordnik's markup parser lives in `utils/definition-text.ts`, and the offline normalizer uses it for legacy stored definitions. The adapter registry in `adapters/index.ts` dispatches by name; `fetchWithFallback()` handles the fallback chain.
 
 ## The Boundary
 
@@ -135,7 +139,7 @@ const ctx = rawContext as LogContext;
 
 Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs — use them:
 
-- `mockEnv.FIELD = value` — `astro:env/client` variables (mutable object from `tests/setup.js`)
+- `mockEnv.FIELD = value` — `astro:env/client` variables (mutable object from `tests/setup.ts`)
 - `vi.stubGlobal()` — build-time Vite defines (auto-restores)
 - `vi.resetModules()` + dynamic `import()` — module re-evaluation
 - `vi.useFakeTimers()` / `vi.useRealTimers()` — time control
@@ -158,20 +162,31 @@ Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs
 
 **Validate E2E assertions against built HTML.** Before pushing E2E changes, build the site (`npm run build`) and verify selectors match the actual `dist/` output. Check element classes, href patterns, and page structure. A passing typecheck does not catch selector mismatches — only the built HTML reveals the truth.
 
-**Real data over feature flags.** When a test or page needs data to exercise a code path, add demo words that produce it — don't add flags to skip the empty case. Every page the site can build should always be built. If stats pages render with zero results, that's a signal to expand the demo dataset, not to hide the page behind a flag. Feature flags for test convenience create parallel code paths that diverge from production and obscure coverage gaps.
+**Real data over feature flags.** When a test or page needs data to exercise a code path, add demo words that produce it — don't add flags to skip the empty case. Every page the site can build should always be built. If stats pages render with zero results, that's a signal to expand the demo dataset, not to hide the page behind a flag. Feature flags for test convenience create parallel code paths that diverge from production and obscure coverage gaps. Date new demo words before 20250117: the five newest spell the site title on the demo homepage.
 
-Test data lives close to use: global fixtures in `tests/setup.js`, per-file data at describe-block scope, shared helpers (used in 3+ files) in `tests/helpers/` via `#tests/*`.
+Test data lives close to use: global fixtures in `tests/setup.ts`, per-file data at describe-block scope, shared helpers (used in 3+ files) in `tests/helpers/` via `#tests/*`.
+
+### CSS: one breakpoint, scoped styles
+
+**One width breakpoint.** `min-width: 768px` divides mobile from desktop; no other width values. Reach for it only when layout genuinely differs (stacked to grid, column to row). Otherwise adapt fluidly: `clamp()` for spacing and sizes, `auto-fill`/`minmax()` for grids, `min()`/`max()`/`vw` for widths. `prefers-color-scheme` and `prefers-reduced-motion` are feature queries, not breakpoints.
+
+**Shared link styles are scoped components, not global classes.** `global.css` sets `a:hover` (specificity 0,1,1), which beats a global utility class (0,1,0) and recolors link text on hover. A scoped component class carries Astro's `data-astro-cid-*` attribute (0,2,0) and wins. `WordChips.astro` is the pattern.
+
+**Client-created DOM needs `:global()`.** Astro scopes styles by stamping the `data-astro-cid-*` attribute on template elements; elements built in a `<script>` carry no attribute, so scoped rules silently miss them. Anchor `:global()` selectors under a scoped parent to keep them contained (`.site-search__results :global(.site-search__result)` in `HeaderSearch.astro`).
 
 ## Import Aliases
 
 Node.js subpath imports (`#` prefix) in `package.json` — the single source of truth for TypeScript, Vite, and Vitest. Always use aliases, never relative paths.
 
-| Alias | Path | Context |
-|-------|------|---------|
+Node resolves these without guessing extensions, so the rule is: aliases for TypeScript directories (`#utils`, `#astro-utils`, `#types`, `#constants`, `#config`, `#adapters`, `#tools`) are written without an extension and the `imports` target supplies `.ts`; every other alias carries the file's extension in the specifier (`#components/WordChips.astro`, `#locales/en.json`, `#tests/helpers/spawn.ts`). JSON imports take `with { type: 'json' }`. There is no `paths` block in `tsconfig.json` — do not add one.
+
+| Alias | Directory | Context |
+|-------|-----------|---------|
 | `#utils/*` | `utils/*` | Pure Node.js, safe everywhere |
 | `#astro-utils/*` | `src/utils/*` | Astro only, never from `utils/` or `tools/` |
 | `#components/*` | `src/components/*` | |
 | `#layouts/*` | `src/layouts/*` | |
+| `#pages/*` | `src/pages/*` | |
 | `#types`, `#types/*` | `types/` | |
 | `#constants/*` | `constants/*` | |
 | `#config/*` | `config/*` | |
@@ -229,7 +244,7 @@ These aren't enforced by tools, but the codebase follows them consistently:
 6. Push with tag: `git push && git push origin vX.Y.0`
 7. Create release: `gh release create vX.Y.0 --generate-notes --notes-start-tag vPREV`
 
-After releasing, sync downstream repos with `npm run tool:sync` (merge-based, no force push).
+After releasing, sync downstream repos with `npm run tool:sync`: it merges upstream on a `sync/upstream-*` branch, commits only after every quality gate passes, and never pushes (merge-based, no force push). A synced fork's Deploy and Add Word call the reusable workflows with `./` at its own commit, so forks keep working until the owner migrates them. Site repositories that call the reusable Site Deploy and Site Add Word workflows instead move both `uses:` pins to the new tag; `npm run tool:create-site` scaffolds a new one (`docs/technical.md`, Site Repositories).
 
 ## Contributing via Git
 
@@ -261,6 +276,6 @@ Run all quality gates before committing. Stage specific files by name — avoid 
 | `docs/agents/cli-patterns.md` | CLI tool patterns for token-efficient agent workflows |
 | `docs/agents/backlog.md` | Known gaps and technical debt |
 | `docs/agents/features.md` | Feature ideas, prioritized |
-| `README.md` / `docs/README.md` | User-facing overview and quick start |
+| `docs/README.md` | User-facing overview and quick start |
 
 Update relevant docs when making architectural changes.

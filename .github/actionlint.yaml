@@ -1,0 +1,10 @@
+# actionlint 1.7.12 does not know the job context's workflow identity
+# properties, which GitHub added on 2026-09-03
+# (https://github.blog/changelog/2026-09-03-github-actions-early-september-2026-updates/),
+# and reports them as undefined. This ignores exactly those four on the job
+# context, in the two reusable workflows that check out their own source.
+# Remove it once actionlint knows them.
+paths:
+  .github/workflows/site-{deploy,add-word}.yml:
+    ignore:
+      - '^property "workflow_(ref|sha|repository|file_path)" is not defined in object type \{check_run_id: number; container: \{id: string; network: string\}; services: \{string => \{id: string; network: string; ports: \{string => string\}\}\}; status: string\}$'

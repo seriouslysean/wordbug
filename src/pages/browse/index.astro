@@ -1,7 +1,7 @@
 ---
-import { getPageMetadata } from '#astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
-import { getWordsFromCollection, groupWordsByYear, groupWordsByLetter, groupWordsByLength, groupWordsByPartOfSpeech } from '#astro-utils/word-data-utils';
+import { getPageMetadata } from '#astro-utils/page-metadata';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
+import { allWords, groupWordsByYear, groupWordsByLetter, groupWordsByLength, groupWordsByPartOfSpeech } from '#astro-utils/word-data-utils';
 import { getWordsYearUrl, getLetterUrl, getLengthUrl, getPartOfSpeechUrl, getWordsUrl, getWordsLetterUrl, getWordsLengthUrl, getWordsPartOfSpeechUrl, getWordsYearIndexUrl } from '#astro-utils/url-utils';
 import Heading from '#components/Heading.astro';
 import SectionHeading from '#components/SectionHeading.astro';
@@ -11,7 +11,6 @@ import RandomWordLink from '#components/RandomWordLink.astro';
 import Layout from '#layouts/Layout.astro';
 import { t, tp } from '#utils/i18n-utils';
 
-const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
 const wordsByLetter = groupWordsByLetter(allWords);
 const wordsByLength = groupWordsByLength(allWords);
@@ -57,7 +56,7 @@ const gridSections = [
     href: getWordsPartOfSpeechUrl(),
     entries: sortedPartOfSpeechEntries,
     getItemUrl: (key: string) => getPartOfSpeechUrl(key),
-    getItemTitle: (key: string, count: number) => t('common.title_with_part_of_speech', { count, value: key }),
+    getItemTitle: (key: string, count: number) => tp('common.title_with_part_of_speech', count, { value: key }),
     getItemLabel: (key: string) => t(`parts_of_speech.${key}`),
   },
 ];

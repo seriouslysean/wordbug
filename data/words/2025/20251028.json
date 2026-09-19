@@ -6,13 +6,37 @@
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "A <xref>factitious</xref> <xref>disease</xref> of the lungs, allegedly caused by inhaling <xref>microscopic</xref> <xref>silicate</xref> <xref>particles</xref> originating from eruption of a volcano.",
+            "text": "A factitious disease of the lungs, allegedly caused by inhaling microscopic silicate particles originating from eruption of a volcano.",
+            "references": [
+                {
+                    "start": 2,
+                    "end": 12,
+                    "url": "https://www.wordnik.com/words/factitious"
+                },
+                {
+                    "start": 13,
+                    "end": 20,
+                    "url": "https://www.wordnik.com/words/disease"
+                },
+                {
+                    "start": 64,
+                    "end": 75,
+                    "url": "https://www.wordnik.com/words/microscopic"
+                },
+                {
+                    "start": 76,
+                    "end": 84,
+                    "url": "https://www.wordnik.com/words/silicate"
+                },
+                {
+                    "start": 85,
+                    "end": 94,
+                    "url": "https://www.wordnik.com/words/particles"
+                }
+            ],
             "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/pneumonoultramicroscopicsilicovolcanoconiosis",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "sourceUrl": "https://www.wordnik.com/words/pneumonoultramicroscopicsilicovolcanoconiosis"
         }
     ]
 }

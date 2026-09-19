@@ -1,10 +1,11 @@
 ---
-interface Props {
-  level?: number;
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'h1'> {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
   text: string;
   secondaryText?: string;
   preserveCase?: boolean;
-  [key: string]: any;
 }
 
 const { level = 1, text, secondaryText, preserveCase = false, ...attrs } = Astro.props;
@@ -14,9 +15,9 @@ const headingClass = preserveCase ? 'heading__text preserve-case' : 'heading__te
 
 <div class="heading">
   {secondaryText && <small class="heading__secondary">{secondaryText}</small>}
-  <component is={HeadingTag} class={headingClass} {...attrs}>
+  <HeadingTag class={headingClass} {...attrs}>
     {text}
-  </component>
+  </HeadingTag>
 </div>
 
 <style>

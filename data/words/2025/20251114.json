@@ -6,13 +6,17 @@
     "data": [
         {
             "partOfSpeech": "adjective",
-            "text": "Very highly <xref>specific</xref>.",
+            "text": "Very highly specific.",
+            "references": [
+                {
+                    "start": 12,
+                    "end": 20,
+                    "url": "https://www.wordnik.com/words/specific"
+                }
+            ],
             "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/hyperspecific",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "sourceUrl": "https://www.wordnik.com/words/hyperspecific"
         }
     ]
 }

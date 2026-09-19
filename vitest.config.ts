@@ -4,9 +4,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    include: ['tests/**/*.spec.js'],
-    setupFiles: ['tests/setup.js'],
-    isolate: false,
+    include: ['tests/**/*.spec.ts'],
+    exclude: ['tests/e2e/**'],
+    setupFiles: ['tests/setup.ts'],
     env: {
       BASE_PATH: '/',
       SOURCE_DIR: 'demo',
@@ -20,13 +20,13 @@ export default defineConfig({
         'dist/**',
         '.astro/**',
         'tests/**',
-        // Build-time utilities validated by build process
-        'src/utils/static-file-utils.ts',
-        'src/utils/static-paths-utils.ts',
         'src/content.config.ts',
         'src/pages/**',
-        // CLI tools tested via integration tests
-        'tools/**',
+        // These entry points run in spawned Node processes; their V8 counters
+        // do not aggregate into Vitest. Real-process suites cover each one.
+        'tools/generate-images.ts',
+        'tools/normalize-word-data.ts',
+        'tools/regenerate-all-words.ts',
       ],
       thresholds: {
         autoUpdate: false,

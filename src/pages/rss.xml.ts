@@ -1,14 +1,14 @@
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_LOCALE } from 'astro:env/client';
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
-import { getWordsFromCollection } from '#astro-utils/word-data-utils';
+import { escapeText } from 'entities';
+import { allWords } from '#astro-utils/word-data-utils';
 import { extractWordDefinition } from '#astro-utils/word-data-utils';
 import { getFullUrl, getWordUrl } from '#astro-utils/url-utils';
 import { YYYYMMDDToDate } from '#utils/date-utils';
 import { RSS_FEED_WORD_COUNT } from '#constants/text-patterns';
 
-export async function GET(context: APIContext) {
-  const allWords = await getWordsFromCollection();
+export async function GET(context: Pick<APIContext, 'site'>) {
 
   // Get the latest words for RSS feed (2 weeks worth if daily)
   const latestWords = allWords.slice(0, RSS_FEED_WORD_COUNT);
@@ -28,11 +28,8 @@ export async function GET(context: APIContext) {
         throw new Error(`Invalid date format for word ${word.word}: ${word.date}`);
       }
 
-      // Strip HTML tags from definition for clean RSS
-      const cleanDefinition = definition.replace(/<[^>]*>/g, '');
-
-      // Simple format: (part of speech) definition
-      const description = `(${partOfSpeech}) ${cleanDefinition}`;
+      // Simple format: (part of speech) definition, already plain text
+      const description = escapeText(`(${partOfSpeech}) ${definition}`);
 
       return {
         title: word.word,

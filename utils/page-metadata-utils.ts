@@ -1,3 +1,4 @@
+import { BASE_PARTS_OF_SPEECH } from '#constants/parts-of-speech';
 import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
 
 import type { WordData } from '#types';
@@ -47,7 +48,7 @@ export function getDefinition<T>(definitions: Record<string, T>, key: string): T
   return def;
 }
 
-type PrecomputedStats = {
+interface PrecomputedStats {
   endings: ReturnType<typeof getWordEndingStats>;
   letterPatterns: ReturnType<typeof getLetterPatternStats>;
   patternStats: ReturnType<typeof getPatternStats>;
@@ -56,46 +57,46 @@ type PrecomputedStats = {
   wordsWithMostCommon: WordData[];
   wordsWithLeastCommon: WordData[];
   milestones: ReturnType<typeof getChronologicalMilestones>;
-};
+}
 
 function getStats(words: WordData[]): PrecomputedStats {
-  const { mostCommon, leastCommon } = getLetterStats(words);
+  const letterStats = getLetterStats(words);
   return {
     endings: getWordEndingStats(words),
     letterPatterns: getLetterPatternStats(words),
     patternStats: getPatternStats(words),
-    mostCommonLetter: mostCommon,
-    leastCommonLetter: leastCommon,
-    wordsWithMostCommon: words.filter(w => w.word.toLowerCase().includes(mostCommon)),
-    wordsWithLeastCommon: words.filter(w => w.word.toLowerCase().includes(leastCommon)),
+    mostCommonLetter: letterStats.mostCommon,
+    leastCommonLetter: letterStats.leastCommon,
+    wordsWithMostCommon: letterStats.wordsWithMostCommon,
+    wordsWithLeastCommon: letterStats.wordsWithLeastCommon,
     milestones: getChronologicalMilestones(words),
   };
 }
 
-type StaticPageMeta = {
+interface StaticPageMeta {
   type: 'static';
   title: string;
   description: string;
   category: string;
   secondaryText?: string | ((count: number) => string);
   partOfSpeech?: string;
-};
+}
 
-type HomepageMeta = {
+interface HomepageMeta {
   type: 'home';
   title: string;
   description: (currentWord: string) => string;
   category: string;
   secondaryText?: string | ((count: number) => string);
-};
+}
 
-type StatsPageMeta = {
+interface StatsPageMeta {
   type: 'stats';
   title: string;
   description: (count: number) => string;
   category: string;
   secondaryText?: string | ((count: number) => string);
-};
+}
 type PageMeta = StaticPageMeta | HomepageMeta | StatsPageMeta;
 
 function createPageMetadata(words: WordData[]): Record<string, PageMeta> {
@@ -379,13 +380,13 @@ function getCountForPath(path: string, words: WordData[]): number {
 /**
  * Standardized page metadata returned by getPageMetadata
  */
-export type PageMetadataResult = {
+export interface PageMetadataResult {
   title: string;
   description: string;
   category: string;
   secondaryText?: string;
   partOfSpeech?: string;
-};
+}
 
 // Lazily-initialized title map for lightweight breadcrumb lookups (no stats computation)
 let cachedStaticTitles: Record<string, string> | null = null;
@@ -395,6 +396,16 @@ function getStaticTitles(): Record<string, string> {
     return cachedStaticTitles;
   }
 
+  const suffixSlugMap: Record<string, string> = {
+    ed: STATS_SLUGS.WORDS_ENDING_ED,
+    ing: STATS_SLUGS.WORDS_ENDING_ING,
+    ly: STATS_SLUGS.WORDS_ENDING_LY,
+    ness: STATS_SLUGS.WORDS_ENDING_NESS,
+    ful: STATS_SLUGS.WORDS_ENDING_FUL,
+    less: STATS_SLUGS.WORDS_ENDING_LESS,
+  };
+
+  // Spread order is override order: a later group wins a shared route
   cachedStaticTitles = {
     [BASE_PATHS.HOME]: t('home.heading'),
     [BASE_PATHS.WORD]: t('words.heading'),
@@ -409,32 +420,18 @@ function getStaticTitles(): Record<string, string> {
     [ROUTES.STAT(STATS_SLUGS.LETTER_PATTERNS)]: t('stats.letter_patterns_index_heading'),
     [ROUTES.STAT(STATS_SLUGS.WORD_ENDINGS)]: t('stats.word_endings_index_heading'),
     [BASE_PATHS.NOT_FOUND]: t('error.heading'),
-  };
 
-  // Build stats titles from definition objects
-  for (const [slug, def] of Object.entries(LETTER_PATTERN_DEFINITIONS)) {
-    cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
-  }
-  for (const [slug, def] of Object.entries(PATTERN_DEFINITIONS)) {
-    cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
-  }
-  const suffixSlugMap: Record<string, string> = {
-    ed: STATS_SLUGS.WORDS_ENDING_ED,
-    ing: STATS_SLUGS.WORDS_ENDING_ING,
-    ly: STATS_SLUGS.WORDS_ENDING_LY,
-    ness: STATS_SLUGS.WORDS_ENDING_NESS,
-    ful: STATS_SLUGS.WORDS_ENDING_FUL,
-    less: STATS_SLUGS.WORDS_ENDING_LESS,
+    // Build stats titles from definition objects
+    ...Object.fromEntries(Object.entries(LETTER_PATTERN_DEFINITIONS).map(([slug, def]): [string, string] => [ROUTES.STAT(slug), def.title])),
+    ...Object.fromEntries(Object.entries(PATTERN_DEFINITIONS).map(([slug, def]): [string, string] => [ROUTES.STAT(slug), def.title])),
+    ...Object.fromEntries(
+      Object.entries(SUFFIX_DEFINITIONS).flatMap(([suffix, def]): Array<[string, string]> => {
+        const slug = suffixSlugMap[suffix];
+        return slug ? [[ROUTES.STAT(slug), def.title]] : [];
+      }),
+    ),
+    ...Object.fromEntries(Object.entries(DYNAMIC_STATS_DEFINITIONS).map(([slug, def]): [string, string] => [ROUTES.STAT(slug), def.title])),
   };
-  for (const [suffix, def] of Object.entries(SUFFIX_DEFINITIONS)) {
-    const slug = suffixSlugMap[suffix];
-    if (slug) {
-      cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
-    }
-  }
-  for (const [slug, def] of Object.entries(DYNAMIC_STATS_DEFINITIONS)) {
-    cachedStaticTitles[ROUTES.STAT(slug)] = def.title;
-  }
 
   return cachedStaticTitles;
 }
@@ -500,7 +497,11 @@ export function getPageTitle(path: string): string {
  * @param words - Word dataset to evaluate
  * @returns Page metadata object
  */
-export function getPageMetadata(path: string, words: WordData[] = []): PageMetadataResult {
+function getPageMetadataForMap(
+  path: string,
+  words: WordData[],
+  pageMetadata?: Record<string, PageMeta>,
+): PageMetadataResult {
   if (!path) {
     throw new Error('getPageMetadata: path is required');
   }
@@ -579,14 +580,17 @@ export function getPageMetadata(path: string, words: WordData[] = []): PageMetad
     const displayName = t(`parts_of_speech.${partOfSpeech}`);
     return {
       title: displayName,
-      description: t('words.part_of_speech_words_description', { partOfSpeech }),
+      // An abbreviation is a lexical label, not a role a word plays in a sentence
+      description: partOfSpeech === BASE_PARTS_OF_SPEECH.ABBREVIATION
+        ? t('words.abbreviation_words_description')
+        : t('words.part_of_speech_words_description', { partOfSpeech }),
       category: 'pages' as const,
       secondaryText: tp('common.words', wordsOfPartOfSpeech.length),
     };
   }
 
 
-  const PAGE_METADATA = createPageMetadata(words);
+  const PAGE_METADATA = pageMetadata ?? createPageMetadata(words);
   const metadata = PAGE_METADATA[path];
   if (!metadata) {
     return {
@@ -628,9 +632,25 @@ export function getPageMetadata(path: string, words: WordData[] = []): PageMetad
           ? metadata.secondaryText(count)
           : metadata.secondaryText,
       };
-    default:
-      return metadata;
+    default: {
+      // Exhaustiveness check: a new PageMeta variant fails to compile here
+      const unhandled: never = metadata;
+      return unhandled;
+    }
   }
+}
+
+export function getPageMetadata(path: string, words: WordData[] = []): PageMetadataResult {
+  return getPageMetadataForMap(path, words);
+}
+
+/**
+ * Create a page metadata lookup that reuses the precomputed stats for one dataset.
+ * Callers using mutable or ad-hoc datasets should use getPageMetadata directly.
+ */
+export function createPageMetadataLookup(words: WordData[]) {
+  const pageMetadata = createPageMetadata(words);
+  return (path: string): PageMetadataResult => getPageMetadataForMap(path, words, pageMetadata);
 }
 
 /**
@@ -644,13 +664,13 @@ export function getAllPageMetadata(words: WordData[]) {
   // Get static pages (excluding root '/')
   const staticPages = Object.keys(PAGE_METADATA)
     .filter(path => path !== '/')
-    .map(path => (Object.assign({ path }, getPageMetadata(path, words))));
+    .map(path => (Object.assign({ path }, getPageMetadataForMap(path, words, PAGE_METADATA))));
 
   // Get dynamic year pages
   const years = getAvailableYears(words);
   const yearPages = years.map(year => {
     const path = ROUTES.YEAR(year);
-    return { path, ...getPageMetadata(path, words) };
+    return { path, ...getPageMetadataForMap(path, words, PAGE_METADATA) };
   });
 
   // Get dynamic month pages
@@ -661,26 +681,26 @@ export function getAllPageMetadata(words: WordData[]) {
         return [];
       }
       const path = ROUTES.MONTH(year, monthSlug);
-      return [{ path, ...getPageMetadata(path, words) }];
+      return [{ path, ...getPageMetadataForMap(path, words, PAGE_METADATA) }];
     }),
   );
 
   // Get dynamic word length pages
   const lengthPages = getAvailableLengths(words).map(length => {
     const path = getLengthUrl(length);
-    return Object.assign({ path }, getPageMetadata(path, words));
+    return Object.assign({ path }, getPageMetadataForMap(path, words, PAGE_METADATA));
   });
 
   // Get dynamic word letter pages  
   const letterPages = getAvailableLetters(words).map(letter => {
     const path = getLetterUrl(letter);
-    return Object.assign({ path }, getPageMetadata(path, words));
+    return Object.assign({ path }, getPageMetadataForMap(path, words, PAGE_METADATA));
   });
 
   // Get dynamic part-of-speech pages  
   const partOfSpeechPages = getAvailablePartsOfSpeech(words).map(partOfSpeech => {
     const path = getPartOfSpeechUrl(partOfSpeech);
-    return Object.assign({ path }, getPageMetadata(path, words));
+    return Object.assign({ path }, getPageMetadataForMap(path, words, PAGE_METADATA));
   });
 
   return [...staticPages, ...yearPages, ...monthPages, ...lengthPages, ...letterPages, ...partOfSpeechPages];

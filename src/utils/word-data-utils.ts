@@ -1,24 +1,24 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
-import { getAdapterByName } from '#adapters';
 import type {
   WordAdjacentResult,
   WordData,
   WordGroupByLengthResult,
   WordGroupByPartOfSpeechResult,
   WordGroupByYearResult,
-  WordProcessedData,
 } from '#types';
-import { MAX_PAST_WORDS_DISPLAY } from '#constants/text-patterns';
-import { getMonthSlugFromDate } from '#utils/date-utils';
+import { isBasePartOfSpeech } from '#constants/parts-of-speech';
+import { HOMEPAGE_PREVIOUS_WORDS, MAX_PAST_WORDS_DISPLAY } from '#constants/text-patterns';
+import { getMonthSlugFromDate, getTodayYYYYMMDD } from '#utils/date-utils';
 import {
+  findCurrentWord,
+  getPreviousWords,
   getAvailableYears,
   getAvailableLengths,
   getWordsByYear,
   getAvailableMonths,
   getAvailableLetters,
   getAvailablePartsOfSpeech,
-  normalizeToBasePOS,
   findValidDefinition,
   getWordsByLength as getWordsByLengthPure,
   getWordsByLetter as getWordsByLetterPure,
@@ -26,9 +26,12 @@ import {
   groupWordsByYear as groupWordsByYearPure,
   groupWordsByLength as groupWordsByLengthPure,
   groupWordsByLetter as groupWordsByLetterPure,
+  groupWordsByPartOfSpeech as groupWordsByPartOfSpeechPure,
 } from '#utils/word-data-utils';
 import { getErrorMessage } from '#utils/text-utils';
+import { isWordData } from '#utils/stored-word-validation';
 import {
+  getLetterStats,
   getWordStats,
   getLetterPatternStats,
   getWordEndingStats,
@@ -53,6 +56,9 @@ export async function getWordsFromCollection(): Promise<WordData[]> {
         ...entry.data,
         date: extractedDate || entry.data.date,
       };
+      if (!isWordData(wordData)) {
+        throw new Error(`Invalid word data for "${entry.data.word}" in ${entry.id}`);
+      }
       return wordData;
     })
     .toSorted((a, b) => b.date.localeCompare(a.date));
@@ -72,7 +78,7 @@ export function extractWordDefinition(wordData: WordData): { definition: string;
   if (validDefinition) {
     return {
       definition: validDefinition.text,
-      partOfSpeech: normalizeToBasePOS(validDefinition.partOfSpeech),
+      partOfSpeech: validDefinition.partOfSpeech,
     };
   }
 
@@ -91,7 +97,7 @@ async function getAllWords(): Promise<WordData[]> {
       logger.info('Loaded words successfully', { count: wordCache.value.length });
     } catch (error) {
       logger.error('Failed to load words', { error: getErrorMessage(error) });
-      wordCache.value = [];
+      throw error;
     }
   }
   return wordCache.value;
@@ -141,6 +147,11 @@ export const getAvailableMonthsForYear = (year: string): string[] => getAvailabl
 export const wordStats = getWordStats(allWords);
 
 /**
+ * Pre-computed letter commonness (words containing each letter) from the loaded collection
+ */
+export const letterStats = getLetterStats(allWords);
+
+/**
  * Pre-computed letter pattern statistics from the loaded collection
  */
 export const letterPatternStats = getLetterPatternStats(allWords);
@@ -166,41 +177,12 @@ export const antiStreakStats = getAntiStreakStats(allWords);
 export const milestoneWords = getChronologicalMilestones(allWords);
 
 /**
- * Processes raw word data into a standardized format for display.
- * Extracts part of speech, definition, and metadata using the current adapter.
- *
- * @param {WordData} wordData - Raw word data containing dictionary definitions
- * @returns {WordProcessedData} Processed word data with standardized fields for UI consumption
- */
-export function getProcessedWord(wordData: WordData): WordProcessedData {
-  try {
-    const adapter = getAdapterByName(wordData.adapter);
-    const result = adapter.transformWordData(wordData);
-    return {
-      ...result,
-      partOfSpeech: result.partOfSpeech ? normalizeToBasePOS(result.partOfSpeech) : '',
-    };
-  } catch {
-    // Fallback for mock/synthetic words (e.g. 404 page) with no real adapter
-    const validDef = findValidDefinition(wordData.data);
-    if (!validDef) {
-      return { partOfSpeech: '', definition: '', meta: null };
-    }
-    return {
-      partOfSpeech: normalizeToBasePOS(validDef.partOfSpeech),
-      definition: validDef.text,
-      meta: null,
-    };
-  }
-}
-
-/**
  * Retrieves the current word that should be displayed based on today's date.
  * Returns the most recent word with a date less than or equal to today.
  * Falls back to the first available word if none match the date criteria.
  *
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData | null} The current word data that should be displayed, or null if no words are available
+ * @param [words=allWords] - Array of word data to search through
+ * @returns The current word data that should be displayed, or null if no words are available
  */
 export const getCurrentWord = (words: WordData[] = allWords): WordData | null => {
   if (!words.length) {
@@ -208,21 +190,25 @@ export const getCurrentWord = (words: WordData[] = allWords): WordData | null =>
     return null;
   }
 
-  const today = new Date();
-  const dateString = today.toISOString().slice(0, 10).replace(/-/g, '');
+  // Local date, matching add-word and the streak stats; toISOString() is UTC and disagrees near midnight
+  return findCurrentWord(words, getTodayYYYYMMDD());
+};
 
-  const found = words.find(word => word.date <= dateString);
-
-  return found ?? words[words.length - 1] ?? null;
+/**
+ * The homepage's current word and the previous words listed below it.
+ */
+export const getHomepageWords = (words: WordData[] = allWords): { currentWord: WordData | null; previousWords: WordData[] } => {
+  const currentWord = getCurrentWord(words);
+  return { currentWord, previousWords: getPreviousWords(words, currentWord, HOMEPAGE_PREVIOUS_WORDS) };
 };
 
 /**
  * Retrieves up to 5 words that occurred before the specified date.
  * Useful for showing recent word history or navigation context.
  *
- * @param {string} currentDate - Reference date in YYYYMMDD format to find words before
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData[]} Array of up to 5 word entries that occurred before the given date
+ * @param currentDate - Reference date in YYYYMMDD format to find words before
+ * @param [words=allWords] - Array of word data to search through
+ * @returns Array of up to 5 word entries that occurred before the given date
  */
 export const getPastWords = (currentDate: string, words: WordData[] = allWords): WordData[] => {
   if (!currentDate) {
@@ -237,9 +223,9 @@ export const getPastWords = (currentDate: string, words: WordData[] = allWords):
  * Finds and returns the word data for a specific date.
  * Returns null if no word exists for the given date or if date is invalid.
  *
- * @param {string} date - Date to search for in YYYYMMDD format
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData | null} Word data for the specified date, or null if not found
+ * @param date - Date to search for in YYYYMMDD format
+ * @param [words=allWords] - Array of word data to search through
+ * @returns Word data for the specified date, or null if not found
  */
 export const getWordByDate = (date: string, words: WordData[] = allWords): WordData | null => {
   if (!date) {
@@ -252,9 +238,9 @@ export const getWordByDate = (date: string, words: WordData[] = allWords): WordD
  * Gets the previous and next words relative to the given date for navigation purposes.
  * Previous word has an earlier date, next word has a later date.
  *
- * @param {string} date - Reference date in YYYYMMDD format to find adjacent words for
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordAdjacentResult} Object containing previousWord and nextWord, or null if not found
+ * @param date - Reference date in YYYYMMDD format to find adjacent words for
+ * @param [words=allWords] - Array of word data to search through
+ * @returns Object containing previousWord and nextWord, or null if not found
  */
 export const getAdjacentWords = (date: string, words: WordData[] = allWords): WordAdjacentResult => {
   if (!date) {
@@ -279,29 +265,13 @@ export const getAdjacentWords = (date: string, words: WordData[] = allWords): Wo
 };
 
 /**
- * Safely extracts and processes word details from raw word data.
- * Handles cases where word data might be incomplete or malformed.
- *
- * @param {WordData} word - Raw word data containing dictionary definitions
- * @returns {WordProcessedData} Processed word details with safe defaults for missing data
- */
-export const getWordDetails = (word: WordData): WordProcessedData => {
-  if (!word?.data) {
-    return { partOfSpeech: '', definition: '', meta: null };
-  }
-
-  return getProcessedWord(word);
-};
-
-
-/**
  * Retrieves all words that occurred within a specific month of a given year.
  * Useful for generating monthly archives.
  *
- * @param {string} year - Year to filter by (YYYY format)
- * @param {string} month - Month to filter by (MM format)
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData[]} Array of word data entries from the specified month and year
+ * @param year - Year to filter by (YYYY format)
+ * @param month - Month to filter by (MM format)
+ * @param [words=allWords] - Array of word data to search through
+ * @returns Array of word data entries from the specified month and year
  */
 export const getWordsByMonth = (
   year: string,
@@ -317,9 +287,9 @@ export const getWordsByMonth = (
  * Groups words by month within a specific year.
  * Returns an object with month slugs as keys and word arrays as values.
  *
- * @param {string} year - Year to filter by (YYYY format)
- * @param {WordData[]} [words=allWords] - Array of word data to group
- * @returns {Object} Object with month slugs as keys and word arrays as values
+ * @param year - Year to filter by (YYYY format)
+ * @param [words=allWords] - Array of word data to group
+ * @returns Object with month slugs as keys and word arrays as values
  */
 export const groupWordsByMonth = (year: string, words: WordData[] = allWords): { [monthSlug: string]: WordData[] } => {
   const groups = Object.groupBy(
@@ -336,11 +306,11 @@ export const groupWordsByMonth = (year: string, words: WordData[] = allWords): {
  * Useful for creating cache keys or detecting changes in word datasets.
  * Words are sorted alphabetically before hashing to ensure consistent results.
  *
- * @param {string[]} words - Array of word strings to hash
- * @returns {string} SHA-256 hash in hexadecimal format
+ * @param words - Array of word strings to hash
+ * @returns SHA-256 hash in hexadecimal format
  */
 export const generateWordDataHash = (words: string[]): string => {
-  const sorted = [...words].toSorted();
+  const sorted = words.toSorted();
   const input = `${sorted.length}:${sorted.join(',')}`;
   return crypto.createHash('sha256').update(input).digest('hex');
 };
@@ -349,8 +319,8 @@ export const generateWordDataHash = (words: string[]): string => {
  * Groups an array of word data by year for organizing and statistical analysis.
  * Creates an object where keys are years (YYYY) and values are arrays of words from that year.
  *
- * @param {WordData[]} words - Array of word data to group by year
- * @returns {WordGroupByYearResult} Object with years as keys and word arrays as values
+ * @param words - Array of word data to group by year
+ * @returns Object with years as keys and word arrays as values
  */
 export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
   const groups = groupWordsByYearPure(words);
@@ -364,8 +334,8 @@ export const groupWordsByYear = (words: WordData[]): WordGroupByYearResult => {
  * Creates an object where keys are word lengths and values are arrays of words from that length.
  * Keys are returned in ascending numeric order.
  *
- * @param {WordData[]} words - Array of word data to group by length
- * @returns {WordGroupByLengthResult} Object with lengths as keys and word arrays as values, sorted by length
+ * @param words - Array of word data to group by length
+ * @returns Object with lengths as keys and word arrays as values, sorted by length
  */
 export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult => {
   const groups = groupWordsByLengthPure(words);
@@ -379,9 +349,9 @@ export const groupWordsByLength = (words: WordData[]): WordGroupByLengthResult =
 /**
  * Retrieves all words that match a specific length.
  *
- * @param {number} length - Word length to filter by
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData[]} Array of word data entries with the specified length
+ * @param length - Word length to filter by
+ * @param [words=allWords] - Array of word data to search through
+ * @returns Array of word data entries with the specified length
  */
 export const getWordsByLength = (length: number, words: WordData[] = allWords): WordData[] => {
   return getWordsByLengthPure(length, words);
@@ -390,8 +360,8 @@ export const getWordsByLength = (length: number, words: WordData[] = allWords): 
 /**
  * Groups words by their first letter
  *
- * @param {WordData[]} words - Array of word data to group
- * @returns {Record<string, WordData[]>} Object with letter keys and word arrays
+ * @param words - Array of word data to group
+ * @returns Object with letter keys and word arrays
  */
 export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]> => {
   const alphabeticWords = words.filter(word => /^[a-z]/i.test(word.word));
@@ -406,49 +376,38 @@ export const groupWordsByLetter = (words: WordData[]): Record<string, WordData[]
 /**
  * Retrieves all words that start with a specific letter
  *
- * @param {string} letter - Letter to filter by (case-insensitive)
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData[]} Array of word data entries starting with the specified letter
+ * @param letter - Letter to filter by (case-insensitive)
+ * @param [words=allWords] - Array of word data to search through
+ * @returns Array of word data entries starting with the specified letter
  */
 export const getWordsByLetter = (letter: string, words: WordData[] = allWords): WordData[] => {
   return getWordsByLetterPure(letter, words);
 };
 
 /**
- * Groups words by their part of speech
+ * Groups words by their part of speech for the browse pages: base parts of
+ * speech only, keys and words in alphabetical order.
  *
- * @param {WordData[]} words - Array of word data to group
- * @returns {WordGroupByPartOfSpeechResult} Object with part of speech keys and word arrays
+ * @param words - Array of word data to group
+ * @returns Object with part of speech keys and word arrays
  */
 export const groupWordsByPartOfSpeech = (words: WordData[]): WordGroupByPartOfSpeechResult => {
-  const groups: Record<string, WordData[]> = {};
-  for (const word of words) {
-    if (!Array.isArray(word.data)) { continue; }
-    const seen = new Set<string>();
-    for (const def of word.data) {
-      if (!def.partOfSpeech) { continue; }
-      const normalized = normalizeToBasePOS(def.partOfSpeech);
-      if (!normalized || seen.has(normalized)) { continue; }
-      seen.add(normalized);
-      (groups[normalized] ??= []).push(word);
-    }
-  }
+  const groups = groupWordsByPartOfSpeechPure(words);
   return Object.fromEntries(
     Object.entries(groups)
+      .filter(([pos]) => isBasePartOfSpeech(pos))
       .toSorted(([a], [b]) => a.localeCompare(b))
-      .map(([pos, posWords]) => [pos, posWords.toSorted((a, b) => a.word.localeCompare(b.word))])
+      .map(([pos, posWords]) => [pos, (posWords ?? []).toSorted((a, b) => a.word.localeCompare(b.word))])
   );
 };
 
 /**
  * Retrieves all words that have a specific part of speech
  *
- * @param {string} partOfSpeech - Part of speech to filter by (will be normalized)
- * @param {WordData[]} [words=allWords] - Array of word data to search through
- * @returns {WordData[]} Array of word data entries with the specified part of speech
+ * @param partOfSpeech - Part of speech to filter by (will be normalized)
+ * @param [words=allWords] - Array of word data to search through
+ * @returns Array of word data entries with the specified part of speech
  */
 export const getWordsByPartOfSpeech = (partOfSpeech: string, words: WordData[] = allWords): WordData[] => {
   return getWordsByPartOfSpeechPure(partOfSpeech, words);
 };
-
-

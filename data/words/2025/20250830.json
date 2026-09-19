@@ -6,13 +6,57 @@
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "A <xref>fried</xref> <xref>corn</xref> or <xref>flour</xref> <xref>tortilla</xref>, filled usually with <xref>beef</xref> or <xref>chicken</xref> and <xref>cheese</xref>, rolled up, and dipped in a form of <xref>salsa</xref>, or <xref>guacamole</xref>.",
+            "text": "A fried corn or flour tortilla, filled usually with beef or chicken and cheese, rolled up, and dipped in a form of salsa, or guacamole.",
+            "references": [
+                {
+                    "start": 2,
+                    "end": 7,
+                    "url": "https://www.wordnik.com/words/fried"
+                },
+                {
+                    "start": 8,
+                    "end": 12,
+                    "url": "https://www.wordnik.com/words/corn"
+                },
+                {
+                    "start": 16,
+                    "end": 21,
+                    "url": "https://www.wordnik.com/words/flour"
+                },
+                {
+                    "start": 22,
+                    "end": 30,
+                    "url": "https://www.wordnik.com/words/tortilla"
+                },
+                {
+                    "start": 52,
+                    "end": 56,
+                    "url": "https://www.wordnik.com/words/beef"
+                },
+                {
+                    "start": 60,
+                    "end": 67,
+                    "url": "https://www.wordnik.com/words/chicken"
+                },
+                {
+                    "start": 72,
+                    "end": 78,
+                    "url": "https://www.wordnik.com/words/cheese"
+                },
+                {
+                    "start": 115,
+                    "end": 120,
+                    "url": "https://www.wordnik.com/words/salsa"
+                },
+                {
+                    "start": 125,
+                    "end": 134,
+                    "url": "https://www.wordnik.com/words/guacamole"
+                }
+            ],
             "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/taquito",
-            "examples": [],
-            "synonyms": [],
-            "antonyms": []
+            "sourceUrl": "https://www.wordnik.com/words/taquito"
         }
     ]
 }

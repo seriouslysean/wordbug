@@ -1,5 +1,5 @@
 ---
-import { getAdjacentWords, getWordsFromCollection, extractWordDefinition } from '#astro-utils/word-data-utils';
+import { getAdjacentWords, allWords, extractWordDefinition } from '#astro-utils/word-data-utils';
 import {
   groupWordsByLength,
   groupWordsByLetter,
@@ -11,26 +11,22 @@ import { slugify } from '#astro-utils/url-utils';
 import type { WordData } from '#types';
 
 export async function getStaticPaths() {
-  const allWords = await getWordsFromCollection();
-
   const byLength = groupWordsByLength(allWords);
   const byLetter = groupWordsByLetter(allWords);
   const byPartOfSpeech = groupWordsByPartOfSpeech(allWords);
   const byYear = groupWordsByYear(allWords);
 
+  // Grouping preserves the date-descending order of the cached corpus.
   // oxlint-disable-next-line consistent-function-scoping
   const pickRecent = (pool: WordData[], currentDate: string) =>
-    pool
-      .filter(w => w.date !== currentDate)
-      .toSorted((a, b) => b.date.localeCompare(a.date))
-      .slice(0, 3);
+    pool.filter(w => w.date !== currentDate).slice(0, 3);
 
   const paths = allWords.map(wordData => {
     const { previousWord, nextWord } = getAdjacentWords(wordData.date, allWords);
 
     const wordLength = wordData.word.length;
     const firstLetter = wordData.word.charAt(0).toLowerCase();
-    const year = wordData.date.substring(0, 4);
+    const year = wordData.date.slice(0, 4);
     const { partOfSpeech } = extractWordDefinition(wordData);
 
     const lengthPool = byLength[wordLength] ?? [];

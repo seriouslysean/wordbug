@@ -3,7 +3,7 @@ import SectionHeading from '#components/SectionHeading.astro';
 import SiteLink from '#components/SiteLink.astro';
 import WordList from '#components/WordList.astro';
 import { getLengthUrl, getLetterUrl, getPartOfSpeechUrl, getWordsYearUrl } from '#astro-utils/url-utils';
-import { t } from '#utils/i18n-utils';
+import { t, tp } from '#utils/i18n-utils';
 import type { WordData } from '#types';
 
 interface Props {
@@ -72,7 +72,7 @@ const {
           href={getPartOfSpeechUrl(partOfSpeech)}
           variant="primary"
           class="word-context__item"
-          title={t('common.title_with_part_of_speech', { count: partOfSpeechCount, value: partOfSpeech })}
+          title={tp('common.title_with_part_of_speech', partOfSpeechCount, { value: partOfSpeech })}
         >
           {t(`parts_of_speech.${partOfSpeech}`)}
         </SiteLink>

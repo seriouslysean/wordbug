@@ -4,6 +4,7 @@
  */
 
 import { getPageTitle } from '#utils/page-metadata-utils';
+import { isPathUnderBase } from '#utils/url-utils';
 
 export interface BreadcrumbItem {
   label: string;
@@ -18,11 +19,12 @@ export interface BreadcrumbItem {
  */
 export function generateBreadcrumbs(pathname: string, basePath?: string): BreadcrumbItem[] {
   // Clean the pathname - remove leading/trailing slashes
-  const cleanPath = pathname.replace(/^\/|\/$/g, '');
+  const cleanPath = pathname.replaceAll(/^\/|\/$/g, '');
   
-  // Remove base path if provided
-  const pathWithoutBase = basePath && basePath !== '/' 
-    ? cleanPath.replace(new RegExp(`^${basePath.replace(/^\/|\/$/g, '')}`), '').replace(/^\//, '')
+  // Remove base path if provided, only when it matches whole leading segments
+  const cleanBase = basePath?.replaceAll(/^\/|\/$/g, '') ?? '';
+  const pathWithoutBase = cleanBase && isPathUnderBase(cleanPath, cleanBase)
+    ? cleanPath.slice(cleanBase.length).replace(/^\//, '')
     : cleanPath;
   
   // Return empty array for home page

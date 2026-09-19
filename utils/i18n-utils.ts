@@ -1,4 +1,5 @@
-import translations from '#locales/en.json';
+import translations from '#locales/en.json' with { type: 'json' };
+import { isRecord } from '#utils/type-guards';
 
 export const defaultLang = 'en';
 
@@ -10,8 +11,8 @@ export const defaultLang = 'en';
  */
 export const t = (key: string, vars?: Record<string, string | number>): string => {
   const value: unknown = key.split('.').reduce<unknown>(
-    (obj, k) => (obj != null && typeof obj === 'object' ? (obj as Record<string, unknown>)[k] : undefined),
-    translations as unknown,
+    (obj, k) => (isRecord(obj) ? obj[k] : undefined),
+    translations,
   );
 
   if (typeof value !== 'string') {
@@ -31,7 +32,7 @@ export const t = (key: string, vars?: Record<string, string | number>): string =
       }
     }
     
-    return value.replace(/\{\{(\w+)\}\}/g, (_, p1) => {
+    return value.replaceAll(/\{\{(\w+)\}\}/g, (_, p1) => {
       return String(vars[p1]);
     });
   }

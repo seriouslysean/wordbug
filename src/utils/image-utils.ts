@@ -1,26 +1,20 @@
-import { BASE_PATH } from 'astro:env/client';
+import { SOURCE_DIR } from 'astro:env/client';
+import { getFullUrl, stripBasePath } from '#astro-utils/url-utils';
 import type { WordData } from '#types';
+import { getSocialImagePath, toUrlPath } from '#utils/image-path-utils';
+import type { SocialCard } from '#utils/image-path-utils';
 
 /**
  * Get social media image URL for a word or page
  * @param params - Pathname and optional word data
- * @returns URL to the social image
+ * @returns Absolute URL to the social image, as Open Graph requires
  */
 export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wordData?: WordData | null }): string {
-  const basePath = BASE_PATH || '/';
-  const cleanPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
-  const sourceDir = import.meta.env.SOURCE_DIR;
-  const sourcePath = sourceDir ? `${sourceDir}/` : '';
+  const card: SocialCard = wordData?.word
+    ? { type: 'word', word: wordData.word, date: wordData.date }
+    : { type: 'page', path: stripBasePath(pathname) };
 
-  if (wordData && wordData.word) {
-    // Word-specific social image
-    const year = wordData.date.slice(0, 4);
-    return `${basePath}images/social/${sourcePath}${year}/${wordData.date}-${wordData.word}.png`;
-  }
-
-
-  // Generic page social image
-  return `${basePath}images/social/pages/${cleanPath || 'index'}.png`;
+  return getFullUrl(toUrlPath(getSocialImagePath(card, SOURCE_DIR)));
 }
 
 /**

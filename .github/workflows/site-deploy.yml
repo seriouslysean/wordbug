@@ -1,0 +1,149 @@
+name: Site Deploy
+
+# Builds a site and deploys it to GitHub Pages: a site repository's Deploy
+# workflow calls this at a pinned release, and this repository's own Deploy
+# calls it with ./ for the demo site, as does a fork's until it moves to a
+# thin site.
+#
+#   jobs:
+#     deploy:
+#       uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@vX.Y.Z
+#       secrets:
+#         site-secrets: ${{ toJSON(secrets) }}
+#
+# The site repository owns data/ and public/; the code is this repository at
+# the ref the caller pinned. The steps run in the caller's repository, with
+# its variables, its GITHUB_TOKEN and its Pages site.
+
+on:
+  workflow_call:
+    secrets:
+      site-secrets:
+        description: "The caller's toJSON(secrets), which setup-env reads by name"
+        required: true
+
+permissions:
+  contents: read
+
+# The repository that builds the demo site. Not job.workflow_repository,
+# which a fork's ./ call makes the fork itself.
+env:
+  ENGINE_REPOSITORY: seriouslysean/occasional-wotd
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # For workflow_run, github.sha is the last commit on the default branch,
+      # so this builds the word Add Word just pushed
+      - name: Checkout site
+        uses: actions/checkout@v7
+        with:
+          path: site
+          persist-credentials: false
+
+      # job.workflow_* name the repository and commit this workflow runs
+      # from, so the code is the commit the caller's uses: pins, whatever
+      # else the caller passes. A ./ call runs the workflow from the caller's
+      # own commit: this repository for the demo site, or a fork of it that
+      # has not moved to a thin site.
+      - name: Checkout engine
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
+          path: engine
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: 'npm'
+          cache-dependency-path: engine/package-lock.json
+
+      # Before setup-env, so no dependency's install script sees the secrets
+      - name: Install dependencies
+        working-directory: engine
+        run: npm ci
+
+      - name: Setup environment variables
+        uses: ./engine/.github/actions/setup-env
+        with:
+          vars-json: ${{ toJSON(vars) }}
+          secrets-json: ${{ secrets.site-secrets }}
+
+      # The site's data/ and public/ replace the engine's, so a site builds
+      # none of the demo content; the engine's favicon stays when the site
+      # has none. A fork's two checkouts are the same commit, so for a fork
+      # the copy changes nothing. Everything runs from engine/, whose own
+      # .git gives the build its release fingerprint.
+      - name: Overlay site content
+        run: |
+          # This repository builds the demo site and every other repository
+          # builds its own, so a wrong SOURCE_DIR would publish the other
+          if [[ "$GITHUB_REPOSITORY" == "$ENGINE_REPOSITORY" ]]; then
+            EXPECTED=demo
+          else
+            EXPECTED=
+          fi
+          if [[ "$SOURCE_DIR" != "$EXPECTED" ]]; then
+            echo "::error::SOURCE_DIR must be '$EXPECTED' in $GITHUB_REPOSITORY. Set or clear it in the repository variables."
+            exit 1
+          fi
+
+          # rsync --delete from a missing directory would empty the engine's
+          WORDS_DIR="data/${SOURCE_DIR:+$SOURCE_DIR/}words"
+          if [[ ! -d "site/$WORDS_DIR" || ! -d site/public ]]; then
+            echo "::error::The site needs $WORDS_DIR and public."
+            exit 1
+          fi
+
+          # rsync -a copies a link as a link, so the tools would write through
+          # it, and the build read through it, outside engine/
+          LINKS=$(find site/data site/public -type l)
+          if [[ -n "$LINKS" ]]; then
+            while IFS= read -r link; do
+              echo "::error::${link#site/} is a symbolic link. A site's data and public hold only files and directories."
+            done <<< "$LINKS"
+            exit 1
+          fi
+
+          # --checksum compares content: two checkouts made in the same second
+          # can hold a same-size file that rsync's size and time check skips
+          rsync -a --checksum --delete site/data/ engine/data/
+          rsync -a --checksum --delete --filter='P /favicon.svg' site/public/ engine/public/
+
+      # Complete generation, so an engine or theme change never deploys stale
+      # cards. Cards that are current are skipped, and nothing is committed.
+      - name: Generate images
+        working-directory: engine
+        run: npm run tool:generate-images
+
+      - name: Build
+        working-directory: engine
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: engine/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # A job that calls a reusable workflow cannot name an environment, so the
+    # deployment job here does
+    environment:
+      name: github-pages
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,12 @@
+# Groups engine updates into one pull request. Review it, and check that
+# both uses: lines name the same release.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      engine:
+        patterns:
+          - 'seriouslysean/occasional-wotd*'

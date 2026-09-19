@@ -3,7 +3,7 @@ import DefinitionList from '#components/DefinitionList.astro';
 import DescriptionText from '#components/DescriptionText.astro';
 import BarChartRow from '#components/BarChartRow.astro';
 import StatsSection from '#components/StatsSection.astro';
-import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { getPageMetadata } from '#astro-utils/page-metadata';
 import Heading from '#components/Heading.astro';
 import Layout from '#layouts/Layout.astro';
 import { 
@@ -49,7 +49,7 @@ if (antiStreakStats.longestGap > 0) {
 const { title, description } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description}>
-  <main class="streaks">
+  <div class="streaks">
     <Heading text={title} />
     <DescriptionText text={description} />
 
@@ -72,7 +72,7 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
         )}
       </StatsSection>
     )}
-  </main>
+  </div>
 </Layout>
 
 <style>

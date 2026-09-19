@@ -1,3 +1,7 @@
+import type { STATS_SLUGS } from '#constants/stats';
+import type { COMMON_WORD_ENDINGS } from '#constants/text-patterns';
+import type { WordData, WordMilestoneItem } from '#types/word';
+
 /**
  * Shared stats definition fields
  */
@@ -28,44 +32,35 @@ export interface DynamicStatsDefinition extends BaseStatsDefinition {
 export type StatsDefinition = StaticStatsDefinition | DynamicStatsDefinition;
 
 /**
- * Available word suffix patterns
+ * Available word suffix patterns, derived from the tracked endings
  */
-export type SuffixKey = 'ed' | 'ing' | 'ly' | 'ness' | 'ful' | 'less';
+export type SuffixKey = typeof COMMON_WORD_ENDINGS[number];
 
 /**
- * All available stats page slugs (consolidated from StatsDefinitionKey and StatsSlug)
+ * All available stats page slugs, derived from the slug constants
  */
-export type StatsSlug =
-  // Letter patterns
-  | 'alphabetical-order'
-  | 'double-letters'
-  | 'triple-letters'
-  | 'same-start-end'
-  | 'palindromes'
-  // Word patterns
-  | 'all-consonants'
-  | 'all-vowels'
-  // Dynamic stats
-  | 'most-common-letter'
-  | 'least-common-letter'
-  | 'milestone-words'
-  | 'current-streak'
-  | 'longest-streak'
-  // Word endings
-  | 'words-ending-ed'
-  | 'words-ending-ing'
-  | 'words-ending-ly'
-  | 'words-ending-ness'
-  | 'words-ending-ful'
-  | 'words-ending-less'
-  // Stats sections
-  | 'word-facts'
-  | 'streaks'
-  | 'letter-patterns'
-  | 'word-endings';
+export type StatsSlug = typeof STATS_SLUGS[keyof typeof STATS_SLUGS];
 
 /**
  * Template type for suffix-based stats slugs
  */
 export type SuffixStatsSlug = `words-ending-${SuffixKey}`;
 
+
+/**
+ * Props for a stats detail page, discriminated by `type` so the page narrows
+ * `words` with a plain comparison instead of asserting.
+ */
+export interface StatsWordListPageProps {
+  type: 'word-list';
+  words: WordData[];
+  description: string;
+}
+
+export interface StatsMilestonePageProps {
+  type: 'milestone';
+  words: WordMilestoneItem[];
+  description: string;
+}
+
+export type StatsPageProps = StatsWordListPageProps | StatsMilestonePageProps;

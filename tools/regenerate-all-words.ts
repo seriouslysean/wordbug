@@ -1,34 +1,72 @@
-import fs from 'fs';
+import fs from 'node:fs';
+import { setTimeout as delay } from 'node:timers/promises';
 
 import { fetchWithFallback } from '#adapters';
 import { isEntryPoint } from '#tools/entry';
-import { COMMON_ENV_DOCS,showHelp } from '#tools/help-utils';
+import { COMMON_ENV_DOCS, parseToolArgs, showHelp } from '#tools/help-utils';
 import { buildWordData, getWordFiles, primaryPartOfSpeech, tryFetchRelations } from '#tools/utils';
+import type { WordEnrichment } from '#types';
+import { isRateLimited } from '#utils/adapter-utils';
 import { exit, getErrorMessage, logger } from '#utils/logger';
-import { isValidDictionaryData } from '#utils/word-validation';
+import { isRecord } from '#utils/type-guards';
+import { isWordEnrichment } from '#utils/stored-word-validation';
+
+interface StoredEntry {
+  preserveCase: boolean;
+  enrichment?: WordEnrichment;
+}
 
 /**
- * Reads the preserveCase flag from an existing word file so a backfill keeps it.
+ * Reads, once, what a backfill must carry over from the file it replaces: the
+ * preserveCase flag and any enrichment. An unreadable file carries nothing.
  */
-function readPreserveCase(filePath: string): boolean {
+function readStoredEntry(filePath: string): StoredEntry {
   try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf-8')).preserveCase === true;
+    const data: unknown = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    if (!isRecord(data)) {
+      return { preserveCase: false };
+    }
+    return {
+      preserveCase: data.preserveCase === true,
+      enrichment: isWordEnrichment(data.enrichment) ? data.enrichment : undefined,
+    };
   } catch {
-    return false;
+    return { preserveCase: false };
   }
 }
 
 interface RegenerateOptions {
-  wordField: string;
-  dateField: string;
   dryRun: boolean;
   force: boolean;
   timeout: number;
-  rateLimitTimeout: number;
   batchSize: number;
   batchTimeout: number;
 }
 
+// Single source for option defaults: parseArgs and the help text both read it.
+export const DEFAULTS = {
+  timeout: 4000,
+  batchSize: 10,
+  batchTimeout: 60000,
+} as const;
+
+// First rate-limit retry waits this long; each further retry doubles it.
+const RATE_LIMIT_BACKOFF_MS = 30000;
+
+/**
+ * Parses a whole-number CLI option. Anything else (NaN, fractions, trailing
+ * junk, values below `min`) exits 1, so a typo cannot become a zero-size batch
+ * or a NaN delay. The refusal logs at warn, as add-word refuses its input: a
+ * typo is not a fault, and the CLI logger forwards only errors to Sentry.
+ */
+async function parseCount(option: string, raw: string, min: number): Promise<number> {
+  const value = Number(raw);
+  if (!/^\d+$/.test(raw) || value < min) {
+    logger.warn('Invalid numeric option', { option: `--${option}`, expected: `a whole number of at least ${min}`, got: raw });
+    return exit(1);
+  }
+  return value;
+}
 
 /**
  * Creates a new word file with fresh data from the dictionary adapter
@@ -38,7 +76,7 @@ interface RegenerateOptions {
  * @param retryCount - Current retry attempt (for exponential backoff)
  * @returns True if successful, false otherwise
  */
-async function regenerateWordFile(word: string, date: string, originalPath: string, retryCount: number = 0): Promise<boolean> {
+export async function regenerateWordFile(word: string, date: string, originalPath: string, retryCount: number = 0): Promise<boolean> {
   const maxRetries = 3;
 
   try {
@@ -47,15 +85,8 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
     }
 
     const { response, adapterName } = await fetchWithFallback(word);
-    const data = response.definitions;
-
-    if (!isValidDictionaryData(data)) {
-      logger.error('Invalid word data received from adapter', { word, adapter: adapterName });
-      return false;
-    }
-
     const relations = await tryFetchRelations(word, primaryPartOfSpeech(response.definitions));
-    const preserveCase = readPreserveCase(originalPath);
+    const { preserveCase, enrichment: storedEnrichment } = readStoredEntry(originalPath);
     const wordData = buildWordData({
       // Keep original casing for preserveCase words; backfill must not lowercase them.
       word: preserveCase ? word : word.toLowerCase(),
@@ -64,6 +95,7 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
       response,
       relations,
       preserveCase,
+      storedEnrichment,
     });
 
     fs.writeFileSync(originalPath, JSON.stringify(wordData, null, 4));
@@ -71,22 +103,17 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
   } catch (error) {
     const errorMessage = getErrorMessage(error);
 
-    // Check if this is a rate limit error
-    const isRateLimit = errorMessage.includes('Rate limit') ||
-                       errorMessage.includes('rate limit') ||
-                       errorMessage.includes('429') ||
-                       (error instanceof Object && 'status' in error && error.status === 429);
-
-    if (isRateLimit && retryCount < maxRetries) {
+    // A rate limit from any adapter in the chain is worth backing off for
+    if (isRateLimited(error) && retryCount < maxRetries) {
       // Exponential backoff: 2^retryCount * 30 seconds
-      const backoffDelay = Math.pow(2, retryCount) * 30000;
+      const backoffDelay = Math.pow(2, retryCount) * RATE_LIMIT_BACKOFF_MS;
       logger.info('Rate limited, retrying with backoff', {
         word,
         delaySec: backoffDelay / 1000,
         attempt: retryCount + 1,
         maxRetries,
       });
-      await new Promise(resolve => setTimeout(resolve, backoffDelay));
+      await delay(backoffDelay);
       return regenerateWordFile(word, date, originalPath, retryCount + 1);
     }
 
@@ -101,13 +128,17 @@ async function regenerateWordFile(word: string, date: string, originalPath: stri
 }
 
 /**
- * Regenerates all word files using fresh dictionary data
+ * Regenerates all word files using fresh dictionary data. Every word is
+ * attempted; the returned failure count decides the exit code.
  * @param options - Configuration options
+ * @returns Number of words that could not be regenerated
  */
-async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
+async function regenerateAllWords(options: RegenerateOptions): Promise<number> {
   try {
-    const wordsToRegenerate = getWordFiles();
-    logger.info('Found word files to process', { count: wordsToRegenerate.length });
+    // Unreadable files are already logged; each counts as a failure, so a
+    // run that could not see every word never reports success.
+    const { files: wordsToRegenerate, failures: unreadable } = getWordFiles();
+    logger.info('Found word files to process', { count: wordsToRegenerate.length, unreadable: unreadable.length });
 
     if (options.dryRun) {
       logger.info('DRY RUN MODE - Words that would be regenerated:');
@@ -115,7 +146,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
         logger.info('Word entry', { index: index + 1, word: item.word, date: item.date, path: item.path });
       });
       logger.info('Use --force to actually regenerate these words');
-      return;
+      return unreadable.length;
     }
 
     if (!options.force) {
@@ -126,10 +157,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
     }
 
     logger.info('Configuration', {
-      wordField: options.wordField,
-      dateField: options.dateField,
       timeoutMs: options.timeout,
-      rateLimitTimeoutMs: options.rateLimitTimeout,
       batchSize: options.batchSize,
       batchTimeoutMs: options.batchTimeout,
     });
@@ -143,7 +171,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
         if (i > 0 && i % options.batchSize === 0) {
           const currentBatch = i / options.batchSize;
           logger.info('Completed batch, pausing', { batch: currentBatch, delaySec: options.batchTimeout / 1000 });
-          await new Promise(resolve => setTimeout(resolve, options.batchTimeout));
+          await delay(options.batchTimeout);
         }
 
         logger.info('Regenerating word', { index: i + 1, total: wordsToRegenerate.length, word: item.word });
@@ -153,7 +181,7 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
 
         // Use standard delay between requests within a batch
         if (i < wordsToRegenerate.length - 1 && (i + 1) % options.batchSize !== 0) {
-          await new Promise(resolve => setTimeout(resolve, options.timeout));
+          await delay(options.timeout);
         }
       } catch (error) {
         logger.error('Failed to process word', { word: item.word, error: getErrorMessage(error) });
@@ -162,17 +190,18 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
     }
 
     const successCount = outcomes.filter(Boolean).length;
-    const failureCount = outcomes.length - successCount;
+    const failureCount = outcomes.length - successCount + unreadable.length;
 
     logger.info('Regeneration complete', {
       success: successCount,
       failed: failureCount,
-      total: outcomes.length,
+      total: outcomes.length + unreadable.length,
     });
 
+    return failureCount;
   } catch (error) {
     logger.error('Failed to regenerate words', { error: getErrorMessage(error) });
-    await exit(1);
+    return await exit(1);
   }
 }
 
@@ -180,32 +209,23 @@ async function regenerateAllWords(options: RegenerateOptions): Promise<void> {
 const HELP_TEXT = `
 Regenerate All Words Tool
 
-Regenerates all word files with fresh dictionary data, supporting flexible JSON field extraction.
+Regenerates all word files with fresh dictionary data.
 
 Usage:
-  npm run tool:local tools/regenerate-all-words.ts [options]
-  npm run tool:regenerate-all-words [options]
+  npm run tool:local tools/regenerate-all-words.ts -- [options]
+  npm run tool:regenerate-all-words -- [options]
 
 Options:
-  --word-field <path>        JSON path to word field (default: "word")
-  --date-field <path>        JSON path to date field (default: "date")
   --dry-run                  Preview what would be regenerated without doing it
   --force                    Skip confirmation prompts
-  --timeout <ms>             Timeout between API calls (default: 1000ms)
-  --rate-limit-timeout <ms>  Timeout when rate limit hit (default: 65000ms)
-  --batch-size <num>         Words per batch (default: 4)
-  --batch-timeout <ms>       Timeout between batches (default: 10000ms)
+  --timeout <ms>             Delay between API calls (default: ${DEFAULTS.timeout})
+  --batch-size <num>         Words per batch (default: ${DEFAULTS.batchSize})
+  --batch-timeout <ms>       Pause between batches (default: ${DEFAULTS.batchTimeout})
   -h, --help                 Show this help message
 
-Field Path Examples:
-  "word"                     Direct field access
-  "metadata.term"            Nested field access
-  "data.0.word"              Array element access
-
 Examples:
-  npm run tool:regenerate-all-words --dry-run
-  npm run tool:regenerate-all-words --word-field "metadata.term" --date-field "dateCode" --force
-  npm run tool:regenerate-all-words --timeout 2000 --batch-size 3 --force
+  npm run tool:regenerate-all-words -- --dry-run
+  npm run tool:regenerate-all-words -- --timeout 2000 --batch-size 3 --force
 
 Environment Variables (for GitHub workflows):
   DICTIONARY_ADAPTER         Dictionary API to use (required)
@@ -213,35 +233,20 @@ Environment Variables (for GitHub workflows):
   SOURCE_DIR                Data source subdirectory (unset = root paths)
 
 Note:
-  All dates are normalized to YYYYMMDD format (no dashes).
+  Rate-limited lookups retry up to 3 times, waiting ${RATE_LIMIT_BACKOFF_MS / 1000}s and doubling each time.
   This tool will overwrite existing word files with fresh dictionary data.
   Use --dry-run first to preview changes.
 ${COMMON_ENV_DOCS}
 `;
 
-// Parse command line arguments
-import { parseArgs } from 'node:util';
-
-const DEFAULTS = {
-  wordField: 'word',
-  dateField: 'date',
-  timeout: 4000,
-  rateLimitTimeout: 3600000,
-  batchSize: 10,
-  batchTimeout: 60000,
-} as const;
-
 if (isEntryPoint(import.meta.url)) {
-  const { values } = parseArgs({
+  const { values } = await parseToolArgs({
     args: process.argv.slice(2),
     options: {
       help: { type: 'boolean', short: 'h', default: false },
-      'word-field': { type: 'string', default: DEFAULTS.wordField },
-      'date-field': { type: 'string', default: DEFAULTS.dateField },
       'dry-run': { type: 'boolean', default: false },
       force: { type: 'boolean', default: false },
       timeout: { type: 'string', default: String(DEFAULTS.timeout) },
-      'rate-limit-timeout': { type: 'string', default: String(DEFAULTS.rateLimitTimeout) },
       'batch-size': { type: 'string', default: String(DEFAULTS.batchSize) },
       'batch-timeout': { type: 'string', default: String(DEFAULTS.batchTimeout) },
     },
@@ -253,18 +258,23 @@ if (isEntryPoint(import.meta.url)) {
     process.exit(0);
   }
 
-  const options: RegenerateOptions = {
-    wordField: values['word-field'] ?? DEFAULTS.wordField,
-    dateField: values['date-field'] ?? DEFAULTS.dateField,
-    dryRun: !!values['dry-run'],
-    force: !!values.force,
-    timeout: parseInt(values.timeout ?? String(DEFAULTS.timeout), 10),
-    rateLimitTimeout: parseInt(values['rate-limit-timeout'] ?? String(DEFAULTS.rateLimitTimeout), 10),
-    batchSize: parseInt(values['batch-size'] ?? String(DEFAULTS.batchSize), 10),
-    batchTimeout: parseInt(values['batch-timeout'] ?? String(DEFAULTS.batchTimeout), 10),
+  const run = async (): Promise<void> => {
+    // The options are validated before any word is touched.
+    const failed = await regenerateAllWords({
+      dryRun: !!values['dry-run'],
+      force: !!values.force,
+      timeout: await parseCount('timeout', values.timeout, 0),
+      batchSize: await parseCount('batch-size', values['batch-size'], 1),
+      batchTimeout: await parseCount('batch-timeout', values['batch-timeout'], 0),
+    });
+
+    if (failed > 0) {
+      logger.error('Regeneration finished with failures', { failed });
+      await exit(1);
+    }
   };
 
-  regenerateAllWords(options).catch(async (error: unknown) => {
+  run().catch(async (error: unknown) => {
     logger.error('Regeneration tool failed', { error: getErrorMessage(error) });
     await exit(1);
   });

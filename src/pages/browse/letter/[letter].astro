@@ -1,10 +1,9 @@
 ---
 import BrowsePageTemplate from '#components/BrowsePageTemplate.astro';
-import { getWordsFromCollection, groupWordsByLetter } from '#astro-utils/word-data-utils';
+import { allWords, groupWordsByLetter } from '#astro-utils/word-data-utils';
 
 export async function getStaticPaths() {
-  const allWords = await getWordsFromCollection();
-  const letterGroups = groupWordsByLetter(allWords);
+    const letterGroups = groupWordsByLetter(allWords);
 
   return Object.entries(letterGroups).map(([letter, words]) => ({
     params: { letter },

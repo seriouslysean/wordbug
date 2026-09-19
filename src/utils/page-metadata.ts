@@ -2,7 +2,7 @@ import { allWords } from '#astro-utils/word-data-utils';
 import { stripBasePath } from '#astro-utils/url-utils';
 import {
   getAllPageMetadata as getAllPageMetadataBase,
-  getPageMetadata as getPageMetadataBase,
+  createPageMetadataLookup,
 } from '#utils/page-metadata-utils';
 
 /**
@@ -27,8 +27,10 @@ import {
  * @param pathname - Raw pathname from Astro.url.pathname (may include BASE_PATH)
  * @returns Page metadata with title, description, category, etc.
  */
+const getCachedPageMetadata = createPageMetadataLookup(allWords);
+
 export const getPageMetadata = (pathname: string) =>
-  getPageMetadataBase(stripBasePath(pathname) || 'home', allWords);
+  getCachedPageMetadata(stripBasePath(pathname) || 'home');
 
 /**
  * Get metadata for all pages (Astro-specific)

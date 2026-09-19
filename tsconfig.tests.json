@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "typeRoots": ["./node_modules/@types", "./types", "./node_modules"],
+    "types": ["node", "vitest/globals"]
+  },
+  "include": [
+    "tests/**/*.ts",
+    "types/**/*.d.ts",
+    "src/env.d.ts",
+    ".astro/**/*.d.ts"
+  ],
+  "exclude": [
+    "coverage/**/*",
+    "dist/**/*",
+    "node_modules/**/*"
+  ]
+}

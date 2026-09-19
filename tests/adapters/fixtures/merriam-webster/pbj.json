@@ -1,0 +1,36 @@
+[
+    {
+        "meta": {
+            "id": "PB+J",
+            "uuid": "0c1d2e3f-4a5b-6789-abcd-ef0123456789",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["PB&J"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "PB&J"
+        },
+        "fl": "abbreviation",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "peanut butter and jelly"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": ["peanut butter and jelly"]
+    }
+]

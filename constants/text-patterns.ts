@@ -19,6 +19,9 @@ export const MIN_ALPHABETICAL_SEQUENCE_LENGTH = 3;
  */
 export const MAX_PAST_WORDS_DISPLAY = 5;
 
+// Words listed below the current word on the homepage
+export const HOMEPAGE_PREVIOUS_WORDS = 4;
+
 /**
  * Maximum number of example sentences to display per sense (one slide) on a
  * word page. Examples render inside the senses slider, under each definition.

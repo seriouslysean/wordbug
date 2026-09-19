@@ -11,7 +11,9 @@
     "title_starting_with": "{{count}} words starting with {{value}}",
     "title_with_length": "{{count}} words with {{value}} letters", 
     "title_from_context": "{{count}} words from {{value}}",
-    "title_with_part_of_speech": "{{count}} {{value}} words"
+    "title_with_part_of_speech_zero": "No {{value}} words",
+    "title_with_part_of_speech_one": "1 {{value}} word",
+    "title_with_part_of_speech_other": "{{count}} {{value}} words"
   },
   "nav": {
     "home": "Home",
@@ -32,11 +34,12 @@
     "previous_words": "Previous Words"
   },
   "words": {
+    "abbreviation_words_description": "Shortened forms of longer words and phrases.",
     "by_length_description": "Words grouped by character count.",
     "by_length_heading": "Words by Length",
     "by_letter_description": "Words grouped by first letter.",
     "by_letter_heading": "Words by Letter",
-    "by_part_of_speech_description": "Words grouped by grammatical category.",
+    "by_part_of_speech_description": "Words grouped by part of speech.",
     "by_part_of_speech_heading": "Words by Part of Speech",
     "description": "Every word, organized chronologically.",
     "heading": "All Words",
@@ -168,6 +171,7 @@
     }
   },
   "parts_of_speech": {
+    "abbreviation": "Abbreviation",
     "adjective": "Adjective",
     "adverb": "Adverb",
     "article": "Article",

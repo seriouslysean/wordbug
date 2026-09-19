@@ -4,15 +4,14 @@ import Heading from '#components/Heading.astro';
 import Layout from '#layouts/Layout.astro';
 import SectionHeading from '#components/SectionHeading.astro';
 import WordSection from '#components/WordSection.astro';
-import { getPageMetadata } from '#astro-utils/page-metadata.ts';
-import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils.ts';
+import { getPageMetadata } from '#astro-utils/page-metadata';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
 import { getWordsYearUrl } from '#astro-utils/url-utils';
-import { 
-  getWordsFromCollection, 
+import {
+  allWords,
   groupWordsByYear
 } from '#astro-utils/word-data-utils';
 
-const allWords = await getWordsFromCollection();
 const wordsByYear = groupWordsByYear(allWords);
 
 // Sort years in reverse chronological order

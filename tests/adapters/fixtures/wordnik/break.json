@@ -1,0 +1,139 @@
+[
+    {
+        "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+        "attributionUrl": "https://ahdictionary.com/",
+        "citations": [],
+        "exampleUses": [
+            {
+                "text": "The plate broke when it hit the floor."
+            }
+        ],
+        "labels": [],
+        "notes": [],
+        "partOfSpeech": "verb-transitive",
+        "relatedWords": [
+            {
+                "relationshipType": "synonym",
+                "words": [
+                    "shatter",
+                    "smash"
+                ]
+            },
+            {
+                "relationshipType": "antonym",
+                "words": [
+                    "mend"
+                ]
+            },
+            {
+                "relationshipType": "same-context",
+                "words": [
+                    "crack",
+                    "split"
+                ]
+            },
+            {
+                "relationshipType": "variant",
+                "gram": "break"
+            }
+        ],
+        "score": 0,
+        "seqString": "1.",
+        "sequence": "0",
+        "sourceDictionary": "ahd-5",
+        "text": "To cause to separate into pieces suddenly or violently.",
+        "textProns": [
+            {
+                "raw": "brāk",
+                "rawType": "ahd-5",
+                "seq": 0
+            },
+            {
+                "raw": "B R EY1 K",
+                "rawType": "arpabet",
+                "seq": 0
+            }
+        ],
+        "word": "break",
+        "wordnikUrl": "https://www.wordnik.com/words/break"
+    },
+    {
+        "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+        "attributionUrl": "https://ahdictionary.com/",
+        "citations": [],
+        "exampleUses": [],
+        "labels": [],
+        "notes": [],
+        "partOfSpeech": "noun",
+        "relatedWords": [
+            {
+                "relationshipType": "synonym",
+                "words": [
+                    "pause"
+                ]
+            }
+        ],
+        "score": 0,
+        "seqString": "2.",
+        "sequence": "1",
+        "sourceDictionary": "ahd-5",
+        "text": [
+            "An interruption in continuity.",
+            "A pause from work or activity."
+        ],
+        "textProns": [],
+        "word": "break",
+        "wordnikUrl": "https://www.wordnik.com/words/break"
+    },
+    {
+        "attributionText": "from The American Heritage® Dictionary of the English Language, 5th Edition.",
+        "attributionUrl": "https://ahdictionary.com/",
+        "citations": [],
+        "exampleUses": [],
+        "labels": [],
+        "notes": [],
+        "partOfSpeech": "idiom",
+        "relatedWords": [],
+        "score": 0,
+        "seqString": "3.",
+        "sequence": "2",
+        "sourceDictionary": "ahd-5",
+        "text": "break even: To finish with neither a gain nor a loss.",
+        "textProns": [],
+        "word": "break",
+        "wordnikUrl": "https://www.wordnik.com/words/break"
+    },
+    {
+        "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+        "citations": [
+            {
+                "source": "Anonymous",
+                "cite": "We took a break before the second half."
+            }
+        ],
+        "exampleUses": [],
+        "labels": [
+            {
+                "text": "informal",
+                "type": "register"
+            }
+        ],
+        "notes": [
+            {
+                "noteType": "usage",
+                "value": "Often in the phrase take a break.",
+                "appliesTo": [],
+                "pos": 0
+            }
+        ],
+        "partOfSpeech": "noun",
+        "relatedWords": [],
+        "seqString": "4.",
+        "sequence": "3",
+        "sourceDictionary": "wiktionary",
+        "text": "A short <xref>rest</xref> period.",
+        "textProns": [],
+        "word": "break",
+        "wordnikUrl": "https://www.wordnik.com/words/break"
+    }
+]

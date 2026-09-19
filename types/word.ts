@@ -29,10 +29,18 @@ export interface WordEnrichment {
   etymology?: string;
 }
 
+/**
+ * One run of a definition as a page shows it: plain text, or the text of a
+ * cross-reference and where it links. Never markup; see toDefinitionSegments.
+ */
+export type DefinitionSegment =
+  | { type: 'text'; text: string }
+  | { type: 'reference'; text: string; url: string };
+
 /** A single displayable sense of a word (one slide in the senses slider). */
 export interface WordSense {
   partOfSpeech: string;
-  text: string;
+  segments: DefinitionSegment[];
   // Up to MAX_SENSE_EXAMPLES example sentences for this sense (may be empty).
   examples: string[];
 }
@@ -40,8 +48,10 @@ export interface WordSense {
 // Our main word file structure (adapter-agnostic)
 export interface WordData {
   word: string;
-  date: string; // YYYYMMDD format
-  adapter: string; // Which dictionary adapter was used
+  // YYYYMMDD format
+  date: string;
+  // Which dictionary adapter was used
+  adapter: string;
   data: DictionaryDefinition[];
   // Optional word-level enrichment (WordNet relations + adapter headword capture)
   enrichment?: WordEnrichment;
@@ -49,6 +59,15 @@ export interface WordData {
   rawData?: unknown;
   // Flag to indicate if the word's capitalization should be preserved in display
   preserveCase?: boolean;
+}
+
+/**
+ * One row of the /words.json index the client scripts fetch: the headword and
+ * its display-formatted featured date.
+ */
+export interface WordIndexEntry {
+  word: string;
+  date: string;
 }
 
 /**
@@ -85,7 +104,20 @@ export interface WordStatsResult {
   shortest: WordData | null;
   longestPalindrome: WordData | null;
   shortestPalindrome: WordData | null;
+  // Words containing each letter (once per word), not total occurrences
   letterFrequency: Record<string, number>;
+}
+
+// Letter commonness by words containing the letter. See getLetterStats.
+export interface LetterStats {
+  // [letter, words containing it], most common first
+  ranked: Array<[string, number]>;
+  mostCommon: string;
+  leastCommon: string;
+  mostCommonCount: number;
+  leastCommonCount: number;
+  wordsWithMostCommon: WordData[];
+  wordsWithLeastCommon: WordData[];
 }
 
 export interface WordPatternStatsResult {
@@ -127,12 +159,19 @@ export interface WordAdjacentResult {
 /**
  * Generic grouping of words keyed by some attribute (year, length, POS, letter).
  * Single shape replaces three near-identical aliases that diverged in name only.
+ * Partial because a key with no words has no bucket, matching Object.groupBy.
  */
-export type WordGrouping<K extends string | number> = Record<K, WordData[]>;
+export type WordGrouping<K extends string | number> = Partial<Record<K, WordData[]>>;
 
-export type WordGroupByYearResult = WordGrouping<string>;
-export type WordGroupByLengthResult = WordGrouping<number>;
-export type WordGroupByPartOfSpeechResult = WordGrouping<string>;
+/**
+ * A grouping whose every key holds a bucket. The Astro wrappers return this:
+ * they rebuild the object from its entries, so no key is ever bucketless.
+ */
+export type DenseWordGrouping<K extends string | number> = Record<K, WordData[]>;
+
+export type WordGroupByYearResult = DenseWordGrouping<string>;
+export type WordGroupByLengthResult = DenseWordGrouping<number>;
+export type WordGroupByPartOfSpeechResult = DenseWordGrouping<string>;
 
 export interface WordMilestoneItem extends WordData {
   label: string;

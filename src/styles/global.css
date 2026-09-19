@@ -43,24 +43,6 @@ body {
     background: var(--color-background); /* Ensure background continues during overscroll */
 }
 
-/* Cross-reference link styles */
-.xref-link {
-    color: var(--color-text-primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.xref-link:hover {
-    color: var(--color-primary-dark);
-}
-
-.xref-link:focus {
-    color: var(--color-primary-dark);
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-    border-radius: 2px;
-}
-
 /* Site button styles */
 .site-button {
     display: inline-block;

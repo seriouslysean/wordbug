@@ -1,10 +1,11 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 import { getUrl } from '#astro-utils/url-utils';
 
-interface Props {
+interface Props extends HTMLAttributes<'a'> {
   href: string;
   variant?: 'text' | 'primary' | 'secondary';
-  [key: string]: any;
 }
 
 const { href, variant = 'text', class: className, ...attrs } = Astro.props;

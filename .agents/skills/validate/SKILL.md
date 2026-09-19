@@ -24,7 +24,7 @@ npm run typecheck
 
 **What passing looks like:** `Result (N files): - 0 errors - 0 warnings - 0 hints`
 
-This runs `astro check` which includes both TypeScript compilation and Astro-specific diagnostics. Common issues:
+This runs `astro check` for production TypeScript and Astro diagnostics, then `tsc -p tsconfig.tests.json --noEmit` for the strict test project. Common issues:
 - Missing null checks (strict null checks are enabled)
 - Unsafe indexed access (`noUncheckedIndexedAccess` is on — array/object index results are `T | undefined`)
 - Import alias errors (using relative paths instead of `#` aliases)
@@ -48,7 +48,7 @@ The test suite has four layers. If a specific layer fails, it tells you what kin
 - **Architecture tests** (`tests/architecture/`) — you crossed the utils/ boundary
 - **CLI integration tests** (`tests/tools/`) — an import chain pulls in `astro:*` outside Astro
 
-**If tests fail:** Read the failure message. Fix the code, not the test (unless the test expectation is genuinely wrong). Run the specific failing test in isolation to iterate faster: `npx vitest run tests/path/to/file.spec.js`
+**If tests fail:** Read the failure message. Fix the code, not the test (unless the test expectation is genuinely wrong). Run the specific failing test in isolation to iterate faster: `npx vitest run tests/path/to/file.spec.ts`
 
 ## Gate 4: Build (full integration)
 
@@ -66,7 +66,7 @@ The build catches problems that lint and type checking miss: runtime evaluation 
 npm run test:e2e
 ```
 
-**Prerequisites:** Gate 4 (build) must pass first. E2E tests run Playwright against the built `dist/` output via `npm run preview`.
+**Prerequisites:** Gate 4 (build) must pass first. E2E tests run Playwright against the built `dist/` output. Playwright starts its own foreground `astro preview --ignore-lock` on port 4517 (`PORT` in `playwright.config.ts`) and stops it when the run ends; it never reuses an existing server.
 
 **What passing looks like:** All Playwright tests pass across navigation, SEO, and accessibility specs.
 
@@ -80,7 +80,7 @@ E2E tests validate the built site as a user would experience it:
 - No overlap with unit tests. Unit tests validate generation logic; E2E validates the rendered output
 - E2E always runs in demo mode (no `BASE_PATH`, `SOURCE_DIR=demo`). The CI workflow skips `setup-env` intentionally — production env vars like `BASE_PATH` would break test selectors
 
-**If tests fail:** Run a specific spec to iterate faster: `npx playwright test tests/e2e/navigation.spec.ts`. Use `--headed` for a visible browser. Check that `dist/` exists and was built with demo defaults (no `BASE_PATH`).
+**If tests fail:** Run a specific spec to iterate faster: `npx playwright test tests/e2e/navigation.spec.ts`. Use `--headed` for a visible browser. Check that `dist/` exists and was built with demo defaults (no `BASE_PATH`). If Playwright exits with "http://localhost:4517 is already used" or "Timed out waiting 60000ms from config.webServer", another process holds the e2e port (`lsof -i :4517`); servers on Astro's default 4321 do not affect the run.
 
 ## Summary
 

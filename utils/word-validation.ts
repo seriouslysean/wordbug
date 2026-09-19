@@ -1,18 +1,10 @@
-import type { DictionaryDefinition } from '#types';
+import type { WordIndexEntry } from '#types';
+import { isRecord, isString } from '#utils/type-guards';
 
 /**
- * Validates dictionary data to ensure it contains meaningful content.
- * @param {DictionaryDefinition[]} data - Array of dictionary definitions to validate
- * @returns {boolean} True if the data contains at least one valid definition entry
+ * Type guard for the fetched /words.json index. Client scripts check the
+ * response with this before caching it, so a bad deploy or an intercepted
+ * response degrades to "no words" instead of throwing mid-search.
  */
-export function isValidDictionaryData(data: DictionaryDefinition[]): boolean {
-  if (!Array.isArray(data) || data.length === 0) {
-    return false;
-  }
-
-  // Valid if at least one entry has definition text or part of speech
-  return data.some(entry =>
-    (typeof entry.text === 'string' && entry.text.trim().length > 0) ||
-    (typeof entry.partOfSpeech === 'string' && entry.partOfSpeech.trim().length > 0),
-  );
-}
+export const isWordIndex = (value: unknown): value is WordIndexEntry[] =>
+  Array.isArray(value) && value.every(entry => isRecord(entry) && isString(entry.word) && isString(entry.date));

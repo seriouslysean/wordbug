@@ -26,3 +26,15 @@ export const getLetterUrl = (letter: string): string => {
 export const getPartOfSpeechUrl = (partOfSpeech: string): string => {
   return ROUTES.PART_OF_SPEECH(partOfSpeech);
 };
+
+/**
+ * Whether a path is the base path itself or sits below it. A bare
+ * startsWith() would treat '/apple' as under '/app'; this requires the match
+ * to end on a segment boundary. Compares literally, so a base containing
+ * regex metacharacters is safe.
+ * @param path - Path to test
+ * @param base - Base path without a trailing slash
+ * @returns True when path equals base or starts with base followed by '/'
+ */
+export const isPathUnderBase = (path: string, base: string): boolean =>
+  path === base || path.startsWith(`${base}/`);

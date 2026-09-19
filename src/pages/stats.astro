@@ -7,7 +7,7 @@ import CalendarHeatmap from '#components/CalendarHeatmap.astro';
 import WordGraph from '#components/WordGraph.astro';
 import { WORD_GRAPH_MIN_WORDS } from '#constants/text-patterns';
 import { buildWordGraph } from '#utils/word-graph-utils';
-import { getPageMetadata } from '#astro-utils/page-metadata.ts';
+import { getPageMetadata } from '#astro-utils/page-metadata';
 import {
   getWordsUrl,
   getWordsLengthUrl,
@@ -36,18 +36,18 @@ import {
   getWordUrl
 } from '#astro-utils/url-utils';
 import {
-  getLetterStatsFromFrequency,
   getLetterTypeStats,
   getPatternStats,
   getSyllableStats,
 } from '#astro-utils/word-stats-utils';
 import Heading from '#components/Heading.astro';
 import Layout from '#layouts/Layout.astro';
-import { countSyllables, getConsonantCount, getVowelCount } from '#utils/text-utils';
+import { getConsonantCount, getVowelCount } from '#utils/text-utils';
 import { 
   allWords, 
   availableLengths,
   wordStats,
+  letterStats,
   letterPatternStats,
   wordEndingStats,
   streakStats,
@@ -57,26 +57,23 @@ import {
 import { t } from '#utils/i18n-utils';
 
 const totalWords = allWords.length;
-const firstWord = totalWords > 0 ? allWords[allWords.length - 1] : null;
+const firstWord = totalWords > 0 ? allWords.at(-1) : null;
 const latestWord = totalWords > 0 ? allWords[0] : null;
 const lengthCount = availableLengths.length;
 
 
-const letterStats = getLetterStatsFromFrequency(wordStats.letterFrequency);
 
-const { mostSyllables, leastSyllables } = getSyllableStats(allWords);
+const { mostSyllables, leastSyllables, mostSyllablesCount, leastSyllablesCount } = getSyllableStats(allWords);
 const { mostVowels, mostConsonants } = getLetterTypeStats(allWords);
 const { allVowels, allConsonants, palindromes } = getPatternStats(allWords);
 
 
-const leastSyllablesCount = leastSyllables ? countSyllables(leastSyllables.word) : 0;
-const mostSyllablesCount = mostSyllables ? countSyllables(mostSyllables.word) : 0;
-const firstLetterStat = letterStats[0];
-const lastLetterStat = letterStats[letterStats.length - 1];
-const mostCommonLetter = firstLetterStat?.[0] ?? '';
-const mostCommonLetterCount = firstLetterStat?.[1] ?? 0;
-const leastCommonLetter = lastLetterStat?.[0] ?? '';
-const leastCommonLetterCount = lastLetterStat?.[1] ?? 0;
+const {
+  mostCommon: mostCommonLetter,
+  mostCommonCount: mostCommonLetterCount,
+  leastCommon: leastCommonLetter,
+  leastCommonCount: leastCommonLetterCount,
+} = letterStats;
 const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
 const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
 const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
@@ -144,7 +141,7 @@ const wordFactsWordItems = [
 
 // Word facts items that should render as regular links/values
 const wordFactsRegularItems = [
-  ...(letterStats.length > 0 ? [
+  ...(letterStats.ranked.length > 0 ? [
     { label: t('stats.most_common_letter', { count: mostCommonLetterCount }), value: mostCommonLetter, href: getMostCommonLetterUrl() },
     { label: t('stats.least_common_letter', { count: leastCommonLetterCount, plural: leastCommonLetterPlural }), value: leastCommonLetter, href: getLeastCommonLetterUrl() }
   ] : []),
@@ -162,7 +159,7 @@ const showConnections = totalWords >= WORD_GRAPH_MIN_WORDS && wordGraph.nodes.le
 const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
 ---
 <Layout title={title} description={description}>
-  <main class="stats">
+  <div class="stats">
     <Heading text={title} secondaryText={secondaryText} />
     <DescriptionText text={description} />
 
@@ -222,7 +219,7 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
         <WordGraph graph={wordGraph} />
       </StatsSection>
     )}
-  </main>
+  </div>
 </Layout>
 
 <style>

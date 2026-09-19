@@ -4,9 +4,10 @@
  * Centralizes shared paths used across the application.
  */
 
-import path from 'path';
+import path from 'node:path';
 
 import type { PathConfig } from '#types';
+import { getImagesDir } from '#utils/image-path-utils';
 
 const ROOT = process.cwd();
 
@@ -25,15 +26,12 @@ const getImagesPath = (): string => {
     return outputOverride;
   }
 
-  const sourceDir = process.env.SOURCE_DIR;
-  return sourceDir
-    ? path.join(ROOT, 'public', sourceDir, 'images')
-    : path.join(ROOT, 'public', 'images');
+  return path.join(ROOT, 'public', getImagesDir(process.env.SOURCE_DIR));
 };
 
 /**
  * Create resolved paths used across the application
- * @returns {PathConfig} Object containing absolute paths for words, pages, images and fonts
+ * @returns Object containing absolute paths for words, pages, images and fonts
  */
 export const createPaths = (): PathConfig => ({
   words: getWordsPath(),

@@ -26,7 +26,9 @@ const hasMultiple = senses.length > 1;
             <p class="word-senses__text">
               {sense.partOfSpeech && (
                 <span class="word-senses__pos">{sense.partOfSpeech}.</span>
-              )}<span set:html={sense.text}></span>
+              )}{sense.partOfSpeech && ' '}<span>{sense.segments.map(segment => (segment.type === 'reference'
+                ? <a class="word-senses__reference" href={segment.url} target="_blank" rel="noopener noreferrer">{segment.text}</a>
+                : segment.text))}</span>
             </p>
             {sense.examples.length > 0 && (
               <ul class="word-senses__examples">
@@ -162,6 +164,25 @@ if (section && track) {
   .word-senses__pos {
     color: var(--color-text-light);
     font-weight: 500;
+  }
+
+  /* A cross-reference inside a definition. Scoped, so it out-specifies the
+     global a:hover. */
+  .word-senses__reference {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .word-senses__reference:hover,
+  .word-senses__reference:focus {
+    color: var(--color-primary-dark);
+  }
+
+  .word-senses__reference:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   /* Per-sense example sentences, each led by a quotation mark so it reads as one
