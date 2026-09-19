@@ -1,0 +1,36 @@
+{
+    "word": "oboe",
+    "date": "20260627",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "oboe",
+            "partOfSpeech": "noun",
+            "text": "a double-reed woodwind instrument having a conical tube, a brilliant penetrating tone, and a usual range from B flat below middle C upward for over 2½ octaves",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/oboe"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈō-(ˌ)bō",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/oboe0001.mp3",
+        "etymology": "Italian, from French hautbois ",
+        "synonyms": [
+            "hautboy",
+            "hautbois"
+        ],
+        "related": [
+            "double-reed instrument",
+            "double reed",
+            "oboist",
+            "heckelphone",
+            "basset oboe",
+            "musette pipe",
+            "oboe da caccia",
+            "oboe d'amore",
+            "shawm"
+        ]
+    }
+}

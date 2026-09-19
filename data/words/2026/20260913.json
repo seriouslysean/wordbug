@@ -1,0 +1,33 @@
+{
+    "word": "arugula",
+    "date": "20260913",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "arugula",
+            "partOfSpeech": "noun",
+            "text": "a yellowish-flowered Mediterranean herb (Eruce sativa synonym E. vesicaria sativa) of the mustard family cultivated for its foliage which is used especially in salads —called also garden rocket, rocket, roquette, rugola",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/arugula"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ə-ˈrü-gə-lə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/arugul01.mp3",
+        "etymology": "borrowed from Italian, probably from a southern dialectal form of Tuscan ruca, rucola, as Neapolitan arucola, arucolo, with English spelling -gu- reflecting lenis articulation of consonants and reduction of vowels ",
+        "synonyms": [
+            "rocket",
+            "roquette",
+            "garden rocket",
+            "rocket salad",
+            "Eruca sativa",
+            "Eruca vesicaria sativa"
+        ],
+        "related": [
+            "herb",
+            "herbaceous plant"
+        ]
+    }
+}

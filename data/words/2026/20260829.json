@@ -1,0 +1,46 @@
+{
+    "word": "parchment",
+    "date": "20260829",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "parchment",
+            "partOfSpeech": "noun",
+            "text": "the skin of a sheep or goat prepared for writing on",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/parchment"
+        },
+        {
+            "id": "parchment",
+            "partOfSpeech": "noun",
+            "text": "strong, tough, and often somewhat translucent paper made to resemble parchment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/parchment"
+        },
+        {
+            "id": "parchment",
+            "partOfSpeech": "noun",
+            "text": "a parchment manuscript; also: an academic diploma",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/parchment"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈpärch-mənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/p/parchm01.mp3",
+        "etymology": "Middle English parchemin, from Anglo-French, modification of Latin pergamena, from Greek pergamēnē, from feminine of Pergamēnos of Pergamum, from Pergamon Pergamum",
+        "synonyms": [
+            "sheepskin",
+            "lambskin"
+        ],
+        "related": [
+            "paper",
+            "animal skin",
+            "vellum"
+        ]
+    }
+}

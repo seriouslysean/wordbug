@@ -1,0 +1,47 @@
+{
+    "word": "eucalyptus",
+    "date": "20260907",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "eucalyptus",
+            "partOfSpeech": "noun",
+            "text": "any of a genus (Eucalyptus) of mostly Australian evergreen trees or rarely shrubs of the myrtle family that have rigid entire leaves and umbellate flowers and are widely cultivated for their gums, resins, oils, and woods",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/eucalyptus"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˌyü-kə-ˈlip-təs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/eucaly03.mp3",
+        "etymology": "borrowed from New Latin, genus name, from Greek eu-  + kalyptós \"covered,\" verbal adjective of kalýptein \"to cover, protect, conceal\"; so named for the operculum that covers the developing buds ",
+        "synonyms": [
+            "eucalypt",
+            "eucalyptus tree"
+        ],
+        "related": [
+            "wood",
+            "gum tree",
+            "gum",
+            "flooded gum",
+            "mallee",
+            "stringybark",
+            "smoothbark",
+            "red gum",
+            "peppermint",
+            "marri",
+            "river red gum",
+            "river gum",
+            "mountain swamp gum",
+            "Eucalyptus camphora",
+            "snow gum",
+            "ghost gum",
+            "alpine ash",
+            "mountain oak",
+            "white mountain ash",
+            "Eucalyptus fraxinoides"
+        ]
+    }
+}

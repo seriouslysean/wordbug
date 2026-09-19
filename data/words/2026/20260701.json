@@ -1,0 +1,46 @@
+{
+    "word": "omniscient",
+    "date": "20260701",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "omniscient",
+            "partOfSpeech": "adjective",
+            "text": "having infinite awareness, understanding, and insight",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/omniscient",
+            "examples": [
+                "a novel with an omniscient narrator =a narrator who knows what all the characters are doing and thinking",
+                "the narrator seems an omniscient person who tells us about the characters and their relations",
+                "the omniscient God"
+            ]
+        },
+        {
+            "id": "omniscient",
+            "partOfSpeech": "adjective",
+            "text": "possessed of universal or complete knowledge",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/omniscient",
+            "examples": [
+                "a novel with an omniscient narrator =a narrator who knows what all the characters are doing and thinking",
+                "the narrator seems an omniscient person who tells us about the characters and their relations",
+                "the omniscient God"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "äm-ˈni-shənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/omnisc02.mp3",
+        "etymology": "New Latin omniscient-, omnisciens, back-formation from Medieval Latin omniscientia",
+        "synonyms": [
+            "all-knowing",
+            "wise"
+        ],
+        "related": [
+            "omniscience"
+        ]
+    }
+}
