@@ -212,6 +212,29 @@ const git = (dir: string, ...args: string[]): string => String(execFileSync('git
 })).trim();
 
 const ENGINE_REPOSITORY = requiredString(nestedObject(workflow('site-deploy.yml'), 'env', 'workflow'), 'ENGINE_REPOSITORY', 'workflow env');
+const BUILD_SECRETS: Record<string, string> = {
+  GA_ENABLED: 'ga-enabled',
+  GA_MEASUREMENT_ID: 'ga-measurement-id',
+  SENTRY_AUTH_TOKEN: 'sentry-auth-token',
+  SENTRY_DSN: 'sentry-dsn',
+  SENTRY_ENABLED: 'sentry-enabled',
+  SENTRY_ORG: 'sentry-org',
+  SENTRY_PROJECT: 'sentry-project',
+};
+const ADD_WORD_SECRETS: Record<string, string> = {
+  MERRIAM_WEBSTER_API_KEY: 'merriam-webster-api-key',
+  SENTRY_DSN: 'sentry-dsn',
+  SENTRY_ENABLED: 'sentry-enabled',
+  WORDNIK_API_KEY: 'wordnik-api-key',
+};
+
+const repositorySecretBindings = (scope: Record<string, string>): YamlObject => Object.fromEntries(
+  Object.keys(scope).map(name => [name, `\${{ secrets.${name} }}`]),
+);
+
+const actionSecretBindings = (scope: Record<string, string>): YamlObject => Object.fromEntries(
+  Object.entries(scope).map(([name, input]) => [input, `\${{ secrets.${name} }}`]),
+);
 
 // A step that runs in site/ or names a path under it
 const readsSite = (step: YamlObject): boolean => optionalString(step, 'working-directory') === 'site'
@@ -226,6 +249,55 @@ afterEach(() => {
 });
 
 describe('site workflows', { timeout: 20000 }, () => {
+  describe.each([
+    ['site-deploy.yml', 'deploy.yml', BUILD_SECRETS],
+    ['site-add-word.yml', 'add-word.yml', ADD_WORD_SECRETS],
+  ])('%s secret scope', (file, caller, expected) => {
+    it('declares, receives and forwards only the secrets this operation needs', () => {
+      const reusable = workflow(file);
+      const workflowCall = nestedObject(nestedObject(reusable, 'on', 'workflow trigger'), 'workflow_call', 'workflow call');
+      expect(Object.keys(nestedObject(workflowCall, 'secrets', 'workflow call'))).toEqual(Object.keys(expected));
+
+      const template = objectValue(load(fs.readFileSync(path.join(ROOT, 'tools/templates/site', caller), 'utf-8')), caller);
+      const templateJob = Object.values(workflowJobs(template))[0];
+      if (templateJob === undefined) {
+        throw new Error(`${caller} has no job`);
+      }
+      expect(nestedObject(objectValue(templateJob, 'site caller job'), 'secrets', 'site caller job'))
+        .toEqual(repositorySecretBindings(expected));
+
+      const setup = workflowSteps(reusable).find(step => optionalString(step, 'name') === 'Setup environment variables');
+      if (setup === undefined) {
+        throw new Error(`${file} has no setup-env step`);
+      }
+      expect(nestedObject(setup, 'with', 'setup-env step')).toEqual({
+        'vars-json': '${{ toJSON(vars) }}',
+        ...actionSecretBindings(expected),
+      });
+    });
+  });
+
+  it('limits repository workflows and Build to their operation-specific secret scopes', () => {
+    const buildSetup = workflowSteps(workflow('build.yml'))
+      .find(step => optionalString(step, 'name') === 'Setup environment variables');
+    if (buildSetup === undefined) {
+      throw new Error('build.yml has no setup-env step');
+    }
+    expect(nestedObject(buildSetup, 'with', 'Build setup-env step')).toEqual({
+      'vars-json': '${{ toJSON(vars) }}',
+      ...actionSecretBindings(BUILD_SECRETS),
+      'github-sha': '${{ github.sha }}',
+    });
+
+    for (const [file, jobName, expected] of [
+      ['deploy.yml', 'deploy', BUILD_SECRETS],
+      ['add-word.yml', 'add-word', ADD_WORD_SECRETS],
+    ] as const) {
+      const job = nestedObject(workflowJobs(workflow(file)), jobName, `${file} jobs`);
+      expect(nestedObject(job, 'secrets', `${file} ${jobName} job`)).toEqual(repositorySecretBindings(expected));
+    }
+  });
+
   // The engine checkout is a uses: step, so no script runs: its with: values
   // are evaluated as GitHub would evaluate them. The context holds only the
   // job's own workflow identity, so a value that reads an input, a step

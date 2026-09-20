@@ -24,4 +24,10 @@ jobs:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@vX.Y.Z
     secrets:
-      site-secrets: ${{ toJSON(secrets) }}
+      GA_ENABLED: ${{ secrets.GA_ENABLED }}
+      GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}

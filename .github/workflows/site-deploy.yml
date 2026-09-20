@@ -9,7 +9,13 @@ name: Site Deploy
 #     deploy:
 #       uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@vX.Y.Z
 #       secrets:
-#         site-secrets: ${{ toJSON(secrets) }}
+#         GA_ENABLED: ${{ secrets.GA_ENABLED }}
+#         GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+#         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+#         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+#         SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
+#         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+#         SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 #
 # The site repository owns data/ and public/; the code is this repository at
 # the ref the caller pinned. The steps run in the caller's repository, with
@@ -18,9 +24,27 @@ name: Site Deploy
 on:
   workflow_call:
     secrets:
-      site-secrets:
-        description: "The caller's toJSON(secrets), which setup-env reads by name"
-        required: true
+      GA_ENABLED:
+        description: 'Whether Google Analytics is enabled'
+        required: false
+      GA_MEASUREMENT_ID:
+        description: 'Google Analytics measurement ID'
+        required: false
+      SENTRY_AUTH_TOKEN:
+        description: 'Sentry auth token for build uploads'
+        required: false
+      SENTRY_DSN:
+        description: 'Sentry data source name'
+        required: false
+      SENTRY_ENABLED:
+        description: 'Whether Sentry is enabled'
+        required: false
+      SENTRY_ORG:
+        description: 'Sentry organization'
+        required: false
+      SENTRY_PROJECT:
+        description: 'Sentry project'
+        required: false
 
 permissions:
   contents: read
@@ -71,7 +95,13 @@ jobs:
         uses: ./engine/.github/actions/setup-env
         with:
           vars-json: ${{ toJSON(vars) }}
-          secrets-json: ${{ secrets.site-secrets }}
+          ga-enabled: ${{ secrets.GA_ENABLED }}
+          ga-measurement-id: ${{ secrets.GA_MEASUREMENT_ID }}
+          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          sentry-dsn: ${{ secrets.SENTRY_DSN }}
+          sentry-enabled: ${{ secrets.SENTRY_ENABLED }}
+          sentry-org: ${{ secrets.SENTRY_ORG }}
+          sentry-project: ${{ secrets.SENTRY_PROJECT }}
 
       # The site's data/ and public/ replace the engine's, so a site builds
       # none of the demo content; the engine's favicon stays when the site

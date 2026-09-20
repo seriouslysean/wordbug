@@ -35,7 +35,13 @@ jobs:
         uses: ./.github/actions/setup-env
         with:
           vars-json: ${{ toJSON(vars) }}
-          secrets-json: ${{ toJSON(secrets) }}
+          ga-enabled: ${{ secrets.GA_ENABLED }}
+          ga-measurement-id: ${{ secrets.GA_MEASUREMENT_ID }}
+          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          sentry-dsn: ${{ secrets.SENTRY_DSN }}
+          sentry-enabled: ${{ secrets.SENTRY_ENABLED }}
+          sentry-org: ${{ secrets.SENTRY_ORG }}
+          sentry-project: ${{ secrets.SENTRY_PROJECT }}
           github-sha: ${{ github.sha }}
 
       - run: npm run build

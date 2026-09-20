@@ -4,9 +4,42 @@ inputs:
   vars-json:
     description: 'Repository variables as JSON'
     required: true
-  secrets-json:
-    description: 'Repository secrets as JSON'
-    required: true
+  ga-enabled:
+    description: 'Whether Google Analytics is enabled'
+    required: false
+    default: ''
+  ga-measurement-id:
+    description: 'Google Analytics measurement ID'
+    required: false
+    default: ''
+  merriam-webster-api-key:
+    description: 'Merriam-Webster API key'
+    required: false
+    default: ''
+  sentry-auth-token:
+    description: 'Sentry auth token for build uploads'
+    required: false
+    default: ''
+  sentry-dsn:
+    description: 'Sentry data source name'
+    required: false
+    default: ''
+  sentry-enabled:
+    description: 'Whether Sentry is enabled'
+    required: false
+    default: ''
+  sentry-org:
+    description: 'Sentry organization'
+    required: false
+    default: ''
+  sentry-project:
+    description: 'Sentry project'
+    required: false
+    default: ''
+  wordnik-api-key:
+    description: 'Wordnik API key'
+    required: false
+    default: ''
   # Unused: a step cannot overwrite GITHUB_SHA, so the action no longer
   # writes it. Declared still because the build workflow passes it.
   github-sha:
@@ -20,7 +53,15 @@ runs:
       shell: bash
       env:
         VARS_JSON: ${{ inputs.vars-json }}
-        SECRETS_JSON: ${{ inputs.secrets-json }}
+        GA_ENABLED: ${{ inputs.ga-enabled }}
+        GA_MEASUREMENT_ID: ${{ inputs.ga-measurement-id }}
+        MERRIAM_WEBSTER_API_KEY: ${{ inputs.merriam-webster-api-key }}
+        SENTRY_AUTH_TOKEN: ${{ inputs.sentry-auth-token }}
+        SENTRY_DSN: ${{ inputs.sentry-dsn }}
+        SENTRY_ENABLED: ${{ inputs.sentry-enabled }}
+        SENTRY_ORG: ${{ inputs.sentry-org }}
+        SENTRY_PROJECT: ${{ inputs.sentry-project }}
+        WORDNIK_API_KEY: ${{ inputs.wordnik-api-key }}
         VAR_NAMES: |
           BASE_PATH
           COLOR_DARK_BACKGROUND
@@ -76,9 +117,9 @@ runs:
           printf '%s<<%s\n%s\n%s\n' "$1" "$delimiter" "$2" "$delimiter" >> "$GITHUB_ENV"
         }
 
-        # GitHub masks the secrets a job is given, but a called workflow is
-        # given only the site-secrets envelope, and a value taken out of it
-        # is not masked: an adapter's key in a logged request URL would show.
+        # GitHub masks the secrets a job is given, and this also masks values
+        # explicitly so the action remains safe when its inputs come from a
+        # source whose extracted values the runner does not already mask.
         # The runner matches the log a line at a time and a command is one
         # line, so each line of a value is masked on its own, a carriage
         # return ending a line as it does for the runner. The runner reads %25
@@ -109,7 +150,7 @@ runs:
         # Set secrets (avoid subshell with while loop)
         while IFS= read -r secret; do
           if [[ -n "$secret" ]]; then
-            value=$(echo "$SECRETS_JSON" | jq -r ".$secret // \"\"")
+            value="${!secret}"
             mask "$value"
             put_env "$secret" "$value"
           fi

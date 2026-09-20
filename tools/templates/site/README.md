@@ -17,7 +17,7 @@ public/favicon.svg                 # The site's icon
 Push this directory to `main` of a public repository, then set it up under **Settings**:
 
 1. **Secrets and variables > Actions > Variables**: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID` and `DICTIONARY_ADAPTER` (`wordnik`, `merriam-webster` or `wiktionary`); `BASE_PATH` when the site is served from a subdirectory, such as `/repo` for `username.github.io/repo`; `SITE_TZ` when the site's day is not `America/New_York`; anything else from `.env.example` that should differ from its default. Leave `SOURCE_DIR` unset.
-2. **Secrets and variables > Actions > Secrets**: the API key for each dictionary the site uses (`WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`), and any `GA_*` or `SENTRY_*` settings. API keys, `GA_*` and `SENTRY_*` are secrets; everything else is a variable.
+2. **Secrets and variables > Actions > Secrets**: the API key for each dictionary the site uses (`WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`), and any `GA_*` or `SENTRY_*` settings. API keys, `GA_*` and `SENTRY_*` are secrets; everything else is a variable. Deploy receives only the GA and Sentry build settings, while Add Word receives only the dictionary keys plus `SENTRY_ENABLED` and `SENTRY_DSN`.
 3. **Pages > Build and deployment > Source**: GitHub Actions.
 4. **Environments > github-pages**: deployment branches allow `main`.
 5. **Actions > General > Actions permissions**: if actions are restricted, allow the reusable workflows of `seriouslysean/occasional-wotd`.

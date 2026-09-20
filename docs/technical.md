@@ -677,7 +677,9 @@ The workflow files are the reference for their steps; this is what each one is f
 
 **Engine ref.** Site Deploy and Site Add Word check the engine out at `job.workflow_repository` and `job.workflow_sha`, the repository and commit of the workflow file that defines the running job ([job context](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#job-context)), so the code is always the commit the caller's `uses:` pin runs, and a caller passes nothing that names the engine. actionlint 1.7.12 does not know the `job.workflow_*` properties, so `.github/actionlint.yaml` ignores its undefined-property error for exactly those four in these two workflows until it does. A `./` call runs the called workflow from the caller's own commit, so the engine checkout is the calling repository at that commit. This repository calls that way for the demo site. So does a fork of it that syncs with `npm run tool:sync`: its Deploy and Add Word are this repository's, so after a sync they call the reusable workflows with `./`, check out the fork's own commit as the engine, and keep building and adding words as before, unchanged, until the fork is migrated to a thin site. For a fork `site/` and `engine/` are the same commit, so the overlay copies and deletes nothing: the fork's `data/demo` and `public/demo`, which it tracks from this repository, stay where they are, `SOURCE_DIR` empty builds its own `data/words`, and `public/demo` is published with the rest of `public/` as it is today. The `SOURCE_DIR` check tells this repository from the rest by the name in `ENGINE_REPOSITORY`, not by `job.workflow_repository`, which a fork's `./` call makes the fork itself.
 
-**Environment.** Build, Site Deploy and Site Add Word all run the `.github/actions/setup-env` composite action, which copies repository variables and secrets into the job by name. Each runs `npm ci` before it, so no dependency's install script has the secrets in its environment, and Site Add Word checks out the site only after `npm ci` too, so no install script can read the credentials that checkout keeps, which can push to the site. In Site Deploy and Site Add Word, `vars` is the calling repository's, and its secrets arrive as the one secret `site-secrets`, which the caller sets to `toJSON(secrets)` and the action reads as `secrets-json`, as it reads a single repository's. Site Deploy's build job has no environment, so a value stored only on the `github-pages` environment does not reach the build. A name missing from its `VAR_NAMES` or `SECRET_NAMES` list never reaches a job, whatever the repository settings say. `VAR_NAMES` is read only from repository variables and `SECRET_NAMES` only from secrets: API keys (`*_API_KEY`), `GA_*` and `SENTRY_*` are secrets and everything else is a variable, and a name stored in the other place is exported empty. `tests/architecture/env-transport.spec.ts` fails when a variable in the `astro.config.ts` env schema is neither in those lists nor set by the action itself, or when a name is in the wrong list. `SENTRY_ENVIRONMENT` is in neither list: the action always sets it to `production`. The action also sets `TZ` from the `SITE_TZ` repository variable (default `America/New_York`), so "today" is the same date when a word is added and when the site is built. Every value is written to `$GITHUB_ENV` in the multiline `NAME<<delimiter` form with a random delimiter per value, so a value that spans lines stays one variable instead of failing the step or setting others. Before it writes a secret, the action masks each non-blank line of its value with `::add-mask::`: inside a called workflow the job's only secret is the `site-secrets` envelope, and GitHub does not mask a value taken out of it, so a tool that logs a request URL with an API key in it would show the key. Short values are masked too, so with `GA_ENABLED` set to `true` every `true` in the rest of the job's log reads `***`. Variables are never masked.
+**Environment.** Build, Site Deploy and Site Add Word all run the `.github/actions/setup-env` composite action, which copies repository variables and explicitly supplied secrets into the job by name. Each runs `npm ci` before it, so no dependency's install script has the secrets in its environment, and Site Add Word checks out the site only after `npm ci` too, so no install script can read the credentials that checkout keeps, which can push to the site. Build and Site Deploy receive only the seven values Astro may need while building: `GA_ENABLED`, `GA_MEASUREMENT_ID`, `SENTRY_ENABLED`, `SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN`. Site Add Word receives only `WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`, `SENTRY_ENABLED` and `SENTRY_DSN`; its Node logger does not use the other build credentials. The reusable workflows declare those named secrets as optional, so omitted settings remain blank, and cannot receive an arbitrary repository secret. Site Deploy's build job has no environment, so a value stored only on the `github-pages` environment does not reach the build.
+
+`VAR_NAMES` is read only from repository variables; the action's named secret inputs are read only from secrets in the calling workflow. API keys (`*_API_KEY`), `GA_*` and `SENTRY_*` are secrets and everything else is a variable. `tests/architecture/env-transport.spec.ts` fails when a variable in the `astro.config.ts` env schema is not covered or when a name is in the wrong category, while `tests/tools/site-workflows.spec.ts` fixes the exact secret scope of each operation. `SENTRY_ENVIRONMENT` is supplied by neither repository store: the action always sets it to `production`. The action also sets `TZ` from the `SITE_TZ` repository variable (default `America/New_York`), so "today" is the same date when a word is added and when the site is built. Every value is written to `$GITHUB_ENV` in the multiline `NAME<<delimiter` form with a random delimiter per value, so a value that spans lines stays one variable instead of failing the step or setting others. Before it writes a secret, the action masks each non-blank line of its value with `::add-mask::`. Short values are masked too, so with `GA_ENABLED` set to `true` every `true` in the rest of the job's log reads `***`. Variables are never masked.
 
 ### Build Pipeline
 
@@ -713,7 +715,7 @@ A site repository holds only its content and two workflows that call Site Deploy
 | Cards and marker | `public/images/social/` (`YYYY/*.png`, `pages/*.png`, `.image-settings-hash`) | Generated in `engine/`. Add Word copies back and commits only these and the word JSON, never deleting; Deploy regenerates them and commits nothing |
 | Callers | `.github/workflows/deploy.yml`, `.github/workflows/add-word.yml` | Both pin the same release in `uses:`, and nothing else names the engine |
 | Engine updates | `.github/dependabot.yml` | `github-actions` updates, grouped so both pins move in one pull request |
-| Settings | Repository variables and secrets | `vars` is the site's; the secrets go as `site-secrets`; `SOURCE_DIR` unset or empty |
+| Settings | Repository variables and secrets | `vars` is the site's; each caller passes only its named secrets; `SOURCE_DIR` unset or empty |
 | Local settings | `.env.example`, ignored `.env` | For local development only; the workflows never read them |
 | Not in a site | `src/`, `tools/`, `package.json`, the lockfile, `node_modules/`, `dist/` | The engine's, at the pin |
 
@@ -746,7 +748,13 @@ jobs:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@vX.Y.Z
     secrets:
-      site-secrets: ${{ toJSON(secrets) }}
+      GA_ENABLED: ${{ secrets.GA_ENABLED }}
+      GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 ```
 
 `.github/workflows/add-word.yml`, pinned to the same release:
@@ -792,10 +800,13 @@ jobs:
       overwrite: ${{ inputs.overwrite }}
       preserve_case: ${{ inputs.preserve_case }}
     secrets:
-      site-secrets: ${{ toJSON(secrets) }}
+      MERRIAM_WEBSTER_API_KEY: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
+      WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
 ```
 
-The secrets go by name because `secrets: inherit` is only for callers in the same organization or enterprise, and site repositories live under a personal account. What the site repository needs in its settings, which the README `create-site` writes lists too:
+Every secret goes by name so each reusable workflow receives only what it uses. What the site repository needs in its settings, which the README `create-site` writes lists too:
 
 - Repository variables: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID` and `DICTIONARY_ADAPTER`, plus `BASE_PATH`, `SITE_TZ` or any other setting under Environment Configuration that differs from its default. `SOURCE_DIR` unset or empty; this repository keeps `SOURCE_DIR=demo`.
 - Repository secrets: the API key of each configured dictionary, and any `GA_*` and `SENTRY_*` values.
@@ -803,7 +814,7 @@ The secrets go by name because `secrets: inherit` is only for callers in the sam
 - Actions allowed to use reusable workflows from `seriouslysean/occasional-wotd`. A public repository can only call reusable workflows in public repositories, so this repository stays public.
 - Branch protection and rulesets on `main` that let Add Word's push with the workflow's `GITHUB_TOKEN` through, since it commits straight to the branch it was dispatched on.
 
-To move a site to a new release, change both pins together; never move a published release tag. The engine at the pin runs with the site's secrets and a token that can write to the site, so pin only engine releases you trust. The first runs in a site repository are the acceptance test for the cross-repository setup: an Add Word run that commits the word and its cards to `main`, followed by the Deploy it triggers publishing the site at its URL.
+To move a site to a new release, change both pins together; never move a published release tag. When moving from v3.24.0 or earlier to v3.25.0 or later, also replace each caller's `site-secrets: ${{ toJSON(secrets) }}` entry with the named mappings shown above. Earlier release tags keep their existing interface. The engine at the pin runs with the site's scoped secrets and a token that can write to the site, so pin only engine releases you trust. The first runs in a site repository are the acceptance test for the cross-repository setup: an Add Word run that commits the word and its cards to `main`, followed by the Deploy it triggers publishing the site at its URL.
 
 **Local development.** Clone this repository into a sibling directory used for nothing else, check out the release the site pins, and run `npm ci` there once. Then, from the site repository:
 

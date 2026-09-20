@@ -14,7 +14,10 @@ name: Site Add Word
 #         overwrite: ${{ inputs.overwrite }}
 #         preserve_case: ${{ inputs.preserve_case }}
 #       secrets:
-#         site-secrets: ${{ toJSON(secrets) }}
+#         MERRIAM_WEBSTER_API_KEY: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
+#         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+#         SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
+#         WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
 #
 # The word is added and the images generated in engine/, then only the word
 # files, cards and cache marker are copied back into site/ and pushed with
@@ -43,9 +46,18 @@ on:
         required: false
         default: false
     secrets:
-      site-secrets:
-        description: "The caller's toJSON(secrets), which setup-env reads by name"
-        required: true
+      MERRIAM_WEBSTER_API_KEY:
+        description: 'Merriam-Webster API key'
+        required: false
+      SENTRY_DSN:
+        description: 'Sentry data source name'
+        required: false
+      SENTRY_ENABLED:
+        description: 'Whether Sentry is enabled'
+        required: false
+      WORDNIK_API_KEY:
+        description: 'Wordnik API key'
+        required: false
 
 permissions:
   contents: write
@@ -101,7 +113,10 @@ jobs:
         uses: ./engine/.github/actions/setup-env
         with:
           vars-json: ${{ toJSON(vars) }}
-          secrets-json: ${{ secrets.site-secrets }}
+          merriam-webster-api-key: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
+          sentry-dsn: ${{ secrets.SENTRY_DSN }}
+          sentry-enabled: ${{ secrets.SENTRY_ENABLED }}
+          wordnik-api-key: ${{ secrets.WORDNIK_API_KEY }}
 
       # The site's data/ and public/ replace the engine's, so the tools see
       # the site's words and cards and none of the demo content. A fork's

@@ -67,11 +67,25 @@ const step = record(steps[0], 'setup-env step');
 const stepEnv = record(field(step, 'env', 'setup-env step'), 'setup-env step env');
 const stepRun = stringField(step, 'run', 'setup-env step');
 const VAR_NAMES = stringField(stepEnv, 'VAR_NAMES', 'setup-env step env').split('\n').filter(Boolean);
+const SECRET_INPUTS: Record<string, string> = {
+  GA_ENABLED: 'ga-enabled',
+  GA_MEASUREMENT_ID: 'ga-measurement-id',
+  MERRIAM_WEBSTER_API_KEY: 'merriam-webster-api-key',
+  SENTRY_AUTH_TOKEN: 'sentry-auth-token',
+  SENTRY_DSN: 'sentry-dsn',
+  SENTRY_ENABLED: 'sentry-enabled',
+  SENTRY_ORG: 'sentry-org',
+  SENTRY_PROJECT: 'sentry-project',
+  WORDNIK_API_KEY: 'wordnik-api-key',
+};
 
 const runAction = ({ vars, secrets }: ActionInputs): Promise<ActionResult> => {
   const inputs: Record<string, string> = {
     '${{ inputs.vars-json }}': JSON.stringify(vars),
-    '${{ inputs.secrets-json }}': JSON.stringify(secrets),
+    ...Object.fromEntries(Object.entries(SECRET_INPUTS).map(([name, input]) => [
+      `\${{ inputs.${input} }}`,
+      secrets[name] ?? '',
+    ])),
   };
   const env = Object.fromEntries(Object.entries(stepEnv).map(([key, value]) => {
     if (typeof value !== 'string') {

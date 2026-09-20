@@ -7,11 +7,10 @@
  * fine locally and is silently its default in production: the COLOR_DARK_*
  * set was missing, so no deployed site could turn dark mode on.
  *
- * The action reads VAR_NAMES from repository variables and SECRET_NAMES from
- * secrets, never both. A name in the wrong list is read from the store the
- * owner did not fill, exported empty, and falls back to its default just as
- * silently: SITE_LOCALE in SECRET_NAMES builds <html lang="en-US"> whatever
- * the repository variable says.
+ * The action reads VAR_NAMES from repository variables and receives the
+ * SECRET_NAMES through explicit action inputs, never both. A name in the
+ * wrong list is read from the store the owner did not fill, exported empty,
+ * and falls back to its default just as silently.
  */
 
 import fs from 'node:fs';
@@ -149,7 +148,7 @@ describe('Architecture: environment transport', () => {
     expect(malformed).toEqual([]);
   });
 
-  it('reads secrets from SECRET_NAMES and everything else from VAR_NAMES', () => {
+  it('receives secrets through named inputs and everything else through VAR_NAMES', () => {
     expect(variables.length).toBeGreaterThan(0);
     expect(secrets.length).toBeGreaterThan(0);
     expect(variables.filter(isSecret)).toEqual([]);
