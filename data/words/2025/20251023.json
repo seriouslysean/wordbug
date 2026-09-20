@@ -6,6 +6,7 @@
     "data": [
         {
             "id": "PB+J",
+            "partOfSpeech": "abbreviation",
             "text": "peanut butter and jelly",
             "attributionText": "from Merriam-Webster's Collegiate Dictionary",
             "sourceDictionary": "collegiate",
