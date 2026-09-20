@@ -57,7 +57,7 @@ env:
 
 jobs:
   add-word:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       # job.workflow_* name the repository and commit this workflow runs
       # from, so the code is the commit the caller's uses: pins, whatever

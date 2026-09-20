@@ -1,3 +1,10 @@
+# actionlint 1.7.12 predates the GitHub-hosted Ubuntu 26.04 image.
+# This list admits its label; it does not select a self-hosted runner.
+# Remove when https://github.com/rhysd/actionlint/pull/683 ships.
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04
+
 # actionlint 1.7.12 does not know the job context's workflow identity
 # properties, which GitHub added on 2026-09-03
 # (https://github.blog/changelog/2026-09-03-github-actions-early-september-2026-updates/),

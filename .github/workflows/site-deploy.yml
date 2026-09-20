@@ -32,7 +32,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       # For workflow_run, github.sha is the last commit on the default branch,
       # so this builds the word Add Word just pushed
@@ -131,7 +131,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       pages: write

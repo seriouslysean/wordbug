@@ -656,6 +656,8 @@ The thin-wrapper delegation pattern avoids logic duplication. See AGENTS.md for 
 
 ### GitHub Actions
 
+Jobs use the explicit `ubuntu-26.04` runner image. Jobs that execute project code install Node 26. External actions track their current stable major tags, which receive compatible patch updates. TypeScript stays on 6.x while `@astrojs/check` requires TypeScript 5 or 6.
+
 The workflow files are the reference for their steps; this is what each one is for.
 
 | Workflow | File | Runs |
