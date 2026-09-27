@@ -1,0 +1,71 @@
+{
+    "word": "quaff",
+    "date": "20260927",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "quaff",
+            "partOfSpeech": "verb",
+            "text": "to drink (a usually alcoholic beverage) heartily or copiously",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/quaff",
+            "examples": [
+                "At Fort William, goods were exchanged, bills were tallied, brandy was quaffed, songs were sung.",
+                "Young Cheltenham ladies and gentlemen in striped shirts and Barbours quaffed their drinks and guffawed loudly.",
+                "… quaff a flagon of nut-brown ale …",
+                "… curled up on her couch, wearing lounge pants, quaffing her third glass of wine …",
+                "… and in the chimney-corner, they all four quaffed, and smoked, and prosed, and dozed, as they had done of old.",
+                "… quaffing from massive steins of German beer while chatting it up with new friends."
+            ]
+        },
+        {
+            "id": "quaff",
+            "partOfSpeech": "noun",
+            "text": "an enjoyable beverage: a beverage (such as wine) that is quaffed or suitable for quaffing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/quaff",
+            "examples": [
+                "This pleasant quaff offers ripe peach and vanilla flavors and a good balance of bright acidity and moderate sweetness.",
+                "… there is no better quaff with fried chicken than Champagne.",
+                "… a single sensuous quaff …",
+                "He lifted his glass, took a large quaff of the wine, swallowed quickly in his urgency to keep talking."
+            ]
+        },
+        {
+            "id": "quaff",
+            "partOfSpeech": "noun",
+            "text": "a hearty draft or gulp",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/quaff",
+            "examples": [
+                "This pleasant quaff offers ripe peach and vanilla flavors and a good balance of bright acidity and moderate sweetness.",
+                "… there is no better quaff with fried chicken than Champagne.",
+                "… a single sensuous quaff …",
+                "He lifted his glass, took a large quaff of the wine, swallowed quickly in his urgency to keep talking."
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkwäf",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/q/quaff001.mp3",
+        "etymology": "origin unknown",
+        "synonyms": [
+            "gulp",
+            "swig"
+        ],
+        "related": [
+            "drink",
+            "imbibe",
+            "draft",
+            "quaffer",
+            "gulping",
+            "gulper",
+            "guzzler",
+            "swilling"
+        ]
+    }
+}
