@@ -1,0 +1,69 @@
+{
+    "word": "dilapidated",
+    "date": "20260930",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "dilapidated",
+            "partOfSpeech": "adjective",
+            "text": "decayed, deteriorated, or fallen into partial ruin especially through neglect or misuse",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dilapidated",
+            "examples": [
+                "a dilapidated old house"
+            ]
+        },
+        {
+            "id": "dilapidate",
+            "partOfSpeech": "verb",
+            "text": "to bring into a condition of decay or partial ruin",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dilapidated",
+            "examples": [
+                "… furniture is dilapidated by use …"
+            ]
+        },
+        {
+            "id": "dilapidate",
+            "partOfSpeech": "verb",
+            "text": "squander",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dilapidated",
+            "examples": [
+                "… furniture is dilapidated by use …"
+            ]
+        },
+        {
+            "id": "dilapidate",
+            "partOfSpeech": "verb",
+            "text": "to decay, deteriorate, or fall into partial ruin especially through neglect or misuse: to become dilapidated",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dilapidated",
+            "examples": [
+                "… furniture is dilapidated by use …"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "də-ˈla-pə-ˌdā-təd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/dilap1s3.mp3",
+        "etymology": "see dilapidate",
+        "synonyms": [
+            "bedraggled",
+            "broken-down",
+            "derelict",
+            "ramshackle",
+            "tatterdemalion",
+            "tumble-down",
+            "damaged"
+        ],
+        "related": [
+            "ragamuffin"
+        ]
+    }
+}
