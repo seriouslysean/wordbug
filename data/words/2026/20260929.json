@@ -1,0 +1,128 @@
+{
+    "word": "imperative",
+    "date": "20260929",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "imperative",
+            "partOfSpeech": "adjective",
+            "text": "not to be avoided or evaded: necessary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/imperative",
+            "examples": [
+                "an imperative duty",
+                "It is imperative that the public be informed about these dangers. = It is imperative to inform the public about these dangers.",
+                "an imperative tone of voice",
+                "The democratic instinct is in France too imperative … to consider consequences …",
+                "\"Eat your vegetables!\" is an imperative sentence."
+            ]
+        },
+        {
+            "id": "imperative",
+            "partOfSpeech": "adjective",
+            "text": "expressive of a command, entreaty, or exhortation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/imperative",
+            "examples": [
+                "an imperative duty",
+                "It is imperative that the public be informed about these dangers. = It is imperative to inform the public about these dangers.",
+                "an imperative tone of voice",
+                "The democratic instinct is in France too imperative … to consider consequences …",
+                "\"Eat your vegetables!\" is an imperative sentence."
+            ]
+        },
+        {
+            "id": "imperative",
+            "partOfSpeech": "adjective",
+            "text": "having power to restrain, control, and direct",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/imperative",
+            "examples": [
+                "an imperative duty",
+                "It is imperative that the public be informed about these dangers. = It is imperative to inform the public about these dangers.",
+                "an imperative tone of voice",
+                "The democratic instinct is in France too imperative … to consider consequences …",
+                "\"Eat your vegetables!\" is an imperative sentence."
+            ]
+        },
+        {
+            "id": "imperative",
+            "partOfSpeech": "noun",
+            "text": "something that is imperative: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/imperative",
+            "examples": [
+                "A sheep dog emits imperatives to his flock hardly distinguishable from those that the shepherd employs toward him.",
+                "legal imperatives",
+                "lived by certain simple imperatives",
+                "Environmental consciousness is no longer just another lifestyle choice; … it has been upgraded to a moral imperative.",
+                "Corporate competitive imperatives are the palpable force destroying care."
+            ]
+        },
+        {
+            "id": "imperative",
+            "partOfSpeech": "noun",
+            "text": "command, order",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/imperative",
+            "examples": [
+                "A sheep dog emits imperatives to his flock hardly distinguishable from those that the shepherd employs toward him.",
+                "legal imperatives",
+                "lived by certain simple imperatives",
+                "Environmental consciousness is no longer just another lifestyle choice; … it has been upgraded to a moral imperative.",
+                "Corporate competitive imperatives are the palpable force destroying care."
+            ]
+        },
+        {
+            "id": "imperative",
+            "partOfSpeech": "noun",
+            "text": "rule, guide",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/imperative",
+            "examples": [
+                "A sheep dog emits imperatives to his flock hardly distinguishable from those that the shepherd employs toward him.",
+                "legal imperatives",
+                "lived by certain simple imperatives",
+                "Environmental consciousness is no longer just another lifestyle choice; … it has been upgraded to a moral imperative.",
+                "Corporate competitive imperatives are the palpable force destroying care."
+            ]
+        },
+        {
+            "id": "categorical imperative",
+            "partOfSpeech": "noun",
+            "text": "a moral obligation or command that is unconditionally and universally binding",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/imperative"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "im-ˈper-ə-tiv",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/impera01.mp3",
+        "etymology": "Middle English imperatyf, borrowed from Late Latin imperātīvus, from Latin imperātus, past participle of imperāre \"to give orders, command\" + -īvus  ",
+        "synonyms": [
+            "adjuratory",
+            "clamant",
+            "peremptory",
+            "desperate",
+            "pressing",
+            "strident"
+        ],
+        "antonyms": [
+            "beseeching"
+        ],
+        "related": [
+            "assertive",
+            "self-asserting",
+            "imperativeness",
+            "insistence"
+        ]
+    }
+}
