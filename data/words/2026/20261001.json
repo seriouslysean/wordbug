@@ -1,0 +1,43 @@
+{
+    "word": "flamboyance",
+    "date": "20261001",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "flamboyance",
+            "partOfSpeech": "noun",
+            "text": "the quality or state of being flamboyant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/flamboyance"
+        },
+        {
+            "id": "flamboyancy",
+            "partOfSpeech": "noun",
+            "text": "flamboyance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/flamboyance"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "flam-ˈbȯi-ən(t)s",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/f/flambo01.mp3",
+        "synonyms": [
+            "floridness",
+            "floridity",
+            "showiness"
+        ],
+        "related": [
+            "ornateness",
+            "elaborateness",
+            "showy",
+            "flamboyant",
+            "flashy",
+            "gaudy",
+            "aureate",
+            "florid"
+        ]
+    }
+}
