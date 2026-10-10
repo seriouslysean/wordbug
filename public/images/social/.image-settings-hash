@@ -1,5 +1,5 @@
 {
-  "settings": "829898cfb91a",
+  "settings": "801090a73069",
   "cards": {
     "social/2018/20180204-fish.png": "61ba9872e2a3",
     "social/2018/20180205-daddy.png": "7a2ac114f92e",
@@ -239,6 +239,7 @@
     "social/2026/20260929-imperative.png": "82e0ec871ef7",
     "social/2026/20260930-dilapidated.png": "7c5d379da787",
     "social/2026/20261001-flamboyance.png": "4baea895f601",
+    "social/2026/20261010-ache.png": "7f10d7ff0697",
     "social/pages/404.png": "2ed66b13898d",
     "social/pages/browse-2018-april.png": "46c8e4acd834",
     "social/pages/browse-2018-february.png": "56819a85ca4a",
@@ -333,6 +334,7 @@
     "social/pages/stats-milestone-words.png": "05768afde1b1",
     "social/pages/stats-most-common-letter.png": "858e80fbb3cf",
     "social/pages/stats-palindromes.png": "8b3489c1926a",
+    "social/pages/stats-parts-of-speech.png": "61757bdb72ac",
     "social/pages/stats-same-start-end.png": "5d5a3e978f4f",
     "social/pages/stats-streaks.png": "76e987065457",
     "social/pages/stats-triple-letters.png": "d01e0cd59d15",

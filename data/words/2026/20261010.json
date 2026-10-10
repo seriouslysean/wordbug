@@ -1,0 +1,109 @@
+{
+    "word": "ache",
+    "date": "20261010",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "ache",
+            "partOfSpeech": "verb",
+            "text": "to suffer a usually dull persistent pain",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ache",
+            "examples": [
+                "an aching back",
+                "aching with sadness",
+                "My heart aches for those poor people.",
+                "He is aching to go."
+            ]
+        },
+        {
+            "id": "ache",
+            "partOfSpeech": "verb",
+            "text": "to become distressed or disturbed (as with anxiety or regret)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ache",
+            "examples": [
+                "an aching back",
+                "aching with sadness",
+                "My heart aches for those poor people.",
+                "He is aching to go."
+            ]
+        },
+        {
+            "id": "ache",
+            "partOfSpeech": "verb",
+            "text": "to feel compassion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ache",
+            "examples": [
+                "an aching back",
+                "aching with sadness",
+                "My heart aches for those poor people.",
+                "He is aching to go."
+            ]
+        },
+        {
+            "id": "ache",
+            "partOfSpeech": "noun",
+            "text": "a usually dull persistent pain",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ache",
+            "examples": [
+                "had an ache in his back",
+                "looked through the old pictures with a dull ache in her heart"
+            ]
+        },
+        {
+            "id": "ache",
+            "partOfSpeech": "noun",
+            "text": "a condition marked by aching",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ache",
+            "examples": [
+                "had an ache in his back",
+                "looked through the old pictures with a dull ache in her heart"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈāk",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/ache0001.mp3",
+        "etymology": "Middle English aken, going back to Old English acan, of uncertain origin",
+        "synonyms": [
+            "hurt",
+            "suffer",
+            "yearn",
+            "yen",
+            "pine",
+            "languish"
+        ],
+        "related": [
+            "perceive",
+            "comprehend",
+            "sick person",
+            "diseased person",
+            "agony",
+            "suffering",
+            "aching",
+            "injury",
+            "pain",
+            "hurting",
+            "catch",
+            "get",
+            "twinge",
+            "prick",
+            "sting",
+            "kill",
+            "hanker",
+            "long",
+            "pining",
+            "hankering"
+        ]
+    }
+}
