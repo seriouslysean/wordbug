@@ -6,6 +6,14 @@ import {
   vi,
 } from 'vitest';
 import type { WordData } from '#types';
+import {
+  createPageMetadataLookup,
+  getAllPageMetadata,
+  getDefinition,
+  getPageMetadata,
+  getPageTitle,
+} from '#utils/page-metadata-utils';
+import { getLetterStats } from '#utils/word-stats-utils';
 
 declare const mockEnv: Record<string, string | boolean | undefined>;
 
@@ -28,7 +36,6 @@ vi.mock('#utils/i18n-utils', () => ({
       'words.heading': 'Mock Words Heading',
       'words.description': 'Mock words description',
       'words.length_words': `${params.length || 'X'}-Letter Words`,
-      'words.length_words_description': `Words containing exactly ${params.length || 'X'} letters.`,
       'words.letter_words_description': `Words starting with the letter ${params.letter || 'X'}.`,
       'words.part_of_speech_words_description': `Words that function as ${params.partOfSpeech || 'unknown'}s in sentences.`,
       'words.by_length_heading': 'Mock words.by_length_heading',
@@ -37,6 +44,7 @@ vi.mock('#utils/i18n-utils', () => ({
       'stats.description': 'Mock stats description',
       'stats.subheading': 'Mock Stats Subheading',
       'home.heading': 'Mock Home Heading',
+      'home.description': `Today's word is "${params.word}".`,
       'error.heading': 'Mock Error Heading',
       'error.description': 'Mock error description',
       'parts_of_speech.noun': 'Noun',
@@ -45,17 +53,10 @@ vi.mock('#utils/i18n-utils', () => ({
     };
     return mockTranslations[key] || `Mock ${key}`;
   }),
-  tp: vi.fn((baseKey, count) => `${count} Mock Items`)
+  tp: vi.fn((baseKey, count) => (baseKey === 'words.length_words_description'
+    ? `Words containing exactly ${count} letters.`
+    : `${count} Mock Items`))
 }));
-
-import {
-  createPageMetadataLookup,
-  getAllPageMetadata,
-  getDefinition,
-  getPageMetadata,
-  getPageTitle,
-} from '#utils/page-metadata-utils';
-import { getLetterStats } from '#utils/word-stats-utils';
 
 // Clean up mock after this test file to prevent leakage to other tests
 afterAll(() => {
@@ -90,6 +91,22 @@ describe('page-metadata-utils', () => {
     expect(getPageMetadata('/word', customWords).secondaryText).toBe('1 Mock Items');
     customWords.push(makeWord('two', '20240102'));
     expect(getPageMetadata('/word', customWords).secondaryText).toBe('2 Mock Items');
+  });
+
+  it('computes a dataset\'s stats once however many stats pages are looked up', () => {
+    vi.mocked(getLetterStats).mockClear();
+    const lookup = createPageMetadataLookup(mockWords);
+
+    lookup('/stats/palindromes');
+    lookup('/stats/double-letters');
+    lookup('/stats/most-common-letter');
+
+    expect(vi.mocked(getLetterStats)).toHaveBeenCalledTimes(1);
+
+    vi.mocked(getLetterStats).mockClear();
+    getAllPageMetadata(mockWords);
+
+    expect(vi.mocked(getLetterStats)).toHaveBeenCalledTimes(1);
   });
 
   describe('getPageMetadata', () => {
@@ -366,8 +383,18 @@ describe('page-metadata-utils', () => {
       const metadata = getPageMetadata('/', mockWords);
       expect(metadata.title).toBe('Mock Home Heading');
       expect(metadata.category).toBe('pages');
-      expect(typeof metadata.description).toBe('string');
       expect(metadata.secondaryText).toBeUndefined();
+    });
+
+    it('names the current word in the home description', () => {
+      const currentWord = makeWord('pb&j', '20240103');
+      expect(getPageMetadata('/', mockWords, currentWord).description).toBe('Today\'s word is "pb&j".');
+      expect(createPageMetadataLookup(mockWords)('/', currentWord).description).toBe('Today\'s word is "pb&j".');
+    });
+
+    it('leaves the home description empty when there is no current word', () => {
+      expect(getPageMetadata('/', mockWords).description).toBe('');
+      expect(getPageMetadata('/', [], null).description).toBe('');
     });
 
     it('falls back to Unknown Page for a month path with an unknown month slug', () => {

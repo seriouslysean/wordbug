@@ -54,7 +54,7 @@ import {
   antiStreakStats,
   milestoneWords
 } from '#astro-utils/word-data-utils';
-import { t } from '#utils/i18n-utils';
+import { t, tp } from '#utils/i18n-utils';
 
 const totalWords = allWords.length;
 const firstWord = totalWords > 0 ? allWords.at(-1) : null;
@@ -74,7 +74,6 @@ const {
   leastCommon: leastCommonLetter,
   leastCommonCount: leastCommonLetterCount,
 } = letterStats;
-const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
 const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
 const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
 const palindromeCount = palindromes.length;
@@ -115,35 +114,35 @@ const basicWordItems = [
 const streakItems = [
   {
     label: t('stats.current_streak'),
-    value: t('stats.days', { count: streakStats.currentStreak }),
+    value: tp('stats.days', streakStats.currentStreak),
     ...(streakStats.currentStreak > 0 ? { href: getCurrentStreakUrl() } : {})
   },
   {
     label: t('stats.longest_streak'),
-    value: t('stats.days', { count: streakStats.longestStreak }),
+    value: tp('stats.days', streakStats.longestStreak),
     ...(streakStats.longestStreak > 0 ? { href: getLongestStreakUrl() } : {})
   },
   ...(antiStreakStats.longestGap > 0 ? [{
     label: t('stats.longest_gap'),
-    value: t('stats.days', { count: antiStreakStats.longestGap })
+    value: tp('stats.days', antiStreakStats.longestGap)
   }] : [])
 ];
 
 // Word facts items that should render as word links
 const wordFactsWordItems = [
-  ...(wordStats.shortest ? [{ label: t('stats.shortest', { length: wordStats.shortest.word.length }), value: wordStats.shortest }] : []),
-  ...(wordStats.longest ? [{ label: t('stats.longest', { length: wordStats.longest.word.length }), value: wordStats.longest }] : []),
-  ...(leastSyllables ? [{ label: t('stats.least_syllables', { count: leastSyllablesCount }), value: leastSyllables }] : []),
-  ...(mostSyllables ? [{ label: t('stats.most_syllables', { count: mostSyllablesCount }), value: mostSyllables }] : []),
-  ...(mostVowels ? [{ label: t('stats.most_vowels', { count: mostVowelsCount }), value: mostVowels }] : []),
-  ...(mostConsonants ? [{ label: t('stats.most_consonants', { count: mostConsonantsCount }), value: mostConsonants }] : [])
+  ...(wordStats.shortest ? [{ label: tp('stats.shortest', wordStats.shortest.word.length), value: wordStats.shortest }] : []),
+  ...(wordStats.longest ? [{ label: tp('stats.longest', wordStats.longest.word.length), value: wordStats.longest }] : []),
+  ...(leastSyllables ? [{ label: tp('stats.least_syllables', leastSyllablesCount), value: leastSyllables }] : []),
+  ...(mostSyllables ? [{ label: tp('stats.most_syllables', mostSyllablesCount), value: mostSyllables }] : []),
+  ...(mostVowels ? [{ label: tp('stats.most_vowels', mostVowelsCount), value: mostVowels }] : []),
+  ...(mostConsonants ? [{ label: tp('stats.most_consonants', mostConsonantsCount), value: mostConsonants }] : [])
 ];
 
 // Word facts items that should render as regular links/values
 const wordFactsRegularItems = [
   ...(letterStats.ranked.length > 0 ? [
-    { label: t('stats.most_common_letter', { count: mostCommonLetterCount }), value: mostCommonLetter, href: getMostCommonLetterUrl() },
-    { label: t('stats.least_common_letter', { count: leastCommonLetterCount, plural: leastCommonLetterPlural }), value: leastCommonLetter, href: getLeastCommonLetterUrl() }
+    { label: tp('stats.most_common_letter', mostCommonLetterCount), value: mostCommonLetter, href: getMostCommonLetterUrl() },
+    { label: tp('stats.least_common_letter', leastCommonLetterCount), value: leastCommonLetter, href: getLeastCommonLetterUrl() }
   ] : []),
   ...(palindromeCount > 0 ? [{ label: t('stats.palindromes'), value: palindromeCount, href: getPalindromesUrl() }] : []),
   ...(allConsonants.length > 0 ? [{ label: t('stats.all_consonants'), value: allConsonants.length, href: getAllConsonantsUrl() }] : []),
@@ -226,12 +225,6 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
     .stats {
         max-width: var(--content-width-medium);
         margin: 0 auto;
-    }
-
-    .stats__link {
-        color: var(--color-text-primary);
-        text-decoration: none;
-        transition: opacity 0.2s ease;
     }
 
     .stats :global(time) {

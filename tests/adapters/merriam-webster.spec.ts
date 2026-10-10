@@ -81,6 +81,31 @@ describe('merriam-webster adapter', () => {
       expect(stripMarkup('{dxt|test|test:1|1}')).toBe('test');
     });
 
+    it('keeps the link text of etymology and italic links', async () => {
+      const { stripMarkup } = await import('#adapters/merriam-webster');
+      expect(stripMarkup('from {it}shrewe{/it} + {et_link|-ed|-ed:1}')).toBe('from shrewe + -ed');
+      expect(stripMarkup('see {i_link|stanza|stanza}')).toBe('see stanza');
+    });
+
+    it('writes a "more at" cross-reference as the dictionary displays it', async () => {
+      const { stripMarkup } = await import('#adapters/merriam-webster');
+      expect(stripMarkup('from {it}placēre{/it} to please {ma}{mat|please|}{/ma}'))
+        .toBe('from placēre to please — more at please');
+      expect(stripMarkup('to turn {ma}{mat|annual|}, {mat|worth|worth:4}{/ma}'))
+        .toBe('to turn — more at annual, worth');
+    });
+
+    it('puts a dash before a directional cross-reference', async () => {
+      const { stripMarkup } = await import('#adapters/merriam-webster');
+      expect(stripMarkup('{dx_ety}see {dxt|help:1||}{/dx_ety}')).toBe('— see help');
+    });
+
+    it('drops the homograph number from link text', async () => {
+      const { stripMarkup } = await import('#adapters/merriam-webster');
+      expect(stripMarkup('{et_link|-ed:1|-ed:1}')).toBe('-ed');
+      expect(stripMarkup('{sx|cheer:1||}')).toBe('cheer');
+    });
+
     it('strips remaining unknown tags', async () => {
       const { stripMarkup } = await import('#adapters/merriam-webster');
       expect(stripMarkup('{unknown}content')).toBe('content');
@@ -144,6 +169,45 @@ describe('merriam-webster adapter', () => {
       const fixture = loadFixture('learned');
       const examples = extractExamples(firstEntry(fixture, isMWEntry));
       expect(examples.length).toBeGreaterThanOrEqual(2);
+    });
+
+    // The structure of the MW JSON reference's `pseq` example, "tab"
+    // (dictionaryapi.com/products/json, 2.10.10): a `bs` followed by two
+    // senses. 2.10.9 places `bs` "in an sseq or pseq array". The reference's
+    // senses carry only text; each is given a `vis` here, which `dt` allows,
+    // so every level has an example to find.
+    it('reads the binding substitute inside a parenthesized sense sequence', async () => {
+      const { extractExamples, isMWEntry } = await import('#adapters/merriam-webster');
+      const entry: unknown = {
+        meta: { id: 'tab:1', src: 'collegiate' },
+        fl: 'noun',
+        def: [{
+          sseq: [[
+            ['pseq', [
+              ['bs', {
+                sense: {
+                  sn: '1 a',
+                  dt: [['text', '{bc}a short projecting device: such as'], ['vis', [{ t: 'pull the {wi}tab{/wi}' }]]],
+                },
+              }],
+              ['sense', {
+                sn: '(1)',
+                dt: [['text', '{bc}a small flap or loop by which something may be grasped or pulled'], ['vis', [{ t: 'a zipper {wi}tab{/wi}' }]]],
+              }],
+              ['sense', {
+                sn: '(2)',
+                dt: [['text', '{bc}a projection from a card used as an aid in filing'], ['vis', [{ t: 'a file {wi}tab{/wi}' }]]],
+              }],
+            ]],
+          ]],
+        }],
+        shortdef: ['a short projecting device'],
+      };
+      if (!isMWEntry(entry)) {
+        throw new Error('The tab entry is not a valid MW entry');
+      }
+
+      expect(extractExamples(entry)).toEqual(['pull the tab', 'a zipper tab', 'a file tab']);
     });
 
     it('extracts examples with cross-reference markup', async () => {

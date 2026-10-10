@@ -1,7 +1,8 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "3.25.0",
+  "version": "3.26.0",
+  "private": true,
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
     "word-of-the-day",
@@ -13,6 +14,14 @@
   ],
   "author": "Sean Kennedy <sean@codeserious.com>",
   "license": "MIT",
+  "homepage": "https://github.com/seriouslysean/occasional-wotd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seriouslysean/occasional-wotd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seriouslysean/occasional-wotd/issues"
+  },
   "engines": {
     "node": ">=26.0.0"
   },
@@ -41,26 +50,27 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
-    "astro": "^7.3.3",
+    "astro": "^7.3.8",
     "entities": "^8.1.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.4",
-    "@playwright/test": "^1.63.0",
-    "@sentry/astro": "^10.75.0",
-    "@sentry/node": "^10.75.0",
-    "@types/node": "^26.6.2",
-    "@vitest/coverage-v8": "^5.0.1",
+    "@playwright/test": "^1.64.0",
+    "@sentry/astro": "^11.6.0",
+    "@sentry/node": "^11.6.0",
+    "@types/node": "^26.6.4",
+    "@vitest/coverage-v8": "^5.0.3",
     "cmu-pronouncing-dictionary": "3.0.0",
-    "lefthook": "^2.1.14",
+    "js-yaml": "^5.4.3",
+    "lefthook": "^2.2.1",
     "lightningcss": "^1.33.0",
     "opentype.js": "^2.0.0",
-    "oxlint": "^1.83.0",
-    "sharp": "^0.35.4",
+    "oxlint": "^1.87.0",
+    "sharp": "^0.35.5",
     "subtlex-word-frequencies": "2.0.0",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.1",
+    "vitest": "^5.0.3",
     "wordpos": "^2.1.0"
   },
   "imports": {
@@ -81,5 +91,10 @@
     "#tools/*": "./tools/*.ts",
     "#locales/*": "./locales/*",
     "#tests/*": "./tests/*"
+  },
+  "allowScripts": {
+    "lefthook@2.2.1": true,
+    "wordpos@2.1.0": true,
+    "fsevents": false
   }
 }

@@ -11,7 +11,7 @@ import { getPageMetadata } from '#astro-utils/page-metadata';
 import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
 import { getMonthUrl } from '#astro-utils/url-utils';
 import { getWordStats } from '#utils/word-stats-utils';
-import { t } from '#utils/i18n-utils';
+import { t, tp } from '#utils/i18n-utils';
 import {
   availableYears,
   getWordsForYear,
@@ -36,8 +36,8 @@ const monthGroups = groupWordsByMonth(year, words);
 const yearStats = getWordStats(words);
 const summaryCountItems = [{ label: t('stats.total_words'), value: words.length }];
 const summaryWordItems = [
-  ...(yearStats.longest ? [{ label: t('stats.longest', { length: yearStats.longest.word.length }), value: yearStats.longest }] : []),
-  ...(yearStats.shortest ? [{ label: t('stats.shortest', { length: yearStats.shortest.word.length }), value: yearStats.shortest }] : []),
+  ...(yearStats.longest ? [{ label: tp('stats.longest', yearStats.longest.word.length), value: yearStats.longest }] : []),
+  ...(yearStats.shortest ? [{ label: tp('stats.shortest', yearStats.shortest.word.length), value: yearStats.shortest }] : []),
 ];
 ---
 

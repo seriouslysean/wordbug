@@ -27,10 +27,11 @@ Astro static site generator for word-of-the-day websites. Zero application JavaS
 
 ## Architecture: The Boundary
 
-**Critical rule**: Files in `utils/` (root) must NEVER import from `src/utils/` or `astro:*`. This breaks CLI tools.
+The one rule that cannot be broken: code outside `src/` (`utils/`, `adapters/`, `tools/`, `constants/`, `config/`, `types/`) never imports from `#astro-utils/*`, `astro:*`, or `@sentry/astro`. CLI tools run as plain Node.js and crash on any Astro-only module in their import chain.
 
 - `utils/` = pure Node.js business logic (used by CLI tools, tests, Astro)
 - `src/utils/` = Astro-specific wrappers (Content Collections, Sentry, caching)
+- Architecture tests in `tests/architecture/` enforce the boundary
 
 Pattern: put pure logic in `utils/`, create thin wrapper in `src/utils/` that delegates to it.
 
@@ -68,10 +69,22 @@ TypeScript aliases (`#utils`, `#astro-utils`, `#types`, `#constants`, `#config`,
 - `#config/*` -> `config/*`
 - `#adapters/*` -> `adapters/*`
 - `#tools/*` -> `tools/*`
+- `#data/*` -> `data/*`
+- `#styles/*` -> `src/styles/*`
+- `#assets/*` -> `src/assets/*`
+- `#locales/*` -> `locales/*`
+- `#tests/*` -> `tests/*`
+
+## One Source of Truth
+
+- Environment validation and CSP live in `astro.config.ts`. Dynamic inline content that cannot be auto-hashed goes in a same-origin endpoint (`src/pages/theme.css.ts`, `src/pages/ga-init.js.ts`), not inline `<style set:html>`, `<script is:inline>`, or `define:vars`.
+- Stats definitions live in `constants/stats.ts`, URL patterns in `constants/urls.ts`.
+- URLs: `getUrl(path)` for internal navigation (adds `BASE_PATH`), `getFullUrl(path)` for absolute SEO and social URLs. Never hardcode paths.
 
 ## Error Handling
 
-- `await exit(code)` in CLI tools, never bare `process.exit()`. The `exit()` helper from `#utils/logger` flushes Sentry first.
+- `await exit(code)` in CLI tools, never bare `process.exit()` in async error handlers. The `exit()` helper from `#utils/logger` flushes Sentry first. `process.exit(0)` for `--help` and module-level validation guards is fine: nothing is in flight yet.
+- Every async main call in a CLI tool is awaited inside try/catch or has a `.catch()` that calls `await exit(1)`.
 - Throw at boundaries, catch at the top. Don't scatter try/catch.
 
 ## Testing
@@ -84,6 +97,7 @@ Five test layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/sr
 - No overlapping tests. Each function tested at exactly one layer.
 - E2E verifies build assembly (navigation, meta tag presence, JSON-LD parsability, keyboard a11y), not logic. If it can run without a browser, it belongs at a lower layer.
 - E2E runs in demo mode (no `BASE_PATH`). Requires `npm run build` first. Test URLs omit trailing slashes. Test elements and user journeys, not strings.
+- Real data over feature flags: when a test or page needs data, add demo words that produce it, dated before 20250117.
 
 ## Environment
 
@@ -100,6 +114,8 @@ npm test            # All tests green, coverage met
 npm run build       # Build succeeds without .env
 npm run test:e2e    # E2E tests pass against built site
 ```
+
+The upstream repository keeps its words under `data/demo/`, so a local build there is `SOURCE_DIR=demo npm run build`.
 
 ## Pull Requests
 

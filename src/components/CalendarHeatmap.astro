@@ -2,6 +2,7 @@
 import { buildActivityCalendar } from '#utils/calendar-utils';
 import { formatDate } from '#utils/date-utils';
 import { t, tp } from '#utils/i18n-utils';
+import { getUrl } from '#astro-utils/url-utils';
 
 interface HeatmapEntry {
   date: string;
@@ -25,8 +26,10 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
         <figcaption class="heatmap__caption">{calendar.year} · {tp('common.words', calendar.total)}</figcaption>
         {/* No role="img": active days are links, so the grid must expose its
             children to assistive tech. Each link is labelled with its word and
-            date; the figcaption names the year. */}
+            date; the figcaption names the year. role="group" because ARIA
+            forbids naming a generic div with aria-label. */}
         <div
+          role="group"
           class:list={['heatmap__grid', `heatmap__grid--cols-${calendar.columns}`]}
           aria-label={t('stats.activity_aria', { year: calendar.year })}
         >
@@ -35,7 +38,7 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
             return entry
               ? (
                 <a
-                  href={entry.url}
+                  href={getUrl(entry.url)}
                   class="heatmap__cell heatmap__cell--active"
                   aria-label={`${formatDate(entry.date)}, ${entry.word}`}
                 >
@@ -133,7 +136,9 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
   }
 
   /* Tooltip: word-over-date card, matching WordLink. Hidden by default; shown
-     only on hover-capable pointers (desktop), so touch devices just navigate. */
+     only on hover-capable pointers (desktop), so touch devices just navigate.
+     Hidden with display, not visibility: an invisible box still counts toward
+     the page's scroll width, and the tooltips of edge columns overhang it. */
   .heatmap__tooltip {
     display: none;
   }
@@ -143,7 +148,6 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
       position: absolute;
       bottom: calc(100% + 6px);
       left: 50%;
-      display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1px;
@@ -154,7 +158,6 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
       box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
       white-space: nowrap;
       transform: translateX(-50%);
-      visibility: hidden;
       pointer-events: none;
       z-index: 2;
     }
@@ -166,7 +169,7 @@ const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReve
 
     .heatmap__cell--active:hover .heatmap__tooltip,
     .heatmap__cell--active:focus-visible .heatmap__tooltip {
-      visibility: visible;
+      display: flex;
     }
   }
 

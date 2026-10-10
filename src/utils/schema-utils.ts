@@ -19,22 +19,28 @@ export type StructuredDataType = typeof STRUCTURED_DATA_TYPE[keyof typeof STRUCT
  * @returns Base schema.org website data
  */
 export function getWebsiteSchemaData(): WebSiteSchema {
-  return {
+  const schemaData: WebSiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: seoConfig.siteName,
     description: seoConfig.defaultDescription,
     url: getFullUrl('/'),
     inLanguage: seoConfig.locale,
-    author: {
-      '@type': 'Person',
-      name: seoConfig.author,
-    },
     audience: {
       '@type': 'EducationalAudience',
       educationalRole: 'student',
     },
   };
+
+  // SITE_AUTHOR is optional, and a Person without a name is not valid data
+  if (seoConfig.author) {
+    schemaData.author = {
+      '@type': 'Person',
+      name: seoConfig.author,
+    };
+  }
+
+  return schemaData;
 }
 
 

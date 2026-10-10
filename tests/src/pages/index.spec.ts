@@ -24,7 +24,7 @@ describe('Homepage: demo dataset', () => {
     vi.useRealTimers();
   });
 
-  it('reads every word on the date its file name gives, as the site does', () => {
+  it('reads every word the site builds, on the date its record stores', () => {
     expect(failures).toEqual([]);
     expect(words.map(word => word.date)).toEqual(getWordFiles().files.map(file => file.date));
     // The site's collection loads every JSON file below the words directory

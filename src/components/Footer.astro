@@ -1,5 +1,5 @@
 ---
-import { SITE_AUTHOR_URL, SITE_AUTHOR, SITE_ATTRIBUTION_MESSAGE } from 'astro:env/client';
+import { SITE_AUTHOR_URL, SITE_AUTHOR, SITE_ATTRIBUTION_MESSAGE, WORDNIK_WEBSITE_URL } from 'astro:env/client';
 import { Image } from 'astro:assets';
 import wordnikLogo from '#assets/wordnik-gearheart.png';
 import SiteLink from '#components/SiteLink.astro';
@@ -11,7 +11,7 @@ const showAttribution = SITE_AUTHOR_URL && SITE_AUTHOR && SITE_ATTRIBUTION_MESSA
 ---
 
 <footer class="footer" role="contentinfo">
-  <nav class="footer__nav">
+  <nav class="footer__nav" aria-label={t('nav.footer_label')}>
     <ul class="footer__links">
       <li class="footer__item">
         <SiteLink href="/">{t('nav.home')}</SiteLink>
@@ -37,7 +37,7 @@ const showAttribution = SITE_AUTHOR_URL && SITE_AUTHOR && SITE_ATTRIBUTION_MESSA
       )}
       <li class="footer__item">
         <SiteLink
-          href="https://www.wordnik.com"
+          href={WORDNIK_WEBSITE_URL}
           target="_blank"
           class="footer__wordnik"
           title={t('footer.powered_by')}

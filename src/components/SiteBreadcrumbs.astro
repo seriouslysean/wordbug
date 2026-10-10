@@ -3,10 +3,14 @@ import { BASE_PATH } from 'astro:env/client';
 import SiteLink from '#components/SiteLink.astro';
 import { generateBreadcrumbs } from '#utils/breadcrumb-utils';
 
+interface Props {
+  word?: string;
+}
+
 const pathname = Astro.url.pathname;
 const basePath = BASE_PATH;
 
-const breadcrumbs = generateBreadcrumbs(pathname, basePath);
+const breadcrumbs = generateBreadcrumbs(pathname, basePath, Astro.props.word);
 const showBreadcrumbs = breadcrumbs.length > 1;
 ---
 

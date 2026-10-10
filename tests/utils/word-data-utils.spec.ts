@@ -8,12 +8,8 @@ import {
 } from 'vitest';
 
 import {
-  getAdjacentWords,
   getCurrentWord,
-  getPastWords,
-  getWordByDate,
   getWordsByLength,
-  getWordsByMonth,
   groupWordsByLength,
   groupWordsByMonth,
   groupWordsByYear,
@@ -21,6 +17,7 @@ import {
   getWordsByLetter,
   groupWordsByPartOfSpeech,
   getWordsByPartOfSpeech,
+  extractWordDefinition,
 } from '#astro-utils/word-data-utils';
 import {
   getAvailableLengths,
@@ -40,11 +37,9 @@ import {
   corpusRelations,
   mergeEnrichment,
   findCurrentWord,
+  getAdjacentWords,
   getPreviousWords,
 } from '#utils/word-data-utils';
-import {
-  extractWordDefinition,
-} from '#astro-utils/word-data-utils';
 import type { DictionaryDefinition, WordData } from '#types';
 
 const makeWord = (word: string, date: string, data: DictionaryDefinition[] = []): WordData => ({
@@ -143,56 +138,6 @@ describe('word-data-utils', () => {
     });
   });
 
-  describe('getPastWords', () => {
-    it('returns words before given date', () => {
-      const result = getPastWords('20250110', mockWordData);
-      const [first, second, third, fourth, fifth] = result;
-
-      expect(result).toHaveLength(5);
-      expect(requireValue(first).word).toBe('yesterday');
-      expect(requireValue(second).word).toBe('older');
-      // sorted order: current, yesterday, older, zebra, banana
-      expect(requireValue(third).word).toBe('zebra');
-      expect(requireValue(fourth).word).toBe('banana');
-      expect(requireValue(fifth).word).toBe('apple');
-    });
-
-    it('limits to 5 words', () => {
-      const manyWords = Array.from({ length: 10 }, (_, i) => makeWord(
-        `word${i}`,
-        // descending dates
-        `2025010${9 - i}`,
-      ));
-      const result = getPastWords('20250110', manyWords);
-      expect(result).toHaveLength(5);
-    });
-
-    it('returns empty array for empty date', () => {
-      expect(getPastWords('', mockWordData)).toEqual([]);
-      // @ts-expect-error null is a deliberate invalid runtime input.
-      expect(getPastWords(null, mockWordData)).toEqual([]);
-    });
-  });
-
-  describe('getWordByDate', () => {
-    it('finds word by exact date match', () => {
-      const result = requireValue(getWordByDate('20250109', mockWordData));
-      expect(result.word).toBe('yesterday');
-    });
-
-    it('returns null for non-existent date', () => {
-      // use non-existent date
-      const result = getWordByDate('20250199', mockWordData);
-      expect(result).toBeNull();
-    });
-
-    it('returns null for empty date', () => {
-      expect(getWordByDate('', mockWordData)).toBeNull();
-      // @ts-expect-error null is a deliberate invalid runtime input.
-      expect(getWordByDate(null, mockWordData)).toBeNull();
-    });
-  });
-
   describe('getAdjacentWords', () => {
     it('returns previous and next words', () => {
       const result = getAdjacentWords('20250109', mockWordData);
@@ -222,6 +167,10 @@ describe('word-data-utils', () => {
       const result = getAdjacentWords('20250199', mockWordData);
       expect(result.previousWord).toBeNull();
       expect(result.nextWord).toBeNull();
+    });
+
+    it('returns null for an empty date', () => {
+      expect(getAdjacentWords('', mockWordData)).toEqual({ previousWord: null, nextWord: null });
     });
   });
 
@@ -292,24 +241,6 @@ describe('word-data-utils', () => {
 
     it('returns empty array for non-existent year', () => {
       const result = getWordsByYear('2020', mockWordData);
-      expect(result).toEqual([]);
-    });
-  });
-
-  describe('getWordsByMonth', () => {
-    it('filters words by month within a year', () => {
-      const result = getWordsByMonth('2025', '01', mockWordData);
-      // all 2025 words are in January
-      expect(result).toHaveLength(6);
-      expect(result.every(w => w.date.startsWith('202501'))).toBe(true);
-
-      const result2024 = getWordsByMonth('2024', '12', mockWordData);
-      expect(result2024).toHaveLength(1);
-      expect(requireValue(result2024[0]).word).toBe('year2024');
-    });
-
-    it('returns empty array for non-existent month', () => {
-      const result = getWordsByMonth('2025', '02', mockWordData);
       expect(result).toEqual([]);
     });
   });

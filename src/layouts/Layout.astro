@@ -11,13 +11,24 @@ import Header from '#components/Header.astro';
 import SiteBreadcrumbs from '#components/SiteBreadcrumbs.astro';
 import StructuredData from '#components/StructuredData.astro';
 import { getSocialImageUrl } from '#astro-utils/image-utils';
-import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
+import { STRUCTURED_DATA_TYPE, type StructuredDataType } from '#astro-utils/schema-utils';
 import { getMetaDescription, seoConfig } from '#astro-utils/seo-utils';
 import { getAsciiArt } from '#astro-utils/static-file-utils';
 import { getFullUrl,getUrl } from '#astro-utils/url-utils';
 import { extractWordDefinition } from '#astro-utils/word-data-utils';
-import { t } from '#utils/i18n-utils';
+import { getOpenGraphLocale, t } from '#utils/i18n-utils';
 import { formatPageTitle } from '#utils/page-title-utils';
+import type { WordData } from '#types';
+
+interface Props {
+  title?: string;
+  word?: WordData;
+  description?: string;
+  structuredDataType?: StructuredDataType;
+  noindex?: boolean;
+  nofollow?: boolean;
+  itemCount?: number;
+}
 
 const { title, word, description, structuredDataType, noindex, nofollow, itemCount } = Astro.props;
 
@@ -33,6 +44,10 @@ const socialImageUrl = getSocialImageUrl({
 });
 
 const finalTitle = formatPageTitle(title, word, seoConfig.defaultTitle, seoConfig.siteName);
+
+// Open Graph locales are language_TERRITORY (en_US), not BCP 47 (en-US);
+// undefined when the locale names no region, and the tag is left out
+const ogLocale = getOpenGraphLocale(seoConfig.locale);
 
 // Get ASCII art for HTML comment
 const asciiArt = getAsciiArt();
@@ -61,7 +76,7 @@ const wordSchemaData = word ? (() => {
   <head>
 	<Fragment set:html={asciiComment} />
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 	<meta name="generator" content={Astro.generator} />
 	{GA_ENABLED && GA_MEASUREMENT_ID && (
 		<link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -69,8 +84,10 @@ const wordSchemaData = word ? (() => {
 
 		<title>{finalTitle}</title>
 		<meta name="description" content={metaDescription} />
-		<meta name="keywords" content={seoConfig.keywords.join(', ')} />
-		<meta name="author" content={seoConfig.author} />
+		{seoConfig.keywords.length > 0 && (
+			<meta name="keywords" content={seoConfig.keywords.join(', ')} />
+		)}
+		{seoConfig.author && <meta name="author" content={seoConfig.author} />}
 		{noindex || nofollow ? (
 			<meta name="robots" content={[noindex && 'noindex', nofollow && 'nofollow'].filter(Boolean).join(', ')} />
 		) : null}
@@ -82,26 +99,14 @@ const wordSchemaData = word ? (() => {
 			<meta name="theme-color" content={COLOR_DARK_BACKGROUND} media="(prefers-color-scheme: dark)" />
 		)}
 		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-		<meta name="educational-content" content="true" />
-		<meta name="content-rating" content="educational" />
-		<meta name="audience" content="students,educators,learners" />
-		<meta name="subject" content="vocabulary,language-arts,english" />
-		<meta name="education-level" content="all-ages" />
-		<meta name="resource-type" content="educational-website" />
 
 		<link rel="icon" type="image/svg+xml" href={getUrl('/favicon.svg')} />
 		<link rel="manifest" href={getUrl('/manifest.json')} />
 
 		<link type="text/plain" rel="author" href={getUrl('/humans.txt')} />
-		<link type="text/plain" rel="llms" href={getUrl('/llms.txt')} />
 
 		<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={getUrl('/rss.xml')} />
-
-		<meta property="og:locale" content={seoConfig.locale} />
-		<meta http-equiv="content-language" content={seoConfig.locale.split('-')[0]} />
 
 		<meta property="og:title" content={finalTitle} />
 		<meta property="og:description" content={metaDescription} />
@@ -109,7 +114,7 @@ const wordSchemaData = word ? (() => {
 		<meta property="og:url" content={currentUrl} />
 		<meta property="og:image" content={socialImageUrl} />
 		<meta property="og:site_name" content={seoConfig.siteName} />
-		<meta property="og:locale" content={seoConfig.locale} />
+		{ogLocale && <meta property="og:locale" content={ogLocale} />}
 
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={finalTitle} />
@@ -134,7 +139,7 @@ const wordSchemaData = word ? (() => {
 	<main class="content" id="main-content">
 	  <slot />
 	</main>
-	<SiteBreadcrumbs />
+	<SiteBreadcrumbs word={word?.word} />
 	<Footer />
   </body>
 </html>

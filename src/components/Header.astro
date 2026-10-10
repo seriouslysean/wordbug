@@ -2,12 +2,14 @@
 import { SITE_TITLE } from 'astro:env/client';
 import HeaderSearch from '#components/HeaderSearch.astro';
 import SiteLink from '#components/SiteLink.astro';
+import { t } from '#utils/i18n-utils';
 ---
 
 <header class="header">
-  <nav class="header__nav">
+  <nav class="header__nav" aria-label={t('nav.main_label')}>
     <SiteLink href="/" class="header__link">
-      <h2 class="header__title">{SITE_TITLE}</h2>
+      {/* Not a heading: it precedes the page's h1 on every page. */}
+      <p class="header__title">{SITE_TITLE}</p>
     </SiteLink>
   </nav>
   <HeaderSearch />

@@ -296,3 +296,36 @@ describe('regenerate-all-words rate-limit backoff', () => {
     expect(ctx.delay).not.toHaveBeenCalled();
   });
 });
+
+// The scan once dated an entry by its file name, so words/alpha.json reached
+// here with the date "alpha" and was overwritten with it.
+describe('regenerate-all-words and a record it could not build validly', () => {
+  const STORED = { word: 'alpha', date: '20240101', adapter: 'wordnik', data: [{ text: 'a letter', partOfSpeech: 'noun' }] };
+  const regenerate = async (date: string) => {
+    const filePath = path.join(ctx.wordsDir, 'alpha.json');
+    fs.writeFileSync(filePath, JSON.stringify(STORED));
+    ctx.responses.wordnik = httpResponse(200, [{ partOfSpeech: 'noun', text: 'the first letter' }]);
+    const tool = await import('#tools/regenerate-all-words');
+    const success = await tool.regenerateWordFile('alpha', date, filePath);
+    return { success, stored: JSON.parse(fs.readFileSync(filePath, 'utf-8')) };
+  };
+
+  it('refuses to write a date that is no calendar day, and leaves the file as it was', async () => {
+    const { success, stored } = await regenerate('alpha');
+
+    expect(success).toBe(false);
+    expect(stored).toEqual(STORED);
+    expect(ctx.logger.error).toHaveBeenCalledExactlyOnceWith('Failed to regenerate word file', expect.objectContaining({
+      word: 'alpha',
+      date: 'alpha',
+      error: expect.stringContaining('date must be YYYYMMDD, not alpha'),
+    }));
+  });
+
+  it('writes the record when it is valid', async () => {
+    const { success, stored } = await regenerate('20240101');
+
+    expect(success).toBe(true);
+    expect(stored).toMatchObject({ word: 'alpha', date: '20240101', data: [{ text: 'the first letter', partOfSpeech: 'noun' }] });
+  });
+});

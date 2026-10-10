@@ -68,11 +68,43 @@ describe('add-word input errors', () => {
     ['a future date', 'beta', { date: '29991231' }, 'Cannot add words for future dates'],
     ['a date that already has a word', 'beta', { date: '20240101' }, 'Word already exists for this date'],
     ['a word already used on another date', 'alpha', { date: '20240102' }, 'Word already exists for different date'],
+    ['a word of symbols only, whose page would be /word/', '&', { date: '20240102' }, 'Word has no URL slug'],
+    ['a word in a script the slug drops whole', '日本', { date: '20240102' }, 'Word has no URL slug'],
+    ['a different word with the slug of a stored one', "al'pha", { date: '20240102' }, 'Word shares its URL slug with a different word'],
   ])('refuses %s without reporting an error', async (_, input, options, message) => {
     const code = await runAddWord(input, options);
 
     expect(code).toBe(1);
     expect(ctx.logger.warn).toHaveBeenCalledExactlyOnceWith(message, expect.any(Object));
     expect(ctx.logger.error).not.toHaveBeenCalled();
+  });
+});
+
+// The site builds every .json file below the words directory, so a word can
+// hold a date from a file add-word would not have written itself
+describe('add-word and a date held by a file outside its year directory', () => {
+  it('refuses the date, as it does one held by words/<year>/<date>.json', async () => {
+    fs.mkdirSync(path.join(ctx.wordsDir, 'drafts'));
+    fs.writeFileSync(path.join(ctx.wordsDir, 'drafts', '20250703.json'), JSON.stringify({ ...STORED, word: 'gamma', date: '20250703' }));
+
+    const code = await runAddWord('beta', { date: '20250703' });
+
+    expect(code).toBe(1);
+    expect(ctx.logger.warn).toHaveBeenCalledExactlyOnceWith('Word already exists for this date', { date: '20250703', existingWord: 'gamma' });
+    expect(fs.existsSync(path.join(ctx.wordsDir, '2025'))).toBe(false);
+  });
+});
+
+describe('add-word and a word file it cannot read', () => {
+  it('reports the file once, however many checks read the corpus', async () => {
+    fs.writeFileSync(path.join(ctx.wordsDir, '2024', '20240102.json'), '{ "word": ');
+
+    // Every check passes, so the run goes on to the lookup, which has no network
+    const code = await runAddWord('beta', { date: '20240103' });
+
+    expect(code).toBe(1);
+    expect(ctx.logger.error.mock.calls.filter(([message]) => message === 'Failed to read word file'))
+      .toEqual([['Failed to read word file', expect.objectContaining({ file: '20240102.json' })]]);
+    expect(ctx.logger.error).toHaveBeenCalledWith('Failed to add word', expect.objectContaining({ word: 'beta' }));
   });
 });

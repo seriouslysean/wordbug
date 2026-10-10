@@ -118,7 +118,8 @@ export default defineConfig({
       SITE_TITLE: envField.string({ context: 'client', access: 'public', default: defaults.SITE_TITLE }),
       SITE_DESCRIPTION: envField.string({ context: 'client', access: 'public', default: defaults.SITE_DESCRIPTION }),
       SITE_ID: envField.string({ context: 'client', access: 'public', default: defaults.SITE_ID }),
-      SITE_URL: envField.string({ context: 'client', access: 'public', default: defaults.SITE_URL }),
+      SITE_SHORT_NAME: envField.string({ context: 'client', access: 'public', optional: true }),
+      SITE_URL: envField.string({ context: 'client', access: 'public', default: defaults.SITE_URL, url: true }),
       SITE_LOCALE: envField.string({ context: 'client', access: 'public', default: 'en-US' }),
       SITE_KEYWORDS: envField.string({ context: 'client', access: 'public', default: '' }),
       SITE_AUTHOR: envField.string({ context: 'client', access: 'public', default: '' }),
@@ -136,6 +137,7 @@ export default defineConfig({
       SENTRY_ENVIRONMENT: envField.string({ context: 'client', access: 'public', default: 'development' }),
       BASE_PATH: envField.string({ context: 'client', access: 'public', default: '/' }),
       SOURCE_DIR: envField.string({ context: 'client', access: 'public', default: defaults.SOURCE_DIR }),
+      WORDNIK_WEBSITE_URL: envField.string({ context: 'client', access: 'public', default: defaults.WORDNIK_WEBSITE_URL, url: true }),
     },
   },
   vite: {
@@ -194,11 +196,9 @@ export default defineConfig({
   },
   integrations: [
     ...(sentryEnabled ? [sentry({
-      sourceMapsUploadOptions: {
-        project: process.env.SENTRY_PROJECT,
-        org: process.env.SENTRY_ORG,
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-      },
+      project: process.env.SENTRY_PROJECT,
+      org: process.env.SENTRY_ORG,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
     })] : []),
     sitemap({
       filter: (page) => !page.endsWith('.txt'),

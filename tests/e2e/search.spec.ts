@@ -70,7 +70,6 @@ test.describe('header search', () => {
 });
 
 test('keeps only the latest query while the word index is loading', async ({ page }) => {
-  // oxlint-disable-next-line consistent-function-scoping
   let releaseResponse: () => void = () => {};
   const responseReady = new Promise<void>(resolve => {
     releaseResponse = resolve;

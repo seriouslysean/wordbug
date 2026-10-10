@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { parseToolArgs, showHelp } from '#tools/help-utils';
 
 const ctx = vi.hoisted(() => ({
   exit: vi.fn(),
@@ -10,8 +11,6 @@ vi.mock('#utils/logger', () => ({
   getErrorMessage: (error: unknown) => error instanceof Error ? error.message : String(error),
   logger: ctx.logger,
 }));
-
-import { parseToolArgs, showHelp } from '#tools/help-utils';
 
 afterEach(() => {
   vi.restoreAllMocks();

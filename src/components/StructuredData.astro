@@ -40,7 +40,7 @@ if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
   schemas.push(collectionSchema);
 }
 
-const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, BASE_PATH);
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, BASE_PATH, word?.word);
 const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs);
 if (breadcrumbSchema) {
   schemas.push(breadcrumbSchema);

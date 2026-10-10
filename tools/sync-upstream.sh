@@ -19,7 +19,8 @@
 #      merged package.json is upstream's; any other conflict stops the sync
 #   5. Installs with npm ci and runs the AGENTS.md quality gates in order:
 #      lint, typecheck, test, the demo build, E2E
-#   6. Commits the merge once the gates pass without changing any file
+#   6. Commits the merge once the gates pass without changing any file, and
+#      fails if a commit hook then changes what was committed
 #
 # It never pushes and never touches main. On success the sync branch is left
 # checked out for review. Merge, not rebase, so main can be pushed without
@@ -143,7 +144,20 @@ if ! git diff --quiet || [[ -n "$(git ls-files --others --exclude-standard)" ]];
     "Inspect them on $BRANCH." "$ABANDON"
 fi
 
-git commit --quiet --no-edit
+# Commit hooks run after the check above. One that refuses the commit, or
+# that rewrites and stages a file (a lint hook that fixes), must not pass for
+# a merge every gate has seen.
+GATED_TREE=$(git write-tree)
+if ! git commit --quiet --no-edit; then
+  fail "" "The gates passed but the merge could not be committed on $BRANCH; a commit hook may have refused it." \
+    "The merge is still staged there, and main is unchanged." "$ABANDON"
+fi
+if [[ "$(git rev-parse 'HEAD^{tree}')" != "$GATED_TREE" ]]; then
+  git diff --stat "$GATED_TREE" HEAD >&2
+  fail "" "A commit hook changed the files above while committing the merge on $BRANCH," \
+    "so the commit holds changes no gate has run on. Run every quality gate there before merging it into main." \
+    "To abandon the sync: git switch main && git branch -D $BRANCH"
+fi
 
 echo ""
 echo "Merged upstream/main into $BRANCH after every gate passed. Nothing was pushed and main is unchanged."

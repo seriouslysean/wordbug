@@ -8,6 +8,7 @@ import * as Sentry from '@sentry/node';
 
 import { createLogger } from '#utils/logger-core';
 import type { SentryBridge } from '#utils/logger-core';
+import { sentryBaselineOptions, withoutDedupe } from '#utils/sentry-options';
 import { getErrorMessage } from '#utils/text-utils';
 
 const isEnabled = process.env.SENTRY_ENABLED === 'true' && !!process.env.SENTRY_DSN;
@@ -19,6 +20,8 @@ function ensureInitialized(): void {
     return;
   }
   Sentry.init({
+    ...sentryBaselineOptions,
+    integrations: withoutDedupe,
     dsn: process.env.SENTRY_DSN,
     environment: process.env.SENTRY_ENVIRONMENT || 'development',
     release: process.env.SENTRY_RELEASE || undefined,

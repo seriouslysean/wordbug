@@ -1,9 +1,6 @@
 import {
  beforeEach, describe, expect, it,
 } from 'vitest';
-
-declare const mockEnv: Record<string, string | boolean | undefined>;
-
 import {
   getBasePath,
   getPathname,
@@ -22,6 +19,8 @@ import {
   getStatUrl,
 } from '#astro-utils/url-utils';
 import { isPathUnderBase } from '#utils/url-utils';
+
+declare const mockEnv: Record<string, string | boolean | undefined>;
 
 describe('utils', () => {
   describe('slugify', () => {
@@ -85,8 +84,21 @@ describe('utils', () => {
     it('prefixes a path that merely shares its first characters with the base path', () => {
       mockEnv.BASE_PATH = '/app';
       expect(getUrl('/apple')).toBe('/app/apple');
-      expect(getUrl('/app')).toBe('/app');
       expect(getUrl('/app/x')).toBe('/app/x');
+    });
+
+    it('names the site root under a base path with its trailing slash', () => {
+      // A static host serves a directory at /blog/ and redirects /blog to it
+      mockEnv.BASE_PATH = '/blog';
+      expect(getUrl('/')).toBe('/blog/');
+      expect(getUrl()).toBe('/blog/');
+      // Astro.url.pathname for the home page under trailingSlash: 'never'
+      expect(getUrl('/blog')).toBe('/blog/');
+      expect(getUrl('/blog/')).toBe('/blog/');
+
+      mockEnv.BASE_PATH = '/blog/';
+      expect(getUrl('/')).toBe('/blog/');
+      expect(getUrl('/blog')).toBe('/blog/');
     });
 
     it('handles empty or undefined base path', () => {
@@ -131,6 +143,20 @@ describe('utils', () => {
 
     it('handles root path correctly', () => {
       expect(getFullUrl('/')).toBe('https://example.com/');
+    });
+
+    it('gives the home page one URL under a base path, whichever form asks', () => {
+      mockEnv.BASE_PATH = '/vocab';
+      expect(getFullUrl('/')).toBe('https://example.com/vocab/');
+      expect(getFullUrl('/vocab')).toBe('https://example.com/vocab/');
+      expect(getFullUrl('/vocab/')).toBe('https://example.com/vocab/');
+    });
+
+    it('does not double a base path that SITE_URL repeats', () => {
+      mockEnv.BASE_PATH = '/vocab';
+      mockEnv.SITE_URL = 'https://example.com/vocab';
+      expect(getFullUrl('/')).toBe('https://example.com/vocab/');
+      expect(getFullUrl('/words/hello')).toBe('https://example.com/vocab/words/hello');
     });
 
     it('throws when SITE_URL is missing', () => {

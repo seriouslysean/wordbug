@@ -38,7 +38,9 @@
     "total_words": "Total Words",
     "word_lengths": "Word Lengths",
     "milestone_words": "Milestone Words",
-    "days": "{{count}} Days",
+    "days_zero": "0 Days",
+    "days_one": "1 Day",
+    "days_other": "{{count}} Days",
     "least_common_letter_zero": "Least Common Letter (No Words)",
     "least_common_letter_one": "Least Common Letter (1 Word)",
     "least_common_letter_other": "Least Common Letter ({{count}} Words)"
@@ -57,8 +59,6 @@
     "heading": "Browse Words",
     "description": "Different ways to browse and discover words.",
     "subheading": "Multiple Browsing Options",
-    "summary_years": "{{totalWords}} Words Across {{yearCount}} Years",
-    "summary_lengths": "{{lengthCount}} Different Lengths",
     "summary_letters": "{{letterCount}} Letters (A-Z)"
   },
   "home": {

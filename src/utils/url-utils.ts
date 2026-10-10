@@ -44,9 +44,8 @@ export const getPathname = (astroPathname: string): string => {
 
 /**
  * Construct a URL with the configured base path
- * Simple function that trusts Astro and URL constructor for normalization
  * @param path - Path to append to base path
- * @returns URL path with base path
+ * @returns URL path with base path; the site root keeps its trailing slash
  */
 export const getUrl = (path = '/'): string => {
   const basePath = getBasePath();
@@ -55,13 +54,16 @@ export const getUrl = (path = '/'): string => {
     return path;
   }
   
-  if (path === '/') {
-    // Return base path as-is for root
-    return basePath;
-  }
-  
   // Normalize base path (remove trailing slash)
   const cleanBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
+
+  // The site root under a base path is a directory, and a static host serves
+  // a directory only at its trailing-slash URL: /blog redirects to /blog/.
+  // Astro's sitemap names it the same way. `trailingSlash: 'never'` makes
+  // Astro.url.pathname '/blog' there, so that form is the root as well.
+  if (path === '/' || path === cleanBasePath) {
+    return `${cleanBasePath}/`;
+  }
 
   // Check if path already includes base path
   if (isPathUnderBase(path, cleanBasePath)) {

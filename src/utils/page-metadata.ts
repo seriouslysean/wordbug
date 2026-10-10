@@ -4,6 +4,7 @@ import {
   getAllPageMetadata as getAllPageMetadataBase,
   createPageMetadataLookup,
 } from '#utils/page-metadata-utils';
+import type { WordData } from '#types';
 
 /**
  * Astro-specific page metadata functions with environment handling
@@ -25,12 +26,13 @@ import {
  * Automatically handles BASE_PATH stripping and provides word data
  * 
  * @param pathname - Raw pathname from Astro.url.pathname (may include BASE_PATH)
+ * @param currentWord - The word the homepage shows; only the homepage description names it
  * @returns Page metadata with title, description, category, etc.
  */
 const getCachedPageMetadata = createPageMetadataLookup(allWords);
 
-export const getPageMetadata = (pathname: string) =>
-  getCachedPageMetadata(stripBasePath(pathname) || 'home');
+export const getPageMetadata = (pathname: string, currentWord?: WordData | null) =>
+  getCachedPageMetadata(stripBasePath(pathname) || 'home', currentWord);
 
 /**
  * Get metadata for all pages (Astro-specific)

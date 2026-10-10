@@ -1,13 +1,13 @@
-import { SITE_TITLE, SITE_ID, SITE_DESCRIPTION, COLOR_PRIMARY_DARK } from 'astro:env/client';
+import { SITE_TITLE, SITE_SHORT_NAME, SITE_DESCRIPTION, SITE_LOCALE, COLOR_PRIMARY_DARK } from 'astro:env/client';
 import type { APIRoute } from 'astro';
 
-import { seoConfig } from '#astro-utils/seo-utils';
 import { getUrl } from '#astro-utils/url-utils';
 
 export const GET: APIRoute = async () => {
   const manifest = {
     name: SITE_TITLE,
-    short_name: SITE_ID,
+    // Optional in the manifest: without it a launcher shortens `name` itself
+    ...(SITE_SHORT_NAME ? { short_name: SITE_SHORT_NAME } : {}),
     description: SITE_DESCRIPTION,
     start_url: getUrl('/'),
     scope: getUrl('/'),
@@ -15,14 +15,14 @@ export const GET: APIRoute = async () => {
     background_color: COLOR_PRIMARY_DARK,
     theme_color: COLOR_PRIMARY_DARK,
     orientation: "portrait-primary",
-    categories: seoConfig.keywords,
-    lang: "en-US",
+    lang: SITE_LOCALE,
     icons: [
       {
         src: getUrl('/favicon.svg'),
         sizes: "any",
         type: "image/svg+xml",
-        purpose: "any maskable"
+        // The favicon has no safe zone, so it is not offered for masking
+        purpose: "any"
       }
     ]
   };

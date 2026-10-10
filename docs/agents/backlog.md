@@ -4,12 +4,12 @@ Known gaps and technical debt, organized by area.
 
 ## Implementation Gaps
 
-### ✅ Cross-Page Navigation — SHIPPED
+### Cross-Page Navigation — SHIPPED
 
-Word pages link to other words by length, part of speech, and year via
-`WordRelated.astro`. See [features.md](features.md) for detail.
+Word pages link to other words by length, first letter, part of speech, and
+year via `WordContext.astro`. See [features.md](features.md) for detail.
 
-### ✅ Client-Side Search — SHIPPED
+### Client-Side Search — SHIPPED
 
 Zero-dependency starts-with search behind a header magnifying-glass icon, over
 the existing `/words.json` (shared with the random-word button). Progressive
@@ -35,13 +35,10 @@ enhancement; the All Words page is the no-JS fallback.
 
 ## Documentation Gaps
 
-### Environment Variables
+### Environment Variables — SHIPPED
 
-Several env vars lack documentation in `docs/technical.md`:
-- `SITE_LOCALE`, `SITE_AUTHOR`, `SITE_AUTHOR_URL`,
-  `SITE_ATTRIBUTION_MESSAGE`
-- `HUMANS_*` variables (word curator, developer name/contact/site)
-- `SITE_KEYWORDS`
+`SITE_LOCALE`, `SITE_AUTHOR`, `SITE_AUTHOR_URL`, `SITE_ATTRIBUTION_MESSAGE`,
+the `HUMANS_*` variables and `SITE_KEYWORDS` are now in `docs/technical.md`.
 
 ### Content Collections
 
@@ -50,28 +47,33 @@ Several env vars lack documentation in `docs/technical.md`:
 
 ## Test Coverage
 
-~513 tests across 5 layers: unit, component, architecture, CLI integration,
-E2E. Overall coverage ~82-84%.
+Five layers: unit, component, architecture, CLI integration, E2E. `npm test`
+prints the current test count and coverage; neither is repeated here, where it
+would go stale.
 
 ### Remaining Gaps
 
-- `src/utils/static-file-utils.ts` (build-time only, validated by build)
-- `src/utils/static-paths-utils.ts` (build-time only, validated by build)
-- `utils/word-stats-utils.ts` branch coverage at 50% — long streak/gap
-  edge cases under-exercised.
-- `utils/word-data-utils.ts` branch coverage at ~45% — extraction edge
-  cases in `extractWordDefinition` and validation guards.
+The gaps listed here before are closed: `static-file-utils.ts` and
+`static-paths-utils.ts` have specs in `tests/src/utils/`, and
+`utils/word-stats-utils.ts` and `utils/word-data-utils.ts` are above 95% of
+branches. Notable in the coverage table as of v3.25.0:
 
-These are excluded from the coverage threshold where they're validated by
-the build process itself; the others are real gaps.
+- `src/utils/url-utils.ts` at 34% of functions: the single-expression URL
+  helpers that the Architecture & Code Quality entry in
+  [features.md](features.md) proposes deleting.
+- `src/utils/static-paths-utils.ts` at 67% of branches and
+  `src/utils/static-file-utils.ts` at 78% of lines.
+- `tools/` at 68% of lines. Three entry points are excluded because they run
+  in spawned processes (`vitest.config.ts` names them). Of those counted,
+  `tools/create-site.ts` sits at 19% of lines and `tools/utils.ts` at 76%.
 
 ## Migration Opportunities
 
-- Astro responsive image component not yet utilized; one `<img>` in
-  `Footer.astro`.
-- Astro type-safe environment variables API: `SOURCE_DIR` is in the schema
-  and read through `astro:env/client`. `WORDNIK_WEBSITE_URL` still has a
-  default in `astro.config.ts` but no schema entry.
+- Done: the Wordnik logo in `Footer.astro` renders through `<Image>` from
+  `astro:assets`.
+- Astro type-safe environment variables API: `SOURCE_DIR` and
+  `WORDNIK_WEBSITE_URL` are in the schema and read through
+  `astro:env/client`.
 - See Tier 1 "Astro Best Practices" in [features.md](features.md).
 
 ## Local Development Notes
@@ -95,14 +97,15 @@ the build process itself; the others are real gaps.
   `getStaticPaths` no longer iterates `allWords` once per grouping
   computation. Groupings are pre-computed via `Object.groupBy` once and
   read per word.
-- Speculation rules `eagerness` reduced from `eager` to `moderate` on hub
-  URLs, reducing unsolicited prefetches.
+- Speculation rules are gone: prefetching is Astro's own (`prefetch` in
+  `astro.config.ts`, `prefetchAll` with the `hover` strategy).
 - No build-time perf tracking or bundle-size analysis in CI; current
   performance is good. Lighthouse baselines would be the next step.
 
 ## Adapter Pipeline Health
 
-Last verified by a full `tool:regenerate-all-words --force` pass across all
-46 demo words: 45/46 succeeded; "Amblypygi" (a spider order) is not in
+Last verified by a full `tool:regenerate-all-words --force` pass when the demo
+set held 46 words (it has since grown; the pass has not been repeated):
+45/46 succeeded; "Amblypygi" (a spider order) is not in
 Merriam-Webster, Wordnik, or Wiktionary so the fallback chain exhausted
 cleanly and preserved the original file. Adapter chain is healthy.

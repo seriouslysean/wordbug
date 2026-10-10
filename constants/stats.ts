@@ -169,36 +169,3 @@ export const DYNAMIC_STATS_DEFINITIONS: Record<string, StatsDefinition> = {
     category: 'stats',
   },
 } as const;
-
-/**
- * Retrieve a stats definition by slug key
- * @param key - Stats slug
- * @returns Stats definition or undefined if not found
- */
-export function getStatsDefinition(key: string) {
-  // Check suffix definitions
-  const suffixMatch = SUFFIX_ENTRIES.find(([, slug]) => slug === key);
-  if (suffixMatch) {
-    return SUFFIX_DEFINITIONS[suffixMatch[0]];
-  }
-
-  // Check letter pattern definitions
-  if (key in LETTER_PATTERN_DEFINITIONS) {
-    return LETTER_PATTERN_DEFINITIONS[key];
-  }
-
-  // Check other pattern definitions
-  if (key in PATTERN_DEFINITIONS) {
-    return PATTERN_DEFINITIONS[key];
-  }
-
-  // Dynamic stats need special handling by the caller
-  if (key in DYNAMIC_STATS_DEFINITIONS) {
-    return DYNAMIC_STATS_DEFINITIONS[key];
-  }
-
-  return null;
-}
-
-// Export all keys for iteration - just use Object.values of STATS_SLUGS
-export const ALL_STATS_KEYS = Object.values(STATS_SLUGS);

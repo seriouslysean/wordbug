@@ -24,15 +24,16 @@ src/
   styles/                        # CSS files
   assets/                        # Static assets
 
-utils/                           # Pure Node.js utilities (25 files)
+utils/                           # Pure Node.js utilities (29 files)
   adapter-utils.ts               # Shared adapter helpers (POS, definition builders, canonical guard, HTTP)
   breadcrumb-utils.ts            # Breadcrumb navigation logic
   date-utils.ts                  # Date manipulation (YYYYMMDD format)
   definition-markup.ts          # Definition tag recognition and strict legacy validation
   definition-text.ts             # Definition markup parser, cross-reference checks, definition segments
-  i18n-utils.ts                  # Translation helpers (t(), tp())
+  i18n-utils.ts                  # Translation helpers (t(), tp()), og:locale form of a locale
   logger-core.ts                 # Logger factory (SentryBridge + output filter)
   logger.ts                      # CLI logger wrapper (@sentry/node)
+  sentry-options.ts              # Sentry options pinned to SDK 10 behaviour (all three inits)
   page-metadata-utils.ts         # Page title/description generation
   text-pattern-utils.ts          # Pattern detection (palindromes, double letters, etc.)
   text-utils.ts                  # slugify(), syllable counting, re-exports
@@ -53,6 +54,7 @@ tools/                           # CLI tools (Node.js only, no Astro deps)
   sync-upstream.sh               # Merge upstream into a fork, gated (tool:sync)
   templates/site/                # Callers, Dependabot, README and .gitignore that create-site writes
   utils.ts                       # Shared tool utilities
+  word-file-paths.ts             # Which files are word files: the content loader's rule
 
 adapters/                        # Dictionary API adapters
   index.ts                       # Adapter registry + fallback chain
@@ -127,31 +129,31 @@ All environment variables are validated in `astro.config.ts` (single source of t
 
 | Variable | Purpose |
 |----------|---------|
-| `SITE_URL` | Canonical URL (e.g., `https://example.com`) |
-| `SITE_TITLE` | Site name |
+| `SITE_URL` | The site's origin (e.g., `https://example.com`); the build refuses a value that is not a URL |
+| `SITE_TITLE` | Site name, as readers and crawlers see it: page titles, `og:site_name`, JSON-LD names, the feed title, the manifest `name` and the suffix of a word page's meta description (`word: definition \| SITE_TITLE`, from `getMetaDescription()` in `src/utils/seo-utils.ts`) |
 | `SITE_DESCRIPTION` | Site description for SEO |
-| `SITE_ID` | Unique site identifier |
+| `SITE_ID` | Machine identifier: the site tag on log events and the optional `public/ascii-{SITE_ID}.txt`. Never rendered to a reader |
 
 ### Data & Dictionary
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `SOURCE_DIR` | `''` | Data source subdirectory (unset = root paths) |
-| `DICTIONARY_ADAPTER` | `wordnik` | Primary dictionary API (`merriam-webster`, `wordnik`, `wiktionary`) |
+| `DICTIONARY_ADAPTER` | — | Primary dictionary API (`merriam-webster`, `wordnik`, `wiktionary`); no default, `add-word` and `regenerate-all-words` refuse to run without it |
 | `DICTIONARY_FALLBACK` | `wiktionary` | Fallback chain, comma-separated (e.g. `wordnik,wiktionary`); empty means the default Wiktionary fallback, `none` (any case) disables it |
 | `MERRIAM_WEBSTER_API_KEY` | — | Merriam-Webster API key |
 | `MERRIAM_WEBSTER_API_URL` | `https://dictionaryapi.com/api/v3/references` | MW API endpoint |
 | `MERRIAM_WEBSTER_DICTIONARY` | `collegiate` | MW dictionary edition |
 | `WORDNIK_API_KEY` | — | Wordnik API key |
 | `WORDNIK_API_URL` | `https://api.wordnik.com/v4` | Wordnik API endpoint |
-| `WORDNIK_WEBSITE_URL` | `https://www.wordnik.com` | Wordnik website that cross-references link to, when a Wordnik definition is fetched or a stored one rendered; the default also applies to the CLI tools |
+| `WORDNIK_WEBSITE_URL` | `https://www.wordnik.com` | Wordnik website that cross-references and the footer's Wordnik link point to, when a Wordnik definition is fetched or a stored one rendered; the default also applies to the CLI tools, and the build refuses a value that is not a URL |
 
 ### Deployment
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `BASE_PATH` | `/` | Subdirectory for deployment |
-| `SITE_LOCALE` | `en-US` | Locale for i18n |
+| `SITE_LOCALE` | `en-US` | BCP 47 locale: `<html lang>`, the feed and manifest language, and `og:locale` as `language_REGION` (`en_US`), left out when the locale names no region |
 
 ### Site Metadata
 
@@ -161,6 +163,7 @@ All environment variables are validated in `astro.config.ts` (single source of t
 | `SITE_AUTHOR_URL` | `''` | Author website URL |
 | `SITE_ATTRIBUTION_MESSAGE` | `''` | Custom attribution text |
 | `SITE_KEYWORDS` | `''` | SEO keywords (comma-separated) |
+| `SITE_SHORT_NAME` | — | Manifest `short_name`: the home-screen label for when `SITE_TITLE` is too long to fit under an icon. Unset leaves the member out and the launcher shortens `name` itself |
 
 ### humans.txt
 
@@ -208,7 +211,7 @@ Opt-in via environment variables. Setting `COLOR_DARK_BACKGROUND` activates dark
 | `COLOR_DARK_TEXT_LIGHT` | `--color-text-light` | light value |
 | `COLOR_DARK_BORDER` | `--color-border` | light value |
 
-When enabled, `Layout.astro` emits a `@media (prefers-color-scheme: dark)` block with the configured overrides and a dark-variant `<meta name="theme-color">`. No JavaScript required — respects the user's system preference. When no dark vars are set, the site is light-only with no dark mode CSS emitted.
+When enabled, the `/theme.css` endpoint (`src/pages/theme.css.ts`) emits a `@media (prefers-color-scheme: dark)` block with the configured overrides, and `Layout.astro` adds a dark-variant `<meta name="theme-color">`. No JavaScript required — respects the user's system preference. When no dark vars are set, the site is light-only with no dark mode CSS emitted.
 
 ### Environment Access
 
@@ -262,6 +265,8 @@ export const collections = {
   })
 };
 ```
+
+The CLI tools read the same files. `listWordFilePaths()` in `tools/word-file-paths.ts` applies the loader's rule (every `.json` file at any depth under the words directory, no file or directory whose name starts with a dot, symbolic links followed), and `getWordFiles()` (add-word, generate-images, regenerate-all-words) and normalize-word-data both list the corpus through it, so the tools agree with each other and with the build on which files hold a word. Each word's date is the one its record stores, as the build reads it, never the file name: `getWordFiles()` reports a file with no valid `date` as a failure, and regenerate-all-words holds the record it is about to write to `isWordData` and refuses an invalid one, leaving the file as it was. One difference is deliberate: the loader lists a directory that a link also points to under both paths, and the tools list it once, under the path that sorts first, so no word is processed twice. A directory that cannot be listed is a failure, not an empty one. add-word writes `{year}/{YYYYMMDD}.json`; a word file placed anywhere else under the words directory is still built and still read. add-word scans the corpus once and answers its date, word and slug checks from that scan: a date is taken when any file stores it, and `--overwrite` replaces that file where it is.
 
 ### Computed Derivatives
 
@@ -349,7 +354,7 @@ Stored word files use the same `DictionaryDefinition` shape. `npm run tool:norma
 
 ### Enforcement
 
-`isCanonicalResponse()` in `utils/adapter-utils.ts` checks every rule above, including the ones a type cannot express. `fetchWithFallback()` applies it once to every adapter's answer, before displayability. A response that breaks it is refused whole with an unexpected-shape error: the chain moves on, and the fault stays in the final `AggregateError`. An answer with no definitions at all is read first, as the partner not having the word rather than a changed API: a Merriam-Webster entry that is only a cross-reference (`ran`, past tense of `run`, has an empty `shortdef`) or a Wiktionary meaning with an empty `definitions` list is a `WordNotFoundError`, so when every adapter says the same, add-word refuses the word at warn. Only a definition list the partner sent empty reaches that check empty. An answer that lists definitions but has nothing to keep is an unexpected shape before it gets there: `buildDictionaryResponse()` refuses a list whose every definition is blank (a Wordnik `text` renamed, every Wiktionary `definition` empty), and the Merriam-Webster adapter refuses an answer none of whose entries has `shortdef`, which the API documents as a top-level member of the entry and nowhere marks optional.
+`isCanonicalResponse()` in `utils/adapter-utils.ts` checks every rule above, including the ones a type cannot express. `fetchWithFallback()` applies it once to every adapter's answer, before displayability. A response that breaks it is refused whole with an unexpected-shape error: the chain moves on, and the fault stays in the final `AggregateError`. The guard reads the text the adapter hands it, after the adapter's translation, and refuses any definition whose text still holds a complete HTML-shaped tag. That includes one that was only ever text at the partner: Wordnik's `&lt;b&gt;critical&lt;/b&gt;` is decoded by `parseDefinitionMarkup()` to `<b>critical</b>`, which is tag-shaped, so the response is refused, the word comes from the next adapter in the chain and the Wordnik fault is reported. This is intended: canonical text is plain, and the guard cannot tell text shaped like markup from markup an adapter failed to translate. When no other adapter in the chain has the word, it is not added. A bracket that is not a tag (`&lt;20 mg/dL`, decoded to `<20 mg/dL`) is text and is kept. `tests/adapters/fallback.spec.ts` pins both. An answer with no definitions at all is read first, as the partner not having the word rather than a changed API: a Merriam-Webster entry that is only a cross-reference (`ran`, past tense of `run`, has an empty `shortdef`) or a Wiktionary meaning with an empty `definitions` list is a `WordNotFoundError`, so when every adapter says the same, add-word refuses the word at warn. Only a definition list the partner sent empty reaches that check empty. An answer that lists definitions but has nothing to keep is an unexpected shape before it gets there: `buildDictionaryResponse()` refuses a list whose every definition is blank (a Wordnik `text` renamed, every Wiktionary `definition` empty), and the Merriam-Webster adapter refuses an answer none of whose entries has `shortdef`, which the API documents as a top-level member of the entry and nowhere marks optional.
 
 `tests/adapters/contract.spec.ts` applies the same guard to fixtures. It enumerates the registry (`getAdapterNames()` in `adapters/index.ts`) and requires:
 
@@ -375,7 +380,7 @@ npm keeps any flag written before a bare `--` for itself, so a tool's flags alwa
 
 ### `add-word.ts`
 
-Adds a word with dictionary validation and duplicate detection. It does not render the social card: the Add Word workflow runs the complete image generation afterwards (see Image Generation).
+Adds a word with dictionary validation and duplicate detection. A word page's URL is `/word/<slug>`, and `slugify()` keeps only ASCII letters, digits, underscores and hyphens, so add-word refuses a word whose slug is empty (`&`, `日本`: the page would be `/word/` itself) and a word whose slug a different stored word already has (`can't` beside `cant`: both would be `/word/cant`). `create-site` refuses a seed word with an empty slug for the same reason. Only a new word is checked: the build and regenerate-all-words, which keeps each word's text, read stored words as they are. It does not render the social card: the Add Word workflow runs the complete image generation afterwards (see Image Generation).
 
 ```sh
 npm run tool:local tools/add-word.ts serendipity
@@ -413,7 +418,7 @@ The target must not exist or must be empty. `--engine-ref` must be a release tag
 
 ### `regenerate-all-words.ts`
 
-Batch refresh of word data from the dictionary API. Supports dry-run mode and rate limiting. A word file it cannot read (not JSON, or no `word` string) counts as a failure, in a dry run too, so the exit code says whether every stored word was covered. `--force` re-sources every word through the configured adapter chain (the `adapter` field follows); pronunciation audio and etymology come only from Merriam-Webster, so run it via `tool:local` with `MERRIAM_WEBSTER_API_KEY` in `.env` to backfill them.
+Batch refresh of word data from the dictionary API. Supports dry-run mode and rate limiting. A word file it cannot read (not JSON, or no `word` string) counts as a failure, in a dry run too, so the exit code says whether every stored word was covered. Run without `--force` or `--dry-run` it only asks for `--force` and exits 0, unless the words directory is missing or a file in it cannot be read: that exits 1 before the confirmation, which would otherwise count only the words it could see. `--force` re-sources every word through the configured adapter chain (the `adapter` field follows); pronunciation audio and etymology come only from Merriam-Webster, so run it via `tool:local` with `MERRIAM_WEBSTER_API_KEY` in `.env` to backfill them.
 
 ## URL System
 
@@ -421,25 +426,34 @@ Two-tier system supporting root and subdirectory deployments:
 
 | Function | Purpose | Example (`BASE_PATH="/blog"`) |
 |----------|---------|-------------------------------|
-| `getUrl(path)` | Relative URL with BASE_PATH | `getUrl('/words/hello')` -> `/blog/words/hello` |
-| `getFullUrl(path)` | Absolute URL for SEO | `getFullUrl('/words/hello')` -> `https://example.com/blog/words/hello` |
+| `getUrl(path)` | Relative URL with BASE_PATH | `getUrl('/word/hello')` -> `/blog/word/hello` |
+| `getFullUrl(path)` | Absolute URL for SEO | `getFullUrl('/word/hello')` -> `https://example.com/blog/word/hello` |
 
 `getFullUrl()` uses `getUrl()` internally to ensure BASE_PATH consistency.
+
+The site root is the one URL that keeps a trailing slash: `getUrl('/')` is `/blog/` and `getFullUrl('/')` is `https://example.com/blog/`. Under a base path the root is a directory, which a static host serves only at its slash URL (GitHub Pages answers `/blog` with a 301 to `/blog/`), and `@astrojs/sitemap` names it the same way. The canonical link, `og:url`, the JSON-LD `WebSite` and breadcrumb URLs, the feed's channel link and the manifest `start_url` and `scope` all come from these two helpers, so they agree. The manifest scope needs the slash for a second reason: a scope is matched as a string prefix, so `/blog` would also claim `/blogroll`.
+
+`SITE_URL` is the origin alone; a subdirectory belongs in `BASE_PATH` (Astro's [GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/) sets `site` and `base` the same way). URLs are resolved against the origin, so a `SITE_URL` that repeats the base path does not double it.
+
+**Known limit, open decision.** Every other page is linked without a trailing slash (`trailingSlash: 'never'`) while `build.format` is left at its default, `directory`, which writes `stats/index.html`. Astro leaves trailing slashes on prerendered pages to the host, and GitHub Pages answers `/stats` with a 301 to `/stats/`, so canonical URLs, sitemap entries and internal links to non-root pages each cost a redirect there. Astro's [`build.format` reference](https://docs.astro.build/en/reference/configuration-reference/#buildformat) pairs `directory` with `trailingSlash: 'always'` and `file` with `'never'`; this project runs neither pair. Either pairing changes every page URL or output path, so it is not decided here.
 
 ### Route Structure
 
 ```
 /                           # Homepage (current word)
-/word/                     # All words
+/word                       # All words
 /word/{word}                # Individual word pages
-/browse/                    # Browse hub
-/browse/year/               # Words by year index
+/browse                     # Browse hub
+/browse/year                # Words by year index
 /browse/{year}              # Words by year
 /browse/{year}/{month}      # Words by month
+/browse/letter              # Words by starting letter index
 /browse/letter/{letter}     # Words by starting letter
+/browse/length              # Words by length index
 /browse/length/{n}          # Words by length
+/browse/part-of-speech      # Words by part of speech index
 /browse/part-of-speech/{p}  # Words by part of speech
-/stats/                     # Statistics hub
+/stats                      # Statistics hub
 /stats/{category}           # Individual stat pages
 ```
 
@@ -454,6 +468,33 @@ Three Sentry contexts, each with its own SDK:
 | Browser | `@sentry/astro` | `sentry.client.config.js` | Tracing, error-only session replays |
 | Server | `@sentry/astro` | `sentry.server.config.js` | Tracing disabled (static site) |
 | CLI | `@sentry/node` | Lazy init in `utils/logger.ts` | Only initializes on first error |
+
+The `sentry()` integration in `astro.config.ts` takes build-time options only (`org`, `project`, `authToken`, read from `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN`); runtime options live in the two config files. The release the build injects and uploads source maps under is `SENTRY_RELEASE`, which `astro.config.ts` sets to the same string as `__RELEASE__` when the environment does not.
+
+### Pinned Defaults
+
+SDK 11 collects more than SDK 10 unless told otherwise, so every default it changed is set explicitly. `utils/sentry-options.ts` is the one definition; `sentry.config.shared.js` and `utils/logger.ts` spread it into each `init`. Sources: the SDK's [migration guide](https://github.com/getsentry/sentry-javascript/blob/11.6.0/MIGRATION.md) and [changelog](https://github.com/getsentry/sentry-javascript/blob/11.6.0/CHANGELOG.md).
+
+| Option | Pinned value | SDK 11 default | Where |
+|--------|--------------|----------------|-------|
+| `dataCollection.userInfo` | `false` | `true`: Sentry infers the visitor's IP address | all |
+| `dataCollection.cookies`, `httpBodies` | `false`, `[]` | collected | all |
+| `dataCollection.httpHeaders`, `urlQueryParams` | deny `forwarded`, `-ip`, `remote-`, `via`, `-user` | everything | all |
+| `dataCollection.genAI`, `graphQL`, `databaseQueryData`, `queues` | off | on | all |
+| `dataCollection.frameContextLines` | `7` | `5` | all |
+| `attachStacktrace` | `false` | `true` | all |
+| `traceLifecycle` | `'static'` (transactions) | `'stream'` | all |
+| `Dedupe` integration | removed (`withoutDedupe`) | added to the Node defaults in 11.2 | server, CLI |
+| `browserSessionIntegration` `lifecycle` | `'route'` | `'page'` | browser |
+| `browserTracingIntegration` `instrumentBfcacheRestore` | `false` | `true`: a navigation span per back/forward-cache restore | browser |
+| `browserTracingIntegration` `webVitals` | `softNavigations: false`, `bfcacheNavigations: false` | both `true` (span streaming only) | browser |
+| `userTimingIntegration` | added | `performance.mark()` spans dropped from browser tracing | browser |
+
+`traceLifecycle: 'static'` is a compatibility mode the SDK plans to remove in a later major; moving to span streaming then is a behaviour change (the `site` scope tag does not reach streamed spans) and needs its own decision.
+
+Session Replay is unchanged: error-only (`replaysOnErrorSampleRate: 1`, `replaysSessionSampleRate: 0`), with text, inputs and media unmasked. A replay of a session that hit an error therefore includes what the visitor typed into the search box.
+
+Not configurable in SDK 11, so different from SDK 10: a browser session with an uncaught error is recorded as `unhandled`, not `crashed`; span operations, names and attributes follow the new conventions (`browser.DNS` is `browser.dns`, `paint` is `browser.paint`, `sentry.source` is `sentry.segment.name.source`); the SDK no longer makes its own `sentry-tracing-init` mark, so the pageload transaction has one span fewer; the CLI's outgoing requests, which already carried `sentry-trace` and `baggage` headers, now state the not-sampled decision in them (`sentry-trace` ends in `-0`, `baggage` gains `sentry-sampled=false`).
 
 ### Logger Architecture
 
@@ -480,13 +521,14 @@ The `isLogContext` type guard from `#types` validates the context argument befor
 
 **The `exit()` helper**: Always use `await exit(code)` instead of `process.exit()` in error handlers. `process.exit()` kills in-flight async work immediately, losing pending Sentry events. `exit()` flushes first.
 
-**Error level means fault**: only `logger.error` creates a Sentry event (`captureException` for an `Error`, otherwise `captureMessage` at level `error`); `warn`, `info` and `debug` only print. So CLI tools refuse operator input at `warn`: add-word's blank word, malformed or future date, date or word already taken, and a word every adapter in the chain reported as not found; generate-images' `--word` that is not in the data and `--page` that is not a page; regenerate-all-words' malformed `--timeout`, `--batch-size` or `--batch-timeout`; and a command line any of them cannot parse all exit 1 with a warn-level message. Network failures, HTTP errors, unexpected response shapes, rate limits, unreadable word files and missing configuration log at `error`. A words directory that is missing or holds no word file (no year directory, or year directories with no word file in them, which a failed first add-word leaves since it makes the year directory before fetching) is not a fault to add-word's duplicate check, since a new site's first word has nothing to collide with, but generate-images (its `--word` and `--page` runs included) and regenerate-all-words, which need data, fail on it at `error`.
+**Error level means fault**: only `logger.error` creates a Sentry event (`captureException` for an `Error`, otherwise `captureMessage` at level `error`); `warn`, `info` and `debug` only print. So CLI tools refuse operator input at `warn`: add-word's blank word, word with no URL slug or with the slug of a different stored word, malformed or future date, date or word already taken, and a word every adapter in the chain reported as not found; generate-images' `--word` that is not in the data and `--page` that is not a page; regenerate-all-words' malformed `--timeout`, `--batch-size` or `--batch-timeout`; create-site's missing or extra argument; and a command line any of them cannot parse all exit 1 with a warn-level message. Network failures, HTTP errors, unexpected response shapes, rate limits, unreadable word files and missing configuration log at `error`. A words directory that is missing or holds no word file (no year directory, or year directories with no word file in them, which a failed first add-word leaves since it makes the year directory before fetching) is not a fault to add-word's duplicate check, since a new site's first word has nothing to collide with, but generate-images (its `--word` and `--page` runs included) and regenerate-all-words, which need data, fail on it at `error`.
 
 ## Statistics System
 
 All statistics computed at build time from `allWords`:
 
 - **Letter patterns**: Palindromes, double/triple letters, alphabetical sequences, same start/end
+- **All consonants**: a word with at least one consonant and no vowel (a, e, i, o, u). Only a vowel disqualifies it, so punctuation does not: `pb&j` and `tsk-tsk` count, and `42`, which has no consonant, does not
 - **Word endings**: Common suffixes (-ed, -ing, -ly, -ness, -ful, -less)
 - **Letter analysis**: Most/least common letters (ranked by the number of words containing the letter, case-insensitive, not by total occurrences; `getLetterStats` is the single definition for the stat, its page, and its metadata), vowel/consonant ratios
 - **Streaks**: Current and longest consecutive word streaks
@@ -560,11 +602,13 @@ Vitest thresholds: lines 80%, functions 80%, branches 85%, statements 80%.
 
 Excluded from Vitest coverage: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
 
-E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). Playwright starts its own foreground `astro preview --ignore-lock` on port 4517 (`PORT` in `playwright.config.ts`, `reuseExistingServer: false`), so the run always serves the current `dist/` and never reuses a server on Astro's default 4321. They verify build assembly — that the pipeline correctly assembled components into working pages — not logic (which unit and component tests cover). Three spec files organized by concern:
+E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). Playwright starts its own foreground `astro preview --ignore-lock` on port 4517 (`PORT` in `playwright.config.ts`, `reuseExistingServer: false`), so the run always serves the current `dist/` and never reuses a server on Astro's default 4321. They verify build assembly — that the pipeline correctly assembled components into working pages — not logic (which unit and component tests cover). Five spec files organized by concern:
 
 - **`navigation.spec.ts`** — User journeys: discover a word and navigate between words, browse by year, footer section links, 404 handling
 - **`seo.spec.ts`** — Build output wiring: meta tags present (description, canonical, OpenGraph, Twitter), JSON-LD parseable, RSS and sitemap discoverable
-- **`accessibility.spec.ts`** — Structural a11y: skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text
+- **`accessibility.spec.ts`** — Structural a11y: skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text, heading outline and named nav landmarks
+- **`search.spec.ts`** — Header search: opens from the icon, filters by starts-with, navigates to a result
+- **`stats.spec.ts`** — `/stats` visualizations: heatmap and connections graph present and navigable, no horizontal scroll
 
 E2E always runs in demo mode — the CI workflow skips `setup-env` and explicitly sets `SOURCE_DIR=demo` (no `BASE_PATH`) so production env vars don't break test selectors. All test URLs omit trailing slashes (`trailingSlash: 'never'`).
 
@@ -574,13 +618,15 @@ Five separate workflow files, one per quality gate. Each reports an individual c
 
 | Workflow | File | Check Name |
 |----------|------|------------|
-| Lint | `.github/workflows/lint.yml` | `Lint / lint` |
+| Lint | `.github/workflows/lint.yml` | `Lint / lint`, `Lint / actionlint` |
 | Typecheck | `.github/workflows/typecheck.yml` | `Typecheck / typecheck` |
 | Test | `.github/workflows/test.yml` | `Test / test` |
 | Build | `.github/workflows/build.yml` | `Build / build` |
 | E2E | `.github/workflows/e2e.yml` | `E2E / e2e` |
 
 All five trigger on PR to main and push to main. Lint, Typecheck, Test, and Build run in parallel. E2E builds with demo defaults (no `setup-env`) then runs Playwright.
+
+Lint has a second job, `actionlint`, which checks the workflow files with [actionlint](https://github.com/rhysd/actionlint) 1.7.12 and `.github/actionlint.yaml`. It downloads the release archive with `gh release download`, the [documented way](https://github.com/rhysd/actionlint/blob/v1.7.12/docs/install.md#prebuilt-binaries) to install a prebuilt binary, and refuses one whose SHA-256 is not the digest pinned in the workflow, so moving to a new actionlint means changing the version and the digest together. It reads `.github/workflows/` only: the caller templates in `tools/templates/site/` are not linted. It is not a lefthook job, so run `actionlint` locally before pushing a workflow change.
 
 ### Key Regression Test
 
@@ -589,6 +635,26 @@ CLI tools broke when Node.js-side code imported Astro-only modules (`#astro-util
 - `tests/tools/cli-integration.spec.ts` — catches `astro:` protocol errors in real processes
 
 The browser side has the mirror-image rule. Bundled `<script>` blocks import a few modules from `utils/` and `src/utils/`, and Vite ships whatever those import as values, so one re-export can put dictionary code in every page's JavaScript. `tests/architecture/client-imports.spec.ts` follows the value imports those scripts reach through `utils/`, `types/`, `constants/` and `src/utils/`, and fails on any edge (`module -> specifier`) missing from its explicit list of today's edges, so a new import fails even between modules already listed; a listed edge that is no longer reached must be removed. `import type` is always allowed.
+
+## Linting
+
+[oxlint](https://oxc.rs/docs/guide/usage/linter) is the only linter of the code; `.oxlintrc.json` is its whole configuration. `npm run lint`, the `lint` job of the Lint workflow and the lefthook pre-commit job all read it, so a rule or option set there applies to all three. The workflow files have a linter of their own: the Lint workflow's second job runs actionlint on `.github/workflows/` in CI only (see CI Workflows under Testing); `npm run lint` and lefthook do not run it.
+
+**Warnings fail.** `options.denyWarnings` makes a warning exit non-zero, and `options.reportUnusedDisableDirectives` reports a disable comment that no longer suppresses anything. A rule's level (`warn` or `error`) only labels the report.
+
+**Plugins.** `plugins` replaces oxlint's default set, so it lists the defaults (`typescript`, `unicorn`, `oxc`; the ESLint core rules are always on) and four more: `import`, `promise`, `node`, `vitest`. The `correctness` category reports as errors and `suspicious` and `perf` as warnings, for every listed plugin; `rules` then pins individual rules. The `vitest` rules act on specs that import from `vitest`; the Playwright specs in `tests/e2e/` are outside them (a `test.only` there went unreported), and `forbidOnly` in `playwright.config.ts` covers that case in CI.
+
+**Where rules differ.** `overrides` turns `no-await-in-loop` off in `adapters/`, `tools/` and `tests/` (sequential by design), applies `node/no-process-env` to `src/` only (it reads its environment through `astro:env/client`; CLI tools read `process.env`), turns `unicorn/consistent-function-scoping` off in `tests/` (helpers sit in the describe block that uses them), and turns `no-restricted-imports` off for the three root configuration files (see Relative imports below).
+
+**Pinned for the code ethos.** Three rules outside those categories back conventions in [AGENTS.md](../AGENTS.md#code-ethos). `typescript/no-non-null-assertion` forbids `!`, the assertion `consistent-type-assertions` does not see: narrow with a guard or throw instead. `eqeqeq` requires `===` and `!==`, with `null: "ignore"` so `x == null` stays as the check for null or undefined. `import/first` keeps every import above other statements; in a spec the `vi.mock`, `vi.unmock` and `vi.hoisted` calls go below the imports, and Vitest still [hoists](https://vitest.dev/api/vi.html#vi-mock) them above.
+
+**Relative imports.** Imports go through the `#` aliases in `package.json` `imports`. `import/no-relative-parent-imports` reports a `../` specifier and [`no-restricted-imports`](https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-restricted-imports) reports a `./` one (or a bare `.`) by the pattern `^\.(/|$)`, in static imports, `import type`, re-exports and `import()`, and in `.astro` frontmatter and `<script>` blocks. An override turns the second rule off for exactly three files, `astro.config.ts`, `sentry.client.config.js` and `sentry.server.config.js`: they sit at the repository root and import a sibling there (`./package.json`, `./sentry.config.shared.js`), and no alias maps to the root, so the relative form is the only one they have.
+
+**`.astro` files.** oxlint lints a `.astro` file's frontmatter and its `<script>` blocks, `is:inline` included. It does not lint expressions in the template: the [compatibility page](https://oxc.rs/compatibility.html) lists Astro under "No template linting yet". `<style>` blocks are not linted either; there is no CSS linter.
+
+**In the editor.** `.vscode/extensions.json` recommends the oxc extension and `.vscode/settings.json` sets `editor.codeActionsOnSave` to run `source.fixAll.oxc` on every save, the setting oxc's [editor setup](https://oxc.rs/docs/guide/usage/linter/editors.html) gives for fix-on-save. Which fixes that applies is the extension's `oxc.fixKind`, which this repository leaves unset. The extension's manifest declares that setting's default as `null`, and its [README](https://github.com/oxc-project/oxc-vscode#readme) marks `safe_fix` ("Only safe fixes will be applied") as the default kind. Assumption, not verified in an editor here: unset means `safe_fix`, the fixes `oxlint --fix` applies without `--fix-suggestions` or `--fix-dangerously`.
+
+**Not enabled.** Type-aware rules (`no-floating-promises`, `switch-exhaustiveness-check` and the rest) need `oxlint-tsgolint` and [TypeScript 7](https://oxc.rs/docs/guide/usage/linter/type-aware); this repository is on TypeScript 6. There is no formatter: `.editorconfig` is the only formatting rule, and nothing checks it.
 
 ## Utility Architecture
 
@@ -607,6 +673,7 @@ See [AGENTS.md - The Boundary](../AGENTS.md#the-boundary) for the principle and 
 | `i18n-utils.ts` | `t()` translation, `tp()` pluralization |
 | `logger-core.ts` | Logger factory (SentryBridge, output filter) |
 | `logger.ts` | CLI logger wrapper with @sentry/node |
+| `sentry-options.ts` | Sentry options pinned to SDK 10 behaviour, shared by the browser, server and CLI inits |
 | `page-metadata-utils.ts` | Page titles and descriptions (cached) |
 | `text-pattern-utils.ts` | Palindrome, double/triple letter detection |
 | `text-utils.ts` | `slugify()`, syllable counting |
@@ -656,7 +723,7 @@ The thin-wrapper delegation pattern avoids logic duplication. See AGENTS.md for 
 
 ### GitHub Actions
 
-Jobs use the explicit `ubuntu-26.04` runner image. Jobs that execute project code install Node 26. External actions track their current stable major tags, which receive compatible patch updates. TypeScript stays on 6.x while `@astrojs/check` requires TypeScript 5 or 6.
+Jobs use the explicit `ubuntu-26.04` runner image. Jobs that execute project code install the Node version `.nvmrc` names, the engine checkout's in the reusable workflows. External actions track their current stable major tags, which receive compatible patch updates. Every job that runs steps sets `timeout-minutes`, so a hung step is cancelled in minutes and not at GitHub's [360-minute default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes): 10 for Lint, Typecheck, Test and Build, 30 for E2E, and 15 for each job of Site Deploy and Site Add Word, whose deploy job has to outlast the 10 minutes `actions/deploy-pages` waits for a deployment. A job that calls a reusable workflow [cannot set one](https://docs.github.com/en/actions/reference/workflows-and-actions/reusable-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow), so Deploy, Add Word and a site repository's two callers take the timeouts of the workflows they call, at the release they pin. TypeScript stays on 6.x while `@astrojs/check` requires TypeScript 5 or 6.
 
 The workflow files are the reference for their steps; this is what each one is for.
 
@@ -671,15 +738,17 @@ The workflow files are the reference for their steps; this is what each one is f
 
 **Site Add Word** checks out the engine and installs, then checks out the tip of the dispatched branch into `site/`, so a run that waited behind another starts from the commit that run pushed, and keeps that checkout's credentials for the push. It runs `setup-env` and overlays the site content exactly as Site Deploy does. It checks the dictionary settings before adding anything and stops with an error if `DICTIONARY_ADAPTER` is empty, if either variable spans more than one line or names an adapter other than `wordnik`, `merriam-webster` or `wiktionary` (any case), or if a named adapter's API key is missing (Wiktionary needs none). `DICTIONARY_FALLBACK` may be empty for the default Wiktionary fallback, `none` in any case for no fallback, or a comma-separated list. It then runs `npm run tool:add-word` followed by the complete `npm run tool:generate-images` in `engine/`, copies back into `site/` only word JSON under the words directory, PNG cards under `images/social` and `.image-settings-hash`, in whichever layout `SOURCE_DIR` selects, and stages only those. The copy compares content and never deletes. It commits as the repository owner with the message `Add word: <word>` and pushes to the branch it was dispatched on; a push that is not a fast-forward fails the run, and nothing is ever forced. A run that changes nothing ends with a notice instead of a commit. Workflow inputs reach the shell as environment variables, never as `${{ }}` expressions inside `run:`, so a word is always data and never script.
 
-**Deploy** calls **Site Deploy**, the workflow every site repository calls, so the demo site builds exactly as a site does. Deploy keeps the triggers, the permissions, the `pages` concurrency group and the gate that skips failed or cancelled Add Word runs. A push made with `GITHUB_TOKEN` starts no `push` run, so Add Word's completion is what triggers the deploy of a new word. For `workflow_run`, `GITHUB_SHA` is the last commit on the default branch, so the site checkout builds the commit Add Word just pushed.
+**Deploy** calls **Site Deploy**, the workflow every site repository calls, so the demo site builds exactly as a site does. Deploy keeps the triggers, the permissions, the `pages` concurrency group and the gate that skips failed or cancelled Add Word runs. The group does not cancel a run in progress (`cancel-in-progress: false`, as in GitHub's [Pages starter workflow](https://github.com/actions/starter-workflows/blob/e3c451d60f119b71caebf13c98ac45da6e15b4b7/pages/static.yml#L18-L22)), so a deployment that has started finishes; of the runs waiting behind it GitHub keeps only the newest, which builds the latest commit. A push made with `GITHUB_TOKEN` starts no `push` run, so Add Word's completion is what triggers the deploy of a new word. For `workflow_run`, `GITHUB_SHA` is the last commit on the default branch, so the site checkout builds the commit Add Word just pushed.
 
 **Site Deploy** checks out the calling repository into `site/` and the engine into `engine/` (Engine ref, below), runs `npm ci` and then `setup-env` in `engine/`, and mirrors `site/data/` and `site/public/` over the engine's with `rsync --delete`, keeping the engine's `favicon.svg` when the site has none. Every copy compares content (`--checksum`), since two checkouts made in the same second can hold a same-size file that rsync's size and time check would skip. It then runs the complete `npm run tool:generate-images`, so an engine or theme change never deploys stale cards (current cards are skipped and nothing is committed), builds in `engine/`, whose own `.git` gives the build its release fingerprint, and uploads `engine/dist`. A separate deploy job holds `pages: write`, `id-token: write` and the `github-pages` environment, which a job that calls a reusable workflow cannot declare. Before copying anything it stops when `SOURCE_DIR` is not `demo` in this repository or not empty in any other, rather than publish the other site's content, when the site has no words directory or `public/`, which mirroring would otherwise empty, and when anything under the site's `data/` or `public/` is a symbolic link, which `rsync -a` copies as a link, so the tools would write through it and the build read through it outside `engine/`.
 
 **Engine ref.** Site Deploy and Site Add Word check the engine out at `job.workflow_repository` and `job.workflow_sha`, the repository and commit of the workflow file that defines the running job ([job context](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#job-context)), so the code is always the commit the caller's `uses:` pin runs, and a caller passes nothing that names the engine. actionlint 1.7.12 does not know the `job.workflow_*` properties, so `.github/actionlint.yaml` ignores its undefined-property error for exactly those four in these two workflows until it does. A `./` call runs the called workflow from the caller's own commit, so the engine checkout is the calling repository at that commit. This repository calls that way for the demo site. So does a fork of it that syncs with `npm run tool:sync`: its Deploy and Add Word are this repository's, so after a sync they call the reusable workflows with `./`, check out the fork's own commit as the engine, and keep building and adding words as before, unchanged, until the fork is migrated to a thin site. For a fork `site/` and `engine/` are the same commit, so the overlay copies and deletes nothing: the fork's `data/demo` and `public/demo`, which it tracks from this repository, stay where they are, `SOURCE_DIR` empty builds its own `data/words`, and `public/demo` is published with the rest of `public/` as it is today. The `SOURCE_DIR` check tells this repository from the rest by the name in `ENGINE_REPOSITORY`, not by `job.workflow_repository`, which a fork's `./` call makes the fork itself.
 
-**Environment.** Build, Site Deploy and Site Add Word all run the `.github/actions/setup-env` composite action, which copies repository variables and explicitly supplied secrets into the job by name. Each runs `npm ci` before it, so no dependency's install script has the secrets in its environment, and Site Add Word checks out the site only after `npm ci` too, so no install script can read the credentials that checkout keeps, which can push to the site. Build and Site Deploy receive only the seven values Astro may need while building: `GA_ENABLED`, `GA_MEASUREMENT_ID`, `SENTRY_ENABLED`, `SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN`. Site Add Word receives only `WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`, `SENTRY_ENABLED` and `SENTRY_DSN`; its Node logger does not use the other build credentials. The reusable workflows declare those named secrets as optional, so omitted settings remain blank, and cannot receive an arbitrary repository secret. Site Deploy's build job has no environment, so a value stored only on the `github-pages` environment does not reach the build.
+**Environment.** Build, Site Deploy and Site Add Word all run the `.github/actions/setup-env` composite action, which copies repository variables and explicitly supplied secrets into the job by name. Each runs `npm ci` before it, so no dependency's install script has the secrets in its environment, and Site Add Word checks out the site only after `npm ci` too, so no install script can read the credentials that checkout keeps, which can push to the site. Build and Site Deploy receive only the seven values Astro may need while building: `GA_ENABLED`, `GA_MEASUREMENT_ID`, `SENTRY_ENABLED`, `SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN`. Build passes the five Sentry values only when the event is a push, which for Build is a push to main: a pull request's build gets them blank, so Sentry is off (`astro.config.ts` adds the integration only when `SENTRY_ENABLED` is `true` and `SENTRY_DSN` is set), nothing is uploaded with the auth token, and the build is tagged `development`. Site Add Word receives only `WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`, `SENTRY_ENABLED` and `SENTRY_DSN`; its Node logger does not use the other build credentials. The reusable workflows declare those named secrets as optional, so omitted settings remain blank, and cannot receive an arbitrary repository secret. Site Deploy's build job has no environment, so a value stored only on the `github-pages` environment does not reach the build.
 
-`VAR_NAMES` is read only from repository variables; the action's named secret inputs are read only from secrets in the calling workflow. API keys (`*_API_KEY`), `GA_*` and `SENTRY_*` are secrets and everything else is a variable. `tests/architecture/env-transport.spec.ts` fails when a variable in the `astro.config.ts` env schema is not covered or when a name is in the wrong category, while `tests/tools/site-workflows.spec.ts` fixes the exact secret scope of each operation. `SENTRY_ENVIRONMENT` is supplied by neither repository store: the action always sets it to `production`. The action also sets `TZ` from the `SITE_TZ` repository variable (default `America/New_York`), so "today" is the same date when a word is added and when the site is built. Every value is written to `$GITHUB_ENV` in the multiline `NAME<<delimiter` form with a random delimiter per value, so a value that spans lines stays one variable instead of failing the step or setting others. Before it writes a secret, the action masks each non-blank line of its value with `::add-mask::`. Short values are masked too, so with `GA_ENABLED` set to `true` every `true` in the rest of the job's log reads `***`. Variables are never masked.
+**Install scripts.** `allowScripts` in `package.json` records which dependencies may run an install script, the field `npm approve-scripts` and `npm deny-scripts` maintain (`npm help approve-scripts`). npm 11.17 still runs every script and only warns about one with no entry; it says a later release will block those. Two are approved at the version reviewed, so a new version of either has to be approved again with `npm approve-scripts <name>`: `wordpos`, whose script writes the `fast-index.*.json` files into `wordnet-db` that the WordNet adapter cannot load without, and `lefthook`, whose script runs `lefthook install` outside CI, as this package's own `prepare` script also does. `fsevents` is denied by name: the registry lists it with a `node-gyp rebuild` install script, but the package ships the built binary and no `binding.gyp` to rebuild. A site repository has no `package.json`, so this is the engine's only.
+
+`VAR_NAMES` is read only from repository variables; the action's named secret inputs are read only from secrets in the calling workflow. API keys (`*_API_KEY`), `GA_*` and `SENTRY_*` are secrets and everything else is a variable. `tests/architecture/env-transport.spec.ts` fails when a variable in the `astro.config.ts` env schema is not covered or when a name is in the wrong category, while `tests/tools/site-workflows.spec.ts` fixes the exact secret scope of each operation. `SENTRY_ENVIRONMENT` is supplied by neither repository store: the action sets it from its `sentry-environment` input, which defaults to `production`, and only Build passes one, `development` for a pull request. The action also sets `TZ` from the `SITE_TZ` repository variable (default `America/New_York`), so "today" is the same date when a word is added and when the site is built. Every value is written to `$GITHUB_ENV` in the multiline `NAME<<delimiter` form with a random delimiter per value, so a value that spans lines stays one variable instead of failing the step or setting others. Before it writes a secret, the action masks each non-blank line of its value with `::add-mask::`. Short values are masked too, so with `GA_ENABLED` set to `true` every `true` in the rest of the job's log reads `***`. Variables are never masked.
 
 ### Build Pipeline
 
@@ -741,7 +810,7 @@ permissions:
 
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -860,7 +929,7 @@ Parity compares two builds from the same engine commit, content and settings: `p
 
 ### Downstream Sync
 
-This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it and diverge only in word data, images, and favicons. `npm run tool:sync` (`tools/sync-upstream.sh`) brings upstream changes into a downstream repo without touching `main`: it fetches `upstream`, creates `sync/upstream-<short sha>` from `main`, and merges `upstream/main` into it with `--no-ff --no-commit`, so even a fast-forward stops before a commit exists. It then runs `npm ci` and the quality gates in order (lint, typecheck, test, then the build and E2E with `SOURCE_DIR=demo BASE_PATH=/`) and commits the merge only when every gate passes without changing a file. It never pushes: review the branch, fast-forward `main` to it, and push it with the command it prints, `git push origin main`, which names `origin` because in a clone made with `-o upstream` `main` tracks upstream, where a bare `git push` would go. `npm run tool:sync -- --skip-e2e` skips E2E when Playwright browsers are not installed.
+This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it and diverge only in word data, images, and favicons. `npm run tool:sync` (`tools/sync-upstream.sh`) brings upstream changes into a downstream repo without touching `main`: it fetches `upstream`, creates `sync/upstream-<short sha>` from `main`, and merges `upstream/main` into it with `--no-ff --no-commit`, so even a fast-forward stops before a commit exists. It then runs `npm ci` and the quality gates in order (lint, typecheck, test, then the build and E2E with `SOURCE_DIR=demo BASE_PATH=/`) and commits the merge only when every gate passes without changing a file. A commit hook runs after the gates, so the sync exits 1 when one refuses the commit or changes what is committed (lefthook's `oxlint --fix` stages its fixes). It never pushes: review the branch, fast-forward `main` to it, and push it with the command it prints, `git push origin main`, which names `origin` because in a clone made with `-o upstream` `main` tracks upstream, where a bare `git push` would go. `npm run tool:sync -- --skip-e2e` skips E2E when Playwright browsers are not installed.
 
 It refuses to start below the repository root, off `main`, during a merge or rebase, or with modified, staged or untracked files, and never stashes; ignored files such as `.env` are fine. A `package-lock.json` conflict resolves to upstream's lockfile only when the merged `package.json` is upstream's. Any other conflict, or a failing gate, stops with the merge staged on the sync branch and the commands to finish or abandon it. An existing branch of the same name is refused. Merge-based (not rebase) so downstream can regular-push without force. The script no-ops in the upstream repo (no `upstream` remote), and a site repository that calls the reusable workflows has nothing to merge: it moves its pins instead. A fork keeps working after a sync that brings in Site Deploy and Site Add Word, because its Deploy and Add Word call them with `./` at its own commit (Engine ref, above). `tests/tools/sync-upstream.spec.ts` runs it against real repositories in a temp dir with a fake `npm`.
 

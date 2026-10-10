@@ -6,13 +6,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { parseArgs } from 'node:util';
 
 import { isEntryPoint } from '#tools/entry';
-import { showHelp } from '#tools/help-utils';
-import { isValidDate } from '#utils/date-utils';
+import { parseToolArgs, showHelp } from '#tools/help-utils';
 import { exit, getErrorMessage, logger } from '#utils/logger';
 import { parseWordData } from '#utils/stored-word-validation';
+import { slugify } from '#utils/text-utils';
 
 const ENGINE_ROOT = path.join(import.meta.dirname, '..');
 const TEMPLATES = path.join(import.meta.dirname, 'templates', 'site');
@@ -24,6 +23,8 @@ const ENGINE_REF = /^(v[0-9]+\.[0-9]+\.[0-9]+|[0-9a-f]{40})$/;
 // The caller templates are the ones docs/technical.md shows, with this
 // placeholder where the release goes
 const REF_PLACEHOLDER = '@vX.Y.Z';
+
+const template = (name: string) => fs.readFileSync(path.join(TEMPLATES, name), 'utf-8');
 
 const HELP_TEXT = `
 Create Site Tool
@@ -67,16 +68,17 @@ export const createSite = ({ directory, engineRef, seedFile }: CreateSiteOptions
   }
 
   const seed = fs.readFileSync(seedFile);
-  const { date } = parseWordData(seed.toString('utf-8'), seedFile);
-  if (!isValidDate(date)) {
-    throw new Error(`Invalid word data in ${seedFile}: date must be YYYYMMDD, not ${date}`);
+  const { word, date } = parseWordData(seed.toString('utf-8'), seedFile);
+
+  // The seed's page is /word/<slug>; with no slug it would be /word/ itself
+  if (!slugify(word)) {
+    throw new Error(`Invalid word data in ${seedFile}: "${word}" has no URL slug (no ASCII letter, digit, underscore or hyphen)`);
   }
 
   if (fs.existsSync(directory) && (!fs.statSync(directory).isDirectory() || fs.readdirSync(directory).length > 0)) {
     throw new Error(`${directory} must not exist or be an empty directory`);
   }
 
-  const template = (name: string) => fs.readFileSync(path.join(TEMPLATES, name), 'utf-8');
   const pin = (name: string) => template(name).replaceAll(REF_PLACEHOLDER, `@${engineRef}`);
   const files: [string, string | Buffer][] = [
     ['.github/workflows/deploy.yml', pin('deploy.yml')],
@@ -98,34 +100,37 @@ export const createSite = ({ directory, engineRef, seedFile }: CreateSiteOptions
 };
 
 if (isEntryPoint(import.meta.url)) {
-  try {
-    const { values, positionals } = parseArgs({
-      args: process.argv.slice(2),
-      options: {
-        help: { type: 'boolean', short: 'h', default: false },
-        'engine-ref': { type: 'string' },
-        'seed-file': { type: 'string' },
-      },
-      allowPositionals: true,
-      strict: true,
-    });
+  const { values, positionals } = await parseToolArgs({
+    args: process.argv.slice(2),
+    options: {
+      help: { type: 'boolean', short: 'h', default: false },
+      'engine-ref': { type: 'string' },
+      'seed-file': { type: 'string' },
+    },
+    allowPositionals: true,
+    strict: true,
+  });
 
-    if (values.help) {
-      showHelp(HELP_TEXT);
-      process.exit(0);
-    }
+  if (values.help) {
+    showHelp(HELP_TEXT);
+    process.exit(0);
+  }
 
-    const [directory] = positionals;
-    const engineRef = values['engine-ref'];
-    const seedFile = values['seed-file'];
-    if (positionals.length !== 1 || !directory || !engineRef || !seedFile) {
-      throw new Error('Pass one directory, --engine-ref and --seed-file (see --help)');
-    }
-
-    const files = createSite({ directory, engineRef, seedFile });
-    logger.info('Site created', { directory: path.resolve(directory), engineRef, files });
-  } catch (error) {
-    logger.error('Create site failed', { error: getErrorMessage(error) });
+  const [directory] = positionals;
+  const engineRef = values['engine-ref'];
+  const seedFile = values['seed-file'];
+  // A missing or extra argument is the operator's input, refused at warn as
+  // parseToolArgs refuses a command line it cannot parse
+  if (positionals.length !== 1 || !directory || !engineRef || !seedFile) {
+    logger.warn('Pass one directory, --engine-ref and --seed-file', { help: 'Run with --help to list the options' });
     await exit(1);
+  } else {
+    try {
+      const files = createSite({ directory, engineRef, seedFile });
+      logger.info('Site created', { directory: path.resolve(directory), engineRef, files });
+    } catch (error) {
+      logger.error('Create site failed', { error: getErrorMessage(error) });
+      await exit(1);
+    }
   }
 }

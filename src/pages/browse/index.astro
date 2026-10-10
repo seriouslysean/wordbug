@@ -32,7 +32,7 @@ const gridSections = [
     href: getWordsYearIndexUrl(),
     entries: sortedYearEntries,
     getItemUrl: (key: string) => getWordsYearUrl(key),
-    getItemTitle: (key: string, count: number) => t('common.title_from_context', { count, value: key }),
+    getItemTitle: (key: string, count: number) => tp('common.title_from_context', count, { value: key }),
     getItemLabel: (key: string) => key,
   },
   {
@@ -40,7 +40,7 @@ const gridSections = [
     href: getWordsLetterUrl(),
     entries: sortedLetterEntries,
     getItemUrl: (key: string) => getLetterUrl(key),
-    getItemTitle: (key: string, count: number) => t('common.title_starting_with', { count, value: key.toUpperCase() }),
+    getItemTitle: (key: string, count: number) => tp('common.title_starting_with', count, { value: key.toUpperCase() }),
     getItemLabel: (key: string) => key.toUpperCase(),
   },
   {
@@ -48,7 +48,7 @@ const gridSections = [
     href: getWordsLengthUrl(),
     entries: sortedLengthEntries,
     getItemUrl: (key: string) => getLengthUrl(key),
-    getItemTitle: (key: string, count: number) => t('common.title_with_length', { count, value: key }),
+    getItemTitle: (key: string, count: number) => tp('common.title_with_length', count, { value: tp('common.letters', key) }),
     getItemLabel: (key: string) => tp('common.letters', key),
   },
   {

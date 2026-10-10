@@ -8,7 +8,7 @@ Static site generator (Astro) for word-of-the-day websites. Powers multiple chil
 
 ## Setup & Commands
 
-Node.js 26+ required (`.nvmrc` provided). No `.env` needed — upstream sets `SOURCE_DIR=demo` via CI variables; downstream repos leave it unset to use root data paths.
+Node.js 26+ required (`.nvmrc` provided). No `.env` needed — upstream sets `SOURCE_DIR=demo` via CI variables; downstream repos leave it unset to use root data paths. A local build of the upstream repository has no root data path to fall back on, so it names the demo dataset itself: `SOURCE_DIR=demo npm run build`.
 
 ```sh
 nvm use && npm install             # Setup
@@ -192,6 +192,10 @@ Node resolves these without guessing extensions, so the rule is: aliases for Typ
 | `#config/*` | `config/*` | |
 | `#adapters/*` | `adapters/*` | |
 | `#tools/*` | `tools/*` | |
+| `#data/*` | `data/*` | |
+| `#styles/*` | `src/styles/*` | |
+| `#assets/*` | `src/assets/*` | |
+| `#locales/*` | `locales/*` | |
 | `#tests/*` | `tests/*` | |
 
 ## Data Flow
@@ -223,7 +227,7 @@ npm run build                      # 4. Full build (catches runtime errors)
 npm run test:e2e                   # 5. E2E tests against built site
 ```
 
-All must pass: 0 lint errors, 0 TypeScript errors, 0 Astro warnings, all tests green with coverage met (80% across lines/functions/statements, 85% branches), build succeeds without `.env`, E2E tests pass.
+All must pass: 0 lint errors or warnings (`options.denyWarnings` in `.oxlintrc.json` makes a warning fail), 0 TypeScript errors, 0 Astro warnings, all tests green with coverage met (80% across lines/functions/statements, 85% branches), build succeeds without `.env`, E2E tests pass.
 
 ## Conventions
 

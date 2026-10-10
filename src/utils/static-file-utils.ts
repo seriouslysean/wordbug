@@ -9,7 +9,7 @@ import type { WordData } from '#types';
 import { formatDate } from '#utils/date-utils';
 import { getAllPageMetadata } from '#utils/page-metadata-utils';
 import { generateWordDataHash } from '#astro-utils/word-data-utils';
-import { getUrl, getWordUrl } from '#astro-utils/url-utils';
+import { getFullUrl, getUrl, getWordUrl } from '#astro-utils/url-utils';
 import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS } from '#constants/urls';
 import { MAX_PAST_WORDS_DISPLAY } from '#constants/text-patterns';
 
@@ -59,10 +59,12 @@ export function getAsciiArt(): string | null {
 export function generateRobotsTxt(siteUrl: string): string {
   const envUrl = SITE_URL || '';
   const url = envUrl || siteUrl;
-  const baseUrl = (url || 'http://localhost:4321').replace(/\/$/, '');
+  // getUrl() already carries BASE_PATH, so resolve it against the site's
+  // origin: a SITE_URL that repeats the base path must not double it
+  const sitemapUrl = new URL(getUrl('/sitemap-index.xml'), url || 'http://localhost:4321').href;
   return `User-agent: *
 Allow: /
-Sitemap: ${baseUrl}${getUrl('/sitemap-index.xml')}
+Sitemap: ${sitemapUrl}
 `;
 }
 
@@ -145,9 +147,8 @@ export function generateLlmsTxt(words: WordData[]): string | null {
     return null;
   }
 
-  const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
   const recentWords = words.slice(0, MAX_PAST_WORDS_DISPLAY);
-  const pageUrl = (path: string): string => `${baseUrl}${getUrl(path)}`;
+  const pageUrl = getFullUrl;
 
   const curatorInfo = HUMANS_WORD_CURATOR ? ` Curated by ${HUMANS_WORD_CURATOR}.` : '';
   const lastWord = words.at(0);

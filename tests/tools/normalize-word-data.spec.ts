@@ -30,7 +30,9 @@ const run = (...args: string[]) => spawnTool([TOOL, ...args], {
   env: { SOURCE_DIR: '', CI: 'true' },
 });
 
-describe('normalize-word-data CLI', () => {
+// Up to three subprocesses a test, each allowed spawnTool's 10 s: Vitest's 5 s
+// default ends the test before a slow spawn on a loaded machine can finish
+describe('normalize-word-data CLI', { timeout: 35000 }, () => {
   it('previews without writing, writes once, then reports an unchanged corpus', async () => {
     const original = fs.readFileSync(ctx.file, 'utf8');
     const preview = await run('--dry-run');
@@ -46,6 +48,26 @@ describe('normalize-word-data CLI', () => {
     const second = await run('--dry-run');
     expect(second.code).toBe(0);
     expect(second.stdout).toContain('changed: 0');
+  });
+
+  // The files getWordFiles lists for the other tools, which are the ones the
+  // site builds from: a file that is not one of them is not word data
+  it('reads the files the site builds from, and no others', async () => {
+    const words = path.join(ctx.root, 'data', 'words');
+    const nested = path.join(words, 'drafts', 'later', '20250102.json');
+    fs.mkdirSync(path.dirname(nested), { recursive: true });
+    fs.copyFileSync(ctx.file, nested);
+    // AppleDouble metadata and an editor's copy, neither of them JSON
+    fs.writeFileSync(path.join(words, '2025', '._20250101.json'), Buffer.from([0, 5, 22, 7]));
+    fs.mkdirSync(path.join(words, '.trash'));
+    fs.writeFileSync(path.join(words, '.trash', '20250103.json'), 'not json');
+    fs.writeFileSync(path.join(words, '2025', '20250104.JSON'), 'not json');
+
+    const result = await run('--dry-run');
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toMatch(/total: 2,\s*changed: 2/);
+    expect(result.stdout).toContain(nested);
   });
 
   it('reports malformed markup and leaves the file untouched', async () => {

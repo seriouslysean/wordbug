@@ -21,14 +21,14 @@ describe('adapter factory', () => {
   });
 
   describe('getAdapter', () => {
-    it('returns wordnik adapter by default', () => {
-      delete process.env.DICTIONARY_ADAPTER;
+    // No default: add-word and regenerate-all-words refuse to run without it
+    it.each([
+      ['unset', undefined],
+      ['empty, as CI exports an unset repository variable', ''],
+    ])('throws when DICTIONARY_ADAPTER is %s', (_, value) => {
+      vi.stubEnv('DICTIONARY_ADAPTER', value);
 
-      const adapter = getAdapter();
-
-      expect(adapter).toBeDefined();
-      expect(adapter.name).toBe('wordnik');
-      expect(typeof adapter.fetchWordData).toBe('function');
+      expect(() => getAdapter()).toThrow('DICTIONARY_ADAPTER environment variable is required');
     });
 
     it('returns wordnik adapter when explicitly configured', () => {
@@ -77,14 +77,6 @@ describe('adapter factory', () => {
       expect(() => getAdapter()).toThrow('Unknown adapter: unsupported-adapter');
     });
 
-    it('returns wordnik adapter for empty adapter name (falls back to default)', () => {
-      vi.stubEnv('DICTIONARY_ADAPTER', '');
-
-      const adapter = getAdapter();
-
-      expect(adapter.name).toBe('wordnik');
-    });
-
     it('logs adapter selection', async () => {
       vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
       vi.resetModules();
@@ -120,6 +112,11 @@ describe('adapter factory', () => {
 
     it('throws for unknown adapter name', () => {
       expect(() => getAdapterByName('unknown')).toThrow('Unknown adapter: unknown');
+    });
+
+    it('throws for a name that is only a key of Object.prototype', () => {
+      expect(() => getAdapterByName('constructor')).toThrow('Unknown adapter: constructor');
+      expect(() => getAdapterByName('__proto__')).toThrow('Unknown adapter: __proto__');
     });
   });
 

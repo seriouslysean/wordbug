@@ -10,19 +10,19 @@ import {
   streakStats,
   antiStreakStats
 } from '#astro-utils/word-data-utils';
-import { t } from '#utils/i18n-utils';
+import { t, tp } from '#utils/i18n-utils';
 import { formatDate } from '#utils/date-utils';
 
 
 const streakItems = [
   {
     label: t('stats.current_streak'),
-    value: t('stats.days', { count: streakStats.currentStreak }),
+    value: tp('stats.days', streakStats.currentStreak),
     ...(streakStats.currentStreak > 0 ? { href: '/stats/current-streak' } : {})
   },
   {
     label: t('stats.longest_streak'),
-    value: t('stats.days', { count: streakStats.longestStreak }),
+    value: tp('stats.days', streakStats.longestStreak),
     ...(streakStats.longestStreak > 0 ? { href: '/stats/longest-streak' } : {})
   }
 ];
@@ -32,7 +32,7 @@ const antiStreakItems: Array<{ label: string; value: string }> = [];
 if (antiStreakStats.longestGap > 0) {
   antiStreakItems.push({
     label: t('stats.longest_gap'),
-    value: t('stats.days', { count: antiStreakStats.longestGap }),
+    value: tp('stats.days', antiStreakStats.longestGap),
   });
   
   if (antiStreakStats.gapStartWord && antiStreakStats.gapEndWord && antiStreakStats.gapStartDate && antiStreakStats.gapEndDate) {

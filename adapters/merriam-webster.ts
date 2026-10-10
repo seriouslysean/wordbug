@@ -69,8 +69,16 @@ export function stripMarkup(text: string): string {
     // Smart quotes
     .replaceAll('{ldquo}', '\u201c')
     .replaceAll('{rdquo}', '\u201d')
-    // Cross-references and links: extract the word (first pipe segment)
-    .replaceAll(/\{(?:sx|a_link|d_link|dxt)\|([^|}]*)[^}]*\}/g, '$1')
+    // Cross-reference groups: the API docs show an em dash before each, and
+    // "more at" after the dash of {ma}
+    .replaceAll('{ma}', '— more at ')
+    .replaceAll(/\{dx(?:_ety)?\}/g, '— ')
+    // Cross-references and links: keep the link text (first pipe segment)
+    // without the homograph number some carry ("help:1"), as for meta.id
+    .replaceAll(
+      /\{(?:sx|a_link|d_link|i_link|et_link|mat|dxt)\|([^|}]*)[^}]*\}/g,
+      (_, linkText: string) => linkText.replace(/:\d+$/, ''),
+    )
     // Any remaining tags
     .replaceAll(/\{[^}]*\}/g, '');
 }
@@ -109,24 +117,23 @@ export function extractExamples(entry: MWEntry): string[] {
     }
   };
 
+  // One walker for both levels: a parenthesized sense sequence holds the
+  // same items an sseq does, a binding substitute included (MW JSON
+  // reference, 2.10.9 `bs` and 2.10.10 `pseq`)
+  const collectFromItem = (senseItem: MWSenseItem): void => {
+    const [type, data] = senseItem;
+    if (type === 'sense' || type === 'sen') {
+      collectFromSense(data);
+    } else if (type === 'bs') {
+      collectFromSense(data.sense);
+    } else if (type === 'pseq') {
+      data.forEach(collectFromItem);
+    }
+  };
+
   for (const defBlock of entry.def) {
     for (const senseGroup of defBlock.sseq) {
-      for (const senseItem of senseGroup) {
-        const [type, data] = senseItem;
-        if (type === 'sense' || type === 'sen') {
-          collectFromSense(data);
-        } else if (type === 'bs') {
-          collectFromSense(data.sense);
-        } else if (type === 'pseq') {
-          // Paragraph sense sequence: array of inner sense items
-          for (const innerItem of data) {
-            const [innerType, innerData] = innerItem;
-            if (innerType === 'sense' || innerType === 'sen') {
-              collectFromSense(innerData);
-            }
-          }
-        }
-      }
+      senseGroup.forEach(collectFromItem);
     }
   }
 

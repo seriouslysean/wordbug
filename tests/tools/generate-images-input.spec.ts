@@ -32,6 +32,9 @@ describe('generate-images input errors', () => {
   it.each([
     ['a word that is not in the data', ['--word', 'notaword'], 'Word not found in data files'],
     ['a page that does not exist', ['--page', '/not-a-page'], 'Page not found in available pages'],
+    // An unset variable in `--word "$WORD"`: it must not become a full run
+    ['an empty word', ['--word', ''], 'Word not found in data files'],
+    ['an empty page', ['--page', ''], 'Page not found in available pages'],
   ])('refuses %s without reporting an error', async (_, args, message) => {
     const { code, stderr } = await spawnTool(
       ['--import', LOG_LEVELS, 'tools/generate-images.ts', ...args],

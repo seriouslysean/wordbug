@@ -29,14 +29,16 @@ beforeEach(() => {
   ctx.tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wotd-regen-options-'));
   const yearDir = path.join(ctx.tempDir, 'data', 'words', '2024');
   fs.mkdirSync(yearDir, { recursive: true });
-  fs.writeFileSync(path.join(yearDir, '20240101.json'), JSON.stringify({ word: 'alpha' }));
+  fs.writeFileSync(path.join(yearDir, '20240101.json'), JSON.stringify({ word: 'alpha', date: '20240101' }));
 });
 
 afterEach(() => {
   fs.rmSync(ctx.tempDir, { recursive: true, force: true });
 });
 
-describe('regenerate-all-words options', () => {
+// One subprocess a test, allowed spawnTool's 10 s: Vitest's 5 s default ends
+// the test before a slow spawn on a loaded machine can finish
+describe('regenerate-all-words options', { timeout: 15000 }, () => {
   it.each([
     ['--batch-size=0', 'batch-size'],
     ['--batch-size=abc', 'batch-size'],
@@ -80,5 +82,13 @@ describe('regenerate-all-words options', () => {
     expect(stdout).toContain(`--batch-size <num>         Words per batch (default: ${DEFAULTS.batchSize})`);
     expect(stdout).toContain(`--batch-timeout <ms>       Pause between batches (default: ${DEFAULTS.batchTimeout})`);
     expect(stdout).not.toMatch(/word-field|date-field|rate-limit-timeout/);
+    // regenerateWordFile refuses to run without it, so the help says so, once
+    expect(stdout.split('\n').filter(line => line.includes('DICTIONARY_ADAPTER')))
+      .toEqual([expect.stringMatching(/DICTIONARY_ADAPTER\s+Dictionary API to use \(required\)$/)]);
+    // Each variable is documented once, and a key is asked for only where its adapter is used
+    const documented = stdout.split('\n').flatMap(line => line.match(/^ {2}([A-Z][A-Z_]+) /)?.[1] ?? []);
+    expect(documented).toEqual([...new Set(documented)]);
+    expect(stdout).toMatch(/WORDNIK_API_KEY\s+Wordnik API key \(required when wordnik is the adapter or a fallback\)/);
+    expect(stdout).toMatch(/MERRIAM_WEBSTER_API_KEY\s+Merriam-Webster API key \(required when merriam-webster is the adapter or a fallback\)/);
   });
 });

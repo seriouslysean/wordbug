@@ -15,6 +15,8 @@ import {
   getPatternStats,
   getWordEndingStats,
 } from '#astro-utils/word-stats-utils';
+import type { StatsPageProps, WordData, WordMilestoneItem } from '#types';
+import { getDefinition } from '#utils/page-metadata-utils';
 
 const ORDINAL_RULES = new Intl.PluralRules('en', { type: 'ordinal' });
 
@@ -23,14 +25,11 @@ const ORDINAL_SUFFIXES: Partial<Record<Intl.LDMLPluralRule, string>> = { one: 's
 
 const ordinal = (n: number): string => `${n}${ORDINAL_SUFFIXES[ORDINAL_RULES.select(n)] ?? 'th'}`;
 
-import type { StatsPageProps, WordData, WordMilestoneItem } from '#types';
-
 // Template constants
 const TEMPLATE = {
   WORD_LIST: 'word-list',
   MILESTONE: 'milestone',
 } as const;
-
 
 // Configuration for stats generation - eliminates duplication
 interface BaseStatsConfig {
@@ -55,8 +54,6 @@ interface MilestoneStatsConfig extends BaseStatsConfig {
 
 // The literal `type` ties each config to the shape of its data
 type StatsConfig = WordListStatsConfig | MilestoneStatsConfig;
-
-import { getDefinition } from '#utils/page-metadata-utils';
 
 const createStatsConfig = (words: WordData[]): StatsConfig[] => {
   const letterPatterns = getLetterPatternStats(words);

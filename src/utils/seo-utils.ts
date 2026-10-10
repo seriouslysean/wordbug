@@ -4,16 +4,16 @@
  */
 
 import {
-  SITE_TITLE, SITE_DESCRIPTION, SITE_ID, SITE_LOCALE,
+  SITE_TITLE, SITE_DESCRIPTION, SITE_LOCALE,
   SITE_AUTHOR, SITE_AUTHOR_URL, SITE_ATTRIBUTION_MESSAGE, SITE_KEYWORDS,
 } from 'astro:env/client';
-import type { SeoConfig, SeoMetadata, SeoMetadataOptions, SeoMetaDescriptionOptions } from '#types';
-import { getFullUrl } from '#astro-utils/url-utils';
+import type { SeoConfig, SeoMetaDescriptionOptions } from '#types';
 
 export const seoConfig: SeoConfig = {
   defaultTitle: SITE_TITLE,
   defaultDescription: SITE_DESCRIPTION,
-  siteName: SITE_ID,
+  // The name people and crawlers read. SITE_ID is a machine identifier.
+  siteName: SITE_TITLE,
   locale: SITE_LOCALE,
   author: SITE_AUTHOR,
   authorUrl: SITE_AUTHOR_URL,
@@ -42,37 +42,4 @@ return custom;
   }
 
   return seoConfig.defaultDescription;
-}
-
-/**
- * Generate basic SEO metadata for a page
- * @param param0 - Metadata options
- * @returns SEO metadata object
- */
-export function generateSeoMetadata({ title, description, pathname, keywords = [] }: SeoMetadataOptions): SeoMetadata {
-  const pageTitle = title ? `${title} - ${seoConfig.siteName}` : seoConfig.defaultTitle;
-  const pageDescription = description || seoConfig.defaultDescription;
-  const url = getFullUrl(pathname);
-  const combinedKeywords = [...seoConfig.keywords, ...keywords].join(', ');
-
-  return {
-    title: pageTitle,
-    description: pageDescription,
-    canonical: url,
-    openGraph: {
-      title: pageTitle,
-      description: pageDescription,
-      url,
-      siteName: seoConfig.siteName,
-      locale: seoConfig.locale,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: pageTitle,
-      description: pageDescription,
-      site: seoConfig.siteName,
-    },
-    keywords: combinedKeywords,
-  };
 }

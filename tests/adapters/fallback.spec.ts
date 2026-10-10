@@ -534,6 +534,40 @@ describe('fetchWithFallback when a dictionary answers with no definitions', () =
     expect(isWordNotFound(error)).toBe(true);
   });
 
+  // Deliberate, not a side effect: Wordnik's text is decoded before the guard
+  // sees it, so an encoded tag arrives tag-shaped. Text that looks like markup
+  // is refused whatever it was in the source; the word comes from the next
+  // adapter and the fault is kept. See Enforcement in docs/technical.md.
+  it('refuses a Wordnik definition whose character references decode to a tag', async () => {
+    vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
+    vi.stubEnv('DICTIONARY_FALLBACK', 'wiktionary');
+    answers.wordnik = [{ text: 'Marked &lt;b&gt;critical&lt;/b&gt; in the source', partOfSpeech: 'noun' }];
+    const { fetchWithFallback } = await import('#adapters');
+    const { isWordNotFound } = await import('#utils/adapter-utils');
+
+    const error = await catchError(fetchWithFallback('test'));
+
+    expect(aggregateErrors(error)[0]?.message).toBe('wordnik returned an unexpected response shape for "test"');
+    expect(isWordNotFound(error)).toBe(false);
+    expect(mockLogger.warn).toHaveBeenCalledWith('Adapter failed, trying fallback', {
+      adapter: 'wordnik',
+      error: 'wordnik returned an unexpected response shape for "test"',
+      fallback: 'wiktionary',
+      word: 'test',
+    });
+  });
+
+  it('keeps a decoded bracket that is not a tag', async () => {
+    vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
+    vi.stubEnv('DICTIONARY_FALLBACK', 'none');
+    answers.wordnik = [{ text: 'Below range (&lt;20 mg/dL) &amp; falling', partOfSpeech: 'noun' }];
+    const { fetchWithFallback } = await import('#adapters');
+
+    const { response } = await fetchWithFallback('test');
+
+    expect(response.definitions.map(definition => definition.text)).toEqual(['Below range (<20 mg/dL) & falling']);
+  });
+
   it('reports a Wordnik answer whose every definition lacks text as an unexpected shape', async () => {
     vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
     vi.stubEnv('DICTIONARY_FALLBACK', 'none');

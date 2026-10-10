@@ -16,12 +16,3 @@ export function getSocialImageUrl({ pathname, wordData }: { pathname: string; wo
 
   return getFullUrl(toUrlPath(getSocialImagePath(card, SOURCE_DIR)));
 }
-
-/**
- * Get static pages for image generation
- * @returns Metadata for all static pages
- */
-export async function getStaticPages() {
-  const { getAllPageMetadata } = await import('#astro-utils/page-metadata');
-  return getAllPageMetadata();
-}

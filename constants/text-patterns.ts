@@ -65,19 +65,11 @@ export const TEXT_PATTERNS = {
   LETTER_ONLY: /^[a-z]$/i,
 
   // Repetition patterns
-  DOUBLE_LETTERS: /(.)\1/,
-  TRIPLE_LETTERS: /(.)\1{2,}/,
+  // Letters in either case: "Aardvark" has a double letter, "catch-22" has none
+  DOUBLE_LETTERS: /([a-z])\1/i,
+  TRIPLE_LETTERS: /([a-z])\1{2,}/i,
 
   // Word structure
   STARTS_WITH_VOWEL: /^[aeiou]/i,
   ENDS_WITH_VOWEL: /[aeiou]$/i,
 } as const;
-
-export type TextPattern = keyof typeof TEXT_PATTERNS;
-
-/**
- * Test a word against a specific pattern
- */
-export const matchesPattern = (word: string, pattern: TextPattern): boolean => {
-  return TEXT_PATTERNS[pattern].test(word);
-};

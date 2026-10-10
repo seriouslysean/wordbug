@@ -1,9 +1,11 @@
 # Potential Features
 
-Quality and architectural improvements, prioritized by impact. Status markers:
-✅ shipped, 🟡 partial, ⬜ open.
+Quality and architectural improvements, prioritized by impact. A heading ends
+with its status (SHIPPED, PARTIAL or OPEN) once the entry has been checked
+against the code; file and line references are from when an entry was written
+and drift as the files change.
 
-## ✅ Shipped: Word Enrichment Bucket
+## Shipped: Word Enrichment Bucket
 
 One bucket PR surfacing data the site already had, plus offline/capture-time
 enrichment, search, and build-time visualizations. All code is site-agnostic
@@ -39,18 +41,18 @@ enrichment, search, and build-time visualizations. All code is site-agnostic
 
 ## Tier 1: High Impact
 
-### ✅ Cross-Page Internal Linking — SHIPPED
+### Cross-Page Internal Linking — SHIPPED
 
 Word pages now show a "More Words Like This" section with up to 3 direct
-word-to-word links per category (length, part of speech, year). Sections with
+word-to-word links per category (length, first letter, part of speech, year). Sections with
 no other words self-hide. Picks are deterministic (alphabetical, sliced to 3)
 and computed once via `Object.groupBy` in `getStaticPaths`, not per page.
 
-Component: `src/components/WordRelated.astro`. Pure groupings live in
+Component: `src/components/WordContext.astro`. Pure groupings live in
 `utils/word-data-utils.ts` (`groupWordsByLength`, `groupWordsByLetter`,
 `groupWordsByPartOfSpeech`, `groupWordsByYear`).
 
-### 🟡 SEO Audit & Schema Enhancement — PARTIAL
+### SEO Audit & Schema Enhancement — PARTIAL
 
 **Done:**
 - `inLanguage` added to WebSite, DefinedTerm, and CollectionPage JSON-LD
@@ -69,7 +71,18 @@ Component: `src/components/WordRelated.astro`. Pure groupings live in
 - Audit existing canonical URLs against `hreflang` policy if multi-locale
   support is ever planned.
 
-### ⬜ BEM Naming Cleanup + CSS Architecture (combined)
+### BEM Naming Cleanup + CSS Architecture (combined) — PARTIAL
+
+**Status at v3.25.0.** Resolved since the plan below was written: the
+`/stats/streaks` bug (no `stats__list/__fact/__value/__chart` reference
+remains), the dead `word-facts__*`, `word-endings__*` and `letter-patterns__*`
+rules (those pages use `<StatsSection>`), and the `1025px` media queries (one
+breakpoint, `768px`). Still open: `.words__section` and `.browse__*` without a
+parent block, the undefined `--spacing-xl` in `WordList.astro`, the hex
+fallbacks in `BarChart.astro`, and hardcoded `1.1rem`/`0.875rem` literals (now
+in `Footer.astro`, `StatsMilestonePage.astro`, `HeaderSearch.astro`,
+`BarChartRow.astro`). The unreferenced `--color-black` (step 6) has since been
+deleted. The plan is kept as written.
 
 Plan from a planning pass. The two are entangled: most "BEM violations" are
 dead CSS left behind because stats umbrella pages duplicate what
@@ -147,7 +160,12 @@ renders unstyled.
 **Out of scope:** CSS preprocessor, utility framework, dark-mode rework,
 breakpoint token introduction, renaming `.stats-section`.
 
-### ⬜ Accessibility Audit
+### Accessibility Audit — OPEN
+
+**Status at v3.25.0.** No contrast check and no `axe-core` dependency exist
+yet. The dark palette is no longer assembled in `Layout.astro`: it is served by
+the `src/pages/theme.css.ts` endpoint, so the resolver in the plan below would
+mirror that file instead.
 
 Site already passes the easy WCAG wins. Remaining work is preventive: making
 dark-mode contrast verifiable so future `COLOR_DARK_*` env changes can't
@@ -209,13 +227,14 @@ variant. Add later if rendered-state regressions appear.
 **Out-of-scope:** Theme toggle UI (Tier 4), WCAG AAA, light-mode re-audit,
 manual screen-reader testing, axe integration, non-color a11y additions.
 
-### 🟡 Performance Audit — PARTIAL
+### Performance Audit — PARTIAL
 
 **Done:**
 - Per-word `getStaticPaths` O(n²) iteration replaced with one-shot
   `Object.groupBy` calls (`src/pages/word/[word].astro`).
-- Speculation rules `eagerness` reduced from `eager` to `moderate` on the
-  hub-URL list, eliminating eager prefetches for unclicked pages.
+- Speculation rules removed in favor of Astro's prefetch (`prefetch` in
+  `astro.config.ts`: `prefetchAll` with the `hover` strategy), so nothing is
+  fetched for a link the reader has not pointed at.
 
 **Remaining:**
 - Lighthouse baseline scores not captured in CI.
@@ -225,7 +244,13 @@ manual screen-reader testing, axe integration, non-color a11y additions.
 - Critical CSS extraction not implemented; CSS is ~8.6K bundled so payoff
   is marginal.
 
-### ⬜ Architecture & Code Quality
+### Architecture & Code Quality — PARTIAL
+
+**Status at v3.25.0.** The four wrappers in `src/utils/word-data-utils.ts` now
+call the pure functions and no longer run their own `Object.groupBy`; the
+sorting and filtering still live in the wrappers, not in `utils/`. The
+`url-utils.ts` helpers are untouched (40 exports). Line numbers in the table
+below predate this.
 
 Consolidate duplicated grouping logic between `utils/word-data-utils.ts`
 and `src/utils/word-data-utils.ts`, extend the boundary test to cover the
@@ -244,7 +269,7 @@ files with divergent semantics:
 
 **Consolidation strategy.** Pure `utils/` becomes the single owner. Pure
 functions gain alphabetical key sort, per-bucket `localeCompare` sort,
-alphabetic-only filter for letter, and `normalizeToBasePOS` filtering for
+alphabetic-only filter for letter, and `isBasePartOfSpeech` filtering for
 POS. Wrapper functions become thin delegators. Rationale: callers already
 expect sorted output for templates; the pure version is not used outside
 the wrapper today, so tightening it has no external consumer.
@@ -286,7 +311,7 @@ helpers that do real work: `getBasePath`, `getPathname`, `getUrl`,
 `BROWSE_PATHS`/`STATS_SLUGS` shape, new abstractions (`urlFor()`),
 adapters/logger/stats-math changes.
 
-### 🟡 TypeScript Consolidation — PARTIAL
+### TypeScript Consolidation — PARTIAL
 
 **Done:**
 - `WordGrouping<K>` generic added to `types/word.ts`. The three
@@ -305,14 +330,17 @@ adapters/logger/stats-math changes.
 - Adapter-side types (`MerriamWebster*`, `Wordnik*`,
   `FreeDictionary*`) — 16+ interfaces. They mirror API contracts and stay
   per-adapter. No consolidation indicated.
-- A handful of `as Type` assertions in adapter parsers remain — justified
-  by third-party tuple-union shapes (`adapters/merriam-webster.ts:88, 110,
-  115, 118, 183`). Removing them requires recursive type reconstruction
-  for diminishing return.
-- Astro component prop spread uses `[key: string]: any` — standard Astro
-  pattern; not a real `any` hole.
+- Done since: the `as Type` assertions in the adapter parsers and the
+  `[key: string]: any` prop spreads are gone; oxlint now rejects both
+  (`typescript/consistent-type-assertions`, `typescript/no-explicit-any`).
 
-### ⬜ Astro Best Practices (responsive images + complete astro:env)
+### Astro Best Practices (responsive images + complete astro:env) — PARTIAL
+
+**Status at v3.25.0.** The Footer logo renders through `<Image>`, and
+`WORDNIK_WEBSITE_URL` is in the `astro:env` schema in `astro.config.ts`, read
+by `Footer.astro` through `astro:env/client` (step 1).
+`src/pages/favicon.ico.ts` no longer exists, and step 6 refers to speculation
+rules that Astro's prefetch has replaced.
 
 Pairs the Astro 6.x image component rollout with finishing the `astro:env`
 migration. The type-safe env API is already partially adopted —
@@ -376,7 +404,7 @@ new stats.
 Standardize error patterns (throw vs null vs log) with proper error types.
 See [backlog.md](backlog.md).
 
-### ✅ Client-Side Search — SHIPPED
+### Client-Side Search — SHIPPED
 
 Zero-dependency starts-with search behind a header magnifying-glass icon, over
 the existing `/words.json`. Progressive enhancement with a no-JS fallback (the
@@ -384,10 +412,10 @@ All Words page). See the Word Enrichment Bucket above.
 
 ## Tier 3: Lower Impact
 
-### Test Coverage Completion
+### Test Coverage Completion — SHIPPED
 
-Fill remaining coverage gaps in `static-file-utils.ts` and
-`static-paths-utils.ts`.
+`static-file-utils.ts` and `static-paths-utils.ts` have specs in
+`tests/src/utils/`. What remains is listed in [backlog.md](backlog.md).
 
 ### Stats Category Directory Pages
 

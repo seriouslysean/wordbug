@@ -6,13 +6,12 @@ import { dirname, join } from 'node:path';
 import {
   afterAll, beforeAll, describe, expect, it, vi,
 } from 'vitest';
+import { getAllWords } from '#tools/utils';
+import { getAllPageMetadata } from '#utils/page-metadata-utils';
 
 // tests/setup.ts swaps the locale for a small fixture that lacks some page
 // headings; building the page list reads them all.
 vi.unmock('#locales/en.json');
-
-import { getAllWords } from '#tools/utils';
-import { getAllPageMetadata } from '#utils/page-metadata-utils';
 
 const PAGES_DIR = 'src/pages';
 const PAGE_EXTENSION = '.astro';

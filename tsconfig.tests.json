@@ -8,7 +8,6 @@
   "include": [
     "tests/**/*.ts",
     "types/**/*.d.ts",
-    "src/env.d.ts",
     ".astro/**/*.d.ts"
   ],
   "exclude": [

@@ -2,6 +2,13 @@
 import SectionHeading from '#components/SectionHeading.astro';
 import Word from '#components/Word.astro';
 import WordList from '#components/WordList.astro';
+import type { WordData } from '#types';
+
+interface Props {
+  currentWord: WordData | null;
+  wordsToShow?: WordData[];
+  sectionTitle?: string;
+}
 
 const { currentWord, wordsToShow = [], sectionTitle = '' } = Astro.props;
 ---

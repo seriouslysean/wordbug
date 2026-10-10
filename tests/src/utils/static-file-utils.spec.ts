@@ -1,5 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { WordData } from '#types';
+import {
+  generateHealthTxt,
+  generateHumansTxt,
+  generateLlmsTxt,
+  generateRobotsTxt,
+  getStaticFileContent,
+} from '#astro-utils/static-file-utils';
 
 vi.mock('#utils/i18n-utils', () => ({
   t: (key: string, values: Record<string, unknown> = {}) =>
@@ -9,14 +16,6 @@ vi.mock('#utils/i18n-utils', () => ({
       .replaceAll(/\{\{(\w+)\}\}/g, (_match, name: string) =>
         String(values[name] ?? (name === 'count' ? count : name))),
 }));
-
-import {
-  generateHealthTxt,
-  generateHumansTxt,
-  generateLlmsTxt,
-  generateRobotsTxt,
-  getStaticFileContent,
-} from '#astro-utils/static-file-utils';
 
 const originalEnv = {
   SITE_TITLE: mockEnv.SITE_TITLE,
@@ -54,6 +53,17 @@ describe('generateLlmsTxt', () => {
     expect(recentSection).not.toContain('[word6]');
     expect(output).toContain('](https://test.com/demo/word/word1)');
     expect(output).toContain('](https://test.com/demo/word)');
+  });
+
+  it('does not double a base path that SITE_URL repeats', () => {
+    mockEnv.BASE_PATH = '/demo';
+    mockEnv.SITE_URL = 'https://test.com/demo';
+
+    const output = generateLlmsTxt(words);
+
+    expect(output).toContain('](https://test.com/demo/word/word1)');
+    expect(output).not.toContain('/demo/demo/');
+    expect(generateRobotsTxt('https://test.com/demo')).toContain('Sitemap: https://test.com/demo/sitemap-index.xml');
   });
 
   it('returns null when required site data is missing', () => {

@@ -32,19 +32,27 @@ A template for creating family word-of-the-day sites that provides a foundation 
 
 ## Quick Start
 
+Requires Node.js 26+ (`.nvmrc` provided).
+
 ```bash
 # Install dependencies
-npm install
+nvm use && npm install
 
-# Set up environment
-cp .env.example .env
-# Add your dictionary API key to .env
-
-# Start development
-npm run dev
+# Start development with the bundled demo words
+SOURCE_DIR=demo npm run dev
 
 # Build for production
-npm run build
+SOURCE_DIR=demo npm run build
+```
+
+No `.env` is needed to run the demo. This repository only ships the demo words
+(`data/demo/words/`), so `SOURCE_DIR=demo` is required here: without it the
+site reads `data/words/`, finds no words, and the build fails with
+`Word not found`. To add words you need a dictionary API key:
+
+```bash
+cp .env.example .env
+# Set SOURCE_DIR=demo and add your dictionary API key in .env
 ```
 
 ## Adding Words
@@ -71,7 +79,7 @@ Control your site through environment variables:
 # Site Identity
 SITE_TITLE="My Word Site"
 SITE_URL="https://my-word-site.com"
-SOURCE_DIR="words"                      # Data source (demo, words, etc.)
+SOURCE_DIR=""                           # Data subdirectory; unset reads data/words/, demo reads data/demo/words/
 
 # Dictionary Service
 DICTIONARY_ADAPTER="merriam-webster"
@@ -118,7 +126,7 @@ BASE_PATH="/words"
 
 ## Data Structure
 
-Words are stored as JSON files organized by year:
+Words are stored as JSON files organized by year (the `{SOURCE_DIR}` level exists only when `SOURCE_DIR` is set):
 
 ```
 data/
@@ -140,6 +148,7 @@ npm run test:watch    # Watch mode for development
 npm run lint          # Code style checking
 npm run typecheck     # Type checking (uses Astro check)
 npm run build         # Verify build succeeds
+npm run test:e2e      # Playwright against the built site (run the build first)
 ```
 
 **Pre-commit hooks automatically run:**

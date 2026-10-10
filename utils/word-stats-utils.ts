@@ -352,82 +352,18 @@ export const getLetterStatsFromFrequency = (letterFrequency: Record<string, numb
 };
 
 /**
- * Calculate current and longest word streaks based on consecutive days.
+ * Counts the current and longest word streaks. A streak is defined once, by
+ * the functions that list its words (getCurrentStreakWords,
+ * getLongestStreakWords); the counts are the lengths of those lists, so a
+ * stat and the page listing its words cannot disagree. The current streak is
+ * active when it has a word: one dated today or yesterday.
  */
 export const getCurrentStreakStats = (words: WordData[]): WordStreakStatsResult => {
-  if (words.length === 0) {
-    return {
-      currentStreak: 0,
-      longestStreak: 0,
-      isActive: false,
-    };
-  }
-
-  const sortedWords = words.toSorted((a, b) => b.date.localeCompare(a.date));
-  const today = new Date();
-  const todayString = dateToYYYYMMDD(today);
-  const yesterdayDate = new Date(today);
-  yesterdayDate.setDate(today.getDate() - 1);
-  const yesterdayString = dateToYYYYMMDD(yesterdayDate);
-
-  const mostRecentWord = sortedWords[0];
-  const isActive = !!mostRecentWord && (mostRecentWord.date === todayString || mostRecentWord.date === yesterdayString);
-  const calculateCurrentStreak = () => {
-    if (!isActive || !mostRecentWord) {
-      return 0;
-    }
-
-    const streakData = {
-      count: 1,
-      lastDate: mostRecentWord.date,
-    };
-
-    for (const word of sortedWords.slice(1)) {
-      if (areConsecutiveDays(word.date, streakData.lastDate)) {
-        streakData.count++;
-        streakData.lastDate = word.date;
-      } else {
-        break;
-      }
-    }
-
-    return streakData.count;
-  };
-
-  const calculateLongestStreak = () => {
-    if (!words.length || words.length === 1) {
-      return words.length;
-    }
-
-    const streakData = {
-      longest: 0,
-      current: 1,
-    };
-
-    for (const [index, word] of sortedWords.entries()) {
-      if (index === 0) {
-        continue;
-      }
-
-      const previousWord = sortedWords[index - 1];
-      if (previousWord && areConsecutiveDays(word.date, previousWord.date)) {
-        streakData.current++;
-      } else {
-        streakData.longest = Math.max(streakData.longest, streakData.current);
-        streakData.current = 1;
-      }
-    }
-
-    return Math.max(streakData.longest, streakData.current);
-  };
-
-  const currentStreak = calculateCurrentStreak();
-  const longestStreak = calculateLongestStreak();
-
+  const currentStreak = getCurrentStreakWords(words).length;
   return {
     currentStreak,
-    longestStreak,
-    isActive,
+    longestStreak: getLongestStreakWords(words).length,
+    isActive: currentStreak > 0,
   };
 };
 

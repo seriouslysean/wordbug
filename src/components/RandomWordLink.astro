@@ -1,6 +1,9 @@
 ---
 import SiteButton from '#components/SiteButton.astro';
 import { t } from '#utils/i18n-utils';
+import type { ComponentProps } from 'astro/types';
+
+type Props = ComponentProps<typeof SiteButton>;
 
 const { class: className, ...attrs } = Astro.props;
 ---

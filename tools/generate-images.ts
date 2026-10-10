@@ -77,22 +77,26 @@ async function bulkGenerate<T extends BulkItem>(
     const batch = items.slice(i, i + CONCURRENCY_LIMIT);
     const batchResults = await Promise.allSettled(
       batch.map(async (item) => {
-        const result = await generate(item);
-        if (result.generated) {
-          logger.info(`Generated ${category} image`, { label: item.label });
-        } else {
-          logger.info(`Skipped ${category} image (unchanged)`, { label: item.label });
+        try {
+          const result = await generate(item);
+          if (result.generated) {
+            logger.info(`Generated ${category} image`, { label: item.label });
+          } else {
+            logger.info(`Skipped ${category} image (unchanged)`, { label: item.label });
+          }
+          return result;
+        } catch (error) {
+          // Logged here, where the item is still known: a settled rejection
+          // carries only the error
+          logger.error(`Failed to generate ${category} image`, { label: item.label, error: getErrorMessage(error) });
+          throw error;
         }
-        return result;
       }),
     );
     results.push(...batchResults);
   }
 
   const failures = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
-  failures.forEach(r => {
-    logger.error(`Failed to generate ${category} image`, { error: r.reason?.message });
-  });
 
   const rendered = results
     .filter((r): r is PromiseFulfilledResult<CardRender> => r.status === 'fulfilled')
@@ -194,12 +198,13 @@ async function main(options: GenerateImagesOptions): Promise<void> {
   }
   const renderOptions: GenerateImageOptions = { regenerate: options.force || cache.stale, cards: cache.cards };
 
-  if (options.page) {
+  // An empty value still names one card: `--word ""` is not a full run
+  if (options.page !== undefined) {
     const success = await generatePageImage(options.page, renderOptions);
     await exit(success ? 0 : 1);
   }
 
-  if (options.word) {
+  if (options.word !== undefined) {
     const success = await generateSingleImage(options.word, renderOptions);
     await exit(success ? 0 : 1);
   }

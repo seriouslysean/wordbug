@@ -8,11 +8,14 @@ import os from 'node:os';
 import path from 'node:path';
 import { load } from 'js-yaml';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { pathToFileURL } from 'node:url';
 import { spawnTool, type SpawnToolResult } from '#tests/helpers/spawn.ts';
 
 const ROOT = process.cwd();
 const TOOL = path.join(ROOT, 'tools', 'create-site.ts');
 const SHA = '0123456789abcdef0123456789abcdef01234567';
+// Preloaded so a warn line can be told from an error line, which Sentry receives
+const LOG_LEVELS = pathToFileURL(path.join(ROOT, 'tests', 'helpers', 'log-levels.ts')).href;
 
 // Every file a new site gets, as docs/technical.md and the README list them
 const SITE_FILES = [
@@ -163,6 +166,7 @@ describe('create-site', { timeout: 20000 }, () => {
     ['a date that is not YYYYMMDD', SEED.replace('20260918', '2026-09-18'), 'date must be YYYYMMDD'],
     ['a date that is not a real day', SEED.replace('20260918', '20260231'), 'date must be YYYYMMDD'],
     ['a date that climbs out of the site', SEED.replace('20260918', '../../x'), 'date must be YYYYMMDD'],
+    ['a word with no URL slug', SEED.replace('"word": "café & crème"', '"word": "&"'), 'has no URL slug'],
   ])('refuses %s as the seed before writing', async (_, content, message) => {
     write('bad.json', content);
 
@@ -238,11 +242,15 @@ describe('create-site', { timeout: 20000 }, () => {
     ['no engine ref', ['site', '--seed-file', 'seed.json']],
     ['no seed', ['site', '--engine-ref', 'v3.23.0']],
     ['an unknown option', ['site', '--engine-ref', 'v3.23.0', '--seed-file', 'seed.json', '--force']],
-  ])('refuses %s', async (_, args) => {
-    const result = await run(...args);
+    ['an option without its value', ['site', '--engine-ref', 'v3.23.0', '--seed-file']],
+  ])('refuses %s at warn, as the other tools refuse a command line', async (_, args) => {
+    const result = await spawnTool(['--import', LOG_LEVELS, TOOL, ...args], { cwd: ctx.dir });
+    const lines = result.stderr.trim().split('\n');
 
     expect(result.code).toBe(1);
-    expect(result.stderr).toContain('Create site failed');
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toMatch(/^\[warn\] /);
+    expect(lines[0]).toContain('--help');
     expect(fs.readdirSync(ctx.dir)).toEqual(['seed.json']);
   });
 });

@@ -27,6 +27,14 @@ test.describe('stats visualizations', () => {
     await expect(page.locator('#word-title')).toBeVisible();
   });
 
+  test('page does not scroll horizontally', async ({ page }) => {
+    await page.goto('/stats');
+    // Hidden heatmap tooltips of the edge columns must not widen the page.
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+
   test('shows a per-year summary on a year page', async ({ page }) => {
     await page.goto('/browse');
     await page.locator('main a[href*="/browse/20"]').first().click();

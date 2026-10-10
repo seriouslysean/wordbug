@@ -1,15 +1,14 @@
 import { execFileSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-
-// tests/setup.ts swaps the locale for a small fixture. The page list needs
-// every real heading, as the generator sees it.
-vi.unmock('#locales/en.json');
-
 import { getSocialImageUrl } from '#astro-utils/image-utils';
 import { getAllWords } from '#tools/utils';
 import { getImagesDir, SOCIAL_DIR } from '#utils/image-path-utils';
 import { getAllPageMetadata } from '#utils/page-metadata-utils';
 import type { WordData } from '#types';
+
+// tests/setup.ts swaps the locale for a small fixture. The page list needs
+// every real heading, as the generator sees it.
+vi.unmock('#locales/en.json');
 
 // vitest.config.ts points the CLI side at the demo dataset; the site side
 // reads the same value through the mocked astro:env schema below.

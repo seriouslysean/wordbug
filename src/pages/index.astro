@@ -10,10 +10,11 @@ const { currentWord, previousWords: wordsToShow } = getHomepageWords(allWords);
 
 const sectionTitle = wordsToShow.length > 0 ? t('home.previous_words') : '';
 
-const { title, description } = getPageMetadata(Astro.url.pathname);
+// No page title: the home page is titled by the site's own name
+const { description } = getPageMetadata(Astro.url.pathname, currentWord);
 ---
 
-<Layout word={currentWord} title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
+<Layout word={currentWord ?? undefined} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_SINGLE}>
   <WordDisplay
     currentWord={currentWord}
     wordsToShow={wordsToShow}

@@ -83,6 +83,25 @@ describe('utils/logger (CLI logger with Sentry)', () => {
       expect(Sentry.captureException).toHaveBeenCalledWith(err);
     });
 
+    it('initializes Sentry with the pinned baseline around the environment values', async () => {
+      vi.stubEnv('SENTRY_RELEASE', 'site@1.2.3+abc');
+      const { logger } = await import('#utils/logger');
+      const Sentry = await import('@sentry/node');
+      const { sentryBaselineOptions, withoutDedupe } = await import('#utils/sentry-options');
+
+      logger.error('trigger init');
+
+      expect(Sentry.init).toHaveBeenCalledWith({
+        ...sentryBaselineOptions,
+        integrations: withoutDedupe,
+        dsn: 'https://test@sentry.io/123',
+        environment: 'test',
+        release: 'site@1.2.3+abc',
+        tracesSampleRate: 0,
+        initialScope: { tags: { site: 'test-site', runtime: 'cli' } },
+      });
+    });
+
     it('logger.error captures string messages', async () => {
       const { logger } = await import('#utils/logger');
       const Sentry = await import('@sentry/node');

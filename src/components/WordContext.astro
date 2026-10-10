@@ -46,7 +46,7 @@ const {
           href={getLengthUrl(wordLength)}
           variant="primary"
           class="word-context__item"
-          title={t('common.title_with_length', { count: lengthCount, value: wordLength })}
+          title={tp('common.title_with_length', lengthCount, { value: tp('common.letters', wordLength) })}
         >
           {t('word.length_label', { length: wordLength })}
         </SiteLink>
@@ -59,7 +59,7 @@ const {
           href={getLetterUrl(firstLetter)}
           variant="primary"
           class="word-context__item"
-          title={t('common.title_starting_with', { count: letterCount, value: firstLetter.toUpperCase() })}
+          title={tp('common.title_starting_with', letterCount, { value: firstLetter.toUpperCase() })}
         >
           {t('word.letter_words', { letter: firstLetter.toUpperCase() })}
         </SiteLink>
@@ -85,7 +85,7 @@ const {
           href={getWordsYearUrl(year)}
           variant="primary"
           class="word-context__item"
-          title={t('common.title_from_context', { count: yearCount ?? relatedByYear.length, value: year })}
+          title={tp('common.title_from_context', yearCount ?? relatedByYear.length, { value: year })}
         >
           {year}
         </SiteLink>

@@ -70,6 +70,9 @@ env:
 jobs:
   add-word:
     runs-on: ubuntu-26.04
+    # Usually under a minute. A release that changes the cards re-renders
+    # every one of a site's here too, so this allows what Site Deploy does.
+    timeout-minutes: 15
     steps:
       # job.workflow_* name the repository and commit this workflow runs
       # from, so the code is the commit the caller's uses: pins, whatever
@@ -87,7 +90,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
-          node-version: 26
+          node-version-file: engine/.nvmrc
           cache: 'npm'
           cache-dependency-path: engine/package-lock.json
 

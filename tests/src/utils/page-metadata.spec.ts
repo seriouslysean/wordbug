@@ -1,9 +1,12 @@
 import { describe, expect, it, vi } from 'vitest';
+import { getAllPageMetadata, getPageMetadata } from '#astro-utils/page-metadata';
+
+import type { WordData } from '#types';
 
 const ctx = vi.hoisted(() => {
-  const words = [
-    { word: 'first',  date: '20240101', data: [{ partOfSpeech: 'noun', text: 'a thing' }] },
-    { word: 'second', date: '20240102', data: [{ partOfSpeech: 'noun', text: 'another' }] },
+  const words: WordData[] = [
+    { word: 'first',  date: '20240101', adapter: 'test', data: [{ partOfSpeech: 'noun', text: 'a thing' }] },
+    { word: 'second', date: '20240102', adapter: 'test', data: [{ partOfSpeech: 'noun', text: 'another' }] },
   ];
   const lookup = vi.fn((pathname: string) => ({
     title: pathname,
@@ -39,15 +42,18 @@ vi.mock('#utils/page-metadata-utils', () => ({
     words.map(word => ({ path: `/word/${word.word}` }))),
 }));
 
-import { getAllPageMetadata, getPageMetadata } from '#astro-utils/page-metadata';
-
 describe('src/utils/page-metadata', () => {
   describe('getPageMetadata', () => {
     it('strips BASE_PATH and forwards to the pure helper with all words', () => {
       const result = getPageMetadata('/wotd/word/first');
       expect(result.title).toBe('/word/first');
       expect(ctx.createLookupInputs).toStrictEqual([ctx.words]);
-      expect(ctx.lookup).toHaveBeenCalledWith('/word/first');
+      expect(ctx.lookup).toHaveBeenCalledWith('/word/first', undefined);
+    });
+
+    it('forwards the homepage word to the pure helper', () => {
+      getPageMetadata('/wotd/', ctx.words[1]);
+      expect(ctx.lookup).toHaveBeenCalledWith('/', ctx.words[1]);
     });
 
     it('forwards root path through to the pure helper', () => {

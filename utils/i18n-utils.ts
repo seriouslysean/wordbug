@@ -1,8 +1,6 @@
 import translations from '#locales/en.json' with { type: 'json' };
 import { isRecord } from '#utils/type-guards';
 
-export const defaultLang = 'en';
-
 /**
  * Simple translation function for basic key lookups
  * @param key - Translation key (e.g., 'nav.home')
@@ -70,4 +68,20 @@ export const tp = (
   const suffix = PLURAL_SUFFIXES[numCount] ?? 'other';
 
   return t(`${baseKey}_${suffix}`, { count: numCount, ...additionalValues });
+};
+
+/**
+ * The Open Graph form of a BCP 47 locale: language_TERRITORY (ogp.me), so
+ * en-US is en_US and zh-Hant-TW is zh_TW. og:locale is optional, so a locale
+ * that names no region ("en") or is not a BCP 47 tag at all gives undefined
+ * and the caller leaves the tag out; a language alone is not a value the
+ * format allows, and no region is guessed for it.
+ */
+export const getOpenGraphLocale = (locale: string): string | undefined => {
+  try {
+    const { language, region } = new Intl.Locale(locale);
+    return region ? `${language}_${region}` : undefined;
+  } catch {
+    return undefined;
+  }
 };

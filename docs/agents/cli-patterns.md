@@ -41,14 +41,12 @@ gh api .../pulls/58/files  # Use: git diff main...HEAD --stat
 ### Creating PRs and issues
 
 ```sh
-# Use heredocs for multi-line bodies
-gh pr create --title "Title" --body "$(cat <<'EOF'
-Body content here
-EOF
-)"
-
-# Use --fill-first with PR templates to avoid duplicating the template
-gh pr create --title "Title" --fill-first
+# A PR body follows .github/pull_request_template.md, written to a file
+# outside the repository and passed by path. --fill and --fill-first take the
+# body from commit messages and skip the template; an inline or heredoc body
+# becomes part of the command line, where the destructive-command hook blocks
+# any line that quotes a command it guards against
+gh pr create --title "Title" --body-file /path/to/body.md
 ```
 
 ## Git
@@ -92,7 +90,7 @@ gh api repos/OWNER/REPO/actions/runs --jq '.workflow_runs[:3] | .[].conclusion'
 
 ```sh
 # Run quality gates in sequence, stop on first failure
-npm run lint && npm run typecheck && npm test && npm run build
+npm run lint && npm run typecheck && npm test && npm run build && npm run test:e2e
 
 # Run a specific test file (faster than full suite during iteration)
 npx vitest run tests/utils/date-utils.spec.ts

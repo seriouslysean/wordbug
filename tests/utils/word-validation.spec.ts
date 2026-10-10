@@ -51,6 +51,17 @@ describe('word-validation', () => {
       expect(isWordData({ ...VALID_WORD, data: [] })).toBe(false);
     });
 
+    // What src/content.config.ts refuses for the same two fields
+    it.each([
+      ['a day that is not in the calendar', { date: '20240230' }],
+      ['a date with separators', { date: '2024-02-28' }],
+      ['a date that is a path', { date: '../../x' }],
+      ['an empty word', { word: '' }],
+      ['a word of whitespace only', { word: ' \t' }],
+    ])('rejects %s, as the content schema does', (_, field) => {
+      expect(isWordData({ ...VALID_WORD, ...field })).toBe(false);
+    });
+
     it('rejects malformed definitions', () => {
       const withDefinition = (definition: unknown) => ({ ...VALID_WORD, data: [definition] });
       expect(isWordData(withDefinition(null))).toBe(false);
@@ -103,8 +114,19 @@ describe('word-validation', () => {
       );
     });
 
-    it('throws on invalid JSON', () => {
-      expect(() => parseWordData('{not json', 'words/2025/20250101.json')).toThrow(SyntaxError);
+    it.each([
+      ['an impossible date', { date: '20240230' }, 'Invalid word data in words/2024/20240230.json: date must be YYYYMMDD, not 20240230'],
+      ['a blank word', { word: ' ' }, 'Invalid word data in words/2024/20240230.json: word must not be blank'],
+    ])('names the file and the field for %s', (_, field, message) => {
+      expect(() => parseWordData(JSON.stringify({ ...VALID_WORD, ...field }), 'words/2024/20240230.json')).toThrow(message);
+    });
+
+    it('names the file when the JSON is invalid, and keeps the parser\'s error as the cause', () => {
+      const parse = () => parseWordData('{not json', 'words/2025/20250101.json');
+
+      expect(parse).toThrow(SyntaxError);
+      expect(parse).toThrow(/^Invalid JSON in words\/2025\/20250101\.json: \S/);
+      expect(parse).toThrow(expect.objectContaining({ cause: expect.any(SyntaxError) }));
     });
   });
 

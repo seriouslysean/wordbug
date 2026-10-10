@@ -1,16 +1,22 @@
 import {
+  browserSessionIntegration,
   browserTracingIntegration,
   init,
   replayIntegration,
+  userTimingIntegration,
 } from '@sentry/astro';
 import { SENTRY_DSN, SENTRY_ENVIRONMENT, SITE_ID } from 'astro:env/client';
 
 import { sharedSentryOptions } from './sentry.config.shared.js';
+import { sentryBrowserBaseline } from '#utils/sentry-options';
 
 init({
   ...sharedSentryOptions(SENTRY_DSN, SENTRY_ENVIRONMENT, __RELEASE__, SITE_ID),
   integrations: [
-    browserTracingIntegration(),
+    browserSessionIntegration(sentryBrowserBaseline.session),
+    browserTracingIntegration(sentryBrowserBaseline.tracing),
+    // SDK 11 moved performance.mark()/measure() spans out of browser tracing
+    userTimingIntegration(),
     replayIntegration({
       // Site content is public -- unmasked replays are far more useful for debugging
       maskAllText: false,

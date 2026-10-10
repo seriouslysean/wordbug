@@ -4,7 +4,7 @@ import WordNav from '#components/WordNav.astro';
 import WordContext from '#components/WordContext.astro';
 import Layout from '#layouts/Layout.astro';
 import type { WordData } from '#types';
-import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
+import { STRUCTURED_DATA_TYPE, type StructuredDataType } from '#astro-utils/schema-utils';
 import { getMetaDescription } from '#astro-utils/seo-utils';
 import { extractWordDefinition } from '#astro-utils/word-data-utils';
 import { t } from '#utils/i18n-utils';
@@ -13,7 +13,7 @@ interface Props {
   wordData: WordData;
   previousWord: WordData | null;
   nextWord: WordData | null;
-  structuredDataType?: string;
+  structuredDataType?: StructuredDataType;
   contextData?: {
     wordLength: number;
     firstLetter: string;

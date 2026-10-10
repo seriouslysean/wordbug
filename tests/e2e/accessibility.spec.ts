@@ -66,6 +66,21 @@ test.describe('accessibility', () => {
 		}
 	});
 
+	test('h1 is the first heading and every nav landmark is named', async ({ page }) => {
+		const expectOutline = async () => {
+			await expect(page.locator('h1, h2, h3, h4, h5, h6').first()).toHaveJSProperty('tagName', 'H1');
+			await expect(page.locator('nav:not([aria-label])')).toHaveCount(0);
+		};
+
+		await page.goto('/');
+		await expectOutline();
+
+		// Word pages add the previous/next navigation
+		await page.locator('.past-words a[href^="/word/"]').first().click();
+		await expect(page.locator('nav.word-nav')).toHaveCount(1);
+		await expectOutline();
+	});
+
 	test('page families expose one heading and one main landmark', async ({ page }) => {
 		const expectPageLandmarks = async () => {
 			await expect(page.locator('h1')).toHaveCount(1);

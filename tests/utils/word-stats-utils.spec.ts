@@ -180,6 +180,19 @@ describe('word-stats-utils', () => {
     });
   });
 
+  describe('the all-consonants stat and punctuation', () => {
+    it('lists a word whose letters are all consonants, punctuation or not', () => {
+      const words = [
+        makeWord('pb&j', '20240101'),
+        makeWord('tsk-tsk', '20240102'),
+        makeWord('rhythm', '20240103'),
+        makeWord('catch-22', '20240104'),
+      ];
+
+      expect(getPatternStats(words).allConsonants.map(w => w.word)).toEqual(['pb&j', 'tsk-tsk', 'rhythm']);
+    });
+  });
+
   describe('areConsecutiveDays', () => {
     it('identifies consecutive dates', () => {
       expect(areConsecutiveDays('20240101', '20240102')).toBe(true);
@@ -515,6 +528,87 @@ describe('word-stats-utils', () => {
         expect(stats.isActive).toBe(false);
         expect(stats.currentStreak).toBe(0);
         expect(stats.longestStreak).toBe(2);
+      });
+    });
+
+    // getCurrentStreakStats used to count both streaks with loops of its own,
+    // beside the ones that list a streak's words. This is that counting,
+    // kept as an independent reference: on any set of dates the counts
+    // derived from the word lists must equal it.
+    describe('streak counts against counting them directly', () => {
+      const countStreaksDirectly = (words: WordData[]) => {
+        const sorted = words.toSorted((a, b) => b.date.localeCompare(a.date));
+        const newest = sorted[0];
+        const isActive = !!newest && (newest.date === offset(0) || newest.date === offset(-1));
+
+        const current = { count: isActive ? 1 : 0, lastDate: newest?.date ?? '' };
+        for (const word of isActive ? sorted.slice(1) : []) {
+          if (!areConsecutiveDays(word.date, current.lastDate)) {
+            break;
+          }
+          current.count++;
+          current.lastDate = word.date;
+        }
+
+        const longest = { best: 0, run: sorted.length > 0 ? 1 : 0 };
+        for (const [index, word] of sorted.entries()) {
+          const previous = sorted[index - 1];
+          if (!previous) {
+            continue;
+          }
+          if (areConsecutiveDays(word.date, previous.date)) {
+            longest.run++;
+          } else {
+            longest.best = Math.max(longest.best, longest.run);
+            longest.run = 1;
+          }
+        }
+
+        return { currentStreak: current.count, longestStreak: Math.max(longest.best, longest.run), isActive };
+      };
+
+      // A fixed seed, so a failure names a set that can be generated again
+      const createRandom = (seed: number) => {
+        const state = { value: seed };
+        return (): number => {
+          state.value = (Math.imul(state.value, 1664525) + 1013904223) >>> 0;
+          return state.value / 2 ** 32;
+        };
+      };
+
+      // Days back from today that have a word: dense runs, gaps, a set that
+      // ends today, yesterday or earlier, a date used twice, a date that is
+      // no day, all in no particular order
+      const generateWords = (random: () => number): WordData[] => {
+        const newest = Math.floor(random() * 4);
+        const density = 0.3 + random() * 0.65;
+        const span = Math.floor(random() * 60);
+        const days = Array.from({ length: span }, (_, index) => newest + index).filter(() => random() < density);
+        const dates = days.map(day => offset(-day));
+        const extras = [
+          ...(random() < 0.2 && dates[0] ? [dates[0]] : []),
+          ...(random() < 0.1 ? ['20240230'] : []),
+        ];
+        return [...dates, ...extras]
+          .map((date, index) => ({ word: makeWord(`w${index}`, date), order: random() }))
+          .toSorted((a, b) => a.order - b.order)
+          .map(({ word }) => word);
+      };
+
+      it('agrees on 500 generated sets of dates', () => {
+        const random = createRandom(20240615);
+        const sets = Array.from({ length: 500 }, () => generateWords(random));
+
+        // The generator reaches the cases that matter
+        const reference = sets.map(countStreaksDirectly);
+        expect(reference.some(stats => stats.isActive && stats.currentStreak > 1)).toBe(true);
+        expect(reference.some(stats => !stats.isActive && stats.longestStreak > 1)).toBe(true);
+        expect(reference.some(stats => stats.longestStreak > stats.currentStreak && stats.currentStreak > 0)).toBe(true);
+        expect(sets.some(words => words.length === 0)).toBe(true);
+
+        for (const [index, words] of sets.entries()) {
+          expect(getCurrentStreakStats(words), `set ${index}: ${words.map(w => w.date).join(',')}`).toEqual(reference[index]);
+        }
       });
     });
   });

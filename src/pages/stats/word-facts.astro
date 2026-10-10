@@ -19,7 +19,7 @@ import {
   letterStats,
   milestoneWords
 } from '#astro-utils/word-data-utils';
-import { t } from '#utils/i18n-utils';
+import { t, tp } from '#utils/i18n-utils';
 
 const lengthCount = availableLengths.length;
 
@@ -33,7 +33,6 @@ const {
   leastCommon: leastCommonLetter,
   leastCommonCount: leastCommonLetterCount,
 } = letterStats;
-const leastCommonLetterPlural = leastCommonLetterCount !== 1 ? 's' : '';
 const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
 const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
 const palindromeCount = palindromes.length;
@@ -42,28 +41,28 @@ const milestoneCount = milestoneWords.length;
 // Word length stats
 const lengthItems = [
   ...(lengthCount > 0 ? [{ label: t('stats.word_lengths'), value: lengthCount, href: getWordsLengthUrl() }] : []),
-  ...(wordStats.shortest ? [{ label: t('stats.shortest', { length: wordStats.shortest.word.length }), value: wordStats.shortest, isWord: true }] : []),
-  ...(wordStats.longest ? [{ label: t('stats.longest', { length: wordStats.longest.word.length }), value: wordStats.longest, isWord: true }] : [])
+  ...(wordStats.shortest ? [{ label: tp('stats.shortest', wordStats.shortest.word.length), value: wordStats.shortest, isWord: true }] : []),
+  ...(wordStats.longest ? [{ label: tp('stats.longest', wordStats.longest.word.length), value: wordStats.longest, isWord: true }] : [])
 ];
 
 // Syllable stats
 const syllableItems = [
-  ...(leastSyllables ? [{ label: t('stats.least_syllables', { count: leastSyllablesCount }), value: leastSyllables, isWord: true }] : []),
-  ...(mostSyllables ? [{ label: t('stats.most_syllables', { count: mostSyllablesCount }), value: mostSyllables, isWord: true }] : [])
+  ...(leastSyllables ? [{ label: tp('stats.least_syllables', leastSyllablesCount), value: leastSyllables, isWord: true }] : []),
+  ...(mostSyllables ? [{ label: tp('stats.most_syllables', mostSyllablesCount), value: mostSyllables, isWord: true }] : [])
 ];
 
 // Letter composition stats
 const letterCompositionItems = [
-  ...(mostVowels ? [{ label: t('stats.most_vowels', { count: mostVowelsCount }), value: mostVowels, isWord: true }] : []),
-  ...(mostConsonants ? [{ label: t('stats.most_consonants', { count: mostConsonantsCount }), value: mostConsonants, isWord: true }] : []),
+  ...(mostVowels ? [{ label: tp('stats.most_vowels', mostVowelsCount), value: mostVowels, isWord: true }] : []),
+  ...(mostConsonants ? [{ label: tp('stats.most_consonants', mostConsonantsCount), value: mostConsonants, isWord: true }] : []),
   ...(allConsonants.length > 0 ? [{ label: t('stats.all_consonants'), value: allConsonants.length, href: '/stats/all-consonants' }] : []),
   ...(allVowels.length > 0 ? [{ label: t('stats.all_vowels'), value: allVowels.length, href: '/stats/all-vowels' }] : [])
 ];
 
 // Letter frequency stats
 const letterFrequencyItems = (letterStats.ranked.length > 0 ? [
-    { label: t('stats.most_common_letter', { count: mostCommonLetterCount }), value: mostCommonLetter, href: '/stats/most-common-letter' },
-    { label: t('stats.least_common_letter', { count: leastCommonLetterCount, plural: leastCommonLetterPlural }), value: leastCommonLetter, href: '/stats/least-common-letter' }
+    { label: tp('stats.most_common_letter', mostCommonLetterCount), value: mostCommonLetter, href: '/stats/most-common-letter' },
+    { label: tp('stats.least_common_letter', leastCommonLetterCount), value: leastCommonLetter, href: '/stats/least-common-letter' }
   ] : []);
 
 // Special word types

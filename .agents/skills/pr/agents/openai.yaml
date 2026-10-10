@@ -1,0 +1,6 @@
+# Codex only (https://learn.chatgpt.com/docs/build-skills): the counterpart of
+# disable-model-invocation in SKILL.md. Opening a pull request is visible to
+# others, so Codex runs this skill only when it is named ($pr), never by
+# matching its description.
+policy:
+  allow_implicit_invocation: false

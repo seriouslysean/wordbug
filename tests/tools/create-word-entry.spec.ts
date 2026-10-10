@@ -90,3 +90,34 @@ describe('createWordEntry stored output', () => {
     expect(ctx.getWordRelations).toHaveBeenCalledWith('japan', expect.anything());
   });
 });
+
+// The site builds every .json file below the words directory on the date it
+// stores, so the date may be held by a file outside words/<year>
+describe('createWordEntry and a date another file already holds', () => {
+  const STORED = { word: 'gamma', date: DATE, adapter: 'wordnik', data: [{ text: 'a letter', partOfSpeech: 'noun' }] };
+  const heldPath = () => path.join(ctx.wordsDir, 'drafts', `${DATE}.json`);
+  const yearPath = () => path.join(ctx.wordsDir, '2025', `${DATE}.json`);
+
+  beforeEach(() => {
+    fs.mkdirSync(path.dirname(heldPath()));
+    fs.writeFileSync(heldPath(), JSON.stringify(STORED));
+  });
+
+  it('refuses to write a second word for the date', async () => {
+    const { createWordEntry } = await import('#tools/utils');
+
+    await expect(createWordEntry('serendipity', { date: DATE })).rejects.toThrow(`Word already exists for date ${DATE}`);
+    expect(ctx.fetch).not.toHaveBeenCalled();
+    expect(fs.existsSync(yearPath())).toBe(false);
+  });
+
+  it('replaces the file that holds the date when overwriting', async () => {
+    const { createWordEntry } = await import('#tools/utils');
+
+    const { filePath } = await createWordEntry('serendipity', { date: DATE, overwrite: true });
+
+    expect(filePath).toBe(heldPath());
+    expect(JSON.parse(fs.readFileSync(heldPath(), 'utf-8'))).toMatchObject({ word: 'serendipity', date: DATE });
+    expect(fs.existsSync(yearPath())).toBe(false);
+  });
+});

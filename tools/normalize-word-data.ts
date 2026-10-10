@@ -1,9 +1,9 @@
 import fs from 'node:fs';
-import path from 'node:path';
 
 import { paths } from '#config/paths';
 import { isEntryPoint } from '#tools/entry';
 import { parseToolArgs, showHelp } from '#tools/help-utils';
+import { listWordFilePaths } from '#tools/word-file-paths';
 import { exit, getErrorMessage, logger } from '#utils/logger';
 import { normalizeWordData } from '#utils/word-data-normalizer';
 
@@ -35,18 +35,23 @@ export function normalizeStoredWords(dryRun: boolean): number {
     return 1;
   }
 
-  const files = fs.globSync('**/*.json', { cwd: paths.words }).toSorted();
-  if (files.length === 0) {
+  // The files the site builds from, as every other tool lists them
+  const { files, unreadable } = listWordFilePaths(paths.words);
+  if (files.length === 0 && unreadable.length === 0) {
     logger.error('No word files found', { path: paths.words });
     return 1;
+  }
+
+  // A directory that could not be listed holds files this run never saw
+  for (const { path: directory, error } of unreadable) {
+    logger.error('Failed to read words directory', { directory, error });
   }
 
   const pending: PendingWrite[] = [];
   const failures: string[] = [];
   const review: string[] = [];
 
-  for (const relativePath of files) {
-    const filePath = path.join(paths.words, relativePath);
+  for (const filePath of files) {
     try {
       const original = fs.readFileSync(filePath, 'utf8');
       const parsed: unknown = JSON.parse(original);
@@ -68,8 +73,9 @@ export function normalizeStoredWords(dryRun: boolean): number {
     }
   }
 
-  if (failures.length > 0) {
-    logger.error('Normalization stopped without writing files', { failed: failures.length });
+  const failed = failures.length + unreadable.length;
+  if (failed > 0) {
+    logger.error('Normalization stopped without writing files', { failed });
   } else {
     for (const item of pending) {
       if (!dryRun) {
@@ -84,10 +90,10 @@ export function normalizeStoredWords(dryRun: boolean): number {
     changed: pending.length,
     unchanged: files.length - pending.length - failures.length,
     review: review.length,
-    errors: failures.length,
+    errors: failed,
     dryRun,
   });
-  return failures.length;
+  return failed;
 }
 
 if (isEntryPoint(import.meta.url)) {

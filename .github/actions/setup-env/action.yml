@@ -28,6 +28,10 @@ inputs:
     description: 'Whether Sentry is enabled'
     required: false
     default: ''
+  sentry-environment:
+    description: 'Sentry environment tag'
+    required: false
+    default: 'production'
   sentry-org:
     description: 'Sentry organization'
     required: false
@@ -38,12 +42,6 @@ inputs:
     default: ''
   wordnik-api-key:
     description: 'Wordnik API key'
-    required: false
-    default: ''
-  # Unused: a step cannot overwrite GITHUB_SHA, so the action no longer
-  # writes it. Declared still because the build workflow passes it.
-  github-sha:
-    description: 'GitHub SHA for the build'
     required: false
     default: ''
 runs:
@@ -59,6 +57,7 @@ runs:
         SENTRY_AUTH_TOKEN: ${{ inputs.sentry-auth-token }}
         SENTRY_DSN: ${{ inputs.sentry-dsn }}
         SENTRY_ENABLED: ${{ inputs.sentry-enabled }}
+        SENTRY_ENVIRONMENT: ${{ inputs.sentry-environment }}
         SENTRY_ORG: ${{ inputs.sentry-org }}
         SENTRY_PROJECT: ${{ inputs.sentry-project }}
         WORDNIK_API_KEY: ${{ inputs.wordnik-api-key }}
@@ -90,6 +89,7 @@ runs:
           SITE_ID
           SITE_KEYWORDS
           SITE_LOCALE
+          SITE_SHORT_NAME
           SITE_TITLE
           SITE_URL
           SOURCE_DIR
@@ -135,7 +135,9 @@ runs:
         }
 
         put_env CI true
-        put_env SENTRY_ENVIRONMENT production
+        # Not a secret, so it is written unmasked: production unless the
+        # caller names another environment
+        put_env SENTRY_ENVIRONMENT "$SENTRY_ENVIRONMENT"
         value=$(echo "$VARS_JSON" | jq -r '.SITE_TZ // "America/New_York"')
         put_env TZ "$value"
 

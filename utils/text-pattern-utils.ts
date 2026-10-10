@@ -38,6 +38,9 @@ export const hasTripleLetters = (word: string): boolean => {
   return TEXT_PATTERNS.TRIPLE_LETTERS.test(word);
 };
 
+const FIRST_LETTER_CODE = 'a'.charCodeAt(0);
+const LAST_LETTER_CODE = 'z'.charCodeAt(0);
+
 /**
  * Check for consecutive alphabetical letter sequences (abc, def, etc.)
  * @param word - Word to analyze
@@ -59,7 +62,9 @@ export const hasAlphabeticalSequence = (word: string): boolean => {
       const isSequentialAscending =
         secondCharCode === firstCharCode + 1 &&
         thirdCharCode === secondCharCode + 1;
-      return isSequentialAscending;
+      // Letters only: "789" and "yz{" are consecutive code points too
+      const isLetters = firstCharCode >= FIRST_LETTER_CODE && thirdCharCode <= LAST_LETTER_CODE;
+      return isSequentialAscending && isLetters;
     });
 };
 
@@ -87,7 +92,8 @@ export const isAllVowels = (word: string): boolean => {
  * @returns True if word contains only consonants
  */
 export const isAllConsonants = (word: string): boolean => {
-  return word.length > 0 && TEXT_PATTERNS.ALL_CONSONANTS.test(word);
+  // The pattern only rules vowels out, so "42" needs the consonant it lacks
+  return getConsonantCount(word) > 0 && TEXT_PATTERNS.ALL_CONSONANTS.test(word);
 };
 
 /**

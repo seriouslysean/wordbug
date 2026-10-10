@@ -34,6 +34,15 @@ describe('generateBreadcrumbs', () => {
     ]);
   });
 
+  it('labels a word page with the word it shows, not the slug in its URL', () => {
+    expect(generateBreadcrumbs('/word/pbj', undefined, 'pb&j').at(-1)).toEqual({ label: 'pb&j', href: '/word/pbj' });
+    expect(generateBreadcrumbs('/blog/word/pbj', '/blog', 'pb&j').at(-1)).toEqual({ label: 'pb&j', href: '/word/pbj' });
+  });
+
+  it('leaves every other crumb to the page titles when a word is given', () => {
+    expect(generateBreadcrumbs('/words/2024', undefined, 'pb&j').map(crumb => crumb.label)).toEqual(['home', 'all words', '2024']);
+  });
+
   it('should generate breadcrumbs for a year page', () => {
     const result = generateBreadcrumbs('/words/2024');
     expect(result).toEqual([

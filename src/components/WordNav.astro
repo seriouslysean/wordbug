@@ -1,6 +1,7 @@
 ---
 import WordLink from '#components/WordLink.astro';
 import { getCurrentWord, allWords } from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
 
 interface Props {
   previousWord: {
@@ -26,7 +27,7 @@ const {
 const homepageWord = getCurrentWord(allWords);
 ---
 
-<nav class="word-nav">
+<nav class="word-nav" aria-label={t('nav.word_label')}>
   <div class="word-nav__container">
     <div class="word-nav__previous">
       {previousWord && (

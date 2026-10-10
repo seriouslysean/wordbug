@@ -6,6 +6,7 @@ export interface MockEnvironment {
   SITE_TITLE: string;
   SITE_DESCRIPTION: string;
   SITE_ID: string;
+  SITE_SHORT_NAME: string | undefined;
   SITE_URL: string;
   SITE_LOCALE: string;
   SITE_KEYWORDS: string;
@@ -33,6 +34,7 @@ export interface MockEnvironment {
   SENTRY_DSN: string | undefined;
   BASE_PATH: string | undefined;
   SOURCE_DIR: string;
+  WORDNIK_WEBSITE_URL: string;
 }
 
 export interface MockCollectionEntry {
@@ -51,6 +53,7 @@ export const mockEnv: MockEnvironment = {
   SITE_TITLE: 'Test Site',
   SITE_DESCRIPTION: 'Test Description',
   SITE_ID: 'test-site',
+  SITE_SHORT_NAME: undefined,
   SITE_URL: 'https://test.com',
   SITE_LOCALE: 'en',
   SITE_KEYWORDS: 'test,keywords',
@@ -78,6 +81,7 @@ export const mockEnv: MockEnvironment = {
   SENTRY_DSN: undefined,
   BASE_PATH: '/',
   SOURCE_DIR: '',
+  WORDNIK_WEBSITE_URL: 'https://www.wordnik.com',
 };
 
 vi.mock('astro:env/client', () => mockEnv);

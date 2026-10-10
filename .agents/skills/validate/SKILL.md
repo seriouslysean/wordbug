@@ -1,87 +1,40 @@
 ---
 name: validate
-description: Run the full quality gate pipeline and verify the project is in a healthy state. Use this after making code changes to catch issues early.
-allowed-tools: Bash(npm run lint:*), Bash(npm run lint\:fix:*), Bash(npm run typecheck:*), Bash(npm test:*), Bash(npx vitest run:*), Bash(npm run build:*), Bash(npm run test\:e2e:*), Bash(npx playwright:*)
+description: Runs this repository's five quality gates in order (lint, typecheck, unit tests with coverage, build, E2E) and diagnoses the first failure. Use after changing code, before committing or opening a pull request, or when asked whether the project is healthy.
+# allowed-tools is experimental in the Agent Skills spec; the Bash(...) rules are Claude Code's syntax
+allowed-tools: Bash(npm run lint:*) Bash(npm run lint:fix:*) Bash(npm run typecheck:*) Bash(npm test:*) Bash(npx vitest run:*) Bash(npm run build:*) Bash(npm run test:e2e:*) Bash(npx playwright test:*)
 ---
 
-Validate the project by running the quality gate pipeline. Each gate catches a different class of issue — run them in order and stop at the first failure.
+Run the quality gates and report which passed. The gates, their order and what counts as passing are defined in the Quality Gates section of `AGENTS.md` at the repository root; this skill adds how to read a failure.
 
-## Gate 1: Lint (syntax and style)
+Run them in order and stop at the first failure: each gate assumes the ones before it, so a later failure is often noise from an earlier one. Fix the cause, rerun the failed gate, then continue. A gate passes when its command exits 0.
 
-```sh
-npm run lint
-```
+| Gate | Command | A failure usually means | Iterate with |
+|------|---------|-------------------------|--------------|
+| 1. Lint | `npm run lint` | A real code problem oxlint found (unused variable, `let` that should be `const`, a type assertion) | `npm run lint:fix`, then fix what remains by hand |
+| 2. Typecheck | `npm run typecheck` | A missing null check, an unchecked indexed access (`T \| undefined`), or a `#` alias that does not resolve | The file and line in the diagnostic |
+| 3. Tests | `npm test` | See the layers below; a coverage failure with every test green means covered code lost its tests | `npx vitest run tests/path/to/file.spec.ts` |
+| 4. Build | `npm run build` | Something only evaluation reveals: a Content Collections load failure, a template error, or a value with no default in `astro.config.ts` (the build runs without `.env`) | The first error in the build log |
+| 5. E2E | `npm run test:e2e` | The assembled site is wrong in a browser: a link that does not resolve, a missing meta tag, broken keyboard flow | `npx playwright test tests/e2e/<name>.spec.ts` |
 
-**What passing looks like:** `Found 0 warnings and 0 errors`
+## Reading a test failure
 
-**If it fails:** Run `npm run lint:fix` to auto-fix. If issues remain, they need manual attention. oxlint errors are real code problems (unused variables, unreachable code, style violations).
+The directory of the failing spec says what kind of problem it is:
 
-## Gate 2: Type check (type safety)
+- `tests/utils/`, `tests/adapters/`: pure function logic is wrong
+- `tests/src/`: an Astro wrapper misbehaves
+- `tests/architecture/`: a structural rule was broken, most often an import across the boundary (code outside `src/` importing `#astro-utils/*` or `astro:*`)
+- `tests/tools/`: a CLI tool fails as a real process, often because its import chain reaches an Astro-only module
 
-```sh
-npm run typecheck
-```
+Fix the code, not the test, unless the test's expectation is what changed.
 
-**What passing looks like:** `Result (N files): - 0 errors - 0 warnings - 0 hints`
+## Build and E2E specifics
 
-This runs `astro check` for production TypeScript and Astro diagnostics, then `tsc -p tsconfig.tests.json --noEmit` for the strict test project. Common issues:
-- Missing null checks (strict null checks are enabled)
-- Unsafe indexed access (`noUncheckedIndexedAccess` is on — array/object index results are `T | undefined`)
-- Import alias errors (using relative paths instead of `#` aliases)
-- Boundary violations (`utils/` importing from `#astro-utils/*`)
+- Where the words live under `data/demo/` and there is no `data/words/` (the upstream template), the build needs the demo dataset named: `SOURCE_DIR=demo npm run build`, as the E2E workflow does. Without it, and with no `.env` setting it, the build stops at `Word not found`. A site repository with its own `data/words/` runs `npm run build` as is.
+- Gate 4 must have passed first: Playwright serves the built `dist/` through its own preview server and never reuses a running one.
+- E2E expects the site at the root path. A `dist/` built with `BASE_PATH` set fails selectors for reasons unrelated to the change.
+- If the preview server cannot start, another process holds its port: see Local Development Notes in `docs/agents/backlog.md`.
 
-## Gate 3: Tests (behavioral correctness)
+## Report
 
-```sh
-npm test
-```
-
-**What passing looks like:** All test files pass, coverage thresholds met:
-- Lines: 80%
-- Functions: 80%
-- Branches: 85%
-- Statements: 80%
-
-The test suite has four layers. If a specific layer fails, it tells you what kind of problem you have:
-- **Unit tests** (`tests/utils/`, `tests/adapters/`) — pure function logic is wrong
-- **Component tests** (`tests/src/`) — Astro wrapper behavior is wrong
-- **Architecture tests** (`tests/architecture/`) — you crossed the utils/ boundary
-- **CLI integration tests** (`tests/tools/`) — an import chain pulls in `astro:*` outside Astro
-
-**If tests fail:** Read the failure message. Fix the code, not the test (unless the test expectation is genuinely wrong). Run the specific failing test in isolation to iterate faster: `npx vitest run tests/path/to/file.spec.ts`
-
-## Gate 4: Build (full integration)
-
-```sh
-npm run build
-```
-
-**What passing looks like:** `[build] N page(s) built in Xs` followed by `[build] Complete!`
-
-The build catches problems that lint and type checking miss: runtime evaluation errors, missing environment variable defaults, Content Collections loading failures, and template rendering errors. It builds without `.env` using defaults — if it fails, a required value is missing its default in `astro.config.ts`.
-
-## Gate 5: E2E tests (end-to-end)
-
-```sh
-npm run test:e2e
-```
-
-**Prerequisites:** Gate 4 (build) must pass first. E2E tests run Playwright against the built `dist/` output. Playwright starts its own foreground `astro preview --ignore-lock` on port 4517 (`PORT` in `playwright.config.ts`) and stops it when the run ends; it never reuses an existing server.
-
-**What passing looks like:** All Playwright tests pass across navigation, SEO, and accessibility specs.
-
-E2E tests validate the built site as a user would experience it:
-- **Navigation** (`navigation.spec.ts`) — user journeys: discover and navigate between words, browse by year, footer section links; 404 handling
-- **SEO** (`seo.spec.ts`) — meta tags present in rendered HTML (description, canonical, OpenGraph, Twitter), JSON-LD parseable, RSS and sitemap discoverable
-- **Accessibility** (`accessibility.spec.ts`) — skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text
-
-**Design principles:**
-- Test elements and interactions, not strings. No hardcoded word URLs — discover content through navigation
-- No overlap with unit tests. Unit tests validate generation logic; E2E validates the rendered output
-- E2E always runs in demo mode (no `BASE_PATH`, `SOURCE_DIR=demo`). The CI workflow skips `setup-env` intentionally — production env vars like `BASE_PATH` would break test selectors
-
-**If tests fail:** Run a specific spec to iterate faster: `npx playwright test tests/e2e/navigation.spec.ts`. Use `--headed` for a visible browser. Check that `dist/` exists and was built with demo defaults (no `BASE_PATH`). If Playwright exits with "http://localhost:4517 is already used" or "Timed out waiting 60000ms from config.webServer", another process holds the e2e port (`lsof -i :4517`); servers on Astro's default 4321 do not affect the run.
-
-## Summary
-
-If all five gates pass, the project is healthy. If you changed code, you should also verify that no existing behavior was broken by reviewing the test output carefully — passing tests with reduced coverage may indicate you removed test-covered code.
+State each gate run and its result, and name any gate not run and why. Passing tests with lower coverage than before deserve a mention even when the thresholds still hold.

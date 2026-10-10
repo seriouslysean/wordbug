@@ -21,6 +21,7 @@ interface ActionResult {
 interface ActionInputs {
   vars: Record<string, string>;
   secrets: Record<string, string>;
+  sentryEnvironment?: string;
 }
 
 interface MaskEvent {
@@ -67,6 +68,12 @@ const step = record(steps[0], 'setup-env step');
 const stepEnv = record(field(step, 'env', 'setup-env step'), 'setup-env step env');
 const stepRun = stringField(step, 'run', 'setup-env step');
 const VAR_NAMES = stringField(stepEnv, 'VAR_NAMES', 'setup-env step env').split('\n').filter(Boolean);
+// What the runner supplies when a caller leaves the input out
+const SENTRY_ENVIRONMENT_DEFAULT = stringField(
+  field(field(action, 'inputs', 'action'), 'sentry-environment', 'action inputs'),
+  'default',
+  'sentry-environment input',
+);
 const SECRET_INPUTS: Record<string, string> = {
   GA_ENABLED: 'ga-enabled',
   GA_MEASUREMENT_ID: 'ga-measurement-id',
@@ -79,9 +86,10 @@ const SECRET_INPUTS: Record<string, string> = {
   WORDNIK_API_KEY: 'wordnik-api-key',
 };
 
-const runAction = ({ vars, secrets }: ActionInputs): Promise<ActionResult> => {
+const runAction = ({ vars, secrets, sentryEnvironment }: ActionInputs): Promise<ActionResult> => {
   const inputs: Record<string, string> = {
     '${{ inputs.vars-json }}': JSON.stringify(vars),
+    '${{ inputs.sentry-environment }}': sentryEnvironment ?? SENTRY_ENVIRONMENT_DEFAULT,
     ...Object.fromEntries(Object.entries(SECRET_INPUTS).map(([name, input]) => [
       `\${{ inputs.${input} }}`,
       secrets[name] ?? '',
@@ -172,7 +180,9 @@ const parse = (stdout: string): Event[] => {
   return events;
 };
 
-describe('setup-env action', () => {
+// The step runs jq once per variable: half a second on an idle machine, and
+// past Vitest's 5 s default on a loaded one
+describe('setup-env action', { timeout: 30000 }, () => {
   const SECRETS: Record<string, string> = {
     WORDNIK_API_KEY: 'wordnik-key-123',
     MERRIAM_WEBSTER_API_KEY: 'first line\n\n  \nsecond line\r\nthird line',
@@ -235,6 +245,19 @@ describe('setup-env action', () => {
     const result = await runAction({ vars: VARS, secrets: {} });
 
     expect(result.code).toBe(0);
+    expect(parse(result.stdout).filter((event): event is MaskEvent => 'mask' in event)).toEqual([]);
+  });
+
+  // Site Deploy and Site Add Word pass no environment, so a site is tagged
+  // production; Build names another for a pull request
+  it.each([
+    ['production when the caller names none', undefined, 'production'],
+    ['the environment the caller names', 'development', 'development'],
+  ])('tags Sentry events %s, unmasked', async (_label, sentryEnvironment, expected) => {
+    const result = await runAction({ vars: VARS, secrets: {}, sentryEnvironment });
+
+    expect(result.code).toBe(0);
+    expect(parse(result.stdout)).toContainEqual({ name: 'SENTRY_ENVIRONMENT', value: expected });
     expect(parse(result.stdout).filter((event): event is MaskEvent => 'mask' in event)).toEqual([]);
   });
 });

@@ -1,14 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
-
-vi.mock('#astro-utils/page-metadata', () => ({
-  getAllPageMetadata: vi.fn(() => [
-    { pathname: '/', title: 'Home' },
-    { pathname: '/words', title: 'Words' },
-    { pathname: '/stats', title: 'Stats' },
-  ]),
-}));
-
-import { getSocialImageUrl, getStaticPages } from '#astro-utils/image-utils';
+import { afterEach, describe, expect, it } from 'vitest';
+import { getSocialImageUrl } from '#astro-utils/image-utils';
 
 describe('image-utils', () => {
   describe('getSocialImageUrl', () => {
@@ -62,24 +53,6 @@ describe('image-utils', () => {
       const url = getSocialImageUrl({ pathname: '/blog/browse/2023/april' });
 
       expect(url).toBe('https://test.com/blog/images/social/pages/browse-2023-april.png');
-    });
-  });
-
-  describe('getStaticPages', () => {
-    it('returns array of page metadata', async () => {
-      const pages = await getStaticPages();
-
-      expect(Array.isArray(pages)).toBe(true);
-      expect(pages.length).toBeGreaterThan(0);
-    });
-
-    it('includes expected page properties', async () => {
-      const pages = await getStaticPages();
-
-      pages.forEach(page => {
-        expect(page).toHaveProperty('pathname');
-        expect(page).toHaveProperty('title');
-      });
     });
   });
 });

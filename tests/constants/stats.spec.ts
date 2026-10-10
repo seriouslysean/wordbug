@@ -1,9 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  ALL_STATS_KEYS,
   DYNAMIC_STATS_DEFINITIONS,
-  getStatsDefinition,
   LETTER_PATTERN_DEFINITIONS,
   PATTERN_DEFINITIONS,
   STATS_SLUGS,
@@ -135,59 +133,6 @@ describe('stats-definitions', () => {
       expect(typeof result).toBe('string');
       expect(result).toContain('5 Words');
       expect(result).toContain('z');
-    });
-  });
-
-  describe('getStatsDefinition', () => {
-    it('retrieves suffix definitions by slug', () => {
-      const lyDef = getStatsDefinition(STATS_SLUGS.WORDS_ENDING_LY);
-      expect(lyDef).toBe(SUFFIX_DEFINITIONS.ly);
-      
-      const edDef = getStatsDefinition(STATS_SLUGS.WORDS_ENDING_ED);
-      expect(edDef).toBe(SUFFIX_DEFINITIONS.ed);
-    });
-
-    it('retrieves letter pattern definitions', () => {
-      const doubleDef = getStatsDefinition(STATS_SLUGS.DOUBLE_LETTERS);
-      expect(doubleDef).toBe(LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.DOUBLE_LETTERS]);
-      
-      const palindromeDef = getStatsDefinition(STATS_SLUGS.PALINDROMES);
-      expect(palindromeDef).toBe(LETTER_PATTERN_DEFINITIONS[STATS_SLUGS.PALINDROMES]);
-    });
-
-    it('retrieves pattern definitions', () => {
-      const consonantDef = getStatsDefinition(STATS_SLUGS.ALL_CONSONANTS);
-      expect(consonantDef).toBe(PATTERN_DEFINITIONS[STATS_SLUGS.ALL_CONSONANTS]);
-      
-      const vowelDef = getStatsDefinition(STATS_SLUGS.ALL_VOWELS);
-      expect(vowelDef).toBe(PATTERN_DEFINITIONS[STATS_SLUGS.ALL_VOWELS]);
-    });
-
-    it('retrieves dynamic stats definitions', () => {
-      const mostCommonDef = getStatsDefinition(STATS_SLUGS.MOST_COMMON_LETTER);
-      expect(mostCommonDef).toBe(DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MOST_COMMON_LETTER]);
-      
-      const milestoneDef = getStatsDefinition(STATS_SLUGS.MILESTONE_WORDS);
-      expect(milestoneDef).toBe(DYNAMIC_STATS_DEFINITIONS[STATS_SLUGS.MILESTONE_WORDS]);
-    });
-
-    it('returns null for unknown keys', () => {
-      const result = getStatsDefinition('non-existent-key');
-      expect(result).toBeNull();
-    });
-  });
-
-  describe('ALL_STATS_KEYS', () => {
-    it('contains all stats slug values', () => {
-      const slugValues = Object.values(STATS_SLUGS);
-      expect(ALL_STATS_KEYS).toEqual(slugValues);
-    });
-
-    it('contains expected number of keys', () => {
-      expect(ALL_STATS_KEYS.length).toBeGreaterThan(0);
-      expect(ALL_STATS_KEYS).toContain('double-letters');
-      expect(ALL_STATS_KEYS).toContain('words-ending-ly');
-      expect(ALL_STATS_KEYS).toContain('most-common-letter');
     });
   });
 });

@@ -20,9 +20,12 @@ permissions:
   pages: write
   id-token: write
 
+# One deployment at a time. A run in progress finishes rather than being
+# cancelled part-way through a deployment; of the runs waiting behind it, only
+# the newest is kept.
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   # The demo site deploys through the same workflow every site calls, from
