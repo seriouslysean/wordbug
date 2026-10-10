@@ -17,7 +17,7 @@ on:
         type: boolean
         default: false
       preserve_case:
-        description: 'Keep original capitalization (for proper nouns, acronyms, or brands like "Japan", "NASA", "iPhone")'
+        description: 'Keep original capitalization'
         required: false
         type: boolean
         default: false
@@ -30,10 +30,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # The demo site adds words through the same workflow every site calls,
-  # from this commit
   add-word:
-    uses: ./.github/workflows/site-add-word.yml
+    uses: seriouslysean/occasional-wotd/.github/workflows/site-add-word.yml@v3.26.0
     with:
       word: ${{ inputs.word }}
       date: ${{ inputs.date }}

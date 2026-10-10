@@ -3,16 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ['main']
-
-  # Add Word pushes with GITHUB_TOKEN, which starts no push run, so its
-  # completion is the trigger. github.sha for workflow_run is the last commit
-  # on the default branch, so the site checkout builds the pushed word.
   workflow_run:
     workflows: ['Add Word']
     branches: ['main']
     types:
       - completed
-
   workflow_dispatch:
 
 permissions:
@@ -20,20 +15,14 @@ permissions:
   pages: write
   id-token: write
 
-# One deployment at a time. A run in progress finishes rather than being
-# cancelled part-way through a deployment; of the runs waiting behind it, only
-# the newest is kept.
 concurrency:
   group: 'pages'
   cancel-in-progress: false
 
 jobs:
-  # The demo site deploys through the same workflow every site calls, from
-  # this commit. The github-pages environment is on its deployment job.
   deploy:
-    # completed includes failed and cancelled runs, which pushed nothing
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
-    uses: ./.github/workflows/site-deploy.yml
+    uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@v3.26.0
     secrets:
       GA_ENABLED: ${{ secrets.GA_ENABLED }}
       GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}

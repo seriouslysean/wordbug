@@ -1,32 +1,6 @@
-# build output
-dist/
-
-# generated types
-.astro/
-
-# dependencies
-node_modules/
-tsconfig.tsbuildinfo
-
-# logs
-npm-debug.log*
-
-# environment variables
+# Local settings and credentials
 .env
 .env.production
 
-# test coverage
-coverage/
-
-# playwright
-test-results/
-playwright-report/
-
-# local Claude Code settings (user-specific)
-.claude/settings.local.json
-
 # macOS-specific files
 .DS_Store
-
-# jetbrains setting folder
-.idea/
