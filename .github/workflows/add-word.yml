@@ -31,7 +31,7 @@ concurrency:
 
 jobs:
   add-word:
-    uses: seriouslysean/occasional-wotd/.github/workflows/site-add-word.yml@v3.26.0
+    uses: seriouslysean/occasional-wotd/.github/workflows/site-add-word.yml@v3.27.0
     with:
       word: ${{ inputs.word }}
       date: ${{ inputs.date }}
