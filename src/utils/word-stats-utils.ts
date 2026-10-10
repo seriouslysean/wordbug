@@ -1,0 +1,15 @@
+// Re-export pure functions from the shared layer (single source of truth)
+export {
+  getWordStats,
+  getLetterStats,
+  getLetterPatternStats,
+  getWordEndingStats,
+  getPatternStats,
+  getLongestStreakWords,
+  getChronologicalMilestones,
+  getCurrentStreakStats,
+  getAntiStreakStats,
+  getSyllableStats,
+  getLetterTypeStats,
+  findWordDate,
+} from '#utils/word-stats-utils';

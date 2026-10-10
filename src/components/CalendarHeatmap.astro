@@ -1,0 +1,186 @@
+---
+import { buildActivityCalendar } from '#utils/calendar-utils';
+import { formatDate } from '#utils/date-utils';
+import { t, tp } from '#utils/i18n-utils';
+import { getUrl } from '#astro-utils/url-utils';
+
+interface HeatmapEntry {
+  date: string;
+  word: string;
+  url: string;
+}
+
+interface Props {
+  entries: HeatmapEntry[];
+}
+
+const { entries } = Astro.props;
+const byDate = new Map(entries.map(entry => [entry.date, entry]));
+const calendars = buildActivityCalendar(entries.map(entry => entry.date)).toReversed();
+---
+
+{calendars.length > 0 && (
+  <div class="heatmap">
+    {calendars.map(calendar => (
+      <figure class="heatmap__year">
+        <figcaption class="heatmap__caption">{calendar.year} · {tp('common.words', calendar.total)}</figcaption>
+        {/* No role="img": active days are links, so the grid must expose its
+            children to assistive tech. Each link is labelled with its word and
+            date; the figcaption names the year. role="group" because ARIA
+            forbids naming a generic div with aria-label. */}
+        <div
+          role="group"
+          class:list={['heatmap__grid', `heatmap__grid--cols-${calendar.columns}`]}
+          aria-label={t('stats.activity_aria', { year: calendar.year })}
+        >
+          {calendar.cells.map(cell => {
+            const entry = cell.date ? byDate.get(cell.date) : undefined;
+            return entry
+              ? (
+                <a
+                  href={getUrl(entry.url)}
+                  class="heatmap__cell heatmap__cell--active"
+                  aria-label={`${formatDate(entry.date)}, ${entry.word}`}
+                >
+                  {/* Hover-only enhancement (desktop); aria-label covers AT.
+                      Date leads as the calendar context, word is the payload. */}
+                  <span class="heatmap__tooltip" aria-hidden="true">
+                    <span class="heatmap__tooltip-date">{formatDate(entry.date)}</span>
+                    <span class="heatmap__tooltip-word">{entry.word}</span>
+                  </span>
+                </a>
+              )
+              : (
+                <span
+                  class:list={['heatmap__cell', { 'heatmap__cell--padding': !cell.date }]}
+                  title={cell.date ? formatDate(cell.date) : undefined}
+                ></span>
+              );
+          })}
+        </div>
+      </figure>
+    ))}
+  </div>
+)}
+
+<style>
+  .heatmap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+  }
+
+  .heatmap__caption {
+    font-size: var(--font-size-small);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  /* 7 rows (days), columns flow as weeks — a GitHub-style contributions grid.
+     Full-width and responsive: cells are 1fr tracks and the grid's aspect-ratio
+     keeps them square. Every year shares the same column count (set by the util)
+     so all grids align; the count is baked into a static class because a strict
+     CSP forbids inline style attributes. */
+  /* Fluid gap -- ~1px where 53 columns crowd on phones, up to 2px on wider
+     screens -- so the cells read as a contiguous grid at any width, no breakpoint. */
+  .heatmap__grid {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    gap: clamp(1px, 0.3vw, 2px);
+    width: 100%;
+  }
+
+  .heatmap__grid--cols-53 {
+    grid-template-columns: repeat(53, 1fr);
+    aspect-ratio: 53 / 7;
+  }
+
+  .heatmap__grid--cols-54 {
+    grid-template-columns: repeat(54, 1fr);
+    aspect-ratio: 54 / 7;
+  }
+
+  /* Empty in-year days are faint filled squares; leading/trailing padding (cells
+     outside the year) is the same grey but outlined, not filled, so it reads as
+     "not part of this year"; active days fill solid and link out. */
+  .heatmap__cell {
+    border-radius: 2px;
+    background: var(--color-border);
+    opacity: 0.5;
+  }
+
+  .heatmap__cell--padding {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  .heatmap__cell--active {
+    display: block;
+    position: relative;
+    background: var(--color-primary);
+    opacity: 1;
+    transition: var(--transition);
+  }
+
+  /* Fade the square to ~50% on hover via a transparent background, not opacity:
+     element opacity would also fade the tooltip (a child of this cell), since
+     group opacity applies to the whole subtree. color-mix fades just the fill. */
+  .heatmap__cell--active:hover {
+    background: color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+
+  .heatmap__cell--active:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+  }
+
+  /* Tooltip: word-over-date card, matching WordLink. Hidden by default; shown
+     only on hover-capable pointers (desktop), so touch devices just navigate.
+     Hidden with display, not visibility: an invisible box still counts toward
+     the page's scroll width, and the tooltips of edge columns overhang it. */
+  .heatmap__tooltip {
+    display: none;
+  }
+
+  @media (hover: hover) {
+    .heatmap__tooltip {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      padding: 0.3rem 0.6rem;
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+      white-space: nowrap;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .heatmap__cell--active:hover,
+    .heatmap__cell--active:focus-visible {
+      z-index: 3;
+    }
+
+    .heatmap__cell--active:hover .heatmap__tooltip,
+    .heatmap__cell--active:focus-visible .heatmap__tooltip {
+      display: flex;
+    }
+  }
+
+  .heatmap__tooltip-word {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .heatmap__tooltip-date {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+  }
+</style>

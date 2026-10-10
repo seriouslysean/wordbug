@@ -1,0 +1,62 @@
+{
+    "word": "diva",
+    "date": "20241120",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "diva",
+            "partOfSpeech": "noun",
+            "text": "prima donna",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/diva",
+            "examples": [
+                "… if a team asks me to play somewhere else, I'm not going to be a diva about it.",
+                "a fashion diva",
+                "pop divas",
+                "The original diva and Queen Of Soul, Aretha Franklin, appears to have brought US President Barack Obama to tears (and then to his feet) with a stellar performance of (You Make Me Feel Like) A Natural Woman …"
+            ]
+        },
+        {
+            "id": "diva",
+            "partOfSpeech": "noun",
+            "text": "prima donna",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/diva",
+            "examples": [
+                "… if a team asks me to play somewhere else, I'm not going to be a diva about it.",
+                "a fashion diva",
+                "pop divas",
+                "The original diva and Queen Of Soul, Aretha Franklin, appears to have brought US President Barack Obama to tears (and then to his feet) with a stellar performance of (You Make Me Feel Like) A Natural Woman …"
+            ]
+        },
+        {
+            "id": "diva",
+            "partOfSpeech": "noun",
+            "text": "a usually glamorous and successful female performer or personality; especially: a popular female singer",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/diva",
+            "examples": [
+                "… if a team asks me to play somewhere else, I'm not going to be a diva about it.",
+                "a fashion diva",
+                "pop divas",
+                "The original diva and Queen Of Soul, Aretha Franklin, appears to have brought US President Barack Obama to tears (and then to his feet) with a stellar performance of (You Make Me Feel Like) A Natural Woman …"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdē-və",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/diva0001.mp3",
+        "etymology": "Italian, literally, goddess, from Latin, feminine of divus divine, god ",
+        "synonyms": [
+            "prima donna"
+        ],
+        "related": [
+            "opera star",
+            "operatic star"
+        ]
+    }
+}

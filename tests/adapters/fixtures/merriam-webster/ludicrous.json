@@ -1,0 +1,92 @@
+[
+    {
+        "meta": {
+            "id": "ludicrous",
+            "uuid": "a3b4c5d6-e7f8-9012-abcd-345678901234",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["ludicrous", "ludicrously", "ludicrousness"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "lu*di*crous",
+            "prs": [
+                {
+                    "mw": "\u02c8l\u00fc-d\u0259-kr\u0259s"
+                }
+            ]
+        },
+        "fl": "adjective",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}amusing or laughable through obvious absurdity, incongruity, exaggeration, or eccentricity"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "a {it}ludicrous{/it} proposal"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "2",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}meriting derisive laughter or scorn as absurdly inept, false, or foolish"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "a {it}ludicrous{/it} attempt at {a_link|dancing}"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "quotes": [
+            {
+                "t": "It is {it}ludicrous{/it} to call this a victory.",
+                "aq": {
+                    "auth": "William F. Buckley Jr.",
+                    "source": "National Review",
+                    "aqdate": "2003"
+                }
+            }
+        ],
+        "et": [
+            [
+                "text",
+                "Latin {it}ludicrus{/it}, from {it}ludus{/it} play, sport; perhaps akin to Greek {it}loidoros{/it} abusive"
+            ]
+        ],
+        "date": "1619",
+        "shortdef": [
+            "amusing or laughable through obvious absurdity, incongruity, exaggeration, or eccentricity",
+            "meriting derisive laughter or scorn as absurdly inept, false, or foolish"
+        ]
+    }
+]

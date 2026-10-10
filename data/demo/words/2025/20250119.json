@@ -1,0 +1,154 @@
+{
+    "word": "of",
+    "date": "20250119",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "of",
+            "partOfSpeech": "preposition",
+            "text": "—used as a function word to indicate a point of reckoning",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "plays of Shakespeare",
+                "very kind of you",
+                "a fish of the western Atlantic",
+                "stories of her travels",
+                "slow of speech",
+                "quarter of ten",
+                "A plague of all cowards …"
+            ]
+        },
+        {
+            "id": "of",
+            "partOfSpeech": "preposition",
+            "text": "—used as a function word to indicate origin or derivation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "plays of Shakespeare",
+                "very kind of you",
+                "a fish of the western Atlantic",
+                "stories of her travels",
+                "slow of speech",
+                "quarter of ten",
+                "A plague of all cowards …"
+            ]
+        },
+        {
+            "id": "of",
+            "partOfSpeech": "preposition",
+            "text": "—used as a function word to indicate the cause, motive, or reason",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "plays of Shakespeare",
+                "very kind of you",
+                "a fish of the western Atlantic",
+                "stories of her travels",
+                "slow of speech",
+                "quarter of ten",
+                "A plague of all cowards …"
+            ]
+        },
+        {
+            "id": "of",
+            "partOfSpeech": "verb",
+            "text": "have —used in place of the contraction 've often in representations of uneducated speech",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
+        },
+        {
+            "id": "OF",
+            "text": "outfield",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
+        },
+        {
+            "id": "of a certain age",
+            "text": "of a somewhat advanced age: no longer young",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "remembered by people of a certain age"
+            ]
+        },
+        {
+            "id": "of a piece",
+            "text": "alike, consistent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
+        },
+        {
+            "id": "of choice",
+            "text": "to be preferred",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of"
+        },
+        {
+            "id": "of course",
+            "text": "following the ordinary way or procedure",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "will be done as a matter of course",
+                "Of course we will go."
+            ]
+        },
+        {
+            "id": "of course",
+            "text": "as might be expected",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "will be done as a matter of course",
+                "Of course we will go."
+            ]
+        },
+        {
+            "id": "of few words",
+            "text": "not inclined to say more than is necessary: laconic",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "a person of few words"
+            ]
+        },
+        {
+            "id": "of late",
+            "text": "in the period shortly or immediately preceding: recently",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "has been sick of late"
+            ]
+        },
+        {
+            "id": "of necessity",
+            "text": "in such a way that it cannot be otherwise; also: as a necessary consequence",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/of",
+            "examples": [
+                "further changes will occur of necessity"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "əv",
+        "etymology": "Middle English, off, of, from Old English, adverb & preposition; akin to Old High German aba off, away, Latin ab from, away, Greek apo"
+    }
+}

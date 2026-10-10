@@ -1,0 +1,87 @@
+import translations from '#locales/en.json' with { type: 'json' };
+import { isRecord } from '#utils/type-guards';
+
+/**
+ * Simple translation function for basic key lookups
+ * @param key - Translation key (e.g., 'nav.home')
+ * @param vars - Variables for interpolation
+ * @returns Translated string with interpolated variables
+ */
+export const t = (key: string, vars?: Record<string, string | number>): string => {
+  const value: unknown = key.split('.').reduce<unknown>(
+    (obj, k) => (isRecord(obj) ? obj[k] : undefined),
+    translations,
+  );
+
+  if (typeof value !== 'string') {
+    throw new Error(`Translation missing for key: ${key}`);
+  }
+  
+  // Interpolate variables if provided
+  if (vars) {
+    // First check if all required variables are provided
+    const requiredVars = [...value.matchAll(/\{\{(\w+)\}\}/g)].map(match => match[1]).filter((v): v is string => v !== undefined);
+    for (const varName of requiredVars) {
+      if (!(varName in vars)) {
+        throw new Error(`Missing required variable '${varName}' for translation key: ${key}`);
+      }
+      if (vars[varName] == null) {
+        throw new Error(`Variable '${varName}' is undefined or null for translation key: ${key}`);
+      }
+    }
+    
+    return value.replaceAll(/\{\{(\w+)\}\}/g, (_, p1) => {
+      return String(vars[p1]);
+    });
+  }
+  
+  // If the translation has variables but none were provided, throw an error
+  if (value.includes('{{')) {
+    throw new Error(`Translation key '${key}' requires variables but none were provided`);
+  }
+  
+  return value;
+};
+
+
+/**
+ * Translate pluralize - handles count-based pluralization with additional interpolation values
+ * @param baseKey - The base translation key (e.g., 'common.words')
+ * @param count - The count to determine plural form
+ * @param additionalValues - Additional interpolation values to pass to t()
+ * @returns Translated string with proper pluralization
+ */
+export const tp = (
+  baseKey: string,
+  count: number | string,
+  additionalValues: Record<string, string | number> = {},
+): string => {
+  if (count == null) {
+    throw new Error(`Count is required for pluralization key: ${baseKey}`);
+  }
+  const numCount = parseInt(String(count));
+  if (Number.isNaN(numCount)) {
+    throw new Error(`Invalid count for pluralization key: ${baseKey}, got: ${count}`);
+  }
+  
+  const PLURAL_SUFFIXES: Record<number, string> = { 0: 'zero', 1: 'one' };
+  const suffix = PLURAL_SUFFIXES[numCount] ?? 'other';
+
+  return t(`${baseKey}_${suffix}`, { count: numCount, ...additionalValues });
+};
+
+/**
+ * The Open Graph form of a BCP 47 locale: language_TERRITORY (ogp.me), so
+ * en-US is en_US and zh-Hant-TW is zh_TW. og:locale is optional, so a locale
+ * that names no region ("en") or is not a BCP 47 tag at all gives undefined
+ * and the caller leaves the tag out; a language alone is not a value the
+ * format allows, and no region is guessed for it.
+ */
+export const getOpenGraphLocale = (locale: string): string | undefined => {
+  try {
+    const { language, region } = new Intl.Locale(locale);
+    return region ? `${language}_${region}` : undefined;
+  } catch {
+    return undefined;
+  }
+};

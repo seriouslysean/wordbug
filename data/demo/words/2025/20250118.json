@@ -1,0 +1,179 @@
+{
+    "word": "the",
+    "date": "20250118",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "the",
+            "partOfSpeech": "article",
+            "text": "—used as a function word to indicate that a following noun or noun equivalent is definite or has been previously specified by context or by circumstance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the",
+            "partOfSpeech": "article",
+            "text": "—used as a function word to indicate that a following noun or noun equivalent is a unique or a particular member of its class",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the",
+            "partOfSpeech": "article",
+            "text": "—used as a function word before nouns that designate natural phenomena or points of the compass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the",
+            "partOfSpeech": "adverb",
+            "text": "than before: than otherwise —used before a comparative",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "the sooner the better",
+                "The harder you work, the quicker you will finish.",
+                "the sooner the better",
+                "likes this the best"
+            ]
+        },
+        {
+            "id": "the",
+            "partOfSpeech": "adverb",
+            "text": "to what extent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "the sooner the better",
+                "The harder you work, the quicker you will finish.",
+                "the sooner the better",
+                "likes this the best"
+            ]
+        },
+        {
+            "id": "the",
+            "partOfSpeech": "adverb",
+            "text": "to that extent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "the sooner the better",
+                "The harder you work, the quicker you will finish.",
+                "the sooner the better",
+                "likes this the best"
+            ]
+        },
+        {
+            "id": "the",
+            "partOfSpeech": "preposition",
+            "text": "per",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "a dollar the dozen"
+            ]
+        },
+        {
+            "id": "the-",
+            "partOfSpeech": "noun",
+            "text": "god: God",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "theism",
+                "theocentric"
+            ]
+        },
+        {
+            "id": "the blind leading the blind",
+            "text": "—used informally to describe a situation in which someone who is not sure how to do something is helping another person who also is not sure how to do it",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the dansant",
+            "partOfSpeech": "noun",
+            "text": "tea dance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the end of one's rope",
+            "partOfSpeech": "noun",
+            "text": "a state at which one is no longer able to deal with a problem, difficult situation, etc.",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "I'm at the end of my rope with your attitude."
+            ]
+        },
+        {
+            "id": "the lap of luxury",
+            "partOfSpeech": "noun",
+            "text": "an environment of great ease, comfort, and wealth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the"
+        },
+        {
+            "id": "the last moment",
+            "text": "the latest possible time",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "The flight was cancelled at the last moment."
+            ]
+        },
+        {
+            "id": "the likes of",
+            "text": "such people as: such things as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "reads the likes of Austen and Browning",
+                "… a fantastic celebration the likes of which had never been seen before …"
+            ]
+        },
+        {
+            "id": "the likes of",
+            "text": "such a one as and perhaps others similar to —usually used with disparaging overtones",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "reads the likes of Austen and Browning",
+                "… a fantastic celebration the likes of which had never been seen before …"
+            ]
+        },
+        {
+            "id": "the likes of",
+            "text": "the kind or sort of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/the",
+            "examples": [
+                "reads the likes of Austen and Browning",
+                "… a fantastic celebration the likes of which had never been seen before …"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "t͟hə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/the00001.mp3",
+        "etymology": "Middle English, from Old English thē, masculine demonstrative pronoun & definite article, alteration (influenced by oblique cases — as thæs, genitive — & neuter, thæt) of sē; akin to Greek ho, masculine demonstrative pronoun & definite article "
+    }
+}

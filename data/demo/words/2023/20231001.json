@@ -1,0 +1,52 @@
+{
+    "word": "jubilant",
+    "date": "20231001",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "jubilant",
+            "partOfSpeech": "adjective",
+            "text": "feeling or expressing great joy: exultant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jubilant",
+            "examples": [
+                "the jubilant winner"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈjü-bə-lənt",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/j/jubila02.mp3",
+        "etymology": "borrowed from Latin jūbilant-, jūbilans, present participle of jūbilāre \"to let out whoops, invoke with shouts\" (Late Latin, \"sing hymns of joy, be joyous\"), from *jū, jō, exclamation expressing strong emotion + -bilāre, as in sībilāre \"to hiss\"; *jū going back to Indo-European *i̯ū, whence also Middle High German jū, jūch, exclamation of joy, jūchezen \"to rejoice,\" Old Icelandic ýla \"to howl,\" Greek iȳ́, exclamation of amazement, iȳ́zein \"to shout, yell\"",
+        "synonyms": [
+            "exultant",
+            "exulting",
+            "prideful",
+            "rejoicing",
+            "triumphal",
+            "triumphant",
+            "elated",
+            "gleeful",
+            "joyful",
+            "joyous"
+        ],
+        "related": [
+            "wallow",
+            "rejoice",
+            "exuberate",
+            "exult",
+            "triumph",
+            "pride",
+            "pridefulness",
+            "exultation",
+            "jubilance",
+            "walk on air",
+            "joy",
+            "joyousness",
+            "hilarity",
+            "mirth"
+        ]
+    }
+}

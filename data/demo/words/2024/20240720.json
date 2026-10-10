@@ -1,0 +1,70 @@
+{
+    "word": "clever",
+    "date": "20240720",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "clever",
+            "partOfSpeech": "adjective",
+            "text": "skillful or adroit in using the hands or body: nimble",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/clever",
+            "examples": [
+                "clever fingers",
+                "a clever young lawyer",
+                "a clever solution",
+                "a clever idea",
+                "the play's clever dialogue"
+            ]
+        },
+        {
+            "id": "clever",
+            "partOfSpeech": "adjective",
+            "text": "mentally quick and resourceful",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/clever",
+            "examples": [
+                "clever fingers",
+                "a clever young lawyer",
+                "a clever solution",
+                "a clever idea",
+                "the play's clever dialogue"
+            ]
+        },
+        {
+            "id": "clever",
+            "partOfSpeech": "adjective",
+            "text": "marked by wit or ingenuity",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/clever",
+            "examples": [
+                "clever fingers",
+                "a clever young lawyer",
+                "a clever solution",
+                "a clever idea",
+                "the play's clever dialogue"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkle-vər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/clever01.mp3",
+        "etymology": "Middle English cliver, perhaps of Scandinavian origin; akin to Danish dialect kløver alert, skillful",
+        "synonyms": [
+            "cagey",
+            "cagy",
+            "canny",
+            "smart",
+            "apt",
+            "intelligent"
+        ],
+        "related": [
+            "brightness",
+            "cleverness"
+        ]
+    }
+}

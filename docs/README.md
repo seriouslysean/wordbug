@@ -1,0 +1,178 @@
+# occasional-wotd
+
+A modern, family-friendly word-of-the-day site generator template for creating occasional vocabulary learning sites.
+
+```
+                ██     ██  ██████  ██████  ██████
+                ██     ██ ██    ██ ██   ██ ██   ██
+                ██  █  ██ ██    ██ ██████  ██   ██
+                ██ ███ ██ ██    ██ ██   ██ ██   ██
+                 ███ ███   ██████  ██   ██ ██████
+
+
+ ██████  ███████     ████████ ██   ██ ███████     ██████   █████  ██    ██
+██    ██ ██             ██    ██   ██ ██          ██   ██ ██   ██  ██  ██
+██    ██ █████          ██    ███████ █████       ██   ██ ███████   ████
+██    ██ ██             ██    ██   ██ ██          ██   ██ ██   ██    ██
+ ██████  ██             ██    ██   ██ ███████     ██████  ██   ██    ██
+
+
+```
+
+A template for creating family word-of-the-day sites that provides a foundation for showcasing interesting words and serving as a historical reference.
+
+## Features
+
+- **Rich Word Data**: Multi-adapter dictionary support (Merriam-Webster, Wordnik, Wiktionary) with automatic fallback
+- **Smart Statistics**: Letter patterns, word endings, reading streaks, and linguistic analysis
+- **Social Images**: Automated generation of beautiful, shareable word graphics
+- **Lightning Fast**: Static site generation with Astro for optimal performance
+- **Customizable**: Environment-based theming and multi-source data support
+- **Accessible**: WCAG compliant with keyboard navigation and screen reader support
+
+## Quick Start
+
+Requires Node.js 26+ (`.nvmrc` provided).
+
+```bash
+# Install dependencies
+nvm use && npm install
+
+# Start development with the bundled demo words
+SOURCE_DIR=demo npm run dev
+
+# Build for production
+SOURCE_DIR=demo npm run build
+```
+
+No `.env` is needed to run the demo. This repository only ships the demo words
+(`data/demo/words/`), so `SOURCE_DIR=demo` is required here: without it the
+site reads `data/words/`, finds no words, and the build fails with
+`Word not found`. To add words you need a dictionary API key:
+
+```bash
+cp .env.example .env
+# Set SOURCE_DIR=demo and add your dictionary API key in .env
+```
+
+## Adding Words
+
+```bash
+# Add a word for today
+npm run tool:local -- tools/add-word.ts serendipity
+
+# Add word for specific date
+npm run tool:local -- tools/add-word.ts ephemeral 20250130
+
+# Generate social images
+npm run tool:local -- tools/generate-images.ts
+
+# Get help for any tool
+npm run tool:local -- tools/add-word.ts --help
+```
+
+## Configuration
+
+Control your site through environment variables:
+
+```bash
+# Site Identity
+SITE_TITLE="My Word Site"
+SITE_URL="https://my-word-site.com"
+SOURCE_DIR=""                           # Data subdirectory; unset reads data/words/, demo reads data/demo/words/
+
+# Dictionary Service
+DICTIONARY_ADAPTER="merriam-webster"
+MERRIAM_WEBSTER_API_KEY="your-api-key-here"
+
+# Colors (optional)
+COLOR_PRIMARY="#9a3412"
+COLOR_PRIMARY_LIGHT="#c2410c"
+COLOR_PRIMARY_DARK="#7c2d12"
+```
+
+## Deployment
+
+The site supports both root and subdirectory deployments:
+
+### Root Deployment
+```bash
+SITE_URL="https://example.com"
+BASE_PATH="/"
+```
+
+### Subdirectory Deployment
+```bash
+SITE_URL="https://example.com"    # Domain only
+BASE_PATH="/vocab"                # Subdirectory path
+```
+
+### Popular Platforms
+```bash
+# Netlify/Vercel (root)
+SITE_URL="https://mysite.netlify.app"
+BASE_PATH="/"
+
+# GitHub Pages (subdirectory) 
+SITE_URL="https://username.github.io"
+BASE_PATH="/repo-name"
+
+# Custom subdirectory
+SITE_URL="https://mysite.com"
+BASE_PATH="/words"
+```
+
+**Important**: The site's URL utilities automatically handle BASE_PATH for all internal links and absolute URLs. Never hardcode paths.
+
+## Data Structure
+
+Words are stored as JSON files organized by year (the `{SOURCE_DIR}` level exists only when `SOURCE_DIR` is set):
+
+```
+data/
+└── {SOURCE_DIR}/
+    └── words/
+        └── 2025/
+            ├── 20250101.json
+            ├── 20250102.json 
+            └── ...
+```
+
+Each word file contains the word, date, and rich definition data from your chosen dictionary service.
+
+## Testing
+
+```bash
+npm test              # Run all tests with coverage
+npm run test:watch    # Watch mode for development
+npm run lint          # Code style checking
+npm run typecheck     # Type checking (uses Astro check)
+npm run build         # Verify build succeeds
+npm run test:e2e      # Playwright against the built site (run the build first)
+```
+
+**Pre-commit hooks automatically run:**
+- Linting (with auto-fix)
+- Tests for changed files only
+
+See [Technical Guide - Testing](technical.md#testing) for details.
+
+## Technology
+
+- **[Astro](https://astro.build/)** - Static site generator
+- **Dictionary APIs** - Merriam-Webster, Wordnik, Wiktionary (with fallback chain)
+- **[Sharp](https://sharp.pixelplumbing.com/)** - Image generation
+- **[Vitest](https://vitest.dev/)** - Testing framework
+- **[GitHub Pages](https://pages.github.com/)** - Hosting platform
+- **[Sentry](https://sentry.io/)** - Error monitoring
+
+## Documentation
+
+- **[AGENTS.md](../AGENTS.md)** - Philosophy, principles, and working guidance
+- **[Technical Guide](technical.md)** - Architecture, tools, and implementation details
+- **[Improvements Backlog](agents/backlog.md)** - Technical gaps and debt
+- **[Potential Features](agents/features.md)** - Feature ideas, prioritized
+
+## License
+
+MIT License - see [LICENSE.md](../LICENSE.md) for details.

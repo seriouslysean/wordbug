@@ -1,0 +1,290 @@
+{
+    "word": "love",
+    "date": "20250105",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "love",
+            "partOfSpeech": "noun",
+            "text": "strong affection for another arising out of kinship or personal ties",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "maternal love for a child",
+                "… share their love and support for one another …",
+                "people searching for love",
+                "… asking couples to share videos capturing the essence of love and romance …",
+                "her love for her best friend",
+                "The coach earned the love and respect of his team.",
+                "give her my love",
+                "Animal lovers … responded …, sending love and donations to the rescue canine.",
+                "their love of the sea",
+                "… bet big on the public's love of women's sports.",
+                "Baseball was his first love.",
+                "his lady love",
+                "… a music video … which shows the artist spending a day alone, enjoying her own company while thinking about her love.",
+                "divine love",
+                "… he saw the whole world forming one vast symmetrical expression of God's power and love.",
+                "brotherly love",
+                "their secret love",
+                "making love",
+                "conjugal love"
+            ]
+        },
+        {
+            "id": "love",
+            "partOfSpeech": "noun",
+            "text": "attraction based on sexual desire: affection and tenderness felt by lovers —often used before another noun",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "maternal love for a child",
+                "… share their love and support for one another …",
+                "people searching for love",
+                "… asking couples to share videos capturing the essence of love and romance …",
+                "her love for her best friend",
+                "The coach earned the love and respect of his team.",
+                "give her my love",
+                "Animal lovers … responded …, sending love and donations to the rescue canine.",
+                "their love of the sea",
+                "… bet big on the public's love of women's sports.",
+                "Baseball was his first love.",
+                "his lady love",
+                "… a music video … which shows the artist spending a day alone, enjoying her own company while thinking about her love.",
+                "divine love",
+                "… he saw the whole world forming one vast symmetrical expression of God's power and love.",
+                "brotherly love",
+                "their secret love",
+                "making love",
+                "conjugal love"
+            ]
+        },
+        {
+            "id": "love",
+            "partOfSpeech": "noun",
+            "text": "affection based on admiration, benevolence, or common interests",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "maternal love for a child",
+                "… share their love and support for one another …",
+                "people searching for love",
+                "… asking couples to share videos capturing the essence of love and romance …",
+                "her love for her best friend",
+                "The coach earned the love and respect of his team.",
+                "give her my love",
+                "Animal lovers … responded …, sending love and donations to the rescue canine.",
+                "their love of the sea",
+                "… bet big on the public's love of women's sports.",
+                "Baseball was his first love.",
+                "his lady love",
+                "… a music video … which shows the artist spending a day alone, enjoying her own company while thinking about her love.",
+                "divine love",
+                "… he saw the whole world forming one vast symmetrical expression of God's power and love.",
+                "brotherly love",
+                "their secret love",
+                "making love",
+                "conjugal love"
+            ]
+        },
+        {
+            "id": "love",
+            "partOfSpeech": "verb",
+            "text": "to feel great affection for: to hold dear: cherish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "You know how much I love my family.",
+                "… it would be an understatement to say people really love their pets.",
+                "He loves her, but she doesn't love him back.",
+                "He loved to play the violin. = He loved playing the violin.",
+                "\"Would you like to join us?\" \"Yes, I'd love to.\"",
+                "I don't love this color on me.",
+                "… shoppers love how versatile the dress is.",
+                "I just love it when politicians say that they don't care about polls.",
+                "The rosebush loves sunlight.",
+                "'Tis Better to have loved and lost / Than never to have loved at all."
+            ]
+        },
+        {
+            "id": "love",
+            "partOfSpeech": "verb",
+            "text": "to feel a lover's passion, devotion, or tenderness for",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "You know how much I love my family.",
+                "… it would be an understatement to say people really love their pets.",
+                "He loves her, but she doesn't love him back.",
+                "He loved to play the violin. = He loved playing the violin.",
+                "\"Would you like to join us?\" \"Yes, I'd love to.\"",
+                "I don't love this color on me.",
+                "… shoppers love how versatile the dress is.",
+                "I just love it when politicians say that they don't care about polls.",
+                "The rosebush loves sunlight.",
+                "'Tis Better to have loved and lost / Than never to have loved at all."
+            ]
+        },
+        {
+            "id": "love",
+            "partOfSpeech": "verb",
+            "text": "caress",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "You know how much I love my family.",
+                "… it would be an understatement to say people really love their pets.",
+                "He loves her, but she doesn't love him back.",
+                "He loved to play the violin. = He loved playing the violin.",
+                "\"Would you like to join us?\" \"Yes, I'd love to.\"",
+                "I don't love this color on me.",
+                "… shoppers love how versatile the dress is.",
+                "I just love it when politicians say that they don't care about polls.",
+                "The rosebush loves sunlight.",
+                "'Tis Better to have loved and lost / Than never to have loved at all."
+            ]
+        },
+        {
+            "id": "love affair",
+            "partOfSpeech": "noun",
+            "text": "a romantic attachment or episode between lovers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "America's love affair with baseball"
+            ]
+        },
+        {
+            "id": "love affair",
+            "partOfSpeech": "noun",
+            "text": "a lively enthusiasm",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "America's love affair with baseball"
+            ]
+        },
+        {
+            "id": "love apple",
+            "partOfSpeech": "noun",
+            "text": "tomato",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love"
+        },
+        {
+            "id": "love beads",
+            "partOfSpeech": "noun",
+            "text": "beads worn as a symbol of love and peace",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love"
+        },
+        {
+            "id": "love child",
+            "partOfSpeech": "noun",
+            "text": "a child whose parents were not married when the child was conceived; especially: the child of an affair —often used figuratively",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "My older sister, Jean Marie, was the love child of an affair my mother had with a married man who, instead of leaving his wife for my mother, died of a heart attack.",
+                "The museum is the love child of the company's owner, Jacques Lorch, who for twenty-five years has been ferreting out artifacts pertaining to the subject that is his passion."
+            ]
+        },
+        {
+            "id": "love child",
+            "partOfSpeech": "noun",
+            "text": "something (such as a project or collaboration) that is a product of hard work and devotion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love",
+            "examples": [
+                "My older sister, Jean Marie, was the love child of an affair my mother had with a married man who, instead of leaving his wife for my mother, died of a heart attack.",
+                "The museum is the love child of the company's owner, Jacques Lorch, who for twenty-five years has been ferreting out artifacts pertaining to the subject that is his passion."
+            ]
+        },
+        {
+            "id": "love feast",
+            "partOfSpeech": "noun",
+            "text": "a meal eaten in common by a Christian congregation in token of brotherly love",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love"
+        },
+        {
+            "id": "love feast",
+            "partOfSpeech": "noun",
+            "text": "a gathering held to promote reconciliation and good feeling or show someone affectionate honor",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love"
+        },
+        {
+            "id": "love grass",
+            "partOfSpeech": "noun",
+            "text": "any of a genus (Eragrostis) of grasses that resemble the bluegrasses but have flattened spikelets and deciduous lemmas",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love"
+        },
+        {
+            "id": "love handles",
+            "partOfSpeech": "noun",
+            "text": "fatty bulges along the sides of the body at the waist",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love"
+        },
+        {
+            "id": "love-in",
+            "partOfSpeech": "noun",
+            "text": "a gathering of people especially for the expression of their mutual love",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/love"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈləv",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/love0001.mp3",
+        "etymology": "Middle English, from Old English lufu; akin to Old High German luba love, Old English lēof dear, Latin lubēre, libēre to please",
+        "synonyms": [
+            "passion"
+        ],
+        "antonyms": [
+            "hate"
+        ],
+        "related": [
+            "emotion",
+            "enjoy",
+            "worship",
+            "adoration",
+            "agape",
+            "agape love",
+            "filial love",
+            "ardor",
+            "ardour",
+            "amorousness",
+            "enamoredness",
+            "puppy love",
+            "calf love",
+            "devotion",
+            "devotedness",
+            "benevolence",
+            "heartstrings",
+            "lovingness",
+            "caring",
+            "loyalty"
+        ]
+    }
+}

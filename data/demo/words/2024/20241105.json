@@ -1,0 +1,148 @@
+{
+    "word": "sage",
+    "date": "20241105",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "sage",
+            "partOfSpeech": "noun",
+            "text": "one (such as a profound philosopher) distinguished for wisdom",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "sage",
+            "partOfSpeech": "noun",
+            "text": "a mature or venerable person of sound judgment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "sage",
+            "partOfSpeech": "adjective",
+            "text": "proceeding from or characterized by wisdom, prudence, and good judgment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage",
+            "examples": [
+                "sage advice"
+            ]
+        },
+        {
+            "id": "sage",
+            "partOfSpeech": "adjective",
+            "text": "wise through reflection and experience",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage",
+            "examples": [
+                "sage advice"
+            ]
+        },
+        {
+            "id": "sage",
+            "partOfSpeech": "adjective",
+            "text": "grave, solemn",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage",
+            "examples": [
+                "sage advice"
+            ]
+        },
+        {
+            "id": "sage",
+            "partOfSpeech": "noun",
+            "text": "a European perennial mint (Salvia officinalis) with grayish-green aromatic leaves used especially in flavoring meats; broadly: salvia",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "sage",
+            "partOfSpeech": "noun",
+            "text": "the fresh or dried leaves of sage",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "sage",
+            "partOfSpeech": "noun",
+            "text": "sagebrush",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "Sage:b",
+            "text": "Russell 1816—1906 American financier",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "sage cheese",
+            "partOfSpeech": "noun",
+            "text": "a cheese similar to mild cheddar flecked with green and flavored with sage",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "sage grouse",
+            "partOfSpeech": "noun",
+            "text": "either of two large grouses (Centrocercus urophasianus and C. minimus) of the dry sagebrush plains of western North America that have mottled gray and buff plumage above with a contrasting black belly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "clary sage",
+            "partOfSpeech": "noun",
+            "text": "an aromatic mint (Salvia sclarea) of southern Europe that is widely cultivated especially as an ornamental —called also clary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "pineapple sage",
+            "partOfSpeech": "noun",
+            "text": "a Mexican salvia (Salvia elegans synonym S. rutilans) having a scent of pineapple that is cultivated as an annual",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "Russian sage",
+            "partOfSpeech": "noun",
+            "text": "an upright Asian subshrub (Perovskia atriplicifolia) of the mint family that is grown as an ornamental for its long narrow panicles of violet-blue flowers and grayish-green stems and leaves",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        },
+        {
+            "id": "scarlet sage",
+            "partOfSpeech": "noun",
+            "text": "a salvia (Salvia splendens) of Brazil that is widely cultivated for its long racemes of typically scarlet flowers; also: a related salvia (S. coccinea) of tropical and subtropical America",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sage"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsāj",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sage0001.mp3",
+        "related": [
+            "mentor",
+            "wise man",
+            "Hakham",
+            "mahatma",
+            "herb",
+            "clary sage"
+        ]
+    }
+}

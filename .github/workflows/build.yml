@@ -1,0 +1,51 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+
+      # Before setup-env, so no dependency's install script sees the secrets
+      - name: Install dependencies
+        run: npm ci
+
+      # Only a push to main builds with Sentry. A pull request gets none of
+      # its secrets, so its build has Sentry off and uploads nothing, and it
+      # is not tagged production.
+      - name: Setup environment variables
+        uses: ./.github/actions/setup-env
+        with:
+          vars-json: ${{ toJSON(vars) }}
+          ga-enabled: ${{ secrets.GA_ENABLED }}
+          ga-measurement-id: ${{ secrets.GA_MEASUREMENT_ID }}
+          sentry-auth-token: ${{ github.event_name == 'push' && secrets.SENTRY_AUTH_TOKEN || '' }}
+          sentry-dsn: ${{ github.event_name == 'push' && secrets.SENTRY_DSN || '' }}
+          sentry-enabled: ${{ github.event_name == 'push' && secrets.SENTRY_ENABLED || '' }}
+          sentry-environment: ${{ github.event_name == 'push' && 'production' || 'development' }}
+          sentry-org: ${{ github.event_name == 'push' && secrets.SENTRY_ORG || '' }}
+          sentry-project: ${{ github.event_name == 'push' && secrets.SENTRY_PROJECT || '' }}
+
+      - run: npm run build

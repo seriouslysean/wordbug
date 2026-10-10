@@ -1,0 +1,165 @@
+import { expect, test } from '@playwright/test';
+
+// User journey tests for the built static site.
+// Each test follows a complete path a real user would take.
+// No hardcoded word URLs -- content is discovered through navigation.
+
+test.describe('user journeys', () => {
+	test('discover a word and navigate between words', async ({ page }) => {
+		await page.goto('/');
+
+		// Homepage shows the featured word with its definition
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
+
+		// Click a word from the "Previous Words" section
+		const previousWordLink = page.locator('.past-words a.word-link').first();
+		await expect(previousWordLink).toBeVisible();
+		await previousWordLink.click();
+
+		// Word page shows content and navigation
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
+		const firstWordUrl = page.url();
+
+		// Navigate to the previous word
+		await page.locator('.word-nav__previous a.word-link').click();
+
+		// Arrived at a different word page with content
+		expect(page.url()).not.toBe(firstWordUrl);
+		await expect(page.locator('#word-title')).toBeVisible();
+	});
+
+	test('browse words by year and reach a word page', async ({ page }) => {
+		await page.goto('/');
+
+		// Use footer navigation to reach browse
+		await page.locator('footer a[href="/browse"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
+
+		// Select a year
+		await page.locator('main a[href*="/browse/20"]').first().click();
+
+		// Year page lists words
+		const wordLink = page.locator('main a[href*="/word/"]').first();
+		await expect(wordLink).toBeVisible();
+		await wordLink.click();
+
+		// Word page renders with content
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
+	});
+
+	test('browse index reaches every browse route family', async ({ page }) => {
+		const families = [
+			{ index: '/browse/letter', detail: '/browse/letter/' },
+			{ index: '/browse/length', detail: '/browse/length/' },
+			{ index: '/browse/part-of-speech', detail: '/browse/part-of-speech/' },
+		];
+
+		for (const family of families) {
+			await page.goto('/browse');
+			await page.locator(`main a[href="${family.index}"]`).click();
+			await expect(page.locator('#main-content')).toBeVisible();
+
+			const detail = page.locator(`main a[href^="${family.detail}"]`).first();
+			await expect(detail).toBeVisible();
+			await detail.click();
+			await expect(page.locator('#main-content')).toBeVisible();
+		}
+	});
+
+	test('footer provides navigation to all main sections', async ({ page }) => {
+		await page.goto('/');
+
+		// Browse Words
+		await page.locator('footer a[href="/browse"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
+
+		// Stats
+		await page.locator('footer a[href="/stats"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
+
+		// All Words
+		await page.locator('footer a[href="/word"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
+
+		// Home
+		await page.locator('footer a[href="/"]').click();
+		await expect(page.locator('#main-content')).toBeVisible();
+	});
+
+	test('oldest word has no previous navigation', async ({ page }) => {
+		await page.goto('/');
+
+		// Navigate to browse, find the earliest year, then its first word
+		await page.locator('footer a[href="/browse"]').click();
+		const earliestYear = page.locator('main a[href*="/browse/20"]').last();
+		await earliestYear.click();
+		const firstWord = page.locator('main a[href*="/word/"]').last();
+		await firstWord.click();
+
+		// Oldest word page has no previous link
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-nav__previous a')).toHaveCount(0);
+
+		// But next navigation still works
+		await expect(page.locator('.word-nav__next a.word-link')).toBeVisible();
+	});
+
+	test('newest word navigates home via next link', async ({ page }) => {
+		await page.goto('/');
+
+		// Click the first previous word from homepage
+		const previousWordLink = page.locator('.past-words a.word-link').first();
+		await previousWordLink.click();
+
+		// Navigate forward via next — should reach the homepage word.
+		// waitForURL is required for SPA navigation (ClientRouter) so Playwright
+		// waits for the history.pushState before asserting on the new page.
+		await Promise.all([
+			page.waitForURL(/\/$/),
+			page.locator('.word-nav__next a.word-link').click(),
+		]);
+
+		// Should be on the homepage (next link for the word before current resolves to /)
+		await expect(page.locator('.past-words')).toBeVisible();
+	});
+
+	test('related word in WordContext cell navigates to that word page', async ({ page }) => {
+		await page.goto('/');
+
+		// Open a word page first
+		await page.locator('.past-words a.word-link').first().click();
+		await expect(page.locator('#word-title')).toBeVisible();
+		const originUrl = page.url();
+
+		// Click a preview word inside any WordContext cell
+		const cellWordLink = page.locator('.word-context .word-context__cell .word-list a.word-link').first();
+		await expect(cellWordLink).toBeVisible();
+		await cellWordLink.click();
+
+		// Lands on a different word page that rendered fully
+		expect(page.url()).not.toBe(originUrl);
+		await expect(page.locator('#word-title')).toBeVisible();
+		await expect(page.locator('.word-senses')).toBeVisible();
+	});
+
+	test('word page surfaces the senses slider and meta line', async ({ page }) => {
+		await page.goto('/');
+		await page.locator('.past-words a.word-link').first().click();
+		await expect(page.locator('#word-title')).toBeVisible();
+
+		// Pronunciation / syllable / rarity meta line renders for a real word
+		await expect(page.locator('.word-meta__facts')).toBeVisible();
+
+		// Senses slider renders the definition(s)
+		await expect(page.locator('.word-senses')).toBeVisible();
+	});
+
+	test('non-existent route returns 404', async ({ page }) => {
+		const response = await page.goto('/this-page-does-not-exist');
+
+		expect(response?.status()).toBe(404);
+	});
+});

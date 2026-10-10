@@ -1,0 +1,6 @@
+# Local settings and credentials
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store

@@ -1,0 +1,180 @@
+{
+    "word": "memory",
+    "date": "20241220",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "memory",
+            "partOfSpeech": "noun",
+            "text": "the power or process of reproducing or recalling what has been learned and retained especially through associative mechanisms",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory",
+            "examples": [
+                "began to lose his memory as he grew older",
+                "has a good memory for faces",
+                "has a short/long memory",
+                "Dad has a selective memory; he remembers when he's right and forgets when he's wrong.",
+                "If memory serves me rightly/correctly, we've been here before. =If I remember accurately, we've been here before.",
+                "erected a statue in memory of the hero",
+                "days of recent memory",
+                "has no memory of the event",
+                "fond memories of her youth",
+                "within the memory of living men",
+                "512 megabytes of memory"
+            ]
+        },
+        {
+            "id": "memory",
+            "partOfSpeech": "noun",
+            "text": "the store of things learned and retained from an organism's activity or experience as evidenced by modification of structure or behavior or by recall and recognition",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory",
+            "examples": [
+                "began to lose his memory as he grew older",
+                "has a good memory for faces",
+                "has a short/long memory",
+                "Dad has a selective memory; he remembers when he's right and forgets when he's wrong.",
+                "If memory serves me rightly/correctly, we've been here before. =If I remember accurately, we've been here before.",
+                "erected a statue in memory of the hero",
+                "days of recent memory",
+                "has no memory of the event",
+                "fond memories of her youth",
+                "within the memory of living men",
+                "512 megabytes of memory"
+            ]
+        },
+        {
+            "id": "memory",
+            "partOfSpeech": "noun",
+            "text": "commemorative remembrance",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory",
+            "examples": [
+                "began to lose his memory as he grew older",
+                "has a good memory for faces",
+                "has a short/long memory",
+                "Dad has a selective memory; he remembers when he's right and forgets when he's wrong.",
+                "If memory serves me rightly/correctly, we've been here before. =If I remember accurately, we've been here before.",
+                "erected a statue in memory of the hero",
+                "days of recent memory",
+                "has no memory of the event",
+                "fond memories of her youth",
+                "within the memory of living men",
+                "512 megabytes of memory"
+            ]
+        },
+        {
+            "id": "memory bank",
+            "partOfSpeech": "noun",
+            "text": "a computer device or component in which information is stored to be retrieved as needed —often plural —often used figuratively especially for the part of the mind in which memories are stored",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory"
+        },
+        {
+            "id": "memory card",
+            "partOfSpeech": "noun",
+            "text": "a small, flat, data storage device designed to be inserted into a larger electronic device (such as a camera or cell phone)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory",
+            "examples": [
+                "But as these digital wonders continue to improve with higher megapixel capacities, digital shutterbugs find themselves having to buy larger-capacity flash memory cards to hold the bigger image files."
+            ]
+        },
+        {
+            "id": "memory foam",
+            "partOfSpeech": "noun",
+            "text": "a dense polyurethane foam that becomes more pliable when in contact with heat",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory"
+        },
+        {
+            "id": "memory hole",
+            "partOfSpeech": "noun",
+            "text": "the condition or state of being suppressed, erased, or forgotten (as for political or personal convenience) imagined as a physical place",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory",
+            "examples": [
+                "The answer lies in bipartisan consensus of Republicans and Democrats to let the savings and loan debacle vanish down the memory hole.",
+                "Sixteen years after Americans troops crossed the Kuwaiti border into Iraq, a war that took the lives of more than 4,400 soldiers and left tens of thousands wounded has disappeared down the American people's collective memory hole.",
+                "A Runner's Journey shows how a lot of that history was shoved down a memory hole—including the political activism that swirled about the Berlin Olympics in 1936 …",
+                "The “historically low interest rates,” thanks to low inflation, … seem destined … to be consigned to a similar memory hole, to be replaced with some new story about higher inflation yielding higher revenues.",
+                "The paper exerts editorial control over itself, of course, and the question is not one of putting a piece of information down the memory hole, but revisiting whether it was newsworthy to begin with. … The newspaper has established a 10-person committee to examine petitions from people asking to have articles updated—never removed, it's important to add."
+            ]
+        },
+        {
+            "id": "memory-hole",
+            "partOfSpeech": "verb",
+            "text": "to cause (facts, memories, etc. about the past) to be suppressed, erased, or forgotten (as for political or personal convenience)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory",
+            "examples": [
+                "Republicans have revisited criticism of Biden's Afghanistan withdrawal in light of the White House's recent report, which they accuse of trying to memory-hole the evacuation.",
+                "A year later, Roxbury's central hub became Nubian Square, memory-holing the name by which it had been known for generations, that of Puritan governor Thomas Dudley.",
+                "But the fact is, I was an anxious mess when it seemed we were on the brink of a world war. … It's strange to me that I have since somehow memory-holed all that anxiety …"
+            ]
+        },
+        {
+            "id": "memory lane",
+            "partOfSpeech": "noun",
+            "text": "an imaginary path through the nostalgically remembered past —usually used in such phrases as a walk down memory lane",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory"
+        },
+        {
+            "id": "memory trace",
+            "partOfSpeech": "noun",
+            "text": "a transient or long-term change in the brain that represents something (such as an experience) encoded as a memory: engram",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory"
+        },
+        {
+            "id": "bubble memory",
+            "partOfSpeech": "noun",
+            "text": "a computer memory that uses magnetic bubbles to store information",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/memory"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈmem-rē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/memory01.mp3",
+        "etymology": "Middle English memorie, from Anglo-French memoire, memorie, from Latin memoria, from memor mindful; akin to Old English gemimor well-known, Greek mermēra care, Sanskrit smarati he remembers",
+        "synonyms": [
+            "remembering"
+        ],
+        "related": [
+            "representation",
+            "mental representation",
+            "memorize",
+            "memorise",
+            "reminiscence",
+            "recollection",
+            "engram",
+            "memory trace",
+            "confabulation",
+            "screen memory",
+            "basic cognitive process",
+            "remember",
+            "think back",
+            "retrieve",
+            "short-term memory",
+            "STM",
+            "working memory",
+            "long-term memory",
+            "LTM",
+            "retrieval"
+        ]
+    }
+}

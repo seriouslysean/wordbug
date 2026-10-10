@@ -1,0 +1,163 @@
+import path from 'node:path';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+describe('config/paths', () => {
+  const ROOT = process.cwd();
+
+  beforeEach(() => {
+    vi.resetModules();
+  });
+
+  describe('when SOURCE_DIR is not set', () => {
+    it('should use root data path', async () => {
+      delete process.env.SOURCE_DIR;
+      const { paths } = await import('#config/paths');
+      expect(paths.words).toBe(path.join(ROOT, 'data', 'words'));
+    });
+
+    it('should use root images path', async () => {
+      delete process.env.SOURCE_DIR;
+      const { paths } = await import('#config/paths');
+      expect(paths.images).toBe(path.join(ROOT, 'public', 'images'));
+    });
+  });
+
+  describe('when SOURCE_DIR is set to "demo"', () => {
+    it('should use data/demo/words path', async () => {
+      vi.stubEnv('SOURCE_DIR', 'demo');
+      const { paths } = await import('#config/paths');
+      expect(paths.words).toBe(path.join(ROOT, 'data', 'demo', 'words'));
+    });
+
+    it('should use public/demo/images path', async () => {
+      vi.stubEnv('SOURCE_DIR', 'demo');
+      const { paths } = await import('#config/paths');
+      expect(paths.images).toBe(path.join(ROOT, 'public', 'demo', 'images'));
+    });
+  });
+
+  describe('when SOURCE_DIR is set to "source"', () => {
+    it('should use data/source/words path', async () => {
+      vi.stubEnv('SOURCE_DIR', 'source');
+      const { paths } = await import('#config/paths');
+      expect(paths.words).toBe(path.join(ROOT, 'data', 'source', 'words'));
+    });
+
+    it('should use public/source/images path', async () => {
+      vi.stubEnv('SOURCE_DIR', 'source');
+      const { paths } = await import('#config/paths');
+      expect(paths.images).toBe(path.join(ROOT, 'public', 'source', 'images'));
+    });
+  });
+
+  describe('when SOURCE_DIR is set to custom value', () => {
+    it('should use custom path for words', async () => {
+      vi.stubEnv('SOURCE_DIR', 'custom');
+      const { paths } = await import('#config/paths');
+      expect(paths.words).toBe(path.join(ROOT, 'data', 'custom', 'words'));
+    });
+
+    it('should use custom path for images', async () => {
+      vi.stubEnv('SOURCE_DIR', 'custom');
+      const { paths } = await import('#config/paths');
+      expect(paths.images).toBe(path.join(ROOT, 'public', 'custom', 'images'));
+    });
+  });
+
+  describe('when SOURCE_DIR is empty string', () => {
+    it('should use root data path', async () => {
+      vi.stubEnv('SOURCE_DIR', '');
+      const { paths } = await import('#config/paths');
+      expect(paths.words).toBe(path.join(ROOT, 'data', 'words'));
+    });
+
+    it('should use root images path', async () => {
+      vi.stubEnv('SOURCE_DIR', '');
+      const { paths } = await import('#config/paths');
+      expect(paths.images).toBe(path.join(ROOT, 'public', 'images'));
+    });
+  });
+
+  describe('paths that do not depend on SOURCE_DIR', () => {
+    it('should always use src/pages for pages path', async () => {
+      const { paths } = await import('#config/paths');
+      expect(paths.pages).toBe(path.join(ROOT, 'src', 'pages'));
+    });
+
+    it('should always use tools/fonts for fonts path', async () => {
+      const { paths } = await import('#config/paths');
+      expect(paths.fonts).toBe(path.join(ROOT, 'tools', 'fonts'));
+    });
+  });
+
+  describe('upstream vs downstream parity', () => {
+    it('should produce different paths for demo vs unset SOURCE_DIR', async () => {
+      vi.stubEnv('SOURCE_DIR', 'demo');
+      const { createPaths: demoPaths } = await import('#config/paths');
+      const demo = demoPaths();
+
+      vi.resetModules();
+
+      delete process.env.SOURCE_DIR;
+      const { createPaths: rootPaths } = await import('#config/paths');
+      const root = rootPaths();
+
+      expect(demo.words).not.toBe(root.words);
+      expect(demo.images).not.toBe(root.images);
+      expect(demo.words).toContain('demo');
+      expect(root.words).not.toContain('demo');
+    });
+
+    it('should keep pages and fonts the same regardless of SOURCE_DIR', async () => {
+      vi.stubEnv('SOURCE_DIR', 'demo');
+      const { createPaths: demoPaths } = await import('#config/paths');
+      const demo = demoPaths();
+
+      vi.resetModules();
+
+      delete process.env.SOURCE_DIR;
+      const { createPaths: rootPaths } = await import('#config/paths');
+      const root = rootPaths();
+
+      expect(demo.pages).toBe(root.pages);
+      expect(demo.fonts).toBe(root.fonts);
+    });
+  });
+
+  describe('createPaths function', () => {
+    it('should return a new path configuration object', async () => {
+      delete process.env.SOURCE_DIR;
+      const { createPaths } = await import('#config/paths');
+      const paths = createPaths();
+
+      expect(paths).toHaveProperty('words');
+      expect(paths).toHaveProperty('pages');
+      expect(paths).toHaveProperty('images');
+      expect(paths).toHaveProperty('fonts');
+    });
+
+    it('should read SOURCE_DIR at call time', async () => {
+      vi.stubEnv('SOURCE_DIR', 'first');
+      const { createPaths } = await import('#config/paths');
+      const paths1 = createPaths();
+
+      vi.stubEnv('SOURCE_DIR', 'second');
+      const paths2 = createPaths();
+
+      expect(paths1.words).toContain('first');
+      expect(paths2.words).toContain('second');
+    });
+
+    it('should return consistent paths when called multiple times', async () => {
+      delete process.env.SOURCE_DIR;
+      const { createPaths } = await import('#config/paths');
+      const paths1 = createPaths();
+      const paths2 = createPaths();
+
+      expect(paths1.words).toBe(paths2.words);
+      expect(paths1.images).toBe(paths2.images);
+      expect(paths1.pages).toBe(paths2.pages);
+      expect(paths1.fonts).toBe(paths2.fonts);
+    });
+  });
+});

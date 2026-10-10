@@ -1,0 +1,16 @@
+---
+import BrowsePageTemplate from '#components/BrowsePageTemplate.astro';
+import { allWords, groupWordsByLength } from '#astro-utils/word-data-utils';
+
+export async function getStaticPaths() {
+    const lengthGroups = groupWordsByLength(allWords);
+
+  return Object.entries(lengthGroups).map(([length, words]) => ({
+    params: { length },
+    props: { words, length: Number(length) },
+  }));
+}
+
+const { words } = Astro.props;
+---
+<BrowsePageTemplate words={words} columns={2} />

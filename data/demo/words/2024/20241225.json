@@ -1,0 +1,105 @@
+{
+    "word": "idea",
+    "date": "20241225",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "idea",
+            "partOfSpeech": "noun",
+            "text": "a formulated thought or opinion",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/idea",
+            "examples": [
+                "has some strange ideas",
+                "“I thought he'd help.” “What gave you that idea?”",
+                "a child's idea of time",
+                "He has a clear idea of his responsibilities.",
+                "I have no idea what you're talking about.",
+                "The idea of the game is to get the lowest score.",
+                "I get the idea. =I understand",
+                "Hey! What's the big idea? =why are you doing that?",
+                "Leaving early is a good idea.",
+                "Don't put ideas into his head. =make him think about doing something he shouldn't",
+                "A quiet night at home is my idea of a good time.",
+                "I can't remember anything. I remember only ideas and sensations."
+            ]
+        },
+        {
+            "id": "idea",
+            "partOfSpeech": "noun",
+            "text": "whatever is known or supposed about something",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/idea",
+            "examples": [
+                "has some strange ideas",
+                "“I thought he'd help.” “What gave you that idea?”",
+                "a child's idea of time",
+                "He has a clear idea of his responsibilities.",
+                "I have no idea what you're talking about.",
+                "The idea of the game is to get the lowest score.",
+                "I get the idea. =I understand",
+                "Hey! What's the big idea? =why are you doing that?",
+                "Leaving early is a good idea.",
+                "Don't put ideas into his head. =make him think about doing something he shouldn't",
+                "A quiet night at home is my idea of a good time.",
+                "I can't remember anything. I remember only ideas and sensations."
+            ]
+        },
+        {
+            "id": "idea",
+            "partOfSpeech": "noun",
+            "text": "the central meaning or chief end of a particular action or situation",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/idea",
+            "examples": [
+                "has some strange ideas",
+                "“I thought he'd help.” “What gave you that idea?”",
+                "a child's idea of time",
+                "He has a clear idea of his responsibilities.",
+                "I have no idea what you're talking about.",
+                "The idea of the game is to get the lowest score.",
+                "I get the idea. =I understand",
+                "Hey! What's the big idea? =why are you doing that?",
+                "Leaving early is a good idea.",
+                "Don't put ideas into his head. =make him think about doing something he shouldn't",
+                "A quiet night at home is my idea of a good time.",
+                "I can't remember anything. I remember only ideas and sensations."
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ī-ˈdē-ə",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/i/idea0001.mp3",
+        "etymology": "Middle English, from Latin, from Greek, from idein to see ",
+        "synonyms": [
+            "thought",
+            "mind"
+        ],
+        "related": [
+            "content",
+            "cognitive content",
+            "think",
+            "believe",
+            "opine",
+            "remember",
+            "retrieve",
+            "ideal",
+            "imagine",
+            "conceive of",
+            "inspiration",
+            "cogitation",
+            "concept",
+            "conception",
+            "preoccupation",
+            "misconception",
+            "plan",
+            "program",
+            "figment",
+            "generalization"
+        ]
+    }
+}

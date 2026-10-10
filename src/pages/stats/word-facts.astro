@@ -1,0 +1,128 @@
+---
+import DefinitionList from '#components/DefinitionList.astro';
+import DescriptionText from '#components/DescriptionText.astro';
+import StatsSection from '#components/StatsSection.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata';
+import { getWordsLengthUrl } from '#astro-utils/url-utils';
+import {
+  getLetterTypeStats,
+  getPatternStats,
+  getSyllableStats,
+} from '#astro-utils/word-stats-utils';
+import Heading from '#components/Heading.astro';
+import Layout from '#layouts/Layout.astro';
+import { getConsonantCount, getVowelCount } from '#utils/text-utils';
+import { 
+  allWords, 
+  availableLengths,
+  wordStats,
+  letterStats,
+  milestoneWords
+} from '#astro-utils/word-data-utils';
+import { t, tp } from '#utils/i18n-utils';
+
+const lengthCount = availableLengths.length;
+
+const { mostSyllables, leastSyllables, mostSyllablesCount, leastSyllablesCount } = getSyllableStats(allWords);
+const { mostVowels, mostConsonants } = getLetterTypeStats(allWords);
+const { allVowels, allConsonants, palindromes } = getPatternStats(allWords);
+
+const {
+  mostCommon: mostCommonLetter,
+  mostCommonCount: mostCommonLetterCount,
+  leastCommon: leastCommonLetter,
+  leastCommonCount: leastCommonLetterCount,
+} = letterStats;
+const mostVowelsCount = mostVowels ? getVowelCount(mostVowels.word) : 0;
+const mostConsonantsCount = mostConsonants ? getConsonantCount(mostConsonants.word) : 0;
+const palindromeCount = palindromes.length;
+const milestoneCount = milestoneWords.length;
+
+// Word length stats
+const lengthItems = [
+  ...(lengthCount > 0 ? [{ label: t('stats.word_lengths'), value: lengthCount, href: getWordsLengthUrl() }] : []),
+  ...(wordStats.shortest ? [{ label: tp('stats.shortest', wordStats.shortest.word.length), value: wordStats.shortest, isWord: true }] : []),
+  ...(wordStats.longest ? [{ label: tp('stats.longest', wordStats.longest.word.length), value: wordStats.longest, isWord: true }] : [])
+];
+
+// Syllable stats
+const syllableItems = [
+  ...(leastSyllables ? [{ label: tp('stats.least_syllables', leastSyllablesCount), value: leastSyllables, isWord: true }] : []),
+  ...(mostSyllables ? [{ label: tp('stats.most_syllables', mostSyllablesCount), value: mostSyllables, isWord: true }] : [])
+];
+
+// Letter composition stats
+const letterCompositionItems = [
+  ...(mostVowels ? [{ label: tp('stats.most_vowels', mostVowelsCount), value: mostVowels, isWord: true }] : []),
+  ...(mostConsonants ? [{ label: tp('stats.most_consonants', mostConsonantsCount), value: mostConsonants, isWord: true }] : []),
+  ...(allConsonants.length > 0 ? [{ label: t('stats.all_consonants'), value: allConsonants.length, href: '/stats/all-consonants' }] : []),
+  ...(allVowels.length > 0 ? [{ label: t('stats.all_vowels'), value: allVowels.length, href: '/stats/all-vowels' }] : [])
+];
+
+// Letter frequency stats
+const letterFrequencyItems = (letterStats.ranked.length > 0 ? [
+    { label: tp('stats.most_common_letter', mostCommonLetterCount), value: mostCommonLetter, href: '/stats/most-common-letter' },
+    { label: tp('stats.least_common_letter', leastCommonLetterCount), value: leastCommonLetter, href: '/stats/least-common-letter' }
+  ] : []);
+
+// Special word types
+const specialWordItems = [
+  ...(palindromeCount > 0 ? [{ label: t('stats.palindromes'), value: palindromeCount, href: '/stats/palindromes' }] : []),
+  ...(milestoneCount > 0 ? [{ label: t('stats.milestone_words'), value: milestoneCount, href: '/stats/milestone-words' }] : [])
+];
+
+const { title, description } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description}>
+  <div class="word-facts">
+    <Heading text={title} />
+    <DescriptionText text={description} />
+
+    {lengthItems.length && (
+      <StatsSection title={t('stats.lengths_heading')}>
+        {lengthItems.filter(item => !item.isWord).length && (
+          <DefinitionList items={lengthItems.filter(item => !item.isWord)} />
+        )}
+        {lengthItems.filter(item => item.isWord).length && (
+          <DefinitionList items={lengthItems.filter(item => item.isWord)} valueType="word" reverseWord />
+        )}
+      </StatsSection>
+    )}
+
+    {syllableItems.length && (
+      <StatsSection title={t('stats.syllables_heading')}>
+        <DefinitionList items={syllableItems} valueType="word" reverseWord />
+      </StatsSection>
+    )}
+
+    {letterCompositionItems.length && (
+      <StatsSection title={t('stats.composition_heading')}>
+        {letterCompositionItems.filter(item => !item.isWord).length && (
+          <DefinitionList items={letterCompositionItems.filter(item => !item.isWord)} />
+        )}
+        {letterCompositionItems.filter(item => item.isWord).length && (
+          <DefinitionList items={letterCompositionItems.filter(item => item.isWord)} valueType="word" reverseWord />
+        )}
+      </StatsSection>
+    )}
+
+    {letterFrequencyItems.length && (
+      <StatsSection title={t('stats.frequency_heading')}>
+        <DefinitionList items={letterFrequencyItems} />
+      </StatsSection>
+    )}
+
+    {specialWordItems.length && (
+      <StatsSection title={t('stats.special_heading')}>
+        <DefinitionList items={specialWordItems} />
+      </StatsSection>
+    )}
+  </div>
+</Layout>
+
+<style>
+    .word-facts {
+        max-width: var(--content-width-medium);
+        margin: 0 auto;
+    }
+</style>

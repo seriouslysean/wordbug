@@ -1,0 +1,12 @@
+glob_matcher: doublestar
+
+pre-commit:
+  piped: true
+  jobs:
+    - name: lint
+      run: npx oxlint --fix {staged_files}
+      glob: "**/*.{js,ts,astro}"
+      stage_fixed: true
+    - name: test-related
+      run: npx vitest related --run --coverage=false {staged_files}
+      glob: "**/*.{js,ts,astro}"

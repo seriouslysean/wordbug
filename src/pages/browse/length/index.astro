@@ -1,0 +1,24 @@
+---
+import DescriptionText from '#components/DescriptionText.astro';
+import Heading from '#components/Heading.astro';
+import WordSection from '#components/WordSection.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
+import { getLengthUrl } from '#astro-utils/url-utils';
+import { allWords, groupWordsByLength } from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
+
+const lengthGroups = Object.entries(groupWordsByLength(allWords)).map(([length, words]) => ({
+  length: Number(length),
+  words,
+}));
+const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST} itemCount={allWords.length}>
+  <Heading text={title} secondaryText={secondaryText} />
+  <DescriptionText text={description} />
+  {lengthGroups.map(({ length, words }) => (
+    <WordSection title={t('words.length_words', { length })} href={getLengthUrl(length)} words={words} />
+  ))}
+</Layout>

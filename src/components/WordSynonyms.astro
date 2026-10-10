@@ -1,0 +1,48 @@
+---
+import SectionHeading from '#components/SectionHeading.astro';
+import WordChips from '#components/WordChips.astro';
+import { corpusRelations } from '#utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
+
+interface Props {
+  word: string;
+  synonyms?: string[];
+  antonyms?: string[];
+  related?: string[];
+  knownWords: Set<string>;
+}
+
+const { word, synonyms = [], antonyms = [], related = [], knownWords } = Astro.props;
+
+// Relations are corpus-scoped: each group keeps only the terms that resolve to a
+// real word page (matched after derivational resolution, self-links dropped).
+// Groups with no corpus matches are dropped, and the section hides when empty.
+const groups = [
+  { key: 'synonyms', heading: t('word.synonyms_heading'), terms: corpusRelations(word, synonyms, knownWords) },
+  { key: 'antonyms', heading: t('word.antonyms_heading'), terms: corpusRelations(word, antonyms, knownWords) },
+  { key: 'related', heading: t('word.related_terms_heading'), terms: corpusRelations(word, related, knownWords) },
+].filter(group => group.terms.length > 0);
+---
+
+{groups.length > 0 && (
+  <section class="word-relations">
+    {groups.map(group => (
+      <div class="word-relations__group">
+        <SectionHeading text={group.heading} align="center" underline={false} />
+        <WordChips words={group.terms} />
+      </div>
+    ))}
+  </section>
+)}
+
+<style>
+  .word-relations {
+    width: 100%;
+    max-width: var(--content-width-small);
+    margin: var(--spacing-large) auto 0;
+    padding: 0 var(--spacing-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+  }
+</style>

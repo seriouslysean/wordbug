@@ -1,0 +1,187 @@
+{
+    "word": "dream",
+    "date": "20241215",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "dream",
+            "partOfSpeech": "noun",
+            "text": "a series of thoughts, images, or emotions occurring during sleep",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "had a dream about climbing a mountain",
+                "gives me bad dreams",
+                "the dreams of her youth",
+                "walking around in a dream",
+                "a man that was her dream come true",
+                "the new car is a dream to operate",
+                "a dream of becoming president",
+                "a meal that was a gourmet's dream"
+            ]
+        },
+        {
+            "id": "dream",
+            "partOfSpeech": "noun",
+            "text": "an experience of waking life having the characteristics of a dream: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "had a dream about climbing a mountain",
+                "gives me bad dreams",
+                "the dreams of her youth",
+                "walking around in a dream",
+                "a man that was her dream come true",
+                "the new car is a dream to operate",
+                "a dream of becoming president",
+                "a meal that was a gourmet's dream"
+            ]
+        },
+        {
+            "id": "dream",
+            "partOfSpeech": "noun",
+            "text": "a visionary creation of the imagination: daydream",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "had a dream about climbing a mountain",
+                "gives me bad dreams",
+                "the dreams of her youth",
+                "walking around in a dream",
+                "a man that was her dream come true",
+                "the new car is a dream to operate",
+                "a dream of becoming president",
+                "a meal that was a gourmet's dream"
+            ]
+        },
+        {
+            "id": "dream",
+            "partOfSpeech": "verb",
+            "text": "to have a series of thoughts, images, or emotions while sleeping: to have a dream",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "doesn't recall dreaming last night",
+                "dream of departed loved ones",
+                "dreaming of a better future",
+                "… houses dream in leafy shadows …",
+                "dreamt that he was running in the woods",
+                "never dreamed I would become a teacher",
+                "dreaming the hours away"
+            ]
+        },
+        {
+            "id": "dream",
+            "partOfSpeech": "verb",
+            "text": "to indulge in daydreams or fantasies",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "doesn't recall dreaming last night",
+                "dream of departed loved ones",
+                "dreaming of a better future",
+                "… houses dream in leafy shadows …",
+                "dreamt that he was running in the woods",
+                "never dreamed I would become a teacher",
+                "dreaming the hours away"
+            ]
+        },
+        {
+            "id": "dream",
+            "partOfSpeech": "verb",
+            "text": "to appear tranquil or dreamy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "doesn't recall dreaming last night",
+                "dream of departed loved ones",
+                "dreaming of a better future",
+                "… houses dream in leafy shadows …",
+                "dreamt that he was running in the woods",
+                "never dreamed I would become a teacher",
+                "dreaming the hours away"
+            ]
+        },
+        {
+            "id": "dream catcher",
+            "partOfSpeech": "noun",
+            "text": "a circular framed net with a hole in the center that is used by some Indigenous peoples to help block bad dreams and catch good ones",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream"
+        },
+        {
+            "id": "dream of",
+            "text": "to consider possible or fitting",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "wouldn't dream of disturbing you"
+            ]
+        },
+        {
+            "id": "dream team",
+            "partOfSpeech": "noun",
+            "text": "a team whose members are preeminent in a particular field",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream",
+            "examples": [
+                "a legal dream team"
+            ]
+        },
+        {
+            "id": "dream up",
+            "partOfSpeech": "verb",
+            "text": "to form in the mind: devise, concoct",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream"
+        },
+        {
+            "id": "dream vision",
+            "partOfSpeech": "noun",
+            "text": "a usually medieval poem having a framework in which the poet pictures himself as falling asleep and envisioning in his dream a series of allegorical people and events",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream"
+        },
+        {
+            "id": "American dream",
+            "partOfSpeech": "noun",
+            "text": "an American social ideal that stresses egalitarianism and especially material prosperity; also: the prosperity or life that is the realization of this ideal",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/dream"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈdrēm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/d/dream001.mp3",
+        "etymology": "Middle English dreem, from Old English drēam noise, joy, and Old Norse draumr dream; akin to Old High German troum dream",
+        "synonyms": [
+            "dreaming"
+        ],
+        "related": [
+            "imagination",
+            "imaging",
+            "nightmare",
+            "wet dream",
+            "imaginativeness",
+            "daydream",
+            "dreamy",
+            "moony",
+            "reverie",
+            "revery",
+            "woolgathering"
+        ]
+    }
+}

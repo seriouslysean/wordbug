@@ -1,0 +1,100 @@
+{
+    "word": "wisdom",
+    "date": "20250116",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "wisdom",
+            "partOfSpeech": "noun",
+            "text": "ability to discern inner qualities and relationships: insight",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wisdom",
+            "examples": [
+                "… challenges what has become accepted wisdom among many historians …"
+            ]
+        },
+        {
+            "id": "wisdom",
+            "partOfSpeech": "noun",
+            "text": "good sense: judgment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wisdom",
+            "examples": [
+                "… challenges what has become accepted wisdom among many historians …"
+            ]
+        },
+        {
+            "id": "wisdom",
+            "partOfSpeech": "noun",
+            "text": "generally accepted belief",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wisdom",
+            "examples": [
+                "… challenges what has become accepted wisdom among many historians …"
+            ]
+        },
+        {
+            "id": "Wisdom",
+            "partOfSpeech": "noun",
+            "text": "a didactic book included in the Roman Catholic canon of the Old Testament and corresponding to the Wisdom of Solomon in the Protestant Apocrypha",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wisdom"
+        },
+        {
+            "id": "Wisdom of Solomon",
+            "partOfSpeech": "noun",
+            "text": "a didactic book included in the Protestant Apocrypha",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wisdom"
+        },
+        {
+            "id": "wisdom tooth",
+            "partOfSpeech": "noun",
+            "text": "the third molar that is the last tooth to erupt on each side of the upper and lower jaws in humans",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wisdom"
+        },
+        {
+            "id": "conventional wisdom",
+            "partOfSpeech": "noun",
+            "text": "the generally accepted belief, opinion, judgment, or prediction about a particular matter",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/wisdom"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈwiz-dəm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/w/wisdom01.mp3",
+        "etymology": "Middle English, from Old English wīsdōm, from wīs wise",
+        "synonyms": [
+            "wiseness"
+        ],
+        "antonyms": [
+            "folly"
+        ],
+        "related": [
+            "content",
+            "cognitive content",
+            "reconditeness",
+            "abstruseness",
+            "trait",
+            "wise",
+            "judiciousness",
+            "sagacity",
+            "knowledgeability",
+            "knowledgeableness",
+            "statesmanship",
+            "statecraft",
+            "discretion",
+            "discernment"
+        ]
+    }
+}

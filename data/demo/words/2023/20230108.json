@@ -1,0 +1,150 @@
+{
+    "word": "they",
+    "date": "20230108",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "they",
+            "partOfSpeech": "pronoun",
+            "text": "those ones: those people, animals, or things",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "They dance well.",
+                "What do they want to do?",
+                "They aren't as popular as they once were."
+            ]
+        },
+        {
+            "id": "they",
+            "partOfSpeech": "pronoun",
+            "text": "—used to refer to people in a general way or to a group of people who are not specified",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "They dance well.",
+                "What do they want to do?",
+                "They aren't as popular as they once were."
+            ]
+        },
+        {
+            "id": "they",
+            "partOfSpeech": "pronoun",
+            "text": "—used with a singular indefinite pronoun antecedent",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "They dance well.",
+                "What do they want to do?",
+                "They aren't as popular as they once were."
+            ]
+        },
+        {
+            "id": "YMCA",
+            "partOfSpeech": "noun",
+            "text": "an international organization that promotes the spiritual, intellectual, social, and physical welfare originally of young men —usually used with the —sometimes shortened informally to the Y",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they"
+        },
+        {
+            "id": "YWCA",
+            "partOfSpeech": "noun",
+            "text": "an international organization that promotes the spiritual, intellectual, social, and physical welfare originally of young women —usually used with the —sometimes shortened informally to the Y",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they"
+        },
+        {
+            "id": "bite off more than one can chew",
+            "text": "to undertake more than one can handle",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they"
+        },
+        {
+            "id": "mouth",
+            "partOfSpeech": "noun",
+            "text": "the natural opening through which food passes into the body of an animal and which in vertebrates is typically bounded externally by the lips and internally by the pharynx and encloses the tongue, gums, and teeth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "Don't talk with your mouth full.",
+                "wiped his mouth after eating =wiped his lips and the surrounding area",
+                "The medication is taken by mouth.",
+                "made a mouth",
+                "had too many mouths to feed",
+                "finally gave mouth to her feelings",
+                "He says something stupid every time he opens his mouth. =every time he speaks",
+                "… he is the mouth … of the House in its relations with the Crown …",
+                "He is not all mouth. … He gets results.",
+                "Just don't take any mouth from him.",
+                "has quite a mouth on him",
+                "told her to watch her mouth =to not use offensive language or say offensive things",
+                "the mouth of a well/cave",
+                "the mouth of a volcano",
+                "the mouth of a bottle"
+            ]
+        },
+        {
+            "id": "mouth",
+            "partOfSpeech": "noun",
+            "text": "grimace",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "Don't talk with your mouth full.",
+                "wiped his mouth after eating =wiped his lips and the surrounding area",
+                "The medication is taken by mouth.",
+                "made a mouth",
+                "had too many mouths to feed",
+                "finally gave mouth to her feelings",
+                "He says something stupid every time he opens his mouth. =every time he speaks",
+                "… he is the mouth … of the House in its relations with the Crown …",
+                "He is not all mouth. … He gets results.",
+                "Just don't take any mouth from him.",
+                "has quite a mouth on him",
+                "told her to watch her mouth =to not use offensive language or say offensive things",
+                "the mouth of a well/cave",
+                "the mouth of a volcano",
+                "the mouth of a bottle"
+            ]
+        },
+        {
+            "id": "mouth",
+            "partOfSpeech": "noun",
+            "text": "an individual requiring food",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/they",
+            "examples": [
+                "Don't talk with your mouth full.",
+                "wiped his mouth after eating =wiped his lips and the surrounding area",
+                "The medication is taken by mouth.",
+                "made a mouth",
+                "had too many mouths to feed",
+                "finally gave mouth to her feelings",
+                "He says something stupid every time he opens his mouth. =every time he speaks",
+                "… he is the mouth … of the House in its relations with the Crown …",
+                "He is not all mouth. … He gets results.",
+                "Just don't take any mouth from him.",
+                "has quite a mouth on him",
+                "told her to watch her mouth =to not use offensive language or say offensive things",
+                "the mouth of a well/cave",
+                "the mouth of a volcano",
+                "the mouth of a bottle"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈt͟hā",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/they0001.mp3",
+        "etymology": "Middle English, from Old Norse their, masculine plural demonstrative & personal pronoun; akin to Old English thæt that"
+    }
+}

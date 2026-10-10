@@ -1,0 +1,100 @@
+[
+    {
+        "meta": {
+            "id": "hot dog:1",
+            "uuid": "a7b8c9d0-e1f2-3456-abcd-789012345678",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["hot dog", "hot dogs"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "hot dog"
+        },
+        "hom": 1,
+        "fl": "noun",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "1",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}{sx|frankfurter||}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ],
+                    [
+                        [
+                            "sense",
+                            {
+                                "sn": "2",
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}one that {d_link|hotdogs|hotdog:2}"
+                                    ],
+                                    [
+                                        "vis",
+                                        [
+                                            {
+                                                "t": "a {it}hot dog{/it} on the ski slopes"
+                                            }
+                                        ]
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "frankfurter",
+            "one that hotdogs"
+        ]
+    },
+    {
+        "meta": {
+            "id": "hot dog:2",
+            "uuid": "b8c9d0e1-f2a3-4567-bcde-890123456789",
+            "src": "collegiate",
+            "section": "alpha",
+            "stems": ["hot dog"],
+            "offensive": false
+        },
+        "hwi": {
+            "hw": "hot dog"
+        },
+        "hom": 2,
+        "fl": "interjection",
+        "def": [
+            {
+                "sseq": [
+                    [
+                        [
+                            "sense",
+                            {
+                                "dt": [
+                                    [
+                                        "text",
+                                        "{bc}used to express delight or surprise"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "shortdef": [
+            "used to express delight or surprise"
+        ]
+    }
+]

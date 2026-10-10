@@ -1,0 +1,114 @@
+{
+    "word": "learned",
+    "date": "20250106",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "learned",
+            "partOfSpeech": "adjective",
+            "text": "characterized by or associated with learning: erudite",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/learned",
+            "examples": [
+                "a learned scholar",
+                "a learned discussion",
+                "learned behavior",
+                "a learned response"
+            ]
+        },
+        {
+            "id": "learned",
+            "partOfSpeech": "adjective",
+            "text": "acquired by learning",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/learned",
+            "examples": [
+                "a learned scholar",
+                "a learned discussion",
+                "learned behavior",
+                "a learned response"
+            ]
+        },
+        {
+            "id": "learn",
+            "partOfSpeech": "verb",
+            "text": "to gain knowledge or understanding of or skill in by study, instruction, or experience",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/learned",
+            "examples": [
+                "learn a trade",
+                "learned to play chess",
+                "learn the lines of a play",
+                "learn to dance",
+                "learned that honesty paid",
+                "we just learned that he was ill",
+                "were shocked to learn of her death"
+            ]
+        },
+        {
+            "id": "learn",
+            "partOfSpeech": "verb",
+            "text": "memorize",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/learned",
+            "examples": [
+                "learn a trade",
+                "learned to play chess",
+                "learn the lines of a play",
+                "learn to dance",
+                "learned that honesty paid",
+                "we just learned that he was ill",
+                "were shocked to learn of her death"
+            ]
+        },
+        {
+            "id": "learn",
+            "partOfSpeech": "verb",
+            "text": "to come to be able",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/learned",
+            "examples": [
+                "learn a trade",
+                "learned to play chess",
+                "learn the lines of a play",
+                "learn to dance",
+                "learned that honesty paid",
+                "we just learned that he was ill",
+                "were shocked to learn of her death"
+            ]
+        },
+        {
+            "id": "Hand:b",
+            "text": "(Billings) Learned 1872—1961 American jurist",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/learned"
+        }
+    ],
+    "enrichment": {
+        "synonyms": [
+            "erudite",
+            "scholarly",
+            "knowing",
+            "knowledgeable",
+            "lettered",
+            "well-educated",
+            "well-read",
+            "educated"
+        ],
+        "related": [
+            "eruditeness",
+            "erudition",
+            "knowledgeability",
+            "knowledgeableness",
+            "awareness",
+            "consciousness"
+        ]
+    }
+}

@@ -1,0 +1,105 @@
+{
+    "word": "zoom",
+    "date": "20230104",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "zoom",
+            "partOfSpeech": "verb",
+            "text": "to move with a loud low hum or buzz",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom",
+            "examples": [
+                "cars zooming by on the highway",
+                "retail sales zoomed"
+            ]
+        },
+        {
+            "id": "zoom",
+            "partOfSpeech": "verb",
+            "text": "to go speedily: zip",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom",
+            "examples": [
+                "cars zooming by on the highway",
+                "retail sales zoomed"
+            ]
+        },
+        {
+            "id": "zoom",
+            "partOfSpeech": "verb",
+            "text": "to climb for a short time at an angle greater than that which can be maintained in steady flight so that the machine is carried upward at the expense of stored kinetic energy",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom",
+            "examples": [
+                "cars zooming by on the highway",
+                "retail sales zoomed"
+            ]
+        },
+        {
+            "id": "zoom",
+            "partOfSpeech": "noun",
+            "text": "an act or process of zooming; especially: a sharp upward movement",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom"
+        },
+        {
+            "id": "zoom",
+            "partOfSpeech": "noun",
+            "text": "an image created by zooming",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom"
+        },
+        {
+            "id": "zoom",
+            "partOfSpeech": "noun",
+            "text": "a zooming sound",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom"
+        },
+        {
+            "id": "Zoom",
+            "partOfSpeech": "verb",
+            "text": "to use the Zoom service to hold or participate in online meetings with enabled video support",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom",
+            "examples": [
+                "… last week I Zoomed with friends in Ireland that I hadn't talked to in years …",
+                "In the other room, while I was slacking off, my wife would be Zooming with her coworkers …",
+                "There's little doubt students who spend their summer Zooming with state legislators, journalists and commissioners are going to be future leaders."
+            ]
+        },
+        {
+            "id": "zoom lens",
+            "partOfSpeech": "noun",
+            "text": "a lens (as of a camera or projector) in which the image size can be varied continuously while the image remains in focus",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/zoom"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈzüm",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/z/zoom0001.mp3",
+        "etymology": "imitative",
+        "synonyms": [
+            "zoom along",
+            "whizz",
+            "whizz along"
+        ],
+        "related": [
+            "travel rapidly",
+            "speed",
+            "travel",
+            "go"
+        ]
+    }
+}

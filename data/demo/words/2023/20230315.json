@@ -1,0 +1,131 @@
+{
+    "word": "merry",
+    "date": "20230315",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "merry",
+            "partOfSpeech": "adjective",
+            "text": "full of gaiety or high spirits: mirthful",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry",
+            "examples": [
+                "eat, drink, and be merry",
+                "a merry holiday time",
+                "a merry pace"
+            ]
+        },
+        {
+            "id": "merry",
+            "partOfSpeech": "adjective",
+            "text": "marked by festivity or gaiety",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry",
+            "examples": [
+                "eat, drink, and be merry",
+                "a merry holiday time",
+                "a merry pace"
+            ]
+        },
+        {
+            "id": "merry",
+            "partOfSpeech": "adjective",
+            "text": "quick, brisk",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry",
+            "examples": [
+                "eat, drink, and be merry",
+                "a merry holiday time",
+                "a merry pace"
+            ]
+        },
+        {
+            "id": "merry-andrew",
+            "partOfSpeech": "noun",
+            "text": "a person who clowns publicly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry"
+        },
+        {
+            "id": "merry-go-round",
+            "partOfSpeech": "noun",
+            "text": "an amusement park ride with seats often in the form of animals (such as horses) revolving about a fixed center —called also carousel",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry",
+            "examples": [
+                "The children grabbed each other by the hand and danced off in the direction of the merry-go-round, toward the wonderful music and the wonderful adventure and the wonderful excitement …",
+                "And every day at recess, Reuben would push us on the merry-go-round on the playground. He would push us really fast, and we all thought Reuben made recess great fun—as long as we held on tight and didn't fall off as we whirled around.",
+                "the corporate merry-go-round"
+            ]
+        },
+        {
+            "id": "merry-go-round",
+            "partOfSpeech": "noun",
+            "text": "a children's playground apparatus consisting of a platform that revolves about a fixed center",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry",
+            "examples": [
+                "The children grabbed each other by the hand and danced off in the direction of the merry-go-round, toward the wonderful music and the wonderful adventure and the wonderful excitement …",
+                "And every day at recess, Reuben would push us on the merry-go-round on the playground. He would push us really fast, and we all thought Reuben made recess great fun—as long as we held on tight and didn't fall off as we whirled around.",
+                "the corporate merry-go-round"
+            ]
+        },
+        {
+            "id": "merry-go-round",
+            "partOfSpeech": "noun",
+            "text": "a cycle of activity that is complex, fast-paced, or difficult to break out of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry",
+            "examples": [
+                "The children grabbed each other by the hand and danced off in the direction of the merry-go-round, toward the wonderful music and the wonderful adventure and the wonderful excitement …",
+                "And every day at recess, Reuben would push us on the merry-go-round on the playground. He would push us really fast, and we all thought Reuben made recess great fun—as long as we held on tight and didn't fall off as we whirled around.",
+                "the corporate merry-go-round"
+            ]
+        },
+        {
+            "id": "merry widow",
+            "partOfSpeech": "noun",
+            "text": "a strapless corset or bustier usually having garters attached",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/merry"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈmer-ē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/m/merry001.mp3",
+        "etymology": "Middle English mery, from Old English myrge, merge; akin to Old High German murg short ",
+        "synonyms": [
+            "gay",
+            "jocund",
+            "jolly",
+            "jovial",
+            "mirthful",
+            "joyous",
+            "festal",
+            "festive"
+        ],
+        "related": [
+            "hilarity",
+            "mirth",
+            "jocoseness",
+            "jocosity",
+            "jollity",
+            "jolliness",
+            "conviviality",
+            "joviality",
+            "jocundity",
+            "jocularity",
+            "celebration",
+            "festivity"
+        ]
+    }
+}

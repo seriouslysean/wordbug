@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import { getUrl } from '#astro-utils/url-utils';
+
+interface Props extends HTMLAttributes<'a'> {
+  href: string;
+  variant?: 'text' | 'primary' | 'secondary';
+}
+
+const { href, variant = 'text', class: className, ...attrs } = Astro.props;
+
+const linkClass = variant === 'text' 
+  ? className 
+  : ['site-button', `site-button--${variant}`, className].filter(Boolean).join(' ');
+
+const isExternal = href.startsWith('http://') || href.startsWith('https://');
+
+const normalizeHref = (path: string) => {
+  if (isExternal) {
+return path;
+}
+
+  const cleanPath = path.replace(/\/$/, '') || '/';
+  return getUrl(cleanPath);
+};
+
+const finalHref = normalizeHref(href);
+
+const finalRel = (attrs.target === '_blank' && !attrs.rel) ? 'noopener noreferrer' : attrs.rel;
+---
+
+<a
+  href={finalHref}
+  rel={finalRel}
+  class={linkClass}
+  {...attrs}
+>
+  <slot />
+</a>

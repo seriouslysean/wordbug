@@ -1,0 +1,157 @@
+{
+    "word": "an",
+    "date": "20230112",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "an",
+            "partOfSpeech": "article",
+            "text": "a",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "an opera",
+                "an honor"
+            ]
+        },
+        {
+            "id": "an",
+            "partOfSpeech": "preposition",
+            "text": "a",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "sixty miles an hour"
+            ]
+        },
+        {
+            "id": "an",
+            "partOfSpeech": "conjunction",
+            "text": "and",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an"
+        },
+        {
+            "id": "an",
+            "partOfSpeech": "conjunction",
+            "text": "if",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an"
+        },
+        {
+            "id": "an",
+            "text": "year",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an"
+        },
+        {
+            "id": "-an",
+            "partOfSpeech": "noun",
+            "text": "one that is of or relating to",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "American",
+                "phonetician"
+            ]
+        },
+        {
+            "id": "-an",
+            "partOfSpeech": "noun",
+            "text": "one skilled in or specializing in",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "American",
+                "phonetician"
+            ]
+        },
+        {
+            "id": "-an",
+            "partOfSpeech": "adjective",
+            "text": "of or belonging to",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "American",
+                "Floridian",
+                "Mozartean"
+            ]
+        },
+        {
+            "id": "-an",
+            "partOfSpeech": "adjective",
+            "text": "characteristic of: resembling",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "American",
+                "Floridian",
+                "Mozartean"
+            ]
+        },
+        {
+            "id": "-an",
+            "partOfSpeech": "noun",
+            "text": "unsaturated organic compound",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "furan",
+                "dextran"
+            ]
+        },
+        {
+            "id": "-an",
+            "partOfSpeech": "noun",
+            "text": "anhydride of a carbohydrate",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "furan",
+                "dextran"
+            ]
+        },
+        {
+            "id": "AN",
+            "text": "airman (Navy)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an"
+        },
+        {
+            "id": "a-",
+            "partOfSpeech": "noun",
+            "text": "not: without —a- before consonants other than h and sometimes even before h, an- before vowels and usually before h",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/an",
+            "examples": [
+                "asexual"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ən",
+        "etymology": "Middle English, from Old English ān one ",
+        "synonyms": [
+            "Associate in Nursing"
+        ],
+        "related": [
+            "associate degree",
+            "associate"
+        ]
+    }
+}

@@ -1,0 +1,114 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import SiteLink from '#components/SiteLink.astro';
+import { formatDate, formatISODate } from '#utils/date-utils';
+import { getWordUrl } from '#astro-utils/url-utils';
+
+interface Props extends HTMLAttributes<'a'> {
+  word: {
+    word: string;
+    date: string;
+    preserveCase?: boolean;
+  };
+  href?: string;
+  compact?: boolean;
+  reverse?: boolean;
+}
+
+const { word, href: overrideHref, class: className, compact = false, reverse = false, ...attrs } = Astro.props;
+const formattedDate = formatDate(word.date);
+
+const href = overrideHref || getWordUrl(word.word);
+const wordClass = word.preserveCase ? 'word-link__word preserve-case' : 'word-link__word';
+---
+
+<SiteLink
+  href={href}
+  class:list={['word-link', { 'word-link--compact': compact, 'word-link--reverse': reverse }, className]}
+  {...attrs}
+>
+  <span class={wordClass}>{word.word}</span>
+  {formattedDate && <time class="word-link__date" datetime={formatISODate(word.date)} title={formattedDate}>{formattedDate}</time>}
+</SiteLink>
+
+<style>
+    .word-link {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        padding: 0.25rem 0;
+    }
+
+    .word-link__word {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-text-primary);
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    .word-link__date {
+        font-size: 0.8rem;
+        color: var(--color-text-light);
+        font-weight: normal;
+    }
+
+    /* Compact: row layout at all breakpoints */
+    .word-link--compact {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+    }
+
+    .word-link--compact.word-link--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .word-link--compact .word-link__word {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .word-link--compact .word-link__date {
+        margin-left: auto;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .word-link--compact.word-link--reverse .word-link__date {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    /* Desktop styles for screens >= 768px */
+    @media (min-width: 768px) {
+        .word-link {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .word-link--reverse {
+            flex-direction: row-reverse;
+        }
+
+        .word-link__word {
+            flex-shrink: 1;
+            min-width: 0;
+        }
+
+        .word-link__date {
+            margin-left: auto;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .word-link--reverse .word-link__date {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+</style>

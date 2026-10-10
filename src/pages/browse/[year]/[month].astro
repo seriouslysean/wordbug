@@ -1,0 +1,31 @@
+---
+import DescriptionText from '#components/DescriptionText.astro';
+import Heading from '#components/Heading.astro';
+import WordSection from '#components/WordSection.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
+import {
+  allWords,
+  availableYears,
+  groupWordsByMonth,
+} from '#astro-utils/word-data-utils';
+
+export async function getStaticPaths() {
+  return availableYears.flatMap(year =>
+    Object.entries(groupWordsByMonth(year, allWords)).map(([monthSlug, words]) => ({
+      params: { year, month: monthSlug },
+      props: { words },
+    })),
+  );
+}
+
+const { words } = Astro.props;
+const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
+---
+
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST} itemCount={words.length}>
+  <Heading level={1} text={title} secondaryText={secondaryText} />
+  <DescriptionText text={description} />
+  <WordSection words={words} />
+</Layout>

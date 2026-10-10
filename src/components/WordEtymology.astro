@@ -1,0 +1,41 @@
+---
+import SectionHeading from '#components/SectionHeading.astro';
+import { t } from '#utils/i18n-utils';
+
+interface Props {
+  etymology?: string;
+}
+
+const { etymology } = Astro.props;
+
+// Source etymology notes omit terminal punctuation; add a period so the origin
+// reads as a finished line.
+const etymologyText = etymology?.trim();
+const formattedEtymology = etymologyText && !/[.!?]$/.test(etymologyText)
+  ? `${etymologyText}.`
+  : etymologyText;
+---
+
+{formattedEtymology && (
+  <section class="word-etymology">
+    <SectionHeading text={t('word.etymology_heading')} align="center" underline={false} />
+    <p class="word-etymology__text">{formattedEtymology}</p>
+  </section>
+)}
+
+<style>
+  .word-etymology {
+    width: 100%;
+    max-width: var(--content-width-small);
+    margin: var(--spacing-large) auto 0;
+    padding: 0 var(--spacing-base);
+  }
+
+  .word-etymology__text {
+    margin: 0;
+    line-height: 1.6;
+    font-size: var(--font-size-small);
+    color: var(--color-text-light);
+    text-align: left;
+  }
+</style>

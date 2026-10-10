@@ -1,0 +1,42 @@
+---
+import { SITE_TITLE } from 'astro:env/client';
+import HeaderSearch from '#components/HeaderSearch.astro';
+import SiteLink from '#components/SiteLink.astro';
+import { t } from '#utils/i18n-utils';
+---
+
+<header class="header">
+  <nav class="header__nav" aria-label={t('nav.main_label')}>
+    <SiteLink href="/" class="header__link">
+      {/* Not a heading: it precedes the page's h1 on every page. */}
+      <p class="header__title">{SITE_TITLE}</p>
+    </SiteLink>
+  </nav>
+  <HeaderSearch />
+</header>
+
+<style>
+    .header {
+        position: relative;
+        text-align: center;
+        padding: var(--spacing-base);
+        margin-top: 1rem;
+    }
+
+    .header__title {
+        font-size: 0.875rem;
+        font-weight: normal;
+        margin: 0;
+        color: var(--color-text-light);
+        letter-spacing: 0.5px;
+        transition: color 0.2s ease;
+    }
+
+    .header__link {
+        font-size: var(--font-size-small);
+    }
+
+    .header__link:hover .header__title {
+        color: var(--color-text-light);
+    }
+</style>

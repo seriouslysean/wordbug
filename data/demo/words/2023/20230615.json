@@ -1,0 +1,54 @@
+{
+    "word": "elated",
+    "date": "20230615",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "elated",
+            "partOfSpeech": "adjective",
+            "text": "marked by high spirits: exultant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elated"
+        },
+        {
+            "id": "elate",
+            "partOfSpeech": "verb",
+            "text": "to fill with joy or pride",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/elated"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "i-ˈlā-təd",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/elate01m.mp3",
+        "synonyms": [
+            "exultant",
+            "gladdened",
+            "high",
+            "sublime",
+            "uplifted",
+            "gleeful",
+            "joyful",
+            "jubilant",
+            "joyous"
+        ],
+        "antonyms": [
+            "dejected"
+        ],
+        "related": [
+            "euphoric",
+            "happy",
+            "exultation",
+            "jubilance",
+            "exuberate",
+            "exult",
+            "joy",
+            "joyousness",
+            "hilarity",
+            "mirth"
+        ]
+    }
+}

@@ -1,0 +1,113 @@
+{
+    "word": "honey",
+    "date": "20241110",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "honey",
+            "partOfSpeech": "noun",
+            "text": "a sweet viscid material elaborated out of the nectar of flowers in the honey sac of various bees",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "noun",
+            "text": "a sweet fluid resembling honey that is collected or elaborated by various insects",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "noun",
+            "text": "a loved one: sweetheart, dear",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "verb",
+            "text": "to sweeten with or as if with honey",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "verb",
+            "text": "to speak ingratiatingly to: flatter",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "verb",
+            "text": "to use blandishments or cajolery",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or resembling honey",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey",
+            "partOfSpeech": "adjective",
+            "text": "much loved: dear",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey locust",
+            "partOfSpeech": "noun",
+            "text": "a tall usually spiny North American leguminous tree (Gleditsia triacanthos) with very hard wood and long twisted pods containing a sweet edible pulp and seeds that resemble beans",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honey sac",
+            "partOfSpeech": "noun",
+            "text": "a distension of the esophagus of a bee in which honey is elaborated —called also honey stomach",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        },
+        {
+            "id": "honeybee",
+            "partOfSpeech": "noun",
+            "text": "a honey-producing bee (genus Apis of the family Apidae); especially: a European bee (A. mellifera) introduced worldwide and kept in hives for the honey it produces",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/honey"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈhə-nē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/h/honey001.mp3",
+        "etymology": "Middle English hony, from Old English hunig; akin to Old High German honag honey, and probably to Sanskrit kāñcana gold, Latin canicae bran",
+        "synonyms": [
+            "beloved",
+            "dear",
+            "dearest",
+            "love"
+        ],
+        "related": [
+            "sweetening",
+            "sweetener",
+            "lover",
+            "darling"
+        ]
+    }
+}

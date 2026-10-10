@@ -1,0 +1,58 @@
+{
+    "word": "jovial",
+    "date": "20230401",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "jovial",
+            "partOfSpeech": "adjective",
+            "text": "characterized by good-humored cheerfulness and conviviality: jolly",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jovial",
+            "examples": [
+                "a jovial host",
+                "a jovial welcome",
+                "spent a jovial evening together"
+            ]
+        },
+        {
+            "id": "jovial",
+            "partOfSpeech": "adjective",
+            "text": "of or relating to Jove",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/jovial",
+            "examples": [
+                "a jovial host",
+                "a jovial welcome",
+                "spent a jovial evening together"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈjō-vē-əl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/j/jovial01.mp3",
+        "synonyms": [
+            "gay",
+            "jocund",
+            "jolly",
+            "merry",
+            "mirthful",
+            "joyous"
+        ],
+        "related": [
+            "hilarity",
+            "mirth",
+            "jocoseness",
+            "jocosity",
+            "jollity",
+            "jolliness",
+            "conviviality",
+            "joviality",
+            "jocundity",
+            "jocularity"
+        ]
+    }
+}

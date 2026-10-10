@@ -1,0 +1,24 @@
+---
+import DescriptionText from '#components/DescriptionText.astro';
+import Heading from '#components/Heading.astro';
+import WordSection from '#components/WordSection.astro';
+import Layout from '#layouts/Layout.astro';
+import { getPageMetadata } from '#astro-utils/page-metadata';
+import { STRUCTURED_DATA_TYPE } from '#astro-utils/schema-utils';
+import { getPartOfSpeechUrl } from '#astro-utils/url-utils';
+import { allWords, groupWordsByPartOfSpeech } from '#astro-utils/word-data-utils';
+import { t } from '#utils/i18n-utils';
+
+const partOfSpeechGroups = Object.entries(groupWordsByPartOfSpeech(allWords)).map(([partOfSpeech, words]) => ({
+  partOfSpeech,
+  words,
+}));
+const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname);
+---
+<Layout title={title} description={description} structuredDataType={STRUCTURED_DATA_TYPE.WORD_LIST} itemCount={allWords.length}>
+  <Heading text={title} secondaryText={secondaryText} />
+  <DescriptionText text={description} />
+  {partOfSpeechGroups.map(({ partOfSpeech, words }) => (
+    <WordSection title={t(`parts_of_speech.${partOfSpeech}`)} href={getPartOfSpeechUrl(partOfSpeech)} words={words} />
+  ))}
+</Layout>

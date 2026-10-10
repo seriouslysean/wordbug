@@ -1,0 +1,56 @@
+{
+    "word": "because",
+    "date": "20230109",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "because",
+            "partOfSpeech": "conjunction",
+            "text": "for the reason that: since",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/because",
+            "examples": [
+                "rested because he was tired",
+                "The reason I haven't been fired is because my boss hasn't got round to it yet."
+            ]
+        },
+        {
+            "id": "because",
+            "partOfSpeech": "conjunction",
+            "text": "the fact that: that",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/because",
+            "examples": [
+                "rested because he was tired",
+                "The reason I haven't been fired is because my boss hasn't got round to it yet."
+            ]
+        },
+        {
+            "id": "because",
+            "partOfSpeech": "preposition",
+            "text": "by reason of: because of —often used in a humorous way to convey vagueness about the exact reasons for something",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/because",
+            "examples": [
+                "But the Conservatives voted against the amendment—because politics. And so did the Liberals."
+            ]
+        },
+        {
+            "id": "because of",
+            "partOfSpeech": "preposition",
+            "text": "by reason of: on account of",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/because"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "bi-ˈkȯz",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/becaus02.mp3",
+        "etymology": "Middle English because that, because, from by cause that"
+    }
+}

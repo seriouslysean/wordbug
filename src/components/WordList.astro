@@ -1,0 +1,86 @@
+---
+import WordLink from '#components/WordLink.astro';
+import { t } from '#utils/i18n-utils';
+
+interface Props {
+  words: Array<{ word: string; date: string }>;
+  limit?: number;
+  columns?: number;
+  showEmpty?: boolean;
+  compact?: boolean;
+  narrow?: boolean;
+}
+
+const {
+  words,
+  limit,
+  columns = 1,
+  showEmpty = true,
+  compact = false,
+  narrow = false,
+} = Astro.props;
+
+const displayWords = limit ? words.slice(0, limit) : words;
+---
+
+{displayWords.length > 0 ? (
+  <div class:list={['word-list', { [`word-list--columns-${columns}`]: columns > 1, 'word-list--narrow': narrow }]}>
+    <ul class="word-list__list">
+      {displayWords.map((word) => (
+        <li class="word-list__item">
+          <WordLink word={word} compact={compact} />
+        </li>
+      ))}
+    </ul>
+  </div>
+) : (
+  showEmpty && (
+    <div class="word-list word-list__empty">
+      <p>{t('common.no_words_yet')}</p>
+    </div>
+  )
+)}
+
+<style>
+  .word-list {
+    margin: 0 auto;
+  }
+
+  .word-list__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Mobile-first: single column by default */
+  .word-list__item {
+    padding: 0.5rem 0;
+  }
+
+  /* Desktop: multi-column layouts for screens >= 768px */
+  @media (min-width: 768px) {
+    .word-list--columns-2 .word-list__list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem 2rem;
+    }
+
+    .word-list--columns-3 .word-list__list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem 2rem;
+    }
+  }
+
+  .word-list--narrow .word-list__list {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .word-list__empty {
+    text-align: center;
+    padding: var(--spacing-large) 0;
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import BarChart from '#components/BarChart.astro';
+
+interface Props {
+  label: string;
+  currentValue: number;
+  maxValue: number;
+  currentLabel: string;
+  maxLabel: string;
+}
+
+const { label, currentValue, maxValue, currentLabel, maxLabel } = Astro.props;
+---
+
+<dl class="bar-chart-row">
+  <dt class="bar-chart-row__label">{label}</dt>
+  <dd class="bar-chart-row__chart">
+    <BarChart
+      currentValue={currentValue}
+      maxValue={maxValue}
+      currentLabel={currentLabel}
+      maxLabel={maxLabel}
+      variant="comparison"
+    />
+  </dd>
+</dl>
+
+<style>
+  /* A labelled comparison BarChart in a dl, shared by /stats and /stats/streaks.
+     Stacked by default; a two-column grid (label, full-width chart) at desktop. */
+  .bar-chart-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+
+  .bar-chart-row__label {
+    color: var(--color-text-light);
+    margin: 0;
+    padding-top: var(--spacing-small);
+  }
+
+  .bar-chart-row__chart {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: right;
+    min-width: 0;
+    margin: 0;
+    padding-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-small);
+  }
+
+  @media (min-width: 768px) {
+    .bar-chart-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 1rem;
+      row-gap: 0;
+      align-items: baseline;
+    }
+
+    .bar-chart-row__label {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .bar-chart-row__chart {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+      grid-column: 1 / -1;
+      text-align: left;
+    }
+  }
+</style>

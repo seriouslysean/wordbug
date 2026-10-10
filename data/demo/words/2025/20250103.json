@@ -1,0 +1,101 @@
+{
+    "word": "sad",
+    "date": "20250103",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "sad",
+            "partOfSpeech": "adjective",
+            "text": "affected with or expressive of grief or unhappiness: downcast",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sad",
+            "examples": [
+                "sad news",
+                "… a sad relaxation of morals."
+            ]
+        },
+        {
+            "id": "sad",
+            "partOfSpeech": "adjective",
+            "text": "causing or associated with grief or unhappiness: depressing",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sad",
+            "examples": [
+                "sad news",
+                "… a sad relaxation of morals."
+            ]
+        },
+        {
+            "id": "sad",
+            "partOfSpeech": "adjective",
+            "text": "regrettable, deplorable",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sad",
+            "examples": [
+                "sad news",
+                "… a sad relaxation of morals."
+            ]
+        },
+        {
+            "id": "SAD",
+            "text": "seasonal affective disorder",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sad"
+        },
+        {
+            "id": "sad sack",
+            "partOfSpeech": "noun",
+            "text": "a blundering, inept person",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sad",
+            "examples": [
+                "… a sad sack so unlucky in love that when his girlfriend splits, his family sides with her."
+            ]
+        },
+        {
+            "id": "Novi Sad:g",
+            "text": "city on the Danube River in northern Serbia population 284,000",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sad"
+        },
+        {
+            "id": "Zaghlul:b",
+            "text": "Sa'd 1857—1927 Sa'd Zaghlūl Pasha ibn Ibrāhīm Egyptian statesman",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/sad"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈsad",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/sad00001.mp3",
+        "etymology": "Middle English, from Old English sæd sated; akin to Old High German sat sated, Latin satis enough",
+        "synonyms": [
+            "bittersweet",
+            "doleful",
+            "heavyhearted",
+            "melancholy",
+            "pensive",
+            "tragic",
+            "tragicomic",
+            "sorrowful"
+        ],
+        "antonyms": [
+            "glad"
+        ],
+        "related": [
+            "sadness",
+            "sorrow",
+            "unhappiness",
+            "gloominess",
+            "lugubriousness"
+        ]
+    }
+}

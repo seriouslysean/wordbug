@@ -1,0 +1,155 @@
+{
+    "word": "coffee",
+    "date": "20241025",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "coffee",
+            "partOfSpeech": "noun",
+            "text": "a beverage made by percolation, infusion, or decoction from the roasted and ground seeds of a coffee plant",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee",
+            "examples": [
+                "instant coffee",
+                "two coffees"
+            ]
+        },
+        {
+            "id": "coffee",
+            "partOfSpeech": "noun",
+            "text": "any of several Old World tropical plants (genus Coffea and especially C. arabica and C. canephora) of the madder family that are widely cultivated in warm regions for their seeds from which coffee is prepared",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee",
+            "examples": [
+                "instant coffee",
+                "two coffees"
+            ]
+        },
+        {
+            "id": "coffee",
+            "partOfSpeech": "noun",
+            "text": "coffee seeds especially roasted and often ground",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee",
+            "examples": [
+                "instant coffee",
+                "two coffees"
+            ]
+        },
+        {
+            "id": "coffee bar",
+            "partOfSpeech": "noun",
+            "text": "an establishment or counter where coffee and usually light refreshments are served",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee bean",
+            "partOfSpeech": "noun",
+            "text": "the usually dried and roasted seed of a tropical plant (genus Coffea and especially C. arabica and C. canephora) from which coffee is prepared",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee break",
+            "partOfSpeech": "noun",
+            "text": "a short period for rest and refreshments",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee cake",
+            "partOfSpeech": "noun",
+            "text": "a sweet rich bread often with added fruit, nuts, and spices that is sometimes glazed after baking",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee hour",
+            "partOfSpeech": "noun",
+            "text": "a usually fixed occasion of informal meeting and chatting at which refreshments are served",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee hour",
+            "partOfSpeech": "noun",
+            "text": "coffee break",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee klatch",
+            "partOfSpeech": "noun",
+            "text": "kaffeeklatsch",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee maker",
+            "partOfSpeech": "noun",
+            "text": "a utensil or appliance in which coffee is brewed",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee mill",
+            "partOfSpeech": "noun",
+            "text": "a mill for grinding coffee beans",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        },
+        {
+            "id": "coffee ring",
+            "partOfSpeech": "noun",
+            "text": "coffee cake in the shape of a ring",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/coffee"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkȯ-fē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/coffee01.mp3",
+        "etymology": "Italian & Turkish; Italian caffè, from Turkish kahve, from Arabic qahwa",
+        "synonyms": [
+            "java",
+            "coffee tree"
+        ],
+        "related": [
+            "beverage",
+            "drink",
+            "coffee substitute",
+            "Irish coffee",
+            "cafe au lait",
+            "cafe noir",
+            "demitasse",
+            "decaffeinated coffee",
+            "decaf",
+            "drip coffee",
+            "espresso",
+            "cappuccino",
+            "cappuccino coffee",
+            "iced coffee",
+            "ice coffee",
+            "instant coffee",
+            "mocha",
+            "mocha coffee",
+            "Turkish coffee",
+            "cafe royale"
+        ]
+    }
+}

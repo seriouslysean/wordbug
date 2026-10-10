@@ -1,0 +1,79 @@
+{
+    "word": "serene",
+    "date": "20230201",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "serene",
+            "partOfSpeech": "adjective",
+            "text": "marked by or suggestive of utter calm and unruffled repose or quietude",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/serene",
+            "examples": [
+                "a serene smile",
+                "serene skies",
+                "The moon, serene in glory …"
+            ]
+        },
+        {
+            "id": "serene",
+            "partOfSpeech": "adjective",
+            "text": "clear and free of storms or unpleasant change",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/serene",
+            "examples": [
+                "a serene smile",
+                "serene skies",
+                "The moon, serene in glory …"
+            ]
+        },
+        {
+            "id": "serene",
+            "partOfSpeech": "adjective",
+            "text": "shining bright and steady",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/serene",
+            "examples": [
+                "a serene smile",
+                "serene skies",
+                "The moon, serene in glory …"
+            ]
+        },
+        {
+            "id": "serene",
+            "partOfSpeech": "noun",
+            "text": "a serene condition or expanse (as of sky, sea, or light)",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/serene"
+        },
+        {
+            "id": "serene",
+            "partOfSpeech": "noun",
+            "text": "serenity, tranquility",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/serene"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "sə-ˈrēn",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/serene01.mp3",
+        "etymology": "Middle English, from Latin serenus clear, cloudless, untroubled",
+        "synonyms": [
+            "calm",
+            "unagitated",
+            "tranquil",
+            "composed",
+            "clear"
+        ],
+        "related": [
+            "composure",
+            "calmness"
+        ]
+    }
+}

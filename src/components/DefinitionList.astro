@@ -1,0 +1,104 @@
+---
+import type { ComponentProps } from 'astro/types';
+
+import SiteLink from '#components/SiteLink.astro';
+import WordLink from '#components/WordLink.astro';
+
+interface DefinitionItem {
+  label: string;
+  // A word object when valueType="word", rendered as a WordLink
+  value: string | number | ComponentProps<typeof WordLink>['word'];
+  href?: string;
+}
+
+interface Props {
+  items?: DefinitionItem[];
+  valueType?: 'default' | 'word';
+  reverseWord?: boolean;
+}
+
+const { items = [], valueType = 'default', reverseWord = false } = Astro.props;
+const hasSlotContent = Astro.slots.has('default');
+---
+
+<dl class="definition-list">
+  {hasSlotContent ? (
+    <slot />
+  ) : (
+    items.map(({ label, value, href }) => (
+      <div class="definition-list__item">
+        <dt class="definition-list__label">
+          <slot name="key">{label}</slot>
+        </dt>
+        <dd class="definition-list__value">
+          <slot name="value">
+            {valueType === 'word' && typeof value === 'object' ? (
+              <WordLink word={value} reverse={reverseWord} />
+            ) : href ? (
+              <SiteLink href={href} class="definition-list__link">
+                {value}
+              </SiteLink>
+            ) : (
+              value
+            )}
+          </slot>
+        </dd>
+      </div>
+    ))
+  )}
+</dl>
+
+<style>
+  .definition-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+
+  .definition-list__item {
+    display: contents;
+  }
+
+  .definition-list__label {
+    color: var(--color-text-light);
+    margin: 0;
+    padding-top: var(--spacing-small);
+  }
+
+  .definition-list__value {
+    font-size: var(--font-size-medium);
+    font-weight: 500;
+    text-align: right;
+    min-width: 0;
+    margin: 0;
+    padding-bottom: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
+  }
+
+  .definition-list__link {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  @media (min-width: 768px) {
+    .definition-list {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 1rem;
+      row-gap: 0;
+      align-items: baseline;
+    }
+
+    .definition-list__label {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+    }
+
+    .definition-list__value {
+      padding-top: 0;
+      padding-bottom: var(--spacing-small);
+      margin-bottom: 0;
+    }
+  }
+</style>
