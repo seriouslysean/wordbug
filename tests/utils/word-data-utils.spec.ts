@@ -624,6 +624,27 @@ describe('word-page surfacing helpers (utils/word-data-utils)', () => {
     adapter: 'merriam-webster',
     data: [{ id: 'blank', partOfSpeech: 'noun', text: '   ' }],
   };
+  // A lookup returns compound and derived entries with the headword: "happy"
+  // comes back with "happy hour", a noun. "indices" has no entry of its own:
+  // it is stored under "index" and "cross-index".
+  const happyLike: WordData = {
+    word: 'happy',
+    date: '20241230',
+    adapter: 'merriam-webster',
+    data: [
+      { id: 'happy', partOfSpeech: 'adjective', text: 'enjoying or characterized by well-being and contentment' },
+      { id: 'happy hour', partOfSpeech: 'noun', text: 'a period of time during which the price of drinks is reduced' },
+    ],
+  };
+  const indicesLike: WordData = {
+    word: 'indices',
+    date: '20241229',
+    adapter: 'merriam-webster',
+    data: [
+      { id: 'index', partOfSpeech: 'noun', text: 'a list of items treated in a printed work' },
+      { id: 'cross-index', partOfSpeech: 'verb', text: 'to index under a second heading' },
+    ],
+  };
 
   describe('getDisplayableDefinitions', () => {
     it('requires a part of speech and non-empty text', () => {
@@ -783,14 +804,18 @@ describe('word-page surfacing helpers (utils/word-data-utils)', () => {
     });
   });
 
-  describe('consumers of the displayability rule agree', () => {
-    const corpus: WordData[] = [sadLike, pbjLike, textOnly, emptyText];
+  describe('consumers of the displayability and word-definition rules agree', () => {
+    const corpus: WordData[] = [sadLike, pbjLike, textOnly, emptyText, happyLike, indicesLike];
 
     it.each([
       { fixture: sadLike, partsOfSpeech: ['adjective'], text: requireValue(sadLike.data[0]).text },
       { fixture: pbjLike, partsOfSpeech: ['abbreviation'], text: 'peanut butter and jelly' },
       { fixture: textOnly, partsOfSpeech: [], text: null },
       { fixture: emptyText, partsOfSpeech: [], text: null },
+      // The noun belongs to "happy hour", not to "happy"
+      { fixture: happyLike, partsOfSpeech: ['adjective'], text: requireValue(happyLike.data[0]).text },
+      // The first definition stands in for a word with no entry of its own
+      { fixture: indicesLike, partsOfSpeech: ['noun'], text: requireValue(indicesLike.data[0]).text },
     ])('for $fixture.word', ({ fixture, partsOfSpeech, text }) => {
       const displayed = partsOfSpeech.length > 0;
       const [primary = null] = partsOfSpeech;
@@ -805,7 +830,7 @@ describe('word-page surfacing helpers (utils/word-data-utils)', () => {
       const groups = groupWordsByPartOfSpeechPure(corpus);
       const memberships = Object.keys(groups).filter(pos => requireValue(groups[pos]).includes(fixture));
       expect(memberships).toEqual(partsOfSpeech);
-      expect(['abbreviation', 'adjective', 'noun'].filter(pos => getWordsByPartOfSpeechPure(pos, corpus).includes(fixture)))
+      expect(['abbreviation', 'adjective', 'noun', 'verb'].filter(pos => getWordsByPartOfSpeechPure(pos, corpus).includes(fixture)))
         .toEqual(partsOfSpeech);
     });
   });
@@ -861,6 +886,44 @@ describe('word-page surfacing helpers (utils/word-data-utils)', () => {
         data: [{ id: 'unrelated', partOfSpeech: 'noun', text: 'a definition' }],
       };
       expect(getWordSenses(word)).toEqual([{ partOfSpeech: 'noun', segments: [{ type: 'text', text: 'a definition' }], examples: [] }]);
+    });
+
+    it('shows a definition standing in for the word without its examples', () => {
+      const word: WordData = {
+        word: 'indices',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [{ id: 'index', partOfSpeech: 'noun', text: 'a list of names', examples: ['an index of first lines'] }],
+      };
+      expect(getWordSenses(word)).toEqual([{ partOfSpeech: 'noun', segments: [{ type: 'text', text: 'a list of names' }], examples: [] }]);
+    });
+
+    it('matches an entry id to the headword by slug, not by spelling', () => {
+      const word: WordData = {
+        word: 'ice cream',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [
+          { id: 'ice-cream', partOfSpeech: 'adjective', text: 'of a color similar to that of vanilla ice cream' },
+          { id: 'ice cream', partOfSpeech: 'noun', text: 'a sweet frozen food' },
+        ],
+      };
+      expect(getWordSenses(word).map(sense => sense.partOfSpeech)).toEqual(['adjective', 'noun']);
+    });
+
+    it('opens with a sense whose part of speech the word is grouped under, when a compound is stored first', () => {
+      const word: WordData = {
+        word: 'happy',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [
+          { id: 'happy hour', partOfSpeech: 'noun', text: 'a period of reduced prices' },
+          { id: 'happy', partOfSpeech: 'adjective', text: 'enjoying well-being' },
+        ],
+      };
+      const [first] = getWordSenses(word);
+      expect(first?.partOfSpeech).toBe('adjective');
+      expect(Object.keys(groupWordsByPartOfSpeechPure([word]))).toEqual(['adjective']);
     });
 
     it('returns an empty array for missing or invalid data', () => {

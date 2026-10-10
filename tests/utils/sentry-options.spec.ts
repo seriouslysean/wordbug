@@ -4,6 +4,7 @@ import {
   sentryBaselineOptions,
   sentryBrowserBaseline,
   sentryDataCollection,
+  sentryReplayPrivacy,
   withoutDedupe,
 } from '#utils/sentry-options';
 
@@ -66,6 +67,17 @@ describe('utils/sentry-options', () => {
         instrumentBfcacheRestore: false,
         webVitals: { softNavigations: false, bfcacheNavigations: false },
       });
+    });
+  });
+
+  describe('sentryReplayPrivacy', () => {
+    it('masks the value of every input, so a replay does not hold what a visitor typed', () => {
+      expect(sentryReplayPrivacy.maskAllInputs).toBe(true);
+    });
+
+    it('records the public page text and media as they are', () => {
+      expect(sentryReplayPrivacy.maskAllText).toBe(false);
+      expect(sentryReplayPrivacy.blockAllMedia).toBe(false);
     });
   });
 });

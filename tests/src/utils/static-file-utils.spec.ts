@@ -48,11 +48,15 @@ describe('generateLlmsTxt', () => {
     const output = generateLlmsTxt(words);
     const recentSection = output?.split('## Pages')[0] ?? '';
 
-    expect(recentSection).toContain('- [word1](https://test.com/demo/word/word1): Jan 21, 2025');
-    expect(recentSection).toContain('- [word5](https://test.com/demo/word/word5): Jan 17, 2025');
+    expect(recentSection).toContain('- [word1](https://test.com/demo/word/word1/): Jan 21, 2025');
+    expect(recentSection).toContain('- [word5](https://test.com/demo/word/word5/): Jan 17, 2025');
     expect(recentSection).not.toContain('[word6]');
-    expect(output).toContain('](https://test.com/demo/word/word1)');
-    expect(output).toContain('](https://test.com/demo/word)');
+    expect(output).toContain('](https://test.com/demo/word/word1/)');
+    expect(output).toContain('](https://test.com/demo/word/)');
+  });
+
+  it('leaves the 404 page out: its route is not a URL a host serves', () => {
+    expect(generateLlmsTxt(words)).not.toContain('/404');
   });
 
   it('does not double a base path that SITE_URL repeats', () => {
@@ -61,7 +65,7 @@ describe('generateLlmsTxt', () => {
 
     const output = generateLlmsTxt(words);
 
-    expect(output).toContain('](https://test.com/demo/word/word1)');
+    expect(output).toContain('](https://test.com/demo/word/word1/)');
     expect(output).not.toContain('/demo/demo/');
     expect(generateRobotsTxt('https://test.com/demo')).toContain('Sitemap: https://test.com/demo/sitemap-index.xml');
   });

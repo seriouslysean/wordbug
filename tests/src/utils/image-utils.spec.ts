@@ -28,9 +28,10 @@ describe('image-utils', () => {
     });
 
     it('links a page without word data to its page card', () => {
-      expect(getSocialImageUrl({ pathname: '/browse/2023/april' }))
+      // Astro.url.pathname ends a page in a slash; the card is named for the route
+      expect(getSocialImageUrl({ pathname: '/browse/2023/april/' }))
         .toBe('https://test.com/images/social/pages/browse-2023-april.png');
-      expect(getSocialImageUrl({ pathname: '/stats', wordData: null }))
+      expect(getSocialImageUrl({ pathname: '/stats/', wordData: null }))
         .toBe('https://test.com/images/social/pages/stats.png');
     });
 
@@ -50,7 +51,7 @@ describe('image-utils', () => {
     it('names the page card without BASE_PATH and links it under BASE_PATH once', () => {
       mockEnv.BASE_PATH = '/blog';
 
-      const url = getSocialImageUrl({ pathname: '/blog/browse/2023/april' });
+      const url = getSocialImageUrl({ pathname: '/blog/browse/2023/april/' });
 
       expect(url).toBe('https://test.com/blog/images/social/pages/browse-2023-april.png');
     });

@@ -4,6 +4,7 @@ import { escapeText } from 'entities';
 import { allWords, extractWordDefinition } from '#astro-utils/word-data-utils';
 import { getFullUrl, getWordUrl } from '#astro-utils/url-utils';
 import { YYYYMMDDToDate } from '#utils/date-utils';
+import { withoutTrailingSlash } from '#utils/url-utils';
 import { RSS_FEED_WORD_COUNT } from '#constants/text-patterns';
 
 export function GET() {
@@ -36,6 +37,10 @@ export function GET() {
         description,
         link: wordUrl,
         pubDate,
+        // A reader keys an item by its guid, and the serializer copies the
+        // link into it. The link gained a trailing slash in 3.27.0; the guid
+        // keeps the string it had before, so no reader takes old items for new.
+        customData: `<guid isPermaLink="true">${withoutTrailingSlash(wordUrl)}</guid>`,
       };
     }),
     customData: `<language>${SITE_LOCALE.toLowerCase()}</language>

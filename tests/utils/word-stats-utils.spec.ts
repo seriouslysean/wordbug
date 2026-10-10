@@ -11,13 +11,15 @@ import {
   getLetterStatsFromFrequency,
   getLetterTypeStats,
   getLongestStreakWords,
+  getPartOfSpeechStats,
   getPatternStats,
   getSyllableStats,
   getWordEndingStats,
   getWordStats,
 } from '#utils/word-stats-utils';
 import { areConsecutiveDays, dateToYYYYMMDD } from '#utils/date-utils';
-import type { WordData } from '#types';
+import { getAvailablePartsOfSpeech, getWordsByPartOfSpeech } from '#utils/word-data-utils';
+import type { DictionaryDefinition, WordData } from '#types';
 
 const makeWord = (word: string, date: string, preserveCase = false): WordData => ({
   word, date, adapter: 'test', data: [{ text: 'definition' }], ...(preserveCase ? { preserveCase: true } : {}),
@@ -158,6 +160,64 @@ describe('word-stats-utils', () => {
       expect(endings.ness).toEqual([]);
       expect(endings.ful).toEqual([]);
       expect(endings.less).toEqual([]);
+    });
+  });
+
+  describe('getPartOfSpeechStats', () => {
+    const define = (word: string, data: DictionaryDefinition[]): WordData => ({
+      word, date: '20240101', adapter: 'test', data,
+    });
+
+    // Two verb senses and one noun sense
+    const run = define('run', [
+      { text: 'To move fast on foot.', partOfSpeech: 'verb' },
+      { text: 'To manage.', partOfSpeech: 'verb' },
+      { text: 'An act of running.', partOfSpeech: 'noun' },
+    ]);
+
+    const words = [
+      run,
+      define('swift', [
+        { text: 'Moving fast.', partOfSpeech: 'adjective' },
+        { text: 'A small fast bird.', partOfSpeech: 'noun' },
+      ]),
+      // An abbreviation beside a grammatical definition is not displayed
+      define('sad', [
+        { text: 'Unhappy.', partOfSpeech: 'adjective' },
+        { text: 'seasonal affective disorder', partOfSpeech: 'abbreviation' },
+      ]),
+      define('pb&j', [{ text: 'peanut butter and jelly', partOfSpeech: 'abbreviation' }]),
+      // A label is not a part of speech
+      define('kick the bucket', [{ text: 'To die.', label: 'idiom' }]),
+      define('zephyr', [{ text: 'A gentle breeze.', partOfSpeech: 'noun' }]),
+    ];
+
+    it('ranks parts of speech by word count, alphabetically between equal counts', () => {
+      expect(getPartOfSpeechStats(words)).toEqual([
+        { partOfSpeech: 'noun', count: 3 },
+        { partOfSpeech: 'adjective', count: 2 },
+        { partOfSpeech: 'abbreviation', count: 1 },
+        { partOfSpeech: 'verb', count: 1 },
+      ]);
+    });
+
+    it('counts a word once under each part of speech it is displayed under', () => {
+      expect(getPartOfSpeechStats([run])).toEqual([
+        { partOfSpeech: 'noun', count: 1 },
+        { partOfSpeech: 'verb', count: 1 },
+      ]);
+    });
+
+    it('reports for each part of speech the number of words its browse page lists', () => {
+      const stats = getPartOfSpeechStats(words);
+
+      expect(stats.map(stat => stat.partOfSpeech).toSorted()).toEqual(getAvailablePartsOfSpeech(words));
+      expect(stats.map(stat => stat.count))
+        .toEqual(stats.map(stat => getWordsByPartOfSpeech(stat.partOfSpeech, words).length));
+    });
+
+    it('handles empty word array', () => {
+      expect(getPartOfSpeechStats(emptyWords)).toEqual([]);
     });
   });
 

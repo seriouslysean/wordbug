@@ -120,7 +120,9 @@ const getDefinitionPlainText = (def: DisplayableDefinition): string =>
 
 /**
  * The one displayability rule. Everything that shows, counts, groups or accepts
- * a word's definitions goes through it, so those answers cannot disagree.
+ * a word's definitions goes through it, so no two of them disagree about which
+ * definitions can be displayed. Which of those are the word's own, rather than
+ * a compound's or a derived form's, is a second rule: getWordDefinitions.
  *
  * A definition is displayable when it has a part of speech and non-empty text.
  * Abbreviation-labelled definitions are displayable only when the word has no
@@ -190,11 +192,42 @@ export const getWordDetails = (wordData: WordData): WordProcessedData => {
   };
 };
 
+interface WordDefinitions {
+  definitions: DisplayableDefinition[];
+  /** True when the word has no definition of its own and the first displayable one stands in for it. */
+  standIn: boolean;
+}
+
 /**
- * The parts of speech a word is displayed under, each listed once.
+ * The one rule for which displayable definitions are a word's own. The senses
+ * its page shows (getWordSenses) and the parts of speech it is grouped, browsed
+ * and counted under (getWordPartsOfSpeech) both read it, so a word is never
+ * listed under a part of speech its own page does not show.
+ *
+ * A lookup returns compound and derived entries with the headword: "happy
+ * hour", a noun, comes back with "happy", and "read", a verb, with "reading".
+ * Their `id` differs from the headword, so they are left out. Homographs share
+ * the headword's `id` and stay, as does a definition with no `id`.
+ *
+ * When no displayable definition is the word's own ("indices" is stored under
+ * "index"), the first displayable one stands in for it, so a word with
+ * anything displayable keeps one definition and its part of speech.
+ */
+const getWordDefinitions = (wordData: WordData): WordDefinitions => {
+  const displayable = getDisplayableDefinitions(wordData.data);
+  const wordSlug = slugify(wordData.word);
+  const own = displayable.filter(def => !def.id || slugify(def.id) === wordSlug);
+  return own.length > 0
+    ? { definitions: own, standIn: false }
+    : { definitions: displayable.slice(0, 1), standIn: true };
+};
+
+/**
+ * The parts of speech a word is displayed under, each listed once: those of
+ * its own definitions (getWordDefinitions), which are the senses its page shows.
  */
 const getWordPartsOfSpeech = (word: WordData): string[] => [
-  ...new Set(getDisplayableDefinitions(word.data).map(def => def.partOfSpeech)),
+  ...new Set(getWordDefinitions(word).definitions.map(def => def.partOfSpeech)),
 ];
 
 /**
@@ -260,8 +293,8 @@ export const groupWordsByMonth = (year: string, words: WordData[]): WordGrouping
   Object.groupBy(getWordsByYear(year, words), word => getMonthSlugFromDate(word.date));
 
 /**
- * Group words by every part of speech they are displayed under. A
- * word appears in every bucket whose POS it has a displayable definition for.
+ * Group words by every part of speech they are displayed under. A word appears
+ * in every bucket whose POS one of its own definitions has (getWordDefinitions).
  */
 export const groupWordsByPartOfSpeech = (words: WordData[]): WordGrouping<string> => {
   const groups: WordGrouping<string> = {};
@@ -274,21 +307,21 @@ export const groupWordsByPartOfSpeech = (words: WordData[]): WordGrouping<string
 };
 
 /**
- * Returns every displayable sense of a word for the senses slider. Excludes
- * compound/derived entries (MW stores e.g. "reading desk" under the "reading"
- * lookup; its `id` differs from the headword) while keeping homographs (same
- * `id`). Each sense carries up to MAX_SENSE_EXAMPLES of its own examples,
+ * Returns every sense of a word for the senses slider: the word's own
+ * definitions (getWordDefinitions), so compound/derived entries are excluded
+ * (MW stores e.g. "reading desk" under the "reading" lookup) while homographs
+ * are kept. Each sense carries up to MAX_SENSE_EXAMPLES of its own examples,
  * de-duplicated across the whole word so MW's habit of repeating one example on
  * every shortdef shows each sentence once, on the first sense that carries it.
- * Falls back to the single best definition when the id filter matches nothing,
- * so a word never shows fewer senses than the legacy single display.
+ * A word with no definition of its own shows the one standing in for it, so a
+ * word never shows fewer senses than the legacy single display; that sense
+ * carries no examples.
  */
 export const getWordSenses = (wordData: WordData): WordSense[] => {
   if (!wordData?.data || !Array.isArray(wordData.data)) {
     return [];
   }
 
-  const wordSlug = slugify(wordData.word);
   // Shared across senses so a repeated example is claimed by the first slide.
   const seenExamples = new Set<string>();
   const collectSenseExamples = (def: DictionaryDefinition): string[] => {
@@ -310,23 +343,12 @@ export const getWordSenses = (wordData: WordData): WordSense[] => {
     return examples;
   };
 
-  const displayable = getDisplayableDefinitions(wordData.data);
-  const senses = displayable
-    .filter(def => !def.id || slugify(def.id) === wordSlug)
-    .map(def => ({
-      partOfSpeech: def.partOfSpeech,
-      segments: getDefinitionSegments(def),
-      examples: collectSenseExamples(def),
-    }));
-
-  if (senses.length > 0) {
-    return senses;
-  }
-
-  const [fallback] = displayable;
-  return fallback
-    ? [{ partOfSpeech: fallback.partOfSpeech, segments: getDefinitionSegments(fallback), examples: [] }]
-    : [];
+  const { definitions, standIn } = getWordDefinitions(wordData);
+  return definitions.map(def => ({
+    partOfSpeech: def.partOfSpeech,
+    segments: getDefinitionSegments(def),
+    examples: standIn ? [] : collectSenseExamples(def),
+  }));
 };
 
 /**

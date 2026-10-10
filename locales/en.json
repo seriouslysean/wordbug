@@ -135,6 +135,8 @@
     "word_endings_index_heading": "Word Endings", 
     "word_endings_index_description": "Words grouped by common suffixes and endings.",
     "word_endings_index_subheading": "Suffix Analysis",
+    "parts_of_speech_heading": "Parts of Speech",
+    "parts_of_speech_description": "Word counts by part of speech. A word with several parts of speech is counted under each.",
     "streaks_heading": "Streaks",
     "streak_comparison": "Streak Comparison",
     "current": "Current: {{count}}",

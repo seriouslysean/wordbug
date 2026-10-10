@@ -1,6 +1,7 @@
 ---
-import { getAdjacentWords, allWords, extractWordDefinition } from '#astro-utils/word-data-utils';
+import { getAdjacentWords, allWords } from '#astro-utils/word-data-utils';
 import {
+  getWordSenses,
   groupWordsByLength,
   groupWordsByLetter,
   groupWordsByPartOfSpeech,
@@ -27,7 +28,9 @@ export async function getStaticPaths() {
     const wordLength = wordData.word.length;
     const firstLetter = wordData.word.charAt(0).toLowerCase();
     const year = wordData.date.slice(0, 4);
-    const { partOfSpeech } = extractWordDefinition(wordData);
+    // The first sense the page shows, so the cell names a group the word is
+    // in: the groups hold a word under its own definitions only
+    const partOfSpeech = getWordSenses(wordData)[0]?.partOfSpeech;
 
     const lengthPool = byLength[wordLength] ?? [];
     const letterPool = byLetter[firstLetter] ?? [];

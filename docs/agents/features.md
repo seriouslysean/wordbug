@@ -265,7 +265,7 @@ files with divergent semantics:
 | `groupWordsByLength` | L192-193: raw `Object.groupBy`, keys unsorted | L361-369: sorts keys ascending, coerces `undefined` buckets to `[]` |
 | `groupWordsByLetter` | L198-199: raw on `charAt(0).toLowerCase()`, all words | L388-397: pre-filters `/^[a-z]/i`, sorts keys, sorts each bucket by `localeCompare` |
 | `groupWordsByYear` | L204-205: raw `Object.groupBy` | L345-350: coerces `undefined` buckets to `[]`, no sort |
-| `groupWordsByPartOfSpeech` | groups each word under the normalized POS of its displayable definitions (`getDisplayableDefinitions`), once per POS | delegates to the pure function, then drops non-base keys and sorts keys + words |
+| `groupWordsByPartOfSpeech` | groups each word under the normalized POS of its own displayable definitions (`getWordDefinitions`: the headword's entries, not compounds or derived entries), once per POS | delegates to the pure function, then drops non-base keys and sorts keys + words |
 
 **Consolidation strategy.** Pure `utils/` becomes the single owner. Pure
 functions gain alphabetical key sort, per-bucket `localeCompare` sort,

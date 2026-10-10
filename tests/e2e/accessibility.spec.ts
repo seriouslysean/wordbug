@@ -53,7 +53,7 @@ test.describe('accessibility', () => {
 	});
 
 	test('links have accessible text', async ({ page }) => {
-		await page.goto('/browse');
+		await page.goto('/browse/');
 
 		const links = page.locator('main a');
 		const count = await links.count();
@@ -100,7 +100,7 @@ test.describe('accessibility', () => {
 		await visitLink(page.locator('footer a').filter({ hasText: 'Stats' }));
 		await visitLink(page.locator('main a[href^="/stats/"]').first());
 
-		await page.goto('/browse/year');
+		await page.goto('/browse/year/');
 		await expectPageLandmarks();
 		await visitLink(page.locator('main a[href^="/browse/"]').first());
 		await visitLink(page.locator('main a[href^="/browse/"]').first());
@@ -108,7 +108,7 @@ test.describe('accessibility', () => {
 		await page.goto('/');
 		await visitLink(page.locator('.past-words a[href^="/word/"]').first());
 
-		await page.goto('/404');
+		await page.goto('/404/');
 		await expectPageLandmarks();
 	});
 });

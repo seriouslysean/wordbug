@@ -1,5 +1,6 @@
 import type {
   LetterStats,
+  PartOfSpeechStat,
   WordData,
   WordEndingStatsResult,
   WordPatternStatsResult,
@@ -22,6 +23,7 @@ import {
   getConsonantCount,
 } from '#utils/text-utils';
 import { getSyllableCount } from '#utils/pronunciation-utils';
+import { groupWordsByPartOfSpeech } from '#utils/word-data-utils';
 
 /**
  * Analyzes words for various letter patterns
@@ -79,6 +81,20 @@ export const getWordEndingStats = (words: WordData[]): WordEndingStatsResult => 
 
   return endings;
 };
+
+/**
+ * Counts the words under each part of speech, most words first and
+ * alphabetical between equal counts. A count is the size of that part of
+ * speech's group in groupWordsByPartOfSpeech, the grouping the browse pages
+ * list, so the stat and the page it links to cannot disagree: a word whose own
+ * definitions, the senses its page shows, span several parts of speech is
+ * counted under each, and the counts can add up to more than the number of
+ * words.
+ */
+export const getPartOfSpeechStats = (words: WordData[]): PartOfSpeechStat[] =>
+  Object.entries(groupWordsByPartOfSpeech(words))
+    .map(([partOfSpeech, group]) => ({ partOfSpeech, count: group?.length ?? 0 }))
+    .toSorted((a, b) => b.count - a.count || a.partOfSpeech.localeCompare(b.partOfSpeech));
 
 /**
  * Analyzes words for vowel/consonant patterns

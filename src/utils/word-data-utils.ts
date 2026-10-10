@@ -37,6 +37,7 @@ import {
   getWordStats,
   getLetterPatternStats,
   getWordEndingStats,
+  getPartOfSpeechStats,
   getCurrentStreakStats,
   getAntiStreakStats,
   getChronologicalMilestones
@@ -162,6 +163,11 @@ export const letterPatternStats = getLetterPatternStats(allWords);
  * Pre-computed word ending statistics from the loaded collection
  */
 export const wordEndingStats = getWordEndingStats(allWords);
+
+/**
+ * Pre-computed word counts per part of speech from the loaded collection
+ */
+export const partOfSpeechStats = getPartOfSpeechStats(allWords);
 
 /**
  * Pre-computed streak statistics from the loaded collection

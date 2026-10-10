@@ -36,7 +36,7 @@ describe('WordLink Component Integration', () => {
       const processedUrl = getUrl(rawPath);
 
       expect(rawPath).toBe('/word/serendipity');
-      expect(processedUrl).toBe('/word/serendipity');
+      expect(processedUrl).toBe('/word/serendipity/');
     });
 
     it('should prevent double BASE_PATH with subdirectory', () => {
@@ -46,7 +46,7 @@ describe('WordLink Component Integration', () => {
       const processedUrl = getUrl(rawPath);
 
       expect(rawPath).toBe('/word/serendipity');
-      expect(processedUrl).toBe('/occasional-wotd/word/serendipity');
+      expect(processedUrl).toBe('/occasional-wotd/word/serendipity/');
       expect(processedUrl).not.toContain('/occasional-wotd/occasional-wotd/');
     });
 
@@ -57,7 +57,7 @@ describe('WordLink Component Integration', () => {
       const processedUrl = getUrl(rawPath);
 
       expect(rawPath).toBe('/word/ice-cream');
-      expect(processedUrl).toBe('/occasional-wotd/word/ice-cream');
+      expect(processedUrl).toBe('/occasional-wotd/word/ice-cream/');
     });
 
     it('should handle special characters in words', () => {
@@ -67,7 +67,7 @@ describe('WordLink Component Integration', () => {
       const processedUrl = getUrl(rawPath);
 
       expect(rawPath).toBe('/word/dont');
-      expect(processedUrl).toBe('/occasional-wotd/word/dont');
+      expect(processedUrl).toBe('/occasional-wotd/word/dont/');
     });
   });
 
@@ -76,10 +76,10 @@ describe('WordLink Component Integration', () => {
       mockEnv.BASE_PATH = '/occasional-wotd';
 
       const testCases = [
-        { input: 'serendipity', expected: '/occasional-wotd/word/serendipity' },
-        { input: 'ice cream', expected: '/occasional-wotd/word/ice-cream' },
-        { input: 'a', expected: '/occasional-wotd/word/a' },
-        { input: 'occasional', expected: '/occasional-wotd/word/occasional' }
+        { input: 'serendipity', expected: '/occasional-wotd/word/serendipity/' },
+        { input: 'ice cream', expected: '/occasional-wotd/word/ice-cream/' },
+        { input: 'a', expected: '/occasional-wotd/word/a/' },
+        { input: 'occasional', expected: '/occasional-wotd/word/occasional/' }
       ];
 
       for (const { input, expected } of testCases) {
@@ -94,7 +94,7 @@ describe('WordLink Component Integration', () => {
       const processedUrl = getUrl(rawPath);
 
       expect(rawPath).toBe('/word/test');
-      expect(processedUrl).toBe('/word/test');
+      expect(processedUrl).toBe('/word/test/');
     });
   });
 });

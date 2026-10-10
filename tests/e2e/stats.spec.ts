@@ -5,7 +5,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('stats visualizations', () => {
   test('renders the activity heatmap and a navigable connections graph', async ({ page }) => {
-    await page.goto('/stats');
+    await page.goto('/stats/');
 
     // CSS-grid publishing-activity heatmap is present.
     await expect(page.locator('.heatmap__grid').first()).toBeVisible();
@@ -21,14 +21,14 @@ test.describe('stats visualizations', () => {
   });
 
   test('activity heatmap days link to their word page', async ({ page }) => {
-    await page.goto('/stats');
+    await page.goto('/stats/');
     // An active day is a link to that day's word; clicking it lands on the word.
     await page.locator('a.heatmap__cell--active').first().click();
     await expect(page.locator('#word-title')).toBeVisible();
   });
 
   test('page does not scroll horizontally', async ({ page }) => {
-    await page.goto('/stats');
+    await page.goto('/stats/');
     // Hidden heatmap tooltips of the edge columns must not widen the page.
     const overflow = await page.evaluate(() =>
       document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -36,7 +36,7 @@ test.describe('stats visualizations', () => {
   });
 
   test('shows a per-year summary on a year page', async ({ page }) => {
-    await page.goto('/browse');
+    await page.goto('/browse/');
     await page.locator('main a[href*="/browse/20"]').first().click();
     // The year page leads with a "<year> Summary" section before the months.
     await expect(page.getByText(/Summary/i).first()).toBeVisible();

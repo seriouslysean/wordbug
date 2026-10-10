@@ -295,9 +295,11 @@ All user-facing strings go through `locales/en.json`. The `t(key)` function from
 
 ### Displayable Definitions
 
-`getDisplayableDefinitions()` in `utils/word-data-utils.ts` is the one rule for which of a word's definitions count. A definition is displayable when it has a part of speech and non-empty text. Abbreviation-labelled definitions are displayable only when the word has no displayable grammatical definition: a lookup of "sad" also returns SAD, "seasonal affective disorder", which must not become a sense of the adjective, while "pb&j" has nothing but its abbreviation, so that is what its page shows.
+`getDisplayableDefinitions()` in `utils/word-data-utils.ts` is the one rule for which definitions can be displayed. A definition is displayable when it has a part of speech and non-empty text. Abbreviation-labelled definitions are displayable only when the word has no displayable grammatical definition: a lookup of "sad" also returns SAD, "seasonal affective disorder", which must not become a sense of the adjective, while "pb&j" has nothing but its abbreviation, so that is what its page shows.
 
-Everything that shows, counts, groups or accepts definitions goes through it: the word page senses (`getWordSenses`), the primary definition used for meta descriptions, RSS and JSON-LD (`findValidDefinition`) and for the source link (`getWordDetails`), the part-of-speech browse pages (`getAvailablePartsOfSpeech`, `getWordsByPartOfSpeech`, `groupWordsByPartOfSpeech`), and add-time acceptance (`isValidDictionaryData`, checked by `fetchWithFallback` on every adapter's answer, so the tools only ever receive usable definitions). A record with text but no part of speech is refused at add time because no page could display it; a `label` (see Dictionary Adapters) is not a part of speech.
+Everything that shows, counts, groups or accepts definitions goes through it: the word page senses (`getWordSenses`), the primary definition used for meta descriptions, RSS and JSON-LD (`findValidDefinition`) and for the source link (`getWordDetails`), the part-of-speech browse pages (`getAvailablePartsOfSpeech`, `getWordsByPartOfSpeech`, `groupWordsByPartOfSpeech`), the parts-of-speech stat, which counts those groups (`getPartOfSpeechStats`), and add-time acceptance (`isValidDictionaryData`, checked by `fetchWithFallback` on every adapter's answer, so the tools only ever receive usable definitions). A record with text but no part of speech is refused at add time because no page could display it; a `label` (see Dictionary Adapters) is not a part of speech.
+
+A lookup also returns compound and derived entries with the headword: "happy hour", a noun, comes back with "happy", and "read", a verb, with "reading". `getWordDefinitions()` in the same file is the one rule for which displayable definitions are a word's own: those whose `id` is the headword, homographs included, and those with no `id`. The rule reads `id` as Merriam-Webster fills it, with the entry's headword; another dictionary's own identifier in that field is not a headword and is treated as another entry's. When none is the word's own ("indices" is stored under "index"), the first displayable definition stands in for it, so a word keeps one definition and its part of speech; the word page shows that definition without examples. The word page senses and the part-of-speech groups, browse pages and stat all read this rule, so a word is never listed under a part of speech its own page does not show. The related-words cell on a word page takes its part of speech from the first of those senses, so it names a group the word is in. The primary definition (`findValidDefinition`, `getWordDetails`) and add-time acceptance use displayability alone: they take the first displayable definition, whichever entry it belongs to.
 
 ### Rendering Definitions
 
@@ -380,7 +382,7 @@ npm keeps any flag written before a bare `--` for itself, so a tool's flags alwa
 
 ### `add-word.ts`
 
-Adds a word with dictionary validation and duplicate detection. A word page's URL is `/word/<slug>`, and `slugify()` keeps only ASCII letters, digits, underscores and hyphens, so add-word refuses a word whose slug is empty (`&`, `日本`: the page would be `/word/` itself) and a word whose slug a different stored word already has (`can't` beside `cant`: both would be `/word/cant`). `create-site` refuses a seed word with an empty slug for the same reason. Only a new word is checked: the build and regenerate-all-words, which keeps each word's text, read stored words as they are. It does not render the social card: the Add Word workflow runs the complete image generation afterwards (see Image Generation).
+Adds a word with dictionary validation and duplicate detection. A word page's URL is `/word/<slug>/`, and `slugify()` keeps only ASCII letters, digits, underscores and hyphens, so add-word refuses a word whose slug is empty (`&`, `日本`: the page would be `/word/` itself) and a word whose slug a different stored word already has (`can't` beside `cant`: both would be `/word/cant/`). `create-site` refuses a seed word with an empty slug for the same reason. Only a new word is checked: the build and regenerate-all-words, which keeps each word's text, read stored words as they are. It does not render the social card: the Add Word workflow runs the complete image generation afterwards (see Image Generation).
 
 ```sh
 npm run tool:local tools/add-word.ts serendipity
@@ -426,35 +428,60 @@ Two-tier system supporting root and subdirectory deployments:
 
 | Function | Purpose | Example (`BASE_PATH="/blog"`) |
 |----------|---------|-------------------------------|
-| `getUrl(path)` | Relative URL with BASE_PATH | `getUrl('/word/hello')` -> `/blog/word/hello` |
-| `getFullUrl(path)` | Absolute URL for SEO | `getFullUrl('/word/hello')` -> `https://example.com/blog/word/hello` |
+| `getUrl(path)` | Relative URL with BASE_PATH | `getUrl('/word/hello')` -> `/blog/word/hello/` |
+| `getFullUrl(path)` | Absolute URL for SEO | `getFullUrl('/word/hello')` -> `https://example.com/blog/word/hello/` |
 
 `getFullUrl()` uses `getUrl()` internally to ensure BASE_PATH consistency.
 
-The site root is the one URL that keeps a trailing slash: `getUrl('/')` is `/blog/` and `getFullUrl('/')` is `https://example.com/blog/`. Under a base path the root is a directory, which a static host serves only at its slash URL (GitHub Pages answers `/blog` with a 301 to `/blog/`), and `@astrojs/sitemap` names it the same way. The canonical link, `og:url`, the JSON-LD `WebSite` and breadcrumb URLs, the feed's channel link and the manifest `start_url` and `scope` all come from these two helpers, so they agree. The manifest scope needs the slash for a second reason: a scope is matched as a string prefix, so `/blog` would also claim `/blogroll`.
-
 `SITE_URL` is the origin alone; a subdirectory belongs in `BASE_PATH` (Astro's [GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/) sets `site` and `base` the same way). URLs are resolved against the origin, so a `SITE_URL` that repeats the base path does not double it.
 
-**Known limit, open decision.** Every other page is linked without a trailing slash (`trailingSlash: 'never'`) while `build.format` is left at its default, `directory`, which writes `stats/index.html`. Astro leaves trailing slashes on prerendered pages to the host, and GitHub Pages answers `/stats` with a 301 to `/stats/`, so canonical URLs, sitemap entries and internal links to non-root pages each cost a redirect there. Astro's [`build.format` reference](https://docs.astro.build/en/reference/configuration-reference/#buildformat) pairs `directory` with `trailingSlash: 'always'` and `file` with `'never'`; this project runs neither pair. Either pairing changes every page URL or output path, so it is not decided here.
+### Trailing Slashes
+
+A page URL ends in a slash and a file URL does not: `/blog/`, `/blog/stats/` and `/blog/word/hello/`, but `/blog/rss.xml`, `/blog/words.json` and every image. `astro.config.ts` sets `build.format: 'directory'`, which writes each page as `stats/index.html`, with `trailingSlash: 'always'`. That is the pair Astro's [`build.format` reference](https://docs.astro.build/en/reference/configuration-reference/#buildformat) gives: "`directory` - Set `trailingSlash: 'always'`". A static host serves a directory's `index.html` at the slash URL, so the URL a page prints is the URL it is served at, with no redirect (the 404 page, below, is the exception).
+
+Code names a route without the slash, and the helpers turn it into the URL:
+
+- **A route is `/stats` or `/word/hello`.** `BASE_PATHS`, `ROUTES` and `URL_PATTERNS` in `constants/urls.ts`, the page metadata keys and the social card names are all keyed that way. Pass a route to `getUrl()`, `getFullUrl()` or `SiteLink`; do not write a URL by hand.
+- **`getUrl()` is the one place a route becomes a URL.** `withTrailingSlash()` in `utils/url-utils.ts` adds the slash unless the last segment has an extension (`FILE_PATH_PATTERN` in `constants/urls.ts`), the line Astro's dev server draws between a file and a page under `'always'` (`hasFileExtension` in `@astrojs/internal-helpers`; the two patterns are not the same text, but agree on every path that starts with a slash). No route has a dot in it: `slugify()` drops them. The canonical link, `og:url`, the JSON-LD `WebSite` and breadcrumb URLs, every internal link (`SiteLink`, the word chips, the heatmap, the word graph), the header search results and the random-word button (client scripts that import the same helper), `llms.txt`, the feed's channel and item links, the sitemap line in `robots.txt` and the manifest `start_url` and `scope` all come from these two helpers, so they agree. The sitemap is written by `@astrojs/sitemap`, which reads the same two settings and ends every `<loc>` in a slash.
+- **`Astro.url.pathname` ends in a slash** (`/blog/stats/`), in a build and in the dev server: "`directory` - The `Astro.url.pathname` will include a trailing slash to mimic folder behavior" (same reference, [Effect on Astro.url](https://docs.astro.build/en/reference/configuration-reference/#effect-on-astrourl)). `getPathname()` and `stripBasePath()` read it back to the route, and `getPageMetadata()` and `getSocialImageUrl()` go through them. Read the pathname through those: a raw comparison (`Astro.url.pathname === '/stats'`) is never true.
+
+The manifest scope needs the root's slash for a second reason: a scope is matched as a string prefix, so `/blog` would also claim `/blogroll`.
+
+**The slashless form** (`/stats`) is the host's to answer: "Trailing slashes on prerendered pages are handled by the hosting platform, and may not respect your chosen configuration" ([`trailingSlash`](https://docs.astro.build/en/reference/configuration-reference/#trailingslash)).
+
+| Server | `/stats/` | `/stats` |
+|--------|-----------|----------|
+| GitHub Pages | 200 | 301 to `/stats/` |
+| `python3 -m http.server` in `dist/` | 200 | 301 to `/stats/` |
+| `astro preview` | 200 | 404, Astro's own page: `Not Found (trailingSlash is set to "always")` |
+| `astro dev` | 200 | 404, Astro's own page, which names the setting and links `/stats/` |
+
+Through 3.26 the site linked the slashless form everywhere (`trailingSlash: 'never'` with the same `directory` output), so canonical URLs, sitemap entries and internal links each cost that redirect on GitHub Pages. Links published then keep working there, through the same redirect. The GitHub Pages row was read from the deployed 3.26 demo site, which has the same file layout; the other rows from this build. A host that answers `/stats` with neither the page nor a redirect would break those older links, and none has been tested beyond these four.
+
+**Files.** An endpoint with an extension (`rss.xml`, `words.json`, `manifest.json`, `robots.txt`, `llms.txt`, `humans.txt`, `health.txt`, `theme.css`, `ga-init.js`) is built as that file and matched without a slash in the dev server and the preview as well. The home page is `index.html` and its URL is the root, `/` or `/blog/`.
+
+**The 404 page** is the one page that is not a directory: Astro writes `404.html` at the root. Its route is still `/404`, so its canonical link and `og:url` name `/404/`, which is not where the file is: GitHub Pages serves it with a 200 at `/404` and with a 404 at every missing path, `/404/` among them. The page is `noindex`.
+
+**Feed item identity.** A reader keys a feed item by its `<guid>`. `@astrojs/rss` writes the guid from the item's `<link>` and its item schema has no guid field, so when the links gained the slash in 3.27.0 the guids would have changed with them and a reader would have shown every item in the feed as new. `src/pages/rss.xml.ts` therefore passes each item a `<guid>` through `customData` holding the slashless URL the item had before. That replaces the generated guid only because of how the package merges the field (`Object.assign` in its `generateRSS`), which its README does not state, so `tests/src/pages/rss.spec.ts` pins the result: one guid per item, the slashless URL. The guid is still a permalink: a host answers it with a redirect to the page.
 
 ### Route Structure
 
 ```
-/                           # Homepage (current word)
-/word                       # All words
-/word/{word}                # Individual word pages
-/browse                     # Browse hub
-/browse/year                # Words by year index
-/browse/{year}              # Words by year
-/browse/{year}/{month}      # Words by month
-/browse/letter              # Words by starting letter index
-/browse/letter/{letter}     # Words by starting letter
-/browse/length              # Words by length index
-/browse/length/{n}          # Words by length
-/browse/part-of-speech      # Words by part of speech index
-/browse/part-of-speech/{p}  # Words by part of speech
-/stats                      # Statistics hub
-/stats/{category}           # Individual stat pages
+/                            # Homepage (current word)
+/word/                       # All words
+/word/{word}/                # Individual word pages
+/browse/                     # Browse hub
+/browse/year/                # Words by year index
+/browse/{year}/              # Words by year
+/browse/{year}/{month}/      # Words by month
+/browse/letter/              # Words by starting letter index
+/browse/letter/{letter}/     # Words by starting letter
+/browse/length/              # Words by length index
+/browse/length/{n}/          # Words by length
+/browse/part-of-speech/      # Words by part of speech index
+/browse/part-of-speech/{p}/  # Words by part of speech
+/stats/                      # Statistics hub
+/stats/{category}/           # Individual stat pages
 ```
 
 ## Sentry Integration
@@ -473,7 +500,7 @@ The `sentry()` integration in `astro.config.ts` takes build-time options only (`
 
 ### Pinned Defaults
 
-SDK 11 collects more than SDK 10 unless told otherwise, so every default it changed is set explicitly. `utils/sentry-options.ts` is the one definition; `sentry.config.shared.js` and `utils/logger.ts` spread it into each `init`. Sources: the SDK's [migration guide](https://github.com/getsentry/sentry-javascript/blob/11.6.0/MIGRATION.md) and [changelog](https://github.com/getsentry/sentry-javascript/blob/11.6.0/CHANGELOG.md).
+SDK 11 collects more than SDK 10 unless told otherwise, so every default it changed is set explicitly, apart from user timing spans (under the table), where it collects less. `utils/sentry-options.ts` is the one definition; `sentry.config.shared.js` and `utils/logger.ts` spread it into each `init`. Sources: the SDK's [migration guide](https://github.com/getsentry/sentry-javascript/blob/11.6.0/MIGRATION.md) and [changelog](https://github.com/getsentry/sentry-javascript/blob/11.6.0/CHANGELOG.md).
 
 | Option | Pinned value | SDK 11 default | Where |
 |--------|--------------|----------------|-------|
@@ -488,11 +515,14 @@ SDK 11 collects more than SDK 10 unless told otherwise, so every default it chan
 | `browserSessionIntegration` `lifecycle` | `'route'` | `'page'` | browser |
 | `browserTracingIntegration` `instrumentBfcacheRestore` | `false` | `true`: a navigation span per back/forward-cache restore | browser |
 | `browserTracingIntegration` `webVitals` | `softNavigations: false`, `bfcacheNavigations: false` | both `true` (span streaming only) | browser |
-| `userTimingIntegration` | added | `performance.mark()` spans dropped from browser tracing | browser |
 
 `traceLifecycle: 'static'` is a compatibility mode the SDK plans to remove in a later major; moving to span streaming then is a behaviour change (the `site` scope tag does not reach streamed spans) and needs its own decision.
 
-Session Replay is unchanged: error-only (`replaysOnErrorSampleRate: 1`, `replaysSessionSampleRate: 0`), with text, inputs and media unmasked. A replay of a session that hit an error therefore includes what the visitor typed into the search box.
+`Dedupe` sends nothing more; it is removed for what it would lose. It drops an event that repeats the one before it, comparing the message, fingerprint and stack trace but not the context. The logger sends the message as the event and what differs as context, so a tool that fails on three words in a row (`'Failed to process word'` in `tools/regenerate-all-words.ts`) would report the first only.
+
+One changed default is left as SDK 11 has it: `browserTracingIntegration` no longer turns `performance.mark()` and `performance.measure()` entries into spans, and `userTimingIntegration`, which the migration guide gives to keep them, is not added. No script the build emits makes a mark or a measure, so the integration could only send the names and `detail` of entries made by third-party scripts and browser extensions.
+
+Session Replay is error-only (`replaysOnErrorSampleRate: 1`, `replaysSessionSampleRate: 0`). What a replay may show is `sentryReplayPrivacy` in the same file, a privacy choice and not an SDK 10 pin: page text and media are unmasked (`maskAllText: false`, `blockAllMedia: false`), since the content is public, and input values are masked (`maskAllInputs: true`, which is also the SDK's default; see [Replay privacy](https://docs.sentry.io/platforms/javascript/guides/astro/session-replay/privacy/)). The header search box is the only input, so a replay of a session that hit an error shows one `*` for each character typed there, not the characters. The results listed under the box are page text and stay readable: a replay still shows which words matched.
 
 Not configurable in SDK 11, so different from SDK 10: a browser session with an uncaught error is recorded as `unhandled`, not `crashed`; span operations, names and attributes follow the new conventions (`browser.DNS` is `browser.dns`, `paint` is `browser.paint`, `sentry.source` is `sentry.segment.name.source`); the SDK no longer makes its own `sentry-tracing-init` mark, so the pageload transaction has one span fewer; the CLI's outgoing requests, which already carried `sentry-trace` and `baggage` headers, now state the not-sampled decision in them (`sentry-trace` ends in `-0`, `baggage` gains `sentry-sampled=false`).
 
@@ -533,6 +563,7 @@ All statistics computed at build time from `allWords`:
 - **Letter analysis**: Most/least common letters (ranked by the number of words containing the letter, case-insensitive, not by total occurrences; `getLetterStats` is the single definition for the stat, its page, and its metadata), vowel/consonant ratios
 - **Streaks**: Current and longest consecutive word streaks
 - **Milestones**: 1st, 25th, 50th, 100th words, etc.
+- **Parts of speech**: the number of words under each part of speech, most words first (`getPartOfSpeechStats`), as a section on `/stats` and on `/stats/parts-of-speech`. A count is the size of that part of speech's group in `groupWordsByPartOfSpeech`, so it is the number of words `/browse/part-of-speech/{p}` lists, the page the count links to. A word whose own definitions (see Displayable Definitions) span several parts of speech is counted under each, so the counts can add up to more than the number of words. A part of speech no word has is not listed, as it has no browse page
 
 Definitions live in `constants/stats.ts`. Computation functions in `utils/word-stats-utils.ts` (pure) and `src/utils/word-stats-utils.ts` (Astro wrapper). All stat pages are always generated — if a stat has zero results, the page renders with a zero count. Demo word coverage should be expanded if stats pages need test data rather than adding feature flags to skip pages.
 
@@ -562,6 +593,7 @@ The key question for each test: what is the minimum layer that can verify this?
 | What | Why |
 |------|-----|
 | Navigation flows (click link, page loads) | Route resolution only works against built output |
+| An internal link is served with no redirect, at the URL its canonical names | Only a served build shows whether the href a page prints is the URL the page is served at |
 | 404 handling | HTTP status codes require a running server |
 | Meta tags exist in rendered HTML | Verifies build pipeline assembled components correctly |
 | JSON-LD parses as valid JSON | Script tags must survive the build |
@@ -605,12 +637,12 @@ Excluded from Vitest coverage: build-time utilities (`static-file-utils.ts`, `st
 E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). Playwright starts its own foreground `astro preview --ignore-lock` on port 4517 (`PORT` in `playwright.config.ts`, `reuseExistingServer: false`), so the run always serves the current `dist/` and never reuses a server on Astro's default 4321. They verify build assembly — that the pipeline correctly assembled components into working pages — not logic (which unit and component tests cover). Five spec files organized by concern:
 
 - **`navigation.spec.ts`** — User journeys: discover a word and navigate between words, browse by year, footer section links, 404 handling
-- **`seo.spec.ts`** — Build output wiring: meta tags present (description, canonical, OpenGraph, Twitter), JSON-LD parseable, RSS and sitemap discoverable
+- **`seo.spec.ts`** — Build output wiring: meta tags present (description, canonical, OpenGraph, Twitter), an internal link served without a redirect at the URL its canonical names, JSON-LD parseable, RSS and sitemap discoverable
 - **`accessibility.spec.ts`** — Structural a11y: skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text, heading outline and named nav landmarks
 - **`search.spec.ts`** — Header search: opens from the icon, filters by starts-with, navigates to a result
 - **`stats.spec.ts`** — `/stats` visualizations: heatmap and connections graph present and navigable, no horizontal scroll
 
-E2E always runs in demo mode — the CI workflow skips `setup-env` and explicitly sets `SOURCE_DIR=demo` (no `BASE_PATH`) so production env vars don't break test selectors. All test URLs omit trailing slashes (`trailingSlash: 'never'`).
+E2E always runs in demo mode — the CI workflow skips `setup-env` and explicitly sets `SOURCE_DIR=demo` (no `BASE_PATH`) so production env vars don't break test selectors. Every page URL in a test ends in a trailing slash (`trailingSlash: 'always'`): `page.goto('/stats/')`, `a[href="/stats/"]`. `astro preview` answers the slashless form with a 404, not the redirect a static host gives. File URLs (`/rss.xml`, `/sitemap-index.xml`) have none.
 
 ### CI Workflows
 
@@ -744,7 +776,7 @@ The workflow files are the reference for their steps; this is what each one is f
 
 **Engine ref.** Site Deploy and Site Add Word check the engine out at `job.workflow_repository` and `job.workflow_sha`, the repository and commit of the workflow file that defines the running job ([job context](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#job-context)), so the code is always the commit the caller's `uses:` pin runs, and a caller passes nothing that names the engine. actionlint 1.7.12 does not know the `job.workflow_*` properties, so `.github/actionlint.yaml` ignores its undefined-property error for exactly those four in these two workflows until it does. A `./` call runs the called workflow from the caller's own commit, so the engine checkout is the calling repository at that commit. This repository calls that way for the demo site. So does a fork of it that syncs with `npm run tool:sync`: its Deploy and Add Word are this repository's, so after a sync they call the reusable workflows with `./`, check out the fork's own commit as the engine, and keep building and adding words as before, unchanged, until the fork is migrated to a thin site. For a fork `site/` and `engine/` are the same commit, so the overlay copies and deletes nothing: the fork's `data/demo` and `public/demo`, which it tracks from this repository, stay where they are, `SOURCE_DIR` empty builds its own `data/words`, and `public/demo` is published with the rest of `public/` as it is today. The `SOURCE_DIR` check tells this repository from the rest by the name in `ENGINE_REPOSITORY`, not by `job.workflow_repository`, which a fork's `./` call makes the fork itself.
 
-**Environment.** Build, Site Deploy and Site Add Word all run the `.github/actions/setup-env` composite action, which copies repository variables and explicitly supplied secrets into the job by name. Each runs `npm ci` before it, so no dependency's install script has the secrets in its environment, and Site Add Word checks out the site only after `npm ci` too, so no install script can read the credentials that checkout keeps, which can push to the site. Build and Site Deploy receive only the seven values Astro may need while building: `GA_ENABLED`, `GA_MEASUREMENT_ID`, `SENTRY_ENABLED`, `SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN`. Build passes the five Sentry values only when the event is a push, which for Build is a push to main: a pull request's build gets them blank, so Sentry is off (`astro.config.ts` adds the integration only when `SENTRY_ENABLED` is `true` and `SENTRY_DSN` is set), nothing is uploaded with the auth token, and the build is tagged `development`. Site Add Word receives only `WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`, `SENTRY_ENABLED` and `SENTRY_DSN`; its Node logger does not use the other build credentials. The reusable workflows declare those named secrets as optional, so omitted settings remain blank, and cannot receive an arbitrary repository secret. Site Deploy's build job has no environment, so a value stored only on the `github-pages` environment does not reach the build.
+**Environment.** Build, Site Deploy and Site Add Word all run the `.github/actions/setup-env` composite action, which copies repository variables and explicitly supplied secrets into the job by name. Each runs `npm ci` before it, so no dependency's install script has the secrets in its environment, and Site Add Word checks out the site only after `npm ci` too, so no install script can read the credentials that checkout keeps, which can push to the site. Build and Site Deploy receive only the seven values Astro may need while building: `GA_ENABLED`, `GA_MEASUREMENT_ID`, `SENTRY_ENABLED`, `SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN`. Build passes all seven only when the event is a push, which for Build is a push to main: a pull request's build gets them blank, so Sentry is off (`astro.config.ts` adds the integration only when `SENTRY_ENABLED` is `true` and `SENTRY_DSN` is set), nothing is uploaded with the auth token, the build is tagged `development`, and Google Analytics is off (the layout adds its scripts only when `GA_ENABLED` is true and `GA_MEASUREMENT_ID` is set). Site Add Word receives only `WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`, `SENTRY_ENABLED` and `SENTRY_DSN`; its Node logger does not use the other build credentials. The reusable workflows declare those named secrets as optional, so omitted settings remain blank, and cannot receive an arbitrary repository secret. Site Deploy's build job has no environment, so a value stored only on the `github-pages` environment does not reach the build.
 
 **Install scripts.** `allowScripts` in `package.json` records which dependencies may run an install script, the field `npm approve-scripts` and `npm deny-scripts` maintain (`npm help approve-scripts`). npm 11.17 still runs every script and only warns about one with no entry; it says a later release will block those. Two are approved at the version reviewed, so a new version of either has to be approved again with `npm approve-scripts <name>`: `wordpos`, whose script writes the `fast-index.*.json` files into `wordnet-db` that the WordNet adapter cannot load without, and `lefthook`, whose script runs `lefthook install` outside CI, as this package's own `prepare` script also does. `fsevents` is denied by name: the registry lists it with a `node-gyp rebuild` install script, but the package ships the built binary and no `binding.gyp` to rebuild. A site repository has no `package.json`, so this is the engine's only.
 

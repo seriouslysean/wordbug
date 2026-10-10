@@ -32,15 +32,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Only a push to main builds with Sentry. A pull request gets none of
-      # its secrets, so its build has Sentry off and uploads nothing, and it
-      # is not tagged production.
+      # Only a push to main builds with Sentry and Google Analytics. A pull
+      # request gets no secret, so its build has both off and uploads nothing,
+      # and it is not tagged production.
       - name: Setup environment variables
         uses: ./.github/actions/setup-env
         with:
           vars-json: ${{ toJSON(vars) }}
-          ga-enabled: ${{ secrets.GA_ENABLED }}
-          ga-measurement-id: ${{ secrets.GA_MEASUREMENT_ID }}
+          ga-enabled: ${{ github.event_name == 'push' && secrets.GA_ENABLED || '' }}
+          ga-measurement-id: ${{ github.event_name == 'push' && secrets.GA_MEASUREMENT_ID || '' }}
           sentry-auth-token: ${{ github.event_name == 'push' && secrets.SENTRY_AUTH_TOKEN || '' }}
           sentry-dsn: ${{ github.event_name == 'push' && secrets.SENTRY_DSN || '' }}
           sentry-enabled: ${{ github.event_name == 'push' && secrets.SENTRY_ENABLED || '' }}

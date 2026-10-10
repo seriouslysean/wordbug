@@ -1,6 +1,6 @@
 import { BASE_PATH, SITE_URL } from 'astro:env/client';
 import { BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
-import { isPathUnderBase } from '#utils/url-utils';
+import { isPathUnderBase, withoutTrailingSlash, withTrailingSlash } from '#utils/url-utils';
 
 // =====================================================
 // URL Slug Utilities
@@ -19,59 +19,61 @@ export const getBasePath = (): string => {
 };
 
 /**
- * Get a clean pathname without the base path
- * Use this with Astro.url.pathname to get the logical path
+ * Get the route a pathname stands for: no base path, no trailing slash
+ * Use this with Astro.url.pathname, which is '/blog/stats/' for the route
+ * '/stats' (`build.format: 'directory'` with `trailingSlash: 'always'`)
  * @param astroPathname - The pathname from Astro.url.pathname
- * @returns Clean pathname without base path
+ * @returns Route path without base path; the root is '/'
  */
 export const getPathname = (astroPathname: string): string => {
   const basePath = getBasePath();
-  
+
   if (basePath === '/') {
-    return astroPathname;
+    return withoutTrailingSlash(astroPathname);
   }
-  
+
   // Handle base path with trailing slash
   const cleanBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
-  
+
   if (isPathUnderBase(astroPathname, cleanBasePath)) {
     const withoutBase = astroPathname.slice(cleanBasePath.length);
-    return withoutBase || '/';
+    return withoutTrailingSlash(withoutBase || '/');
   }
-  
-  return astroPathname;
+
+  return withoutTrailingSlash(astroPathname);
 };
 
 /**
- * Construct a URL with the configured base path
- * @param path - Path to append to base path
- * @returns URL path with base path; the site root keeps its trailing slash
+ * Construct the URL a page or file is served at, with the configured base path
+ * @param path - Route or file path to append to base path, or a pathname
+ * that already carries it (Astro.url.pathname). A path only: a query string
+ * or fragment would be read as part of the last segment
+ * @returns URL path with base path: a page ends in a slash ('/blog/stats/'),
+ * a file does not ('/blog/rss.xml'), and the site root is '/blog/'
  */
 export const getUrl = (path = '/'): string => {
   const basePath = getBasePath();
-  
+
   if (basePath === '/') {
-    return path;
+    return withTrailingSlash(path);
   }
-  
+
   // Normalize base path (remove trailing slash)
   const cleanBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
 
-  // The site root under a base path is a directory, and a static host serves
-  // a directory only at its trailing-slash URL: /blog redirects to /blog/.
-  // Astro's sitemap names it the same way. `trailingSlash: 'never'` makes
-  // Astro.url.pathname '/blog' there, so that form is the root as well.
-  if (path === '/' || path === cleanBasePath) {
+  // The base path itself is the site root: a directory, even when its name
+  // has a dot in it ('/my.site')
+  if (path === cleanBasePath) {
     return `${cleanBasePath}/`;
   }
 
   // Check if path already includes base path
   if (isPathUnderBase(path, cleanBasePath)) {
-    return path;
+    return withTrailingSlash(path);
   }
 
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  return cleanBasePath + normalizedPath;
+  return withTrailingSlash(cleanBasePath + normalizedPath);
 };
 
 /**
@@ -104,9 +106,9 @@ export const getWordUrl = (word: string): string => {
 };
 
 /**
- * Remove BASE_PATH prefix from an incoming pathname
+ * Remove BASE_PATH prefix and trailing slash from an incoming pathname
  * @param pathname - Raw pathname that may include the base path
- * @returns Pathname relative to the site root (web standard with leading slash)
+ * @returns Route path relative to the site root (web standard with leading slash)
  */
 export const stripBasePath = (pathname: string): string => {
   const cleanPath = getPathname(pathname);
@@ -319,6 +321,14 @@ export const getLetterPatternsUrl = (): string =>
  */
 export const getWordEndingsUrl = (): string => 
   ROUTES.STAT(STATS_SLUGS.WORD_ENDINGS);
+
+/**
+ * Get URL for parts of speech stats section. The words of one part of speech
+ * are a browse page: see getPartOfSpeechUrl.
+ * @returns Parts of speech stats URL
+ */
+export const getPartsOfSpeechStatsUrl = (): string =>
+  ROUTES.STAT(STATS_SLUGS.PARTS_OF_SPEECH);
 
 // =====================================================
 // Specific Stats URLs - Other Stats

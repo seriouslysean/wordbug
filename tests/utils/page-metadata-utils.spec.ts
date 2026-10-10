@@ -144,6 +144,15 @@ describe('page-metadata-utils', () => {
       });
     });
 
+    it('returns metadata for the parts of speech stats page', () => {
+      const metadata = getPageMetadata('/stats/parts-of-speech', mockWords);
+      expect(metadata).toEqual({
+        title: 'Mock stats.parts_of_speech_heading',
+        description: 'Mock stats.parts_of_speech_description',
+        category: 'pages',
+      });
+    });
+
     it('returns dynamic metadata for stats pages with counts', () => {
       const metadata = getPageMetadata('/stats/words-ending-ly', mockWords);
       expect(metadata).toHaveProperty('title');
@@ -322,6 +331,10 @@ describe('page-metadata-utils', () => {
 
     it('returns the static title for a known path', () => {
       expect(getPageTitle('/word')).toBe('Mock Words Heading');
+    });
+
+    it('returns the static title for the parts of speech stats path', () => {
+      expect(getPageTitle('/stats/parts-of-speech')).toBe('Mock stats.parts_of_speech_heading');
     });
 
     it('returns the word for a word-detail path', () => {

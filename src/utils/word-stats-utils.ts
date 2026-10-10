@@ -4,6 +4,7 @@ export {
   getLetterStats,
   getLetterPatternStats,
   getWordEndingStats,
+  getPartOfSpeechStats,
   getPatternStats,
   getLongestStreakWords,
   getChronologicalMilestones,

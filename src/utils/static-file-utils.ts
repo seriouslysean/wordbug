@@ -180,7 +180,7 @@ export function generateLlmsTxt(words: WordData[]): string | null {
       return 0;
     });
   const staticPages = allPages.filter(p =>
-    ![BASE_PATHS.HOME.slice(1), BASE_PATHS.WORD, BASE_PATHS.STATS, BROWSE_PATHS.LENGTH].includes(p.path) &&
+    ![BASE_PATHS.HOME.slice(1), BASE_PATHS.WORD, BASE_PATHS.STATS, BROWSE_PATHS.LENGTH, BASE_PATHS.NOT_FOUND].includes(p.path) &&
     !URL_PATTERNS.YEAR_PAGE.test(p.path) &&
     !URL_PATTERNS.MONTH_PAGE.test(p.path) &&
     !URL_PATTERNS.LENGTH_PAGE.test(p.path) &&

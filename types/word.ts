@@ -137,6 +137,12 @@ export interface WordEndingStatsResult {
   less: WordData[];
 }
 
+// Words displayed under one part of speech. See getPartOfSpeechStats.
+export interface PartOfSpeechStat {
+  partOfSpeech: string;
+  count: number;
+}
+
 export interface WordStreakStatsResult {
   currentStreak: number;
   longestStreak: number;

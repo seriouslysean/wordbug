@@ -1,4 +1,4 @@
-import { ROUTES } from '#constants/urls';
+import { FILE_PATH_PATTERN, ROUTES } from '#constants/urls';
 
 /**
  * Get URL for words of a specific length
@@ -38,3 +38,24 @@ export const getPartOfSpeechUrl = (partOfSpeech: string): string => {
  */
 export const isPathUnderBase = (path: string, base: string): boolean =>
   path === base || path.startsWith(`${base}/`);
+
+/**
+ * The URL path a page or file is served at. Pages are built as directories
+ * ('stats/index.html'), and a static host serves a directory at its
+ * trailing-slash URL only: '/stats' is a redirect to '/stats/' on GitHub
+ * Pages. A file ('/rss.xml') is served at its own name.
+ * @param path - URL path with no query or fragment
+ * @returns The path, ending in a slash unless it names a file
+ */
+export const withTrailingSlash = (path: string): string =>
+  path.endsWith('/') || FILE_PATH_PATTERN.test(path) ? path : `${path}/`;
+
+/**
+ * The route a served page path stands for: Astro.url.pathname is
+ * '/stats/' where the route, and every key derived from it, is '/stats'.
+ * The root stays '/'.
+ * @param pathname - Page pathname without the base path
+ * @returns The path without its trailing slash
+ */
+export const withoutTrailingSlash = (pathname: string): string =>
+  pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;

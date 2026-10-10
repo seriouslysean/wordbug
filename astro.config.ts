@@ -107,7 +107,14 @@ if (!process.env.SENTRY_RELEASE) {
 export default defineConfig({
   site,
   base,
-  trailingSlash: 'never',
+  // Each page is written as `stats/index.html` (`directory`, Astro's default,
+  // stated so the pair is visible) and a static host serves that file at
+  // `/stats/`: GitHub Pages answers `/stats` with a 301 to it. Astro's
+  // reference pairs `directory` with `trailingSlash: 'always'`, which makes
+  // the dev server match the same URLs the built site serves:
+  // https://docs.astro.build/en/reference/configuration-reference/#buildformat
+  trailingSlash: 'always',
+  build: { format: 'directory' },
   // v7 changes the compressHTML default from `true` to `'jsx'` (collapses
   // whitespace between inline elements). Pin the v6 behavior to keep build
   // output byte-stable across the upgrade.

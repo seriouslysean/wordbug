@@ -29,6 +29,29 @@ test.describe('SEO build output', () => {
 		await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/word\//);
 	});
 
+	test('an internal link is served at the URL its canonical names', async ({ page }) => {
+		// Only the served build shows whether the href a page prints is the URL
+		// the page is served at. The preview answers a slashless page URL with a
+		// 404 where a static host redirects, so the 200 is the check.
+		await page.goto('/');
+
+		const [response] = await Promise.all([
+			page.waitForResponse(candidate =>
+				candidate.request().isNavigationRequest() && candidate.frame() === page.mainFrame()),
+			page.locator('footer a[href="/stats/"]').click(),
+		]);
+		expect(response.status()).toBe(200);
+		await expect(page.locator('#main-content')).toBeVisible();
+
+		const servedPath = new URL(page.url()).pathname;
+		expect(servedPath).toBe('/stats/');
+		const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+		if (canonical === null) {
+			throw new Error('canonical link has no href');
+		}
+		expect(new URL(canonical).pathname).toBe(servedPath);
+	});
+
 	test('structured data is present', async ({ page }) => {
 		await page.goto('/');
 

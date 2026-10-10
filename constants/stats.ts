@@ -34,6 +34,7 @@ export const STATS_SLUGS = {
   STREAKS: 'streaks',
   LETTER_PATTERNS: 'letter-patterns',
   WORD_ENDINGS: 'word-endings',
+  PARTS_OF_SPEECH: 'parts-of-speech',
 } as const;
 
 // Word ending definitions

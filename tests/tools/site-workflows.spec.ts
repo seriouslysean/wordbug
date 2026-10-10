@@ -295,8 +295,9 @@ describe('site workflows', { timeout: 60000 }, () => {
     }
     // Build runs for a pull request and for a push, both to main only, so
     // github.event_name == 'push' is a push to main. Only that build gets a
-    // Sentry secret or the production tag: a pull request's build has Sentry
-    // off, uploads nothing with the auth token and reports nothing.
+    // secret or the production tag: a pull request's build has Sentry and
+    // Google Analytics off, uploads nothing with the auth token and reports
+    // nothing.
     const build = workflow('build.yml');
     expect(nestedObject(build, 'on', 'Build trigger')).toEqual({
       pull_request: { branches: ['main'] },
@@ -308,7 +309,7 @@ describe('site workflows', { timeout: 60000 }, () => {
       'vars-json': '${{ toJSON(vars) }}',
       ...Object.fromEntries(Object.entries(BUILD_SECRETS).map(([name, input]) => [
         input,
-        name.startsWith('SENTRY_') ? onPush(`secrets.${name}`, '') : `\${{ secrets.${name} }}`,
+        onPush(`secrets.${name}`, ''),
       ])),
       'sentry-environment': onPush("'production'", 'development'),
     });

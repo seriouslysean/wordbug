@@ -14,18 +14,12 @@ const linkClass = variant === 'text'
   ? className 
   : ['site-button', `site-button--${variant}`, className].filter(Boolean).join(' ');
 
-const isExternal = href.startsWith('http://') || href.startsWith('https://');
+// Anything with a scheme (https:, mailto:, tel:) or a protocol-relative host
+// is not a path of this site, so it gets neither the base path nor a slash
+const isExternal = /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href);
 
-const normalizeHref = (path: string) => {
-  if (isExternal) {
-return path;
-}
-
-  const cleanPath = path.replace(/\/$/, '') || '/';
-  return getUrl(cleanPath);
-};
-
-const finalHref = normalizeHref(href);
+// getUrl() ends a page URL in a slash whether or not the href has one
+const finalHref = isExternal ? href : getUrl(href);
 
 const finalRel = (attrs.target === '_blank' && !attrs.rel) ? 'noopener noreferrer' : attrs.rel;
 ---

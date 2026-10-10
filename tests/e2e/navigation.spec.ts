@@ -34,7 +34,7 @@ test.describe('user journeys', () => {
 		await page.goto('/');
 
 		// Use footer navigation to reach browse
-		await page.locator('footer a[href="/browse"]').click();
+		await page.locator('footer a[href="/browse/"]').click();
 		await expect(page.locator('#main-content')).toBeVisible();
 
 		// Select a year
@@ -52,17 +52,18 @@ test.describe('user journeys', () => {
 
 	test('browse index reaches every browse route family', async ({ page }) => {
 		const families = [
-			{ index: '/browse/letter', detail: '/browse/letter/' },
-			{ index: '/browse/length', detail: '/browse/length/' },
-			{ index: '/browse/part-of-speech', detail: '/browse/part-of-speech/' },
+			'/browse/letter/',
+			'/browse/length/',
+			'/browse/part-of-speech/',
 		];
 
 		for (const family of families) {
-			await page.goto('/browse');
-			await page.locator(`main a[href="${family.index}"]`).click();
+			await page.goto('/browse/');
+			await page.locator(`main a[href="${family}"]`).click();
 			await expect(page.locator('#main-content')).toBeVisible();
 
-			const detail = page.locator(`main a[href^="${family.detail}"]`).first();
+			// A page below the index: its href starts with the index's and goes on
+			const detail = page.locator(`main a[href^="${family}"]:not([href="${family}"])`).first();
 			await expect(detail).toBeVisible();
 			await detail.click();
 			await expect(page.locator('#main-content')).toBeVisible();
@@ -73,15 +74,15 @@ test.describe('user journeys', () => {
 		await page.goto('/');
 
 		// Browse Words
-		await page.locator('footer a[href="/browse"]').click();
+		await page.locator('footer a[href="/browse/"]').click();
 		await expect(page.locator('#main-content')).toBeVisible();
 
 		// Stats
-		await page.locator('footer a[href="/stats"]').click();
+		await page.locator('footer a[href="/stats/"]').click();
 		await expect(page.locator('#main-content')).toBeVisible();
 
 		// All Words
-		await page.locator('footer a[href="/word"]').click();
+		await page.locator('footer a[href="/word/"]').click();
 		await expect(page.locator('#main-content')).toBeVisible();
 
 		// Home
@@ -93,7 +94,7 @@ test.describe('user journeys', () => {
 		await page.goto('/');
 
 		// Navigate to browse, find the earliest year, then its first word
-		await page.locator('footer a[href="/browse"]').click();
+		await page.locator('footer a[href="/browse/"]').click();
 		const earliestYear = page.locator('main a[href*="/browse/20"]').last();
 		await earliestYear.click();
 		const firstWord = page.locator('main a[href*="/word/"]').last();
@@ -114,11 +115,10 @@ test.describe('user journeys', () => {
 		const previousWordLink = page.locator('.past-words a.word-link').first();
 		await previousWordLink.click();
 
-		// Navigate forward via next — should reach the homepage word.
-		// waitForURL is required for SPA navigation (ClientRouter) so Playwright
-		// waits for the history.pushState before asserting on the new page.
+		// Navigate forward via next — should reach the homepage word. Every
+		// page URL ends in a slash, so only the whole pathname names the root.
 		await Promise.all([
-			page.waitForURL(/\/$/),
+			page.waitForURL(url => url.pathname === '/'),
 			page.locator('.word-nav__next a.word-link').click(),
 		]);
 
@@ -158,7 +158,9 @@ test.describe('user journeys', () => {
 	});
 
 	test('non-existent route returns 404', async ({ page }) => {
-		const response = await page.goto('/this-page-does-not-exist');
+		// The preview server answers a slashless URL itself (trailingSlash:
+		// 'always'), so only the slash form reaches the site's 404 page
+		const response = await page.goto('/this-page-does-not-exist/');
 
 		expect(response?.status()).toBe(404);
 	});

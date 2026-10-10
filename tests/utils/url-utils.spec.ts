@@ -18,7 +18,7 @@ import {
   getMonthUrl,
   getStatUrl,
 } from '#astro-utils/url-utils';
-import { isPathUnderBase } from '#utils/url-utils';
+import { isPathUnderBase, withoutTrailingSlash, withTrailingSlash } from '#utils/url-utils';
 
 declare const mockEnv: Record<string, string | boolean | undefined>;
 
@@ -68,23 +68,23 @@ describe('utils', () => {
     });
 
     it('handles paths with default base path', () => {
-      expect(getUrl('/20240319')).toBe('/20240319');
+      expect(getUrl('/20240319')).toBe('/20240319/');
     });
 
     it('handles paths with custom base path', () => {
       mockEnv.BASE_PATH = '/blog';
-      expect(getUrl('/20240319')).toBe('/blog/20240319');
+      expect(getUrl('/20240319')).toBe('/blog/20240319/');
     });
 
     it('handles paths with custom base path with trailing slash', () => {
       mockEnv.BASE_PATH = '/blog/';
-      expect(getUrl('/20240319')).toBe('/blog/20240319');
+      expect(getUrl('/20240319')).toBe('/blog/20240319/');
     });
 
     it('prefixes a path that merely shares its first characters with the base path', () => {
       mockEnv.BASE_PATH = '/app';
-      expect(getUrl('/apple')).toBe('/app/apple');
-      expect(getUrl('/app/x')).toBe('/app/x');
+      expect(getUrl('/apple')).toBe('/app/apple/');
+      expect(getUrl('/app/x')).toBe('/app/x/');
     });
 
     it('names the site root under a base path with its trailing slash', () => {
@@ -92,37 +92,61 @@ describe('utils', () => {
       mockEnv.BASE_PATH = '/blog';
       expect(getUrl('/')).toBe('/blog/');
       expect(getUrl()).toBe('/blog/');
-      // Astro.url.pathname for the home page under trailingSlash: 'never'
+      // The base path itself names the root, with or without its slash
       expect(getUrl('/blog')).toBe('/blog/');
       expect(getUrl('/blog/')).toBe('/blog/');
 
       mockEnv.BASE_PATH = '/blog/';
       expect(getUrl('/')).toBe('/blog/');
       expect(getUrl('/blog')).toBe('/blog/');
+
+      // A dot in the base path does not make the root a file
+      mockEnv.BASE_PATH = '/my.site';
+      expect(getUrl('/')).toBe('/my.site/');
+      expect(getUrl('/my.site')).toBe('/my.site/');
+      expect(getUrl('/stats')).toBe('/my.site/stats/');
     });
 
     it('handles empty or undefined base path', () => {
       mockEnv.BASE_PATH = '';
-      expect(getUrl('/20240319')).toBe('/20240319');
+      expect(getUrl('/20240319')).toBe('/20240319/');
     });
 
     it('handles empty paths', () => {
       expect(getUrl('/')).toBe('/');
+      expect(getUrl('')).toBe('/');
     });
 
-    it('preserves trailing slashes for root path only', () => {
-      expect(getUrl('/')).toBe('/');
+    it('ends a page URL in one slash, whichever form asks', () => {
+      // Astro.url.pathname already ends in a slash; a route does not
+      expect(getUrl('/stats')).toBe('/stats/');
+      expect(getUrl('/stats/')).toBe('/stats/');
+
+      mockEnv.BASE_PATH = '/blog';
+      expect(getUrl('/stats')).toBe('/blog/stats/');
+      expect(getUrl('/blog/stats')).toBe('/blog/stats/');
+      expect(getUrl('/blog/stats/')).toBe('/blog/stats/');
+    });
+
+    it('leaves a file URL without a trailing slash', () => {
+      expect(getUrl('/rss.xml')).toBe('/rss.xml');
+      expect(getUrl('/favicon.svg')).toBe('/favicon.svg');
+
+      mockEnv.BASE_PATH = '/blog';
+      expect(getUrl('/words.json')).toBe('/blog/words.json');
+      expect(getUrl('/sitemap-index.xml')).toBe('/blog/sitemap-index.xml');
+      expect(getUrl('/demo/images/social/pages/stats.png')).toBe('/blog/demo/images/social/pages/stats.png');
     });
 
     it('ignores SITE_URL when building relative URLs', () => {
       mockEnv.BASE_PATH = '/blog';
       mockEnv.SITE_URL = 'https://example.com';
-      expect(getUrl('/words/hello')).toBe('/blog/words/hello');
+      expect(getUrl('/words/hello')).toBe('/blog/words/hello/');
     });
 
     it('preserves case for base path and path', () => {
       mockEnv.BASE_PATH = '/Blog';
-      expect(getUrl('/ABC')).toBe('/Blog/ABC');
+      expect(getUrl('/ABC')).toBe('/Blog/ABC/');
     });
   });
 
@@ -133,12 +157,19 @@ describe('utils', () => {
     });
 
     it('combines SITE_URL with getUrl() result', () => {
-      expect(getFullUrl('/words/hello')).toBe('https://example.com/words/hello');
+      expect(getFullUrl('/words/hello')).toBe('https://example.com/words/hello/');
     });
 
     it('handles subdirectory deployments correctly', () => {
       mockEnv.BASE_PATH = '/vocab';
-      expect(getFullUrl('/words/hello')).toBe('https://example.com/vocab/words/hello');
+      expect(getFullUrl('/words/hello')).toBe('https://example.com/vocab/words/hello/');
+    });
+
+    it('names a file without a trailing slash', () => {
+      mockEnv.BASE_PATH = '/vocab';
+      expect(getFullUrl('/rss.xml')).toBe('https://example.com/vocab/rss.xml');
+      expect(getFullUrl('/images/social/2024/20240615-ice%20cream.png'))
+        .toBe('https://example.com/vocab/images/social/2024/20240615-ice%20cream.png');
     });
 
     it('handles root path correctly', () => {
@@ -156,7 +187,7 @@ describe('utils', () => {
       mockEnv.BASE_PATH = '/vocab';
       mockEnv.SITE_URL = 'https://example.com/vocab';
       expect(getFullUrl('/')).toBe('https://example.com/vocab/');
-      expect(getFullUrl('/words/hello')).toBe('https://example.com/vocab/words/hello');
+      expect(getFullUrl('/words/hello')).toBe('https://example.com/vocab/words/hello/');
     });
 
     it('throws when SITE_URL is missing', () => {
@@ -166,7 +197,7 @@ describe('utils', () => {
 
     it('removes trailing slash from SITE_URL', () => {
       mockEnv.SITE_URL = 'https://example.com/';
-      expect(getFullUrl('/test')).toBe('https://example.com/test');
+      expect(getFullUrl('/test')).toBe('https://example.com/test/');
     });
 
     it('uses default site URL when none provided', () => {
@@ -247,6 +278,44 @@ describe('utils', () => {
     });
   });
 
+  describe('withTrailingSlash', () => {
+    it('ends a page path in a slash', () => {
+      expect(withTrailingSlash('/stats')).toBe('/stats/');
+      expect(withTrailingSlash('/browse/2024/january')).toBe('/browse/2024/january/');
+      expect(withTrailingSlash('/word/ice-cream')).toBe('/word/ice-cream/');
+    });
+
+    it('leaves a path that already ends in a slash', () => {
+      expect(withTrailingSlash('/')).toBe('/');
+      expect(withTrailingSlash('/stats/')).toBe('/stats/');
+    });
+
+    it('leaves a path whose last segment has an extension: it names a file', () => {
+      expect(withTrailingSlash('/rss.xml')).toBe('/rss.xml');
+      expect(withTrailingSlash('/robots.txt')).toBe('/robots.txt');
+      expect(withTrailingSlash('/ga-init.js')).toBe('/ga-init.js');
+      expect(withTrailingSlash('/images/social/2024/20240615-ice%20cream.png'))
+        .toBe('/images/social/2024/20240615-ice%20cream.png');
+    });
+
+    it('reads a dot in an earlier segment as part of a page path', () => {
+      expect(withTrailingSlash('/a.b/stats')).toBe('/a.b/stats/');
+    });
+  });
+
+  describe('withoutTrailingSlash', () => {
+    it('drops the slash Astro.url.pathname ends a page in', () => {
+      expect(withoutTrailingSlash('/stats/')).toBe('/stats');
+      expect(withoutTrailingSlash('/browse/2024/january/')).toBe('/browse/2024/january');
+    });
+
+    it('keeps the root and a path with no trailing slash', () => {
+      expect(withoutTrailingSlash('/')).toBe('/');
+      expect(withoutTrailingSlash('/stats')).toBe('/stats');
+      expect(withoutTrailingSlash('')).toBe('');
+    });
+  });
+
   describe('getBasePath', () => {
     it('returns "/" when BASE_PATH is not set', () => {
       mockEnv.BASE_PATH = undefined;
@@ -275,10 +344,15 @@ describe('utils', () => {
         mockEnv.BASE_PATH = '/';
       });
 
-      it('returns pathname as-is', () => {
+      it('returns a route as-is', () => {
         expect(getPathname('/words/browse')).toBe('/words/browse');
         expect(getPathname('/stats')).toBe('/stats');
         expect(getPathname('/')).toBe('/');
+      });
+
+      it('drops the trailing slash of a page pathname', () => {
+        expect(getPathname('/stats/')).toBe('/stats');
+        expect(getPathname('/browse/2024/january/')).toBe('/browse/2024/january');
       });
 
       it('handles empty pathname', () => {
@@ -296,6 +370,12 @@ describe('utils', () => {
         expect(getPathname('/occasional-wotd/stats')).toBe('/stats');
         expect(getPathname('/occasional-wotd/')).toBe('/');
         expect(getPathname('/occasional-wotd')).toBe('/');
+      });
+
+      it('drops the trailing slash of a page pathname', () => {
+        expect(getPathname('/occasional-wotd/stats/')).toBe('/stats');
+        expect(getPathname('/occasional-wotd/word/hello/')).toBe('/word/hello');
+        expect(getPathname('/other/path/')).toBe('/other/path');
       });
 
       it('returns pathname unchanged if no base path present', () => {
@@ -358,6 +438,7 @@ describe('utils', () => {
         expect(stripBasePath('/occasional-wotd/stats')).toBe('/stats');
         expect(stripBasePath('/occasional-wotd/')).toBe('/');
         expect(stripBasePath('/occasional-wotd')).toBe('/');
+        expect(stripBasePath('/occasional-wotd/stats/')).toBe('/stats');
       });
 
       it('handles paths without base path', () => {

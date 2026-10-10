@@ -79,7 +79,7 @@ TypeScript aliases (`#utils`, `#astro-utils`, `#types`, `#constants`, `#config`,
 
 - Environment validation and CSP live in `astro.config.ts`. Dynamic inline content that cannot be auto-hashed goes in a same-origin endpoint (`src/pages/theme.css.ts`, `src/pages/ga-init.js.ts`), not inline `<style set:html>`, `<script is:inline>`, or `define:vars`.
 - Stats definitions live in `constants/stats.ts`, URL patterns in `constants/urls.ts`.
-- URLs: `getUrl(path)` for internal navigation (adds `BASE_PATH`), `getFullUrl(path)` for absolute SEO and social URLs. Never hardcode paths.
+- URLs: `getUrl(path)` for internal navigation (adds `BASE_PATH`), `getFullUrl(path)` for absolute SEO and social URLs. Never hardcode paths. Pass a route without a trailing slash (`/stats`); the helpers end a page URL in one (`/stats/`) and leave a file URL (`/rss.xml`) without. `Astro.url.pathname` ends in a slash: read it through `getPathname()` or `stripBasePath()`.
 
 ## Error Handling
 
@@ -96,7 +96,7 @@ Five test layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/sr
 - Coverage thresholds: 80% across lines/functions/statements, 85% branches.
 - No overlapping tests. Each function tested at exactly one layer.
 - E2E verifies build assembly (navigation, meta tag presence, JSON-LD parsability, keyboard a11y), not logic. If it can run without a browser, it belongs at a lower layer.
-- E2E runs in demo mode (no `BASE_PATH`). Requires `npm run build` first. Test URLs omit trailing slashes. Test elements and user journeys, not strings.
+- E2E runs in demo mode (no `BASE_PATH`). Requires `npm run build` first. Page URLs in tests end in a trailing slash (`/stats/`); file URLs (`/rss.xml`) do not. Test elements and user journeys, not strings.
 - Real data over feature flags: when a test or page needs data, add demo words that produce it, dated before 20250117.
 
 ## Environment

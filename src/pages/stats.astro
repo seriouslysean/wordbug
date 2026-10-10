@@ -33,6 +33,8 @@ import {
   getStreaksUrl,
   getLetterPatternsUrl,
   getWordEndingsUrl,
+  getPartsOfSpeechStatsUrl,
+  getPartOfSpeechUrl,
   getWordUrl
 } from '#astro-utils/url-utils';
 import {
@@ -50,6 +52,7 @@ import {
   letterStats,
   letterPatternStats,
   wordEndingStats,
+  partOfSpeechStats,
   streakStats,
   antiStreakStats,
   milestoneWords
@@ -95,8 +98,16 @@ const wordEndingItems = [
   { key: 'less', label: t('stats.less_words'), count: wordEndingStats.less.length, href: getWordsEndingLessUrl() },
 ].filter(item => item.count > 0);
 
+// Each count is the number of words the linked browse page lists
+const partOfSpeechItems = partOfSpeechStats.map(({ partOfSpeech, count }) => ({
+  label: t(`parts_of_speech.${partOfSpeech}`),
+  value: tp('common.words', count),
+  href: getPartOfSpeechUrl(partOfSpeech),
+}));
+
 const hasLetterPatterns = letterPatternItems.length > 0;
 const hasWordEndings = wordEndingItems.length > 0;
+const hasPartsOfSpeech = partOfSpeechItems.length > 0;
 
 // Build data arrays for DefinitionList
 const basicStatsItems = [
@@ -209,6 +220,12 @@ const { title, description, secondaryText } = getPageMetadata(Astro.url.pathname
           value: item.count,
           href: item.href
         }))} />
+      </StatsSection>
+    )}
+
+    {hasPartsOfSpeech && (
+      <StatsSection title={t('stats.parts_of_speech_heading')} href={getPartsOfSpeechStatsUrl()}>
+        <DefinitionList items={partOfSpeechItems} />
       </StatsSection>
     )}
 
