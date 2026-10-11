@@ -97,6 +97,18 @@ interface DictionaryDefinitionFields {
   text: string;
   references?: DictionaryReference[];
 
+  /**
+   * The headword of the dictionary entry the definition belongs to, without a
+   * homograph number: a lookup of "happy" also returns the entry "happy hour",
+   * whose definitions carry that as their `id`. It is how a page tells a
+   * word's own definitions from a compound's or a derived form's
+   * (getWordDefinitions in utils/word-data-utils.ts) whichever adapter wrote
+   * the record, so it is never a partner's own identifier for a sense or a
+   * record. An adapter whose partner names no entry omits it, and a definition
+   * without one is the word's own. A headword is a string like any other, so
+   * neither this type nor isCanonicalResponse can check that: each adapter's
+   * spec does.
+   */
   id?: string;
   attributionText?: string;
   sourceDictionary?: string;

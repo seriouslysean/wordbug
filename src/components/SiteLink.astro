@@ -15,8 +15,8 @@ const linkClass = variant === 'text'
   : ['site-button', `site-button--${variant}`, className].filter(Boolean).join(' ');
 
 // Anything with a scheme (https:, mailto:, tel:) or a protocol-relative host
-// is not a path of this site, so it gets neither the base path nor a slash
-const isExternal = /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href);
+// or a same-page query/fragment gets neither the base path nor a slash
+const isExternal = /^(?:[a-z][a-z\d+.-]*:|\/\/|[#?])/i.test(href);
 
 // getUrl() ends a page URL in a slash whether or not the href has one
 const finalHref = isExternal ? href : getUrl(href);

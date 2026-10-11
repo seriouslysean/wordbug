@@ -2,13 +2,16 @@
 import WordDisplay from '#components/WordDisplay.astro';
 import Layout from '#layouts/Layout.astro';
 import { getPageMetadata } from '#astro-utils/page-metadata';
+import { getUrl } from '#astro-utils/url-utils';
 import { allWords } from '#astro-utils/word-data-utils';
 import { t } from '#utils/i18n-utils';
 import { BASE_PATHS } from '#constants/urls';
 import { isBasePartOfSpeech } from '#constants/parts-of-speech';
 import type { WordData } from '#types';
 
-const { title, description, partOfSpeech } = getPageMetadata(BASE_PATHS.NOT_FOUND);
+// This page is rendered for whatever URL was not found, so it names its own
+// route. getPageMetadata() takes a served pathname, which getUrl() makes of it
+const { title, description, partOfSpeech } = getPageMetadata(getUrl(BASE_PATHS.NOT_FOUND));
 const wordsToShow = allWords.slice(0, 4);
 const sectionTitle = wordsToShow.length > 0 ? t('error.recent_words') : '';
 const definition = description.replace(/^\w+\.\s*/, '');
@@ -22,7 +25,7 @@ const notFoundWord: WordData = {
     : { text: definition }],
 };
 ---
-<Layout title={title} description={description} noindex>
+<Layout title={title} description={description} noindex errorPage>
   <WordDisplay
     currentWord={notFoundWord}
     wordsToShow={wordsToShow}

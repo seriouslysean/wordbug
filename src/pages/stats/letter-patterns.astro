@@ -32,7 +32,7 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     <Heading text={title} />
     <DescriptionText text={description} />
 
-    {letterPatternItems.length && (
+    {letterPatternItems.length > 0 && (
       <StatsSection title={t('stats.categories_heading')}>
         <DefinitionList items={letterPatternItems.map(item => ({
           label: item.label,

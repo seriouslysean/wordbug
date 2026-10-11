@@ -9,14 +9,22 @@ import {
   wordEndingStats
 } from '#astro-utils/word-data-utils';
 import { t } from '#utils/i18n-utils';
+import {
+  getWordsEndingIngUrl,
+  getWordsEndingEdUrl,
+  getWordsEndingLyUrl,
+  getWordsEndingNessUrl,
+  getWordsEndingFulUrl,
+  getWordsEndingLessUrl
+} from '#astro-utils/url-utils';
 
 const wordEndingItems = [
-  { key: 'ing', label: t('stats.ing_words'), count: wordEndingStats.ing.length, href: '/stats/words-ending-ing' },
-  { key: 'ed', label: t('stats.ed_words'), count: wordEndingStats.ed.length, href: '/stats/words-ending-ed' },
-  { key: 'ly', label: t('stats.ly_words'), count: wordEndingStats.ly.length, href: '/stats/words-ending-ly' },
-  { key: 'ness', label: t('stats.ness_words'), count: wordEndingStats.ness.length, href: '/stats/words-ending-ness' },
-  { key: 'ful', label: t('stats.ful_words'), count: wordEndingStats.ful.length, href: '/stats/words-ending-ful' },
-  { key: 'less', label: t('stats.less_words'), count: wordEndingStats.less.length, href: '/stats/words-ending-less' },
+  { key: 'ing', label: t('stats.ing_words'), count: wordEndingStats.ing.length, href: getWordsEndingIngUrl() },
+  { key: 'ed', label: t('stats.ed_words'), count: wordEndingStats.ed.length, href: getWordsEndingEdUrl() },
+  { key: 'ly', label: t('stats.ly_words'), count: wordEndingStats.ly.length, href: getWordsEndingLyUrl() },
+  { key: 'ness', label: t('stats.ness_words'), count: wordEndingStats.ness.length, href: getWordsEndingNessUrl() },
+  { key: 'ful', label: t('stats.ful_words'), count: wordEndingStats.ful.length, href: getWordsEndingFulUrl() },
+  { key: 'less', label: t('stats.less_words'), count: wordEndingStats.less.length, href: getWordsEndingLessUrl() },
 ].filter(item => item.count > 0);
 
 const { title, description } = getPageMetadata(Astro.url.pathname);
@@ -26,7 +34,7 @@ const { title, description } = getPageMetadata(Astro.url.pathname);
     <Heading text={title} />
     <DescriptionText text={description} />
 
-    {wordEndingItems.length && (
+    {wordEndingItems.length > 0 && (
       <StatsSection title={t('stats.suffix_heading')}>
         <DefinitionList items={wordEndingItems.map(item => ({
           label: item.label,

@@ -110,6 +110,54 @@ describe('normalizeWordData', () => {
     expect(normalizeWordData(canonical, 'words/2025/20250101.json').word).toEqual(canonical);
   });
 
+  // The canonical `id` is the headword of a definition's entry, which a page
+  // compares with the word. The Wordnik adapter used to store Wordnik's sense
+  // identifier there, which took the definition off its own word's page.
+  it('drops the sense identifier a Wordnik record stored as an id, and changes nothing on the next run', () => {
+    const stored = {
+      word: 'candy corn',
+      date: '20251103',
+      adapter: 'wordnik',
+      data: [
+        { id: 'C5067000-1', partOfSpeech: 'noun', text: 'A small piece of candy.', sourceDictionary: 'ahd-5' },
+        { partOfSpeech: 'noun', text: 'A confection of sugar and corn syrup.', sourceDictionary: 'wiktionary' },
+      ],
+    };
+
+    const first = normalizeWordData(stored, 'words/2025/20251103.json');
+    expect(first.word).toEqual({
+      ...stored,
+      data: [
+        { partOfSpeech: 'noun', text: 'A small piece of candy.', sourceDictionary: 'ahd-5' },
+        { partOfSpeech: 'noun', text: 'A confection of sugar and corn syrup.', sourceDictionary: 'wiktionary' },
+      ],
+    });
+    expect(normalizeWordData(first.word, 'words/2025/20251103.json')).toEqual(first);
+  });
+
+  it.each(['merriam-webster', 'wiktionary', 'manual', 'wordnik'])("keeps the entry headwords a %s record stores as ids, a compound's included", (adapter) => {
+    const canonical = {
+      word: 'happy',
+      date: '20250101',
+      adapter,
+      data: [
+        { id: 'happy hour', partOfSpeech: 'noun', text: 'a period of reduced prices' },
+        { id: 'happy', partOfSpeech: 'adjective', text: 'enjoying well-being' },
+      ],
+    };
+
+    expect(normalizeWordData(canonical, 'words/2025/20250101.json').word).toEqual(canonical);
+  });
+
+  it('still refuses an id that is not a string on a Wordnik record', () => {
+    expect(() => normalizeWordData({
+      word: 'broken',
+      date: '20250101',
+      adapter: 'wordnik',
+      data: [{ id: 1, partOfSpeech: 'noun', text: 'a sense' }],
+    }, 'words/2025/20250101.json')).toThrow('Invalid definition id in words/2025/20250101.json');
+  });
+
   it.each([
     [{ ...LEGACY_WORD, extra: true }, 'Unsupported word field'],
     [{ ...LEGACY_WORD, data: [{ text: 'test', extra: true }] }, 'Unsupported definition field'],

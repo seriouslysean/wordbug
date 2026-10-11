@@ -121,8 +121,9 @@ const getDefinitionPlainText = (def: DisplayableDefinition): string =>
 /**
  * The one displayability rule. Everything that shows, counts, groups or accepts
  * a word's definitions goes through it, so no two of them disagree about which
- * definitions can be displayed. Which of those are the word's own, rather than
- * a compound's or a derived form's, is a second rule: getWordDefinitions.
+ * definitions can be displayed. Which definitions are the word's own, rather
+ * than a compound's or a derived form's, is a second rule, getWordDefinitions,
+ * which applies this one to the word's own entries.
  *
  * A definition is displayable when it has a part of speech and non-empty text.
  * Abbreviation-labelled definitions are displayable only when the word has no
@@ -154,17 +155,55 @@ export const getDisplayableDefinitions = (definitions: DictionaryDefinition[]): 
 export const isValidDictionaryData = (data: DictionaryDefinition[]): boolean =>
   getDisplayableDefinitions(data).length > 0;
 
+interface WordDefinitions {
+  definitions: DisplayableDefinition[];
+  /** True when the word has no definition of its own and the first displayable one stands in for it. */
+  standIn: boolean;
+}
+
 /**
- * Finds a word's first displayable definition. Its text is what a page shows,
- * as plain text: a cross-reference is kept as the words it links, with no
- * whitespace around the whole. Meta descriptions,
- * JSON-LD and the RSS feed use it as it is.
+ * The one rule for which displayable definitions are a word's own. The senses
+ * its page shows (getWordSenses), the parts of speech it is grouped, browsed
+ * and counted under (getWordPartsOfSpeech) and its primary definition
+ * (findValidDefinition, getWordDetails) all read it, so a word is never listed
+ * under a part of speech, or described by a definition, that its own page does
+ * not show.
  *
- * @param definitions - Array of dictionary definitions
- * @returns First displayable definition or null if none found
+ * A lookup returns compound and derived entries with the headword: "happy
+ * hour", a noun, comes back with "happy", and "read", a verb, with "reading".
+ * Their `id` differs from the headword, so they are left out. Homographs share
+ * the headword's `id` and stay, as does a definition with no `id`.
+ *
+ * The word's own entries are picked out first and the displayability rule is
+ * applied to them alone. Its abbreviation half compares the entries of one
+ * headword: over the whole lookup, the adjective "AC/DC" would hide "AC", the
+ * only definition "ac" has, and then stand in for it.
+ *
+ * When no displayable definition is the word's own ("indices" is stored under
+ * "index"), the first displayable one of the whole lookup stands in for it, so
+ * a word with anything displayable keeps one definition and its part of speech.
  */
-export function findValidDefinition(definitions: DictionaryDefinition[]): { text: string; partOfSpeech: string } | null {
-  const [definition] = getDisplayableDefinitions(definitions);
+const getWordDefinitions = (wordData: Pick<WordData, 'word' | 'data'>): WordDefinitions => {
+  const wordSlug = slugify(wordData.word);
+  const own = getDisplayableDefinitions(wordData.data.filter(def => !def.id || slugify(def.id) === wordSlug));
+  return own.length > 0
+    ? { definitions: own, standIn: false }
+    : { definitions: getDisplayableDefinitions(wordData.data).slice(0, 1), standIn: true };
+};
+
+/**
+ * A word's primary definition: the first of its own definitions
+ * (getWordDefinitions), which is the first sense its page shows, never a
+ * compound's that the dictionary happened to list first. Its text is what a
+ * page shows, as plain text: a cross-reference is kept as the words it links,
+ * with no whitespace around the whole. Meta descriptions, JSON-LD and the RSS
+ * feed use it as it is.
+ *
+ * @param wordData - The word and its definitions, stored or as an adapter answered them
+ * @returns The primary definition, or null when the word has nothing displayable
+ */
+export function findValidDefinition(wordData: Pick<WordData, 'word' | 'data'>): { text: string; partOfSpeech: string } | null {
+  const [definition] = getWordDefinitions(wordData).definitions;
   if (!definition) {
     return null;
   }
@@ -173,13 +212,13 @@ export function findValidDefinition(definitions: DictionaryDefinition[]): { text
 }
 
 /**
- * A word's first displayable definition, its part of speech, and the source
- * the definition came from, read from the stored record alone: which adapter
- * wrote the record does not matter. Empty when nothing is displayable, as for
- * a word without data.
+ * A word's primary definition (see findValidDefinition), its part of speech,
+ * and the source the definition came from, read from the stored record alone:
+ * which adapter wrote the record does not matter. Empty when nothing is
+ * displayable, as for a word without data.
  */
 export const getWordDetails = (wordData: WordData): WordProcessedData => {
-  const [definition] = getDisplayableDefinitions(wordData?.data ?? []);
+  const [definition] = wordData?.data ? getWordDefinitions(wordData).definitions : [];
   if (!definition) {
     return { partOfSpeech: '', definition: '', meta: null };
   }
@@ -190,36 +229,6 @@ export const getWordDetails = (wordData: WordData): WordProcessedData => {
     definition: getDefinitionPlainText(definition),
     meta: { attributionText, sourceDictionary, sourceUrl },
   };
-};
-
-interface WordDefinitions {
-  definitions: DisplayableDefinition[];
-  /** True when the word has no definition of its own and the first displayable one stands in for it. */
-  standIn: boolean;
-}
-
-/**
- * The one rule for which displayable definitions are a word's own. The senses
- * its page shows (getWordSenses) and the parts of speech it is grouped, browsed
- * and counted under (getWordPartsOfSpeech) both read it, so a word is never
- * listed under a part of speech its own page does not show.
- *
- * A lookup returns compound and derived entries with the headword: "happy
- * hour", a noun, comes back with "happy", and "read", a verb, with "reading".
- * Their `id` differs from the headword, so they are left out. Homographs share
- * the headword's `id` and stay, as does a definition with no `id`.
- *
- * When no displayable definition is the word's own ("indices" is stored under
- * "index"), the first displayable one stands in for it, so a word with
- * anything displayable keeps one definition and its part of speech.
- */
-const getWordDefinitions = (wordData: WordData): WordDefinitions => {
-  const displayable = getDisplayableDefinitions(wordData.data);
-  const wordSlug = slugify(wordData.word);
-  const own = displayable.filter(def => !def.id || slugify(def.id) === wordSlug);
-  return own.length > 0
-    ? { definitions: own, standIn: false }
-    : { definitions: displayable.slice(0, 1), standIn: true };
 };
 
 /**

@@ -38,6 +38,10 @@ const LEGACY_POS_MAP: Readonly<Record<string, BasePartOfSpeech>> = {
   'exclamation': 'interjection',
 };
 
+// Older Wordnik records stored American Heritage sense IDs as entry headwords.
+// Strip only that observed format; canonical headwords must survive migration.
+const LEGACY_WORDNIK_SENSE_ID = /^[A-Z]\d{7}-\d+$/;
+
 const fail = (message: string, filePath: string): never => {
   throw new Error(`${message} in ${filePath}`);
 };
@@ -115,7 +119,7 @@ const classification = (
   return {};
 };
 
-const normalizeDefinition = (value: unknown, filePath: string): DictionaryDefinition => {
+const normalizeDefinition = (value: unknown, filePath: string, isWordnik: boolean): DictionaryDefinition => {
   if (!isRecord(value)) {
     return fail('Invalid definition', filePath);
   }
@@ -164,7 +168,8 @@ const normalizeDefinition = (value: unknown, filePath: string): DictionaryDefini
     return fail('Definition has both part of speech and label', filePath);
   }
 
-  const id = optionalString(value.id, 'definition id', filePath);
+  const storedId = optionalString(value.id, 'definition id', filePath);
+  const id = isWordnik && storedId && LEGACY_WORDNIK_SENSE_ID.test(storedId) ? undefined : storedId;
   const attributionText = optionalString(value.attributionText, 'attribution text', filePath);
   const sourceDictionary = optionalString(value.sourceDictionary, 'source dictionary', filePath);
   const sourceUrl = optionalString(value.sourceUrl, 'source URL', filePath);
@@ -218,7 +223,7 @@ export function normalizeWordData(value: unknown, filePath: string): NormalizedW
     return fail('Invalid word enrichment', filePath);
   }
 
-  const data = value.data.map(definition => normalizeDefinition(definition, filePath));
+  const data = value.data.map(definition => normalizeDefinition(definition, filePath, value.adapter === 'wordnik'));
   const word: WordData = {
     word: value.word,
     date: value.date,

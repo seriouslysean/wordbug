@@ -18,6 +18,7 @@ export interface WordnikTextPron {
 }
 
 export interface WordnikDefinition {
+  // A sense identifier (`C5067000-1`), not an entry's headword: never read
   id?: string;
   partOfSpeech?: string;
   attributionText?: string;

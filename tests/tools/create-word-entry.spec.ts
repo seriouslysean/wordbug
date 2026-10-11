@@ -89,6 +89,22 @@ describe('createWordEntry stored output', () => {
 
     expect(ctx.getWordRelations).toHaveBeenCalledWith('japan', expect.anything());
   });
+
+  // A lookup can list another entry ahead of the word's own ("happy hour"
+  // with "happy"): the relations follow the part of speech the word's page
+  // opens with, not that entry's
+  it("focuses WordNet on the part of speech of the word's own entry, not of one listed before it", async () => {
+    const [, speedVerb] = JSON.parse(fs.readFileSync(
+      path.join(import.meta.dirname, '..', 'adapters', 'fixtures', 'merriam-webster', 'speed.json'),
+      'utf-8',
+    ));
+    ctx.fetch.mockResolvedValue(new Response(JSON.stringify([speedVerb, ...FIXTURE]), { status: 200, statusText: 'OK' }));
+
+    const stored = await createEntry('serendipity');
+
+    expect(stored.data.map((definition: { id: string }) => definition.id)).toEqual(['speed', 'speed', 'serendipity']);
+    expect(ctx.getWordRelations).toHaveBeenCalledWith('serendipity', 'noun');
+  });
 });
 
 // The site builds every .json file below the words directory on the date it

@@ -17,9 +17,10 @@ interface Props {
   word?: WordSchemaData;
   structuredDataType?: StructuredDataType;
   itemCount?: number;
+  errorPage?: boolean;
 }
 
-const { word, structuredDataType, itemCount } = Astro.props;
+const { word, structuredDataType, itemCount, errorPage = false } = Astro.props;
 
 const websiteSchema = getWebsiteSchemaData();
 
@@ -40,10 +41,14 @@ if (structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE && word) {
   schemas.push(collectionSchema);
 }
 
-const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, BASE_PATH, word?.word);
-const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs);
-if (breadcrumbSchema) {
-  schemas.push(breadcrumbSchema);
+// A breadcrumb trail ends at the page's own URL, which an error page lacks:
+// it is served at whatever URL was not found
+if (!errorPage) {
+  const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, BASE_PATH, word?.word);
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs);
+  if (breadcrumbSchema) {
+    schemas.push(breadcrumbSchema);
+  }
 }
 ---
 

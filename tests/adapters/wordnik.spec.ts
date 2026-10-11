@@ -102,11 +102,11 @@ describe('wordnik adapter', () => {
 
     it('keeps an unmappable POS, as Wordnik gave it, as the label', async () => {
       const { wordnikAdapter } = await import('#adapters/wordnik');
-      const defs = [{ id: '1', text: 'An affix', partOfSpeech: 'affix', attributionText: 'test' }];
+      const defs = [{ text: 'An affix', partOfSpeech: 'affix', attributionText: 'test' }];
       fetchMock.mockResolvedValueOnce(mockResponse(200, defs));
 
       const result = await wordnikAdapter.fetchWordData('un');
-      expect(result.definitions).toStrictEqual([{ id: '1', label: 'affix', text: 'An affix', attributionText: 'test' }]);
+      expect(result.definitions).toStrictEqual([{ label: 'affix', text: 'An affix', attributionText: 'test' }]);
     });
   });
 
@@ -162,6 +162,24 @@ describe('wordnik adapter', () => {
         meta: { source: 'Wordnik', attribution: ahd, url: sourceUrl },
         headword: { pronunciation: 'brāk' },
       });
+    });
+
+    // The canonical `id` is the headword of a definition's entry, which a page
+    // compares with the word. Wordnik's is a sense identifier: stored, it took
+    // the definition off its own word's page.
+    it("leaves out Wordnik's id, which names a sense and not an entry's headword", async () => {
+      const { wordnikAdapter } = await import('#adapters/wordnik');
+      const defs = [
+        { id: 'C5067000-1', text: 'A small piece of candy.', partOfSpeech: 'noun', sourceDictionary: 'ahd-5' },
+        { text: 'A confection of sugar and corn syrup.', partOfSpeech: 'noun', sourceDictionary: 'wiktionary' },
+      ];
+      fetchMock.mockResolvedValueOnce(mockResponse(200, defs));
+
+      const result = await wordnikAdapter.fetchWordData('candy corn');
+      expect(result.definitions).toStrictEqual([
+        { partOfSpeech: 'noun', text: 'A small piece of candy.', sourceDictionary: 'ahd-5' },
+        { partOfSpeech: 'noun', text: 'A confection of sugar and corn syrup.', sourceDictionary: 'wiktionary' },
+      ]);
     });
 
     it('reads cross-references out of the text as ranges of it', async () => {
@@ -328,6 +346,8 @@ describe('wordnik adapter', () => {
       expect(isWordnikDefinitions([{ relatedWords: [{ relationshipType: 'synonym', words: ['luck'] }, {}], textProns: [{ raw: 'x', rawType: 'ahd-5', seq: 0 }, {}] }])).toBe(true);
       expect(isWordnikDefinitions([{}])).toBe(true);
       expect(isWordnikDefinitions([])).toBe(true);
+      // The adapter never reads `id`, so its type is not the guard's to refuse
+      expect(isWordnikDefinitions([{ id: 1 }])).toBe(true);
     });
 
     it('rejects non-arrays and malformed definitions', async () => {
@@ -335,7 +355,6 @@ describe('wordnik adapter', () => {
       expect(isWordnikDefinitions({ message: 'error' })).toBe(false);
       expect(isWordnikDefinitions(null)).toBe(false);
       expect(isWordnikDefinitions([null])).toBe(false);
-      expect(isWordnikDefinitions([{ id: 1 }])).toBe(false);
       expect(isWordnikDefinitions([{ partOfSpeech: 1 }])).toBe(false);
       expect(isWordnikDefinitions([{ text: 1 }])).toBe(false);
       expect(isWordnikDefinitions([{ text: ['a', 1] }])).toBe(false);

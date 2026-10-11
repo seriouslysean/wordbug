@@ -68,15 +68,16 @@ export async function getWordsFromCollection(): Promise<WordData[]> {
 }
 
 /**
- * Shared utility to extract definition and part of speech from word data
- * Handles the array structure of word.data consistently across components
+ * A word's primary definition and its part of speech (findValidDefinition),
+ * for meta descriptions, JSON-LD and the RSS feed. Empty strings when the
+ * word has nothing displayable.
  */
 export function extractWordDefinition(wordData: WordData): { definition: string; partOfSpeech: string } {
   if (!wordData?.data) {
     return { definition: '', partOfSpeech: '' };
   }
 
-  const validDefinition = findValidDefinition(wordData.data);
+  const validDefinition = findValidDefinition(wordData);
 
   if (validDefinition) {
     return {

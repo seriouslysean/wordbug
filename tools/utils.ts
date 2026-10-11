@@ -562,13 +562,15 @@ export function buildWordData(params: {
 }
 
 /**
- * The headword's primary part of speech (that of its first displayable
- * definition), normalized to a base type, used to focus WordNet relations on
- * the dominant sense. Undefined when no definition carries a usable POS, in
- * which case all senses are considered.
+ * The headword's primary part of speech (that of its primary definition, the
+ * first of its own: findValidDefinition), normalized to a base type, used to
+ * focus WordNet relations on the dominant sense. A compound the dictionary
+ * lists first ("happy hour", a noun, with "happy") does not decide it.
+ * Undefined when no definition carries a usable POS, in which case all senses
+ * are considered.
  */
-export function primaryPartOfSpeech(definitions: DictionaryResponse['definitions']): string | undefined {
-  return findValidDefinition(definitions)?.partOfSpeech;
+export function primaryPartOfSpeech(response: DictionaryResponse): string | undefined {
+  return findValidDefinition({ word: response.word, data: response.definitions })?.partOfSpeech;
 }
 
 /**
@@ -633,7 +635,7 @@ export async function createWordEntry(word: string, options: CreateWordEntryOpti
   // Fetch word data using finalWord (lowercased by default) so common words match
   // dictionary entries. When preserveCase is true, original capitalization is retained.
   const { response, adapterName } = await fetchWithFallback(finalWord);
-  const relations = await tryFetchRelations(finalWord, primaryPartOfSpeech(response.definitions));
+  const relations = await tryFetchRelations(finalWord, primaryPartOfSpeech(response));
   const wordData = buildWordData({ word: finalWord, date, adapterName, response, relations, preserveCase });
 
   fs.writeFileSync(filePath, JSON.stringify(wordData, null, 4));

@@ -157,7 +157,9 @@ export function classifyPartOfSpeech(
 /**
  * A definition as an adapter has read it from its partner: the plain text,
  * the raw part-of-speech term, and whatever optional values the partner
- * supplied, which may be missing, blank or empty.
+ * supplied, which may be missing, blank or empty. `id` is the headword of the
+ * partner's entry, as the contract defines it, and is left out when the
+ * partner's own `id` is anything else.
  */
 export interface DefinitionSource {
   text: string;
@@ -279,7 +281,10 @@ const isCanonicalHeadword = (value: unknown): value is NonNullable<DictionaryRes
  * fetchWithFallback applies it once to every adapter's answer, before asking
  * whether any definition is displayable, and refuses the whole response on
  * any violation: dropping only the offending definition would hide a partner
- * API that changed.
+ * API that changed. One rule is beyond it: a definition's `id` is the headword
+ * of its entry (types/common.ts), and the guard can only see that it is a
+ * nonblank string, which a partner's own identifier is too. Each adapter's
+ * spec holds its `id` to the meaning.
  */
 export const isCanonicalResponse = (value: unknown, word: string): value is DictionaryResponse =>
   isRecord(value)

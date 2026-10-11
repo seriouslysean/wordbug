@@ -52,6 +52,29 @@ test.describe('SEO build output', () => {
 		expect(new URL(canonical).pathname).toBe(servedPath);
 	});
 
+	test('the not-found page names no URL of its own', async ({ page }) => {
+		// The host sends this page for whatever URL was missing, so a canonical
+		// link, og:url or breadcrumb trail would name a URL the page is not at
+		const response = await page.goto('/this-page-does-not-exist/');
+		expect(response?.status()).toBe(404);
+
+		const countBreadcrumbTrails = async () => {
+			const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
+			return blocks.filter(block => JSON.parse(block)['@type'] === 'BreadcrumbList').length;
+		};
+
+		await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+		await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+		await expect(page.locator('meta[property="og:url"]')).toHaveCount(0);
+		expect(await countBreadcrumbTrails()).toBe(0);
+
+		// The same checks find all three on a page that has a URL
+		await page.locator('footer a[href="/stats/"]').click();
+		await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+		await expect(page.locator('meta[property="og:url"]')).toHaveCount(1);
+		expect(await countBreadcrumbTrails()).toBe(1);
+	});
+
 	test('structured data is present', async ({ page }) => {
 		await page.goto('/');
 

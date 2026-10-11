@@ -361,6 +361,16 @@ describe('page-metadata-utils', () => {
       expect(getPageTitle('/browse/part-of-speech/noun')).toBe('Noun');
     });
 
+    it('returns Unknown Page for an unsupported part of speech', () => {
+      expect(getPageTitle('/browse/part-of-speech/idiom')).toBe('Unknown Page');
+      expect(getPageMetadata('/browse/part-of-speech/idiom', mockWords)).toEqual({
+        title: 'Unknown Page',
+        description: '',
+        category: 'unknown',
+        secondaryText: undefined,
+      });
+    });
+
     it('returns Unknown Page for a month path with an unknown month slug', () => {
       expect(getPageTitle('/browse/2024/notamonth')).toBe('Unknown Page');
     });

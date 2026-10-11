@@ -1,6 +1,6 @@
 import { BASE_PATH, SITE_URL } from 'astro:env/client';
 import { BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
-import { isPathUnderBase, withoutTrailingSlash, withTrailingSlash } from '#utils/url-utils';
+import { isPathUnderBase, joinBasePath, withoutTrailingSlash } from '#utils/url-utils';
 
 // =====================================================
 // URL Slug Utilities
@@ -45,54 +45,34 @@ export const getPathname = (astroPathname: string): string => {
 
 /**
  * Construct the URL a page or file is served at, with the configured base path
- * @param path - Route or file path to append to base path, or a pathname
- * that already carries it (Astro.url.pathname). A path only: a query string
- * or fragment would be read as part of the last segment
+ * @param route - Route ('/stats') or file path ('/rss.xml') from the site
+ * root. Never a pathname that already carries the base path: the base is
+ * always added, since a route can begin with the base's own segment
+ * ('/word/calm' under BASE_PATH=/word). Read Astro.url.pathname back to its
+ * route with getPathname() or stripBasePath() first. A query string or
+ * fragment is kept, after the slash ('/stats#top' is '/blog/stats/#top')
  * @returns URL path with base path: a page ends in a slash ('/blog/stats/'),
  * a file does not ('/blog/rss.xml'), and the site root is '/blog/'
  */
-export const getUrl = (path = '/'): string => {
-  const basePath = getBasePath();
-
-  if (basePath === '/') {
-    return withTrailingSlash(path);
-  }
-
-  // Normalize base path (remove trailing slash)
-  const cleanBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
-
-  // The base path itself is the site root: a directory, even when its name
-  // has a dot in it ('/my.site')
-  if (path === cleanBasePath) {
-    return `${cleanBasePath}/`;
-  }
-
-  // Check if path already includes base path
-  if (isPathUnderBase(path, cleanBasePath)) {
-    return withTrailingSlash(path);
-  }
-
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  return withTrailingSlash(cleanBasePath + normalizedPath);
-};
+export const getUrl = (route = '/'): string => joinBasePath(route, getBasePath());
 
 /**
  * Get a normalized full URL including site URL and path
  * Uses the URL constructor for robust URL handling
- * @param path - Path to append to site URL (with or without BASE_PATH)
+ * @param route - Route or file path from the site root, as getUrl() takes it
  * @returns Absolute URL
  */
-export const getFullUrl = (path = '/'): string => {
+export const getFullUrl = (route = '/'): string => {
   if (!SITE_URL) {
     throw new Error('SITE_URL environment variable is required but missing');
   }
 
   try {
-    const relativePath = getUrl(path);
+    const relativePath = getUrl(route);
     const url = new URL(relativePath, SITE_URL);
     return url.toString();
   } catch (error) {
-    throw new Error(`Failed to construct URL for path: ${path}`, { cause: error });
+    throw new Error(`Failed to construct URL for path: ${route}`, { cause: error });
   }
 };
 

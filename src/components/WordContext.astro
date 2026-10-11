@@ -66,7 +66,7 @@ const {
         <WordList words={relatedByLetter} limit={3} compact />
       </div>
     )}
-    {partOfSpeech && partOfSpeechCount && relatedByPartOfSpeech.length > 0 && (
+    {partOfSpeech && partOfSpeechCount !== undefined && relatedByPartOfSpeech.length > 0 && (
       <div class="word-context__cell">
         <SiteLink
           href={getPartOfSpeechUrl(partOfSpeech)}

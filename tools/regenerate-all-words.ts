@@ -85,7 +85,7 @@ export async function regenerateWordFile(word: string, date: string, originalPat
     }
 
     const { response, adapterName } = await fetchWithFallback(word);
-    const relations = await tryFetchRelations(word, primaryPartOfSpeech(response.definitions));
+    const relations = await tryFetchRelations(word, primaryPartOfSpeech(response));
     const { preserveCase, enrichment: storedEnrichment } = readStoredEntry(originalPath);
     const wordData = buildWordData({
       // Keep original casing for preserveCase words; backfill must not lowercase them.

@@ -44,3 +44,6 @@ export interface DictionaryAdapter {
 // and the site renders stored records from their data alone (see
 // toDefinitionSegments in utils/definition-text.ts), never through the adapter
 // that wrote them. Stored records use this same canonical definition shape.
+// So a field means the same thing from every adapter: a definition's `id` is
+// its entry's headword (DictionaryDefinitionFields in types/common.ts), and an
+// adapter whose partner uses the name for something else omits it.

@@ -89,7 +89,6 @@ const isTextProns = (value: unknown): value is NonNullable<WordnikDefinition['te
  */
 const isWordnikDefinition = (value: unknown): value is WordnikDefinition =>
   isRecord(value)
-  && isOptional(value.id, isString)
   && isOptional(value.partOfSpeech, isString)
   && isOptional(value.text, (text): text is string | string[] => isString(text) || isStringArray(text))
   && isOptional(value.attributionText, isString)
@@ -166,8 +165,10 @@ export const wordnikAdapter: DictionaryAdapter = {
       // Wordnik marks cross-references up inside the text; the contract has
       // plain text and the references as ranges of it
       const { text, references } = parseDefinitionMarkup(markup);
+      // No `id`: the contract's is the headword of the definition's entry, and
+      // Wordnik's names a sense (`C5067000-1`). Passed on, it reads as another
+      // entry's headword and takes the definition off the word's own page.
       return buildDefinition({
-        id: def.id,
         partOfSpeech: def.partOfSpeech,
         text,
         references,

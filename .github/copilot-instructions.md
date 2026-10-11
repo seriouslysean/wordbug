@@ -48,7 +48,7 @@ export const getWordsByLength = (length: number, words = allWords) => pure(lengt
 
 ## Adapters
 
-- Adapters own vocabulary, not behaviour. Each translates its partner's terms into the canonical contract (`DictionaryResponse`, `DictionaryDefinition`): a vocabulary part of speech or the raw term as `label`, text as one plain string with cross-references as `references` ranges, empty optional fields omitted. An adapter only fetches: pages render stored records without it. Retries, query case, fallback and input handling belong with the caller; an adapter looks up exactly the word it is given.
+- Adapters own vocabulary, not behaviour. Each translates its partner's terms into the canonical contract (`DictionaryResponse`, `DictionaryDefinition`): a vocabulary part of speech or the raw term as `label`, text as one plain string with cross-references as `references` ranges, `id` as the headword of the definition's entry (never the partner's own identifier), empty optional fields omitted. An adapter only fetches: pages render stored records without it. Retries, query case, fallback and input handling belong with the caller; an adapter looks up exactly the word it is given.
 - The contract is enforced, not trusted: `fetchWithFallback()` checks every answer with `isCanonicalResponse()` (`utils/adapter-utils.ts`) and refuses a broken one whole, so the chain moves on and the fault is reported. Of the responses adapters return, only one whose definition list the partner sent empty is not found; every other is held to the guard. An answer listing only blank definitions, or lacking a documented field on every entry, is an unexpected shape.
 - `tests/adapters/contract.spec.ts` holds every registered adapter to the same guard: a fixture directory `tests/adapters/fixtures/<adapter name>/` with at least one successful response, each coming out canonical with a displayable definition.
 - Shared translation lives in `utils/adapter-utils.ts` (`buildDefinition()`, `buildDictionaryResponse()`); the registry in `adapters/index.ts` dispatches by name.
@@ -79,7 +79,7 @@ TypeScript aliases (`#utils`, `#astro-utils`, `#types`, `#constants`, `#config`,
 
 - Environment validation and CSP live in `astro.config.ts`. Dynamic inline content that cannot be auto-hashed goes in a same-origin endpoint (`src/pages/theme.css.ts`, `src/pages/ga-init.js.ts`), not inline `<style set:html>`, `<script is:inline>`, or `define:vars`.
 - Stats definitions live in `constants/stats.ts`, URL patterns in `constants/urls.ts`.
-- URLs: `getUrl(path)` for internal navigation (adds `BASE_PATH`), `getFullUrl(path)` for absolute SEO and social URLs. Never hardcode paths. Pass a route without a trailing slash (`/stats`); the helpers end a page URL in one (`/stats/`) and leave a file URL (`/rss.xml`) without. `Astro.url.pathname` ends in a slash: read it through `getPathname()` or `stripBasePath()`.
+- URLs: `getUrl(path)` for internal navigation (adds `BASE_PATH`), `getFullUrl(path)` for absolute SEO and social URLs. Never hardcode paths. Pass a route without a trailing slash (`/stats`); the helpers end a page URL in one (`/stats/`) and leave a file URL (`/rss.xml`) without. `Astro.url.pathname` ends in a slash and already carries `BASE_PATH`: read it through `getPathname()` or `stripBasePath()`, and never pass it to `getUrl()` or `getFullUrl()`, which take a route and always add the base.
 
 ## Error Handling
 

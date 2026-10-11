@@ -1,4 +1,4 @@
-import { BASE_PARTS_OF_SPEECH } from '#constants/parts-of-speech';
+import { BASE_PARTS_OF_SPEECH, isBasePartOfSpeech } from '#constants/parts-of-speech';
 import { URL_PATTERNS, BASE_PATHS, BROWSE_PATHS, ROUTES, STATS_SLUGS } from '#constants/urls';
 
 import type { WordData } from '#types';
@@ -163,28 +163,24 @@ function createPageMetadata(stats: PrecomputedStats): Record<string, PageMeta> {
       title: t('stats.word_facts_heading'),
       description: t('stats.word_facts_description'),
       category: 'pages',
-      secondaryText: t('stats.word_facts_subheading'),
     },
     [ROUTES.STAT(STATS_SLUGS.STREAKS)]: {
       type: 'static',
       title: t('stats.streaks_index_heading'),
       description: t('stats.streaks_index_description'),
       category: 'pages',
-      secondaryText: t('stats.streaks_index_subheading'),
     },
     [ROUTES.STAT(STATS_SLUGS.LETTER_PATTERNS)]: {
       type: 'static',
       title: t('stats.letter_patterns_index_heading'),
       description: t('stats.letter_patterns_index_description'),
       category: 'pages',
-      secondaryText: t('stats.letter_patterns_index_subheading'),
     },
     [ROUTES.STAT(STATS_SLUGS.WORD_ENDINGS)]: {
       type: 'static',
       title: t('stats.word_endings_index_heading'),
       description: t('stats.word_endings_index_description'),
       category: 'pages',
-      secondaryText: t('stats.word_endings_index_subheading'),
     },
     [ROUTES.STAT(STATS_SLUGS.PARTS_OF_SPEECH)]: {
       type: 'static',
@@ -489,7 +485,7 @@ export function getPageTitle(path: string): string {
   }
 
   const partOfSpeechMatch = path.match(URL_PATTERNS.PART_OF_SPEECH_PAGE);
-  if (partOfSpeechMatch && partOfSpeechMatch[1]) {
+  if (partOfSpeechMatch && partOfSpeechMatch[1] && isBasePartOfSpeech(partOfSpeechMatch[1])) {
     return t(`parts_of_speech.${partOfSpeechMatch[1]}`);
   }
 
@@ -595,7 +591,7 @@ function getPageMetadataForMap(
 
   // Handle dynamic part-of-speech pages
   const partOfSpeechMatch = path.match(URL_PATTERNS.PART_OF_SPEECH_PAGE);
-  if (partOfSpeechMatch && partOfSpeechMatch[1]) {
+  if (partOfSpeechMatch && partOfSpeechMatch[1] && isBasePartOfSpeech(partOfSpeechMatch[1])) {
     const partOfSpeech = partOfSpeechMatch[1];
     const wordsOfPartOfSpeech = getWordsByPartOfSpeech(partOfSpeech, words);
     const displayName = t(`parts_of_speech.${partOfSpeech}`);

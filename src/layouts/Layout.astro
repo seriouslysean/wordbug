@@ -14,7 +14,7 @@ import { getSocialImageUrl } from '#astro-utils/image-utils';
 import { STRUCTURED_DATA_TYPE, type StructuredDataType } from '#astro-utils/schema-utils';
 import { getMetaDescription, seoConfig } from '#astro-utils/seo-utils';
 import { getAsciiArt } from '#astro-utils/static-file-utils';
-import { getFullUrl,getUrl } from '#astro-utils/url-utils';
+import { getFullUrl, getUrl, stripBasePath } from '#astro-utils/url-utils';
 import { extractWordDefinition } from '#astro-utils/word-data-utils';
 import { getOpenGraphLocale, t } from '#utils/i18n-utils';
 import { formatPageTitle } from '#utils/page-title-utils';
@@ -27,14 +27,19 @@ interface Props {
   structuredDataType?: StructuredDataType;
   noindex?: boolean;
   nofollow?: boolean;
+  errorPage?: boolean;
   itemCount?: number;
 }
 
-const { title, word, description, structuredDataType, noindex, nofollow, itemCount } = Astro.props;
+const { title, word, description, structuredDataType, noindex, nofollow, errorPage = false, itemCount } = Astro.props;
 
 const ogType = structuredDataType === STRUCTURED_DATA_TYPE.WORD_SINGLE ? 'article' : 'website';
 
-const currentUrl = getFullUrl(Astro.url.pathname);
+// An error page is served at whatever URL was not found, so it has no URL of
+// its own to name: no canonical link, no og:url, no breadcrumb trail in
+// JSON-LD. For every other page the pathname already carries the base path
+// and getFullUrl() adds it to a route, so it is read back to its route first
+const currentUrl = errorPage ? undefined : getFullUrl(stripBasePath(Astro.url.pathname));
 const metaDescription = description || getMetaDescription();
 
 const wordData = word || null;
@@ -91,7 +96,7 @@ const wordSchemaData = word ? (() => {
 		{noindex || nofollow ? (
 			<meta name="robots" content={[noindex && 'noindex', nofollow && 'nofollow'].filter(Boolean).join(', ')} />
 		) : null}
-		<link rel="canonical" href={currentUrl} />
+		{currentUrl && <link rel="canonical" href={currentUrl} />}
 
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="theme-color" content={COLOR_PRIMARY} media="(prefers-color-scheme: light)" />
@@ -111,7 +116,7 @@ const wordSchemaData = word ? (() => {
 		<meta property="og:title" content={finalTitle} />
 		<meta property="og:description" content={metaDescription} />
 		<meta property="og:type" content={ogType} />
-		<meta property="og:url" content={currentUrl} />
+		{currentUrl && <meta property="og:url" content={currentUrl} />}
 		<meta property="og:image" content={socialImageUrl} />
 		<meta property="og:site_name" content={seoConfig.siteName} />
 		{ogLocale && <meta property="og:locale" content={ogLocale} />}
@@ -121,7 +126,7 @@ const wordSchemaData = word ? (() => {
 		<meta name="twitter:description" content={metaDescription} />
 		<meta name="twitter:image" content={socialImageUrl} />
 
-		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} />
+		<StructuredData word={wordSchemaData} structuredDataType={structuredDataType} itemCount={itemCount} errorPage={errorPage} />
 
 		{GA_ENABLED && GA_MEASUREMENT_ID && (
 			<>
