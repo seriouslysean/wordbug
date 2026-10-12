@@ -4,8 +4,8 @@ import { generateStatsStaticPaths } from '#astro-utils/static-paths-utils';
 
 describe('src/utils/static-paths-utils', () => {
   describe('generateStatsStaticPaths', () => {
-    it('pairs every props type with the matching words shape', async () => {
-      const paths = await generateStatsStaticPaths();
+    it('pairs every props type with the matching words shape', () => {
+      const paths = generateStatsStaticPaths();
       const types = new Set(paths.map(({ props }) => props.type));
 
       expect(types).toEqual(new Set(['word-list', 'milestone']));
@@ -15,8 +15,8 @@ describe('src/utils/static-paths-utils', () => {
       }
     });
 
-    it('builds the milestone pages from labelled words', async () => {
-      const paths = await generateStatsStaticPaths();
+    it('builds the milestone pages from labelled words', () => {
+      const paths = generateStatsStaticPaths();
       const milestones = paths.find(({ params }) => params.stat === 'milestone-words');
 
       expect(milestones?.props.type).toBe('milestone');

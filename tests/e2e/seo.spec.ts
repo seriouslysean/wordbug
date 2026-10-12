@@ -75,6 +75,53 @@ test.describe('SEO build output', () => {
 		expect(await countBreadcrumbTrails()).toBe(1);
 	});
 
+	test('home, word, stats, browse and 404 pages carry the view transition opt-in inline', async ({ page }) => {
+		// The build inlines the rule only while its chunk stays split out and
+		// small (astro.config.ts, codeSplitting); nothing fails when it slips
+		// back into the external stylesheet. The policy is a <meta>, which only
+		// governs what follows it, so a rule the browser parsed from a <style>
+		// after it is one the policy allowed: an unhashed <style is:inline>
+		// written in the layout lands before the <meta> and would only seem to
+		// work. This checks where the rule is, not that a transition runs
+		// (docs/technical.md, Coverage)
+		const findOptIn = () => page.evaluate(() => {
+			const hasOptIn = (sheet: CSSStyleSheet) =>
+				[...sheet.cssRules].some(rule => rule.cssText.startsWith('@view-transition'));
+			const policy = document.head.querySelector('meta[http-equiv="content-security-policy"]');
+			const followsPolicy = (node: Node) => policy !== null
+				&& (policy.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0;
+			const sheets = [...document.styleSheets].filter(hasOptIn).map(sheet => sheet.ownerNode);
+			return {
+				inlineInHeadUnderPolicy: sheets.filter(node => node instanceof HTMLStyleElement
+					&& node.closest('head') !== null && followsPolicy(node)).length,
+				external: sheets.filter(node => node instanceof HTMLLinkElement).length,
+			};
+		});
+		const expectInlineOptIn = async () => {
+			await expect(page.locator('#main-content')).toBeVisible();
+			expect(await findOptIn()).toEqual({ inlineInHeadUnderPolicy: 1, external: 0 });
+		};
+
+		await page.goto('/');
+		await expectInlineOptIn();
+
+		await page.locator('.past-words a.word-link').first().click();
+		await expect(page).toHaveURL(/\/word\//);
+		await expectInlineOptIn();
+
+		await page.locator('footer a[href="/stats/"]').click();
+		await expect(page).toHaveURL(/\/stats\/$/);
+		await expectInlineOptIn();
+
+		await page.locator('footer a[href="/browse/"]').click();
+		await expect(page).toHaveURL(/\/browse\/$/);
+		await expectInlineOptIn();
+
+		const response = await page.goto('/this-page-does-not-exist/');
+		expect(response?.status()).toBe(404);
+		await expectInlineOptIn();
+	});
+
 	test('structured data is present', async ({ page }) => {
 		await page.goto('/');
 

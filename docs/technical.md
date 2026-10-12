@@ -46,13 +46,11 @@ utils/                           # Pure Node.js utilities (29 files)
 
 tools/                           # CLI tools (Node.js only, no Astro deps)
   add-word.ts                    # Add new words with validation
-  create-site.ts                 # Scaffold a site repository for the reusable workflows
   generate-images.ts             # Social image generation (consolidated)
   help-utils.ts                  # Shared help system
   normalize-word-data.ts         # Offline stored-data migration
   regenerate-all-words.ts        # Batch word data refresh
-  sync-upstream.sh               # Merge upstream into a fork, gated (tool:sync)
-  templates/site/                # Callers, Dependabot, README and .gitignore that create-site writes
+  sync-upstream.sh               # Merge upstream into a downstream site, gated (tool:sync)
   utils.ts                       # Shared tool utilities
   word-file-paths.ts             # Which files are word files: the content loader's rule
 
@@ -114,8 +112,8 @@ tests/
   actionlint.yaml                # actionlint configuration
   actions/setup-env/             # Composite action: repository variables and secrets into the job
   workflows/                     # CI: lint, typecheck, test, build, e2e; add-word; deploy
-    site-deploy.yml              # Reusable build and deploy that Deploy and each site repository call
-    site-add-word.yml            # Reusable Add Word that Add Word and each site repository call
+    site-deploy.yml              # Reusable build and deploy that Deploy calls
+    site-add-word.yml            # Reusable Add Word that Add Word calls
   copilot-instructions.md        # GitHub Copilot guidelines
   instructions/                  # Scoped Copilot instructions (review focus)
   pull_request_template.md       # PR body template
@@ -152,7 +150,7 @@ All environment variables are validated in `astro.config.ts` (single source of t
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `BASE_PATH` | `/` | Subdirectory for deployment |
+| `BASE_PATH` | `/` | Subdirectory for deployment (`/blog`). `astro.config.ts` adds a missing leading slash, so `blog` builds the same site |
 | `SITE_LOCALE` | `en-US` | BCP 47 locale: `<html lang>`, the feed and manifest language, and `og:locale` as `language_REGION` (`en_US`), left out when the locale names no region |
 
 ### Site Metadata
@@ -387,7 +385,7 @@ npm keeps any flag written before a bare `--` for itself, so a tool's flags alwa
 
 ### `add-word.ts`
 
-Adds a word with dictionary validation and duplicate detection. A word page's URL is `/word/<slug>/`, and `slugify()` keeps only ASCII letters, digits, underscores and hyphens, so add-word refuses a word whose slug is empty (`&`, `日本`: the page would be `/word/` itself) and a word whose slug a different stored word already has (`can't` beside `cant`: both would be `/word/cant/`). `create-site` refuses a seed word with an empty slug for the same reason. Only a new word is checked: the build and regenerate-all-words, which keeps each word's text, read stored words as they are. It does not render the social card: the Add Word workflow runs the complete image generation afterwards (see Image Generation).
+Adds a word with dictionary validation and duplicate detection. A word page's URL is `/word/<slug>/`, and `slugify()` keeps only ASCII letters, digits, underscores and hyphens, so add-word refuses a word whose slug is empty (`&`, `日本`: the page would be `/word/` itself) and a word whose slug a different stored word already has (`can't` beside `cant`: both would be `/word/cant/`). Only a new word is checked: the build and regenerate-all-words, which keeps each word's text, read stored words as they are. It does not render the social card: the Add Word workflow runs the complete image generation afterwards (see Image Generation).
 
 ```sh
 npm run tool:local tools/add-word.ts serendipity
@@ -412,16 +410,6 @@ npm run tool:local tools/generate-images.ts -- --force              # Regenerate
 ```
 
 A bulk run reads the corpus once. A word file that cannot be read, or is not valid word data, is logged and counted as a failure: its card and the pages it feeds would be missing, so the run exits 1 and does not certify the image cache. `--word` logs such a file and still draws the card of a word it finds; when it finds none and part of the data could not be read, it exits 1 without calling the word missing, since the word may be in what could not be read. `--page` draws nothing and exits 1, since a page title can depend on the corpus.
-
-### `create-site.ts`
-
-Writes a new site repository that holds only its content and calls Site Deploy and Site Add Word at one pinned engine release (Site Repositories, under Deployment).
-
-```sh
-npm run tool:create-site -- ../wordbee --engine-ref v3.23.0 --seed-file ~/20260918.json
-```
-
-The target must not exist or must be empty. `--engine-ref` must be a release tag (`vX.Y.Z`) or a full commit SHA, not a branch or a major tag like `v3`, which moves and would change the engine a site runs without a change in the site; only its form is checked. `--seed-file` is the site's first word, in the format `data/words` holds, and must pass `parseWordData` (`utils/stored-word-validation.ts`), the check the tools read word files with, and carry a real `YYYYMMDD` date. Everything is checked before anything is written. It writes the two caller workflows from `tools/templates/site/`, both pinned to the ref, `.github/dependabot.yml`, `README.md` with the repository settings to make, `.gitignore`, a copy of this repository's `.env.example` and `public/favicon.svg`, and the seed, byte for byte, at `data/words/YYYY/YYYYMMDD.json`. It runs no Git, install or network command; creating the repository and pushing are the owner's.
 
 ### `regenerate-all-words.ts`
 
@@ -578,7 +566,7 @@ The `isLogContext` type guard from `#types` validates the context argument befor
 
 **The `exit()` helper**: Always use `await exit(code)` instead of `process.exit()` in error handlers. `process.exit()` kills in-flight async work immediately, losing pending Sentry events. `exit()` flushes first.
 
-**Error level means fault**: only `logger.error` creates a Sentry event (`captureException` for an `Error`, otherwise `captureMessage` at level `error`); `warn`, `info` and `debug` only print. So CLI tools refuse operator input at `warn`: add-word's blank word, word with no URL slug or with the slug of a different stored word, malformed or future date, date or word already taken, and a word every adapter in the chain reported as not found; generate-images' `--word` that is not in the data and `--page` that is not a page; regenerate-all-words' malformed `--timeout`, `--batch-size` or `--batch-timeout`; create-site's missing or extra argument; and a command line any of them cannot parse all exit 1 with a warn-level message. Network failures, HTTP errors, unexpected response shapes, rate limits, unreadable word files and missing configuration log at `error`. A words directory that is missing or holds no word file (no year directory, or year directories with no word file in them, which a failed first add-word leaves since it makes the year directory before fetching) is not a fault to add-word's duplicate check, since a new site's first word has nothing to collide with, but generate-images (its `--word` and `--page` runs included) and regenerate-all-words, which need data, fail on it at `error`.
+**Error level means fault**: only `logger.error` creates a Sentry event (`captureException` for an `Error`, otherwise `captureMessage` at level `error`); `warn`, `info` and `debug` only print. So CLI tools refuse operator input at `warn`: add-word's blank word, word with no URL slug or with the slug of a different stored word, malformed or future date, date or word already taken, and a word every adapter in the chain reported as not found; generate-images' `--word` that is not in the data and `--page` that is not a page; regenerate-all-words' malformed `--timeout`, `--batch-size` or `--batch-timeout`; and a command line any of them cannot parse all exit 1 with a warn-level message. Network failures, HTTP errors, unexpected response shapes, rate limits, unreadable word files and missing configuration log at `error`. A words directory that is missing or holds no word file (no year directory, or year directories with no word file in them, which a failed first add-word leaves since it makes the year directory before fetching) is not a fault to add-word's duplicate check, since a new site's first word has nothing to collide with, but generate-images (its `--word` and `--page` runs included) and regenerate-all-words, which need data, fail on it at `error`.
 
 ## Statistics System
 
@@ -601,7 +589,7 @@ Definitions live in `constants/stats.ts`. Computation functions in `utils/word-s
 - **Typography**: Liberation Sans Regular + Bold (`tools/fonts/liberation-sans/`), gradient text with theme colors
 - **Settings**: `createSvg` draws the card text and `SITE_TITLE` on one line each, so any run of whitespace, line breaks included, becomes one space and the ends are trimmed. The gradient takes `COLOR_PRIMARY`, `COLOR_PRIMARY_LIGHT` and `COLOR_PRIMARY_DARK` as CSS hex colors (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`; surrounding whitespace ignored, empty means the default). Any other value, a named color included, stops the run before any image is written with an error naming the variable, since librsvg draws a malformed stop as black. `astro.config.ts` applies the same hex-color rule to the site's stylesheet settings.
 - **Output**: `public/{SOURCE_DIR}/images/social/2024/20240105-giggle.png` (word, lowercased, spaces and punctuation kept) and `public/{SOURCE_DIR}/images/social/pages/browse-2023-april.png` (page path flattened into one slug); the homepage and word pages use the word's card. The `SOURCE_DIR` segment is omitted when unset.
-- **One contract**: `utils/image-path-utils.ts` owns these paths. The generator writes them and `src/utils/image-utils.ts` links to them, so they cannot drift; the existing file names are the contract, since renaming a rule orphans every committed card upstream and downstream. The site emits absolute `og:image`/`twitter:image` URLs through `getFullUrl`, with each path segment passed through `encodeURI` plus `?` and `#`, so spaces become `%20` while `&` stays literal (`astro preview` decodes with `decodeURI`, which leaves `%26` undecoded; GitHub Pages serves both forms). `tests/architecture/social-images.spec.ts` checks the demo dataset and its cards under `public/demo/`, never a fork's own words: Vitest pins `SOURCE_DIR=demo`, so a fork running the suite checks the demo words and cards it merges from upstream. It fails if any emitted URL names an untracked card or any tracked card is unreferenced. Both sides of that check read the page list from `getAllPageMetadata`, so it cannot see a listed page that has no route; `tests/architecture/page-routes.spec.ts` resolves every metadata path against the files under `src/pages` (`index.astro` serves its directory, a `[param]` file or directory matches any segment that no literal file or directory at that level claims, `.ts` endpoints are not pages) and fails on any path with no page.
+- **One contract**: `utils/image-path-utils.ts` owns these paths. The generator writes them and `src/utils/image-utils.ts` links to them, so they cannot drift; the existing file names are the contract, since renaming a rule orphans every committed card upstream and downstream. The site emits absolute `og:image`/`twitter:image` URLs through `getFullUrl`, with each path segment passed through `encodeURI` plus `?` and `#`, so spaces become `%20` while `&` stays literal (`astro preview` decodes with `decodeURI`, which leaves `%26` undecoded; GitHub Pages serves both forms). `tests/architecture/social-images.spec.ts` checks the demo dataset and its cards under `public/demo/`, never a downstream site's own words: Vitest pins `SOURCE_DIR=demo`, so a site running the suite checks the demo words and cards it merges from upstream. It fails if any emitted URL names an untracked card or any tracked card is unreferenced. Both sides of that check read the page list from `getAllPageMetadata`, so it cannot see a listed page that has no route; `tests/architecture/page-routes.spec.ts` resolves every metadata path against the files under `src/pages` (`index.astro` serves its directory, a `[param]` file or directory matches any segment that no literal file or directory at that level claims, `.ts` endpoints are not pages) and fails on any path with no page.
 - **Skip guard**: `.image-settings-hash` (in the `social/` directory) is JSON with two parts. `settings` is an md5 fingerprint of what determines every image's bytes, inputs and renderer alike: three probe SVGs rendered through the real template (colors, site title, dimensions, layout, and, from a 45-letter probe wider than the card, the scaling that fits a long word), the PNG options, both font files, and `sharp.versions` (sharp, libvips and the libraries bundled with it), so a sharp upgrade that re-quantizes the palette invalidates the cache on its own. `cards` maps each card's path (relative to the images directory) to a short hash of its own inputs, the exact text and date passed to `createSvg`, because a card's text can change while its path does not: page titles such as the most and least common letter come from the corpus, and a word card's file name lowercases the word while the card shows it as stored. Each run reads the marker once. A card is rendered when the settings differ, its entry is missing or differs, or its file is missing; otherwise it is skipped. `--force` renders every card. A marker that is missing, not JSON, or the bare fingerprint older runs wrote leaves the settings unknown, so the next run renders every card once. The marker is written (cards sorted by path, so its diff shows only real changes) only by a run that covered all words and all pages with no failures, whether that was the default run or `--words --generic` together, so `--word`, `--page`, and `--words` or `--generic` alone never certify the corpus. That run records every card it saw, so entries for cards that no longer exist drop out. `npm run build` copies `public/` verbatim and never regenerates images.
 - **Demo cards and `SITE_TITLE`**: the site title is drawn on every card and is part of the settings fingerprint, and the cards committed under `public/demo/` carry `(Occasional) Word of the Day`: the `SITE_TITLE` in `.env.example`, and the title of the deployed demo site. A local run reproduces them only with that title: `SOURCE_DIR=demo SITE_TITLE="(Occasional) Word of the Day" npm run tool:generate-images`, or `SOURCE_DIR=demo npm run tool:local tools/generate-images.ts` with a `.env` copied from `.env.example`. Under any other title the settings differ and the run redraws every committed card. That includes no title at all, which is what the bare `tool:generate-images` gets when nothing sets one, and `Occasional Word of the Day`, the default `astro.config.ts` gives a build with no `.env`: the image tool does not read that default. Checked on one machine (macOS, the sharp `package-lock.json` pins) against the committed marker, `settings` `080f0a6067f2`: the example title computes that fingerprint and a forced render of one card gives the committed bytes; no title and the config default each compute another fingerprint and draw other bytes.
 - **CI**: the Add Word workflow runs the complete generation (`npm run tool:generate-images`) after adding a word, not `--word`. With a current marker that renders the new word's card and any page card whose title the new word changed, and skips the rest; after a settings, font or sharp change it regenerates every card once and commits them with the refreshed marker (`git add data/ public/` picks up both). A single-image run could never write the marker, so the skip guard would stay stale in CI forever.
@@ -662,17 +650,21 @@ Vitest thresholds: lines 80%, functions 80%, branches 85%, statements 80%.
 
 Excluded from Vitest coverage: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
 
-E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). Playwright starts its own foreground `astro preview --ignore-lock` on port 4517 (`PORT` in `playwright.config.ts`, `reuseExistingServer: false`), so the run always serves the current `dist/` and never reuses a server on Astro's default 4321. They verify build assembly — that the pipeline correctly assembled components into working pages — not logic (which unit and component tests cover). Five spec files organized by concern:
+E2E tests run against the built site via `npm run test:e2e` (requires `npm run build` first). Playwright starts its own foreground `astro preview --ignore-lock` on port 4517 (`PORT` in `playwright.config.ts`, `reuseExistingServer: false`), so the run always serves the current `dist/` and never reuses a server on Astro's default 4321. `E2E_PORT` moves it for a second run on the same machine: `E2E_PORT=4518 npm run test:e2e`. They verify build assembly — that the pipeline correctly assembled components into working pages — not logic (which unit and component tests cover). Five spec files organized by concern:
 
 - **`navigation.spec.ts`** — User journeys: discover a word and navigate between words, browse by year, footer section links, 404 handling
-- **`seo.spec.ts`** — Build output wiring: meta tags present (description, canonical, OpenGraph, Twitter), an internal link served without a redirect at the URL its canonical names, no canonical link, `og:url` or breadcrumb JSON-LD on the 404 page, JSON-LD parseable, RSS and sitemap discoverable
+- **`seo.spec.ts`** — Build output wiring: meta tags present (description, canonical, OpenGraph, Twitter), an internal link served without a redirect at the URL its canonical names, no canonical link, `og:url` or breadcrumb JSON-LD on the 404 page, JSON-LD parseable, RSS and sitemap discoverable, the view transition opt-in inline in `<head>` on each page family
 - **`accessibility.spec.ts`** — Structural a11y: skip-to-content keyboard flow, document language and viewport, image alt text, link accessible text, heading outline and named nav landmarks
 - **`search.spec.ts`** — Header search: opens from the icon, filters by starts-with, navigates to a result
 - **`stats.spec.ts`** — `/stats` visualizations: heatmap and connections graph present and navigable, no horizontal scroll
 
 E2E always runs in demo mode — the CI workflow skips `setup-env` and explicitly sets `SOURCE_DIR=demo` (no `BASE_PATH`) so production env vars don't break test selectors. Every page URL in a test ends in a trailing slash (`trailingSlash: 'always'`): `page.goto('/stats/')`, `a[href="/stats/"]`. `astro preview` answers the slashless form with a 404, not the redirect a static host gives. File URLs (`/rss.xml`, `/sitemap-index.xml`) have none.
 
-**Do not assert a view transition in E2E.** `astro preview` is Vite's preview server, which sends `Cache-Control: no-cache` with every file, so each navigation revalidates the stylesheet that carries `@view-transition { navigation: auto }` (`src/styles/global.css`, built into `/_astro/Layout.<hash>.css`), and Chromium then usually skips the cross-fade: the new page's `pagereveal` event has no `viewTransition`. The navigation itself is unaffected. Chromium updates the active stylesheets when the parser inserts `<body>` ([`WillInsertBody`](https://github.com/chromium/chromium/blob/156.0.8078.4/third_party/blink/renderer/core/view_transition/view_transition_supplement.cc#L581)) and, when it reveals the page, reads the opt-in that update left, ahead of the first frame's own style update. A stylesheet still on the network at `<body>` blocks rendering, so it has loaded by the first frame, but it has not been counted yet. The [specification](https://drafts.csswg.org/css-view-transitions-2/#access-view-transition-in-new-doc) resolves the rule at reveal, so the timing is Chromium's. Measured on one build with Playwright's Chromium 156, 21 link clicks per server: preview ran 1 transition; the same files served with `no-cache` ran 0; with `max-age=600` on stylesheets, 21; preview behind a proxy that rewrites only that header, 21; preview with a computed style requested as each stylesheet loaded, which makes Chromium count it, 21. So a test that waits for a transition fails on most runs and passes on a few, and no spec asserts one. It is not only preview: on any server, a navigation that has to revalidate the stylesheet usually skips its transition, so a host that sends a lifetime (GitHub Pages sends `max-age=600`) runs transitions while the cached copy is fresh and tends to skip one once it has gone stale (seen locally with `max-age=2`, not measured on a live site). The same rule inline in `<head>` is read in time whatever the cache says (21 of 21 under `no-cache`); the site does not ship one.
+**Do not assert a view transition in E2E.** Whether a cross-fade runs is the browser's timing, not something the build assembles, so E2E asserts where the opt-in rule is (`seo.spec.ts`) and no spec waits for a transition. The opt-in, `@view-transition { navigation: auto }`, has to be inline in `<head>`. Chromium updates the active stylesheets when the parser inserts `<body>` ([`WillInsertBody`](https://github.com/chromium/chromium/blob/156.0.8078.4/third_party/blink/renderer/core/view_transition/view_transition_supplement.cc#L581)) and, when it reveals the page, reads the opt-in that update left, ahead of the first frame's own style update. A stylesheet still on the network at `<body>` blocks rendering, so it has loaded by the first frame, but it has not been counted yet. The [specification](https://drafts.csswg.org/css-view-transitions-2/#access-view-transition-in-new-doc) resolves the rule at reveal, so the timing is Chromium's. Through v3.28.0 the rule shipped in the external stylesheet (`/_astro/Layout.<hash>.css`), and a navigation that had to revalidate that file usually skipped its transition: the new page's `pagereveal` event had no `viewTransition`, and the navigation itself was unaffected. That was nearly every navigation under `astro preview`, which is Vite's preview server and sends `Cache-Control: no-cache` with every file, and on a host that sends a lifetime (GitHub Pages sends `max-age=600`) it was the first navigation after the cached copy went stale (seen locally with `max-age=2`, not measured on a live site).
+
+The rule now lives alone in `src/styles/view-transition.css`, and `astro.config.ts` gives that file a chunk of its own (`codeSplitting.groups` under `vite.build.rollupOptions.output`). Astro's default `build.inlineStylesheets: 'auto'` puts a stylesheet smaller than Vite's `assetsInlineLimit` (4 KB) in a `<style>` in `<head>` and adds its hash to the CSP; where it sits next to another inlined sheet Astro merges the two into one `<style>` and hashes that. The split is a bundler option and nothing fails when it stops working: left in the Layout chunk, or with `inlineStylesheets: 'never'`, the rule ships external again and transitions go back to depending on the cache, which is what the `seo.spec.ts` check is for. Anything else added to that file is inlined on every page. The `prefers-reduced-motion` rule that turns the animation off stays in `global.css`: it styles the transition's pseudo-elements, which are painted after the render-blocking stylesheets have loaded.
+
+Measured with Playwright's Chromium 156 on the build before the change and the build after it, 21 link clicks per server across the home, word, stats and browse pages, counting `pagereveal` events that carry a `viewTransition`: `astro preview` ran 2 before and 21 after; the same files from a static server that sends `no-cache`, 1 and 21; `python3 -m http.server`, which sends no `Cache-Control`, 21 and 21. With `prefers-reduced-motion: reduce` emulated the counts were 1, 1 and 21 before and 21, 21 and 21 after, and the transition group's computed `animation-name` was `none` in every run that had one. A build with `BASE_PATH=/blog` ran 21 of 21 on all three. Earlier measurements on the external rule located the cause: `max-age=600` on stylesheets ran 21 of 21; preview behind a proxy that rewrites only that header, 21; preview with a computed style requested as each stylesheet loaded, which makes Chromium count it, 21. Firefox and Safari were not measured, and neither was a live GitHub Pages site.
 
 ### CI Workflows
 
@@ -688,7 +680,7 @@ Five separate workflow files, one per quality gate. Each reports an individual c
 
 All five trigger on PR to main and push to main. Lint, Typecheck, Test, and Build run in parallel. E2E builds with demo defaults (no `setup-env`) then runs Playwright.
 
-Lint has a second job, `actionlint`, which checks the workflow files with [actionlint](https://github.com/rhysd/actionlint) 1.7.12 and `.github/actionlint.yaml`. It downloads the release archive with `gh release download`, the [documented way](https://github.com/rhysd/actionlint/blob/v1.7.12/docs/install.md#prebuilt-binaries) to install a prebuilt binary, and refuses one whose SHA-256 is not the digest pinned in the workflow, so moving to a new actionlint means changing the version and the digest together. It reads `.github/workflows/` only: the caller templates in `tools/templates/site/` are not linted. It is not a lefthook job, so run `actionlint` locally before pushing a workflow change.
+Lint has a second job, `actionlint`, which checks the workflow files with [actionlint](https://github.com/rhysd/actionlint) 1.7.12 and `.github/actionlint.yaml`. It downloads the release archive with `gh release download`, the [documented way](https://github.com/rhysd/actionlint/blob/v1.7.12/docs/install.md#prebuilt-binaries) to install a prebuilt binary, and refuses one whose SHA-256 is not the digest pinned in the workflow, so moving to a new actionlint means changing the version and the digest together. It is not a lefthook job, so run `actionlint` locally before pushing a workflow change.
 
 ### Key Regression Test
 
@@ -785,7 +777,7 @@ The thin-wrapper delegation pattern avoids logic duplication. See AGENTS.md for 
 
 ### GitHub Actions
 
-Jobs use the explicit `ubuntu-26.04` runner image. Jobs that execute project code install the Node version `.nvmrc` names, the engine checkout's in the reusable workflows. External actions track their current stable major tags, which receive compatible patch updates. Every job that runs steps sets `timeout-minutes`, so a hung step is cancelled in minutes and not at GitHub's [360-minute default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes): 10 for Lint, Typecheck, Test and Build, 30 for E2E, and 15 for each job of Site Deploy and Site Add Word, whose deploy job has to outlast the 10 minutes `actions/deploy-pages` waits for a deployment. A job that calls a reusable workflow [cannot set one](https://docs.github.com/en/actions/reference/workflows-and-actions/reusable-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow), so Deploy, Add Word and a site repository's two callers take the timeouts of the workflows they call, at the release they pin. TypeScript stays on 6.x while `@astrojs/check` requires TypeScript 5 or 6.
+Jobs use the explicit `ubuntu-26.04` runner image. Jobs that execute project code install the Node version `.nvmrc` names, the engine checkout's in the reusable workflows. External actions track their current stable major tags, which receive compatible patch updates. Every job that runs steps sets `timeout-minutes`, so a hung step is cancelled in minutes and not at GitHub's [360-minute default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes): 10 for Lint, Typecheck, Test and Build, 30 for E2E, and 15 for each job of Site Deploy and Site Add Word, whose deploy job has to outlast the 10 minutes `actions/deploy-pages` waits for a deployment. A job that calls a reusable workflow [cannot set one](https://docs.github.com/en/actions/reference/workflows-and-actions/reusable-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow), so Deploy and Add Word take the timeouts of the workflows they call. TypeScript stays on 6.x while `@astrojs/check` requires TypeScript 5 or 6.
 
 The workflow files are the reference for their steps; this is what each one is for.
 
@@ -793,22 +785,22 @@ The workflow files are the reference for their steps; this is what each one is f
 |----------|------|------|
 | Add Word | `.github/workflows/add-word.yml` | Manual dispatch with a word, an optional date, and overwrite and preserve-case switches |
 | Deploy to GitHub Pages | `.github/workflows/deploy.yml` | Push to main, manual dispatch, and after an Add Word run on main that succeeded |
-| Site Deploy | `.github/workflows/site-deploy.yml` | Called by Deploy here, in a fork, and in each site repository |
-| Site Add Word | `.github/workflows/site-add-word.yml` | Called by Add Word here, in a fork, and in each site repository |
+| Site Deploy | `.github/workflows/site-deploy.yml` | Called by Deploy, here and in each downstream site |
+| Site Add Word | `.github/workflows/site-add-word.yml` | Called by Add Word, here and in each downstream site |
 
-**Add Word** calls **Site Add Word**, the workflow every site repository's Add Word calls, with the same four inputs, and keeps `contents: write` and the `add-word` concurrency group, so two runs never write at once.
+**Add Word** calls **Site Add Word** with the same four inputs, and keeps `contents: write` and the `add-word` concurrency group, so two runs never write at once.
 
 **Site Add Word** checks out the engine and installs, then checks out the tip of the dispatched branch into `site/`, so a run that waited behind another starts from the commit that run pushed, and keeps that checkout's credentials for the push. It runs `setup-env` and overlays the site content exactly as Site Deploy does. It checks the dictionary settings before adding anything and stops with an error if `DICTIONARY_ADAPTER` is empty, if either variable spans more than one line or names an adapter other than `wordnik`, `merriam-webster` or `wiktionary` (any case), or if a named adapter's API key is missing (Wiktionary needs none). `DICTIONARY_FALLBACK` may be empty for the default Wiktionary fallback, `none` in any case for no fallback, or a comma-separated list. It then runs `npm run tool:add-word` followed by the complete `npm run tool:generate-images` in `engine/`, copies back into `site/` only word JSON under the words directory, PNG cards under `images/social` and `.image-settings-hash`, in whichever layout `SOURCE_DIR` selects, and stages only those. The copy compares content and never deletes. It commits as the repository owner with the message `Add word: <word>` and pushes to the branch it was dispatched on; a push that is not a fast-forward fails the run, and nothing is ever forced. A run that changes nothing ends with a notice instead of a commit. Workflow inputs reach the shell as environment variables, never as `${{ }}` expressions inside `run:`, so a word is always data and never script.
 
-**Deploy** calls **Site Deploy**, the workflow every site repository calls, so the demo site builds exactly as a site does. Deploy keeps the triggers, the permissions, the `pages` concurrency group and the gate that skips failed or cancelled Add Word runs. The group does not cancel a run in progress (`cancel-in-progress: false`, as in GitHub's [Pages starter workflow](https://github.com/actions/starter-workflows/blob/e3c451d60f119b71caebf13c98ac45da6e15b4b7/pages/static.yml#L18-L22)), so a deployment that has started finishes; of the runs waiting behind it GitHub keeps only the newest, which builds the latest commit. A push made with `GITHUB_TOKEN` starts no `push` run, so Add Word's completion is what triggers the deploy of a new word. For `workflow_run`, `GITHUB_SHA` is the last commit on the default branch, so the site checkout builds the commit Add Word just pushed.
+**Deploy** calls **Site Deploy**, the workflow a downstream site's Deploy calls too, so the demo site builds exactly as a site does. Deploy keeps the triggers, the permissions, the `pages` concurrency group and the gate that skips failed or cancelled Add Word runs. The group does not cancel a run in progress (`cancel-in-progress: false`, as in GitHub's [Pages starter workflow](https://github.com/actions/starter-workflows/blob/e3c451d60f119b71caebf13c98ac45da6e15b4b7/pages/static.yml#L18-L22)), so a deployment that has started finishes; of the runs waiting behind it GitHub keeps only the newest, which builds the latest commit. A push made with `GITHUB_TOKEN` starts no `push` run, so Add Word's completion is what triggers the deploy of a new word. For `workflow_run`, `GITHUB_SHA` is the last commit on the default branch, so the site checkout builds the commit Add Word just pushed.
 
 **Site Deploy** checks out the calling repository into `site/` and the engine into `engine/` (Engine ref, below), runs `npm ci` and then `setup-env` in `engine/`, and mirrors `site/data/` and `site/public/` over the engine's with `rsync --delete`, keeping the engine's `favicon.svg` when the site has none. Every copy compares content (`--checksum`), since two checkouts made in the same second can hold a same-size file that rsync's size and time check would skip. It then runs the complete `npm run tool:generate-images`, so an engine or theme change never deploys stale cards (current cards are skipped and nothing is committed), builds in `engine/`, whose own `.git` gives the build its release fingerprint, and uploads `engine/dist`. A separate deploy job holds `pages: write`, `id-token: write` and the `github-pages` environment, which a job that calls a reusable workflow cannot declare. Before copying anything it stops when `SOURCE_DIR` is not `demo` in this repository or not empty in any other, rather than publish the other site's content, when the site has no words directory or `public/`, which mirroring would otherwise empty, and when anything under the site's `data/` or `public/` is a symbolic link, which `rsync -a` copies as a link, so the tools would write through it and the build read through it outside `engine/`.
 
-**Engine ref.** Site Deploy and Site Add Word check the engine out at `job.workflow_repository` and `job.workflow_sha`, the repository and commit of the workflow file that defines the running job ([job context](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#job-context)), so the code is always the commit the caller's `uses:` pin runs, and a caller passes nothing that names the engine. actionlint 1.7.12 does not know the `job.workflow_*` properties, so `.github/actionlint.yaml` ignores its undefined-property error for exactly those four in these two workflows until it does. A `./` call runs the called workflow from the caller's own commit, so the engine checkout is the calling repository at that commit. This repository calls that way for the demo site. So does a fork of it that syncs with `npm run tool:sync`: its Deploy and Add Word are this repository's, so after a sync they call the reusable workflows with `./`, check out the fork's own commit as the engine, and keep building and adding words as before, unchanged, until the fork is migrated to a thin site. For a fork `site/` and `engine/` are the same commit, so the overlay copies and deletes nothing: the fork's `data/demo` and `public/demo`, which it tracks from this repository, stay where they are, `SOURCE_DIR` empty builds its own `data/words`, and `public/demo` is published with the rest of `public/` as it is today. The `SOURCE_DIR` check tells this repository from the rest by the name in `ENGINE_REPOSITORY`, not by `job.workflow_repository`, which a fork's `./` call makes the fork itself.
+**Engine ref.** Site Deploy and Site Add Word check the engine out at `job.workflow_repository` and `job.workflow_sha`, the repository and commit of the workflow file that defines the running job ([job context](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#job-context)), so the code is always the commit the called workflow itself runs from, and a caller passes nothing that names the engine. actionlint 1.7.12 does not know the `job.workflow_*` properties, so `.github/actionlint.yaml` ignores its undefined-property error for exactly those four in these two workflows until it does. A `./` call runs the called workflow from the caller's own commit, so the engine checkout is the calling repository at that commit. This repository calls that way for the demo site, and so does every downstream site (Downstream Sync): its Deploy and Add Word are this repository's files, so they call the reusable workflows with `./` and check out the site's own commit as the engine. In a site's Deploy `site/` and `engine/` are therefore the same commit, so the overlay copies and deletes nothing: the site's `data/demo` and `public/demo`, which it tracks from this repository, stay where they are, `SOURCE_DIR` empty builds its own `data/words`, and `public/demo` is published with the rest of `public/`. In its Add Word `site/` is the tip of the dispatched branch and `engine/` the dispatched commit, so the overlay brings in only content pushed since the dispatch. The `SOURCE_DIR` check tells this repository from the rest by the name in `ENGINE_REPOSITORY`, not by `job.workflow_repository`, which a `./` call makes the calling repository. The two checkouts also let a repository that holds only content call these workflows at a pinned release. That layout was tried and dropped, because such a repository can neither sync nor run the tools itself; nothing here supports it, and the workflows are as they were.
 
 **Environment.** Build, Site Deploy and Site Add Word all run the `.github/actions/setup-env` composite action, which copies repository variables and explicitly supplied secrets into the job by name. Each runs `npm ci` before it, so no dependency's install script has the secrets in its environment, and Site Add Word checks out the site only after `npm ci` too, so no install script can read the credentials that checkout keeps, which can push to the site. Build and Site Deploy receive only the seven values Astro may need while building: `GA_ENABLED`, `GA_MEASUREMENT_ID`, `SENTRY_ENABLED`, `SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT` and `SENTRY_AUTH_TOKEN`. Build passes all seven only when the event is a push, which for Build is a push to main: a pull request's build gets them blank, so Sentry is off (`astro.config.ts` adds the integration only when `SENTRY_ENABLED` is `true` and `SENTRY_DSN` is set), nothing is uploaded with the auth token, the build is tagged `development`, and Google Analytics is off (the layout adds its scripts only when `GA_ENABLED` is true and `GA_MEASUREMENT_ID` is set). Site Add Word receives only `WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`, `SENTRY_ENABLED` and `SENTRY_DSN`; its Node logger does not use the other build credentials. The reusable workflows declare those named secrets as optional, so omitted settings remain blank, and cannot receive an arbitrary repository secret. Site Deploy's build job has no environment, so a value stored only on the `github-pages` environment does not reach the build.
 
-**Install scripts.** `allowScripts` in `package.json` records which dependencies may run an install script, the field `npm approve-scripts` and `npm deny-scripts` maintain (`npm help approve-scripts`). npm 11.17 still runs every script and only warns about one with no entry; it says a later release will block those. Two are approved at the version reviewed, so a new version of either has to be approved again with `npm approve-scripts <name>`: `wordpos`, whose script writes the `fast-index.*.json` files into `wordnet-db` that the WordNet adapter cannot load without, and `lefthook`, whose script runs `lefthook install` outside CI, as this package's own `prepare` script also does. `fsevents` is denied by name: the registry lists it with a `node-gyp rebuild` install script, but the package ships the built binary and no `binding.gyp` to rebuild. A site repository has no `package.json`, so this is the engine's only.
+**Install scripts.** `allowScripts` in `package.json` records which dependencies may run an install script, the field `npm approve-scripts` and `npm deny-scripts` maintain (`npm help approve-scripts`). npm 11.17 still runs every script and only warns about one with no entry; it says a later release will block those. Two are approved at the version reviewed, so a new version of either has to be approved again with `npm approve-scripts <name>`: `wordpos`, whose script writes the `fast-index.*.json` files into `wordnet-db` that the WordNet adapter cannot load without, and `lefthook`, whose script runs `lefthook install` outside CI, as this package's own `prepare` script also does. `fsevents` is denied by name: the registry lists it with a `node-gyp rebuild` install script, but the package ships the built binary and no `binding.gyp` to rebuild.
 
 `VAR_NAMES` is read only from repository variables; the action's named secret inputs are read only from secrets in the calling workflow. API keys (`*_API_KEY`), `GA_*` and `SENTRY_*` are secrets and everything else is a variable. `tests/architecture/env-transport.spec.ts` fails when a variable in the `astro.config.ts` env schema is not covered or when a name is in the wrong category, while `tests/tools/site-workflows.spec.ts` fixes the exact secret scope of each operation. `SENTRY_ENVIRONMENT` is supplied by neither repository store: the action sets it from its `sentry-environment` input, which defaults to `production`, and only Build passes one, `development` for a pull request. The action also sets `TZ` from the `SITE_TZ` repository variable (default `America/New_York`), so "today" is the same date when a word is added and when the site is built. Every value is written to `$GITHUB_ENV` in the multiline `NAME<<delimiter` form with a random delimiter per value, so a value that spans lines stays one variable instead of failing the step or setting others. Before it writes a secret, the action masks each non-blank line of its value with `::add-mask::`. Short values are masked too, so with `GA_ENABLED` set to `true` every `true` in the rest of the job's log reads `***`. Variables are never masked.
 
@@ -835,165 +827,29 @@ SITE_URL="https://example.com" BASE_PATH="/vocab"
 SITE_URL="https://username.github.io" BASE_PATH="/repo"
 ```
 
-### Site Repositories
-
-A site repository holds only its content and two workflows that call Site Deploy and Site Add Word in this repository at one pinned release; the code, its dependencies and the fonts come from the engine checkout. `npm run tool:create-site` (CLI Tools) writes a new one.
-
-| What | Where | Rule |
-|------|-------|------|
-| Words | `data/words/YYYY/YYYYMMDD.json` | Mirrored over the engine's `data/` with `rsync --delete`, so no demo word is built |
-| Public files | `public/**` | Mirrored over the engine's `public/`; the engine's `favicon.svg` stays when the site has none |
-| Cards and marker | `public/images/social/` (`YYYY/*.png`, `pages/*.png`, `.image-settings-hash`) | Generated in `engine/`. Add Word copies back and commits only these and the word JSON, never deleting; Deploy regenerates them and commits nothing |
-| Callers | `.github/workflows/deploy.yml`, `.github/workflows/add-word.yml` | Both pin the same release in `uses:`, and nothing else names the engine |
-| Engine updates | `.github/dependabot.yml` | `github-actions` updates, grouped so both pins move in one pull request |
-| Settings | Repository variables and secrets | `vars` is the site's; each caller passes only its named secrets; `SOURCE_DIR` unset or empty |
-| Local settings | `.env.example`, ignored `.env` | For local development only; the workflows never read them |
-| Not in a site | `src/`, `tools/`, `package.json`, the lockfile, `node_modules/`, `dist/` | The engine's, at the pin |
-
-`.github/workflows/deploy.yml`, with `vX.Y.Z` the release to run:
-
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: ['main']
-  workflow_run:
-    workflows: ['Add Word']
-    branches: ['main']
-    types:
-      - completed
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: false
-
-jobs:
-  deploy:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
-    uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@vX.Y.Z
-    secrets:
-      GA_ENABLED: ${{ secrets.GA_ENABLED }}
-      GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-      SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
-      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-```
-
-`.github/workflows/add-word.yml`, pinned to the same release:
-
-```yaml
-name: Add Word
-
-on:
-  workflow_dispatch:
-    inputs:
-      word:
-        description: 'The word to add'
-        required: true
-        type: string
-      date:
-        description: 'Date to add the word to (YYYYMMDD). Leave empty for today.'
-        required: false
-        type: string
-      overwrite:
-        description: 'Overwrite existing word if one exists for the date'
-        required: false
-        type: boolean
-        default: false
-      preserve_case:
-        description: 'Keep original capitalization'
-        required: false
-        type: boolean
-        default: false
-
-permissions:
-  contents: write
-
-concurrency:
-  group: add-word
-  cancel-in-progress: false
-
-jobs:
-  add-word:
-    uses: seriouslysean/occasional-wotd/.github/workflows/site-add-word.yml@vX.Y.Z
-    with:
-      word: ${{ inputs.word }}
-      date: ${{ inputs.date }}
-      overwrite: ${{ inputs.overwrite }}
-      preserve_case: ${{ inputs.preserve_case }}
-    secrets:
-      MERRIAM_WEBSTER_API_KEY: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-      SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
-      WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
-```
-
-Every secret goes by name so each reusable workflow receives only what it uses. What the site repository needs in its settings, which the README `create-site` writes lists too:
-
-- Repository variables: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID` and `DICTIONARY_ADAPTER`, plus `BASE_PATH`, `SITE_TZ` or any other setting under Environment Configuration that differs from its default. `SOURCE_DIR` unset or empty; this repository keeps `SOURCE_DIR=demo`.
-- Repository secrets: the API key of each configured dictionary, and any `GA_*` and `SENTRY_*` values.
-- Pages built from GitHub Actions, with the `github-pages` environment allowing deployments from `main`.
-- Actions allowed to use reusable workflows from `seriouslysean/occasional-wotd`. A public repository can only call reusable workflows in public repositories, so this repository stays public.
-- Branch protection and rulesets on `main` that let Add Word's push with the workflow's `GITHUB_TOKEN` through, since it commits straight to the branch it was dispatched on.
-
-To move a site to a new release, change both pins together; never move a published release tag. When moving from v3.24.0 or earlier to v3.25.0 or later, also replace each caller's `site-secrets: ${{ toJSON(secrets) }}` entry with the named mappings shown above. Earlier release tags keep their existing interface. The engine at the pin runs with the site's scoped secrets and a token that can write to the site, so pin only engine releases you trust. The first runs in a site repository are the acceptance test for the cross-repository setup: an Add Word run that commits the word and its cards to `main`, followed by the Deploy it triggers publishing the site at its URL.
-
-**Local development.** Clone this repository into a sibling directory used for nothing else, check out the release the site pins, and run `npm ci` there once. Then, from the site repository:
-
-```sh
-(
-  site_dir="$PWD"
-  cd ../site-engine
-  rsync -a --checksum --delete "$site_dir/data/" data/
-  rsync -a --checksum --delete --filter='P /favicon.svg' "$site_dir/public/" public/
-  SOURCE_DIR= node --env-file-if-exists="$site_dir/.env" node_modules/astro/bin/astro.mjs dev
-)
-```
-
-It copies the content over the engine checkout as the workflows do and runs Astro's dev server there with the site's `.env`. `SOURCE_DIR=` wins over any value in `.env`, because Node never lets an env file override a variable already set. Rerun it after changing content. The copy deletes the checkout's demo content, which is why the checkout must not be one you work in.
-
-**Forks.** wordbug and wordbun are forks of this repository, not site repositories, and keep working unchanged until they are migrated: `npm run tool:sync` brings in this repository's Deploy and Add Word, which call the reusable workflows with `./` at the fork's own commit (Engine ref, under GitHub Actions).
-
-**Migrating a fork.** The owner migrates one fork at a time, wordbun first:
-
-1. Release this repository with the reusable workflows and check that the demo's Deploy and Add Word succeed through them.
-2. Prove the setup in a disposable public repository made with `npm run tool:create-site`: variables and secrets reach the build, Pages deploys, Add Word pushes with the site's `GITHUB_TOKEN`, the Deploy it triggers publishes the word, and Dependabot's first engine update moves both pins.
-3. Bring the fork up to the release with `npm run tool:sync` and merge that to `main`, so it already builds through the reusable workflows. Then freeze it: no Add Word runs until the move is done. Record its `HEAD`, word and card counts, Pages settings (source and custom domain), rulesets, variable names and values, and secret names.
-4. Tag the current head `pre-thin-site` and make the migration an ordinary commit on a branch of the same repository. No new repository, orphan branch, history rewrite or force push, so history, settings, secrets and the domain stay where they are.
-5. In that commit keep `data/words/`, everything under `public/` except `public/demo/`, and any file the fork added itself. Replace `.github/workflows/deploy.yml` and `add-word.yml` with the callers above pinned to the release, add `.github/dependabot.yml`, `README.md` and `.gitignore` from `tools/templates/site/`, and delete the rest, including `data/demo/`, `public/demo/`, `.github/actions/` and the other workflows. Compare each deleted file with this repository's first, and keep any that is not the engine's.
-6. Check parity (below), with no unexplained difference.
-7. Merge to `main`. The Deploy that runs must publish the same site at the same URL and custom domain.
-8. Run Add Word once with a real word: its commit holds only the word file, cards and marker, and the Deploy after it publishes the word.
-9. Stop running `npm run tool:sync` in the migrated repository, then repeat for the next fork.
-
-Parity compares two builds from the same engine commit, content and settings: `pre-thin-site` built in place with `npm run build`, and the migration branch built through the local development command above with `build` for `dev`.
-
-| Check | Passes when |
-|-------|-------------|
-| Content | `git diff --stat pre-thin-site HEAD -- data/words public/images public/favicon.svg` is empty: words, cards and marker move byte for byte |
-| Routes | The sorted file lists of the two `dist/` directories match, apart from the fork's `demo/` files, and neither has a demo word page |
-| Feeds | `rss.xml` items, `words.json` and the sitemap URL sets match |
-| SEO | Canonical and `og:image` URLs match, and every `og:image` path, URL-decoded, is a file in `dist/` (card names are lower case and can hold spaces and `&`) |
-| Cards | Cards and `.image-settings-hash` regenerated with the same engine commit and settings match byte for byte |
-| Branding | Favicon, theme colors, title, `robots.txt`, `manifest.json`, `humans.txt` and any custom public file match |
-| Allowed | Build and sitemap timestamps differ; the release fingerprint must match, since it hashes the engine's `src/` |
-
-**Rollback.** `git revert` the migration commit on `main` and push it, which runs Deploy. The revert restores the engine files and the fork's workflows and keeps any word Add Word committed since, because both layouts keep words and cards at the same root paths. `pre-thin-site` marks the old head for reference; do not reset to it, which would drop those words.
-
 ### Downstream Sync
 
-This repo is the upstream template. Downstream repos (wordbug, wordbun) fork it and diverge only in word data, images, and favicons. `npm run tool:sync` (`tools/sync-upstream.sh`) brings upstream changes into a downstream repo without touching `main`: it fetches `upstream`, creates `sync/upstream-<short sha>` from `main`, and merges `upstream/main` into it with `--no-ff --no-commit`, so even a fast-forward stops before a commit exists. It then runs `npm ci` and the quality gates in order (lint, typecheck, test, then the build and E2E with `SOURCE_DIR=demo BASE_PATH=/`) and commits the merge only when every gate passes without changing a file. A commit hook runs after the gates, so the sync exits 1 when one refuses the commit or changes what is committed (lefthook's `oxlint --fix` stages its fixes). It never pushes: review the branch, fast-forward `main` to it, and push it with the command it prints, `git push origin main`, which names `origin` because in a clone made with `-o upstream` `main` tracks upstream, where a bare `git push` would go. `npm run tool:sync -- --skip-e2e` skips E2E when Playwright browsers are not installed.
+This repository is the engine: the code, the tools, the workflows and a demo site. A downstream site (wordbug, wordbun) is a full copy of it in a repository of its own, with this repository as its `upstream` remote. The site adds its own words, keeps its own data, runs the tools and the GitHub Actions workflows itself, and takes each release by merging `upstream/main` with `npm run tool:sync`. The sites are not GitHub forks: each is a separate repository that shares this one's history, which is what lets it merge. [Starting a Site](README.md#starting-a-site) is how to make one.
 
-It refuses to start below the repository root, off `main`, during a merge or rebase, or with modified, staged or untracked files, and never stashes; ignored files such as `.env` are fine. A `package-lock.json` conflict resolves to upstream's lockfile only when the merged `package.json` is upstream's. Any other conflict, or a failing gate, stops with the merge staged on the sync branch and the commands to finish or abandon it. An existing branch of the same name is refused. Merge-based (not rebase) so downstream can regular-push without force. The script no-ops in the upstream repo (no `upstream` remote), and a site repository that calls the reusable workflows has nothing to merge: it moves its pins instead. A fork keeps working after a sync that brings in Site Deploy and Site Add Word, because its Deploy and Add Word call them with `./` at its own commit (Engine ref, above). `tests/tools/sync-upstream.spec.ts` runs it against real repositories in a temp dir with a fake `npm`.
+| Path | Whose | Rule |
+|------|-------|------|
+| `data/words/`, `public/images/` | The site's | The engine tracks nothing under either, so no release can touch a site's words or cards |
+| `public/favicon.ico`, `public/favicon.svg` | Both | The only files both sides hold: the engine ships them and a site may replace them, so an engine change to one conflicts in a site that did |
+| Everything else, `data/demo/` and `public/demo/` included | The engine's | Changed only upstream. A site that needs a change makes it here and syncs |
+
+Those two rules are what keep the merges clean. Of 44 engine merges replayed into the two sites, 42 were clean, and both conflicts were engine files that had been edited in a site. `tests/architecture/site-content.spec.ts` fails when this repository tracks anything under `data/words/` or `public/images/`; `.gitignore` cannot hold that rule, because the sites get the same file and must track both. The suite runs in every site too, so the test asserts only where `origin` is this repository. Nothing checks the second rule: it is the site owner's to keep.
+
+A site's Deploy and Add Word are this repository's files, so they call the reusable workflows with `./` at the site's own commit (Engine ref, above) and need nothing but the site's variables and secrets. A site leaves `SOURCE_DIR` unset or empty, which reads `data/words/` and `public/images/`; this repository keeps `SOURCE_DIR=demo`.
+
+`npm run tool:sync` (`tools/sync-upstream.sh`) brings upstream changes into a site without touching `main`: it fetches `upstream`, creates `sync/upstream-<short sha>` from `main`, and merges `upstream/main` into it with `--no-ff --no-commit`, so even a fast-forward stops before a commit exists. It then runs `npm ci` and the quality gates in order (lint, typecheck, test, then the build and E2E with `SOURCE_DIR=demo BASE_PATH=/`), then the own-words gate below, and commits the merge only when every gate passes without changing a file. A commit hook runs after the gates, so the sync exits 1 when one refuses the commit or changes what is committed (lefthook's `oxlint --fix` stages its fixes). It never pushes: review the branch, fast-forward `main` to it, and push it with the command it prints, `git push origin main`, which names `origin` because in a clone made with `-o upstream` `main` tracks upstream, where a bare `git push` would go. `npm run tool:sync -- --skip-e2e` skips E2E when Playwright browsers are not installed.
+
+**Own words.** The build and E2E gates read the demo words. Of the others only typecheck reads the site's: `astro check` loads the content collection, so with `SOURCE_DIR` unset it holds each stored word to the collection schema. What a page needs beyond the schema is found only by building, so after E2E the sync runs `env SOURCE_DIR= npm run build`, the build Deploy runs, when the repository tracks any file under `data/words/`. A release that rejects a stored word then stops the sync with the merge uncommitted, instead of failing Deploy after the push. `SOURCE_DIR` is set and empty, so it selects `data/words/` whatever the shell or `.env` holds (a set variable wins over `.env`). The other settings come from `.env` when the checkout has one, and from the defaults in `astro.config.ts` when it has none, which the sync says; the build needs no setting that lacks a default. Sentry and Google Analytics follow `.env` here as in the demo build before it. A repository that tracks no word of its own, such as a new copy, skips the gate, because the build fails without a word; the upstream repository never reaches it. The build writes only ignored files (`dist/`, `.astro/`). It is the last gate because it replaces the `dist/` E2E serves.
+
+**Normalizer report.** A release can change the stored format without rejecting the old one, which the build then accepts. So after the own-words build the sync runs `npm run tool:normalize-word-data -- --dry-run` over `data/words/` and reports how many stored files the normalizer would rewrite, or that it could not check them all, with the command to run. It is a report and never a gate: nothing is written and the merge is committed either way, because rewriting stored words is the owner's own commit.
+
+**The script that runs is the site's.** `npm run tool:sync` starts the copy of `tools/sync-upstream.sh` the site had before the merge, and that copy runs to the end. A gate or check a release adds to the script therefore first runs in the sync after the one that brings it in.
+
+It refuses to start below the repository root, off `main`, during a merge or rebase, or with modified, staged or untracked files, and never stashes; ignored files such as `.env` are fine. A `package-lock.json` conflict resolves to upstream's lockfile only when the merged `package.json` is upstream's. Any other conflict, or a failing gate, stops with the merge staged on the sync branch and the commands to finish or abandon it. An existing branch of the same name is refused. Merge-based (not rebase) so downstream can regular-push without force, and for the same reason a site needs this repository's history: Git refuses to merge histories with no common ancestor unless given `--allow-unrelated-histories`, which the sync never passes. The script no-ops in the upstream repo (no `upstream` remote). `tests/tools/sync-upstream.spec.ts` runs it against real repositories in a temp dir with a fake `npm`.
 
 ### Content Security Policy
 
@@ -1007,6 +863,8 @@ CSP is enabled via `security.csp` in `astro.config.ts`. Astro auto-hashes its bu
 Only external script source: `https://www.googletagmanager.com` (gtag.js loader). Hardening: `object-src 'none'`, `base-uri 'self'`. `worker-src 'self' blob:` allows Sentry Session Replay's compression worker. `connect-src`/`img-src` intentionally unrestricted (GA/Sentry beacons).
 
 **Pattern**: Dynamic inline content must become a same-origin endpoint. Neither `<style set:html>` nor `<script is:inline>` is auto-hashed. `define:vars` produces CSP-blocked inline style attributes.
+
+A processed stylesheet that Astro inlines is hashed for the page it lands on, with no hash kept by hand. `src/styles/view-transition.css` relies on that: the build splits it into its own chunk so that it is inlined on every page (Testing, Coverage, has the reason). A `<style is:inline>` written in the layout is not a shortcut. Astro does not hash it (0 of 206 pages in a trial build), and it applies only because Astro appends the policy `<meta>` after the authored `<head>` content, which a `<meta>` policy does not govern; `/theme.css` is linked ahead of the policy the same way and is covered by `'self'` regardless.
 
 Markdown syntax highlighting is disabled (`markdown.syntaxHighlight: false`): Shiki's inline styles are CSP-incompatible and the site renders no markdown.
 

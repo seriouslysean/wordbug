@@ -19,7 +19,13 @@
 #      merged package.json is upstream's; any other conflict stops the sync
 #   5. Installs with npm ci and runs the AGENTS.md quality gates in order:
 #      lint, typecheck, test, the demo build, E2E
-#   6. Commits the merge once the gates pass without changing any file, and
+#   6. Builds the repository's own words (SOURCE_DIR empty, so data/words)
+#      when it tracks any: typecheck holds them to the collection schema, and
+#      nothing above renders them. A .env supplies the site's settings and
+#      astro.config.ts's defaults stand in without one
+#   7. Dry-runs the stored-word normalizer over those words and reports what
+#      it would rewrite. Nothing is written, and the report is never a gate
+#   8. Commits the merge once the gates pass without changing any file, and
 #      fails if a commit hook then changes what was committed
 #
 # It never pushes and never touches main. On success the sync branch is left
@@ -137,6 +143,48 @@ else
   gate env SOURCE_DIR=demo BASE_PATH=/ npm run test:e2e
 fi
 
+# The build and E2E above read the demo words. Typecheck reads this
+# repository's own, but only against the collection schema (astro check,
+# with SOURCE_DIR unset), so a stored word the schema accepts and a page
+# cannot render would first fail in Deploy, after the push. This builds what
+# Deploy builds. Last of the gates, since it replaces the dist/ that E2E
+# serves. A repository that tracks no words of its own, such as a
+# copy that has not added its first, has nothing to build, and the build
+# fails without a word.
+NORMALIZE_REPORT=""
+if [[ -z "$(git ls-files -- 'data/words/*.json')" ]]; then
+  echo ""
+  echo "Skipping the own-words build: nothing is tracked under data/words."
+else
+  if [[ ! -e .env ]]; then
+    echo ""
+    echo "No .env here, so the own-words build uses the default site settings in astro.config.ts."
+  fi
+  # Set and empty selects data/words and, being set, wins over a .env value
+  gate env SOURCE_DIR= npm run build
+
+  # A release can change the stored format without rejecting the old one,
+  # which the build above then accepts. Reported, never fixed here: the
+  # rewrite is the owner's commit.
+  NORMALIZE="npm run tool:normalize-word-data"
+  echo ""
+  echo "> env SOURCE_DIR= $NORMALIZE -- --dry-run"
+  if NORMALIZE_OUTPUT=$(env SOURCE_DIR= $NORMALIZE -- --dry-run 2>&1); then
+    WOULD_CHANGE=$(grep -c 'Would normalize word file' <<< "$NORMALIZE_OUTPUT" || true)
+    if [[ "$WOULD_CHANGE" -gt 0 ]]; then
+      NORMALIZE_REPORT="The normalizer would rewrite $WOULD_CHANGE stored word file(s) under data/words; the sync changed none of them.
+To see them: env SOURCE_DIR= $NORMALIZE -- --dry-run
+To rewrite them: env SOURCE_DIR= $NORMALIZE, then review and commit the result."
+    else
+      NORMALIZE_REPORT="The normalizer would change no stored word."
+    fi
+  else
+    NORMALIZE_REPORT="The normalizer could not check every stored word, so whether any needs rewriting is unknown.
+To see why: env SOURCE_DIR= $NORMALIZE -- --dry-run"
+  fi
+  echo "$NORMALIZE_REPORT"
+fi
+
 # What the gates wrote must not end up in the merge commit
 if ! git diff --quiet || [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
   git status --short >&2
@@ -161,5 +209,8 @@ fi
 
 echo ""
 echo "Merged upstream/main into $BRANCH after every gate passed. Nothing was pushed and main is unchanged."
+if [[ -n "$NORMALIZE_REPORT" ]]; then
+  echo "$NORMALIZE_REPORT"
+fi
 # origin by name: in a clone made with -o upstream, main tracks upstream
 echo "To publish: git switch main && git merge --ff-only $BRANCH && git push origin main"

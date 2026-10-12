@@ -58,8 +58,7 @@
   "browse": {
     "heading": "Browse Words",
     "description": "Different ways to browse and discover words.",
-    "subheading": "Multiple Browsing Options",
-    "summary_letters": "{{letterCount}} Letters (A-Z)"
+    "subheading": "Multiple Browsing Options"
   },
   "home": {
     "heading": "Word of the Day",

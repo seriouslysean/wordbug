@@ -1,7 +1,7 @@
 {
   "name": "occasional-wotd",
   "type": "module",
-  "version": "3.28.0",
+  "version": "3.29.0",
   "private": true,
   "description": "Template for creating an occasional word of the day site",
   "keywords": [
@@ -32,7 +32,6 @@
     "preview": "astro preview",
     "astro": "astro",
     "tool:add-word": "node tools/add-word.ts",
-    "tool:create-site": "node tools/create-site.ts",
     "tool:generate-all-images": "node tools/generate-images.ts",
     "tool:generate-images": "node tools/generate-images.ts",
     "tool:local": "node --env-file-if-exists=.env",

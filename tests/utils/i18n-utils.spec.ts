@@ -19,7 +19,7 @@ describe('i18n-utils', () => {
     it('supports variable interpolation', () => {
       expect(t('words.length_words', { length: 7 })).toBe('7-Letter Words');
       expect(t('words.words_starting_with', { letter: 'A' })).toBe('Words Starting with A');
-      expect(t('browse.summary_letters', { letterCount: 26 })).toBe('26 Letters (A-Z)');
+      expect(t('home.description', { word: 'calm' })).toBe('Today\'s word is "calm".');
     });
 
     it('handles multiple variable interpolation', () => {

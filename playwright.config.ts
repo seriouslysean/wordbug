@@ -1,7 +1,8 @@
 import { defineConfig } from '@playwright/test';
 
 // Dedicated port so e2e never collides with a dev/preview server on Astro's default 4321.
-const PORT = 4517;
+// E2E_PORT moves it, so two runs on one machine (two worktrees) can each have their own.
+const PORT = Number(process.env.E2E_PORT) || 4517;
 const BASE_URL = `http://localhost:${PORT}`;
 
 export default defineConfig({

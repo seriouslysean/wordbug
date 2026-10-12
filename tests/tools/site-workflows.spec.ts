@@ -260,21 +260,13 @@ afterEach(() => {
 // take about 2.5 s on an idle machine and several times that on a loaded one
 describe('site workflows', { timeout: 60000 }, () => {
   describe.each([
-    ['site-deploy.yml', 'deploy.yml', BUILD_SECRETS],
-    ['site-add-word.yml', 'add-word.yml', ADD_WORD_SECRETS],
-  ])('%s secret scope', (file, caller, expected) => {
-    it('declares, receives and forwards only the secrets this operation needs', () => {
+    ['site-deploy.yml', BUILD_SECRETS],
+    ['site-add-word.yml', ADD_WORD_SECRETS],
+  ])('%s secret scope', (file, expected) => {
+    it('declares and forwards only the secrets this operation needs', () => {
       const reusable = workflow(file);
       const workflowCall = nestedObject(nestedObject(reusable, 'on', 'workflow trigger'), 'workflow_call', 'workflow call');
       expect(Object.keys(nestedObject(workflowCall, 'secrets', 'workflow call'))).toEqual(Object.keys(expected));
-
-      const template = objectValue(load(fs.readFileSync(path.join(ROOT, 'tools/templates/site', caller), 'utf-8')), caller);
-      const templateJob = Object.values(workflowJobs(template))[0];
-      if (templateJob === undefined) {
-        throw new Error(`${caller} has no job`);
-      }
-      expect(nestedObject(objectValue(templateJob, 'site caller job'), 'secrets', 'site caller job'))
-        .toEqual(repositorySecretBindings(expected));
 
       const setup = workflowSteps(reusable).find(step => optionalString(step, 'name') === 'Setup environment variables');
       if (setup === undefined) {
@@ -352,9 +344,9 @@ describe('site workflows', { timeout: 60000 }, () => {
   // job's own workflow identity, so a value that reads an input, a step
   // output or github.workflow_sha fails here.
   describe.each([
-    ['site-deploy.yml', 'deploy.yml'],
-    ['site-add-word.yml', 'add-word.yml'],
-  ])('%s engine checkout', (file, caller) => {
+    ['site-deploy.yml'],
+    ['site-add-word.yml'],
+  ])('%s engine checkout', (file) => {
     const engineCheckout = (repository: string): Record<string, string> => {
       const step = workflowSteps(workflow(file)).find(found => optionalString(found, 'name') === 'Checkout engine');
       if (!step) {
@@ -378,27 +370,9 @@ describe('site workflows', { timeout: 60000 }, () => {
     });
 
     // A ./ call runs the called workflow from the caller's own commit, which
-    // for a fork is a commit only the fork has
-    it('checks out the calling commit when a fork that has not moved to a thin site calls its own copy', () => {
+    // for a downstream site is a commit only that site has
+    it('checks out the calling commit when a downstream site calls its own copy', () => {
       expect(engineCheckout('seriouslysean/wordbug')).toMatchObject({ repository: 'seriouslysean/wordbug', ref: SHA });
-    });
-
-    // GitHub refuses a call that passes an input the workflow does not
-    // declare, and a site caller calls a release, which actionlint cannot read
-    it('declares exactly the inputs the site caller passes', () => {
-      const template = objectValue(load(fs.readFileSync(path.join(ROOT, 'tools/templates/site', caller), 'utf-8')), caller);
-      const templateJobs = Object.values(nestedObject(template, 'jobs', 'site caller jobs'));
-      const job = templateJobs[0];
-      if (job === undefined) {
-        throw new Error(`${caller} has no job`);
-      }
-      const workflowCall = nestedObject(workflow(file), 'on', 'workflow trigger');
-      const inputs = nestedObject(workflowCall, 'workflow_call', 'workflow call');
-      const declaredInputs = objectOrEmpty(inputs, 'inputs');
-      const callerJob = objectValue(job, 'site caller job');
-      const callerWith = objectOrEmpty(callerJob, 'with');
-
-      expect(Object.keys(declaredInputs)).toEqual(Object.keys(callerWith));
     });
   });
 

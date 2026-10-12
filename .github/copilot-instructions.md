@@ -117,6 +117,13 @@ npm run test:e2e    # E2E tests pass against built site
 
 The upstream repository keeps its words under `data/demo/`, so a local build there is `SOURCE_DIR=demo npm run build`.
 
+## Downstream Sites
+
+This repository is the engine. A downstream site (wordbug, wordbun) is a full copy of it in a repository of its own, not a GitHub fork: it adds its own words, runs the tools and workflows itself, and takes each release by merging this repository's `main` with `npm run tool:sync`. Two rules keep those merges clean:
+
+- The engine never tracks anything under `data/words/` or `public/images/`: they are the sites'. Demo words and cards live under `data/demo/` and `public/demo/`. `tests/architecture/site-content.spec.ts` enforces it.
+- Engine files, which is everything else, are changed only in this repository, never in a site. The favicons are the only files both sides hold.
+
 ## Pull Requests
 
 - Keep PRs focused on a single concern

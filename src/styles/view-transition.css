@@ -1,0 +1,13 @@
+/* Native cross-document view transitions (replaces ClientRouter, ships no JS).
+   Same-origin navigations cross-fade in supporting browsers; others navigate
+   normally.
+
+   This file holds the opt-in and nothing else. The build splits it into its
+   own chunk (astro.config.ts, codeSplitting), which is small enough that Astro
+   inlines it in <head> and adds its hash to the CSP. Chromium reads the opt-in
+   when <body> is inserted, before a stylesheet it had to revalidate counts, so
+   the rule cannot wait on an external file. Anything added here is inlined on
+   every page. */
+@view-transition {
+    navigation: auto;
+}

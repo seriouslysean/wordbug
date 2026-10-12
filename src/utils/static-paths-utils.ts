@@ -6,6 +6,7 @@ import {
   SUFFIX_DEFINITIONS,
   SUFFIX_ENTRIES,
 } from '#constants/stats';
+import { allWords } from '#astro-utils/word-data-utils';
 import {
   getChronologicalMilestones,
   getCurrentStreakStats,
@@ -159,10 +160,8 @@ const toStatsPageProps = (config: StatsConfig): StatsPageProps => {
  * Generate Astro static paths for statistics pages
  * @returns Array of path definitions for stats pages
  */
-export const generateStatsStaticPaths = async () => {
-  const { allWords: words } = await import('#astro-utils/word-data-utils');
-
-  const statsConfig = createStatsConfig(words);
+export const generateStatsStaticPaths = () => {
+  const statsConfig = createStatsConfig(allWords);
 
   return statsConfig.map(config => ({
     params: { stat: config.slug },

@@ -3,7 +3,8 @@ import { SITE_AUTHOR_URL, SITE_AUTHOR, SITE_ATTRIBUTION_MESSAGE, WORDNIK_WEBSITE
 import { Image } from 'astro:assets';
 import wordnikLogo from '#assets/wordnik-gearheart.png';
 import SiteLink from '#components/SiteLink.astro';
-import { getBrowseWordsUrl } from '#astro-utils/url-utils';
+import { getBrowseWordsUrl, getStatsUrl, getWordsUrl } from '#astro-utils/url-utils';
+import { BASE_PATHS } from '#constants/urls';
 import { t } from '#utils/i18n-utils';
 
 const currentYear = new Date().getFullYear();
@@ -14,16 +15,16 @@ const showAttribution = SITE_AUTHOR_URL && SITE_AUTHOR && SITE_ATTRIBUTION_MESSA
   <nav class="footer__nav" aria-label={t('nav.footer_label')}>
     <ul class="footer__links">
       <li class="footer__item">
-        <SiteLink href="/">{t('nav.home')}</SiteLink>
+        <SiteLink href={BASE_PATHS.HOME}>{t('nav.home')}</SiteLink>
       </li>
       <li class="footer__item">
         <SiteLink href={getBrowseWordsUrl()}>{t('nav.browse_words')}</SiteLink>
       </li>
       <li class="footer__item">
-        <SiteLink href="/word">{t('browse.all_words')}</SiteLink>
+        <SiteLink href={getWordsUrl()}>{t('browse.all_words')}</SiteLink>
       </li>
       <li class="footer__item">
-        <SiteLink href="/stats">{t('nav.stats')}</SiteLink>
+        <SiteLink href={getStatsUrl()}>{t('nav.stats')}</SiteLink>
       </li>
       {showAttribution && (
         <li class="footer__item">

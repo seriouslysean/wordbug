@@ -86,6 +86,16 @@ if (missingEnvVars.length > 0) {
   throw new Error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
 }
 
+// Astro takes `base` with or without its leading slash and serves the site
+// under /blog either way. The URL helpers read BASE_PATH as it was given,
+// through astro:env/client, and `blog` made every link relative and doubled
+// the base in the canonical. Written back with the slash, both read one value.
+// Trimmed first, as the colours above are: a stray space became part of the path.
+const basePathSetting = process.env.BASE_PATH?.trim();
+if (basePathSetting) {
+  process.env.BASE_PATH = basePathSetting.startsWith('/') ? basePathSetting : `/${basePathSetting}`;
+}
+
 const site = process.env.SITE_URL;
 const base = process.env.BASE_PATH;
 // Sentry requires DSN to function — match the CLI logger's guard pattern
@@ -182,6 +192,14 @@ export default defineConfig({
         output: {
           chunkFileNames: '_astro/[name]-[hash].js',
           entryFileNames: '_astro/[name]-[hash].js',
+          // The view transition opt-in gets a chunk of its own. A stylesheet
+          // under Vite's assetsInlineLimit is inlined in <head> by Astro's
+          // default build.inlineStylesheets ('auto') and hashed into the CSP,
+          // so the rule never waits on an external file (docs/technical.md,
+          // Coverage). Left in the Layout chunk it ships external.
+          codeSplitting: {
+            groups: [{ name: 'view-transition', test: /\/src\/styles\/view-transition\.css$/ }],
+          },
         },
       },
     },

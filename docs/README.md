@@ -124,6 +124,45 @@ BASE_PATH="/words"
 
 **Important**: The site's URL utilities automatically handle BASE_PATH for all internal links and absolute URLs. Never hardcode paths.
 
+## Starting a Site
+
+A site is a full copy of this repository in a repository of its own. It adds its own words, runs the tools and the workflows itself, and takes each release by merging this repository's `main` with `npm run tool:sync` ([Downstream Sync](technical.md#downstream-sync)).
+
+Start from a clone. A copy without this repository's history, such as a template copy or a downloaded ZIP, can never sync: the sync merges `upstream/main`, and Git refuses to merge histories that share no commit.
+
+1. Create an empty repository on GitHub, with no README, license or `.gitignore`.
+2. Clone the engine and make it the site's upstream:
+
+   ```bash
+   git clone https://github.com/seriouslysean/occasional-wotd.git my-site
+   cd my-site
+   git remote rename origin upstream
+   git remote add origin git@github.com:YOUR-ACCOUNT/my-site.git
+   nvm use && npm ci
+   ```
+
+3. In the new repository's **Settings**, before the first push:
+   - **Secrets and variables > Actions > Variables**: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_ID` and `DICTIONARY_ADAPTER` (`wordnik`, `merriam-webster` or `wiktionary`); `BASE_PATH` when the site is served from a subdirectory, such as `/my-site` for `username.github.io/my-site`; `SITE_TZ` when the site's day is not `America/New_York`; anything else in `.env.example` that should differ from its default. Leave `SOURCE_DIR` unset: Deploy and Add Word stop when a site sets it.
+   - **Secrets and variables > Actions > Secrets**: the API key of each dictionary the site uses (`WORDNIK_API_KEY`, `MERRIAM_WEBSTER_API_KEY`), and any `GA_*` or `SENTRY_*` setting. API keys, `GA_*` and `SENTRY_*` are secrets; everything else is a variable.
+   - **Pages > Build and deployment > Source**: GitHub Actions.
+   - **Environments > github-pages**: deployment branches allow `main`.
+   - **Rules** or branch protection on `main`, if any: let a push from the workflow's `GITHUB_TOKEN` through, since Add Word commits straight to `main`.
+4. Add the first word on your machine. A new copy has no `data/words/`, and Deploy and Add Word both stop without it, so the first word cannot come from the Actions tab:
+
+   ```bash
+   cp .env.example .env    # the settings from step 3 and your dictionary's API key (Wiktionary needs none); SOURCE_DIR stays empty
+   npm run tool:local tools/add-word.ts serendipity
+   npm run tool:local tools/generate-images.ts
+   git add data/words public/images
+   git commit -m "Add word: serendipity"
+   git push -u origin main
+   ```
+
+   `SITE_TITLE` is drawn on every card, so give `.env` the title the repository variable has. The push starts Deploy, which publishes the site; if it ran before a setting was in place, run **Deploy to GitHub Pages** again from the Actions tab.
+5. Run **Add Word** from the Actions tab with a word and a date other than today's: step 4 gave today its word, and Add Word refuses a date that already has one. It commits `Add word: <word>` to `main` with the word's file and its cards, and the Deploy it starts publishes the word. That run is the check that the whole setup works.
+
+From then on the site's own files are the ones under `data/words/` and `public/images/`, plus `public/favicon.svg` and `public/favicon.ico` if it replaces them. Everything else, `data/demo/` and `public/demo/` included, stays as the engine has it and is changed only upstream, which is what keeps `npm run tool:sync` merging cleanly.
+
 ## Data Structure
 
 Words are stored as JSON files organized by year (the `{SOURCE_DIR}` level exists only when `SOURCE_DIR` is set):

@@ -29,15 +29,30 @@ const SCRIPT = path.join(process.cwd(), 'tools/sync-upstream.sh');
 
 const GATES = ['ci', 'run lint', 'run typecheck', 'test', 'run build', 'run test:e2e'];
 
+// What follows the gates in a downstream that tracks words of its own
+const NORMALIZE = 'run tool:normalize-word-data -- --dry-run';
+const OWN_WORDS = ['run build', NORMALIZE];
+
 // Logs each call as its arguments, a tab, and the SOURCE_DIR and BASE_PATH it
-// saw. NPM_FAIL names the call that fails; NPM_WRITE is a file the build
-// appends to, as a gate that rewrites a tracked file would.
+// saw, "unset" for one it did not. NPM_FAIL names the call that fails, and
+// NPM_FAIL_OWN_BUILD fails only the build whose SOURCE_DIR is set and empty;
+// NPM_WRITE is a file the build appends to, as a gate that rewrites a tracked
+// file would. NPM_NORMALIZE is how many files the normalizer's dry run says
+// it would rewrite, in the tool's own words.
 const FAKE_NPM = `#!/usr/bin/env bash
-printf '%s\\t%s:%s\\n' "$*" "\${SOURCE_DIR-}" "\${BASE_PATH-}" >> "$NPM_LOG"
+printf '%s\\t%s:%s\\n' "$*" "\${SOURCE_DIR-unset}" "\${BASE_PATH-unset}" >> "$NPM_LOG"
 if [[ -n "\${NPM_WRITE-}" && "$*" == "run build" ]]; then
   echo changed >> "$NPM_WRITE"
 fi
+if [[ "$*" == "${NORMALIZE}" ]]; then
+  for ((i = 0; i < \${NPM_NORMALIZE-0}; i++)); do
+    echo "Would normalize word file { file: 'data/words/2026/$i.json' }"
+  done
+fi
 if [[ "$*" == "\${NPM_FAIL-}" ]]; then
+  exit 1
+fi
+if [[ -n "\${NPM_FAIL_OWN_BUILD-}" && "$*" == "run build" && -z "\${SOURCE_DIR-unset}" ]]; then
   exit 1
 fi
 `;
@@ -311,9 +326,10 @@ describe('sync-upstream.sh', { timeout: 90000 }, () => {
       const result = await sync();
 
       expect(result.code).toBe(0);
-      expect(gatesRun()).toEqual(GATES);
+      expect(gatesRun()).toEqual([...GATES, ...OWN_WORDS]);
       expect(npmCalls().filter(line => /^run (build|test:e2e)\t/.test(line)).map(line => line.split('\t')[1] ?? ''))
-        .toEqual(['demo:/', 'demo:/']);
+        .toEqual(['demo:/', 'demo:/', ':unset']);
+      expect(result.output).not.toContain('No .env here');
       expect(git(ctx.site, 'symbolic-ref', '--short', 'HEAD')).toBe(expectedBranch());
       expect(parents('HEAD')).toEqual([main, git(ctx.site, 'rev-parse', 'upstream/main')]);
       expect(fs.readFileSync(path.join(ctx.site, 'src/engine.ts'), 'utf-8')).toContain('version = 2');
@@ -402,7 +418,7 @@ describe('sync-upstream.sh', { timeout: 90000 }, () => {
       const result = await sync(['--skip-e2e']);
 
       expect(result.code).toBe(0);
-      expect(gatesRun()).toEqual(GATES.filter(gate => gate !== 'run test:e2e'));
+      expect(gatesRun()).toEqual([...GATES.filter(gate => gate !== 'run test:e2e'), ...OWN_WORDS]);
       expect(parents('HEAD')).toHaveLength(2);
     });
 
@@ -412,6 +428,71 @@ describe('sync-upstream.sh', { timeout: 90000 }, () => {
       expect(result.code).toBe(1);
       expect(result.output).toContain('Unknown option: --force');
       expect(npmCalls()).toEqual([]);
+    });
+  });
+
+  // The gates before it build only the demo words, so without this a stored
+  // word that a page cannot render is first caught by Deploy, after the push
+  describe('with words of its own', () => {
+    it('stops before the commit when they do not build', async () => {
+      diverge();
+      release({ 'src/engine.ts': 'export const version = 2;\n' });
+      const main = git(ctx.site, 'rev-parse', 'main');
+
+      const result = await sync([], { NPM_FAIL_OWN_BUILD: '1' });
+
+      expect(result.code).toBe(1);
+      expect(result.output).toContain('Failed: env SOURCE_DIR= npm run build');
+      expect(result.output).toContain('No .env here');
+      expect(gatesRun()).toEqual([...GATES, 'run build']);
+      expect(git(ctx.site, 'rev-parse', 'HEAD')).toBe(main);
+      expect(isMerging()).toBe(true);
+    });
+
+    it('builds and checks data/words whatever SOURCE_DIR the shell has', async () => {
+      diverge();
+      release({ 'src/engine.ts': 'export const version = 2;\n' });
+
+      const result = await sync([], { SOURCE_DIR: 'demo' });
+
+      expect(result.code).toBe(0);
+      expect(npmCalls().filter(line => /^run (build|tool:normalize-word-data -- --dry-run)\t/.test(line))
+        .map(line => line.split('\t')[1] ?? '')).toEqual(['demo:/', ':unset', ':unset']);
+    });
+
+    it('reports what the normalizer would rewrite, and commits the merge without rewriting it', async () => {
+      diverge();
+      release({ 'src/engine.ts': 'export const version = 2;\n' });
+
+      const result = await sync([], { NPM_NORMALIZE: '2' });
+
+      expect(result.code).toBe(0);
+      expect(result.output).toContain('would rewrite 2 stored word file(s)');
+      expect(result.output).toContain('To rewrite them: env SOURCE_DIR= npm run tool:normalize-word-data, then review and commit the result.');
+      expect(parents('HEAD')).toHaveLength(2);
+      expect(git(ctx.site, 'status', '--porcelain')).toBe('');
+    });
+
+    it('says so when the normalizer would change nothing', async () => {
+      diverge();
+      release({ 'src/engine.ts': 'export const version = 2;\n' });
+
+      const result = await sync();
+
+      expect(result.code).toBe(0);
+      expect(result.output).toContain('The normalizer would change no stored word.');
+    });
+
+    // A report, not a gate: the build above is what accepts the words
+    it('commits the merge when the normalizer cannot check every word, and says it could not', async () => {
+      diverge();
+      release({ 'src/engine.ts': 'export const version = 2;\n' });
+
+      const result = await sync([], { NPM_FAIL: NORMALIZE });
+
+      expect(result.code).toBe(0);
+      expect(result.output).toContain('could not check every stored word');
+      expect(parents('HEAD')).toHaveLength(2);
     });
   });
 
@@ -433,7 +514,9 @@ describe('sync-upstream.sh', { timeout: 90000 }, () => {
       const passed = await sync();
 
       expect(passed.code).toBe(0);
+      // No word of its own, so no own-words build, which would fail on none
       expect(gatesRun()).toEqual(GATES);
+      expect(passed.output).toContain('Skipping the own-words build');
       expect(parents('HEAD')).toEqual([main, git(ctx.site, 'rev-parse', 'upstream/main')]);
     });
   });

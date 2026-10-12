@@ -32,7 +32,6 @@ afterEach(() => {
 describe('a command line a tool cannot parse', { timeout: 15000 }, () => {
   it.each([
     ['add-word', ['alpha', '--batchsize=5'], '--batchsize'],
-    ['create-site', ['site', '--batchsize=5'], '--batchsize'],
     ['generate-images', ['--batchsize=5'], '--batchsize'],
     ['regenerate-all-words', ['--batchsize=5'], '--batchsize'],
     ['generate-images', ['--word'], '--word'],

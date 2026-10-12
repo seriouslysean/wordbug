@@ -248,14 +248,15 @@ manual screen-reader testing, axe integration, non-color a11y additions.
 
 **Status at v3.25.0.** The four wrappers in `src/utils/word-data-utils.ts` now
 call the pure functions and no longer run their own `Object.groupBy`; the
-sorting and filtering still live in the wrappers, not in `utils/`. The
-`url-utils.ts` helpers are untouched (40 exports). Line numbers in the table
-below predate this.
+sorting and filtering still live in the wrappers, not in `utils/`. Line
+numbers in the table below predate this.
+
+**Status at v3.28.0.** The `url-utils.ts` part of this entry is withdrawn:
+see the thin-wrapper review below.
 
 Consolidate duplicated grouping logic between `utils/word-data-utils.ts`
-and `src/utils/word-data-utils.ts`, extend the boundary test to cover the
-new functions, and collapse the one-liner URL helpers in
-`src/utils/url-utils.ts`.
+and `src/utils/word-data-utils.ts`, and extend the boundary test to cover
+the new functions.
 
 **Duplication inventory.** Four `groupWordsBy*` functions exist in both
 files with divergent semantics:
@@ -274,15 +275,17 @@ POS. Wrapper functions become thin delegators. Rationale: callers already
 expect sorted output for templates; the pure version is not used outside
 the wrapper today, so tightening it has no external consumer.
 
-**`url-utils.ts` thin-wrapper review.** 40 exported helpers; 23 are
-single-expression wrappers around `ROUTES.STAT(STATS_SLUGS.X)` or
-`BASE_PATHS.X`. Only `src/pages/stats.astro` and
-`src/pages/stats/letter-patterns.astro` call them. Recommend deletion;
-call sites switch to `ROUTES.STAT(STATS_SLUGS.X)` directly. Keep the
-helpers that do real work: `getBasePath`, `getPathname`, `getUrl`,
-`getFullUrl`, `getWordUrl`, `stripBasePath`, `getWordsYearUrl`
-(conditional branch), and the parametric `getLengthUrl` /
-`getLetterUrl` / `getPartOfSpeechUrl` / `getMonthUrl` / `getStatUrl`.
+**`url-utils.ts` thin-wrapper review: withdrawn.** An earlier review
+counted 23 single-expression wrappers with two calling files and recommended
+deleting them. That count is stale. As of v3.29.0 `src/utils/url-utils.ts` has
+30 zero-argument helpers around `ROUTES.STAT(STATS_SLUGS.X)`,
+`BASE_PATHS.X` or `BROWSE_PATHS.X`, and each has a caller. Nine files call
+them: `Footer.astro`, `RandomWordLink.astro`, `src/pages/stats.astro`,
+`src/pages/browse/index.astro` and five pages under `src/pages/stats/`
+(`letter-patterns`, `parts-of-speech`, `streaks`, `word-endings`,
+`word-facts`). Deleting them would rewrite those nine files to say the same
+route with a longer expression, and changes nothing a visitor sees. They
+stay.
 
 **Acceptance criteria:**
 - `src/utils/word-data-utils.ts` contains no `Object.groupBy` calls; all
@@ -291,7 +294,6 @@ helpers that do real work: `getBasePath`, `getPathname`, `getUrl`,
   `dist/stats/**`.
 - Architecture test asserts `groupWordsByLength` etc. are imported from
   `#utils/word-data-utils`.
-- `src/utils/url-utils.ts` exports drop from 40 to ~17.
 
 **Step sequence:**
 1. Move sort + filter + dedup semantics from wrapper into pure utils.
@@ -300,12 +302,8 @@ helpers that do real work: `getBasePath`, `getPathname`, `getUrl`,
 3. Replace wrapper bodies with one-line delegators.
 4. Extend `tests/architecture/utils-boundary.spec.ts` to include the four
    `groupWordsBy*` names.
-5. Delete the 23 zero-arg `STATS_SLUGS`/`BASE_PATHS`/`BROWSE_PATHS`
-   wrappers in `src/utils/url-utils.ts`.
-6. Update the two stats pages to import constants directly.
-7. Diff `dist/stats/index.html` and `dist/stats/letter-patterns/index.html`
-   against pre-change build.
-8. Run all gates.
+5. Diff `dist/stats/**` against a pre-change build.
+6. Run all gates.
 
 **Out-of-scope:** renaming exports, changes to `ROUTES`/`BASE_PATHS`/
 `BROWSE_PATHS`/`STATS_SLUGS` shape, new abstractions (`urlFor()`),

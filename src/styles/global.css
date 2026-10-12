@@ -2,14 +2,8 @@
 @import './reset.css';
 /* Theme variables are now generated dynamically in Layout.astro */
 
-/* Native cross-document view transitions (replaces ClientRouter, ships no JS).
-   Same-origin navigations cross-fade in supporting browsers; others navigate
-   normally. */
-@view-transition {
-    navigation: auto;
-}
-
-/* Honor reduced-motion: skip the transition animation */
+/* The view transition opt-in lives in view-transition.css, which is inlined
+   in <head>. Honor reduced-motion: skip the transition animation */
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-group(*),
     ::view-transition-old(*),
