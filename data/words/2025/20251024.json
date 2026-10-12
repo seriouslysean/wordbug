@@ -1,15 +1,15 @@
 {
     "word": "scuttlefish",
     "date": "20251024",
-    "adapter": "wordnik",
+    "adapter": "wiktionary",
     "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "A cuttlefish.",
-            "attributionText": "from The Century Dictionary.",
-            "sourceDictionary": "century",
-            "sourceUrl": "https://www.wordnik.com/words/scuttlefish"
+            "text": "Synonym of cuttlefish.",
+            "attributionText": "Adapted from Wiktionary (CC BY-SA 4.0)",
+            "sourceDictionary": "wiktionary",
+            "sourceUrl": "https://en.wiktionary.org/wiki/scuttlefish"
         }
     ]
 }

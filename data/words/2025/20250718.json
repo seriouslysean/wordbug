@@ -1,27 +1,15 @@
 {
     "word": "nanochip",
     "date": "20250718",
-    "adapter": "wordnik",
+    "adapter": "wiktionary",
     "preserveCase": false,
     "data": [
         {
             "partOfSpeech": "noun",
-            "text": "An integrated circuit whose size is measured in nanometres",
-            "references": [
-                {
-                    "start": 3,
-                    "end": 21,
-                    "url": "https://www.wordnik.com/words/integrated%20circuit"
-                },
-                {
-                    "start": 48,
-                    "end": 58,
-                    "url": "https://www.wordnik.com/words/nanometres"
-                }
-            ],
-            "attributionText": "from Wiktionary, Creative Commons Attribution/Share-Alike License.",
+            "text": "A nanoscale integrated circuit.",
+            "attributionText": "Adapted from Wiktionary (CC BY-SA 4.0)",
             "sourceDictionary": "wiktionary",
-            "sourceUrl": "https://www.wordnik.com/words/nanochip"
+            "sourceUrl": "https://en.wiktionary.org/wiki/nanochip"
         }
     ]
 }
