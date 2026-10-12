@@ -132,6 +132,36 @@ const ownSenseHtml = (html: string): string => {
 };
 
 /**
+ * Wiktionary's note that an entry is a translation hub: a term kept mainly so
+ * that other languages' words have an English entry to be translations of
+ * (https://en.wiktionary.org/wiki/Appendix:Glossary#translation_hub). It is
+ * about the page and says nothing of the word, yet the endpoint sends it
+ * inside the sense: "apple juice" read "The juice of apples. (This entry is
+ * a translation hub.)". The note is the span that links that glossary entry
+ * and holds no span of its own. It is found by the link and not by its class,
+ * `use-with-mention`, which a sense can carry whole: "older brother" is "Used
+ * other than figuratively or idiomatically: see older, brother." in a span of
+ * that class, followed by the note in another.
+ */
+const TRANSLATION_HUB_NOTE = /<span\b[^>]*>(?:(?!<\/?span\b).)*?Appendix:Glossary#translation_hub(?:(?!<\/?span\b).)*?<\/span>/gis;
+
+/** A sense's own HTML, without its subsenses and without that note. */
+const senseHtml = (html: string): string => ownSenseHtml(html).replaceAll(TRANSLATION_HUB_NOTE, '');
+
+/**
+ * True for an item that is the note and nothing else, as the only item of
+ * "bake bread" is: the page lists the term and defines nothing there. It goes
+ * the way of a footnote, so a page with no other sense answers with no
+ * definitions and reads as not found. Left in with its text removed, it
+ * would be a blank definition, and a page of those reads as a changed API.
+ */
+const isHubNoteOnly = (html: string): boolean => {
+  const own = ownSenseHtml(html);
+  const rest = senseHtml(html);
+  return rest !== own && htmlToText(rest) === '';
+};
+
+/**
  * True for an item that is a footnote of the page and no sense of the word.
  * The endpoint lists every numbered item under a part of speech, and a
  * footnote list is one: "pneumonoultramicroscopicsilicovolcanoconiosis"
@@ -181,9 +211,9 @@ export const wiktionaryAdapter: DictionaryAdapter = {
 
     // No `id`: the endpoint answers for one page, and names no other entry
     const definitions = usages.flatMap(usage =>
-      usage.definitions.filter(def => !isFootnote(def.definition)).map(def => buildDefinition({
+      usage.definitions.filter(def => !isFootnote(def.definition) && !isHubNoteOnly(def.definition)).map(def => buildDefinition({
         partOfSpeech: usage.partOfSpeech,
-        text: htmlToText(ownSenseHtml(def.definition)),
+        text: htmlToText(senseHtml(def.definition)),
         attributionText: ATTRIBUTION,
         sourceDictionary: 'wiktionary',
         sourceUrl,

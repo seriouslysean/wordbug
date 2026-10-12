@@ -1,0 +1,16 @@
+{
+  "en": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt7\" typeof=\"mw:Transclusion\"></span> The <a rel=\"mw:WikiLink\" href=\"/wiki/juice\" title=\"juice\">juice</a> of <a rel=\"mw:WikiLink\" href=\"/wiki/apple\" title=\"apple\">apples</a>. <span class=\"use-with-mention\" about=\"#mwt8\" typeof=\"mw:Transclusion\">(This entry is a <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#translation_hub\" title=\"Appendix:Glossary\">translation hub</a>.)</span><link rel=\"mw:PageProp/Category\" href=\"./Category:English_translation_hubs\" about=\"#mwt8\">"
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt10\" typeof=\"mw:Transclusion\"></span> <a rel=\"mw:WikiLink\" href=\"/wiki/filtered\" title=\"filtered\">Filtered</a> and <a rel=\"mw:WikiLink\" href=\"/wiki/pasteurized\" title=\"pasteurized\">pasteurized</a> juice of apples, as opposed to <a rel=\"mw:WikiLink\" href=\"/wiki/apple_cider\" title=\"apple cider\">apple cider</a> (which is unfiltered) and <a rel=\"mw:WikiLink\" href=\"/wiki/hard_cider\" title=\"hard cider\">hard cider</a> (which is fermented and alcoholic)."
+        }
+      ]
+    }
+  ]
+}

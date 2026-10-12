@@ -190,6 +190,23 @@ describe('wiktionary adapter', () => {
       ]);
     });
 
+    it("leaves Wiktionary's translation-hub note out of a sense", async () => {
+      const result = await lookUp('apple juice', 200, loadFixture('apple juice'));
+
+      expect(result.definitions.map(definition => definition.text)).toEqual([
+        'The juice of apples.',
+        'Filtered and pasteurized juice of apples, as opposed to apple cider (which is unfiltered) and hard cider (which is fermented and alcoholic).',
+      ]);
+    });
+
+    it("keeps a sense written in the note's own markup, and drops only the note after it", async () => {
+      const result = await lookUp('older brother', 200, loadFixture('older brother'));
+
+      expect(result.definitions.map(definition => definition.text)).toEqual([
+        'Used other than figuratively or idiomatically: see older, brother.',
+      ]);
+    });
+
     it("leaves a template's stylesheet out of the text", async () => {
       const result = await lookUp('antidisestablishmentarianism', 200, loadFixture('antidisestablishmentarianism'));
 
@@ -255,6 +272,23 @@ describe('wiktionary adapter', () => {
       const result = await lookUp('test', 200, { en: [usage('Noun')] });
 
       expect(result.definitions).toEqual([]);
+    });
+
+    // The only item of "bake bread", as the endpoint sent it on 12 October 2026
+    const HUB_NOTE = '<span class="use-with-mention" about="#mwt2" typeof="mw:Transclusion">(This entry is a <a rel="mw:WikiLink" href="/wiki/Appendix:Glossary#translation_hub" title="Appendix:Glossary">translation hub</a>.)</span><link rel="mw:PageProp/Category" href="./Category:English_translation_hubs" about="#mwt2">';
+
+    it('answers with no definitions when a translation-hub note is all the entry has', async () => {
+      const result = await lookUp('bake bread', 200, { en: [usage('Verb', { definition: HUB_NOTE })] });
+
+      expect(result.definitions).toEqual([]);
+    });
+
+    it('drops a sense that is only the note and keeps the senses beside it', async () => {
+      const body = { en: [usage('Noun', { definition: HUB_NOTE }, { definition: 'A <b>second</b> sense.' })] };
+
+      const result = await lookUp('minor thing', 200, body);
+
+      expect(result.definitions.map(definition => definition.text)).toEqual(['A second sense.']);
     });
   });
 

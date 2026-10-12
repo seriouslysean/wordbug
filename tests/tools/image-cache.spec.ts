@@ -51,9 +51,9 @@ const setUpCorpus = () => {
   }
 };
 
-const runCorpus = () => spawnTool(
-  [path.join(process.cwd(), 'tools', 'generate-images.ts')],
-  { env: { SOURCE_DIR: '', IMAGES_OUTPUT_DIR: path.join(ctx.outputDir, 'images') }, cwd: ctx.outputDir, timeout: 60000 },
+const runCorpus = (env: Record<string, string> = {}, args: string[] = []) => spawnTool(
+  [path.join(process.cwd(), 'tools', 'generate-images.ts'), ...args],
+  { env: { SOURCE_DIR: '', IMAGES_OUTPUT_DIR: path.join(ctx.outputDir, 'images'), ...env }, cwd: ctx.outputDir, timeout: 60000 },
 );
 
 const corpusMarkerPath = () => path.join(ctx.outputDir, 'images', 'social', '.image-settings-hash');
@@ -179,5 +179,39 @@ describe('generate-images per-card inputs', () => {
     const again = await runCorpus();
     expect(again.code).toBe(0);
     expect(generatedLabels(again.stdout)).toEqual([]);
+  }, 120000);
+});
+
+// A site's cards are drawn with its repository variables. A local .env with
+// another title redraws them all, so the run has to say so where it is seen.
+describe('generate-images under settings the stored cards were not drawn with', () => {
+  beforeEach(setUpCorpus);
+
+  const REDRAW_WARNING = /Image settings differ from the ones the stored cards were drawn with/;
+
+  it('warns with the number of cards and the title it draws', async () => {
+    const first = await runCorpus({ SITE_TITLE: 'The Site' });
+    expect(first.code).toBe(0);
+    const { cards } = JSON.parse(fs.readFileSync(corpusMarkerPath(), 'utf-8'));
+
+    const drifted = await runCorpus({ SITE_TITLE: 'Another Title' });
+
+    expect(drifted.code).toBe(0);
+    expect(drifted.stderr).toMatch(REDRAW_WARNING);
+    expect(drifted.stderr).toMatch(new RegExp(`cards: ${Object.keys(cards).length}\\b`));
+    expect(drifted.stderr).toContain("siteTitle: 'Another Title'");
+    expect(drifted.stdout.match(ALL_GENERATED)).toHaveLength(2);
+  }, 120000);
+
+  it('does not warn on a first run, an unchanged one or a forced one', async () => {
+    const first = await runCorpus({ SITE_TITLE: 'The Site' });
+    const unchanged = await runCorpus({ SITE_TITLE: 'The Site' });
+    const forced = await runCorpus({ SITE_TITLE: 'Another Title' }, ['--force']);
+
+    expect(first.code).toBe(0);
+    expect(first.stderr).not.toMatch(REDRAW_WARNING);
+    expect(unchanged.stderr).not.toMatch(REDRAW_WARNING);
+    expect(forced.code).toBe(0);
+    expect(forced.stderr).not.toMatch(REDRAW_WARNING);
   }, 120000);
 });

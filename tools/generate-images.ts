@@ -193,8 +193,19 @@ async function main(options: GenerateImagesOptions): Promise<void> {
   // Settled once: every image in this run is decided against the same
   // snapshot, so the first regenerated image cannot make the rest look current.
   const cache = readImageCache();
-  if (cache.stale && !options.force) {
+  const recorded = Object.keys(cache.cards).length;
+  if (cache.stale && !options.force && recorded === 0) {
     logger.info('Image settings differ from the last complete run, regenerating existing images');
+  }
+  // Right after a setting or the engine changed, and wrong when this run's
+  // settings are not the site's: a local .env whose title or colors differ
+  // from the repository variables the stored cards were drawn with. The
+  // title is the one this run draws, so the reader can tell which it is.
+  if (cache.stale && !options.force && recorded > 0) {
+    logger.warn('Image settings differ from the ones the stored cards were drawn with, redrawing every card', {
+      cards: recorded,
+      siteTitle: process.env.SITE_TITLE ?? '',
+    });
   }
   const renderOptions: GenerateImageOptions = { regenerate: options.force || cache.stale, cards: cache.cards };
 

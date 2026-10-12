@@ -1,9 +1,9 @@
 # Potential Features
 
 Quality and architectural improvements, prioritized by impact. A heading ends
-with its status (SHIPPED, PARTIAL or OPEN) once the entry has been checked
-against the code; file and line references are from when an entry was written
-and drift as the files change.
+with its status (SHIPPED, PARTIAL, OPEN, or CLOSED for an entry other changes
+overtook) once the entry has been checked against the code; file and line
+references are from when an entry was written and drift as the files change.
 
 ## Shipped: Word Enrichment Bucket
 
@@ -331,59 +331,22 @@ adapters/logger/stats-math changes.
   `[key: string]: any` prop spreads are gone; oxlint now rejects both
   (`typescript/consistent-type-assertions`, `typescript/no-explicit-any`).
 
-### Astro Best Practices (responsive images + complete astro:env) — PARTIAL
+### Astro Best Practices (responsive images + complete astro:env) — CLOSED
 
-**Status.** The Wordnik logo and `WORDNIK_WEBSITE_URL` this section was about
-are gone with Wordnik itself, so the Footer items below are closed. The one
-image a page now shows, the Merriam-Webster logo on the Attributions page, is
-deliberately not an `<Image>`: its brand guidelines forbid modifying the logo,
-and `astro:assets` would re-encode it.
-`src/pages/favicon.ico.ts` no longer exists, and step 6 refers to speculation
-rules that Astro's prefetch has replaced.
+Nothing is left to do here. The entry paired converting the footer's Wordnik
+logo to `<Image>` with adding `WORDNIK_WEBSITE_URL` to the `astro:env` schema,
+and both went with Wordnik itself in 3.30.0. The rest of what it listed needs
+no work:
 
-Pairs the Astro 6.x image component rollout with finishing the `astro:env`
-migration. The type-safe env API is already partially adopted —
-`src/utils/seo-utils.ts` and `src/utils/image-utils.ts` import from
-`astro:env/client`, and `SOURCE_DIR` is in the schema.
-
-**Responsive image inventory:**
-- `src/components/Footer.astro:44` — Wordnik logo, imported as
-  `#assets/wordnik-gearheart.png`. Convert to `<Image>` from `astro:assets`
-  (16x16, `loading="lazy"`, `decoding="async"`).
-- `src/layouts/Layout.astro:148,155` — `og:image`/`twitter:image` URLs.
-  Stay as string URLs (pre-generated PNGs in `public/`). Out of scope.
-- `src/pages/favicon.ico.ts`, manifest, SVG favicon — SVG, no transform
-  needed.
-
-**astro:env adoption gaps:**
-- `astro.config.ts:46,137-138` — `WORDNIK_WEBSITE_URL` declared in
-  `defaults` but never schemaed. Add the entry.
-- `src/utils/logger.ts:12,34` — `import.meta.env.DEV` and
-  `import.meta.env.npm_package_version`. Vite-provided. Keep as-is.
-- `utils/logger.ts:12,21-27` — `process.env.SENTRY_*`. Must stay
-  `process.env`; boundary rule forbids `astro:*` outside `src/`.
-
-**Acceptance criteria:**
-- Footer Wordnik logo renders via `<Image>`; build output shows hashed,
-  optimized asset; visual diff identical at 16x16.
-- `astro:env/client` schema includes `WORDNIK_WEBSITE_URL`.
-- Boundary tests still green.
-- Lighthouse on `/` and a word page: no regression on LCP/CLS.
-
-**Step sequence:**
-1. Add `WORDNIK_WEBSITE_URL` to env schema.
-2. Replace `<img>` in `src/components/Footer.astro` with `<Image>`.
-3. Verify `:global(.footer__wordnik)` grayscale/opacity styles still
-   target the new wrapper.
-4. Run typecheck, build, inspect `dist/` for hashed image output.
-5. Run unit + E2E suites.
-6. Audit speculation rules `eagerness` against a long browse page; tune
-   if prefetch volume is excessive.
-
-**Out-of-scope:** Astro DB, SSR adapters, server islands, Astro ClientRouter
-(JS-based; removed — native CSS view transitions are implemented),
-migrating CLI-side `utils/logger.ts` env access (boundary), re-encoding
-pre-generated social PNGs through `astro:assets`, SVG favicon to `<Image>`.
+- The one image a page shows, the Merriam-Webster logo on the Attributions
+  page, is deliberately a plain `<img>`: its brand guidelines forbid modifying
+  the logo, and `astro:assets` would re-encode it.
+- `og:image` and `twitter:image` stay string URLs to the pre-generated PNGs in
+  `public/`, and the favicons are static files there.
+- `src/utils/logger.ts` keeps Vite's `import.meta.env` for `DEV` and the
+  package version, and `utils/logger.ts` keeps `process.env`: the boundary
+  forbids `astro:*` outside `src/`.
+- The speculation-rules audit is moot: Astro's prefetch replaced them.
 
 ## Tier 2: Medium Impact
 

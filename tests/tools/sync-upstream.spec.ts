@@ -3,7 +3,8 @@
  * upstream, the downstream's own bare origin, and a downstream clone whose
  * history has diverged. A fake npm first on PATH records every call and can
  * fail one gate, so nothing is installed, nothing reaches the network, and
- * the gates run in no time. Git reads none of the machine's configuration.
+ * the gates run in no time. Git reads none of the machine's configuration,
+ * only the fixture's own, which switches its background maintenance off.
  */
 
 import { execFileSync, spawn } from 'node:child_process';
@@ -79,6 +80,23 @@ const LOCKFILE = `{
 }
 `;
 
+// A commit, fetch, merge or received push otherwise ends by starting a
+// detached "git maintenance run --auto", which holds
+// .git/objects/maintenance.lock for a moment after the command has returned
+// (seen with git 2.56). A copy of a repository made in that moment fails as
+// the file vanishes, with "ENOENT ... .git/objects". That is the likely cause
+// of the one failure seen, on a busy machine, and not a reproduced one: it
+// was the first case, whose copy comes straight after the template's last
+// fetch, and its error named site/.git/objects. The switch is a file because
+// under GIT_CONFIG_COUNT a push still started maintenance in the repository
+// receiving it. gc.auto is the same switch for a git that predates
+// maintenance.auto.
+const GIT_CONFIG = `[maintenance]
+\tauto = false
+[gc]
+\tauto = 0
+`;
+
 const ctx: SyncContext = { root: '', env: {}, engine: '', site: '', origin: '' };
 
 const git = (cwd: string, ...args: string[]): string => String(execFileSync('git', args, {
@@ -144,7 +162,7 @@ const useRoot = (root: string): void => {
   ctx.env = {
     PATH: `${path.join(root, 'bin')}:${process.env.PATH ?? ''}`,
     HOME: root,
-    GIT_CONFIG_GLOBAL: '/dev/null',
+    GIT_CONFIG_GLOBAL: path.join(root, 'gitconfig'),
     GIT_CONFIG_NOSYSTEM: '1',
     GIT_AUTHOR_NAME: 'Fixture',
     GIT_AUTHOR_EMAIL: 'fixture@example.com',
@@ -163,6 +181,7 @@ const template: { dir: string } = { dir: '' };
 beforeAll(() => {
   template.dir = tempDir();
   useRoot(template.dir);
+  write(ctx.root, 'gitconfig', GIT_CONFIG);
   write(ctx.root, 'bin/npm', FAKE_NPM);
   fs.chmodSync(path.join(ctx.root, 'bin/npm'), 0o755);
 
