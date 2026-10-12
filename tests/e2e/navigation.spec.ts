@@ -90,6 +90,20 @@ test.describe('user journeys', () => {
 		await expect(page.locator('#main-content')).toBeVisible();
 	});
 
+	test('footer leads to the page that credits the dictionaries, logo included', async ({ page }) => {
+		await page.goto('/');
+
+		await page.locator('footer a[href="/attributions/"]').click();
+		await expect(page).toHaveURL(/\/attributions\/$/);
+
+		// The demo words come from Merriam-Webster and Wiktionary. The logo is
+		// the imported file as built, so its request must succeed, not only its tag
+		const logo = page.locator('#merriam-webster img');
+		await expect(logo).toBeVisible();
+		expect(await logo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+		await expect(page.locator('#wiktionary a[rel~="license"]')).toBeVisible();
+	});
+
 	test('oldest word has no previous navigation', async ({ page }) => {
 		await page.goto('/');
 

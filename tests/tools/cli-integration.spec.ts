@@ -115,7 +115,7 @@ describe('CLI Tools: Import & Execution', () => {
     // Each variable is documented once, and a key is asked for only where its adapter is used
     const documented = stdout.split('\n').flatMap(line => line.match(/^ {2}([A-Z][A-Z_]+) /)?.[1] ?? []);
     expect(documented).toEqual([...new Set(documented)]);
-    expect(stdout).toMatch(/WORDNIK_API_KEY\s+Wordnik API key \(required when wordnik is the adapter or a fallback\)/);
+    expect(stdout).not.toContain('WORDNIK');
     expect(stdout).toMatch(/MERRIAM_WEBSTER_API_KEY\s+Merriam-Webster API key \(required when merriam-webster is the adapter or a fallback\)/);
     expect(stderr).not.toContain('astro:');
   }, 15000);

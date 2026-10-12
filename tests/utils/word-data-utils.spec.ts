@@ -906,6 +906,40 @@ describe('word-page surfacing helpers (utils/word-data-utils)', () => {
     });
   });
 
+  describe('getWordSenses credit', () => {
+    const WIKTIONARY_CREDIT = {
+      text: 'from Wiktionary, Creative Commons Attribution/Share-Alike License.',
+      licenseName: 'Creative Commons Attribution-ShareAlike 4.0 International License',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    };
+    const wiktionary = { sourceDictionary: 'wiktionary', attributionText: WIKTIONARY_CREDIT.text };
+    const century = { sourceDictionary: 'century', attributionText: 'from The Century Dictionary.' };
+    const mixed = (...sources: Array<{ sourceDictionary?: string; attributionText?: string }>): WordData => ({
+      word: 'lightroom',
+      date: '20251002',
+      adapter: 'wordnik',
+      data: sources.map((source, index): DictionaryDefinition => ({ partOfSpeech: 'noun', text: `sense ${index + 1}`, ...source })),
+    });
+
+    it("credits a Wiktionary sense that is not the word's first", () => {
+      expect(getWordSenses(mixed(century, wiktionary)).map(sense => sense.credit)).toEqual([undefined, WIKTIONARY_CREDIT]);
+    });
+
+    it('does not put the credit of the first sense over the others', () => {
+      expect(getWordSenses(mixed(wiktionary, century, {})).map(sense => sense.credit)).toEqual([WIKTIONARY_CREDIT, undefined, undefined]);
+    });
+
+    it('credits every sense of a word that is all Wiktionary', () => {
+      expect(getWordSenses(mixed(wiktionary, wiktionary)).every(sense => sense.credit?.licenseUrl === WIKTIONARY_CREDIT.licenseUrl)).toBe(true);
+    });
+
+    it('shows no credit for a source that asks for none on the page, or for a sense with no stored text to show', () => {
+      const merriamWebster = { sourceDictionary: 'collegiate', attributionText: "from Merriam-Webster's Collegiate Dictionary" };
+
+      expect(getWordSenses(mixed(merriamWebster, { sourceDictionary: 'wiktionary' })).some(sense => 'credit' in sense)).toBe(false);
+    });
+  });
+
   describe('getWordSenses', () => {
     const reading: WordData = {
       word: 'reading',
@@ -980,6 +1014,93 @@ describe('word-page surfacing helpers (utils/word-data-utils)', () => {
         ],
       };
       expect(getWordSenses(word).map(sense => sense.partOfSpeech)).toEqual(['adjective', 'noun']);
+    });
+
+    // Merriam-Webster returns the prefix "the-" (god) with "the", and the
+    // slug drops the hyphen that tells them apart
+    it.each([
+      ['a prefix', 'the', 'the-'],
+      ['a suffix', 'an', '-an'],
+      ['an infix', 'a', '-a-'],
+    ])("leaves %s out of the word it is spelt like", (_kind, headword, affix) => {
+      const word: WordData = {
+        word: headword,
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [
+          { id: headword, partOfSpeech: 'article', text: 'a function word' },
+          { id: affix, partOfSpeech: 'noun', text: 'an affix sense' },
+        ],
+      };
+      expect(getWordSenses(word).map(sense => sense.partOfSpeech)).toEqual(['article']);
+      expect(getWordsByPartOfSpeechPure('noun', [word])).toEqual([]);
+    });
+
+    it('keeps the entries of a word that is itself an affix, and leaves out the word spelt like it', () => {
+      const word: WordData = {
+        word: '-ness',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [
+          { id: 'ness', partOfSpeech: 'noun', text: 'a cape or headland' },
+          { id: '-ness', partOfSpeech: 'noun', text: 'state, condition, quality' },
+        ],
+      };
+      expect(getWordSenses(word).map(sense => sense.segments)).toEqual([
+        [{ type: 'text', text: 'state, condition, quality' }],
+      ]);
+    });
+
+    // "ness" typed without its hyphen: the lookup has the suffix and nothing
+    // for the bare word. Every sense of the suffix stands in, whatever entry
+    // the dictionary listed first, and as a stand-in none carries examples.
+    it('lets every sense of the affix spelt like the word stand in for it, without examples', () => {
+      const word: WordData = {
+        word: 'ness',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [
+          { id: 'Nessie', partOfSpeech: 'noun', text: 'a lake monster' },
+          { id: '-ness', partOfSpeech: 'noun', text: 'state, condition, quality', examples: ['goodness'] },
+          { id: '-ness', partOfSpeech: 'noun', text: 'an instance of a state' },
+        ],
+      };
+
+      expect(getWordSenses(word)).toEqual([
+        { partOfSpeech: 'noun', segments: [{ type: 'text', text: 'state, condition, quality' }], examples: [] },
+        { partOfSpeech: 'noun', segments: [{ type: 'text', text: 'an instance of a state' }], examples: [] },
+      ]);
+      expect(getWordDetails(word)).toMatchObject({ definition: 'state, condition, quality' });
+    });
+
+    it.each([
+      ['a non-breaking hyphen', '\u2011ness'],
+      ['a typographic hyphen', '\u2010ness'],
+    ])('reads %s as the hyphen of an affix', (_kind, headword) => {
+      const word: WordData = {
+        word: headword,
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [
+          { id: 'ness', partOfSpeech: 'noun', text: 'a cape or headland' },
+          { id: '-ness', partOfSpeech: 'noun', text: 'state, condition, quality', examples: ['goodness'] },
+        ],
+      };
+
+      // The suffix's own entry, so its examples show
+      expect(getWordSenses(word)).toEqual([
+        { partOfSpeech: 'noun', segments: [{ type: 'text', text: 'state, condition, quality' }], examples: ['goodness'] },
+      ]);
+    });
+
+    it('lets an affix stand in for a word with no entry of its own', () => {
+      const word: WordData = {
+        word: 'the',
+        date: '20250101',
+        adapter: 'merriam-webster',
+        data: [{ id: 'the-', partOfSpeech: 'noun', text: 'god' }],
+      };
+      expect(getWordDetails(word)).toMatchObject({ partOfSpeech: 'noun', definition: 'god' });
     });
 
     it('opens with a sense whose part of speech the word is grouped under, when a compound is stored first', () => {

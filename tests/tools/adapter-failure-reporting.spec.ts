@@ -1,7 +1,7 @@
 /**
  * How add-word and regenerate-all-words react when the adapter chain is
  * exhausted. A fallback's 404 must not hide a rate limit or a shape error
- * from the primary. Runs the real Wordnik and Wiktionary adapters with fetch
+ * from the primary. Runs the real Merriam-Webster and Wiktionary adapters with fetch
  * stubbed per host, writes through a mocked #config/paths, and replaces the
  * backoff delay so retries do not wait.
  */
@@ -16,13 +16,13 @@ import {
 const WORD = 'zzyzx';
 const NOT_FOUND = `Word "${WORD}" not found in dictionary. Please check the spelling.`;
 const RATE_LIMITED = 'Rate limit exceeded. Please try again later.';
-const SHAPE = `Wordnik returned an unexpected response shape for "${WORD}"`;
+const SHAPE = `Merriam-Webster returned an unexpected response shape for "${WORD}"`;
 
 const STATUS_TEXT: Record<number, string> = { 200: 'OK', 404: 'Not Found', 429: 'Too Many Requests' };
 const httpResponse = (status: number, body: unknown = []): Response =>
   new Response(JSON.stringify(body), { status, statusText: STATUS_TEXT[status] ?? 'Unknown' });
 
-type AdapterName = 'merriam-webster' | 'wordnik' | 'wiktionary';
+type AdapterName = 'merriam-webster' | 'wiktionary';
 type LogLevel = 'error' | 'warn';
 const createLogger = () => ({ info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() });
 const delayMock = vi.fn<(delay?: number) => Promise<void>>();
@@ -30,7 +30,6 @@ const delayMock = vi.fn<(delay?: number) => Promise<void>>();
 const ctx = {
   wordsDir: '',
   responses: {
-    wordnik: httpResponse(404),
     'merriam-webster': httpResponse(404),
     wiktionary: httpResponse(404),
   } satisfies Record<AdapterName, Response>,
@@ -38,14 +37,9 @@ const ctx = {
   delay: delayMock,
 };
 
-const responseFor = (url: string): Response => {
-  if (url.startsWith('https://wordnik.test')) {
-    return ctx.responses.wordnik;
-  }
-  return url.startsWith('https://mw.test')
-    ? ctx.responses['merriam-webster']
-    : ctx.responses.wiktionary;
-};
+const responseFor = (url: string): Response => (url.startsWith('https://mw.test')
+  ? ctx.responses['merriam-webster']
+  : ctx.responses.wiktionary);
 
 const addWord = async () => {
   const tool = await import('#tools/add-word');
@@ -59,7 +53,6 @@ const regenerateWordFile = async (word = WORD) => {
 
 beforeEach(() => {
   ctx.wordsDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wotd-adapter-failures-'));
-  ctx.responses.wordnik = httpResponse(404);
   ctx.responses['merriam-webster'] = httpResponse(404);
   ctx.responses.wiktionary = httpResponse(404);
   ctx.logger = createLogger();
@@ -68,10 +61,10 @@ beforeEach(() => {
 
   vi.resetModules();
   vi.stubGlobal('fetch', vi.fn<typeof fetch>(async url => responseFor(String(url))));
-  vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
+  vi.stubEnv('DICTIONARY_ADAPTER', 'merriam-webster');
   vi.stubEnv('DICTIONARY_FALLBACK', 'wiktionary');
-  vi.stubEnv('WORDNIK_API_KEY', 'test-key');
-  vi.stubEnv('WORDNIK_API_URL', 'https://wordnik.test/v4');
+  vi.stubEnv('MERRIAM_WEBSTER_API_KEY', 'test-key');
+  vi.stubEnv('MERRIAM_WEBSTER_API_URL', 'https://mw.test/api/v3/references');
   vi.doMock('#config/paths', () => ({
     paths: { words: ctx.wordsDir, images: ctx.wordsDir, fonts: ctx.wordsDir, pages: ctx.wordsDir },
   }));
@@ -95,49 +88,35 @@ afterEach(() => {
 
 describe('add-word failure reporting', () => {
   it('reports a rate limit, not "not found", when only the fallback said not found', async () => {
-    ctx.responses.wordnik = httpResponse(429);
+    ctx.responses['merriam-webster'] = httpResponse(429);
 
     await addWord();
 
     expect(ctx.logger.error).toHaveBeenCalledExactlyOnceWith('Failed to add word', {
       word: WORD,
-      errorMessage: `All dictionary adapters failed for "${WORD}": wordnik: ${RATE_LIMITED} | wiktionary: ${NOT_FOUND}`,
-    });
-  });
-
-  it('reports an unexpected shape, not "not found", when only the fallback said not found', async () => {
-    ctx.responses.wordnik = httpResponse(200, { message: 'unexpected' });
-
-    await addWord();
-
-    expect(ctx.logger.error).toHaveBeenCalledExactlyOnceWith('Failed to add word', {
-      word: WORD,
-      errorMessage: `All dictionary adapters failed for "${WORD}": wordnik: ${SHAPE} | wiktionary: ${NOT_FOUND}`,
+      errorMessage: `All dictionary adapters failed for "${WORD}": merriam-webster: ${RATE_LIMITED} | wiktionary: ${NOT_FOUND}`,
     });
   });
 
   it('reports an API change, not "not found", when Merriam-Webster answered with an object', async () => {
-    vi.stubEnv('DICTIONARY_ADAPTER', 'merriam-webster');
-    vi.stubEnv('MERRIAM_WEBSTER_API_KEY', 'test-key');
-    vi.stubEnv('MERRIAM_WEBSTER_API_URL', 'https://mw.test/api/v3/references');
     ctx.responses['merriam-webster'] = httpResponse(200, { error: 'moved' });
 
     await addWord();
 
     expect(ctx.logger.error).toHaveBeenCalledExactlyOnceWith('Failed to add word', {
       word: WORD,
-      errorMessage: `All dictionary adapters failed for "${WORD}": merriam-webster: Merriam-Webster returned an unexpected response shape for "${WORD}" | wiktionary: ${NOT_FOUND}`,
+      errorMessage: `All dictionary adapters failed for "${WORD}": merriam-webster: ${SHAPE} | wiktionary: ${NOT_FOUND}`,
     });
   });
 
-  it('reports an API change, not "not found", when Wiktionary answered with an object', async () => {
-    ctx.responses.wiktionary = httpResponse(200, { entries: [] });
+  it('reports an API change, not "not found", when Wiktionary answered with a list', async () => {
+    ctx.responses.wiktionary = httpResponse(200, [{ word: WORD, meanings: [] }]);
 
     await addWord();
 
     expect(ctx.logger.error).toHaveBeenCalledExactlyOnceWith('Failed to add word', {
       word: WORD,
-      errorMessage: `All dictionary adapters failed for "${WORD}": wordnik: ${NOT_FOUND} | wiktionary: Wiktionary returned an unexpected response shape for "${WORD}"`,
+      errorMessage: `All dictionary adapters failed for "${WORD}": merriam-webster: ${NOT_FOUND} | wiktionary: Wiktionary returned an unexpected response shape for "${WORD}"`,
     });
   });
 
@@ -146,7 +125,7 @@ describe('add-word failure reporting', () => {
 
     expect(ctx.logger.warn).toHaveBeenCalledWith('Word not found in dictionary', {
       word: WORD,
-      errorMessage: `All dictionary adapters failed for "${WORD}": wordnik: ${NOT_FOUND} | wiktionary: ${NOT_FOUND}`,
+      errorMessage: `All dictionary adapters failed for "${WORD}": merriam-webster: ${NOT_FOUND} | wiktionary: ${NOT_FOUND}`,
     });
     expect(ctx.logger.error).not.toHaveBeenCalled();
   });
@@ -155,15 +134,39 @@ describe('add-word failure reporting', () => {
     ['suggestions', ['zydeco', 'zyzzyva']],
     ['no entry from the configured dictionary', [{ meta: { id: WORD, src: 'learners' }, shortdef: ['a place'] }]],
   ])('reports "not found" when Merriam-Webster answered with %s and the fallback said not found', async (_, body) => {
-    vi.stubEnv('DICTIONARY_ADAPTER', 'merriam-webster');
-    vi.stubEnv('MERRIAM_WEBSTER_API_KEY', 'test-key');
-    vi.stubEnv('MERRIAM_WEBSTER_API_URL', 'https://mw.test/api/v3/references');
     ctx.responses['merriam-webster'] = httpResponse(200, body);
 
     await addWord();
 
     expect(ctx.logger.warn).toHaveBeenCalledWith('Word not found in dictionary', expect.objectContaining({ word: WORD }));
     expect(ctx.logger.error).not.toHaveBeenCalled();
+  });
+
+  // "etc." is a phrase and "pre-" a prefix at Wiktionary: it has the word and
+  // answered well, so nothing is at fault
+  it('reports a word the dictionary has only as a phrase as input, not a fault', async () => {
+    ctx.responses.wiktionary = httpResponse(200, {
+      en: [{ partOfSpeech: 'Phrase', language: 'English', definitions: [{ definition: 'And so on.' }] }],
+    });
+
+    await addWord();
+
+    expect(ctx.logger.warn).toHaveBeenCalledWith('Word has no definition the site can display', {
+      word: WORD,
+      errorMessage: expect.stringContaining(`wiktionary: wiktionary has "${WORD}" only as: Phrase.`),
+    });
+    expect(ctx.logger.error).not.toHaveBeenCalled();
+  });
+
+  it('still reports a fault when the other dictionary failed for a reason of its own', async () => {
+    ctx.responses['merriam-webster'] = httpResponse(429);
+    ctx.responses.wiktionary = httpResponse(200, {
+      en: [{ partOfSpeech: 'Prefix', language: 'English', definitions: [{ definition: 'Before.' }] }],
+    });
+
+    await addWord();
+
+    expect(ctx.logger.error).toHaveBeenCalledExactlyOnceWith('Failed to add word', expect.objectContaining({ word: WORD }));
   });
 
   it('keeps the single-adapter message unchanged when no fallback is configured', async () => {
@@ -192,7 +195,7 @@ describe('add-word when a dictionary answers with no definition to keep', () => 
 
   const MW_ENTRY = { meta: { id: WORD, src: 'collegiate' }, fl: 'noun' };
   const wiktionaryEntry = (definitions: unknown[]) =>
-    [{ word: WORD, meanings: [{ partOfSpeech: 'noun', definitions }] }];
+    ({ en: [{ partOfSpeech: 'Noun', language: 'English', definitions }] });
   const unexpectedShape = (source: string): FailureCase['reported'] => ({
     level: 'error',
     message: 'Failed to add word',
@@ -218,16 +221,10 @@ describe('add-word when a dictionary answers with no definition to keep', () => 
       reported: unexpectedShape('Merriam-Webster'),
     },
     {
-      adapter: 'wordnik',
-      answer: 'text renamed to definitionText',
-      body: [{ partOfSpeech: 'noun', definitionText: 'a place' }],
-      reported: unexpectedShape('Wordnik'),
-    },
-    {
-      adapter: 'wordnik',
-      answer: 'every text empty',
-      body: [{ partOfSpeech: 'noun', text: '' }, { partOfSpeech: 'verb', text: '' }],
-      reported: unexpectedShape('Wordnik'),
+      adapter: 'wiktionary',
+      answer: 'definition renamed to text',
+      body: wiktionaryEntry([{ text: 'a place' }]),
+      reported: unexpectedShape('Wiktionary'),
     },
     {
       adapter: 'wiktionary',
@@ -243,14 +240,14 @@ describe('add-word when a dictionary answers with no definition to keep', () => 
     },
     {
       adapter: 'wiktionary',
-      answer: 'a meaning whose definitions list is empty',
+      answer: 'a usage whose definitions list is empty',
       body: wiktionaryEntry([]),
       reported: notFound,
     },
     {
-      adapter: 'wordnik',
-      answer: 'an empty definitions list',
-      body: [],
+      adapter: 'wiktionary',
+      answer: 'entries in other languages only',
+      body: { fr: [{ partOfSpeech: 'Noun', language: 'French', definitions: [{ definition: 'un lieu' }] }] },
       reported: notFound,
     },
   ];
@@ -258,8 +255,6 @@ describe('add-word when a dictionary answers with no definition to keep', () => 
   it.each(cases)('reports $adapter answering with $answer at $reported.level', async ({ adapter, body, reported }) => {
     vi.stubEnv('DICTIONARY_ADAPTER', adapter);
     vi.stubEnv('DICTIONARY_FALLBACK', 'none');
-    vi.stubEnv('MERRIAM_WEBSTER_API_KEY', 'test-key');
-    vi.stubEnv('MERRIAM_WEBSTER_API_URL', 'https://mw.test/api/v3/references');
     ctx.responses[adapter] = httpResponse(200, body);
 
     await addWord();
@@ -274,7 +269,7 @@ describe('add-word when a dictionary answers with no definition to keep', () => 
 
 describe('regenerate-all-words rate-limit backoff', () => {
   it('backs off when the primary was rate limited and the fallback said not found', async () => {
-    ctx.responses.wordnik = httpResponse(429);
+    ctx.responses['merriam-webster'] = httpResponse(429);
 
     const success = await regenerateWordFile();
 
@@ -300,11 +295,11 @@ describe('regenerate-all-words rate-limit backoff', () => {
 // The scan once dated an entry by its file name, so words/alpha.json reached
 // here with the date "alpha" and was overwritten with it.
 describe('regenerate-all-words and a record it could not build validly', () => {
-  const STORED = { word: 'alpha', date: '20240101', adapter: 'wordnik', data: [{ text: 'a letter', partOfSpeech: 'noun' }] };
+  const STORED = { word: 'alpha', date: '20240101', adapter: 'merriam-webster', data: [{ text: 'a letter', partOfSpeech: 'noun' }] };
   const regenerate = async (date: string) => {
     const filePath = path.join(ctx.wordsDir, 'alpha.json');
     fs.writeFileSync(filePath, JSON.stringify(STORED));
-    ctx.responses.wordnik = httpResponse(200, [{ partOfSpeech: 'noun', text: 'the first letter' }]);
+    ctx.responses['merriam-webster'] = httpResponse(200, [{ meta: { id: 'alpha', src: 'collegiate' }, fl: 'noun', shortdef: ['the first letter'] }]);
     const tool = await import('#tools/regenerate-all-words');
     const success = await tool.regenerateWordFile('alpha', date, filePath);
     return { success, stored: JSON.parse(fs.readFileSync(filePath, 'utf-8')) };

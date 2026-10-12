@@ -56,7 +56,6 @@ Common Environment Variables:
   SOURCE_DIR                 Data source subdirectory (unset = root paths)
   DICTIONARY_ADAPTER         Dictionary API to use (required)
   DICTIONARY_FALLBACK        Fallback chain, comma-separated (default: wiktionary, none: disabled)
-  WORDNIK_API_KEY            Wordnik API key (required when wordnik is the adapter or a fallback)
   MERRIAM_WEBSTER_API_KEY    Merriam-Webster API key (required when merriam-webster is the adapter or a fallback)
   SITE_TITLE                Site title for generated content
   SITE_URL                  Canonical site URL

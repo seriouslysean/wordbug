@@ -1,0 +1,90 @@
+{
+  "en": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Translingual",
+      "definitions": [
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt9\" typeof=\"mw:Transclusion\"></span><span about=\"#mwt9\"> </span><span class=\"use-with-mention\" about=\"#mwt9\"><a rel=\"mw:WikiLink/Interwiki\" href=\"https://en.wikipedia.org/wiki/NATO\" title=\"w:NATO\" class=\"extiw\">NATO</a> <span typeof=\"mw:Entity\">&amp;</span> <a rel=\"mw:WikiLink/Interwiki\" href=\"https://en.wikipedia.org/wiki/International%20Civil%20Aviation%20Organization\" title=\"w:International Civil Aviation Organization\" class=\"extiw\">ICAO</a> <a rel=\"mw:WikiLink/Interwiki\" href=\"https://en.wikipedia.org/wiki/NATO%20phonetic%20alphabet\" title=\"w:NATO phonetic alphabet\" class=\"extiw\">radiotelephony clear code</a> (spelling-alphabet name) for the digit <i class=\"None mention\" lang=\"mul\"><a rel=\"mw:WikiLink\" href=\"/wiki/3#Translingual\" title=\"3\">3</a></i>.</span><link rel=\"mw:PageProp/Category\" href=\"./Category:ICAO_spelling_alphabet\" about=\"#mwt9\">"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Numeral",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": ""
+        },
+        {
+          "definition": "<link rel=\"mw:PageProp/Category\" href=\"./Category:English_cardinal_numbers#THREE\"> A <a rel=\"mw:WikiLink\" href=\"/wiki/numerical\" title=\"numerical\">numerical</a> <a rel=\"mw:WikiLink\" href=\"/wiki/value\" title=\"value\">value</a> equal to <a rel=\"mw:WikiLink\" href=\"/wiki/3\" title=\"3\">3</a>; the number following <a rel=\"mw:WikiLink\" href=\"/wiki/two\" title=\"two\">two</a> and preceding <a rel=\"mw:WikiLink\" href=\"/wiki/four\" title=\"four\">four</a>."
+        },
+        {
+          "definition": "<span class=\"use-with-mention\" about=\"#mwt61\" typeof=\"mw:Transclusion\">Describing a <a rel=\"mw:WikiLink\" href=\"/wiki/set#English\" title=\"set\">set</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/group#English\" title=\"group\">group</a> with three <a rel=\"mw:WikiLink\" href=\"/wiki/element#English\" title=\"element\">elements</a>.</span>"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Noun",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": "The digit/figure 3."
+        },
+        {
+          "definition": "Anything measuring three <a rel=\"mw:WikiLink\" href=\"/wiki/unit\" title=\"unit\">units</a>, as <a rel=\"mw:WikiLink\" href=\"/wiki/length\" title=\"length\">length</a>.",
+          "parsedExamples": [
+            {
+              "example": "Put all the <b>threes</b> in a separate container."
+            }
+          ],
+          "examples": [
+            "Put all the <b>threes</b> in a separate container."
+          ]
+        },
+        {
+          "definition": "A person who is three <a rel=\"mw:WikiLink\" href=\"/wiki/years\" title=\"years\">years</a> old.",
+          "parsedExamples": [
+            {
+              "example": "All the <b>threes</b> will go in Mrs. Smith's class, while I'll take the fours and fives."
+            }
+          ],
+          "examples": [
+            "All the <b>threes</b> will go in Mrs. Smith's class, while I'll take the fours and fives."
+          ]
+        },
+        {
+          "definition": "The <a rel=\"mw:WikiLink\" href=\"/wiki/playing_card\" title=\"playing card\">playing card</a> featuring three <a rel=\"mw:WikiLink\" href=\"/wiki/pip\" title=\"pip\">pips</a>."
+        },
+        {
+          "definition": "Three <a rel=\"mw:WikiLink\" href=\"/wiki/o'clock\" title=\"o'clock\">o'clock</a>, either a.m. or p.m."
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt90\" typeof=\"mw:Transclusion\"></span> <span class=\"form-of-definition use-with-mention\" about=\"#mwt91\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#abbreviation\" title=\"Appendix:Glossary\">Abbreviation</a> of <span class=\"form-of-definition-link\"><i class=\"Latn mention\" lang=\"en\"><a rel=\"mw:WikiLink\" href=\"/wiki/three-pointer#English\" title=\"three-pointer\">three-pointer</a></i></span></span><link rel=\"mw:PageProp/Category\" href=\"./Category:English_abbreviations#THREE\" about=\"#mwt91\">."
+        }
+      ]
+    }
+  ],
+  "gv": [
+    {
+      "partOfSpeech": "Numeral",
+      "language": "Manx",
+      "definitions": [
+        {
+          "definition": "<span class=\"form-of-definition use-with-mention\" about=\"#mwt176\" typeof=\"mw:Transclusion\">alternative spelling of <span class=\"form-of-definition-link\"><i class=\"Latn mention\" lang=\"gv\"><a rel=\"mw:WikiLink\" href=\"/wiki/tree#Manx\" title=\"tree\">tree</a></i></span></span>\n\n<span class=\"mw-empty-elt\" about=\"#mwt177\" typeof=\"mw:Transclusion\"><link rel=\"mw:PageProp/Category\" href=\"./Category:gv:Three#THREE\"></span>"
+        }
+      ]
+    }
+  ],
+  "sco": [
+    {
+      "partOfSpeech": "Numeral",
+      "language": "Scots",
+      "definitions": [
+        {
+          "definition": "<span class=\"mw-empty-elt\" about=\"#mwt194\" typeof=\"mw:Transclusion\"><link rel=\"mw:PageProp/Category\" href=\"./Category:Scots_cardinal_numbers#THREE\"></span> <a rel=\"mw:WikiLink\" href=\"/wiki/three#English\" class=\"mw-selflink-fragment\">three</a>"
+        }
+      ]
+    }
+  ]
+}

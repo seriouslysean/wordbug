@@ -31,22 +31,6 @@ describe('adapter factory', () => {
       expect(() => getAdapter()).toThrow('DICTIONARY_ADAPTER environment variable is required');
     });
 
-    it('returns wordnik adapter when explicitly configured', () => {
-      vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
-
-      const adapter = getAdapter();
-
-      expect(adapter.name).toBe('wordnik');
-    });
-
-    it('handles case insensitive adapter names', () => {
-      vi.stubEnv('DICTIONARY_ADAPTER', 'WORDNIK');
-
-      const adapter = getAdapter();
-
-      expect(adapter.name).toBe('wordnik');
-    });
-
     it('returns merriam-webster adapter when configured', () => {
       vi.stubEnv('DICTIONARY_ADAPTER', 'merriam-webster');
 
@@ -77,8 +61,16 @@ describe('adapter factory', () => {
       expect(() => getAdapter()).toThrow('Unknown adapter: unsupported-adapter');
     });
 
-    it('logs adapter selection', async () => {
+    // Removed: its terms forbid storing its data, which every site does
+    it('no longer knows wordnik', () => {
       vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
+
+      expect(() => getAdapter()).toThrow('Unknown adapter: wordnik');
+      expect(getAdapterNames()).toEqual(['merriam-webster', 'wiktionary']);
+    });
+
+    it('logs adapter selection', async () => {
+      vi.stubEnv('DICTIONARY_ADAPTER', 'wiktionary');
       vi.resetModules();
 
       const { getAdapter: getAdapterWithMock } = await import('#adapters');
@@ -86,16 +78,12 @@ describe('adapter factory', () => {
 
       expect(mockLogger.info).toHaveBeenCalledWith(
         'Using dictionary adapter',
-        { adapter: 'wordnik' },
+        { adapter: 'wiktionary' },
       );
     });
   });
 
   describe('getAdapterByName', () => {
-    it('returns wordnik adapter', () => {
-      expect(getAdapterByName('wordnik').name).toBe('wordnik');
-    });
-
     it('returns merriam-webster adapter', () => {
       expect(getAdapterByName('merriam-webster').name).toBe('merriam-webster');
     });
@@ -105,7 +93,6 @@ describe('adapter factory', () => {
     });
 
     it('handles case insensitive names', () => {
-      expect(getAdapterByName('WORDNIK').name).toBe('wordnik');
       expect(getAdapterByName('Merriam-Webster').name).toBe('merriam-webster');
       expect(getAdapterByName('WIKTIONARY').name).toBe('wiktionary');
     });

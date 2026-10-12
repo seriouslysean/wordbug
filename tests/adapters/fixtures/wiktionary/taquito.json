@@ -1,0 +1,35 @@
+{
+  "en": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": "A <a rel=\"mw:WikiLink\" href=\"/wiki/fried\" title=\"fried\">fried</a> <a rel=\"mw:WikiLink\" href=\"/wiki/corn\" title=\"corn\">corn</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/flour\" title=\"flour\">flour</a> <a rel=\"mw:WikiLink\" href=\"/wiki/tortilla\" title=\"tortilla\">tortilla</a>, filled usually with <a rel=\"mw:WikiLink\" href=\"/wiki/beef\" title=\"beef\">beef</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/chicken\" title=\"chicken\">chicken</a> and <a rel=\"mw:WikiLink\" href=\"/wiki/cheese\" title=\"cheese\">cheese</a>, rolled up, and dipped in a form of <a rel=\"mw:WikiLink\" href=\"/wiki/salsa\" title=\"salsa\">salsa</a>, or <a rel=\"mw:WikiLink\" href=\"/wiki/guacamole\" title=\"guacamole\">guacamole</a>.",
+          "parsedExamples": [
+            {
+              "example": "She preferred <b>taquitos</b> to regular tacos because she found them less messy."
+            }
+          ],
+          "examples": [
+            "She preferred <b>taquitos</b> to regular tacos because she found them less messy."
+          ]
+        }
+      ]
+    }
+  ],
+  "es": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Spanish",
+      "definitions": [
+        {
+          "definition": "a rolled-up taco"
+        },
+        {
+          "definition": "<span class=\"form-of-definition use-with-mention\" about=\"#mwt15\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#diminutive\" title=\"Appendix:Glossary\">diminutive</a> of <span class=\"form-of-definition-link\"><i class=\"Latn mention\" lang=\"es\"><a rel=\"mw:WikiLink\" href=\"/wiki/taco#Spanish\" title=\"taco\">taco</a></i></span></span><link rel=\"mw:PageProp/Category\" href=\"./Category:Spanish_diminutive_nouns#TAQUITO\" about=\"#mwt15\">"
+        }
+      ]
+    }
+  ]
+}

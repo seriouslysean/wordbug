@@ -25,8 +25,6 @@ const NOT_FOUND_FIXTURE = 'not-found.json';
 
 // Credentials and endpoints the adapters require before they will fetch
 const ADAPTER_ENV = {
-  WORDNIK_API_KEY: 'test-key',
-  WORDNIK_API_URL: 'https://api.wordnik.test/v4',
   MERRIAM_WEBSTER_API_KEY: 'test-key',
   MERRIAM_WEBSTER_DICTIONARY: 'collegiate',
 };

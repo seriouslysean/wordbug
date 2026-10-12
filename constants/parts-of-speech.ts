@@ -10,8 +10,7 @@
  *
  * Every value is an elementary grammatical category except `abbreviation`,
  * which is a lexical label: Merriam-Webster reports it in the same functional
- * label field (`fl`) as "noun" or "verb", and Wordnik lists it among its
- * part-of-speech types. It is stored alongside the grammatical categories so
+ * label field (`fl`) as "noun" or "verb". It is stored alongside the grammatical categories so
  * an entry such as "pb&j" keeps the only label its dictionary gives it.
  */
 export const BASE_PARTS_OF_SPEECH = {

@@ -25,7 +25,7 @@ enrichment, search, and build-time visualizations. All code is site-agnostic
 - **Capture-time enrichment.** Optional word-level `enrichment` object (schema +
   type) populated at add-word/regenerate time: WordNet synonyms/antonyms/related
   terms (`adapters/wordnet.ts`, local lookup via `wordpos`/`wordnet-db`,
-  offline, POS-filtered + sense-capped, best-effort) plus Merriam-Webster/Wordnik
+  offline, POS-filtered + sense-capped, best-effort) plus Merriam-Webster
   pronunciation, audio URL, and etymology from existing responses. Shared
   `buildWordData` keeps add-word and the backfill in sync; backfill preserves
   `preserveCase`. WordNet credited in `CREDITS.md` (no UI attribution required).
@@ -325,8 +325,7 @@ adapters/logger/stats-math changes.
   unknown-narrowing.
 
 **Remaining:**
-- Adapter-side types (`MerriamWebster*`, `Wordnik*`,
-  `FreeDictionary*`) — 16+ interfaces. They mirror API contracts and stay
+- Adapter-side types (`MW*`, `Wiktionary*`). They mirror API contracts and stay
   per-adapter. No consolidation indicated.
 - Done since: the `as Type` assertions in the adapter parsers and the
   `[key: string]: any` prop spreads are gone; oxlint now rejects both
@@ -334,9 +333,11 @@ adapters/logger/stats-math changes.
 
 ### Astro Best Practices (responsive images + complete astro:env) — PARTIAL
 
-**Status at v3.25.0.** The Footer logo renders through `<Image>`, and
-`WORDNIK_WEBSITE_URL` is in the `astro:env` schema in `astro.config.ts`, read
-by `Footer.astro` through `astro:env/client` (step 1).
+**Status.** The Wordnik logo and `WORDNIK_WEBSITE_URL` this section was about
+are gone with Wordnik itself, so the Footer items below are closed. The one
+image a page now shows, the Merriam-Webster logo on the Attributions page, is
+deliberately not an `<Image>`: its brand guidelines forbid modifying the logo,
+and `astro:assets` would re-encode it.
 `src/pages/favicon.ico.ts` no longer exists, and step 6 refers to speculation
 rules that Astro's prefetch has replaced.
 

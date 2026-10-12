@@ -7,7 +7,7 @@ describe('i18n-utils', () => {
     it('returns simple translations', () => {
       expect(t('nav.home')).toBe('Home');
       expect(t('nav.stats')).toBe('Stats');
-      expect(t('footer.powered_by')).toBe('Powered by Wordnik');
+      expect(t('footer.powered_by')).toBe('Powered by words');
     });
 
     it('handles nested keys', () => {

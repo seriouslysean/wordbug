@@ -26,6 +26,30 @@ export class RateLimitError extends Error {
 }
 
 /**
+ * The dictionary has the word and answered well, but classifies none of its
+ * definitions as a part of speech in the vocabulary: "etc." is a phrase,
+ * "pre-" a prefix, "%" a symbol. An adapter keeps such a term as the
+ * definition's `label`, and a definition with only a label is one no page
+ * can display. Like a missing word it is the word that is unsuitable, not the
+ * dictionary that is at fault.
+ */
+export class NoDisplayableDefinitionError extends Error {
+  name = 'NoDisplayableDefinitionError';
+}
+
+/**
+ * True when the word could not be added only because no dictionary that has
+ * it classifies it as something a page can display: at least one adapter
+ * said so, and every other one said the word does not exist. A rate limit, an
+ * outage or an unexpected shape anywhere in the chain is still a fault.
+ */
+export const isNotDisplayable = (error: unknown): boolean => {
+  const failures = flattenErrors(error);
+  return failures.some(failure => failure instanceof NoDisplayableDefinitionError)
+    && failures.every(failure => failure instanceof NoDisplayableDefinitionError || failure instanceof WordNotFoundError);
+};
+
+/**
  * True when every adapter that was asked said the word does not exist, so a
  * rate limit or an outage anywhere in the fallback chain is not reported as
  * a misspelling.
@@ -50,11 +74,12 @@ export const ADAPTER_FETCH_TIMEOUT_MS = 15000;
  * timeout) into descriptive errors with adapter context.
  * fetch throws TypeError on network failures and a TimeoutError DOMException
  * when the deadline passes — this ensures callers get a meaningful message
- * instead of a raw "fetch failed" or "The operation was aborted".
+ * instead of a raw "fetch failed" or "The operation was aborted". `headers`
+ * are the request headers a partner asks its clients to send.
  */
-export async function adapterFetch(url: string, adapterName: string): Promise<Response> {
+export async function adapterFetch(url: string, adapterName: string, headers?: Record<string, string>): Promise<Response> {
   try {
-    return await fetch(url, { signal: AbortSignal.timeout(ADAPTER_FETCH_TIMEOUT_MS) });
+    return await fetch(url, { ...(headers ? { headers } : {}), signal: AbortSignal.timeout(ADAPTER_FETCH_TIMEOUT_MS) });
   } catch (error) {
     if (error instanceof Error && error.name === 'TimeoutError') {
       throw new Error(`${adapterName} request timed out after ${ADAPTER_FETCH_TIMEOUT_MS}ms`, { cause: error });
@@ -65,9 +90,11 @@ export async function adapterFetch(url: string, adapterName: string): Promise<Re
 
 /**
  * Throws a structured error for non-OK HTTP responses.
- * Handles 429 (rate limit), 404 (not found), and generic failures.
+ * Handles 429 (rate limit), 404 (not found), and generic failures. A generic
+ * failure names the dictionary and the status code: the reason phrase alone
+ * is not enough, since HTTP/2 has none and Wikimedia sends none.
  */
-export function throwOnHttpError(response: Response, word: string): void {
+export function throwOnHttpError(response: Response, word: string, apiName: string): void {
   if (response.status === 429) {
     throw new RateLimitError('Rate limit exceeded. Please try again later.');
   }
@@ -75,7 +102,7 @@ export function throwOnHttpError(response: Response, word: string): void {
     throwWordNotFound(word);
   }
   if (!response.ok) {
-    throw new Error(`Failed to fetch word data: ${response.statusText}`);
+    throw new Error(`Failed to fetch word data from ${apiName}: HTTP ${[response.status, response.statusText].filter(Boolean).join(' ')}`);
   }
 }
 
@@ -211,8 +238,8 @@ export function buildDefinition(
  * caller's decision (--preserve-case), not the adapter's. A blank attribution
  * or URL and a blank headword field are omitted, and so is a headword with
  * nothing left in it. A definition whose text is blank is dropped: a partner
- * sense with nothing to show (Wordnik's optional text, a blank
- * Merriam-Webster shortdef) is not a reason to refuse the others. When every
+ * sense with nothing to show (a blank Merriam-Webster shortdef, an
+ * item Wiktionary sends empty) is not a reason to refuse the others. When every
  * definition is blank, though, the partner has changed how it sends text (a
  * renamed field reads as none): that throws as an unexpected shape. Only an
  * empty list, which fetchWithFallback reports as not found, is the partner

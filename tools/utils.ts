@@ -105,6 +105,8 @@ interface WordFileInfo {
   word: string;
   date: string;
   path: string;
+  /** The stored `adapter`: which dictionary the record says it came from */
+  adapter?: string;
 }
 
 interface WordFileScan {
@@ -152,7 +154,7 @@ export const getWordFiles = ({ allowEmpty = false }: WordFileScanOptions = {}): 
       if (!isString(data.date) || !isValidDate(data.date)) {
         throw new Error('Word file has no valid YYYYMMDD "date"');
       }
-      return [{ word: data.word, date: data.date, path: filePath }];
+      return [{ word: data.word, date: data.date, path: filePath, ...(isString(data.adapter) ? { adapter: data.adapter } : {}) }];
     } catch (error) {
       logger.error('Failed to read word file', { file: path.basename(filePath), error: getErrorMessage(error) });
       failures.push(filePath);

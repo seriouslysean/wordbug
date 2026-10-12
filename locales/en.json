@@ -27,6 +27,7 @@
     "home": "Home",
     "browse_words": "Browse Words",
     "stats": "Stats",
+    "attributions": "Attributions",
     "previous_word": "Previous Word",
     "next_word": "Next Word",
     "random_word": "Random Word",
@@ -157,8 +158,24 @@
     "description": "A web page that cannot be found; an error indicating the requested content does not exist.",
     "recent_words": "Recent Words"
   },
-  "footer": {
-    "powered_by": "Powered by Wordnik"
+  "attributions": {
+    "heading": "Attributions",
+    "description": "The dictionaries this site's definitions come from, and the terms they are used under.",
+    "none": "The words on this site were defined by hand.",
+    "merriam_webster_heading": "Merriam-Webster",
+    "merriam_webster_logo_alt": "Merriam-Webster logo",
+    "merriam_webster_before": "Definitions from Merriam-Webster come from ",
+    "merriam_webster_after": ", by Merriam-Webster Inc., through the Merriam-Webster Dictionary API.",
+    "merriam_webster_untitled": "Definitions from Merriam-Webster come from Merriam-Webster Inc., through the Merriam-Webster Dictionary API.",
+    "wiktionary_heading": "Wiktionary",
+    "wiktionary_credit_before": "Definitions from Wiktionary are adapted from entries of ",
+    "wiktionary_name": "Wiktionary, the free dictionary",
+    "wiktionary_credit_after": ", written by its contributors. Each entry's history there lists its authors, and a word fetched from Wiktionary links to its entry as its Source.",
+    "wiktionary_license_before": "That text is available under the ",
+    "wiktionary_license_after": ". It is changed here: only the definitions of an entry's English section are shown, or of its Translingual section when it has no English one, as plain text without their links and formatting. The definitions as shown here are available under the same licence.",
+    "wordnik_heading": "Wordnik",
+    "wordnik_credit_before": "Some definitions were retrieved through ",
+    "wordnik_credit_after": "."
   },
   "word": {
     "source": "Source",

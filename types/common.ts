@@ -60,16 +60,6 @@ export interface FetchOptions {
   [key: string]: unknown;
 }
 
-/**
- * API rate limiting information
- */
-export interface RateLimit {
-  remainingMinute: string | null;
-  remainingHour: string | null;
-  limitMinute: string | null;
-  limitHour: string | null;
-}
-
 // === DICTIONARY TYPES ===
 
 /**

@@ -9,8 +9,10 @@ import {
   buildDefinition,
   classifyPartOfSpeech,
   isCanonicalResponse,
+  isNotDisplayable,
   isRateLimited,
   isWordNotFound,
+  NoDisplayableDefinitionError,
   normalizePOS,
   RateLimitError,
   parseJsonResponse,
@@ -111,10 +113,10 @@ describe('adapter-utils', () => {
         AbortSignal.abort(new DOMException('The operation was aborted due to timeout', 'TimeoutError')),
       );
 
-      const error = getError(await adapterFetch('https://slow.invalid', 'Wordnik').catch(e => e));
+      const error = getError(await adapterFetch('https://slow.invalid', 'Wiktionary').catch(e => e));
 
       expect(timeoutSpy).toHaveBeenCalledWith(ADAPTER_FETCH_TIMEOUT_MS);
-      expect(error.message).toBe(`Wordnik request timed out after ${ADAPTER_FETCH_TIMEOUT_MS}ms`);
+      expect(error.message).toBe(`Wiktionary request timed out after ${ADAPTER_FETCH_TIMEOUT_MS}ms`);
       expect(error.cause).toBeInstanceOf(DOMException);
       if (!(error.cause instanceof DOMException)) {
         throw new Error('Expected a timeout DOMException cause');
@@ -125,8 +127,8 @@ describe('adapter-utils', () => {
     it('wraps non-Error throws with adapter context', async () => {
       vi.stubGlobal('fetch', vi.fn().mockRejectedValue('connection reset'));
 
-      await expect(adapterFetch('https://example.com', 'Wordnik'))
-        .rejects.toThrow('Wordnik network request failed: connection reset');
+      await expect(adapterFetch('https://example.com', 'Wiktionary'))
+        .rejects.toThrow('Wiktionary network request failed: connection reset');
     });
   });
 
@@ -302,7 +304,7 @@ describe('adapter-utils', () => {
     });
 
     it('treats a field whose value is undefined as absent, as JSON does', () => {
-      expect(isCanonicalResponse(withDefinition({ examples: undefined, wordnikUrl: undefined }), 'test')).toBe(true);
+      expect(isCanonicalResponse(withDefinition({ examples: undefined, partnerUrl: undefined }), 'test')).toBe(true);
     });
 
     it.each([
@@ -324,7 +326,7 @@ describe('adapter-utils', () => {
       ['a headword audio URL that is not absolute http(s)', withHeadword({ audio: 'test.mp3' })],
       // Definitions
       ['a definition that is not an object', withResponse({ definitions: ['A trial'] })],
-      ['a key outside the definition', withDefinition({ wordnikUrl: 'https://example.com/test' })],
+      ['a key outside the definition', withDefinition({ partnerUrl: 'https://example.com/test' })],
       ['a definition without text', withoutDefinitionField('text')],
       ['blank text', withDefinition({ text: '  ' })],
       ['markup left in the text', withDefinition({ text: 'A procedure for <xref>critical</xref> evaluation', references: undefined })],
@@ -362,19 +364,19 @@ describe('adapter-utils', () => {
   describe('throwOnHttpError', () => {
     it('does nothing for ok responses', () => {
       const response = httpResponse(200);
-      expect(() => throwOnHttpError(response, 'test')).not.toThrow();
+      expect(() => throwOnHttpError(response, 'test', 'Wiktionary')).not.toThrow();
     });
 
     it('throws rate limit error for 429', () => {
       const response = httpResponse(429);
-      expect(() => throwOnHttpError(response, 'test')).toThrow(RateLimitError);
-      expect(() => throwOnHttpError(response, 'test')).toThrow('Rate limit exceeded');
+      expect(() => throwOnHttpError(response, 'test', 'Wiktionary')).toThrow(RateLimitError);
+      expect(() => throwOnHttpError(response, 'test', 'Wiktionary')).toThrow('Rate limit exceeded');
     });
 
     it('throws word not found for 404', () => {
       const response = httpResponse(404);
-      expect(() => throwOnHttpError(response, 'serendipity')).toThrow(WordNotFoundError);
-      expect(() => throwOnHttpError(response, 'serendipity')).toThrow(
+      expect(() => throwOnHttpError(response, 'serendipity', 'Wiktionary')).toThrow(WordNotFoundError);
+      expect(() => throwOnHttpError(response, 'serendipity', 'Wiktionary')).toThrow(
         'Word "serendipity" not found in dictionary',
       );
     });
@@ -383,12 +385,12 @@ describe('adapter-utils', () => {
       const response = httpResponse(500, 'Internal Server Error');
       const error = (() => {
         try {
-          throwOnHttpError(response, 'test');
+          throwOnHttpError(response, 'test', 'Wiktionary');
         } catch (thrown) {
           return thrown;
         }
       })();
-      expect(getError(error).message).toBe('Failed to fetch word data: Internal Server Error');
+      expect(getError(error).message).toBe('Failed to fetch word data from Wiktionary: HTTP 500 Internal Server Error');
       expect(error).not.toBeInstanceOf(WordNotFoundError);
       expect(error).not.toBeInstanceOf(RateLimitError);
     });
@@ -462,6 +464,32 @@ describe('adapter-utils', () => {
     });
   });
 
+  describe('isNotDisplayable', () => {
+    const phrase = new NoDisplayableDefinitionError('wiktionary has "etc." only as: Phrase.');
+
+    it('is true when the only adapter has the word as nothing a page can display', () => {
+      expect(isNotDisplayable(phrase)).toBe(true);
+    });
+
+    it('is true when every other adapter said not found', () => {
+      expect(isNotDisplayable(new AggregateError([new WordNotFoundError('gone'), phrase]))).toBe(true);
+    });
+
+    it('is false when no adapter had the word at all, which is not found', () => {
+      expect(isNotDisplayable(new WordNotFoundError('gone'))).toBe(false);
+      expect(isNotDisplayable(new AggregateError([new WordNotFoundError('gone'), new WordNotFoundError('gone')]))).toBe(false);
+    });
+
+    it('is false when any adapter failed for another reason', () => {
+      expect(isNotDisplayable(new AggregateError([new RateLimitError('slow down'), phrase]))).toBe(false);
+      expect(isNotDisplayable(new AggregateError([phrase, new Error('network request failed')]))).toBe(false);
+    });
+
+    it('goes by type, not by message', () => {
+      expect(isNotDisplayable(new Error(phrase.message))).toBe(false);
+    });
+  });
+
   describe('isRateLimited', () => {
     it('is true when any adapter in the chain was rate limited', () => {
       expect(isRateLimited(new RateLimitError('slow down'))).toBe(true);
@@ -476,8 +504,8 @@ describe('adapter-utils', () => {
 
   describe('throwUnexpectedShape', () => {
     it('names the adapter and the word', () => {
-      expect(() => throwUnexpectedShape('Wordnik', 'serendipity')).toThrow(
-        'Wordnik returned an unexpected response shape for "serendipity"',
+      expect(() => throwUnexpectedShape('Wiktionary', 'serendipity')).toThrow(
+        'Wiktionary returned an unexpected response shape for "serendipity"',
       );
     });
   });

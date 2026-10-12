@@ -43,6 +43,16 @@ export interface WordSense {
   segments: DefinitionSegment[];
   // Up to MAX_SENSE_EXAMPLES example sentences for this sense (may be empty).
   examples: string[];
+  // The credit this sense's own source asks a page to show beside it, when it
+  // asks for one: its stored attribution text and the licence to link
+  credit?: SenseCredit;
+}
+
+/** What a page shows beside a sense whose source's licence asks for a credit. */
+export interface SenseCredit {
+  text: string;
+  licenseName: string;
+  licenseUrl: string;
 }
 
 // Our main word file structure (adapter-agnostic)

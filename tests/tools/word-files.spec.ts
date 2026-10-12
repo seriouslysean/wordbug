@@ -50,7 +50,7 @@ describe('getWordFiles', () => {
     const { getWordFiles } = await import('#tools/utils');
 
     expect(getWordFiles()).toEqual({
-      files: [{ word: 'alpha', date: '20250701', path: path.join(yearDir, '20250701.json') }],
+      files: [{ word: 'alpha', date: '20250701', path: path.join(yearDir, '20250701.json'), adapter: 'wordnik' }],
       failures: [],
     });
     expect(ctx.logger.error).not.toHaveBeenCalled();
@@ -64,7 +64,7 @@ describe('getWordFiles', () => {
     fs.writeFileSync(filePath, JSON.stringify({ ...STORED, date: '20240101' }));
     const { getWordFiles } = await import('#tools/utils');
 
-    expect(getWordFiles()).toEqual({ files: [{ word: 'alpha', date: '20240101', path: filePath }], failures: [] });
+    expect(getWordFiles()).toEqual({ files: [{ word: 'alpha', date: '20240101', path: filePath, adapter: 'wordnik' }], failures: [] });
   });
 
   it.each([

@@ -34,7 +34,10 @@ each word's JSON, so the site build stays offline.
 
 See the full license at <https://wordnet.princeton.edu/license-and-commercial-use>.
 
-## Wordnik
+## Dictionaries
 
-Dictionary definitions and headword data are sourced from
-[Wordnik](https://www.wordnik.com/).
+Definitions come from the Merriam-Webster Dictionary API and from
+[Wiktionary](https://en.wiktionary.org/), whose text is available under the
+[Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+Each site credits the dictionaries its own words came from on its
+Attributions page (`/attributions/`).

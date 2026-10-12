@@ -1,14 +1,14 @@
 import { merriamWebsterAdapter } from '#adapters/merriam-webster';
 import { wiktionaryAdapter } from '#adapters/wiktionary';
-import { wordnikAdapter } from '#adapters/wordnik';
 import type { DictionaryAdapter, DictionaryResponse, FetchOptions } from '#types';
-import { isCanonicalResponse, throwUnexpectedShape, throwWordNotFound } from '#utils/adapter-utils';
+import {
+  isCanonicalResponse, NoDisplayableDefinitionError, throwUnexpectedShape, throwWordNotFound,
+} from '#utils/adapter-utils';
 import { logger } from '#utils/logger';
 import { getErrorMessage } from '#utils/text-utils';
 import { isValidDictionaryData } from '#utils/word-data-utils';
 
 const ADAPTER_REGISTRY: Record<string, DictionaryAdapter> = {
-  'wordnik': wordnikAdapter,
   'merriam-webster': merriamWebsterAdapter,
   'wiktionary': wiktionaryAdapter,
 };
@@ -31,7 +31,7 @@ export function getAdapterByName(name: string): DictionaryAdapter {
   // Own keys only: "constructor" must not read Object.prototype
   const adapter = Object.hasOwn(ADAPTER_REGISTRY, key) ? ADAPTER_REGISTRY[key] : undefined;
   if (!adapter) {
-    throw new Error(`Unknown adapter: ${name}`);
+    throw new Error(`Unknown adapter: ${name}. Valid adapters: ${getAdapterNames().join(', ')}`);
   }
   return adapter;
 }
@@ -57,7 +57,7 @@ export interface FetchResult {
 
 /**
  * Parses DICTIONARY_FALLBACK into an ordered list of adapter names.
- * Supports comma-separated values (e.g. "wordnik,wiktionary").
+ * Supports comma-separated values (e.g. "merriam-webster,wiktionary").
  * Defaults to "wiktionary" when unset or blank: CI exports an unset
  * repository variable as "", which must not silently drop the fallback.
  * "none", in any case, disables it.
@@ -71,6 +71,23 @@ function parseFallbackChain(): string[] {
 }
 
 /**
+ * The fallback adapters, each resolved from its name before anything is
+ * fetched. A name that is no adapter is the site's configuration at fault,
+ * whatever the word: resolved only when its turn came, a stale name
+ * ("wordnik", once valid) stayed silent for every word the primary had, and
+ * surfaced as one more failed adapter only when the primary did not.
+ */
+function resolveFallbackChain(): DictionaryAdapter[] {
+  return parseFallbackChain().map((name) => {
+    try {
+      return getAdapterByName(name);
+    } catch (error) {
+      throw new Error(`DICTIONARY_FALLBACK names an adapter that does not exist. ${getErrorMessage(error)}`, { cause: error });
+    }
+  });
+}
+
+/**
  * Fetches from one adapter and refuses a response that breaks the canonical
  * contract or has no usable definitions. Throwing keeps both on the same path
  * as any other adapter failure, so the chain moves on instead of returning a
@@ -81,7 +98,10 @@ function parseFallbackChain(): string[] {
  * before the guard, whose contract requires a definition, would call it a
  * broken shape. buildDictionaryResponse has already refused a list whose
  * every definition was blank, so an empty list here is one the partner sent
- * empty.
+ * empty. A canonical response none of whose definitions has a part of speech
+ * from the vocabulary is neither: the partner has the word, as a phrase or a
+ * prefix, and answered well. It is refused by its own error, which names
+ * what the partner calls the word, so a caller can tell it from a fault.
  */
 async function fetchUsable(adapter: DictionaryAdapter, word: string, options?: FetchOptions): Promise<DictionaryResponse> {
   const response = await adapter.fetchWordData(word, options);
@@ -92,7 +112,10 @@ async function fetchUsable(adapter: DictionaryAdapter, word: string, options?: F
     throwUnexpectedShape(adapter.name, word);
   }
   if (!isValidDictionaryData(response.definitions)) {
-    throw new Error(`${adapter.name} returned no usable definitions for "${word}"`);
+    const terms = [...new Set(response.definitions.map(definition => definition.label ?? 'unclassified'))];
+    throw new NoDisplayableDefinitionError(
+      `${adapter.name} has "${word}" only as: ${terms.join(', ')}. A page shows a definition by its part of speech, and none of these is one.`,
+    );
   }
   return response;
 }
@@ -104,7 +127,9 @@ interface AdapterFailure {
 
 /**
  * Fetches word data using the primary adapter, then tries each fallback
- * in DICTIONARY_FALLBACK order (comma-separated) until one succeeds.
+ * in DICTIONARY_FALLBACK order (comma-separated) until one succeeds. Every
+ * configured name is resolved first, so a name that is no adapter fails the
+ * call before the first request, with the valid names.
  * An adapter succeeds only when its response has usable definitions.
  * With no fallback configured the primary's error is thrown as is. Otherwise
  * an exhausted chain throws one AggregateError holding every adapter's error
@@ -112,27 +137,26 @@ interface AdapterFailure {
  */
 export async function fetchWithFallback(word: string, options?: FetchOptions): Promise<FetchResult> {
   const primary = getAdapter();
+  const fallbacks = resolveFallbackChain();
   try {
     const response = await fetchUsable(primary, word, options);
     return { response, adapterName: primary.name };
   } catch (primaryError) {
-    const fallbacks = parseFallbackChain();
     if (fallbacks.length === 0) {
       throw primaryError;
     }
 
     const failures: AdapterFailure[] = [{ adapter: primary.name, error: primaryError }];
-    for (const fallbackName of fallbacks) {
+    for (const fallback of fallbacks) {
       const failed = failures.at(-1);
       logger.warn('Adapter failed, trying fallback', {
-        adapter: failed?.adapter, error: getErrorMessage(failed?.error), fallback: fallbackName, word,
+        adapter: failed?.adapter, error: getErrorMessage(failed?.error), fallback: fallback.name, word,
       });
       try {
-        const fallback = getAdapterByName(fallbackName);
         const response = await fetchUsable(fallback, word, options);
         return { response, adapterName: fallback.name };
       } catch (fallbackError) {
-        failures.push({ adapter: fallbackName, error: fallbackError });
+        failures.push({ adapter: fallback.name, error: fallbackError });
       }
     }
 

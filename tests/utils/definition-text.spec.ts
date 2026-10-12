@@ -1,5 +1,5 @@
 import {
-  afterEach, beforeEach, describe, expect, it, vi,
+  afterEach, describe, expect, it, vi,
 } from 'vitest';
 
 import {
@@ -13,10 +13,6 @@ const textRun = (value: string): DefinitionSegment => ({ type: 'text', text: val
 const referenceRun = (value: string, url: string): DefinitionSegment => ({ type: 'reference', text: value, url });
 
 describe('definition-text', () => {
-  beforeEach(() => {
-    vi.stubEnv('WORDNIK_WEBSITE_URL', undefined);
-  });
-
   afterEach(() => {
     vi.unstubAllEnvs();
   });
@@ -71,17 +67,12 @@ describe('definition-text', () => {
       expect(parseDefinitionMarkup(markup)).toStrictEqual({ text: 'light-box', references: [] });
     });
 
-    it('uses WORDNIK_WEBSITE_URL for the links when it is set', () => {
+    // Once a setting; the links of stored markup no longer follow the environment
+    it('ignores WORDNIK_WEBSITE_URL', () => {
       vi.stubEnv('WORDNIK_WEBSITE_URL', 'https://wordnik.test');
 
       expect(parseDefinitionMarkup('<xref>rest</xref>').references)
-        .toStrictEqual([{ start: 0, end: 4, url: 'https://wordnik.test/words/rest' }]);
-    });
-
-    it('falls back to the Wordnik website when WORDNIK_WEBSITE_URL is blank', () => {
-      vi.stubEnv('WORDNIK_WEBSITE_URL', '');
-
-      expect(parseDefinitionMarkup('<xref>rest</xref>').references[0]?.url).toBe(wordnik('rest'));
+        .toStrictEqual([{ start: 0, end: 4, url: wordnik('rest') }]);
     });
 
     it('keeps the text of formatting tags it does not know, unlinked', () => {

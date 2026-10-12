@@ -233,7 +233,6 @@ const ADD_WORD_SECRETS: Record<string, string> = {
   MERRIAM_WEBSTER_API_KEY: 'merriam-webster-api-key',
   SENTRY_DSN: 'sentry-dsn',
   SENTRY_ENABLED: 'sentry-enabled',
-  WORDNIK_API_KEY: 'wordnik-api-key',
 };
 
 const repositorySecretBindings = (scope: Record<string, string>): YamlObject => Object.fromEntries(
@@ -358,8 +357,9 @@ describe('site workflows', { timeout: 60000 }, () => {
       return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, evaluate(value, context)]));
     };
 
-    // A site calling a release runs this repository's workflow, so the
-    // engine is the commit its uses: pin names and nothing the caller passes
+    // This repository's ./ call for the demo site: the engine is the
+    // repository and commit the workflow runs from, and nothing the caller
+    // passes
     it('checks out the repository and commit of the workflow that is running', () => {
       expect(engineCheckout(ENGINE_REPOSITORY)).toEqual({
         repository: ENGINE_REPOSITORY,
@@ -679,6 +679,52 @@ esac
       expect(Object.fromEntries(siteTree)).toEqual({ ...SITE, ...written });
     });
   });
+
+  // The Sentry plugin deletes the maps it uploads. One it leaves in
+  // dist/_astro would be published with the site.
+  describe('site-deploy.yml source map check', () => {
+    const FILE = 'site-deploy.yml';
+    const STEP = 'Check for source maps';
+    const check = (): Promise<StepResult> => runStep(FILE, STEP);
+
+    it('runs on the built site, after Build and before the upload', () => {
+      const names = workflowSteps(workflow(FILE)).map(step => optionalString(step, 'name'));
+
+      expect(names.indexOf(STEP)).toBe(names.indexOf('Build') + 1);
+      expect(names.indexOf('Upload artifact')).toBe(names.indexOf(STEP) + 1);
+    });
+
+    it('fails and names every JavaScript source map under dist/_astro', async () => {
+      write('engine/dist/_astro/page.abc.js', 'script\n');
+      write('engine/dist/_astro/page.abc.js.map', '{}\n');
+      write('engine/dist/_astro/chunks/search.def.js.map', '{}\n');
+
+      const result = await check();
+
+      expect(result.code).toBe(1);
+      expect(result.output).toContain('::error::dist/_astro/page.abc.js.map');
+      expect(result.output).toContain('::error::dist/_astro/chunks/search.def.js.map');
+    });
+
+    // The config's cleanup covers generated JavaScript maps under the
+    // assets directory only, and so does the check
+    it('passes a build with no JavaScript source map under dist/_astro', async () => {
+      write('engine/dist/_astro/page.abc.js', 'script\n');
+      write('engine/dist/_astro/Layout.abc.css.map', '{}\n');
+      write('engine/dist/vendor.js.map', '{}\n');
+
+      const result = await check();
+
+      expect(result.code).toBe(0);
+      expect(result.output).toBe('');
+    });
+
+    it('passes a build with no dist/_astro', async () => {
+      write('engine/dist/index.html', 'page\n');
+
+      expect((await check()).code).toBe(0);
+    });
+  });
 });
 
   // Checkouts are uses: steps, so these read the order of the steps. A
@@ -724,15 +770,17 @@ esac
       write('engine/public/demo/images/social/.image-settings-hash', 'demo marker\n');
     });
 
-    const thinSite = (): void => {
+    // A site/ that is not the engine's commit: its own words, cards and
+    // robots.txt, and none of the demo content
+    const siteContent = (): void => {
       write('site/data/words/2026/20260101.json', '{"word":"site"}\n');
       write('site/public/images/social/2026/site.png', 'site card\n');
       write('site/public/images/social/.image-settings-hash', 'site marker\n');
       write('site/public/robots.txt', 'site robots\n');
     };
 
-    it('mirrors a thin site and drops the demo content, keeping the engine favicon', async () => {
-      thinSite();
+    it('mirrors a site checkout that differs from the engine and drops the demo content, keeping the engine favicon', async () => {
+      siteContent();
       const code = snapshot('engine/src');
 
       const result = await overlay('someone/wordbun', '');
@@ -745,7 +793,7 @@ esac
 
     // Same size and time as the engine's, which rsync's quick check skips
     it("uses the site's favicon when it has one", async () => {
-      thinSite();
+      siteContent();
       write('site/public/favicon.svg', 'custom favicon\n');
       const time = new Date('2026-09-18T12:00:00Z');
       fs.utimesSync(path.join(ctx.dir, 'site/public/favicon.svg'), time, time);
@@ -768,9 +816,9 @@ esac
       expect(snapshot('engine')).toEqual(before);
     });
 
-    // A fork calls with ./, so site/ and engine/ are one commit, which
-    // tracks the demo content beside the fork's own
-    it('changes nothing for a fork, whose demo content stays and goes unread', async () => {
+    // A downstream site calls with ./, so site/ and engine/ are one commit,
+    // which tracks the demo content beside the site's own
+    it('changes nothing for a downstream site, whose demo content stays and goes unread', async () => {
       write('engine/data/words/2026/20260101.json', '{"word":"fork"}\n');
       write('engine/public/images/social/2026/fork.png', 'fork card\n');
       write('engine/public/images/social/.image-settings-hash', 'fork marker\n');
@@ -786,12 +834,12 @@ esac
     });
 
     it.each([
-      ['the demo content in a site repository', 'someone/wordbun', 'demo'],
-      ['another directory in a site repository', 'someone/wordbun', 'wordbun'],
-      ['the demo content in a fork', 'seriouslysean/wordbug', 'demo'],
+      ['the demo content in a downstream site', 'someone/wordbun', 'demo'],
+      ['another directory in a downstream site', 'someone/wordbun', 'wordbun'],
+      ["the demo content in a downstream site of the engine's owner", 'seriouslysean/wordbug', 'demo'],
       ['the root content in this repository', ENGINE_REPOSITORY, ''],
     ])('refuses %s', async (_, repository, sourceDir) => {
-      thinSite();
+      siteContent();
       write('site/data/demo/words/2025/20250101.json', '{"word":"demo"}\n');
       const before = snapshot('engine');
 

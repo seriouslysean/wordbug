@@ -17,7 +17,7 @@ on:
         type: boolean
         default: false
       preserve_case:
-        description: 'Keep original capitalization (for proper nouns, acronyms, or brands like "Japan", "NASA", "iPhone")'
+        description: 'Keep original capitalization (for proper nouns, acronyms, or brands like "Japan", "NASA", "iPhone"). Needed for any entry a dictionary spells with a capital: the word is otherwise looked up in lowercase, and Wiktionary has "Japan" but not "japan"'
         required: false
         type: boolean
         default: false
@@ -43,4 +43,3 @@ jobs:
       MERRIAM_WEBSTER_API_KEY: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
-      WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}

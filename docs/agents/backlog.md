@@ -70,10 +70,7 @@ branches. Notable in the coverage table as of v3.25.0:
 
 ## Migration Opportunities
 
-- Done: the Wordnik logo in `Footer.astro` renders through `<Image>` from
-  `astro:assets`.
-- Astro type-safe environment variables API: `SOURCE_DIR` and
-  `WORDNIK_WEBSITE_URL` are in the schema and read through
+- Astro type-safe environment variables API: `SOURCE_DIR` is in the schema and read through
   `astro:env/client`.
 - See Tier 1 "Astro Best Practices" in [features.md](features.md).
 
@@ -108,6 +105,7 @@ branches. Notable in the coverage table as of v3.25.0:
 
 Last verified by a full `tool:regenerate-all-words --force` pass when the demo
 set held 46 words (it has since grown; the pass has not been repeated):
-45/46 succeeded; "Amblypygi" (a spider order) is not in
-Merriam-Webster, Wordnik, or Wiktionary so the fallback chain exhausted
-cleanly and preserved the original file. Adapter chain is healthy.
+45/46 succeeded; "Amblypygi" (a spider order) was not in
+Merriam-Webster or the third-party Wiktionary service the adapter then used,
+so the fallback chain exhausted cleanly and preserved the original file.
+Wiktionary's own endpoint, which the adapter uses since, has it.

@@ -11,7 +11,9 @@
 #   1. Refuses to start off the repository root, off main, during a merge or
 #      rebase, or with modified, staged or untracked files. Ignored files such
 #      as .env are fine. Nothing is ever stashed.
-#   2. Fetches upstream and stops if main already contains upstream/main
+#   2. Fetches upstream and stops if main already contains upstream/main, or
+#      if the two share no history: a copy made without the engine's history
+#      cannot merge it
 #   3. Creates sync/upstream-<short sha> from main and merges upstream/main
 #      into it with --no-ff --no-commit, so even a fast-forward stops before a
 #      commit exists
@@ -22,14 +24,18 @@
 #   6. Builds the repository's own words (SOURCE_DIR empty, so data/words)
 #      when it tracks any: typecheck holds them to the collection schema, and
 #      nothing above renders them. A .env supplies the site's settings and
-#      astro.config.ts's defaults stand in without one
+#      astro.config.ts's defaults stand in without one. This build and the
+#      demo build run with SENTRY_ENABLED=false whatever .env says: with
+#      Sentry on and a token there, a build creates a release and uploads
+#      source maps, here from a tree nobody has merged yet
 #   7. Dry-runs the stored-word normalizer over those words and reports what
 #      it would rewrite. Nothing is written, and the report is never a gate
 #   8. Commits the merge once the gates pass without changing any file, and
 #      fails if a commit hook then changes what was committed
 #
-# It never pushes and never touches main. On success the sync branch is left
-# checked out for review. Merge, not rebase, so main can be pushed without
+# It never pushes and never touches main, and its builds create no Sentry
+# release and upload nothing. On success the sync branch is left checked out
+# for review. Merge, not rebase, so main can be pushed without
 # force once the branch is merged into it.
 
 set -euo pipefail
@@ -90,6 +96,24 @@ if git merge-base --is-ancestor upstream/main HEAD; then
   exit 0
 fi
 
+# Git refuses to merge histories with no common commit, and only once a merge
+# is asked for: by then there would be a sync branch to delete and no merge
+# to abort. A shallow clone may only have cut its history off above the commit
+# it shares, which fetching the rest brings back; or it may be a shallow clone
+# of a copy made without the engine's history, which no fetch can give one.
+# From here the two look the same, so the message covers both.
+if ! git merge-base HEAD upstream/main >/dev/null; then
+  if [[ "$(git rev-parse --is-shallow-repository)" == true ]]; then
+    fail "main shares no history with upstream/main in this shallow clone, so there is nothing to merge." \
+      "Fetch the rest of its history (git fetch --unshallow origin), then sync again." \
+      "If it still shares none, this copy was made without the engine's history, which no fetch adds:" \
+      "Starting a Site in docs/README.md makes a copy that has it. Nothing was changed here."
+  fi
+  fail "main shares no history with upstream/main, so there is nothing to merge:" \
+    "this copy was made without the engine's history, which every release is merged into." \
+    "Starting a Site in docs/README.md makes a copy that has it. Nothing was changed here."
+fi
+
 BRANCH="sync/upstream-$(git rev-parse --short upstream/main)"
 if git show-ref --verify --quiet "refs/heads/$BRANCH"; then
   fail "Branch $BRANCH already exists. Finish or delete it before syncing again."
@@ -134,8 +158,9 @@ gate npm run lint
 gate npm run typecheck
 gate npm test
 # The demo site at the root path, as the E2E workflow builds it, whatever a
-# local .env sets
-gate env SOURCE_DIR=demo BASE_PATH=/ npm run build
+# local .env sets. Sentry off: a variable that is set wins over .env, and a
+# build with Sentry on creates a release and uploads source maps.
+gate env SOURCE_DIR=demo BASE_PATH=/ SENTRY_ENABLED=false npm run build
 if [[ "$SKIP_E2E" == true ]]; then
   echo ""
   echo "Skipping E2E (--skip-e2e)."
@@ -160,8 +185,9 @@ else
     echo ""
     echo "No .env here, so the own-words build uses the default site settings in astro.config.ts."
   fi
-  # Set and empty selects data/words and, being set, wins over a .env value
-  gate env SOURCE_DIR= npm run build
+  # Set and empty selects data/words and, being set, wins over a .env value,
+  # as SENTRY_ENABLED does: Deploy's build reports to Sentry, this one must not
+  gate env SOURCE_DIR= SENTRY_ENABLED=false npm run build
 
   # A release can change the stored format without rejecting the old one,
   # which the build above then accepts. Reported, never fixed here: the

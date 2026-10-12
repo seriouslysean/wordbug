@@ -10,6 +10,7 @@ import {
   slugify,
   getWordsUrl,
   getStatsUrl,
+  getAttributionsUrl,
   getWordsLengthUrl,
   getWordsLetterUrl,
   getWordsYearUrl,
@@ -235,6 +236,10 @@ describe('utils', () => {
 
       it('should return correct stats URL', () => {
         expect(getStatsUrl()).toBe('/stats');
+      });
+
+      it('should return correct attributions URL', () => {
+        expect(getAttributionsUrl()).toBe('/attributions');
       });
     });
 

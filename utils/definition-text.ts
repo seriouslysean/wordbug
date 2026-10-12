@@ -1,7 +1,6 @@
 import { decodeHTML } from 'entities';
 
 import type { DefinitionSegment, DictionaryReference } from '#types';
-import { DEFAULT_WORDNIK_WEBSITE_URL } from '#constants/defaults';
 import { DEFINITION_TAG_SOURCE } from '#utils/definition-markup';
 import { areValidReferences } from '#utils/reference-utils';
 
@@ -22,11 +21,9 @@ const TAGS = new RegExp(DEFINITION_TAG_SOURCE, 'g');
 const INTERNAL_XREF_TARGET = /\burlencoded\s*=\s*(["'])(.*?)\1/i;
 const URL_PATH_SEGMENT = /^(?:[\w.~-]|%[\dA-Fa-f]{2})+$/;
 
-// Read at call time rather than import time so the build, the CLI and tests
-// each see their own environment. Defaults like MERRIAM_WEBSTER_API_URL: the
-// Add Word workflow does not set it, and a fetched cross-reference needs it.
-const wordnikWordsUrl = (path: string): string =>
-  `${process.env.WORDNIK_WEBSITE_URL || DEFAULT_WORDNIK_WEBSITE_URL}/words/${path}`;
+// Where a legacy cross-reference pointed. Nothing fetches from Wordnik any
+// more, so this is no longer a setting: it only says what stored markup meant.
+const wordnikWordsUrl = (path: string): string => `https://www.wordnik.com/words/${path}`;
 
 /**
  * The Wordnik page for a word, lowercased as Wordnik's own word URLs are.
@@ -77,8 +74,10 @@ const closeReference = (open: OpenReference, text: string): DictionaryReference 
  * whose text stays plain; a closing tag that matches nothing open is dropped,
  * and so is a reference never closed.
  *
- * The one parser of this markup: the Wordnik adapter translates fetched text
- * with it, and the offline normalizer translates legacy stored text.
+ * The one parser of this markup, and legacy: there is no Wordnik adapter any
+ * more, and only the offline normalizer reads it, for definitions a site
+ * stored before its text was canonical. It can go once no site holds a
+ * record whose `adapter` is `wordnik`.
  */
 export function parseDefinitionMarkup(markup: string): DefinitionText {
   const references: DictionaryReference[] = [];

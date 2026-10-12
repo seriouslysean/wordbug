@@ -6,6 +6,7 @@ import type { BasePartOfSpeech } from '#constants/parts-of-speech';
 import { BASE_PARTS_OF_SPEECH, isBasePartOfSpeech } from '#constants/parts-of-speech';
 import { MAX_SENSE_EXAMPLES } from '#constants/text-patterns';
 import { getMonthSlugFromDate } from '#utils/date-utils';
+import { getDefinitionLicense } from '#utils/attribution-utils';
 import { toDefinitionSegments } from '#utils/definition-text';
 import { slugify } from '#utils/text-utils';
 
@@ -155,6 +156,11 @@ export const getDisplayableDefinitions = (definitions: DictionaryDefinition[]): 
 export const isValidDictionaryData = (data: DictionaryDefinition[]): boolean =>
   getDisplayableDefinitions(data).length > 0;
 
+// A prefix, suffix or infix as a dictionary writes its headword: "the-", "-an",
+// "-a-". The hyphen may be the typographic one (U+2010) or the non-breaking
+// one (U+2011), which a headword copied from a page carries.
+const isAffix = (headword: string): boolean => /^[-\u2010\u2011]|[-\u2010\u2011]$/.test(headword.trim());
+
 interface WordDefinitions {
   definitions: DisplayableDefinition[];
   /** True when the word has no definition of its own and the first displayable one stands in for it. */
@@ -174,20 +180,34 @@ interface WordDefinitions {
  * Their `id` differs from the headword, so they are left out. Homographs share
  * the headword's `id` and stay, as does a definition with no `id`.
  *
+ * An `id` is compared by slug, so "ice-cream" is "ice cream". The slug also
+ * drops the hyphen that marks an affix, and Merriam-Webster returns "the-"
+ * (god), "-an" and "-a-" with "the", "an" and "a": an entry is the word's own
+ * only when it is an affix exactly when the word is, so "-ness" keeps "-ness".
+ *
  * The word's own entries are picked out first and the displayability rule is
  * applied to them alone. Its abbreviation half compares the entries of one
  * headword: over the whole lookup, the adjective "AC/DC" would hide "AC", the
  * only definition "ac" has, and then stand in for it.
  *
- * When no displayable definition is the word's own ("indices" is stored under
- * "index"), the first displayable one of the whole lookup stands in for it, so
- * a word with anything displayable keeps one definition and its part of speech.
+ * When no displayable definition is the word's own, others stand in for it,
+ * so a word with anything displayable keeps a definition and its part of
+ * speech. The entries spelt like the word but for the affix hyphen come
+ * first: "ness", typed without its hyphen, comes back with "-ness" alone, and
+ * all of that entry's senses stand in. Failing those ("indices" is stored
+ * under "index"), the first displayable definition of the whole lookup does.
  */
 const getWordDefinitions = (wordData: Pick<WordData, 'word' | 'data'>): WordDefinitions => {
   const wordSlug = slugify(wordData.word);
-  const own = getDisplayableDefinitions(wordData.data.filter(def => !def.id || slugify(def.id) === wordSlug));
-  return own.length > 0
-    ? { definitions: own, standIn: false }
+  const wordIsAffix = isAffix(wordData.word);
+  const own = getDisplayableDefinitions(wordData.data.filter(def =>
+    !def.id || (slugify(def.id) === wordSlug && isAffix(def.id) === wordIsAffix)));
+  if (own.length > 0) {
+    return { definitions: own, standIn: false };
+  }
+  const spelledAlike = getDisplayableDefinitions(wordData.data.filter(def => def.id && slugify(def.id) === wordSlug));
+  return spelledAlike.length > 0
+    ? { definitions: spelledAlike, standIn: true }
     : { definitions: getDisplayableDefinitions(wordData.data).slice(0, 1), standIn: true };
 };
 
@@ -315,6 +335,17 @@ export const groupWordsByPartOfSpeech = (words: WordData[]): WordGrouping<string
   return groups;
 };
 
+// Decided for each sense from its own stored fields, never from the word's
+// first definition: a record fetched through Wordnik mixes Wiktionary's text
+// with WordNet's and the Century Dictionary's, and a credit belongs beside
+// the text it is for and nowhere else
+const senseCredit = (def: DictionaryDefinition): Pick<WordSense, 'credit'> => {
+  const license = getDefinitionLicense(def);
+  return license && def.attributionText
+    ? { credit: { text: def.attributionText, licenseName: license.name, licenseUrl: license.url } }
+    : {};
+};
+
 /**
  * Returns every sense of a word for the senses slider: the word's own
  * definitions (getWordDefinitions), so compound/derived entries are excluded
@@ -357,6 +388,7 @@ export const getWordSenses = (wordData: WordData): WordSense[] => {
     partOfSpeech: def.partOfSpeech,
     segments: getDefinitionSegments(def),
     examples: standIn ? [] : collectSenseExamples(def),
+    ...senseCredit(def),
   }));
 };
 

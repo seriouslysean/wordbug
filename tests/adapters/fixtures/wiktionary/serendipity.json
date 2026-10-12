@@ -1,64 +1,19 @@
-[
+{
+  "en": [
     {
-        "word": "serendipity",
-        "phonetic": "/\u02ccs\u025b.\u0279\u0259n.\u02c8d\u026a.p\u026a.ti/",
-        "phonetics": [
-            {
-                "text": "/\u02ccs\u025b.\u0279\u0259n.\u02c8d\u026a.p\u026a.ti/",
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/serendipity-au.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=75857831",
-                "license": {
-                    "name": "BY-SA 4.0",
-                    "url": "https://creativecommons.org/licenses/by-sa/4.0"
-                }
-            },
-            {
-                "text": "/\u02ccs\u025b.\u0279\u0259n.\u02c8d\u026a.p\u026a.ti/",
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/serendipity-us.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=965947",
-                "license": {
-                    "name": "BY-SA 3.0",
-                    "url": "https://creativecommons.org/licenses/by-sa/3.0"
-                }
-            }
-        ],
-        "meanings": [
-            {
-                "partOfSpeech": "noun",
-                "definitions": [
-                    {
-                        "definition": "A combination of events which have come together by chance to make a surprisingly good or wonderful outcome.",
-                        "synonyms": [],
-                        "antonyms": [
-                            "Murphy's law",
-                            "perfect storm"
-                        ]
-                    },
-                    {
-                        "definition": "An unsought, unintended, and/or unexpected, but fortunate, discovery and/or learning experience that happens by accident.",
-                        "synonyms": [
-                            "chance",
-                            "luck"
-                        ],
-                        "antonyms": []
-                    }
-                ],
-                "synonyms": [
-                    "chance",
-                    "luck"
-                ],
-                "antonyms": [
-                    "Murphy's law",
-                    "perfect storm"
-                ]
-            }
-        ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+      "partOfSpeech": "Noun",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": "The <a rel=\"mw:WikiLink\" href=\"/wiki/phenomenon\" title=\"phenomenon\">phenomenon</a> of making an <a rel=\"mw:WikiLink\" href=\"/wiki/unplanned\" title=\"unplanned\">unplanned</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/fortunate\" title=\"fortunate\">fortunate</a> <a rel=\"mw:WikiLink\" href=\"/wiki/discovery\" title=\"discovery\">discovery</a> through a <a rel=\"mw:WikiLink\" href=\"/wiki/combination\" title=\"combination\">combination</a> of <a rel=\"mw:WikiLink\" href=\"/wiki/unexpected\" title=\"unexpected\">unexpected</a> <a rel=\"mw:WikiLink\" href=\"/wiki/circumstance\" title=\"circumstance\">circumstances</a> and <a rel=\"mw:WikiLink\" href=\"/wiki/insightful\" title=\"insightful\">insightful</a> <a rel=\"mw:WikiLink\" href=\"/wiki/recognition\" title=\"recognition\">recognition</a>."
         },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/serendipity"
-        ]
+        {
+          "definition": "An unsought, unintended or unexpected, but fortunate, discovery or learning experience that occurs by accident."
+        },
+        {
+          "definition": "The occurrence and development of events by chance in a happy or beneficial way."
+        }
+      ]
     }
-]
+  ]
+}

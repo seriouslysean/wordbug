@@ -40,10 +40,6 @@ inputs:
     description: 'Sentry project'
     required: false
     default: ''
-  wordnik-api-key:
-    description: 'Wordnik API key'
-    required: false
-    default: ''
 runs:
   using: 'composite'
   steps:
@@ -60,7 +56,6 @@ runs:
         SENTRY_ENVIRONMENT: ${{ inputs.sentry-environment }}
         SENTRY_ORG: ${{ inputs.sentry-org }}
         SENTRY_PROJECT: ${{ inputs.sentry-project }}
-        WORDNIK_API_KEY: ${{ inputs.wordnik-api-key }}
         VAR_NAMES: |
           BASE_PATH
           COLOR_DARK_BACKGROUND
@@ -93,8 +88,6 @@ runs:
           SITE_TITLE
           SITE_URL
           SOURCE_DIR
-          WORDNIK_API_URL
-          WORDNIK_WEBSITE_URL
         SECRET_NAMES: |
           GA_ENABLED
           GA_MEASUREMENT_ID
@@ -104,7 +97,6 @@ runs:
           SENTRY_ENABLED
           SENTRY_ORG
           SENTRY_PROJECT
-          WORDNIK_API_KEY
       run: |
         # In name=value form a line break in a value starts a new entry, so a
         # two-line SITE_DESCRIPTION fails the step and one with a second

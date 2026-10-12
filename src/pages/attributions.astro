@@ -1,0 +1,109 @@
+---
+import { getDictionaryCredits } from '#astro-utils/attribution-utils';
+import { getPageMetadata } from '#astro-utils/page-metadata';
+import merriamWebsterLogo from '#assets/merriam-webster-logo.png';
+import Heading from '#components/Heading.astro';
+import SectionHeading from '#components/SectionHeading.astro';
+import Layout from '#layouts/Layout.astro';
+import { WIKTIONARY_LICENSE } from '#utils/attribution-utils';
+import { t } from '#utils/i18n-utils';
+
+const credits = getDictionaryCredits();
+const { title, description } = getPageMetadata(Astro.url.pathname);
+
+// Merriam-Webster's brand guidelines ask for "a superscript registration
+// symbol directly after the word" Collegiate: a title is split around it
+const REGISTERED = '®';
+const listFormat = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' });
+---
+
+<Layout title={title} description={description}>
+  <Heading text={title} />
+
+  <div class="attributions">
+    {credits.length === 0 && <p class="attributions__text">{t('attributions.none')}</p>}
+
+    {credits.map(credit => (
+      <section class="attributions__source" id={credit.type}>
+        {credit.type === 'merriam-webster' && (
+          <>
+            <SectionHeading text={t('attributions.merriam_webster_heading')} />
+            {/* The official file as Merriam-Webster supplies it, at a size it
+                approves (50px), on white so the mark and its registration
+                symbol read on any theme. Never through Astro's image
+                component, which would re-encode it. */}
+            <a class="attributions__logo" href="https://www.merriam-webster.com/" target="_blank" rel="noopener noreferrer">
+              <img src={merriamWebsterLogo.src} alt={t('attributions.merriam_webster_logo_alt')} width="50" height="50" />
+            </a>
+            {/* One line each: a line break between an expression and a tag
+                would print as a space, here before a comma */}
+            {credit.titles.length > 0 ? (
+              <p class="attributions__text">{t('attributions.merriam_webster_before')}{listFormat.formatToParts(credit.titles).map(part => (part.type === 'literal' ? part.value : <cite class="attributions__title">{part.value.split(REGISTERED).map((piece, index) => <>{index > 0 && <sup>{REGISTERED}</sup>}{piece}</>)}</cite>))}{t('attributions.merriam_webster_after')}</p>
+            ) : (
+              <p class="attributions__text">{t('attributions.merriam_webster_untitled')}</p>
+            )}
+          </>
+        )}
+
+        {credit.type === 'wiktionary' && (
+          <>
+            <SectionHeading text={t('attributions.wiktionary_heading')} />
+            <p class="attributions__text">{t('attributions.wiktionary_credit_before')}<a class="attributions__link" href="https://en.wiktionary.org/" target="_blank" rel="noopener noreferrer">{t('attributions.wiktionary_name')}</a>{t('attributions.wiktionary_credit_after')}</p>
+            <p class="attributions__text">{t('attributions.wiktionary_license_before')}<a class="attributions__link" href={WIKTIONARY_LICENSE.url} target="_blank" rel="license noopener noreferrer">{WIKTIONARY_LICENSE.name}</a>{t('attributions.wiktionary_license_after')}</p>
+          </>
+        )}
+
+        {credit.type === 'wordnik' && (
+          <>
+            <SectionHeading text={t('attributions.wordnik_heading')} />
+            <p class="attributions__text">{t('attributions.wordnik_credit_before')}<a class="attributions__link" href="https://www.wordnik.com/" target="_blank" rel="noopener noreferrer">Wordnik</a>{t('attributions.wordnik_credit_after')}</p>
+          </>
+        )}
+      </section>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  /* Names and titles as their owners write them: the site lowercases its
+     text, and "merriam-webster's collegiate" is not the product's title. */
+  .attributions {
+    width: 100%;
+    max-width: var(--content-width-small);
+    margin: 0 auto;
+    text-transform: none;
+  }
+
+  .attributions__source {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .attributions__logo {
+    display: inline-block;
+    padding: var(--spacing-small);
+    background: #fff;
+    border-radius: var(--border-radius);
+    line-height: 0;
+  }
+
+  .attributions__text {
+    margin: var(--spacing-base) 0 0;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .attributions__title {
+    font-style: normal;
+  }
+
+  /* The reset flattens <sup>; the registration symbol is to sit above the line. */
+  .attributions__title sup {
+    vertical-align: super;
+    font-size: 0.7em;
+    line-height: 0;
+  }
+
+  .attributions__link {
+    text-decoration: underline;
+  }
+</style>

@@ -1,9 +1,7 @@
 ---
-import { SITE_AUTHOR_URL, SITE_AUTHOR, SITE_ATTRIBUTION_MESSAGE, WORDNIK_WEBSITE_URL } from 'astro:env/client';
-import { Image } from 'astro:assets';
-import wordnikLogo from '#assets/wordnik-gearheart.png';
+import { SITE_AUTHOR_URL, SITE_AUTHOR, SITE_ATTRIBUTION_MESSAGE } from 'astro:env/client';
 import SiteLink from '#components/SiteLink.astro';
-import { getBrowseWordsUrl, getStatsUrl, getWordsUrl } from '#astro-utils/url-utils';
+import { getAttributionsUrl, getBrowseWordsUrl, getStatsUrl, getWordsUrl } from '#astro-utils/url-utils';
 import { BASE_PATHS } from '#constants/urls';
 import { t } from '#utils/i18n-utils';
 
@@ -37,14 +35,7 @@ const showAttribution = SITE_AUTHOR_URL && SITE_AUTHOR && SITE_ATTRIBUTION_MESSA
         </li>
       )}
       <li class="footer__item">
-        <SiteLink
-          href={WORDNIK_WEBSITE_URL}
-          target="_blank"
-          class="footer__wordnik"
-          title={t('footer.powered_by')}
-        >
-          <Image src={wordnikLogo} alt="Wordnik" width={16} height={16} />
-        </SiteLink>
+        <SiteLink href={getAttributionsUrl()}>{t('nav.attributions')}</SiteLink>
       </li>
     </ul>
   </nav>
@@ -90,19 +81,6 @@ const showAttribution = SITE_AUTHOR_URL && SITE_AUTHOR && SITE_ATTRIBUTION_MESSA
 
     .footer__links a {
         color: inherit;
-    }
-
-    :global(.footer__wordnik) {
-        display: flex;
-        align-items: center;
-        opacity: 0.8;
-        filter: grayscale(1);
-        transition: opacity 0.2s ease;
-    }
-
-    :global(.footer__wordnik:hover) {
-        opacity: 1;
-        filter: none;
     }
 
 </style>

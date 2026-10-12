@@ -115,6 +115,12 @@ export const getWordsUrl = (): string => BASE_PATHS.WORD;
  */
 export const getStatsUrl = (): string => BASE_PATHS.STATS;
 
+/**
+ * Get the URL of the page that credits the site's dictionaries
+ * @returns Attributions page URL
+ */
+export const getAttributionsUrl = (): string => BASE_PATHS.ATTRIBUTIONS;
+
 // =====================================================
 // Word Browsing URLs - Category pages
 // =====================================================

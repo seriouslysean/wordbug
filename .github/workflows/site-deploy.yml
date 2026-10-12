@@ -1,13 +1,13 @@
 name: Site Deploy
 
-# Builds a site and deploys it to GitHub Pages: a site repository's Deploy
-# workflow calls this at a pinned release, and this repository's own Deploy
-# calls it with ./ for the demo site, as does a fork's until it moves to a
-# thin site.
+# Builds a site and deploys it to GitHub Pages. Deploy (deploy.yml) calls it
+# with ./, in this repository for the demo site and in each downstream site,
+# which is a full copy of this repository and so runs its own copy of both
+# files at its own commit:
 #
 #   jobs:
 #     deploy:
-#       uses: seriouslysean/occasional-wotd/.github/workflows/site-deploy.yml@vX.Y.Z
+#       uses: ./.github/workflows/site-deploy.yml
 #       secrets:
 #         GA_ENABLED: ${{ secrets.GA_ENABLED }}
 #         GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
@@ -17,9 +17,9 @@ name: Site Deploy
 #         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
 #         SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 #
-# The site repository owns data/ and public/; the code is this repository at
-# the ref the caller pinned. The steps run in the caller's repository, with
-# its variables, its GITHUB_TOKEN and its Pages site.
+# The code and the content are both the calling repository at the calling
+# commit: its engine, and its data/ and public/. The steps run in that
+# repository, with its variables, its GITHUB_TOKEN and its Pages site.
 
 on:
   workflow_call:
@@ -50,7 +50,7 @@ permissions:
   contents: read
 
 # The repository that builds the demo site. Not job.workflow_repository,
-# which a fork's ./ call makes the fork itself.
+# which a downstream site's ./ call makes the site itself.
 env:
   ENGINE_REPOSITORY: seriouslysean/occasional-wotd
 
@@ -70,10 +70,10 @@ jobs:
           persist-credentials: false
 
       # job.workflow_* name the repository and commit this workflow runs
-      # from, so the code is the commit the caller's uses: pins, whatever
-      # else the caller passes. A ./ call runs the workflow from the caller's
-      # own commit: this repository for the demo site, or a fork of it that
-      # has not moved to a thin site.
+      # from, and a caller passes nothing that names the engine. A ./ call
+      # runs the workflow from the caller's own commit, so the engine is the
+      # calling repository at that commit: this repository for the demo
+      # site, a downstream site for its own.
       - name: Checkout engine
         uses: actions/checkout@v7
         with:
@@ -106,11 +106,13 @@ jobs:
           sentry-org: ${{ secrets.SENTRY_ORG }}
           sentry-project: ${{ secrets.SENTRY_PROJECT }}
 
-      # The site's data/ and public/ replace the engine's, so a site builds
-      # none of the demo content; the engine's favicon stays when the site
-      # has none. A fork's two checkouts are the same commit, so for a fork
-      # the copy changes nothing. Everything runs from engine/, whose own
-      # .git gives the build its release fingerprint.
+      # site/ and engine/ are the same commit of the same repository, so the
+      # copy changes nothing: a downstream site keeps the demo content it
+      # tracks beside its own, and SOURCE_DIR decides which is built. Were
+      # the two to differ, the site's data/ and public/ would replace the
+      # engine's and the engine's favicon would stay when the site had none.
+      # Everything runs from engine/, whose own .git gives the build its
+      # release fingerprint.
       - name: Overlay site content
         run: |
           # This repository builds the demo site and every other repository
@@ -156,6 +158,26 @@ jobs:
       - name: Build
         working-directory: engine
         run: npm run build
+
+      # With Sentry on, the build writes a source map beside each script,
+      # uploads them and deletes them (astro.config.ts,
+      # filesToDeleteAfterUpload: the same directory, the same *.js.map).
+      # One left behind would be published with the site, so the deploy
+      # stops instead. With Sentry off no map is generated.
+      - name: Check for source maps
+        working-directory: engine
+        run: |
+          # find fails on a missing directory, and no scripts means no maps
+          if [[ ! -d dist/_astro ]]; then
+            exit 0
+          fi
+          MAPS=$(find dist/_astro -name '*.js.map')
+          if [[ -n "$MAPS" ]]; then
+            while IFS= read -r map; do
+              echo "::error::$map is a source map the build did not remove, and the deploy would publish it."
+            done <<< "$MAPS"
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

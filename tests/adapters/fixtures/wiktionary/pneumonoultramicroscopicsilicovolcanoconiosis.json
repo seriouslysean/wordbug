@@ -1,36 +1,16 @@
-[
+{
+  "en": [
     {
-        "word": "pneumonoultramicroscopicsilicovolcanoconiosis",
-        "phonetics": [
-            {
-                "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/pneumonoultramicroscopicsilicovolcanoconiosis.mp3",
-                "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=17494319",
-                "license": {
-                    "name": "BY-SA 3.0",
-                    "url": "https://creativecommons.org/licenses/by-sa/3.0"
-                }
-            }
-        ],
-        "meanings": [
-            {
-                "partOfSpeech": "noun",
-                "definitions": [
-                    {
-                        "definition": "A disease of the lungs, allegedly caused by inhaling microscopic silicate particles originating from eruption of a volcano.",
-                        "synonyms": [],
-                        "antonyms": []
-                    }
-                ],
-                "synonyms": [],
-                "antonyms": []
-            }
-        ],
-        "license": {
-            "name": "CC BY-SA 3.0",
-            "url": "https://creativecommons.org/licenses/by-sa/3.0"
+      "partOfSpeech": "Noun",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt24\" typeof=\"mw:Transclusion\"></span> A <a rel=\"mw:WikiLink\" href=\"/wiki/disease\" title=\"disease\">disease</a> of the lungs, allegedly caused by inhaling <a rel=\"mw:WikiLink\" href=\"/wiki/microscopic\" title=\"microscopic\">microscopic</a> <a rel=\"mw:WikiLink\" href=\"/wiki/silicate\" title=\"silicate\">silicate</a> <a rel=\"mw:WikiLink\" href=\"/wiki/particle\" title=\"particle\">particles</a> originating from the <a rel=\"mw:WikiLink\" href=\"/wiki/eruption\" title=\"eruption\">eruption</a> of a <a rel=\"mw:WikiLink\" href=\"/wiki/volcano\" title=\"volcano\">volcano</a>."
         },
-        "sourceUrls": [
-            "https://en.wiktionary.org/wiki/pneumonoultramicroscopicsilicovolcanoconiosis"
-        ]
+        {
+          "definition": "<span rel=\"mw:referencedBy\" class=\"mw-cite-backlink\"><a href=\"/wiki/pneumonoultramicroscopicsilicovolcanoconiosis#cite_ref-OED-pronstress&amp;usage_1-0\"><span class=\"mw-linkback-text\">1</span></a> <a href=\"/wiki/pneumonoultramicroscopicsilicovolcanoconiosis#cite_ref-OED-pronstress&amp;usage_1-1\"><span class=\"mw-linkback-text\">2</span></a></span> <span id=\"mw-reference-text-cite_note-OED-pronstress&amp;usage-1\" class=\"mw-reference-text reference-text\">The second edition of the <i>Oxford English Dictionary</i> gives the stress on the second syllable. This was changed in the third edition, in which the British English pronunciation stresses the first syllable as shown here.</span>"
+        }
+      ]
     }
-]
+  ]
+}

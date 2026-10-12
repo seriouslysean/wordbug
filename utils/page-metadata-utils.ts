@@ -188,6 +188,12 @@ function createPageMetadata(stats: PrecomputedStats): Record<string, PageMeta> {
       description: t('stats.parts_of_speech_description'),
       category: 'pages',
     },
+    [BASE_PATHS.ATTRIBUTIONS]: {
+      type: 'static',
+      title: t('attributions.heading'),
+      description: t('attributions.description'),
+      category: 'pages',
+    },
     [BASE_PATHS.NOT_FOUND]: {
       type: 'static',
       title: t('error.heading'),
@@ -420,6 +426,7 @@ function getStaticTitles(): Record<string, string> {
     [ROUTES.STAT(STATS_SLUGS.LETTER_PATTERNS)]: t('stats.letter_patterns_index_heading'),
     [ROUTES.STAT(STATS_SLUGS.WORD_ENDINGS)]: t('stats.word_endings_index_heading'),
     [ROUTES.STAT(STATS_SLUGS.PARTS_OF_SPEECH)]: t('stats.parts_of_speech_heading'),
+    [BASE_PATHS.ATTRIBUTIONS]: t('attributions.heading'),
     [BASE_PATHS.NOT_FOUND]: t('error.heading'),
 
     // Build stats titles from definition objects

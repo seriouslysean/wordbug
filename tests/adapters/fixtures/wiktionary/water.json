@@ -1,0 +1,667 @@
+{
+  "en": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": ""
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\"></span> An inorganic compound (of molecular formula <style data-mw-deduplicate=\"TemplateStyles:r77195254\" typeof=\"mw:Extension/templatestyles\" about=\"#mwt102\">.mw-parser-output .template-chem2-su{display:inline-block;font-size:80%;line-height:1;vertical-align:-0.35em}.mw-parser-output .template-chem2-su>span{display:block;text-align:left}.mw-parser-output sub.template-chem2-sub{font-size:80%;vertical-align:-0.35em}.mw-parser-output sup.template-chem2-sup{font-size:80%;vertical-align:0.65em}</style><span class=\"chemf nowrap\">H<sub class=\"template-chem2-sub\">2</sub>O</span>) found at <a rel=\"mw:WikiLink\" href=\"/wiki/room_temperature\" title=\"room temperature\">room temperature</a> and pressure as a clear <a rel=\"mw:WikiLink\" href=\"/wiki/liquid\" title=\"liquid\">liquid</a>; it is present naturally as <a rel=\"mw:WikiLink\" href=\"/wiki/rain#Noun\" title=\"rain\">rain</a>, and found in <a rel=\"mw:WikiLink\" href=\"/wiki/river\" title=\"river\">rivers</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/lake\" title=\"lake\">lakes</a> and <a rel=\"mw:WikiLink\" href=\"/wiki/sea\" title=\"sea\">seas</a>; its solid form is <a rel=\"mw:WikiLink\" href=\"/wiki/ice#Noun\" title=\"ice\">ice</a> and its gaseous form is <a rel=\"mw:WikiLink\" href=\"/wiki/steam#Noun\" title=\"steam\">steam</a>.",
+          "parsedExamples": [
+            {
+              "example": "By the action of electricity, the <b>water</b> was resolved into its two parts, oxygen and hydrogen."
+            },
+            {
+              "example": "May I have a glass of <b>water</b><span typeof=\"mw:Entity\">?</span>"
+            },
+            {
+              "example": "Your plants need more <b>water</b>."
+            }
+          ],
+          "examples": [
+            "By the action of electricity, the <b>water</b> was resolved into its two parts, oxygen and hydrogen.",
+            "May I have a glass of <b>water</b><span typeof=\"mw:Entity\">?</span>",
+            "Your plants need more <b>water</b>."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\"></span> The liquid form of this substance: liquid <link rel=\"mw-deduplicated-inline-style\" href=\"mw-data:TemplateStyles:r77195254\" about=\"#mwt111\" typeof=\"mw:Extension/templatestyles\"><span class=\"chemf nowrap\">H<sub class=\"template-chem2-sub\">2</sub>O</span>.",
+          "parsedExamples": [
+            {
+              "example": "May I have a glass of <b>water</b><span typeof=\"mw:Entity\">?</span>"
+            },
+            {
+              "example": "Your plants need more <b>water</b>."
+            }
+          ],
+          "examples": [
+            "May I have a glass of <b>water</b><span typeof=\"mw:Entity\">?</span>",
+            "Your plants need more <b>water</b>."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\"></span> A <a rel=\"mw:WikiLink\" href=\"/wiki/serving#Noun\" title=\"serving\">serving</a> of liquid water."
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt123\" typeof=\"mw:Transclusion\"></span> The aforementioned liquid, considered one of the <a rel=\"mw:WikiLink/Interwiki\" href=\"https://en.wikipedia.org/wiki/Classical%20elements\" title=\"w:Classical elements\" about=\"#mwt124\" typeof=\"mw:Transclusion\" class=\"extiw\">Classical elements</a> or basic elements of alchemy.",
+          "parsedExamples": [
+            {
+              "example": "He showed me the river of living <b>water</b>, sparkling like crystal, flowing from the throne of God."
+            }
+          ],
+          "examples": [
+            "He showed me the river of living <b>water</b>, sparkling like crystal, flowing from the throne of God."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt128\" typeof=\"mw:Transclusion\"></span> Water in a body; an area of <a rel=\"mw:WikiLink\" href=\"/wiki/open#Adjective\" title=\"open\">open</a> water.",
+          "parsedExamples": [
+            {
+              "example": "And God said, Let the <b>waters</b> under the heaven be gathered together unto one place, and let the dry land appear<span typeof=\"mw:Entity\">:</span> and it was so."
+            },
+            {
+              "example": "The boat was found within the territorial <b>waters</b>."
+            },
+            {
+              "example": "These seals are a common sight in the coastal <b>waters</b> of Chile."
+            },
+            {
+              "example": "The submarine sunk in 3,000 feet of <b>water</b>."
+            }
+          ],
+          "examples": [
+            "And God said, Let the <b>waters</b> under the heaven be gathered together unto one place, and let the dry land appear<span typeof=\"mw:Entity\">:</span> and it was so.",
+            "The boat was found within the territorial <b>waters</b>.",
+            "These seals are a common sight in the coastal <b>waters</b> of Chile.",
+            "The submarine sunk in 3,000 feet of <b>water</b>."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt136\" typeof=\"mw:Transclusion\"></span> A <a rel=\"mw:WikiLink\" href=\"/wiki/body\" title=\"body\">body</a> of water, almost always a <a rel=\"mw:WikiLink\" href=\"/wiki/river\" title=\"river\">river</a>, sometimes a <a rel=\"mw:WikiLink\" href=\"/wiki/lake\" title=\"lake\">lake</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/reservoir\" title=\"reservoir\">reservoir</a>, especially in the names given to such bodies."
+        },
+        {
+          "definition": "A combination of water and other substance(s).\n<ol><li><span class=\"usage-label-sense\" about=\"#mwt141\" typeof=\"mw:Transclusion\"></span> Mineral water.",
+          "parsedExamples": [
+            {
+              "example": "Perrier is the most popular <b>water</b> in this restaurant."
+            },
+            {
+              "example": "Many people visit Bath to <a rel=\"mw:WikiLink\" href=\"/wiki/take_the_waters#English\" title=\"take the waters\">take the <b>waters</b></a>."
+            },
+            {
+              "example": "ammonia <b>water</b>"
+            },
+            {
+              "example": "Before the child is born, the pregnant woman’s <b>water</b> breaks. "
+            },
+            {
+              "example": "Before your child is born, your <b>water(s)</b> will break. "
+            },
+            {
+              "example": "Before the child is born, the pregnant woman’s <b>waters</b> break. "
+            },
+            {
+              "example": "He suffers from <b>water</b> on the knee."
+            }
+          ],
+          "examples": [
+            "Perrier is the most popular <b>water</b> in this restaurant.",
+            "Many people visit Bath to <a rel=\"mw:WikiLink\" href=\"/wiki/take_the_waters#English\" title=\"take the waters\">take the <b>waters</b></a>.",
+            "ammonia <b>water</b>",
+            "Before the child is born, the pregnant woman’s <b>water</b> breaks. ",
+            "Before your child is born, your <b>water(s)</b> will break. ",
+            "Before the child is born, the pregnant woman’s <b>waters</b> break. ",
+            "He suffers from <b>water</b> on the knee."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt141\" typeof=\"mw:Transclusion\"></span> Mineral water.",
+          "parsedExamples": [
+            {
+              "example": "Perrier is the most popular <b>water</b> in this restaurant."
+            }
+          ],
+          "examples": [
+            "Perrier is the most popular <b>water</b> in this restaurant."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt143\" typeof=\"mw:Transclusion\"></span> <a rel=\"mw:WikiLink\" href=\"/wiki/spa\" title=\"spa\">Spa</a> water; <a rel=\"mw:WikiLink\" href=\"/wiki/hot_spring\" title=\"hot spring\">hot springs</a>.",
+          "parsedExamples": [
+            {
+              "example": "Many people visit Bath to <a rel=\"mw:WikiLink\" href=\"/wiki/take_the_waters#English\" title=\"take the waters\">take the <b>waters</b></a>."
+            }
+          ],
+          "examples": [
+            "Many people visit Bath to <a rel=\"mw:WikiLink\" href=\"/wiki/take_the_waters#English\" title=\"take the waters\">take the <b>waters</b></a>."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt146\" typeof=\"mw:Transclusion\"></span> A <a rel=\"mw:WikiLink\" href=\"/wiki/solution\" title=\"solution\">solution</a> in water of a <a rel=\"mw:WikiLink\" href=\"/wiki/gaseous\" title=\"gaseous\">gaseous</a> or readily <a rel=\"mw:WikiLink\" href=\"/wiki/volatile\" title=\"volatile\">volatile</a> <a rel=\"mw:WikiLink\" href=\"/wiki/substance\" title=\"substance\">substance</a>.",
+          "parsedExamples": [
+            {
+              "example": "ammonia <b>water</b>"
+            }
+          ],
+          "examples": [
+            "ammonia <b>water</b>"
+          ]
+        },
+        {
+          "definition": "A fluid in the body.\n<ol><li><a rel=\"mw:WikiLink\" href=\"/wiki/urine\" title=\"urine\">Urine</a>. <style data-mw-deduplicate=\"TemplateStyles:r90144991\" typeof=\"mw:Extension/templatestyles mw:Transclusion\" about=\"#mwt148\">.mw-parser-output .defdate{font-size:smaller}</style>",
+          "parsedExamples": [
+            {
+              "example": "Before the child is born, the pregnant woman’s <b>water</b> breaks. "
+            },
+            {
+              "example": "Before your child is born, your <b>water(s)</b> will break. "
+            },
+            {
+              "example": "Before the child is born, the pregnant woman’s <b>waters</b> break. "
+            },
+            {
+              "example": "He suffers from <b>water</b> on the knee."
+            }
+          ],
+          "examples": [
+            "Before the child is born, the pregnant woman’s <b>water</b> breaks. ",
+            "Before your child is born, your <b>water(s)</b> will break. ",
+            "Before the child is born, the pregnant woman’s <b>waters</b> break. ",
+            "He suffers from <b>water</b> on the knee."
+          ]
+        },
+        {
+          "definition": "<a rel=\"mw:WikiLink\" href=\"/wiki/urine\" title=\"urine\">Urine</a>. <style data-mw-deduplicate=\"TemplateStyles:r90144991\" typeof=\"mw:Extension/templatestyles mw:Transclusion\" about=\"#mwt148\">.mw-parser-output .defdate{font-size:smaller}</style>"
+        },
+        {
+          "definition": ""
+        },
+        {
+          "definition": "<a rel=\"mw:WikiLink\" href=\"/wiki/amniotic_fluid\" title=\"amniotic fluid\">Amniotic fluid</a> or the <a rel=\"mw:WikiLink\" href=\"/wiki/amniotic_sac\" title=\"amniotic sac\">amniotic sac</a> containing it.",
+          "parsedExamples": [
+            {
+              "example": "Before the child is born, the pregnant woman’s <b>water</b> breaks. "
+            },
+            {
+              "example": "Before your child is born, your <b>water(s)</b> will break. "
+            },
+            {
+              "example": "Before the child is born, the pregnant woman’s <b>waters</b> break. "
+            }
+          ],
+          "examples": [
+            "Before the child is born, the pregnant woman’s <b>water</b> breaks. ",
+            "Before your child is born, your <b>water(s)</b> will break. ",
+            "Before the child is born, the pregnant woman’s <b>waters</b> break. "
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt159\" typeof=\"mw:Transclusion\"></span> A fluid that causes <a rel=\"mw:WikiLink\" href=\"/wiki/swelling\" title=\"swelling\">swelling</a>.",
+          "parsedExamples": [
+            {
+              "example": "He suffers from <b>water</b> on the knee."
+            }
+          ],
+          "examples": [
+            "He suffers from <b>water</b> on the knee."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt161\" typeof=\"mw:Transclusion\"></span> The water <a rel=\"mw:WikiLink\" href=\"/wiki/supply#Noun\" title=\"supply\">supply</a>, as a <a rel=\"mw:WikiLink\" href=\"/wiki/service\" title=\"service\">service</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/utility\" title=\"utility\">utility</a>.",
+          "parsedExamples": [
+            {
+              "example": "The city threatened to cut off our <b>water</b> after we went only a month without paying our bill."
+            },
+            {
+              "example": "Did you leave the <b>water</b> running again<span typeof=\"mw:Entity\">?</span>"
+            }
+          ],
+          "examples": [
+            "The city threatened to cut off our <b>water</b> after we went only a month without paying our bill.",
+            "Did you leave the <b>water</b> running again<span typeof=\"mw:Entity\">?</span>"
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt165\" typeof=\"mw:Transclusion\"></span> A state of affairs; <a rel=\"mw:WikiLink\" href=\"/wiki/condition#Noun\" title=\"condition\">conditions</a>; usually with an <a rel=\"mw:WikiLink\" href=\"/wiki/adjective\" title=\"adjective\">adjective</a> indicating an <a rel=\"mw:WikiLink\" href=\"/wiki/adverse\" title=\"adverse\">adverse</a> condition.",
+          "parsedExamples": [
+            {
+              "example": "The rough <b>waters</b> of change will bring about the calm after the storm."
+            }
+          ],
+          "examples": [
+            "The rough <b>waters</b> of change will bring about the calm after the storm."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt168\" typeof=\"mw:Transclusion\"></span> A person's <a rel=\"mw:WikiLink\" href=\"/wiki/intuition\" title=\"intuition\">intuition</a>. <!-- is this always in the plural?-->",
+          "parsedExamples": [
+            {
+              "example": "I know he'll succeed. I feel it in my <b>waters</b>."
+            }
+          ],
+          "examples": [
+            "I know he'll succeed. I feel it in my <b>waters</b>."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt171\" typeof=\"mw:Transclusion\"></span> Excess <a rel=\"mw:WikiLink\" href=\"/wiki/valuation\" title=\"valuation\">valuation</a> of <a rel=\"mw:WikiLink\" href=\"/wiki/securities\" title=\"securities\">securities</a>."
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt174\" typeof=\"mw:Transclusion\"></span> Something which <a rel=\"mw:WikiLink\" href=\"/wiki/dilute\" title=\"dilute\">dilutes</a>, or has the effect of <a rel=\"mw:WikiLink\" href=\"/wiki/water_down\" title=\"water down\">watering down</a>.",
+          "parsedExamples": [
+            {
+              "example": "Thanks for the great video. No <b>water</b>, 100<span typeof=\"mw:Entity\">%</span> substance<span typeof=\"mw:Entity\">!</span>"
+            }
+          ],
+          "examples": [
+            "Thanks for the great video. No <b>water</b>, 100<span typeof=\"mw:Entity\">%</span> substance<span typeof=\"mw:Entity\">!</span>"
+          ]
+        },
+        {
+          "definition": "A particular <a rel=\"mw:WikiLink\" href=\"/wiki/quality\" title=\"quality\">quality</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/appearance\" title=\"appearance\">appearance</a> suggestive of water:\n<ol><li>The <a rel=\"mw:WikiLink\" href=\"/wiki/limpidity\" title=\"limpidity\">limpidity</a> and <a rel=\"mw:WikiLink\" href=\"/wiki/lustre\" title=\"lustre\">lustre</a> of a precious stone, especially a <a rel=\"mw:WikiLink\" href=\"/wiki/diamond\" title=\"diamond\">diamond</a>.",
+          "parsedExamples": [
+            {
+              "example": "a diamond of the first <b>water</b> is perfectly pure and transparent"
+            }
+          ],
+          "examples": [
+            "a diamond of the first <b>water</b> is perfectly pure and transparent"
+          ]
+        },
+        {
+          "definition": "The <a rel=\"mw:WikiLink\" href=\"/wiki/limpidity\" title=\"limpidity\">limpidity</a> and <a rel=\"mw:WikiLink\" href=\"/wiki/lustre\" title=\"lustre\">lustre</a> of a precious stone, especially a <a rel=\"mw:WikiLink\" href=\"/wiki/diamond\" title=\"diamond\">diamond</a>.",
+          "parsedExamples": [
+            {
+              "example": "a diamond of the first <b>water</b> is perfectly pure and transparent"
+            }
+          ],
+          "examples": [
+            "a diamond of the first <b>water</b> is perfectly pure and transparent"
+          ]
+        },
+        {
+          "definition": "A <a rel=\"mw:WikiLink\" href=\"/wiki/wavy\" title=\"wavy\">wavy</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/lustrous\" title=\"lustrous\">lustrous</a> pattern or decoration such as is imparted to <a rel=\"mw:WikiLink\" href=\"/wiki/linen\" title=\"linen\">linen</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/silk\" title=\"silk\">silk</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/metal\" title=\"metal\">metals</a>, etc."
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Verb",
+      "language": "English",
+      "definitions": [
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt246\" typeof=\"mw:Transclusion\"></span> To <a rel=\"mw:WikiLink\" href=\"/wiki/wet#Verb\" title=\"wet\">wet</a> or supply with water; to <a rel=\"mw:WikiLink\" href=\"/wiki/moisten\" title=\"moisten\">moisten</a>; to overflow with water; to <a rel=\"mw:WikiLink\" href=\"/wiki/irrigate\" title=\"irrigate\">irrigate</a>.\n\n<ol><li class=\"mw-empty-elt\"></li><li class=\"senseid\" id=\"English:_pour_water_onto_plants\" data-lang=\"en\" data-id=\"pour water onto plants\" about=\"#mwt249\" typeof=\"mw:Transclusion\"> <span class=\"usage-label-sense\"></span> To pour water into the <a rel=\"mw:WikiLink\" href=\"/wiki/soil#Noun\" title=\"soil\">soil</a> surrounding (plants).\n</li>\n<li class=\"mw-empty-elt\"></li><li class=\"senseid\" id=\"English:_to_provide_with_water\" data-lang=\"en\" data-id=\"to provide with water\" about=\"#mwt252\" typeof=\"mw:Transclusion\"> <span class=\"usage-label-sense\"></span> To provide (animals) with water for <a rel=\"mw:WikiLink\" href=\"/wiki/drink#Verb\" title=\"drink\">drinking</a>.",
+          "parsedExamples": [
+            {
+              "example": "I need to <b>water</b> the cattle."
+            },
+            {
+              "example": "We fed and <b>watered</b> the refugees."
+            },
+            {
+              "example": "<a rel=\"mw:WikiLink\" href=\"/wiki/nature_calls#English\" title=\"nature calls\">Nature called</a>, so I stepped into the woods and <b>watered</b> a tree."
+            }
+          ],
+          "examples": [
+            "I need to <b>water</b> the cattle.",
+            "We fed and <b>watered</b> the refugees.",
+            "<a rel=\"mw:WikiLink\" href=\"/wiki/nature_calls#English\" title=\"nature calls\">Nature called</a>, so I stepped into the woods and <b>watered</b> a tree."
+          ]
+        },
+        {
+          "definition": ""
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\"></span> To pour water into the <a rel=\"mw:WikiLink\" href=\"/wiki/soil#Noun\" title=\"soil\">soil</a> surrounding (plants)."
+        },
+        {
+          "definition": ""
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\"></span> To provide (animals) with water for <a rel=\"mw:WikiLink\" href=\"/wiki/drink#Verb\" title=\"drink\">drinking</a>.",
+          "parsedExamples": [
+            {
+              "example": "I need to <b>water</b> the cattle."
+            }
+          ],
+          "examples": [
+            "I need to <b>water</b> the cattle."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt256\" typeof=\"mw:Transclusion\"></span> To provide water to (someone).",
+          "parsedExamples": [
+            {
+              "example": "We fed and <b>watered</b> the refugees."
+            }
+          ],
+          "examples": [
+            "We fed and <b>watered</b> the refugees."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt258\" typeof=\"mw:Transclusion\"></span> To <a rel=\"mw:WikiLink\" href=\"/wiki/urinate\" title=\"urinate\">urinate</a> onto.",
+          "parsedExamples": [
+            {
+              "example": "<a rel=\"mw:WikiLink\" href=\"/wiki/nature_calls#English\" title=\"nature calls\">Nature called</a>, so I stepped into the woods and <b>watered</b> a tree."
+            }
+          ],
+          "examples": [
+            "<a rel=\"mw:WikiLink\" href=\"/wiki/nature_calls#English\" title=\"nature calls\">Nature called</a>, so I stepped into the woods and <b>watered</b> a tree."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt261\" typeof=\"mw:Transclusion\"></span> To <a rel=\"mw:WikiLink\" href=\"/wiki/fill\" title=\"fill\">fill</a> with or <a rel=\"mw:WikiLink\" href=\"/wiki/secrete\" title=\"secrete\">secrete</a> water or similar liquid.",
+          "parsedExamples": [
+            {
+              "example": "Chopping onions makes my eyes <b>water</b>."
+            },
+            {
+              "example": "The smell of fried onions makes my mouth <b>water</b>."
+            }
+          ],
+          "examples": [
+            "Chopping onions makes my eyes <b>water</b>.",
+            "The smell of fried onions makes my mouth <b>water</b>."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt264\" typeof=\"mw:Transclusion\"></span> To <a rel=\"mw:WikiLink\" href=\"/wiki/get\" title=\"get\">get</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/take_in\" title=\"take in\">take in</a> water.",
+          "parsedExamples": [
+            {
+              "example": "The ship put into port to <b>water</b>."
+            },
+            {
+              "example": "We stopped at the same well we <b>watered</b> at on the last journey."
+            },
+            {
+              "example": "Can you <b>water</b> the whisky, please<span typeof=\"mw:Entity\">?</span>"
+            }
+          ],
+          "examples": [
+            "The ship put into port to <b>water</b>.",
+            "We stopped at the same well we <b>watered</b> at on the last journey.",
+            "Can you <b>water</b> the whisky, please<span typeof=\"mw:Entity\">?</span>"
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt267\" typeof=\"mw:Transclusion\"></span> To <a rel=\"mw:WikiLink\" href=\"/wiki/gather\" title=\"gather\">gather</a> water.",
+          "parsedExamples": [
+            {
+              "example": "We stopped at the same well we <b>watered</b> at on the last journey."
+            }
+          ],
+          "examples": [
+            "We stopped at the same well we <b>watered</b> at on the last journey."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt269\" typeof=\"mw:Transclusion\"></span> To <a rel=\"mw:WikiLink\" href=\"/wiki/dilute\" title=\"dilute\">dilute</a>.",
+          "parsedExamples": [
+            {
+              "example": "Can you <b>water</b> the whisky, please<span typeof=\"mw:Entity\">?</span>"
+            }
+          ],
+          "examples": [
+            "Can you <b>water</b> the whisky, please<span typeof=\"mw:Entity\">?</span>"
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt273\" typeof=\"mw:Transclusion\"></span> To <a rel=\"mw:WikiLink\" href=\"/wiki/treat\" title=\"treat\">treat</a> with water.",
+          "parsedExamples": [
+            {
+              "example": "The town <b>waters</b> the dirt road for dust prevention."
+            },
+            {
+              "example": "The firefighters <b>watered</b> out the fire."
+            },
+            {
+              "example": "Fill the tank so you can <b>water</b> the fire."
+            },
+            {
+              "example": "to <b>water</b> silk"
+            }
+          ],
+          "examples": [
+            "The town <b>waters</b> the dirt road for dust prevention.",
+            "The firefighters <b>watered</b> out the fire.",
+            "Fill the tank so you can <b>water</b> the fire.",
+            "to <b>water</b> silk"
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt275\" typeof=\"mw:Transclusion\"></span> To extinguish (a fire) with water.",
+          "parsedExamples": [
+            {
+              "example": "The firefighters <b>watered</b> out the fire."
+            },
+            {
+              "example": "Fill the tank so you can <b>water</b> the fire."
+            }
+          ],
+          "examples": [
+            "The firefighters <b>watered</b> out the fire.",
+            "Fill the tank so you can <b>water</b> the fire."
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt278\" typeof=\"mw:Transclusion\"></span> To wet and <a rel=\"mw:WikiLink\" href=\"/wiki/calender\" title=\"calender\">calender</a>, as cloth, so as to impart to it a <a rel=\"mw:WikiLink\" href=\"/wiki/lustrous\" title=\"lustrous\">lustrous</a> appearance in <a rel=\"mw:WikiLink\" href=\"/wiki/wavy\" title=\"wavy\">wavy</a> lines; to <a rel=\"mw:WikiLink\" href=\"/wiki/diversify\" title=\"diversify\">diversify</a> with wavelike lines.",
+          "parsedExamples": [
+            {
+              "example": "to <b>water</b> silk"
+            }
+          ],
+          "examples": [
+            "to <b>water</b> silk"
+          ]
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt280\" typeof=\"mw:Transclusion\"></span> To overvalue (securities), especially through deceptive accounting."
+        }
+      ]
+    }
+  ],
+  "af": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Afrikaans",
+      "definitions": [
+        {
+          "definition": "<span class=\"Latn\" lang=\"en\" about=\"#mwt330\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/water#English\" class=\"mw-selflink-fragment\">water</a></span>"
+        },
+        {
+          "definition": "any artificial fluid similar to water"
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt331\" typeof=\"mw:Transclusion\"></span> <a rel=\"mw:WikiLink\" href=\"/wiki/urine\" title=\"urine\">urine</a>"
+        },
+        {
+          "definition": "any body of water, such as a river or a lake"
+        },
+        {
+          "definition": "a <a rel=\"mw:WikiLink\" href=\"/wiki/disease\" title=\"disease\">disease</a> where water is accumulated; <a rel=\"mw:WikiLink\" href=\"/wiki/hydrops\" title=\"hydrops\">hydrops</a>"
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt332\" typeof=\"mw:Transclusion\"></span> a large quantity of water; <a rel=\"mw:WikiLink\" href=\"/wiki/inundation\" title=\"inundation\">inundation</a>"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Verb",
+      "language": "Afrikaans",
+      "definitions": [
+        {
+          "definition": "to <a rel=\"mw:WikiLink\" href=\"/wiki/urinate\" title=\"urinate\">urinate</a>"
+        },
+        {
+          "definition": "to <a rel=\"mw:WikiLink\" href=\"/wiki/secrete\" title=\"secrete\">secrete</a> <a rel=\"mw:WikiLink\" href=\"/wiki/liquid\" title=\"liquid\">liquid</a>"
+        }
+      ]
+    }
+  ],
+  "nl": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Dutch",
+      "definitions": [
+        {
+          "definition": "<span class=\"Latn\" lang=\"en\" about=\"#mwt353\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/water#English\" class=\"mw-selflink-fragment\">water</a></span> <span class=\"mention-gloss-paren\" about=\"#mwt354\" typeof=\"mw:Transclusion\">(</span><span class=\"mention-gloss\" about=\"#mwt354\">H<sub>2</sub>O</span><span class=\"mention-gloss-paren\" about=\"#mwt354\">)</span>",
+          "parsedExamples": [
+            {
+              "example": "Het <b>water</b> kookte.",
+              "translation": "The <b>water</b> boiled."
+            }
+          ],
+          "examples": [
+            "Het <b>water</b> kookte."
+          ]
+        },
+        {
+          "definition": "body of water <span class=\"mention-gloss-paren\" about=\"#mwt356\" typeof=\"mw:Transclusion\">(</span><span class=\"mention-gloss\" about=\"#mwt356\">such as a <a rel=\"mw:WikiLink\" href=\"/wiki/lake#English\" title=\"lake\">lake</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/ditch#English\" title=\"ditch\">ditch</a> or <a rel=\"mw:WikiLink\" href=\"/wiki/stream#English\" title=\"stream\">stream</a></span><span class=\"mention-gloss-paren\" about=\"#mwt356\">)</span>"
+        },
+        {
+          "definition": "<a rel=\"mw:WikiLink\" href=\"/wiki/bodily\" title=\"bodily\">bodily</a> <a rel=\"mw:WikiLink\" href=\"/wiki/fluid\" title=\"fluid\">fluid</a> <span class=\"mention-gloss-paren\" about=\"#mwt357\" typeof=\"mw:Transclusion\">(</span><span class=\"mention-gloss\" about=\"#mwt357\">especially <a rel=\"mw:WikiLink\" href=\"/wiki/amniotic_fluid#English\" title=\"amniotic fluid\">amniotic fluid</a></span><span class=\"mention-gloss-paren\" about=\"#mwt357\">)</span>"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Verb",
+      "language": "Dutch",
+      "definitions": [
+        {
+          "definition": "<span class=\"form-of-definition use-with-mention\" about=\"#mwt374\" typeof=\"mw:Transclusion\">inflection of <span class=\"form-of-definition-link\"><i class=\"Latn mention\" lang=\"nl\"><a rel=\"mw:WikiLink\" href=\"/wiki/wateren#Dutch\" title=\"wateren\">wateren</a></i></span>:</span><span about=\"#mwt374\">\n</span><ol about=\"#mwt374\"><li><span class=\"form-of-definition use-with-mention\"><a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#first_person\" title=\"Appendix:Glossary\">first-person</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#singular_number\" title=\"Appendix:Glossary\">singular</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#present_tense\" title=\"Appendix:Glossary\">present</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#indicative_mood\" title=\"Appendix:Glossary\">indicative</a></span></li>\n<li><span class=\"form-of-definition use-with-mention\">(in case of <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#inversion\" title=\"Appendix:Glossary\">inversion</a>) <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#second_person\" title=\"Appendix:Glossary\">second-person</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#singular_number\" title=\"Appendix:Glossary\">singular</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#present_tense\" title=\"Appendix:Glossary\">present</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#indicative_mood\" title=\"Appendix:Glossary\">indicative</a></span></li>\n<li><span class=\"form-of-definition use-with-mention\"><a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#imperative_mood\" title=\"Appendix:Glossary\">imperative</a></span></li></ol>"
+        },
+        {
+          "definition": "<span class=\"form-of-definition use-with-mention\"><a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#first_person\" title=\"Appendix:Glossary\">first-person</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#singular_number\" title=\"Appendix:Glossary\">singular</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#present_tense\" title=\"Appendix:Glossary\">present</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#indicative_mood\" title=\"Appendix:Glossary\">indicative</a></span>"
+        },
+        {
+          "definition": "<span class=\"form-of-definition use-with-mention\">(in case of <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#inversion\" title=\"Appendix:Glossary\">inversion</a>) <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#second_person\" title=\"Appendix:Glossary\">second-person</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#singular_number\" title=\"Appendix:Glossary\">singular</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#present_tense\" title=\"Appendix:Glossary\">present</a> <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#indicative_mood\" title=\"Appendix:Glossary\">indicative</a></span>"
+        },
+        {
+          "definition": "<span class=\"form-of-definition use-with-mention\"><a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#imperative_mood\" title=\"Appendix:Glossary\">imperative</a></span>"
+        }
+      ]
+    }
+  ],
+  "fr": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "French",
+      "definitions": [
+        {
+          "definition": "<a rel=\"mw:WikiLink\" href=\"/wiki/toilet\" title=\"toilet\">toilet</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/bathroom\" title=\"bathroom\">bathroom</a>"
+        }
+      ]
+    }
+  ],
+  "other": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Hawaiian Creole",
+      "definitions": [
+        {
+          "definition": "<span class=\"senseid\" id=\"Hawaiian_Creole:_Q283\" data-lang=\"hwc\" data-id=\"Q283\" about=\"#mwt395\" typeof=\"mw:Transclusion\"><span class=\"usage-label-sense\"></span> <span class=\"Latn\" lang=\"en\"><a rel=\"mw:WikiLink\" href=\"/wiki/water#English:_Q283\" class=\"mw-selflink-fragment\">water</a></span> <span class=\"mention-gloss-paren\">(</span><span class=\"mention-gloss\">an inorganic compound (of molecular formula <link rel=\"mw-deduplicated-inline-style\" href=\"mw-data:TemplateStyles:r77195254\" about=\"#mwt396\" typeof=\"mw:Extension/templatestyles\"><span class=\"chemf nowrap\">H<sub class=\"template-chem2-sub\">2</sub>O</span>) found at <a rel=\"mw:WikiLink\" href=\"/wiki/room_temperature\" title=\"room temperature\">room temperature</a> and pressure as a clear <a rel=\"mw:WikiLink\" href=\"/wiki/liquid\" title=\"liquid\">liquid</a>; it is present naturally as <a rel=\"mw:WikiLink\" href=\"/wiki/rain#Noun\" title=\"rain\">rain</a>, and found in <a rel=\"mw:WikiLink\" href=\"/wiki/river\" title=\"river\">rivers</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/lake\" title=\"lake\">lakes</a> and <a rel=\"mw:WikiLink\" href=\"/wiki/sea\" title=\"sea\">seas</a>; its solid form is <a rel=\"mw:WikiLink\" href=\"/wiki/ice#Noun\" title=\"ice\">ice</a> and its gaseous form is <a rel=\"mw:WikiLink\" href=\"/wiki/steam#Noun\" title=\"steam\">steam</a></span><span class=\"mention-gloss-paren\">)</span></span>"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Noun",
+      "language": "Low German",
+      "definitions": [
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt424\" typeof=\"mw:Transclusion\"></span> <span class=\"form-of-definition use-with-mention\" about=\"#mwt425\" typeof=\"mw:Transclusion\">alternative <a rel=\"mw:WikiLink\" href=\"/wiki/Appendix:Glossary#letter_case\" title=\"Appendix:Glossary\">letter-case</a> form of <span class=\"form-of-definition-link\"><i class=\"Latn mention\" lang=\"nds\"><a rel=\"mw:WikiLink\" href=\"/wiki/Water#Low_German\" title=\"Water\">Water</a></i> <span class=\"mention-gloss-paren annotation-paren\">(</span><span class=\"mention-gloss-double-quote\">“</span><span class=\"mention-gloss\">water</span><span class=\"mention-gloss-double-quote\">”</span><span class=\"mention-gloss-paren annotation-paren\">)</span></span></span>"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Noun",
+      "language": "Middle Dutch",
+      "definitions": [
+        {
+          "definition": "<span class=\"Latn\" lang=\"en\" about=\"#mwt432\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/water#English\" class=\"mw-selflink-fragment\">water</a></span>"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Noun",
+      "language": "Middle English",
+      "definitions": [
+        {
+          "definition": "<span class=\"Latn\" lang=\"en\" about=\"#mwt457\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/water#English\" class=\"mw-selflink-fragment\">water</a></span> <span class=\"mention-gloss-paren\" about=\"#mwt458\" typeof=\"mw:Transclusion\">(</span><span class=\"mention-gloss\" about=\"#mwt458\">liquid H<sub>2</sub>O</span><span class=\"mention-gloss-paren\" about=\"#mwt458\">)</span>"
+        },
+        {
+          "definition": "<span class=\"Latn\" lang=\"en\" about=\"#mwt460\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/water_vapour#English\" title=\"water vapour\">water vapour</a></span>, <a rel=\"mw:WikiLink\" href=\"/wiki/condensation\" title=\"condensation\">condensation</a>"
+        },
+        {
+          "definition": "<a rel=\"mw:WikiLink\" href=\"/wiki/lake\" title=\"lake\">lake</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/pond\" title=\"pond\">pond</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/ocean\" title=\"ocean\">ocean</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/canal\" title=\"canal\">canal</a>, body of water"
+        },
+        {
+          "definition": "water source, <a rel=\"mw:WikiLink\" href=\"/wiki/spring\" title=\"spring\">spring</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/well\" title=\"well\">well</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/fount\" title=\"fount\">fount</a>"
+        },
+        {
+          "definition": "<a rel=\"mw:WikiLink\" href=\"/wiki/solution\" title=\"solution\">solution</a>, liquid mixture"
+        }
+      ]
+    },
+    {
+      "partOfSpeech": "Noun",
+      "language": "Middle Low German",
+      "definitions": [
+        {
+          "definition": "<span class=\"Latn\" lang=\"en\" about=\"#mwt478\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/water#English\" class=\"mw-selflink-fragment\">water</a></span>"
+        }
+      ]
+    }
+  ],
+  "it": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Italian",
+      "definitions": [
+        {
+          "definition": "<a rel=\"mw:WikiLink\" href=\"/wiki/toilet_bowl\" title=\"toilet bowl\">toilet bowl</a>"
+        },
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt407\" typeof=\"mw:Transclusion\"></span> <a rel=\"mw:WikiLink\" href=\"/wiki/water_closet\" title=\"water closet\">water closet</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/toilet\" title=\"toilet\">toilet</a>"
+        }
+      ]
+    }
+  ],
+  "li": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Limburgish",
+      "definitions": [
+        {
+          "definition": "<span class=\"Latn\" lang=\"en\" about=\"#mwt421\" typeof=\"mw:Transclusion\"><a rel=\"mw:WikiLink\" href=\"/wiki/water#English\" class=\"mw-selflink-fragment\">water</a></span>"
+        },
+        {
+          "definition": "body of water"
+        }
+      ]
+    }
+  ],
+  "oc": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Occitan",
+      "definitions": [
+        {
+          "definition": "<span class=\"usage-label-sense\" about=\"#mwt489\" typeof=\"mw:Transclusion\"></span> <a rel=\"mw:WikiLink\" href=\"/wiki/water_closet\" title=\"water closet\">water closet</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/toilet\" title=\"toilet\">toilet</a>, <a rel=\"mw:WikiLink\" href=\"/wiki/restroom\" title=\"restroom\">restroom</a>"
+        }
+      ]
+    }
+  ],
+  "es": [
+    {
+      "partOfSpeech": "Noun",
+      "language": "Spanish",
+      "definitions": [
+        {
+          "definition": "<span class=\"form-of-definition use-with-mention\" about=\"#mwt496\" typeof=\"mw:Transclusion\">alternative spelling of <span class=\"form-of-definition-link\"><i class=\"Latn mention\" lang=\"es\"><a rel=\"mw:WikiLink\" href=\"/wiki/wáter#Spanish\" title=\"wáter\">wáter</a></i></span></span>"
+        }
+      ]
+    }
+  ]
+}

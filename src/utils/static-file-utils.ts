@@ -86,7 +86,6 @@ export function generateHumansTxt(): string {
 
   const thanksSection = [
     '/* THANKS */',
-    'Wordnik',
     'Dictionary contributors worldwide',
     '',
   ].join('\n');

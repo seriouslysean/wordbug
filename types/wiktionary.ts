@@ -1,29 +1,21 @@
 /**
- * Free Dictionary API types (dictionaryapi.dev)
- * Aggregates Wiktionary data into a structured JSON API.
+ * Wiktionary definition endpoint types
+ * (https://en.wiktionary.org/api/rest_v1/#/Page%20content/get_page_definition__term_)
+ *
+ * The answer is an object keyed by language code ("en"), each value a list of
+ * usages: one per part-of-speech section of the page. Only the fields the
+ * adapter reads and guards are declared; the API also sends `parsedExamples`
+ * on a definition. A definition and its examples are HTML.
  */
 
-export interface FreeDictionaryPhonetic {
-  text?: string;
-  audio?: string;
-}
-
-export interface FreeDictionaryDefinition {
+export interface WiktionaryDefinition {
   definition: string;
-  example?: string;
-  synonyms?: string[];
-  antonyms?: string[];
+  examples?: string[];
 }
 
-export interface FreeDictionaryMeaning {
+export interface WiktionaryUsage {
   partOfSpeech: string;
-  definitions: FreeDictionaryDefinition[];
-}
-
-// Required fields are exactly the ones the adapter's entry guard verifies.
-export interface FreeDictionaryEntry {
-  word?: string;
-  phonetics?: FreeDictionaryPhonetic[];
-  meanings: FreeDictionaryMeaning[];
-  sourceUrls?: string[];
+  // The section of the page the usage is from: "English", or "Translingual"
+  language: string;
+  definitions: WiktionaryDefinition[];
 }

@@ -41,7 +41,7 @@ beforeEach(() => {
 
   vi.resetModules();
   vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new Error('no network in tests'))));
-  vi.stubEnv('DICTIONARY_ADAPTER', 'wordnik');
+  vi.stubEnv('DICTIONARY_ADAPTER', 'wiktionary');
   vi.doMock('#config/paths', () => ({
     paths: { words: ctx.wordsDir, images: ctx.wordsDir, fonts: ctx.wordsDir, pages: ctx.wordsDir },
   }));

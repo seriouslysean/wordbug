@@ -270,7 +270,7 @@ export const merriamWebsterAdapter: DictionaryAdapter = {
 
     const url = `${CONFIG.BASE_URL}/${CONFIG.DICTIONARY}/json/${encodeURIComponent(word)}?key=${apiKey}`;
     const response = await adapterFetch(url, 'Merriam-Webster');
-    throwOnHttpError(response, word);
+    throwOnHttpError(response, word, 'Merriam-Webster');
 
     const data = await parseJsonResponse(response, 'Merriam-Webster');
 

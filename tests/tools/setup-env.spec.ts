@@ -83,7 +83,6 @@ const SECRET_INPUTS: Record<string, string> = {
   SENTRY_ENABLED: 'sentry-enabled',
   SENTRY_ORG: 'sentry-org',
   SENTRY_PROJECT: 'sentry-project',
-  WORDNIK_API_KEY: 'wordnik-api-key',
 };
 
 const runAction = ({ vars, secrets, sentryEnvironment }: ActionInputs): Promise<ActionResult> => {
@@ -184,7 +183,7 @@ const parse = (stdout: string): Event[] => {
 // past Vitest's 5 s default on a loaded one
 describe('setup-env action', { timeout: 30000 }, () => {
   const SECRETS: Record<string, string> = {
-    WORDNIK_API_KEY: 'wordnik-key-123',
+    SENTRY_PROJECT: 'project-123',
     MERRIAM_WEBSTER_API_KEY: 'first line\n\n  \nsecond line\r\nthird line',
     SENTRY_DSN: 'https://abc%40def@sentry.example/1',
     SENTRY_AUTH_TOKEN: '',
@@ -193,7 +192,7 @@ describe('setup-env action', { timeout: 30000 }, () => {
   const VARS: Record<string, string> = {
     SITE_TITLE: 'Word Bug',
     SITE_DESCRIPTION: 'Two\nlines',
-    DICTIONARY_ADAPTER: 'wordnik',
+    DICTIONARY_ADAPTER: 'merriam-webster',
     SITE_TZ: 'America/Chicago',
   };
 
@@ -213,7 +212,7 @@ describe('setup-env action', { timeout: 30000 }, () => {
       'second line',
       'third line',
       'https://abc%2540def@sentry.example/1',
-      'wordnik-key-123',
+      'project-123',
     ]);
 
     // Each secret's masks come straight before its write, and an empty
@@ -224,7 +223,7 @@ describe('setup-env action', { timeout: 30000 }, () => {
     expect(before('MERRIAM_WEBSTER_API_KEY', 3)).toEqual([{ mask: 'first line' }, { mask: 'second line' }, { mask: 'third line' }]);
     expect(before('SENTRY_AUTH_TOKEN', 1)).toEqual([{ name: 'MERRIAM_WEBSTER_API_KEY', value: SECRETS.MERRIAM_WEBSTER_API_KEY }]);
     expect(before('SENTRY_DSN', 1)).toEqual([{ mask: 'https://abc%2540def@sentry.example/1' }]);
-    expect(before('WORDNIK_API_KEY', 1)).toEqual([{ mask: 'wordnik-key-123' }]);
+    expect(before('SENTRY_PROJECT', 1)).toEqual([{ mask: 'project-123' }]);
 
     // Variables are written before any mask and none is masked
     const lastVariable = Math.max(...VAR_NAMES.map(at));

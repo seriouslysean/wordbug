@@ -20,6 +20,7 @@ export const BASE_PATHS = {
   BROWSE: '/browse',
   STATS: '/stats',
   ABOUT: '/about',
+  ATTRIBUTIONS: '/attributions',
   NOT_FOUND: '/404',
 } as const;
 

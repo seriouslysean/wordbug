@@ -8,7 +8,6 @@ import sentry from '@sentry/astro';
 import { defineConfig, envField } from 'astro/config';
 
 import pkg from './package.json' with { type: 'json' };
-import { DEFAULT_WORDNIK_WEBSITE_URL } from '#constants/defaults';
 import { isHexColor } from '#utils/color-utils';
 import { getCodeHash } from '#utils/code-hash';
 
@@ -34,9 +33,13 @@ const colorSchema = Object.fromEntries(
   })]),
 );
 
-// Load .env locally when present, skip in CI (GitHub Actions etc).
-// Variables already set in the environment win over the file.
-if (!process.env.CI && existsSync('.env')) {
+// Load .env when present. Variables already set in the environment win over
+// the file. CI is no exception: a workflow has no .env (it is ignored, and
+// setup-env exports variables), and astro:env reads the file through Vite
+// whatever this does, so skipping it here under CI left `base` at the root
+// while the URL helpers read BASE_PATH from the file. Loaded here, a value
+// is in process.env before either reads it, and both read that.
+if (existsSync('.env')) {
   process.loadEnvFile();
 }
 
@@ -47,7 +50,6 @@ const defaults = {
   SITE_DESCRIPTION: 'A word-of-the-day site featuring interesting vocabulary',
   SITE_ID: 'occasional-wotd',
   SOURCE_DIR: '',
-  WORDNIK_WEBSITE_URL: DEFAULT_WORDNIK_WEBSITE_URL,
 };
 
 // Apply defaults for missing environment variables
@@ -166,7 +168,6 @@ export default defineConfig({
       SENTRY_ENVIRONMENT: envField.string({ context: 'client', access: 'public', default: 'development' }),
       BASE_PATH: envField.string({ context: 'client', access: 'public', default: '/' }),
       SOURCE_DIR: envField.string({ context: 'client', access: 'public', default: defaults.SOURCE_DIR }),
-      WORDNIK_WEBSITE_URL: envField.string({ context: 'client', access: 'public', default: defaults.WORDNIK_WEBSITE_URL, url: true }),
     },
   },
   vite: {

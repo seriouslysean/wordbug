@@ -6,4 +6,3 @@ export * from '#types/seo';
 export * from '#types/stats';
 export * from '#types/wiktionary';
 export * from '#types/word';
-export * from '#types/wordnik';

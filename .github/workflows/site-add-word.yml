@@ -1,13 +1,13 @@
 name: Site Add Word
 
-# Adds a word to a site and commits it with its social cards: a site
-# repository's Add Word workflow calls this at a pinned release, and this
-# repository's own Add Word calls it with ./ for the demo site, as does a
-# fork's until it moves to a thin site.
+# Adds a word to a site and commits it with its social cards. Add Word
+# (add-word.yml) calls it with ./, in this repository for the demo site and
+# in each downstream site, which is a full copy of this repository and so
+# runs its own copy of both files at its own commit:
 #
 #   jobs:
 #     add-word:
-#       uses: seriouslysean/occasional-wotd/.github/workflows/site-add-word.yml@vX.Y.Z
+#       uses: ./.github/workflows/site-add-word.yml
 #       with:
 #         word: ${{ inputs.word }}
 #         date: ${{ inputs.date }}
@@ -17,11 +17,11 @@ name: Site Add Word
 #         MERRIAM_WEBSTER_API_KEY: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
 #         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 #         SENTRY_ENABLED: ${{ secrets.SENTRY_ENABLED }}
-#         WORDNIK_API_KEY: ${{ secrets.WORDNIK_API_KEY }}
 #
-# The word is added and the images generated in engine/, then only the word
-# files, cards and cache marker are copied back into site/ and pushed with
-# the caller's GITHUB_TOKEN.
+# engine/ is the calling repository at the dispatched commit and site/ the
+# tip of the dispatched branch. The word is added and the images generated
+# in engine/, then only the word files, cards and cache marker are copied
+# back into site/ and pushed with the caller's GITHUB_TOKEN.
 
 on:
   workflow_call:
@@ -55,15 +55,12 @@ on:
       SENTRY_ENABLED:
         description: 'Whether Sentry is enabled'
         required: false
-      WORDNIK_API_KEY:
-        description: 'Wordnik API key'
-        required: false
 
 permissions:
   contents: write
 
 # The repository that builds the demo site. Not job.workflow_repository,
-# which a fork's ./ call makes the fork itself.
+# which a downstream site's ./ call makes the site itself.
 env:
   ENGINE_REPOSITORY: seriouslysean/occasional-wotd
 
@@ -75,10 +72,10 @@ jobs:
     timeout-minutes: 15
     steps:
       # job.workflow_* name the repository and commit this workflow runs
-      # from, so the code is the commit the caller's uses: pins, whatever
-      # else the caller passes. A ./ call runs the workflow from the caller's
-      # own commit: this repository for the demo site, or a fork of it that
-      # has not moved to a thin site.
+      # from, and a caller passes nothing that names the engine. A ./ call
+      # runs the workflow from the caller's own commit, so the engine is the
+      # calling repository at that commit: this repository for the demo
+      # site, a downstream site for its own.
       - name: Checkout engine
         uses: actions/checkout@v7
         with:
@@ -119,12 +116,12 @@ jobs:
           merriam-webster-api-key: ${{ secrets.MERRIAM_WEBSTER_API_KEY }}
           sentry-dsn: ${{ secrets.SENTRY_DSN }}
           sentry-enabled: ${{ secrets.SENTRY_ENABLED }}
-          wordnik-api-key: ${{ secrets.WORDNIK_API_KEY }}
 
-      # The site's data/ and public/ replace the engine's, so the tools see
-      # the site's words and cards and none of the demo content. A fork's
-      # site/ is the branch tip and engine/ the dispatched commit, so for a
-      # fork the copy brings in only content pushed since the dispatch.
+      # site/ is the branch tip and engine/ the dispatched commit of the same
+      # repository, so the copy brings in only content pushed since the
+      # dispatch, such as the word a run ahead of this one in the add-word
+      # group added. The demo content a downstream site tracks stays beside
+      # its own, and SOURCE_DIR decides which the tools read.
       - name: Overlay site content
         run: |
           # This repository builds the demo site and every other repository
@@ -170,7 +167,7 @@ jobs:
       - name: Validate dictionary adapters and API keys
         run: |
           shopt -s nocasematch
-          VALID="wordnik, merriam-webster, wiktionary"
+          VALID="merriam-webster, wiktionary"
 
           # tools/utils.ts refuses to add a word without it
           if [[ -z "$DICTIONARY_ADAPTER" ]]; then
@@ -199,7 +196,6 @@ jobs:
 
           for adapter in "${ADAPTERS[@]}"; do
             case "$adapter" in
-              wordnik) KEY_NAME=WORDNIK_API_KEY ;;
               merriam-webster) KEY_NAME=MERRIAM_WEBSTER_API_KEY ;;
               wiktionary) continue ;;
               *)

@@ -37,6 +37,13 @@ const hasMultiple = senses.length > 1;
                 ))}
               </ul>
             )}
+            {/* On the slide of the sense it credits: the senses of one word
+                can come from different sources */}
+            {sense.credit && (
+              <p class="word-senses__credit">
+                <a class="word-senses__license" href={sense.credit.licenseUrl} title={sense.credit.licenseName} target="_blank" rel="license noopener noreferrer">{sense.credit.text}</a>
+              </p>
+            )}
           </li>
         ))}
       </ol>
@@ -306,6 +313,25 @@ if (section && track) {
   }
 
   .word-senses__source:hover {
+    text-decoration: underline;
+  }
+
+  /* The credit a licence asks for, under the sense it is for. */
+  .word-senses__credit {
+    margin: var(--spacing-base) 0 0;
+    text-align: right;
+    font-size: var(--font-size-xs);
+    /* A name and a licence, written as they are */
+    text-transform: none;
+  }
+
+  .word-senses__license {
+    color: var(--color-text-light);
+    text-decoration: none;
+  }
+
+  .word-senses__license:hover {
+    color: var(--color-text-light);
     text-decoration: underline;
   }
 
