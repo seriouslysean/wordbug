@@ -68,7 +68,7 @@
     "oxlint": "^1.87.0",
     "sharp": "^0.35.5",
     "subtlex-word-frequencies": "2.0.0",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vitest": "^5.0.3",
     "wordpos": "^2.1.0"
   },
