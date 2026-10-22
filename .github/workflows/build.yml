@@ -26,6 +26,7 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version-file: .nvmrc
+          check-latest: true
           cache: 'npm'
 
       # Before setup-env, so no dependency's install script sees the secrets
