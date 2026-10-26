@@ -1,0 +1,37 @@
+{
+    "word": "ouroboros",
+    "date": "20261024",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "Ouroboros",
+            "partOfSpeech": "noun",
+            "text": "a circular symbol that depicts a snake or dragon devouring its own tail and that is used especially to represent the eternal cycle of destruction and rebirth",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ouroboros",
+            "examples": [
+                "Trauma is a time traveller, an ouroboros that reaches back and devours everything that came before.",
+                "But as Hollywood continues its transformation into a reboot ouroboros of unoriginal ideas, I have a tiny bit of fear that these projects will be disasters."
+            ]
+        },
+        {
+            "id": "Ouroboros",
+            "partOfSpeech": "noun",
+            "text": "something (such as a never-ending cycle) that is likened to or suggestive of the Ouroboros symbol",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/ouroboros",
+            "examples": [
+                "Trauma is a time traveller, an ouroboros that reaches back and devours everything that came before.",
+                "But as Hollywood continues its transformation into a reboot ouroboros of unoriginal ideas, I have a tiny bit of fear that these projects will be disasters."
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˌyu̇r-ō-ˈbȯr-əs",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/o/ouroboros_1.mp3",
+        "etymology": "borrowed from Late Greek ourobóros \"devouring (its) tail\" (modifying drákōn \"dragon, snake\") from Greek ourá \"tail\" + -o- + -boros, nominal derivative from the base of bibrṓskein \"to eat, eat up, devour\" — more at ass, voracious"
+    }
+}
