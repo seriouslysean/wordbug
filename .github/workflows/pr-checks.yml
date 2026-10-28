@@ -35,7 +35,7 @@ jobs:
   automerge:
     name: 'Dependabot auto-merge'
     needs: [build, e2e, lint, test, typecheck]
-    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.actor == 'dependabot[bot]'
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
