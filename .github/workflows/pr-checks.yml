@@ -37,6 +37,7 @@ jobs:
     needs: [build, e2e, lint, test, typecheck]
     if: github.event.pull_request.user.login == 'dependabot[bot]' && github.actor == 'dependabot[bot]'
     runs-on: ubuntu-26.04
+    timeout-minutes: 5
     permissions:
       contents: write
       pull-requests: write

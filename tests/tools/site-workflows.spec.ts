@@ -284,15 +284,15 @@ describe('site workflows', { timeout: 60000 }, () => {
     if (buildSetup === undefined) {
       throw new Error('build.yml has no setup-env step');
     }
-    // Build runs for a pull request and for a push, both to main only, so
-    // github.event_name == 'push' is a push to main. Only that build gets a
-    // secret or the production tag: a pull request's build has Sentry and
-    // Google Analytics off, uploads nothing with the auth token and reports
-    // nothing.
+    // Build runs for a push to main and, called by PR Checks, for a pull
+    // request, so github.event_name == 'push' is a push to main. Only that
+    // build gets a secret or the production tag: a pull request's build has
+    // Sentry and Google Analytics off, uploads nothing with the auth token and
+    // reports nothing.
     const build = workflow('build.yml');
     expect(nestedObject(build, 'on', 'Build trigger')).toEqual({
-      pull_request: { branches: ['main'] },
       push: { branches: ['main'] },
+      workflow_call: null,
     });
     const onPush = (value: string, otherwise: string): string =>
       `\${{ github.event_name == 'push' && ${value} || '${otherwise}' }}`;
