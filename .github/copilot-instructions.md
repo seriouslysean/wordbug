@@ -95,7 +95,8 @@ Five test layers: unit (`tests/utils/`, `tests/adapters/`), component (`tests/sr
 - Environment variables: mutate `mockEnv.FIELD` (from `tests/setup.ts`) for `astro:env/client` mocks. Use `vi.stubGlobal()` only for the four remaining Vite defines (`__VERSION__`, `__RELEASE__`, `__TIMESTAMP__`, `__WORD_DATA_PATH__`).
 - `const` containers in tests: `const ctx = { spy: null }` with mutation in `beforeEach`.
 - Coverage thresholds: 80% across lines/functions/statements, 85% branches.
-- No overlapping tests. Each function tested at exactly one layer.
+- Before writing or changing a test, read https://github.com/splitleafhq/.github/blob/main/docs/testing.md.
+- A regression gets one test, at the layer where the bug lives.
 - E2E verifies build assembly (navigation, meta tag presence, JSON-LD parsability, keyboard a11y), not logic. If it can run without a browser, it belongs at a lower layer.
 - E2E runs in demo mode (no `BASE_PATH`). Requires `npm run build` first. Page URLs in tests end in a trailing slash (`/stats/`); file URLs (`/rss.xml`) do not. Test elements and user journeys, not strings.
 - Real data over feature flags: when a test or page needs data, add demo words that produce it, dated before 20250117.

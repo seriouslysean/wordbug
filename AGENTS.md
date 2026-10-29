@@ -134,7 +134,7 @@ const ctx = rawContext as LogContext;
 
 **Throw at boundaries, catch at the top.** Pure functions throw when they can't do their job. CLI entry points catch and log with context. Don't scatter try/catch through business logic.
 
-### Tests: self-contained, layered, precise
+### Tests: self-contained
 
 Before writing or changing a test, read https://github.com/splitleafhq/.github/blob/main/docs/testing.md.
 
@@ -155,7 +155,7 @@ Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs
 4. **CLI Integration** (`tests/tools/`) — real process spawning, catches `astro:` protocol errors
 5. **E2E** (`tests/e2e/`) — Playwright tests against the built site (navigation, SEO, accessibility)
 
-**No overlapping tests.** Each function is tested at exactly one layer. Unit tests validate logic. E2E tests validate the built output (rendered HTML, route resolution, meta tags). Don't duplicate unit-level assertions in E2E tests or vice versa.
+**No overlapping tests.** A regression gets its test at the layer where the bug lives, not one per layer. Unit tests validate logic. E2E tests validate the built output (rendered HTML, route resolution, meta tags). Don't repeat a unit-level check in E2E or the reverse.
 
 **E2E tests verify build assembly, not logic.** The E2E layer catches problems that only exist in the assembled HTML served in a real browser: link clicks resolve to real pages, meta tags survive the build pipeline, JSON-LD script tags parse as valid JSON, keyboard focus management works, feeds and sitemaps return HTTP 200. If a check can run without a browser — URL generation, schema content, meta tag values — it belongs at the unit or component layer. E2E asserts on element presence and navigability, not content correctness.
 
