@@ -640,7 +640,7 @@ Definitions live in `constants/stats.ts`. Computation functions in `utils/word-s
 
 ### Strategy
 
-Tests are organized by what they validate, with no overlap between layers. Each function is tested at exactly one layer. Unit tests validate logic. E2E tests validate the built output. This avoids duplication while ensuring comprehensive coverage.
+Tests are organized by what they validate. A regression gets its test at the layer where the bug lives, not one per layer. Unit tests validate logic. E2E tests validate the built output.
 
 ### Layer Boundaries
 
@@ -688,7 +688,7 @@ E2E tests follow user journeys: each test starts at an entry point, discovers co
 
 ### Coverage
 
-Vitest thresholds: lines 80%, functions 80%, branches 85%, statements 80%.
+Vitest thresholds: lines 80%, functions 80%, branches 85%, statements 80%. The thresholds catch tests that go missing; don't add a test only to raise coverage.
 
 Excluded from Vitest coverage: build-time utilities (`static-file-utils.ts`, `static-paths-utils.ts`), pages, CLI tools (tested via integration), content config.
 
