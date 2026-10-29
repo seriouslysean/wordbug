@@ -136,6 +136,8 @@ const ctx = rawContext as LogContext;
 
 ### Tests: self-contained, layered, precise
 
+Before writing or changing a test, read https://github.com/splitleafhq/.github/blob/main/docs/testing.md.
+
 Each test owns its setup and leaves no trace. Vitest provides purpose-built APIs — use them:
 
 - `mockEnv.FIELD = value` — `astro:env/client` variables (mutable object from `tests/setup.ts`)
