@@ -1,0 +1,209 @@
+name: CI
+
+# Every quality gate, on a pull request and on a push to main. Required
+# checks are the job ids below. The automerge job comes last and waits on every
+# other job.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# A pull request run replaces an older one for the same pull request. Any
+# other run has a group of its own, so a run on main is never cancelled.
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.head_ref) || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  lint:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          check-latest: true
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - run: npm run lint
+
+  # Checks the workflows themselves, with .github/actionlint.yaml. Installs
+  # nothing from npm, so it needs no Node.
+  actionlint:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    env:
+      ACTIONLINT_VERSION: 1.7.12
+      # The digest GitHub records for the release's linux_amd64 archive
+      ACTIONLINT_SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Download actionlint
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ARCHIVE="actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          gh release download "v$ACTIONLINT_VERSION" --repo rhysd/actionlint --pattern "$ARCHIVE" --dir "$RUNNER_TEMP"
+          echo "$ACTIONLINT_SHA256  $RUNNER_TEMP/$ARCHIVE" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/$ARCHIVE" -C "$RUNNER_TEMP" actionlint
+
+      - name: Check workflow files
+        run: |
+          "$RUNNER_TEMP/actionlint" -version
+          "$RUNNER_TEMP/actionlint" -color
+
+  typecheck:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          check-latest: true
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - run: npm run typecheck
+
+  test:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          check-latest: true
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - run: npm test
+
+  build:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          check-latest: true
+          cache: 'npm'
+
+      # Before setup-env, so no dependency's install script sees the secrets
+      - name: Install dependencies
+        run: npm ci
+
+      # Only a push to main builds with Sentry and Google Analytics. A pull
+      # request gets no secret, so its build has both off and uploads nothing,
+      # and it is not tagged production.
+      - name: Setup environment variables
+        uses: ./.github/actions/setup-env
+        with:
+          vars-json: ${{ toJSON(vars) }}
+          ga-enabled: ${{ github.event_name == 'push' && secrets.GA_ENABLED || '' }}
+          ga-measurement-id: ${{ github.event_name == 'push' && secrets.GA_MEASUREMENT_ID || '' }}
+          sentry-auth-token: ${{ github.event_name == 'push' && secrets.SENTRY_AUTH_TOKEN || '' }}
+          sentry-dsn: ${{ github.event_name == 'push' && secrets.SENTRY_DSN || '' }}
+          sentry-enabled: ${{ github.event_name == 'push' && secrets.SENTRY_ENABLED || '' }}
+          sentry-environment: ${{ github.event_name == 'push' && 'production' || 'development' }}
+          sentry-org: ${{ github.event_name == 'push' && secrets.SENTRY_ORG || '' }}
+          sentry-project: ${{ github.event_name == 'push' && secrets.SENTRY_PROJECT || '' }}
+
+      - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-26.04
+    # Usually about a minute; the slowest green run took 12
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          check-latest: true
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - run: npm run build
+        env:
+          SOURCE_DIR: demo
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - run: npm run test:e2e
+
+  # Squash-merges a Dependabot PR once the jobs above pass, if the update is a
+  # patch or minor: GitHub's documented pattern (dependabot/fetch-metadata, then
+  # gh pr merge), pinned to the head that was checked. Majors and anything not
+  # Dependabot's stay open for a person. A new job goes in needs: too, or
+  # this merges before it finishes.
+  automerge:
+    needs: [actionlint, build, e2e, lint, test, typecheck]
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: 'Read the update type'
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+      - name: 'Merge minor and patch updates'
+        id: merge
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: gh pr merge --squash --match-head-commit "$HEAD_SHA" "$PR_URL"
+      # A merge made with GITHUB_TOKEN starts no workflows, so the push-to-main
+      # deploy would not run. workflow_dispatch is exempt.
+      - name: 'Deploy the merged change'
+        if: steps.merge.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run deploy.yml --ref main

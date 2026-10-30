@@ -710,19 +710,20 @@ Measured with Playwright's Chromium 156 on the build before the change and the b
 
 ### CI Workflows
 
-Five separate workflow files, one per quality gate. Each reports an individual check status for branch protection:
+One workflow, `.github/workflows/ci.yml` (`CI`), holds every quality gate as a job. The job ids are the check names branch protection requires:
 
-| Workflow | File | Check Name |
-|----------|------|------------|
-| Lint | `.github/workflows/lint.yml` | `Lint / lint`, `Lint / actionlint` |
-| Typecheck | `.github/workflows/typecheck.yml` | `Typecheck / typecheck` |
-| Test | `.github/workflows/test.yml` | `Test / test` |
-| Build | `.github/workflows/build.yml` | `Build / build` |
-| E2E | `.github/workflows/e2e.yml` | `E2E / e2e` |
+| Job | Runs | Check name |
+|-----|------|------------|
+| `lint` | `npm run lint` | `lint` |
+| `actionlint` | actionlint over `.github/workflows/` | `actionlint` |
+| `typecheck` | `npm run typecheck` | `typecheck` |
+| `test` | `npm test` | `test` |
+| `build` | `npm run build` | `build` |
+| `e2e` | `npm run test:e2e` | `e2e` |
 
-All five trigger on PR to main and push to main. Lint, Typecheck, Test, and Build run in parallel. E2E builds with demo defaults (no `setup-env`) then runs Playwright.
+CI triggers on pull requests to main and on pushes to main. The jobs run in parallel. E2E builds with demo defaults (no `setup-env`) then runs Playwright. The `automerge` job merges a Dependabot patch or minor update once every other job has passed, so a new job goes in its `needs:` list.
 
-Lint has a second job, `actionlint`, which checks the workflow files with [actionlint](https://github.com/rhysd/actionlint) 1.7.12 and `.github/actionlint.yaml`. It downloads the release archive with `gh release download`, the [documented way](https://github.com/rhysd/actionlint/blob/v1.7.12/docs/install.md#prebuilt-binaries) to install a prebuilt binary, and refuses one whose SHA-256 is not the digest pinned in the workflow, so moving to a new actionlint means changing the version and the digest together. It is not a lefthook job, so run `actionlint` locally before pushing a workflow change.
+The `actionlint` job checks the workflow files with [actionlint](https://github.com/rhysd/actionlint) 1.7.12 and `.github/actionlint.yaml`. It downloads the release archive with `gh release download`, the [documented way](https://github.com/rhysd/actionlint/blob/v1.7.12/docs/install.md#prebuilt-binaries) to install a prebuilt binary, and refuses one whose SHA-256 is not the digest pinned in the workflow, so moving to a new actionlint means changing the version and the digest together. It is not a lefthook job, so run `actionlint` locally before pushing a workflow change.
 
 ### Key Regression Test
 
@@ -734,7 +735,7 @@ The browser side has the mirror-image rule. Bundled `<script>` blocks import a f
 
 ## Linting
 
-[oxlint](https://oxc.rs/docs/guide/usage/linter) is the only linter of the code; `.oxlintrc.json` is its whole configuration. `npm run lint`, the `lint` job of the Lint workflow and the lefthook pre-commit job all read it, so a rule or option set there applies to all three. The workflow files have a linter of their own: the Lint workflow's second job runs actionlint on `.github/workflows/` in CI only (see CI Workflows under Testing); `npm run lint` and lefthook do not run it.
+[oxlint](https://oxc.rs/docs/guide/usage/linter) is the only linter of the code; `.oxlintrc.json` is its whole configuration. `npm run lint`, the `lint` job of the CI workflow and the lefthook pre-commit job all read it, so a rule or option set there applies to all three. The workflow files have a linter of their own: CI's `actionlint` job runs actionlint on `.github/workflows/` in CI only (see CI Workflows under Testing); `npm run lint` and lefthook do not run it.
 
 **Warnings fail.** `options.denyWarnings` makes a warning exit non-zero, and `options.reportUnusedDisableDirectives` reports a disable comment that no longer suppresses anything. A rule's level (`warn` or `error`) only labels the report.
 
