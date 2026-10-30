@@ -23,6 +23,10 @@ jobs:
   lint:
     runs-on: ubuntu-26.04
     timeout-minutes: 10
+    env:
+      ACTIONLINT_VERSION: 1.7.12
+      # The digest GitHub records for the release's linux_amd64 archive
+      ACTIONLINT_SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -40,20 +44,7 @@ jobs:
 
       - run: npm run lint
 
-  # Checks the workflows themselves, with .github/actionlint.yaml. Installs
-  # nothing from npm, so it needs no Node.
-  actionlint:
-    runs-on: ubuntu-26.04
-    timeout-minutes: 10
-    env:
-      ACTIONLINT_VERSION: 1.7.12
-      # The digest GitHub records for the release's linux_amd64 archive
-      ACTIONLINT_SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with:
-          persist-credentials: false
-
+      # Checks the workflows themselves, with .github/actionlint.yaml.
       - name: Download actionlint
         env:
           GH_TOKEN: ${{ github.token }}
@@ -179,7 +170,7 @@ jobs:
   # Dependabot's stay open for a person. A new job goes in needs: too, or
   # this merges before it finishes.
   automerge:
-    needs: [actionlint, build, e2e, lint, test, typecheck]
+    needs: [build, e2e, lint, test, typecheck]
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-26.04
     timeout-minutes: 5
