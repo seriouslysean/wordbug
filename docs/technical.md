@@ -714,8 +714,7 @@ One workflow, `.github/workflows/ci.yml` (`CI`), holds every quality gate as a j
 
 | Job | Runs | Check name |
 |-----|------|------------|
-| `lint` | `npm run lint` | `lint` |
-| `actionlint` | actionlint over `.github/workflows/` | `actionlint` |
+| `lint` | `npm run lint`, then actionlint over `.github/workflows/` | `lint` |
 | `typecheck` | `npm run typecheck` | `typecheck` |
 | `test` | `npm test` | `test` |
 | `build` | `npm run build` | `build` |
@@ -723,7 +722,7 @@ One workflow, `.github/workflows/ci.yml` (`CI`), holds every quality gate as a j
 
 CI triggers on pull requests to main and on pushes to main. The jobs run in parallel. E2E builds with demo defaults (no `setup-env`) then runs Playwright. The `automerge` job merges a Dependabot patch or minor update once every other job has passed, so a new job goes in its `needs:` list.
 
-The `actionlint` job checks the workflow files with [actionlint](https://github.com/rhysd/actionlint) 1.7.12 and `.github/actionlint.yaml`. It downloads the release archive with `gh release download`, the [documented way](https://github.com/rhysd/actionlint/blob/v1.7.12/docs/install.md#prebuilt-binaries) to install a prebuilt binary, and refuses one whose SHA-256 is not the digest pinned in the workflow, so moving to a new actionlint means changing the version and the digest together. It is not a lefthook job, so run `actionlint` locally before pushing a workflow change.
+The `lint` job also checks the workflow files with [actionlint](https://github.com/rhysd/actionlint) 1.7.12 and `.github/actionlint.yaml`. It downloads the release archive with `gh release download`, the [documented way](https://github.com/rhysd/actionlint/blob/v1.7.12/docs/install.md#prebuilt-binaries) to install a prebuilt binary, and refuses one whose SHA-256 is not the digest pinned in the workflow, so moving to a new actionlint means changing the version and the digest together. It is not a lefthook job, so run `actionlint` locally before pushing a workflow change.
 
 ### Key Regression Test
 
