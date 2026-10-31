@@ -1,0 +1,24 @@
+{
+    "word": "catamaran",
+    "date": "20261030",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "catamaran",
+            "partOfSpeech": "noun",
+            "text": "a vessel (such as a sailboat) with twin hulls and usually a deck or superstructure connecting the hulls",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/catamaran"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˌka-tə-mə-ˈran",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/catama01.mp3",
+        "etymology": "Tamil kaṭṭumaram, from kaṭṭu to tie + maram tree, wood",
+        "related": [
+            "boat"
+        ]
+    }
+}
