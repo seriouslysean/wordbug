@@ -1,0 +1,61 @@
+{
+    "word": "befuddle",
+    "date": "20261102",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "befuddle",
+            "partOfSpeech": "verb",
+            "text": "to muddle or stupefy with or as if with drink",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/befuddle",
+            "examples": [
+                "… befuddled with drink all the time.",
+                "a problem that still befuddles the experts"
+            ]
+        },
+        {
+            "id": "befuddle",
+            "partOfSpeech": "verb",
+            "text": "confuse, perplex",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/befuddle",
+            "examples": [
+                "… befuddled with drink all the time.",
+                "a problem that still befuddles the experts"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "bi-ˈfə-dᵊl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/b/befudd01.mp3",
+        "etymology": "be- + fuddle",
+        "synonyms": [
+            "confuse",
+            "throw",
+            "fox",
+            "fuddle",
+            "bedevil",
+            "confound",
+            "discombobulate"
+        ],
+        "related": [
+            "be",
+            "confusion",
+            "discombobulation",
+            "bewilderment",
+            "obfuscation",
+            "mental confusion",
+            "demoralize",
+            "perplex",
+            "vex",
+            "disorient",
+            "disorientate",
+            "intoxicate",
+            "soak"
+        ]
+    }
+}
