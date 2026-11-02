@@ -12,9 +12,6 @@ pre-commit:
       glob: "**/*.{js,ts,astro}"
 
 pre-push:
-  # A workflow pushing from a runner has its own checks; the gate is for local pushes.
-  skip:
-    - run: test -n "$CI"
   jobs:
     - name: ci-checks
       run: |
