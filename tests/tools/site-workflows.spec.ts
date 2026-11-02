@@ -279,20 +279,21 @@ describe('site workflows', { timeout: 60000 }, () => {
   });
 
   it('limits repository workflows and Build to their operation-specific secret scopes', () => {
-    const buildSetup = workflowSteps(workflow('build.yml'))
+    const ci = workflow('ci.yml');
+    const build = nestedObject(workflowJobs(ci), 'build', 'ci.yml jobs');
+    const buildSetup = jobSteps(build)
       .find(step => optionalString(step, 'name') === 'Setup environment variables');
     if (buildSetup === undefined) {
-      throw new Error('build.yml has no setup-env step');
+      throw new Error('ci.yml build has no setup-env step');
     }
-    // Build runs for a push to main and, called by PR Checks, for a pull
-    // request, so github.event_name == 'push' is a push to main. Only that
-    // build gets a secret or the production tag: a pull request's build has
-    // Sentry and Google Analytics off, uploads nothing with the auth token and
-    // reports nothing.
-    const build = workflow('build.yml');
-    expect(nestedObject(build, 'on', 'Build trigger')).toEqual({
+    // CI runs for a pull request and for a push to main, so
+    // github.event_name == 'push' is a push to main. Only that build gets a
+    // secret or the production tag: a pull request's build has Sentry and
+    // Google Analytics off, uploads nothing with the auth token and reports
+    // nothing.
+    expect(nestedObject(ci, 'on', 'CI trigger')).toEqual({
+      pull_request: { branches: ['main'] },
       push: { branches: ['main'] },
-      workflow_call: null,
     });
     const onPush = (value: string, otherwise: string): string =>
       `\${{ github.event_name == 'push' && ${value} || '${otherwise}' }}`;
@@ -308,7 +309,7 @@ describe('site workflows', { timeout: 60000 }, () => {
     // Nothing else in Build reads a secret, so none reaches a pull request
     // build by another route
     const bindings = Object.values(nestedObject(buildSetup, 'with', 'Build setup-env step'));
-    const text = fs.readFileSync(path.join(ROOT, '.github/workflows/build.yml'), 'utf-8');
+    const text = JSON.stringify(build);
     expect(text.match(/secrets\.[A-Z_]+/g)?.toSorted()).toEqual(
       bindings.flatMap(binding => String(binding).match(/secrets\.[A-Z_]+/g) ?? []).toSorted(),
     );
