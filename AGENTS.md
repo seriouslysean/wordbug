@@ -28,6 +28,8 @@ npm run tool:local tools/add-word.ts -- --help   # Tool flags go after a bare --
 
 Pre-commit hooks (lefthook) run `oxlint --fix` and related tests on staged files.
 
+The pre-push hook (lefthook, installed by `npm install` through `prepare`) runs what CI runs on a pull request: actionlint, lint, typecheck, tests, build and E2E. A failing check blocks the push; do not skip it.
+
 ## Philosophy
 
 These are the principles behind every decision in this codebase. Understand the why and the what follows naturally.

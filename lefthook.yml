@@ -10,3 +10,17 @@ pre-commit:
     - name: test-related
       run: npx vitest related --run --coverage=false {staged_files}
       glob: "**/*.{js,ts,astro}"
+
+pre-push:
+  jobs:
+    - name: ci-checks
+      run: |
+        set -e
+        # git sets repo-local variables for a hook; from a linked worktree they break the commands below
+        unset $(git rev-parse --local-env-vars)
+        actionlint
+        npm run lint
+        npm run typecheck
+        npm test
+        SOURCE_DIR=demo npm run build
+        npm run test:e2e
