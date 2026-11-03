@@ -26,9 +26,7 @@ npm run tool:local tools/generate-images.ts
 npm run tool:local tools/add-word.ts -- --help   # Tool flags go after a bare --; npm keeps the rest
 ```
 
-Pre-commit hooks (lefthook) run `oxlint --fix` and related tests on staged files.
-
-The pre-push hook (lefthook, installed by `npm ci` through lefthook's own postinstall script; if it is missing, run `npx lefthook install`) runs what CI runs on a pull request: actionlint, lint, typecheck, tests, build and E2E. A failing check blocks the push; do not skip it.
+`scripts/check` runs what CI runs on a pull request: actionlint, lint, typecheck, tests, the demo build and E2E. It fails, never skips, when a tool is missing. Run `git config core.hooksPath .githooks` once per clone and the pre-push hook runs it on every push. A failing check blocks the push; do not skip it.
 
 ## Philosophy
 

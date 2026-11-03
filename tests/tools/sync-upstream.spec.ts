@@ -453,8 +453,8 @@ describe('sync-upstream.sh', { timeout: 90000 }, () => {
       expect(isMerging()).toBe(true);
     });
 
-    // lefthook's pre-commit job runs `oxlint --fix` with stage_fixed, so a
-    // hook that rewrites and stages a file is this repository's own setup
+    // a pre-commit hook that fixes lint and stages the result rewrites
+    // a file after the gates
     it('fails when a commit hook changes the merge after the gates passed', async () => {
       diverge();
       release({ 'src/engine.ts': 'export const version = 2;\n' });

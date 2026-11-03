@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Runs what CI runs; prints one line per step, the full output only for a
+# failing step, and exits nonzero if any step failed. A missing tool fails.
+set -u
+cd "$(git rev-parse --show-toplevel)" || exit 1
+status=0
+step() {
+  local name=$1 out
+  shift
+  if out=$("$@" 2>&1); then
+    echo "ok   $name"
+  else
+    echo "FAIL $name"
+    echo "$out"
+    status=1
+  fi
+}
+if command -v actionlint >/dev/null; then
+  step actionlint actionlint
+else
+  echo "FAIL actionlint: not installed (brew install actionlint)"
+  status=1
+fi
+step lint npm run lint
+step typecheck npm run typecheck
+step test npm test
+step build npm run build
+step build-demo env SOURCE_DIR=demo npm run build
+step e2e npm run test:e2e
+exit $status
