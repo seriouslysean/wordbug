@@ -61,7 +61,6 @@
     "@vitest/coverage-v8": "^5.0.5",
     "cmu-pronouncing-dictionary": "3.0.0",
     "js-yaml": "^5.5.0",
-    "lefthook": "^2.2.2",
     "lightningcss": "^1.33.0",
     "opentype.js": "^2.0.0",
     "oxlint": "^1.90.0",
@@ -92,8 +91,7 @@
   },
   "allowScripts": {
     "wordpos@2.1.0": true,
-    "fsevents": false,
-    "lefthook@2.2.2": true
+    "fsevents": false
   },
   "overrides": {
     "minimatch": "^11.0.4"
