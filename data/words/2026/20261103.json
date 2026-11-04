@@ -1,0 +1,44 @@
+{
+    "word": "suave",
+    "date": "20261103",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "suave",
+            "partOfSpeech": "adjective",
+            "text": "smoothly though often superficially gracious and sophisticated",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/suave"
+        },
+        {
+            "id": "suave",
+            "partOfSpeech": "adjective",
+            "text": "smooth in texture, performance, or style",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/suave"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈswäv",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/suave001.mp3",
+        "etymology": "French, from Middle French, pleasant, sweet, from Latin suavis — more at sweet",
+        "synonyms": [
+            "debonair",
+            "debonaire",
+            "debonnaire",
+            "refined",
+            "politic",
+            "smooth",
+            "bland",
+            "diplomatic"
+        ],
+        "related": [
+            "suavity",
+            "suaveness",
+            "blandness"
+        ]
+    }
+}
