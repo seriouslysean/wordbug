@@ -1,0 +1,79 @@
+{
+    "word": "cruelty",
+    "date": "20261105",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "cruelty",
+            "partOfSpeech": "noun",
+            "text": "the quality or state of being cruel",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cruelty"
+        },
+        {
+            "id": "cruelty",
+            "partOfSpeech": "noun",
+            "text": "a cruel action",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cruelty"
+        },
+        {
+            "id": "cruelty",
+            "partOfSpeech": "noun",
+            "text": "inhuman treatment",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cruelty"
+        },
+        {
+            "id": "cruelty-free",
+            "partOfSpeech": "adjective",
+            "text": "developed or produced without inhumane testing on animals",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cruelty",
+            "examples": [
+                "cruelty-free cosmetics"
+            ]
+        },
+        {
+            "id": "anti-cruelty",
+            "partOfSpeech": "adjective",
+            "text": "opposing, prohibiting, or punishing cruelty and especially the cruel treatment of animals",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/cruelty",
+            "examples": [
+                "anti-cruelty legislation against dog fighting"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈkrü(-ə)l-tē",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/cruelt01.mp3",
+        "etymology": "Middle English cruelte, from Anglo-French cruelté, from Latin crudelitat-, crudelitas, from crudelis",
+        "synonyms": [
+            "inhuman treatment",
+            "mercilessness",
+            "pitilessness",
+            "ruthlessness"
+        ],
+        "related": [
+            "maltreatment",
+            "ill-treatment",
+            "impalement",
+            "atrocity",
+            "inhumanity",
+            "heartlessness",
+            "coldheartedness",
+            "pitiless",
+            "remorseless",
+            "unkind",
+            "merciless",
+            "unmerciful"
+        ]
+    }
+}
