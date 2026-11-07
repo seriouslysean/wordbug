@@ -49,7 +49,7 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
     "astro": "^7.4.5",
-    "entities": "^8.1.0"
+    "entities": "^9.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
