@@ -1,0 +1,64 @@
+{
+    "word": "tabloid",
+    "date": "20261106",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "tabloid",
+            "partOfSpeech": "noun",
+            "text": "a newspaper that is about half the page size of an ordinary newspaper and that contains news in condensed form and much photographic matter",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tabloid"
+        },
+        {
+            "id": "tabloid",
+            "partOfSpeech": "noun",
+            "text": "digest, summary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tabloid"
+        },
+        {
+            "id": "tabloid",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or resembling tabloids; especially: featuring stories of violence, crime, or scandal presented in a sensational manner",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tabloid",
+            "examples": [
+                "tabloid television",
+                "tabloid criticism"
+            ]
+        },
+        {
+            "id": "tabloid",
+            "partOfSpeech": "adjective",
+            "text": "compressed or condensed into small scope",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/tabloid",
+            "examples": [
+                "tabloid television",
+                "tabloid criticism"
+            ]
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈta-ˌblȯid",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/t/tabloi01.mp3",
+        "synonyms": [
+            "yellow journalism",
+            "tab",
+            "rag",
+            "sheet"
+        ],
+        "related": [
+            "journalism",
+            "news media",
+            "newspaper",
+            "paper"
+        ]
+    }
+}
