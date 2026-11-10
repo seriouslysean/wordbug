@@ -1,0 +1,52 @@
+{
+    "word": "epoch",
+    "date": "20261109",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "epoch",
+            "partOfSpeech": "noun",
+            "text": "an event or a time marked by an event that begins a new period or development",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/epoch"
+        },
+        {
+            "id": "epoch",
+            "partOfSpeech": "noun",
+            "text": "a memorable event or date",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/epoch"
+        },
+        {
+            "id": "epoch",
+            "partOfSpeech": "noun",
+            "text": "an extended period of time usually characterized by a distinctive development or by a memorable series of events",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/epoch"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈe-pək",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/e/epoch002.mp3",
+        "etymology": "Medieval Latin epocha, from Greek epochē cessation, fixed point, from epechein to pause, hold back, from epi- + echein to hold — more at scheme",
+        "synonyms": [
+            "era",
+            "date of reference"
+        ],
+        "related": [
+            "time period",
+            "period of time",
+            "epochal",
+            "epoch-making",
+            "day",
+            "historic period",
+            "age",
+            "modern era",
+            "date"
+        ]
+    }
+}
