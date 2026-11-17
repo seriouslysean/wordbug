@@ -1,0 +1,21 @@
+{
+    "word": "lest",
+    "date": "20261117",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "lest",
+            "partOfSpeech": "conjunction",
+            "text": "for fear that —often used after an expression denoting fear or apprehension",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/lest"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈlest",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/l/lest0001.mp3",
+        "etymology": "Middle English les the, leste, from Old English thȳ lǣs the, from thȳ (instrumental of thæt that) + lǣs + the, relative particle"
+    }
+}
