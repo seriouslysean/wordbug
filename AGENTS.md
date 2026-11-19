@@ -26,7 +26,7 @@ npm run tool:local tools/generate-images.ts
 npm run tool:local tools/add-word.ts -- --help   # Tool flags go after a bare --; npm keeps the rest
 ```
 
-`scripts/check` runs what CI runs on a pull request: actionlint, lint, typecheck, tests, the demo build and E2E. It fails, never skips, when a tool is missing. Run `git config core.hooksPath .githooks` once per clone and the pre-push hook runs it on every push. A failing check blocks the push; do not skip it.
+`scripts/check` runs what CI runs on a pull request: actionlint, lint, typecheck, tests, the demo build and E2E. In a site, which tracks its own words under `data/words/`, it builds those too, before the demo and with Sentry off, so the engine and the sites share one file. It fails, never skips, when a tool is missing. Run `git config core.hooksPath .githooks` once per clone and the pre-push hook runs it on every push. A failing check blocks the push; do not skip it.
 
 ## Philosophy
 

@@ -24,6 +24,12 @@ fi
 step lint npm run lint
 step typecheck npm run typecheck
 step test npm test
+# A site tracks its own words under data/words; the engine tracks none. Set and
+# empty, SOURCE_DIR selects data/words and wins over a .env value, as
+# SENTRY_ENABLED does: this build must not report to Sentry.
+if [[ -n "$(git ls-files -- 'data/words/*.json')" ]]; then
+  step build env SOURCE_DIR= SENTRY_ENABLED=false npm run build
+fi
 step build-demo env SOURCE_DIR=demo npm run build
 step e2e npm run test:e2e
 exit $status
