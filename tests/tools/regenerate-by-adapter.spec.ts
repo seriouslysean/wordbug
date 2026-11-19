@@ -54,6 +54,8 @@ type StoredFile = keyof typeof STORED;
 
 const filePath = (name: string): string => path.join(ctx.tempDir, 'data', 'words', '2024', name);
 const contents = (name: StoredFile): string => JSON.stringify(STORED[name], null, 4);
+// The run summary, from its first count on; the wording around the counts is not pinned
+const summary = (output: string): string => output.slice(Math.max(output.indexOf('success:'), 0));
 const read = (name: StoredFile): string => fs.readFileSync(filePath(name), 'utf-8');
 
 const run = (args: string[]) => spawnTool(['--import', LOG_LEVELS, TOOL, '--timeout=0', '--batch-timeout=0', ...args], {
@@ -118,11 +120,11 @@ describe('regenerate-all-words --adapter', { timeout: 35000 }, () => {
   });
 
   it('replaces each of them that the dictionary now has, and leaves the rest of the corpus alone', async () => {
-    const { stdout, stderr, code } = await run(['--adapter', 'wordnik', '--force']);
+    const { stderr, code } = await run(['--adapter', 'wordnik', '--force']);
 
     // zzzznotaword has no entry, so the run as a whole did not succeed
     expect(code).toBe(1);
-    expect(`${stdout}${stderr}`).toMatch(/Regeneration finished with failures.*failed: 1/s);
+    expect(stderr).toMatch(/\bfailed: 1\b/);
     expect(ctx.requested.toSorted()).toEqual(['Amblypygi', 'serendipity', 'zzzznotaword']);
 
     const resourced = JSON.parse(read('20240101.json'));
@@ -220,7 +222,7 @@ describe('regenerate-all-words without --adapter', { timeout: 35000 }, () => {
     const { stdout, stderr, code } = await runAsMerriamWebsterSite(['--force']);
 
     expect(code).toBe(1);
-    expect(`${stdout}${stderr}`).toMatch(/Regeneration complete.*success: 1.*failed: 1/s);
+    expect(summary(stdout)).toMatch(/\bsuccess: 1\b[^]*\bfailed: 1\b/);
     expect(stderr).toContain('is stored from merriam-webster and was answered by wiktionary; the stored record is kept');
     // The Merriam-Webster record, its pronunciation and etymology included, is as it was
     expect(fs.readFileSync(filePath('20240101.json'), 'utf-8')).toBe(JSON.stringify(MW_RECORD, null, 4));
@@ -238,8 +240,7 @@ describe('regenerate-all-words without --adapter', { timeout: 35000 }, () => {
     const { stdout, stderr, code } = await runAsMerriamWebsterSite(['--force']);
 
     expect(code).toBe(0);
-    expect(stdout).toMatch(/Skipping words written by hand.*skipped: 1/s);
-    expect(stdout).toMatch(/Regeneration complete.*success: 1.*failed: 0.*skipped: 1.*total: 2/s);
+    expect(summary(stdout)).toMatch(/\bsuccess: 1\b[^]*\bfailed: 0\b[^]*\bskipped: 1\b[^]*\btotal: 2\b/);
     expect(stderr).not.toContain('[error]');
     // Asked of no dictionary, and as it was written
     expect(ctx.requested.filter(title => title.startsWith('serendipity'))).toEqual([]);

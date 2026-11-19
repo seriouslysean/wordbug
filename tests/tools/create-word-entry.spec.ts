@@ -137,3 +137,20 @@ describe('createWordEntry and a date another file already holds', () => {
     expect(fs.existsSync(yearPath())).toBe(false);
   });
 });
+
+describe('createWordEntry refuses what it cannot write a record from', () => {
+  it.each([
+    ['a blank word', '  ', {}, undefined, 'Word is required'],
+    ['an invalid date', 'serendipity', { date: '20250230' }, undefined, 'Invalid date format: 20250230'],
+    ['no DICTIONARY_ADAPTER', 'serendipity', {}, '', 'DICTIONARY_ADAPTER environment variable is required'],
+  ])('%s', async (_label, word, options, adapter, message) => {
+    if (adapter !== undefined) {
+      vi.stubEnv('DICTIONARY_ADAPTER', adapter);
+    }
+    const { createWordEntry } = await import('#tools/utils');
+
+    await expect(createWordEntry(word, { date: DATE, ...options })).rejects.toThrow(message);
+    expect(ctx.fetch).not.toHaveBeenCalled();
+    expect(fs.readdirSync(ctx.wordsDir)).toEqual([]);
+  });
+});

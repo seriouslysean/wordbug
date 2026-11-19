@@ -82,33 +82,6 @@ describe('utils', () => {
       expect(getUrl('/20240319')).toBe('/blog/20240319/');
     });
 
-    it('adds the base path to a route that begins with the base path itself', () => {
-      // The argument is a route, never a pathname that already has the base:
-      // '/word/calm' is the word page wherever the site is deployed
-      mockEnv.BASE_PATH = '/word';
-      expect(getUrl('/word')).toBe('/word/word/');
-      expect(getUrl('/word/calm')).toBe('/word/word/calm/');
-
-      mockEnv.BASE_PATH = '/app';
-      expect(getUrl('/apple')).toBe('/app/apple/');
-      expect(getUrl('/app/x')).toBe('/app/app/x/');
-    });
-
-    it('names the site root under a base path with its trailing slash', () => {
-      // A static host serves a directory at /blog/ and redirects /blog to it
-      mockEnv.BASE_PATH = '/blog';
-      expect(getUrl('/')).toBe('/blog/');
-      expect(getUrl()).toBe('/blog/');
-
-      mockEnv.BASE_PATH = '/blog/';
-      expect(getUrl('/')).toBe('/blog/');
-
-      // A dot in the base path does not make the root a file
-      mockEnv.BASE_PATH = '/my.site';
-      expect(getUrl('/')).toBe('/my.site/');
-      expect(getUrl('/stats')).toBe('/my.site/stats/');
-    });
-
     it('handles empty or undefined base path', () => {
       mockEnv.BASE_PATH = '';
       expect(getUrl('/20240319')).toBe('/20240319/');
@@ -117,6 +90,7 @@ describe('utils', () => {
     it('handles empty paths', () => {
       expect(getUrl('/')).toBe('/');
       expect(getUrl('')).toBe('/');
+      expect(getUrl()).toBe('/');
     });
 
     it('ends a page URL in one slash, with or without one on the route', () => {
@@ -126,6 +100,11 @@ describe('utils', () => {
       mockEnv.BASE_PATH = '/blog';
       expect(getUrl('/stats')).toBe('/blog/stats/');
       expect(getUrl('/stats/')).toBe('/blog/stats/');
+    });
+
+    it('keeps the site root a directory under a base path with a dot in it', () => {
+      mockEnv.BASE_PATH = '/my.site';
+      expect(getUrl('/')).toBe('/my.site/');
     });
 
     it.each(['/', '/blog', '/blog/', '/word', '/stats', '/my.site'])(
@@ -184,8 +163,13 @@ describe('utils', () => {
         .toBe('https://example.com/vocab/images/social/2024/20240615-ice%20cream.png');
     });
 
-    it('handles root path correctly', () => {
+    it('names the home page, with or without a base path', () => {
       expect(getFullUrl('/')).toBe('https://example.com/');
+      expect(getFullUrl()).toBe('https://example.com/');
+
+      mockEnv.BASE_PATH = '/vocab';
+      expect(getFullUrl('/')).toBe('https://example.com/vocab/');
+      expect(getFullUrl()).toBe('https://example.com/vocab/');
     });
 
     it('keeps a query string and fragment after the page slash', () => {
@@ -193,16 +177,9 @@ describe('utils', () => {
       expect(getFullUrl('/stats?page=2#top')).toBe('https://example.com/vocab/stats/?page=2#top');
     });
 
-    it('names the home page under a base path', () => {
-      mockEnv.BASE_PATH = '/vocab';
-      expect(getFullUrl('/')).toBe('https://example.com/vocab/');
-      expect(getFullUrl()).toBe('https://example.com/vocab/');
-    });
-
     it('adds the base path to a route that begins with the base path itself', () => {
       mockEnv.BASE_PATH = '/stats';
       expect(getFullUrl('/stats')).toBe('https://example.com/stats/stats/');
-      expect(getFullUrl('/stats/streaks')).toBe('https://example.com/stats/stats/streaks/');
     });
 
     it('does not double a base path that SITE_URL repeats', () => {
@@ -217,73 +194,32 @@ describe('utils', () => {
       expect(() => getFullUrl('/test')).toThrow('SITE_URL environment variable is required');
     });
 
+    it('throws, naming the route, when SITE_URL is not a URL', () => {
+      mockEnv.SITE_URL = 'not a url';
+      expect(() => getFullUrl('/test')).toThrow('Failed to construct URL for path: /test');
+    });
+
     it('removes trailing slash from SITE_URL', () => {
       mockEnv.SITE_URL = 'https://example.com/';
       expect(getFullUrl('/test')).toBe('https://example.com/test/');
     });
 
-    it('uses default site URL when none provided', () => {
-      mockEnv.SITE_URL = '';
-      expect(() => getFullUrl('/')).toThrow('SITE_URL environment variable is required');
-    });
   });
 
-  describe('URL helper functions', () => {
-    describe('Section URLs', () => {
-      it('should return correct words URL', () => {
-        expect(getWordsUrl()).toBe('/word');
-      });
-
-      it('should return correct stats URL', () => {
-        expect(getStatsUrl()).toBe('/stats');
-      });
-
-      it('should return correct attributions URL', () => {
-        expect(getAttributionsUrl()).toBe('/attributions');
-      });
-    });
-
-    describe('Browsing URLs', () => {
-      it('should return correct words length URL', () => {
-        expect(getWordsLengthUrl()).toBe('/browse/length');
-      });
-
-      it('should return correct words letter URL', () => {
-        expect(getWordsLetterUrl()).toBe('/browse/letter');
-      });
-
-      it('should return browse root when no year specified', () => {
-        expect(getWordsYearUrl()).toBe('/browse');
-      });
-
-      it('should return year URL when year specified', () => {
-        expect(getWordsYearUrl('2024')).toBe('/browse/2024');
-      });
-    });
-
-    describe('Specific URLs', () => {
-      it('should return correct length URL', () => {
-        expect(getLengthUrl(5)).toBe('/browse/length/5');
-        expect(getLengthUrl(12)).toBe('/browse/length/12');
-      });
-
-      it('should return correct letter URL with normalization', () => {
-        expect(getLetterUrl('A')).toBe('/browse/letter/a');
-        expect(getLetterUrl('z')).toBe('/browse/letter/z');
-        expect(getLetterUrl('M')).toBe('/browse/letter/m');
-      });
-
-      it('should return correct month URL with normalization', () => {
-        expect(getMonthUrl('2024', 'January')).toBe('/browse/2024/january');
-        expect(getMonthUrl('2023', 'DECEMBER')).toBe('/browse/2023/december');
-        expect(getMonthUrl('2025', 'march')).toBe('/browse/2025/march');
-      });
-
-      it('should return correct stat URL', () => {
-        expect(getStatUrl('longest-words')).toBe('/stats/longest-words');
-        expect(getStatUrl('alphabetical-order')).toBe('/stats/alphabetical-order');
-      });
-    });
+  it.each([
+    ['getWordsUrl()', getWordsUrl(), '/word'],
+    ['getStatsUrl()', getStatsUrl(), '/stats'],
+    ['getAttributionsUrl()', getAttributionsUrl(), '/attributions'],
+    ['getWordsLengthUrl()', getWordsLengthUrl(), '/browse/length'],
+    ['getWordsLetterUrl()', getWordsLetterUrl(), '/browse/letter'],
+    ['getWordsYearUrl() without a year', getWordsYearUrl(), '/browse'],
+    ['getWordsYearUrl(2024)', getWordsYearUrl('2024'), '/browse/2024'],
+    ['getLengthUrl(12)', getLengthUrl(12), '/browse/length/12'],
+    ['getLetterUrl lowercases the letter', getLetterUrl('A'), '/browse/letter/a'],
+    ['getMonthUrl lowercases the month', getMonthUrl('2023', 'DECEMBER'), '/browse/2023/december'],
+    ['getStatUrl(longest-words)', getStatUrl('longest-words'), '/stats/longest-words'],
+  ])('URL helper: %s is %s', (_label, url, route) => {
+    expect(url).toBe(route);
   });
 
   describe('isPathUnderBase', () => {

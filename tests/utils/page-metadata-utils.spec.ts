@@ -1,10 +1,10 @@
 import {
-  afterAll,
   describe,
   expect,
   it,
   vi,
 } from 'vitest';
+import { SUFFIX_DEFINITIONS } from '#constants/stats';
 import type { WordData } from '#types';
 import {
   createPageMetadataLookup,
@@ -13,6 +13,7 @@ import {
   getPageMetadata,
   getPageTitle,
 } from '#utils/page-metadata-utils';
+import { t, tp } from '#utils/i18n-utils';
 import { getLetterStats } from '#utils/word-stats-utils';
 
 declare const mockEnv: Record<string, string | boolean | undefined>;
@@ -29,40 +30,9 @@ vi.mock('#utils/word-stats-utils', async importOriginal => {
   };
 });
 
-// Mock the i18n utils to return predictable test data
-vi.mock('#utils/i18n-utils', () => ({
-  t: vi.fn((key, params = {}) => {
-    const mockTranslations: Record<string, string> = {
-      'words.heading': 'Mock Words Heading',
-      'words.description': 'Mock words description',
-      'words.length_words': `${params.length || 'X'}-Letter Words`,
-      'words.letter_words_description': `Words starting with the letter ${params.letter || 'X'}.`,
-      'words.part_of_speech_words_description': `Words that function as ${params.partOfSpeech || 'unknown'}s in sentences.`,
-      'words.by_length_heading': 'Mock words.by_length_heading',
-      'words.by_length_description': 'Mock words.by_length_description',
-      'stats.heading': 'Mock Stats Heading',
-      'stats.description': 'Mock stats description',
-      'stats.subheading': 'Mock Stats Subheading',
-      'home.heading': 'Mock Home Heading',
-      'home.description': `Today's word is "${params.word}".`,
-      'error.heading': 'Mock Error Heading',
-      'error.description': 'Mock error description',
-      'parts_of_speech.noun': 'Noun',
-      'parts_of_speech.verb': 'Verb',
-      'parts_of_speech.adjective': 'Adjective'
-    };
-    return mockTranslations[key] || `Mock ${key}`;
-  }),
-  tp: vi.fn((baseKey, count) => (baseKey === 'words.length_words_description'
-    ? `Words containing exactly ${count} letters.`
-    : `${count} Mock Items`))
-}));
-
-// Clean up mock after this test file to prevent leakage to other tests
-afterAll(() => {
-  vi.doUnmock('#utils/i18n-utils');
-  vi.resetModules();
-});
+// The suite-wide setup swaps the locale for a small fixture; page titles and
+// descriptions are the real locale's, so this file reads the real one.
+vi.mock('#locales/en.json', async importOriginal => importOriginal());
 
 // Test data
 const makeWord = (word: string, date: string): WordData => ({
@@ -88,9 +58,9 @@ describe('page-metadata-utils', () => {
 
     expect(vi.mocked(getLetterStats)).toHaveBeenCalledTimes(1);
     const customWords = [makeWord('one', '20240101')];
-    expect(getPageMetadata('/word', customWords).secondaryText).toBe('1 Mock Items');
+    expect(getPageMetadata('/word', customWords).secondaryText).toBe(tp('common.words', 1));
     customWords.push(makeWord('two', '20240102'));
-    expect(getPageMetadata('/word', customWords).secondaryText).toBe('2 Mock Items');
+    expect(getPageMetadata('/word', customWords).secondaryText).toBe(tp('common.words', 2));
   });
 
   it('computes a dataset\'s stats once however many stats pages are looked up', () => {
@@ -127,39 +97,38 @@ describe('page-metadata-utils', () => {
     it('returns metadata for static pages', () => {
       const metadata = getPageMetadata('/word', mockWords);
       expect(metadata).toEqual({
-        title: 'Mock Words Heading',
-        description: 'Mock words description',
+        title: t('words.heading'),
+        description: t('words.description'),
         category: 'pages',
-        secondaryText: '3 Mock Items',
+        secondaryText: tp('common.words', 3),
       });
     });
 
     it('returns metadata for stats page', () => {
       const metadata = getPageMetadata('/stats', mockWords);
       expect(metadata).toEqual({
-        title: 'Mock Stats Heading',
-        description: 'Mock stats description',
+        title: t('stats.heading'),
+        description: t('stats.description'),
         category: 'pages',
-        secondaryText: 'Mock Stats Subheading',
+        secondaryText: t('stats.subheading'),
       });
     });
 
     it('returns metadata for the parts of speech stats page', () => {
       const metadata = getPageMetadata('/stats/parts-of-speech', mockWords);
       expect(metadata).toEqual({
-        title: 'Mock stats.parts_of_speech_heading',
-        description: 'Mock stats.parts_of_speech_description',
+        title: t('stats.parts_of_speech_heading'),
+        description: t('stats.parts_of_speech_description'),
         category: 'pages',
       });
     });
 
     it('returns dynamic metadata for stats pages with counts', () => {
       const metadata = getPageMetadata('/stats/words-ending-ly', mockWords);
-      expect(metadata).toHaveProperty('title');
-      expect(metadata).toHaveProperty('category', 'stats');
-      expect(metadata).toHaveProperty('description');
-      expect(typeof metadata.title).toBe('string');
-      expect(typeof metadata.description).toBe('string');
+      expect(metadata.title).toBe(SUFFIX_DEFINITIONS.ly.title);
+      expect(metadata.category).toBe('stats');
+      expect(metadata.description).toBe(SUFFIX_DEFINITIONS.ly.metaDescription(0));
+      expect(metadata.secondaryText).toBe(tp('common.words', 0));
     });
 
     it('returns metadata for dynamic year pages', () => {
@@ -184,10 +153,10 @@ describe('page-metadata-utils', () => {
     it('returns metadata for length index page', () => {
       const metadata = getPageMetadata('/browse/length', mockWords);
       expect(metadata).toEqual({
-        title: 'Mock words.by_length_heading',
-        description: 'Mock words.by_length_description',
+        title: t('words.by_length_heading'),
+        description: t('words.by_length_description'),
         category: 'pages',
-        secondaryText: '3 Mock Items',
+        secondaryText: tp('common.words', 3),
       });
     });
 
@@ -197,7 +166,7 @@ describe('page-metadata-utils', () => {
         title: '8-Letter Words',
         description: 'Words containing exactly 8 letters.',
         category: 'pages',
-        secondaryText: '0 Mock Items',
+        secondaryText: tp('common.words', 0),
       });
     });
 
@@ -207,15 +176,15 @@ describe('page-metadata-utils', () => {
         title: '4-Letter Words',
         description: 'Words containing exactly 4 letters.',
         category: 'pages',
-        secondaryText: '1 Mock Items',
+        secondaryText: tp('common.words', 1),
       });
     });
 
     it('returns metadata for 404 page', () => {
       const metadata = getPageMetadata('/404', mockWords);
       expect(metadata).toEqual({
-        title: 'Mock Error Heading',
-        description: 'Mock error description',
+        title: t('error.heading'),
+        description: t('error.description'),
         category: 'pages',
         secondaryText: undefined,
         partOfSpeech: 'noun',
@@ -248,7 +217,7 @@ describe('page-metadata-utils', () => {
       // Should include static pages
       const wordsPage = allPages.find(page => page.path === '/word');
       expect(wordsPage).toBeDefined();
-      expect(wordsPage?.title).toBe('Mock Words Heading');
+      expect(wordsPage?.title).toBe(t('words.heading'));
     });
 
     it('excludes root path from results', () => {
@@ -289,10 +258,10 @@ describe('page-metadata-utils', () => {
       );
       const metadata = getPageMetadataWrapper('/vocab/stats');
       expect(metadata).toEqual({
-        title: 'Mock Stats Heading',
-        description: 'Mock stats description',
+        title: t('stats.heading'),
+        description: t('stats.description'),
         category: 'pages',
-        secondaryText: 'Mock Stats Subheading',
+        secondaryText: t('stats.subheading'),
       });
     });
 
@@ -304,10 +273,10 @@ describe('page-metadata-utils', () => {
       );
       const metadata = getPageMetadataWrapper('/Vocab/stats');
       expect(metadata).toEqual({
-        title: 'Mock Stats Heading',
-        description: 'Mock stats description',
+        title: t('stats.heading'),
+        description: t('stats.description'),
         category: 'pages',
-        secondaryText: 'Mock Stats Subheading',
+        secondaryText: t('stats.subheading'),
       });
     });
   });
@@ -325,40 +294,20 @@ describe('page-metadata-utils', () => {
   });
 
   describe('getPageTitle', () => {
-    it('returns Unknown Page for an empty path', () => {
-      expect(getPageTitle('')).toBe('Unknown Page');
-    });
-
-    it('returns the static title for a known path', () => {
-      expect(getPageTitle('/word')).toBe('Mock Words Heading');
-    });
-
-    it('returns the static title for the parts of speech stats path', () => {
-      expect(getPageTitle('/stats/parts-of-speech')).toBe('Mock stats.parts_of_speech_heading');
-    });
-
-    it('returns the word for a word-detail path', () => {
-      expect(getPageTitle('/word/example')).toBe('example');
-    });
-
-    it('returns the year for a year path', () => {
-      expect(getPageTitle('/browse/2024')).toBe('2024');
-    });
-
-    it('returns the capitalized month name for a month path', () => {
-      expect(getPageTitle('/browse/2024/january')).toBe('January');
-    });
-
-    it('returns the length-words title for a length path', () => {
-      expect(getPageTitle('/browse/length/5')).toBe('5-Letter Words');
-    });
-
-    it('returns the uppercased letter for a letter path', () => {
-      expect(getPageTitle('/browse/letter/a')).toBe('A');
-    });
-
-    it('returns the part-of-speech name for a part-of-speech path', () => {
-      expect(getPageTitle('/browse/part-of-speech/noun')).toBe('Noun');
+    it.each([
+      ['an empty path', '', 'Unknown Page'],
+      ['a known static path', '/word', t('words.heading')],
+      ['the parts of speech stats path', '/stats/parts-of-speech', t('stats.parts_of_speech_heading')],
+      ['a word-detail path', '/word/example', 'example'],
+      ['a year path', '/browse/2024', '2024'],
+      ['a month path (capitalized)', '/browse/2024/january', 'January'],
+      ['a length path', '/browse/length/5', '5-Letter Words'],
+      ['a letter path (uppercased)', '/browse/letter/a', 'A'],
+      ['a part-of-speech path', '/browse/part-of-speech/noun', 'Noun'],
+      ['a month path with an unknown month slug', '/browse/2024/notamonth', 'Unknown Page'],
+      ['an unrecognized path', '/totally/unknown', 'Unknown Page'],
+    ])('titles %s', (_label, path, title) => {
+      expect(getPageTitle(path)).toBe(title);
     });
 
     it('returns Unknown Page for an unsupported part of speech', () => {
@@ -369,14 +318,6 @@ describe('page-metadata-utils', () => {
         category: 'unknown',
         secondaryText: undefined,
       });
-    });
-
-    it('returns Unknown Page for a month path with an unknown month slug', () => {
-      expect(getPageTitle('/browse/2024/notamonth')).toBe('Unknown Page');
-    });
-
-    it('returns Unknown Page for an unrecognized path', () => {
-      expect(getPageTitle('/totally/unknown')).toBe('Unknown Page');
     });
   });
 
@@ -391,7 +332,7 @@ describe('page-metadata-utils', () => {
 
     it('describes the abbreviation page as a lexical label, not a sentence role', () => {
       const metadata = getPageMetadata('/browse/part-of-speech/abbreviation', mockWords);
-      expect(metadata.description).toBe('Mock words.abbreviation_words_description');
+      expect(metadata.description).toBe(t('words.abbreviation_words_description'));
     });
 
     it('returns metadata for a part-of-speech page', () => {
@@ -399,12 +340,12 @@ describe('page-metadata-utils', () => {
       expect(metadata.title).toBe('Noun');
       expect(metadata.category).toBe('pages');
       expect(metadata.description).toContain('noun');
-      expect(metadata.secondaryText).toBe('0 Mock Items');
+      expect(metadata.secondaryText).toBe(tp('common.words', 0));
     });
 
     it('returns home metadata for the root path', () => {
       const metadata = getPageMetadata('/', mockWords);
-      expect(metadata.title).toBe('Mock Home Heading');
+      expect(metadata.title).toBe(t('home.heading'));
       expect(metadata.category).toBe('pages');
       expect(metadata.secondaryText).toBeUndefined();
     });
