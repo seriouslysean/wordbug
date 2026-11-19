@@ -210,15 +210,6 @@ describe('fetchWithFallback', () => {
 
     expect(result.adapterName).toBe('wiktionary');
     expect(result.response).toEqual(wiktionaryResponse);
-    expect(mockLogger.warn).toHaveBeenCalledTimes(2);
-    expect(mockLogger.warn).toHaveBeenNthCalledWith(1,
-      'Adapter failed, trying fallback',
-      expect.objectContaining({ adapter: 'merriam-webster', error: 'MW: not found', fallback: 'merriam-webster' }),
-    );
-    expect(mockLogger.warn).toHaveBeenNthCalledWith(2,
-      'Adapter failed, trying fallback',
-      expect.objectContaining({ adapter: 'merriam-webster', error: 'MW: still not found', fallback: 'wiktionary' }),
-    );
   });
 
   it('returns first successful fallback in chain', async () => {

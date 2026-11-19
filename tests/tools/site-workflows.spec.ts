@@ -688,10 +688,12 @@ esac
     const STEP = 'Check for source maps';
     const check = (): Promise<StepResult> => runStep(FILE, STEP);
 
-    it('runs on the built site, after Build and before the upload', () => {
+    it('runs on the built site, after Build and right before the upload', () => {
       const names = workflowSteps(workflow(FILE)).map(step => optionalString(step, 'name'));
 
-      expect(names.indexOf(STEP)).toBe(names.indexOf('Build') + 1);
+      expect(names.indexOf('Build')).toBeGreaterThanOrEqual(0);
+      expect(names.indexOf(STEP)).toBeGreaterThan(names.indexOf('Build'));
+      // Right before: a step between the check and the upload could write maps that then publish
       expect(names.indexOf('Upload artifact')).toBe(names.indexOf(STEP) + 1);
     });
 

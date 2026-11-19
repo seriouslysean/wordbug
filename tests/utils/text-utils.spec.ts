@@ -197,43 +197,28 @@ describe('text-utils', () => {
   });
 
   describe('hasAlphabeticalSequence', () => {
-    it('returns true for words with three consecutive alphabetical letters', () => {
-      // a-b-c
-      expect(hasAlphabeticalSequence('abc')).toBe(true);
-      // x-y-z
-      expect(hasAlphabeticalSequence('xyz')).toBe(true);
-      // d-e-f
-      expect(hasAlphabeticalSequence('defg')).toBe(true);
-      // d-e-f at start
-      expect(hasAlphabeticalSequence('definitely')).toBe(true);
-    });
-    it('returns false for words without such a sequence', () => {
-      expect(hasAlphabeticalSequence('hello')).toBe(false);
-      expect(hasAlphabeticalSequence('world')).toBe(false);
-      expect(hasAlphabeticalSequence('jumpy')).toBe(false);
-      // a-b but then breaks with a-c
-      expect(hasAlphabeticalSequence('abacus')).toBe(false);
-      // no consecutive sequences
-      expect(hasAlphabeticalSequence('jumped')).toBe(false);
-    });
-  });
-
-  describe('hasAlphabeticalSequence (~utils)', () => {
-    it('detects sequences in lowercase words', () => {
-      expect(hasAlphabeticalSequence('lmn')).toBe(true);
+    it.each([
+      ['abc', 'a-b-c'],
+      ['xyz', 'x-y-z'],
+      ['defg', 'a run longer than three'],
+      ['definitely', 'a run at the start'],
+      ['lmn', 'a run that is the whole word'],
+      ['aBc', 'mixed case'],
+    ])('finds three consecutive letters in %s (%s)', (word) => {
+      expect(hasAlphabeticalSequence(word)).toBe(true);
     });
 
-    it('detects sequences in mixed-case words', () => {
-      expect(hasAlphabeticalSequence('aBc')).toBe(true);
-    });
-
-    it('returns false when no sequence exists', () => {
-      expect(hasAlphabeticalSequence('abd')).toBe(false);
-    });
-
-    it('does not count consecutive digits or other characters as letters', () => {
-      expect(hasAlphabeticalSequence('route 789')).toBe(false);
-      expect(hasAlphabeticalSequence('yz{')).toBe(false);
+    it.each([
+      ['hello', 'no run'],
+      ['world', 'no run'],
+      ['jumpy', 'no run'],
+      ['jumped', 'no run'],
+      ['abacus', 'a-b, then a break'],
+      ['abd', 'a gap in the run'],
+      ['route 789', 'digits are not letters'],
+      ['yz{', 'other characters are not letters'],
+    ])('finds no run in %s (%s)', (word) => {
+      expect(hasAlphabeticalSequence(word)).toBe(false);
     });
   });
 

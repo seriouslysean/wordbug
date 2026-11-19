@@ -2,22 +2,53 @@ import {
   afterEach, beforeEach, describe, expect, it, vi,
 } from 'vitest';
 
-import type { SentryBridge } from '#utils/logger-core';
 
-const sentryMocks = vi.hoisted(() => ({
-  withScope: vi.fn<SentryBridge['withScope']>((callback) => {
-    const scope = { setLevel: vi.fn(), setExtra: vi.fn() };
-    callback(scope);
-  }),
-}));
+interface SentEvent {
+  level: string | undefined;
+  extras: Record<string, unknown>;
+  exception?: unknown;
+  message?: string;
+}
 
-// Mock @sentry/node before importing
+// A stand-in for the Sentry service: events captured inside a scope are kept
+// with the level and extras that scope carried, as Sentry would send them.
+const sdk = vi.hoisted(() => {
+  const events: SentEvent[] = [];
+  const current: { scope: { level: string | undefined; extras: Record<string, unknown> } | null } = { scope: null };
+  return {
+    events,
+    init: vi.fn(),
+    flush: vi.fn().mockResolvedValue(true),
+    withScope: (
+      callback: (scope: { setLevel(level: string): void; setExtra(key: string, value: unknown): void }) => void,
+    ) => {
+      const scope: { level: string | undefined; extras: Record<string, unknown> } = {
+        level: undefined,
+        extras: {},
+      };
+      current.scope = scope;
+      callback({
+        setLevel: (level) => { scope.level = level; },
+        setExtra: (key, value) => { scope.extras[key] = value; },
+      });
+      current.scope = null;
+    },
+    capture: (detail: Pick<SentEvent, 'exception' | 'message'>) => {
+      events.push({
+        level: current.scope?.level,
+        extras: { ...current.scope?.extras },
+        ...detail,
+      });
+    },
+  };
+});
+
 vi.mock('@sentry/node', () => ({
-  init: vi.fn(),
-  captureException: vi.fn(),
-  captureMessage: vi.fn(),
-  flush: vi.fn().mockResolvedValue(true),
-  withScope: sentryMocks.withScope,
+  init: sdk.init,
+  captureException: (exception: unknown) => sdk.capture({ exception }),
+  captureMessage: (message: string) => sdk.capture({ message }),
+  flush: sdk.flush,
+  withScope: sdk.withScope,
 }));
 
 const createConsoleSpy = () => ({
@@ -33,6 +64,7 @@ describe('utils/logger (CLI logger with Sentry)', () => {
   beforeEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
+    sdk.events.length = 0;
     ctx.consoleSpy = createConsoleSpy();
   });
 
@@ -44,13 +76,16 @@ describe('utils/logger (CLI logger with Sentry)', () => {
   describe('when SENTRY_ENABLED is false', () => {
     it('logger.error does not call Sentry APIs', async () => {
       vi.stubEnv('SENTRY_ENABLED', 'false');
+      // With a DSN present, so the switch itself is what keeps Sentry off
+      vi.stubEnv('SENTRY_DSN', 'https://test@sentry.io/123');
       const { logger } = await import('#utils/logger');
       const Sentry = await import('@sentry/node');
 
       logger.error('test error');
 
       expect(ctx.consoleSpy.error).toHaveBeenCalledWith('test error');
-      expect(Sentry.withScope).not.toHaveBeenCalled();
+      expect(sdk.events).toEqual([]);
+      expect(Sentry.init).not.toHaveBeenCalled();
     });
 
     it('logger.info outputs to console', async () => {
@@ -70,20 +105,39 @@ describe('utils/logger (CLI logger with Sentry)', () => {
       vi.stubEnv('SITE_ID', 'test-site');
     });
 
-    it('logger.error initializes Sentry and captures exceptions', async () => {
+    it('sends an Error with its context as one error-level event', async () => {
       const { logger } = await import('#utils/logger');
-      const Sentry = await import('@sentry/node');
       const err = new Error('test');
 
-      logger.error(err, { tool: 'add-word' });
+      logger.error(err, { tool: 'add-word', count: 42 });
 
       expect(ctx.consoleSpy.error).toHaveBeenCalled();
-      expect(Sentry.init).toHaveBeenCalledOnce();
-      expect(Sentry.withScope).toHaveBeenCalledOnce();
-      expect(Sentry.captureException).toHaveBeenCalledWith(err);
+      expect(sdk.events).toEqual([
+        { level: 'error', extras: { tool: 'add-word', count: 42 }, exception: err },
+      ]);
     });
 
-    it('initializes Sentry with the pinned baseline around the environment values', async () => {
+    it('sends a string message as an event', async () => {
+      const { logger } = await import('#utils/logger');
+
+      logger.error('something failed');
+
+      expect(sdk.events).toEqual([
+        { level: 'error', extras: {}, message: 'something failed' },
+      ]);
+    });
+
+    it('sends no extras when the second argument is not a plain object', async () => {
+      const { logger } = await import('#utils/logger');
+
+      logger.error('msg', 'not an object');
+
+      expect(sdk.events).toEqual([
+        { level: 'error', extras: {}, message: 'msg' },
+      ]);
+    });
+
+    it('initializes Sentry for this deployment without sending private fields', async () => {
       vi.stubEnv('SENTRY_RELEASE', 'site@1.2.3+abc');
       const { logger } = await import('#utils/logger');
       const Sentry = await import('@sentry/node');
@@ -91,6 +145,9 @@ describe('utils/logger (CLI logger with Sentry)', () => {
 
       logger.error('trigger init');
 
+      expect(Sentry.init).toHaveBeenCalledOnce();
+      // The whole object, not a subset: an added option (sendDefaultPii) or a dropped one (the
+      // dedupe filter, the privacy baseline) must fail here
       expect(Sentry.init).toHaveBeenCalledWith({
         ...sentryBaselineOptions,
         integrations: withoutDedupe,
@@ -102,54 +159,13 @@ describe('utils/logger (CLI logger with Sentry)', () => {
       });
     });
 
-    it('logger.error captures string messages', async () => {
-      const { logger } = await import('#utils/logger');
-      const Sentry = await import('@sentry/node');
-
-      logger.error('something failed');
-
-      expect(Sentry.captureMessage).toHaveBeenCalledWith('something failed', 'error');
-    });
-
-    it('logger.error attaches context as extras on scope', async () => {
-      const { logger } = await import('#utils/logger');
-
-      logger.error('err', { foo: 'bar', count: 42 });
-
-      const scopeCallback = sentryMocks.withScope.mock.calls[0]?.[0];
-      if (!scopeCallback) {
-        throw new Error('withScope callback was not captured');
-      }
-      const scope = { setLevel: vi.fn(), setExtra: vi.fn() };
-      scopeCallback(scope);
-      expect(scope.setExtra).toHaveBeenCalledWith('foo', 'bar');
-      expect(scope.setExtra).toHaveBeenCalledWith('count', 42);
-    });
-
-    it('logger.error skips context when second arg is not a plain object', async () => {
-      const { logger } = await import('#utils/logger');
-      const Sentry = await import('@sentry/node');
-
-      logger.error('msg', 'not an object');
-
-      const scopeCallback = sentryMocks.withScope.mock.calls[0]?.[0];
-      if (!scopeCallback) {
-        throw new Error('withScope callback was not captured');
-      }
-      const scope = { setLevel: vi.fn(), setExtra: vi.fn() };
-      scopeCallback(scope);
-      expect(scope.setExtra).not.toHaveBeenCalled();
-      expect(Sentry.captureMessage).toHaveBeenCalledWith('msg', 'error');
-    });
-
     it('logger.warn does not forward to Sentry', async () => {
       const { logger } = await import('#utils/logger');
-      const Sentry = await import('@sentry/node');
 
       logger.warn('a warning');
 
       expect(ctx.consoleSpy.warn).toHaveBeenCalledWith('a warning');
-      expect(Sentry.withScope).not.toHaveBeenCalled();
+      expect(sdk.events).toEqual([]);
     });
 
     it('only initializes Sentry once across multiple error calls', async () => {
@@ -160,6 +176,7 @@ describe('utils/logger (CLI logger with Sentry)', () => {
       logger.error('second');
 
       expect(Sentry.init).toHaveBeenCalledOnce();
+      expect(sdk.events).toHaveLength(2);
     });
   });
 
@@ -172,6 +189,7 @@ describe('utils/logger (CLI logger with Sentry)', () => {
 
       logger.error('test');
       expect(Sentry.init).not.toHaveBeenCalled();
+      expect(sdk.events).toEqual([]);
     });
   });
 

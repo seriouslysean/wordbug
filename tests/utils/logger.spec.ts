@@ -3,6 +3,8 @@ import {
 } from 'vitest';
 import { config, logger } from '#astro-utils/logger';
 
+declare const mockEnv: Record<string, string | boolean | undefined>;
+
 // Vitest hoists vi.mock above the imports, so the logger loads this mock
 vi.mock('@sentry/astro', () => ({
   captureException: vi.fn(),
@@ -52,50 +54,47 @@ describe('logger', () => {
   });
 
   describe('console behavior', () => {
-    it('preserves console.debug signature', () => {
-      logger.debug('test message', { context: 'data' });
+    it.each(['debug', 'info', 'warn', 'error'] as const)(
+      'writes %s calls to the console with their arguments in development',
+      (level) => {
+        logger[level]('test message', { context: 'data' });
 
-      expect(ctx.consoleSpy.debug).toHaveBeenCalledWith('test message', { context: 'data' });
-    });
-
-    it('preserves console.info signature', () => {
-      logger.info('test message', { context: 'data' });
-
-      expect(ctx.consoleSpy.info).toHaveBeenCalledWith('test message', { context: 'data' });
-    });
-
-    it('preserves console.warn signature', () => {
-      logger.warn('test warning', { context: 'data' });
-
-      expect(ctx.consoleSpy.warn).toHaveBeenCalledWith('test warning', { context: 'data' });
-    });
-
-    it('always logs errors to console', () => {
-      logger.error('test error', { context: 'data' });
-      expect(ctx.consoleSpy.error).toHaveBeenCalledWith('test error', { context: 'data' });
-    });
-  });
-
-  describe('development mode behavior', () => {
-    it('logs all levels in development', () => {
-      logger.debug('debug message');
-      logger.info('info message');
-      logger.warn('warn message');
-      logger.error('error message');
-
-      expect(ctx.consoleSpy.debug).toHaveBeenCalled();
-      expect(ctx.consoleSpy.info).toHaveBeenCalled();
-      expect(ctx.consoleSpy.warn).toHaveBeenCalled();
-      expect(ctx.consoleSpy.error).toHaveBeenCalled();
-    });
+        expect(ctx.consoleSpy[level]).toHaveBeenCalledWith('test message', { context: 'data' });
+      },
+    );
   });
 
   describe('sentry integration', () => {
-    it('handles Sentry errors gracefully', () => {
-      expect(() => {
-        logger.warn('test warning');
-        logger.error('test error');
-      }).not.toThrow();
+    const loadEnabledLogger = async () => {
+      mockEnv.SENTRY_ENABLED = true;
+      mockEnv.SENTRY_DSN = 'https://test@sentry.io/123';
+      vi.resetModules();
+      const { logger: enabledLogger } = await import('#astro-utils/logger');
+      const Sentry = await import('@sentry/astro');
+      return { enabledLogger, Sentry };
+    };
+
+    afterEach(() => {
+      mockEnv.SENTRY_ENABLED = false;
+      mockEnv.SENTRY_DSN = undefined;
+    });
+
+    it('sends errors to Sentry as error-level messages', async () => {
+      const { enabledLogger, Sentry } = await loadEnabledLogger();
+
+      enabledLogger.error('test error');
+
+      expect(Sentry.captureMessage).toHaveBeenCalledWith('test error', 'error');
+    });
+
+    it('still logs and does not throw when Sentry fails', async () => {
+      const { enabledLogger, Sentry } = await loadEnabledLogger();
+      vi.mocked(Sentry.withScope).mockImplementationOnce(() => {
+        throw new Error('Sentry is down');
+      });
+
+      expect(() => enabledLogger.error('test error')).not.toThrow();
+      expect(ctx.consoleSpy.error).toHaveBeenCalledWith('test error');
     });
   });
 });

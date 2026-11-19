@@ -43,6 +43,9 @@ describe('schema-utils', () => {
       expect(schema.name).toBe('Test Site');
       expect(schema.description).toBe('Test description');
       expect(schema.url).toBe('https://test.com/');
+      expect(schema.inLanguage).toBe('en-US');
+      expect(schema.audience?.['@type']).toBe('EducationalAudience');
+      expect(schema.audience?.educationalRole).toBe('student');
     });
 
     it('includes author information', () => {
@@ -60,21 +63,6 @@ describe('schema-utils', () => {
       seoConfig.author = '';
 
       expect(getWebsiteSchemaData()).not.toHaveProperty('author');
-    });
-
-    it('includes educational audience', () => {
-      const schema = getWebsiteSchemaData();
-
-      expect(schema.audience).toBeDefined();
-      if (!schema.audience) {
-        throw new Error('Website schema has no audience');
-      }
-      expect(schema.audience['@type']).toBe('EducationalAudience');
-      expect(schema.audience.educationalRole).toBe('student');
-    });
-
-    it('includes inLanguage from configured locale', () => {
-      expect(getWebsiteSchemaData().inLanguage).toBe('en-US');
     });
   });
 
@@ -96,6 +84,7 @@ describe('schema-utils', () => {
       expect(schema['@type']).toBe('DefinedTerm');
       expect(schema.name).toBe('serendipity');
       expect(schema.description).toBe('The faculty of making fortunate discoveries by accident.');
+      expect(schema.inLanguage).toBe('en-US');
     });
 
     it('includes term set information', () => {
@@ -155,14 +144,6 @@ describe('schema-utils', () => {
       // @ts-expect-error Deliberately verifies the runtime guard against a missing word.
       expect(getWordSchemaData({ definition: 'No word' })).toBeNull();
     });
-
-    it('includes inLanguage from configured locale', () => {
-      const schema = getWordSchemaData({ word: 'test', date: '20240115', definition: 'a test' });
-      if (!schema) {
-        throw new Error('Valid word data produced no schema');
-      }
-      expect(schema.inLanguage).toBe('en-US');
-    });
   });
 
   describe('getCollectionSchemaData', () => {
@@ -173,6 +154,9 @@ describe('schema-utils', () => {
       expect(schema['@type']).toBe('CollectionPage');
       expect(schema.name).toBe('Test Collection');
       expect(schema.description).toBe('Collection description');
+      expect(schema.inLanguage).toBe('en-US');
+      expect(schema.audience?.['@type']).toBe('EducationalAudience');
+      expect(schema.audience?.educationalRole).toBe('student');
     });
 
     it('includes ItemList with count', () => {
@@ -183,25 +167,10 @@ describe('schema-utils', () => {
       expect(schema.mainEntity.numberOfItems).toBe(42);
     });
 
-    it('includes educational audience', () => {
-      const schema = getCollectionSchemaData('Test', 'Description', 10);
-
-      expect(schema.audience).toBeDefined();
-      if (!schema.audience) {
-        throw new Error('Collection schema has no audience');
-      }
-      expect(schema.audience['@type']).toBe('EducationalAudience');
-      expect(schema.audience.educationalRole).toBe('student');
-    });
-
     it('handles zero items', () => {
       const schema = getCollectionSchemaData('Empty Collection', 'No items', 0);
 
       expect(schema.mainEntity.numberOfItems).toBe(0);
-    });
-
-    it('includes inLanguage from configured locale', () => {
-      expect(getCollectionSchemaData('X', 'Y', 1).inLanguage).toBe('en-US');
     });
   });
 

@@ -30,8 +30,17 @@ describe('Architecture: dictionary logo', () => {
   it('shows it at an approved size without passing it through an image pipeline or a filter', () => {
     const page = read('src/pages/attributions.astro').toString('utf-8');
 
-    // 50px is the smallest of the sizes the guidelines approve (50, 100, 125)
-    expect(page).toMatch(/<img src=\{merriamWebsterLogo\.src\}[^>]*width="50" height="50"/);
+    const tag = page.match(/<img\b[^>]*\{merriamWebsterLogo\.src\}[^>]*>/)?.[0] ?? '';
+    // Attribute order is free; what counts is the size attributes and that nothing restyles the tag
+    const attribute = (name: string) => tag.match(new RegExp(`\\s${name}="([^"]*)"`))?.[1];
+
+    expect(tag).not.toBe('');
+    // The logo file itself is the image shown, not a variant that only refers to it
+    expect(tag).toMatch(/\ssrc=\{merriamWebsterLogo\.src\}/);
+    // 50, 100 and 125px are the sizes the guidelines approve, and the logo is square
+    expect(['50', '100', '125']).toContain(attribute('width'));
+    expect(attribute('height')).toBe(attribute('width'));
+    expect(attribute('style')).toBeUndefined();
     expect(page).not.toContain('astro:assets');
     expect(page).not.toMatch(/filter\s*:/);
   });

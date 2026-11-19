@@ -659,19 +659,40 @@ describe('merriam-webster adapter', () => {
     });
   });
 
-  describe('CONFIG', () => {
-    it('exports configuration constants', async () => {
-      const { CONFIG } = await import('#adapters/merriam-webster');
-      expect(CONFIG).toHaveProperty('BASE_URL');
-      expect(CONFIG).toHaveProperty('DICTIONARY');
-      expect(CONFIG).toHaveProperty('DEFAULT_LIMIT');
-      expect(CONFIG.DEFAULT_LIMIT).toBe(10);
+  // Nothing reads DEFAULT_LIMIT yet, so no request shows it; this is its only pin
+  it('keeps the default result limit', async () => {
+    const { CONFIG } = await import('#adapters/merriam-webster');
+    expect(CONFIG.DEFAULT_LIMIT).toBe(10);
+  });
+
+  describe('request', () => {
+    beforeEach(() => {
+      vi.stubEnv('MERRIAM_WEBSTER_API_KEY', 'test-key');
+      fetchMock.mockResolvedValueOnce(mockResponse(200, loadFixture('serendipity')));
     });
 
-    it('uses env vars for config', async () => {
-      const { CONFIG } = await import('#adapters/merriam-webster');
-      expect(CONFIG.BASE_URL).toBe('https://dictionaryapi.com/api/v3/references');
-      expect(CONFIG.DICTIONARY).toBe('collegiate');
+    it('asks the Collegiate dictionary endpoint for the encoded word with the API key', async () => {
+      // Unset (empty) settings fall back to the defaults
+      vi.stubEnv('MERRIAM_WEBSTER_API_URL', '');
+      vi.stubEnv('MERRIAM_WEBSTER_DICTIONARY', '');
+      const { merriamWebsterAdapter } = await import('#adapters/merriam-webster');
+
+      await merriamWebsterAdapter.fetchWordData('ice cream');
+
+      expect(fetchMock.mock.calls[0]?.[0]).toBe(
+        'https://dictionaryapi.com/api/v3/references/collegiate/json/ice%20cream?key=test-key',
+      );
+    });
+
+    it('asks the endpoint and dictionary named in the environment', async () => {
+      vi.stubEnv('MERRIAM_WEBSTER_API_URL', 'https://mw.example/v3');
+      vi.stubEnv('MERRIAM_WEBSTER_DICTIONARY', 'thesaurus');
+      const { merriamWebsterAdapter } = await import('#adapters/merriam-webster');
+
+      // Entries of another dictionary are not read, so this answer is "not found"
+      await merriamWebsterAdapter.fetchWordData('serendipity').catch(() => undefined);
+
+      expect(fetchMock.mock.calls[0]?.[0]).toBe('https://mw.example/v3/thesaurus/json/serendipity?key=test-key');
     });
   });
 });

@@ -172,6 +172,9 @@ describe('normalizeWordData', () => {
     'an unterminated <xref',
     'an empty <xref/> reference',
     'an empty <internalXref urlencoded="rest"/> reference',
+    'a nested <xref>outer <xref>inner</xref> reference</xref>',
+    'a nested <xref>outer <internalXref urlencoded="rest">inner</internalXref></xref>',
+    'a closing tag with attributes <xref>reference</xref class="x">',
   ])('refuses malformed markup rather than guessing: %s', (text) => {
     expect(() => normalizeWordData({
       word: 'broken',

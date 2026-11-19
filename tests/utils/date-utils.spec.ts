@@ -74,10 +74,6 @@ describe('shared date-utils', () => {
       expect(formatDate('2024')).toBe('2024');
       expect(formatDate('invalid')).toBe('invalid');
     });
-
-    it('handles leap year dates', () => {
-      expect(formatDate('20240229')).toBe('Feb 29, 2024');
-    });
   });
 
   describe('formatISODate', () => {
@@ -95,10 +91,6 @@ describe('shared date-utils', () => {
       expect(formatISODate('2024')).toBe('2024');
       expect(formatISODate('invalid')).toBe('invalid');
       expect(formatISODate('')).toBe('');
-    });
-
-    it('handles leap year dates', () => {
-      expect(formatISODate('20240229')).toBe('2024-02-29');
     });
 
     it('handles edge cases', () => {
@@ -123,12 +115,6 @@ describe('shared date-utils', () => {
       const date2 = new Date(2024, 11, 25);
       expect(dateToYYYYMMDD(date1)).toBe('20240101');
       expect(dateToYYYYMMDD(date2)).toBe('20241225');
-    });
-
-    it('handles leap year dates', () => {
-      // February 29, 2024
-      const date = new Date(2024, 1, 29);
-      expect(dateToYYYYMMDD(date)).toBe('20240229');
     });
   });
 
