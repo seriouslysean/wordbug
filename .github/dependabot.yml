@@ -23,6 +23,9 @@ updates:
         patterns: ["*"]
         update-types: [minor, patch]
     ignore:
+      # @types/node follows the Node major the code runs on (26). Lift this when it moves to 28.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
       # Held at TypeScript 6: astro check refuses TypeScript 7.0; Astro's TypeScript 7 support needs
       # 7.1+ with @astrojs/ts-content-mapper. Its architecture tests also use the TypeScript 6
       # compiler API, which 7 drops; pin that as a separate npm alias when this moves. Remove this
