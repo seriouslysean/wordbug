@@ -58,7 +58,7 @@
     "@sentry/astro": "^11.14.0",
     "@sentry/node": "^11.6.0",
     "@types/node": "^26.6.6",
-    "@vitest/coverage-v8": "^5.1.0",
+    "@vitest/coverage-v8": "^5.1.1",
     "cmu-pronouncing-dictionary": "3.0.0",
     "js-yaml": "^5.5.0",
     "lightningcss": "^1.33.0",
