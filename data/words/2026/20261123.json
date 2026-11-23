@@ -1,0 +1,152 @@
+{
+    "word": "aerial",
+    "date": "20261123",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "aerial",
+            "partOfSpeech": "adjective",
+            "text": "of, relating to, or occurring in the air or atmosphere",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial",
+            "examples": [
+                "the aerial acrobatics of circus performers",
+                "aerial plants",
+                "aerial spires",
+                "The hydraulic aerial platform can accommodate up to five firefighters and even a wheelchair.",
+                "an aerial tram",
+                "aerial distinctions",
+                "… visions of aerial joy …",
+                "aerial navigation",
+                "aerial combat",
+                "aerial photographs/photography",
+                "aerial transportation",
+                "a city subjected to aerial bombardment",
+                "aerial views",
+                "aerial spraying",
+                "aerial touchdowns",
+                "a team known for its aerial attack"
+            ]
+        },
+        {
+            "id": "aerial",
+            "partOfSpeech": "adjective",
+            "text": "existing or growing in the air rather than in the ground or in water",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial",
+            "examples": [
+                "the aerial acrobatics of circus performers",
+                "aerial plants",
+                "aerial spires",
+                "The hydraulic aerial platform can accommodate up to five firefighters and even a wheelchair.",
+                "an aerial tram",
+                "aerial distinctions",
+                "… visions of aerial joy …",
+                "aerial navigation",
+                "aerial combat",
+                "aerial photographs/photography",
+                "aerial transportation",
+                "a city subjected to aerial bombardment",
+                "aerial views",
+                "aerial spraying",
+                "aerial touchdowns",
+                "a team known for its aerial attack"
+            ]
+        },
+        {
+            "id": "aerial",
+            "partOfSpeech": "adjective",
+            "text": "high in the air",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial",
+            "examples": [
+                "the aerial acrobatics of circus performers",
+                "aerial plants",
+                "aerial spires",
+                "The hydraulic aerial platform can accommodate up to five firefighters and even a wheelchair.",
+                "an aerial tram",
+                "aerial distinctions",
+                "… visions of aerial joy …",
+                "aerial navigation",
+                "aerial combat",
+                "aerial photographs/photography",
+                "aerial transportation",
+                "a city subjected to aerial bombardment",
+                "aerial views",
+                "aerial spraying",
+                "aerial touchdowns",
+                "a team known for its aerial attack"
+            ]
+        },
+        {
+            "id": "aerial",
+            "partOfSpeech": "noun",
+            "text": "antenna",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial"
+        },
+        {
+            "id": "aerial",
+            "partOfSpeech": "noun",
+            "text": "forward pass",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial"
+        },
+        {
+            "id": "aerial",
+            "partOfSpeech": "noun",
+            "text": "an acrobatic maneuver performed (as by skiers and gymnasts) in the air; also, aerials plural: a ski event featuring such maneuvers",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial"
+        },
+        {
+            "id": "aerial ladder",
+            "partOfSpeech": "noun",
+            "text": "a mechanically operated extensible ladder usually mounted on a fire truck",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial"
+        },
+        {
+            "id": "aerial perspective",
+            "partOfSpeech": "noun",
+            "text": "the expression of space in painting by gradation of color and distinctness",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial"
+        },
+        {
+            "id": "unidentified aerial phenomenon",
+            "partOfSpeech": "noun",
+            "text": "a mysterious flying object in the sky that is sometimes assumed to be a spaceship from another planet: uap —used especially as an alternative to UFO or unidentified flying object",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/aerial"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈer-ē-əl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/a/aerial01.mp3",
+        "etymology": "Latin āerius (borrowed from Greek āérios, derivative of āer-, aḗr air) + -al",
+        "synonyms": [
+            "free-flying",
+            "aeriform",
+            "airy",
+            "aery",
+            "ethereal",
+            "insubstantial"
+        ],
+        "related": [
+            "air",
+            "airiness",
+            "buoyancy"
+        ]
+    }
+}
