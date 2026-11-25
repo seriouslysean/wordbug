@@ -1,0 +1,33 @@
+{
+    "word": "squalor",
+    "date": "20261125",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "squalor",
+            "partOfSpeech": "noun",
+            "text": "the quality or state of being squalid",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/squalor"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈskwä-lər",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/s/squalo01.mp3",
+        "etymology": "Latin, from squalēre",
+        "synonyms": [
+            "sordidness",
+            "squalidness"
+        ],
+        "related": [
+            "dirtiness",
+            "uncleanness",
+            "seamy",
+            "seedy",
+            "flyblown",
+            "squalid"
+        ]
+    }
+}
