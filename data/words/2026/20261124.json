@@ -1,0 +1,82 @@
+{
+    "word": "chapel",
+    "date": "20261124",
+    "adapter": "merriam-webster",
+    "preserveCase": false,
+    "data": [
+        {
+            "id": "chapel",
+            "partOfSpeech": "noun",
+            "text": "a subordinate or private place of worship: such as",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/chapel",
+            "examples": [
+                "a nonconformist chapel"
+            ]
+        },
+        {
+            "id": "chapel",
+            "partOfSpeech": "noun",
+            "text": "a place of worship serving a residence or institution",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/chapel",
+            "examples": [
+                "a nonconformist chapel"
+            ]
+        },
+        {
+            "id": "chapel",
+            "partOfSpeech": "noun",
+            "text": "a small house of worship usually associated with a main church",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/chapel",
+            "examples": [
+                "a nonconformist chapel"
+            ]
+        },
+        {
+            "id": "chapel of ease",
+            "partOfSpeech": "noun",
+            "text": "a chapel or dependent church built to accommodate an expanding parish",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/chapel"
+        },
+        {
+            "id": "Chapel Hill:g",
+            "label": "geographical name",
+            "text": "town in northern North Carolina southwest of Durham",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/chapel"
+        },
+        {
+            "id": "lady chapel",
+            "partOfSpeech": "noun",
+            "text": "a chapel dedicated to the Virgin Mary",
+            "attributionText": "from Merriam-Webster's Collegiate Dictionary",
+            "sourceDictionary": "collegiate",
+            "sourceUrl": "https://www.merriam-webster.com/dictionary/chapel"
+        }
+    ],
+    "enrichment": {
+        "pronunciation": "ˈcha-pəl",
+        "audio": "https://media.merriam-webster.com/audio/prons/en/us/mp3/c/chapel01.mp3",
+        "etymology": "Middle English, from Anglo-French chapele, from Medieval Latin cappella, from diminutive of Late Latin cappa cloak; from the cloak of St. Martin of Tours preserved as a sacred relic in a chapel built for that purpose",
+        "synonyms": [
+            "chapel service"
+        ],
+        "related": [
+            "place of worship",
+            "house of prayer",
+            "chantry",
+            "lady chapel",
+            "side chapel",
+            "service",
+            "religious service"
+        ]
+    }
+}
